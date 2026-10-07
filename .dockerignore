@@ -1,0 +1,12 @@
+node_modules
+.next
+.next-test
+.env*
+.local
+.npm-cache
+docs/data
+docs/design-preview/evidence
+uploads
+test-results
+playwright-report
+.git

@@ -1,0 +1,13 @@
+node_modules
+.next
+.next-test
+.next-*
+.npm-cache
+.local
+uploads
+test-results
+playwright-report
+.env*
+docs/data
+docs/design-preview
+package-lock.json

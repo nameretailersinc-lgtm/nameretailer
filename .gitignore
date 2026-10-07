@@ -1,0 +1,15 @@
+node_modules/
+.next/
+.next-test/
+.next-*/
+.env
+.env.*
+!.env.example
+.local/
+.npm-cache/
+coverage/
+playwright-report/
+test-results/
+__pycache__/
+*.tsbuildinfo
+uploads/

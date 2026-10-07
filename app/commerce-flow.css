@@ -1,0 +1,391 @@
+/* Placement, cart and checkout share the marketplace's paper / evergreen UI. */
+.placement-buy {
+  font-size: 12px;
+  min-height: 36px;
+  margin-block: 8px;
+  gap: 6px;
+  white-space: nowrap;
+}
+.placement-dialog {
+  border: 1px solid #cddfd7;
+  border-radius: 20px;
+  padding: 0;
+  width: min(1040px, calc(100vw - 32px));
+  max-width: none;
+  max-height: calc(100svh - 32px);
+  color: #143138;
+  background: #fafbf8;
+  box-shadow: 0 24px 80px #071d2759;
+}
+.placement-dialog::backdrop {
+  background: #09252dc4;
+  backdrop-filter: blur(4px);
+}
+.placement-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 30px;
+  color: white;
+  background: linear-gradient(120deg, #0c5144, #15383c);
+}
+.placement-dialog-header h2 {
+  color: white;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: clamp(24px, 3vw, 34px);
+  margin: 0;
+}
+.placement-dialog-header .eyebrow {
+  color: #c0e8db;
+  font-size: 11px;
+  margin: 0 0 8px;
+}
+.placement-dialog-header .button {
+  min-width: 44px;
+  padding: 10px;
+  background: white;
+  color: #143138;
+}
+.placement-dialog-body {
+  padding: 24px;
+}
+.customer-card form.placement-builder,
+form.placement-builder {
+  max-width: none;
+  display: block;
+  margin: 0;
+}
+.placement-builder-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 24px;
+}
+.placement-explainer,
+.placement-inputs {
+  padding: 26px;
+  border: 1px solid #d9e5de;
+  border-radius: 12px;
+  background: white;
+  min-width: 0;
+}
+.placement-explainer {
+  background: linear-gradient(150deg, #eef8f3, #f9fbf8);
+}
+.placement-explainer h3,
+.checkout-form h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.placement-explainer h3 {
+  margin: 26px 0 16px;
+  font-size: 18px;
+}
+.placement-explainer svg {
+  flex-shrink: 0;
+  color: #12674e;
+}
+.placement-explainer ul {
+  padding-left: 20px;
+  display: grid;
+  gap: 16px;
+  margin-block: 20px;
+}
+.placement-explainer p,
+.placement-explainer li {
+  font-size: 14px;
+  line-height: 1.65;
+}
+.placement-domain {
+  overflow-wrap: anywhere;
+  font-weight: 600;
+}
+.placement-explainer dl div,
+.cart-brief-details div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-block: 10px;
+  border-bottom: 1px solid #e7ede9;
+  font-size: 13px;
+}
+.placement-explainer dt,
+.cart-brief-details dt {
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.placement-explainer dd,
+.cart-brief-details dd {
+  margin: 0;
+  text-align: right;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+.placement-inputs h3 {
+  font-size: 22px;
+  margin: 0 0 20px;
+}
+.placement-builder fieldset,
+.checkout-form fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0 0 20px;
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+}
+.placement-builder label,
+.checkout-form label {
+  font-size: 13px;
+  font-weight: 600;
+}
+.placement-builder .optional {
+  font-weight: 400;
+  color: #56666e;
+}
+.placement-builder input:not([type="radio"]),
+.placement-builder textarea,
+.placement-builder select,
+.checkout-form input:not([type="radio"]),
+.checkout-form select,
+.checkout-form textarea {
+  font: inherit;
+  font-size: 14px;
+  color: #143138;
+  background: #fff;
+  border: 1px solid #abbdb4;
+  border-radius: 7px;
+  padding: 12px;
+  width: 100%;
+  min-height: 44px;
+  min-width: 0;
+  max-width: 100%;
+}
+.placement-builder textarea,
+.checkout-form textarea {
+  resize: vertical;
+  line-height: 1.6;
+}
+.placement-builder :is(input, textarea, select):focus-visible,
+.checkout-form :is(input, textarea, select):focus-visible {
+  outline: 3px solid #2c876e;
+  outline-offset: 2px;
+}
+.placement-pricing legend,
+.checkout-payments legend {
+  font-weight: 700;
+  padding: 0 0 12px;
+  font-size: 16px;
+}
+.placement-pricing label:has(input[type="radio"]),
+.checkout-payments label {
+  display: flex;
+  align-items: start;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid #cbded3;
+  border-radius: 8px;
+  background: #f9fcfa;
+  cursor: pointer;
+}
+.placement-pricing label:has(input:checked),
+.checkout-payments label:has(input:checked) {
+  background: #eaf6ef;
+  border-color: #26735a;
+}
+.placement-pricing input[type="radio"],
+.checkout-payments input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  min-height: 0;
+  margin-top: 1px;
+  flex-shrink: 0;
+  accent-color: #0c5a42;
+}
+.placement-pricing small {
+  display: block;
+  font-weight: 400;
+  font-size: 12px;
+  margin-top: 4px;
+  color: #4a6369;
+}
+.placement-pricing strong {
+  margin-left: 8px;
+}
+.placement-upload {
+  padding: 16px;
+  border: 1px dashed #aecbbc;
+  border-radius: 10px;
+  background: #f3f9f5;
+  display: grid;
+  gap: 12px;
+}
+.placement-upload input[type="file"] {
+  font-size: 12px;
+  padding: 8px;
+}
+.placement-file {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+}
+.placement-price-breakdown {
+  padding: 16px;
+  background: #edf6f1;
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-size: 13px;
+}
+.placement-price-breakdown span {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+}
+.placement-price-breakdown .placement-total {
+  border-top: 1px solid #bfdacc;
+  padding-top: 12px;
+  font-size: 17px;
+}
+.placement-inputs > .button {
+  width: 100%;
+  justify-content: center;
+}
+.customer-site .customer-cart-items {
+  grid-template-columns: minmax(0, 1fr);
+}
+.cart-article-text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 14px;
+}
+.cart-checkout-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-block: 28px;
+}
+.cart-brief-details {
+  margin-block: 20px;
+}
+.commerce-steps {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 26px;
+}
+.commerce-steps [aria-current] {
+  color: #096c4c;
+}
+.checkout-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  gap: 28px;
+  align-items: start;
+}
+.customer-site .checkout-grid .customer-card {
+  margin: 0;
+}
+.checkout-form {
+  display: grid;
+  gap: 20px;
+}
+.checkout-fields > div {
+  display: grid;
+  gap: 8px;
+}
+.checkout-fields {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.checkout-fields > div:is(:first-child, .billing-country, .billing-notes) {
+  grid-column: 1 / -1;
+}
+.checkout-payments small {
+  margin-left: auto;
+  color: #556970;
+  font-weight: 400;
+}
+.checkout-summary h2 {
+  font-size: 23px;
+  margin-bottom: 24px;
+}
+.checkout-summary article {
+  border-bottom: 1px solid #ccddd3;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+.checkout-summary .cart-brief-details div {
+  flex-direction: column;
+  gap: 4px;
+}
+.checkout-summary .cart-brief-details dd {
+  text-align: left;
+}
+.checkout-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 18px;
+  padding: 18px 0;
+}
+.checkout-summary > .button {
+  width: 100%;
+  justify-content: center;
+  white-space: normal;
+}
+.checkout-summary > .button:disabled {
+  cursor: not-allowed;
+}
+@media (max-width: 760px) {
+  .placement-builder-grid,
+  .checkout-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .placement-dialog {
+    width: calc(100vw - 16px);
+    max-height: calc(100svh - 16px);
+    border-radius: 12px;
+  }
+  .placement-dialog-header {
+    padding: 18px;
+  }
+  .placement-dialog-body {
+    padding: 14px;
+  }
+  .placement-explainer,
+  .placement-inputs {
+    padding: 18px;
+  }
+  .placement-explainer {
+    order: 2;
+  }
+  .placement-inputs {
+    order: 1;
+  }
+  .customer-card:has(> .placement-builder) {
+    padding: 14px;
+  }
+  .checkout-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cart-brief-details div {
+    flex-direction: column;
+    gap: 4px;
+  }
+  .cart-brief-details dd {
+    text-align: left;
+  }
+  .commerce-steps {
+    gap: 14px;
+  }
+}

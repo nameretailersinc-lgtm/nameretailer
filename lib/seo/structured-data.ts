@@ -1,0 +1,111 @@
+import type { WithContext, Thing } from "schema-dts";
+import type { CmsRecord } from "../cms/types";
+import { bodyText, isSafeUrl } from "../cms/content";
+import { canonicalOrigin, canonicalUrl, type SeoSettings } from "./metadata";
+
+export function serializeJsonLd(value: unknown): string {
+  // Escape the raw-text script terminator and line separator characters, not just HTML attributes.
+  return JSON.stringify(value)
+    .replaceAll("<", "\\u003c")
+    .replaceAll(">", "\\u003e")
+    .replaceAll("&", "\\u0026")
+    .replaceAll("\u2028", "\\u2028")
+    .replaceAll("\u2029", "\\u2029");
+}
+
+export function organizationSchema(settings: SeoSettings): WithContext<Thing> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": canonicalOrigin + "/#organization",
+    name: settings.brandName || "Name Retailer",
+    url: canonicalOrigin + "/",
+    ...(settings.contactEmail ? { email: settings.contactEmail } : {}),
+    ...(settings.address ? { address: settings.address } : {}),
+    ...(settings.logo && isSafeUrl(settings.logo)
+      ? { logo: new URL(settings.logo, canonicalOrigin).href }
+      : {}),
+    ...(settings.socialLinks?.length
+      ? { sameAs: settings.socialLinks.filter((url) => isSafeUrl(url, false)) }
+      : {}),
+  };
+}
+
+export function articleSchema(
+  record: CmsRecord,
+  author: CmsRecord | undefined,
+): WithContext<Thing> | null {
+  if (
+    record.collection !== "content" ||
+    record.status !== "published" ||
+    record.data.type !== "post" ||
+    !author ||
+    author.id !== record.data.authorId ||
+    author.collection !== "authors" ||
+    author.status !== "active" ||
+    author.data.verified !== true
+  )
+    return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": record.data.schemaType === "Article" ? "Article" : "BlogPosting",
+    "@id": canonicalUrl(record) + "#article",
+    headline: record.title,
+    mainEntityOfPage: canonicalUrl(record),
+    author: {
+      "@type":
+        author.data.entityType === "Organization" ? "Organization" : "Person",
+      name: String(author.data.name || author.title),
+      url:
+        author.data.entityType === "Organization" &&
+        typeof author.data.url === "string" &&
+        isSafeUrl(author.data.url, false)
+          ? author.data.url
+          : `${canonicalOrigin}/author/${author.slug}/`,
+    },
+    ...(typeof record.data.publishedAt === "string" &&
+    Number.isFinite(Date.parse(record.data.publishedAt))
+      ? { datePublished: record.data.publishedAt }
+      : {}),
+    ...(Number.isFinite(Date.parse(record.updatedAt))
+      ? { dateModified: record.updatedAt }
+      : {}),
+    ...(typeof record.data.ogImage === "string" &&
+    isSafeUrl(record.data.ogImage)
+      ? { image: new URL(record.data.ogImage, canonicalOrigin).href }
+      : {}),
+  };
+}
+
+/** General Schema.org semantics only. Google FAQ rich results ended May 7, 2026. */
+export function faqSchema(record: CmsRecord): WithContext<Thing> | null {
+  if (
+    record.status !== "published" ||
+    !Array.isArray(record.data.faq) ||
+    !record.data.faq.length
+  )
+    return null;
+  const items = record.data.faq
+    .filter(
+      (item): item is { question: string; answer: string } =>
+        !!item &&
+        typeof item === "object" &&
+        typeof item.question === "string" &&
+        typeof item.answer === "string",
+    )
+    .map((item) => ({
+      question: bodyText(item.question),
+      answer: bodyText(item.answer),
+    }))
+    .filter((item) => item.question && item.answer);
+  if (!items.length) return null;
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: bodyText(item.question),
+      acceptedAnswer: { "@type": "Answer", text: bodyText(item.answer) },
+    })),
+  };
+}

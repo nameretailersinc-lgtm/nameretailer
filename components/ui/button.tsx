@@ -1,0 +1,36 @@
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+import { clsx } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+const buttonVariants = cva("button", {
+  variants: {
+    variant: {
+      default: "button-primary",
+      secondary: "button-secondary",
+      destructive: "button-danger",
+      ghost: "button-ghost",
+    },
+    size: { default: "", sm: "button-sm", icon: "button-icon" },
+  },
+  defaultVariants: { variant: "default", size: "default" },
+});
+function Button({
+  className,
+  variant,
+  size,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"button"> &
+  VariantProps<typeof buttonVariants> & { asChild?: boolean }) {
+  const Comp = asChild ? Slot : "button";
+  return (
+    <Comp
+      data-slot="button"
+      className={twMerge(clsx(buttonVariants({ variant, size, className })))}
+      {...props}
+    />
+  );
+}
+export { Button, buttonVariants };

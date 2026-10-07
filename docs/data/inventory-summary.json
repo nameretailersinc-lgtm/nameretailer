@@ -1,0 +1,1915 @@
+{
+ "source": "docs/data/crawl.json",
+ "source_type": "SAMPLE: unique listing rows visible on page 1 of crawled segment pages (biased; re-check against listings.csv)",
+ "summary": {
+  "n": 2318,
+  "by_niche": [
+   [
+    "Business",
+    626
+   ],
+   [
+    "General",
+    198
+   ],
+   [
+    "News and Media",
+    131
+   ],
+   [
+    "All Niches",
+    114
+   ],
+   [
+    "Entertainment",
+    93
+   ],
+   [
+    "Agriculture",
+    88
+   ],
+   [
+    "Other",
+    80
+   ],
+   [
+    "Sports",
+    72
+   ],
+   [
+    "Art",
+    70
+   ],
+   [
+    "Automobiles",
+    69
+   ],
+   [
+    "Games",
+    57
+   ],
+   [
+    "Technology",
+    54
+   ],
+   [
+    "Culture",
+    54
+   ],
+   [
+    "Health",
+    51
+   ],
+   [
+    "Fashion",
+    44
+   ],
+   [
+    "Beauty",
+    41
+   ],
+   [
+    "Education",
+    39
+   ],
+   [
+    "Computers",
+    37
+   ],
+   [
+    "Finance",
+    35
+   ],
+   [
+    "Food",
+    33
+   ],
+   [
+    "Gadgets",
+    33
+   ],
+   [
+    "Lifestyle",
+    30
+   ],
+   [
+    "Travelling",
+    28
+   ],
+   [
+    "Animals and Pets",
+    25
+   ],
+   [
+    "Software development",
+    21
+   ],
+   [
+    "Marketing",
+    21
+   ],
+   [
+    "Home and Family",
+    18
+   ],
+   [
+    "E-commerce",
+    18
+   ],
+   [
+    "Internet",
+    16
+   ],
+   [
+    "Career and Employment",
+    15
+   ],
+   [
+    "Books",
+    12
+   ],
+   [
+    "Music",
+    11
+   ],
+   [
+    "Law",
+    9
+   ],
+   [
+    "Environment",
+    8
+   ],
+   [
+    "Real Estate",
+    5
+   ],
+   [
+    "Web-development",
+    5
+   ],
+   [
+    "Construction and Repairs",
+    5
+   ],
+   [
+    "Programming",
+    4
+   ],
+   [
+    "For Men",
+    4
+   ],
+   [
+    "For Kids",
+    4
+   ],
+   [
+    "Mobile",
+    3
+   ],
+   [
+    "Startups",
+    3
+   ],
+   [
+    "Shopping",
+    3
+   ],
+   [
+    "Photography",
+    3
+   ],
+   [
+    "Leisure and Hobbies",
+    3
+   ],
+   [
+    "Movies",
+    3
+   ],
+   [
+    "Equipment",
+    3
+   ],
+   [
+    "Humor",
+    2
+   ],
+   [
+    "Personal Blogs",
+    2
+   ],
+   [
+    "For Women",
+    2
+   ],
+   [
+    "Society",
+    2
+   ],
+   [
+    "Nature",
+    2
+   ],
+   [
+    "Politics",
+    2
+   ],
+   [
+    "Science",
+    2
+   ],
+   [
+    "Manufacturing",
+    1
+   ],
+   [
+    "Miscellaneous",
+    1
+   ],
+   [
+    "Transport",
+    1
+   ],
+   [
+    "Hardware development",
+    1
+   ],
+   [
+    "Literature",
+    1
+   ]
+  ],
+  "by_country": [
+   [
+    "United States",
+    1608
+   ],
+   [
+    "United Kingdom",
+    88
+   ],
+   [
+    "Italy",
+    77
+   ],
+   [
+    "Brazil",
+    51
+   ],
+   [
+    "India",
+    48
+   ],
+   [
+    "France",
+    40
+   ],
+   [
+    "Ukraine",
+    39
+   ],
+   [
+    "Netherlands",
+    39
+   ],
+   [
+    "Germany",
+    35
+   ],
+   [
+    "Poland",
+    33
+   ],
+   [
+    "Argentina",
+    24
+   ],
+   [
+    "Spain",
+    23
+   ],
+   [
+    "Colombia",
+    20
+   ],
+   [
+    "Indonesia",
+    14
+   ],
+   [
+    "Romania",
+    13
+   ],
+   [
+    "Australia",
+    13
+   ],
+   [
+    "Russia",
+    10
+   ],
+   [
+    "Greece",
+    9
+   ],
+   [
+    "Nigeria",
+    9
+   ],
+   [
+    "Mexico",
+    7
+   ],
+   [
+    "Chile",
+    6
+   ],
+   [
+    "Canada",
+    6
+   ],
+   [
+    "Peru",
+    5
+   ],
+   [
+    "Japan",
+    5
+   ],
+   [
+    "Portugal",
+    5
+   ],
+   [
+    "Sweden",
+    5
+   ],
+   [
+    "Austria",
+    4
+   ],
+   [
+    "Belgium",
+    4
+   ],
+   [
+    "Bulgaria",
+    4
+   ],
+   [
+    "Lithuania",
+    4
+   ],
+   [
+    "Pakistan",
+    4
+   ],
+   [
+    "Kenya",
+    4
+   ],
+   [
+    "South Africa",
+    3
+   ],
+   [
+    "Saudi Arabia",
+    3
+   ],
+   [
+    "Hungary",
+    3
+   ],
+   [
+    "Ireland",
+    3
+   ],
+   [
+    "New Zealand",
+    3
+   ],
+   [
+    "Czech Republic",
+    3
+   ],
+   [
+    "Denmark",
+    3
+   ],
+   [
+    "Vietnam",
+    3
+   ],
+   [
+    "Turkey",
+    3
+   ],
+   [
+    "Finland",
+    3
+   ],
+   [
+    "Bosnia and Herzegovina",
+    3
+   ],
+   [
+    "Serbia",
+    2
+   ],
+   [
+    "Ecuador",
+    2
+   ],
+   [
+    "United Arab Emirates",
+    2
+   ],
+   [
+    "Czechia",
+    2
+   ],
+   [
+    "Norway",
+    2
+   ],
+   [
+    "Philippines",
+    2
+   ],
+   [
+    "Kazakhstan",
+    1
+   ],
+   [
+    "Namibia",
+    1
+   ],
+   [
+    "Morocco",
+    1
+   ],
+   [
+    "Malta",
+    1
+   ],
+   [
+    "Uruguay",
+    1
+   ],
+   [
+    "Taiwan",
+    1
+   ],
+   [
+    "Egypt",
+    1
+   ],
+   [
+    "Israel",
+    1
+   ],
+   [
+    "Latvia",
+    1
+   ],
+   [
+    "Nicaragua",
+    1
+   ],
+   [
+    "Uganda",
+    1
+   ],
+   [
+    "Switzerland",
+    1
+   ],
+   [
+    "Venezuela",
+    1
+   ],
+   [
+    "Singapore",
+    1
+   ],
+   [
+    "Ghana",
+    1
+   ],
+   [
+    "Moldova",
+    1
+   ],
+   [
+    "Iran",
+    1
+   ]
+  ],
+  "by_language": [
+   [
+    "English",
+    1597
+   ],
+   [
+    "Spanish",
+    146
+   ],
+   [
+    "Italian",
+    95
+   ],
+   [
+    "French",
+    71
+   ],
+   [
+    "Portuguese",
+    60
+   ],
+   [
+    "German",
+    55
+   ],
+   [
+    "Ukrainian",
+    45
+   ],
+   [
+    "Other",
+    39
+   ],
+   [
+    "Dutch",
+    37
+   ],
+   [
+    "Polish",
+    32
+   ],
+   [
+    "Arabic",
+    30
+   ],
+   [
+    "Russian",
+    23
+   ],
+   [
+    "Indonesian",
+    22
+   ],
+   [
+    "Romanian",
+    13
+   ],
+   [
+    "Turkish",
+    11
+   ],
+   [
+    "Greek",
+    9
+   ],
+   [
+    "Japanese",
+    8
+   ],
+   [
+    "Hindi",
+    6
+   ],
+   [
+    "Bulgarian",
+    6
+   ],
+   [
+    "Swedish",
+    4
+   ],
+   [
+    "Chinese",
+    3
+   ],
+   [
+    "Latvian",
+    2
+   ],
+   [
+    "Korean",
+    2
+   ],
+   [
+    "Norwegian",
+    2
+   ]
+  ],
+  "by_link_type": [
+   [
+    "02 DoFollow links",
+    1224
+   ],
+   [
+    "03 DoFollow links",
+    564
+   ],
+   [
+    "01 DoFollow link",
+    498
+   ],
+   [
+    "02 NoFollow links",
+    16
+   ],
+   [
+    "01 NoFollow link",
+    11
+   ],
+   [
+    "03 NoFollow links",
+    5
+   ]
+  ],
+  "by_da_band": [
+   [
+    "50-59",
+    489
+   ],
+   [
+    "40-49",
+    413
+   ],
+   [
+    "30-39",
+    379
+   ],
+   [
+    "60-69",
+    311
+   ],
+   [
+    "70-79",
+    236
+   ],
+   [
+    "80-89",
+    192
+   ],
+   [
+    "20-29",
+    129
+   ],
+   [
+    "90-100",
+    112
+   ],
+   [
+    "10-19",
+    37
+   ],
+   [
+    "0-9",
+    20
+   ]
+  ],
+  "by_dr_band": [
+   [
+    "70-100",
+    815
+   ],
+   [
+    "50-59",
+    380
+   ],
+   [
+    "60-69",
+    326
+   ],
+   [
+    "40-49",
+    305
+   ],
+   [
+    "30-39",
+    251
+   ],
+   [
+    "20-29",
+    152
+   ],
+   [
+    "0-19",
+    89
+   ]
+  ],
+  "by_price_band": [
+   [
+    "500+",
+    1053
+   ],
+   [
+    "200-500",
+    432
+   ],
+   [
+    "100-150",
+    321
+   ],
+   [
+    "50-100",
+    261
+   ],
+   [
+    "150-200",
+    218
+   ],
+   [
+    "0-50",
+    33
+   ]
+  ],
+  "by_traffic_band": [
+   [
+    "50000-99999",
+    1000
+   ],
+   [
+    "500000+",
+    1000
+   ],
+   [
+    "0-999",
+    241
+   ],
+   [
+    "100000-499999",
+    33
+   ],
+   [
+    "1000-9999",
+    23
+   ],
+   [
+    "10000-49999",
+    21
+   ]
+  ],
+  "median_price_by_dr_band": {
+   "0-19": {
+    "n": 89,
+    "median_usd": 143.31
+   },
+   "20-29": {
+    "n": 152,
+    "median_usd": 188.53
+   },
+   "30-39": {
+    "n": 251,
+    "median_usd": 349.12
+   },
+   "40-49": {
+    "n": 305,
+    "median_usd": 478.8
+   },
+   "50-59": {
+    "n": 380,
+    "median_usd": 478.8
+   },
+   "60-69": {
+    "n": 326,
+    "median_usd": 408.98
+   },
+   "70-100": {
+    "n": 815,
+    "median_usd": 766.08
+   }
+  },
+  "median_price_by_da_band": {
+   "0-9": {
+    "n": 20,
+    "median_usd": 196.7
+   },
+   "10-19": {
+    "n": 37,
+    "median_usd": 147.87
+   },
+   "20-29": {
+    "n": 129,
+    "median_usd": 344.14
+   },
+   "30-39": {
+    "n": 379,
+    "median_usd": 324.19
+   },
+   "40-49": {
+    "n": 413,
+    "median_usd": 399.0
+   },
+   "50-59": {
+    "n": 489,
+    "median_usd": 349.12
+   },
+   "60-69": {
+    "n": 311,
+    "median_usd": 478.8
+   },
+   "70-79": {
+    "n": 236,
+    "median_usd": 478.8
+   },
+   "80-89": {
+    "n": 192,
+    "median_usd": 1436.4
+   },
+   "90-100": {
+    "n": 112,
+    "median_usd": 1220.94
+   }
+  },
+  "median_price_by_traffic_band": {
+   "0-999": {
+    "n": 241,
+    "median_usd": 141.63
+   },
+   "1000-9999": {
+    "n": 23,
+    "median_usd": 316.41
+   },
+   "10000-49999": {
+    "n": 21,
+    "median_usd": 215.46
+   },
+   "50000-99999": {
+    "n": 1000,
+    "median_usd": 311.22
+   },
+   "100000-499999": {
+    "n": 33,
+    "median_usd": 199.5
+   },
+   "500000+": {
+    "n": 1000,
+    "median_usd": 909.72
+   }
+  },
+  "median_price_by_niche": {
+   "Business": {
+    "n": 626,
+    "median_usd": 316.4
+   },
+   "General": {
+    "n": 198,
+    "median_usd": 374.06
+   },
+   "News and Media": {
+    "n": 131,
+    "median_usd": 813.96
+   },
+   "All Niches": {
+    "n": 114,
+    "median_usd": 670.32
+   },
+   "Entertainment": {
+    "n": 93,
+    "median_usd": 948.02
+   },
+   "Agriculture": {
+    "n": 88,
+    "median_usd": 253.17
+   },
+   "Other": {
+    "n": 80,
+    "median_usd": 474.01
+   },
+   "Sports": {
+    "n": 72,
+    "median_usd": 478.8
+   },
+   "Art": {
+    "n": 70,
+    "median_usd": 317.71
+   },
+   "Automobiles": {
+    "n": 69,
+    "median_usd": 718.2
+   },
+   "Games": {
+    "n": 57,
+    "median_usd": 478.8
+   },
+   "Technology": {
+    "n": 54,
+    "median_usd": 454.86
+   },
+   "Culture": {
+    "n": 54,
+    "median_usd": 699.05
+   },
+   "Health": {
+    "n": 51,
+    "median_usd": 374.06
+   },
+   "Fashion": {
+    "n": 44,
+    "median_usd": 342.64
+   },
+   "Beauty": {
+    "n": 41,
+    "median_usd": 718.2
+   },
+   "Education": {
+    "n": 39,
+    "median_usd": 423.94
+   },
+   "Computers": {
+    "n": 37,
+    "median_usd": 952.81
+   },
+   "Finance": {
+    "n": 35,
+    "median_usd": 478.8
+   },
+   "Food": {
+    "n": 33,
+    "median_usd": 399.0
+   },
+   "Gadgets": {
+    "n": 33,
+    "median_usd": 670.32
+   },
+   "Lifestyle": {
+    "n": 30,
+    "median_usd": 933.66
+   },
+   "Travelling": {
+    "n": 28,
+    "median_usd": 718.2
+   },
+   "Animals and Pets": {
+    "n": 25,
+    "median_usd": 199.5
+   },
+   "Software development": {
+    "n": 21,
+    "median_usd": 349.12
+   },
+   "Marketing": {
+    "n": 21,
+    "median_usd": 311.22
+   },
+   "Home and Family": {
+    "n": 18,
+    "median_usd": 247.78
+   },
+   "E-commerce": {
+    "n": 18,
+    "median_usd": 478.8
+   },
+   "Internet": {
+    "n": 16,
+    "median_usd": 574.56
+   },
+   "Career and Employment": {
+    "n": 15,
+    "median_usd": 478.8
+   },
+   "Books": {
+    "n": 12,
+    "median_usd": 230.66
+   },
+   "Music": {
+    "n": 11,
+    "median_usd": 1029.42
+   },
+   "Law": {
+    "n": 9,
+    "median_usd": 1077.3
+   },
+   "Environment": {
+    "n": 8,
+    "median_usd": 454.86
+   },
+   "Real Estate": {
+    "n": 5,
+    "median_usd": 167.58
+   },
+   "Web-development": {
+    "n": 5,
+    "median_usd": 813.96
+   },
+   "Construction and Repairs": {
+    "n": 5,
+    "median_usd": 574.56
+   },
+   "Programming": {
+    "n": 4,
+    "median_usd": 273.68
+   },
+   "For Men": {
+    "n": 4,
+    "median_usd": 554.61
+   },
+   "For Kids": {
+    "n": 4,
+    "median_usd": 790.71
+   },
+   "Mobile": {
+    "n": 3,
+    "median_usd": 389.02
+   },
+   "Startups": {
+    "n": 3,
+    "median_usd": 478.8
+   },
+   "Shopping": {
+    "n": 3,
+    "median_usd": 199.5
+   },
+   "Photography": {
+    "n": 3,
+    "median_usd": 718.2
+   },
+   "Leisure and Hobbies": {
+    "n": 3,
+    "median_usd": 722.99
+   },
+   "Movies": {
+    "n": 3,
+    "median_usd": 813.96
+   },
+   "Equipment": {
+    "n": 3,
+    "median_usd": 574.56
+   },
+   "Humor": {
+    "n": 2,
+    "median_usd": 955.21
+   },
+   "Personal Blogs": {
+    "n": 2,
+    "median_usd": 104.98
+   },
+   "For Women": {
+    "n": 2,
+    "median_usd": 2382.03
+   },
+   "Society": {
+    "n": 2,
+    "median_usd": 13167.0
+   },
+   "Nature": {
+    "n": 2,
+    "median_usd": 1261.64
+   },
+   "Politics": {
+    "n": 2,
+    "median_usd": 1939.14
+   },
+   "Science": {
+    "n": 2,
+    "median_usd": 523.69
+   },
+   "Manufacturing": {
+    "n": 1,
+    "median_usd": 161.99
+   },
+   "Miscellaneous": {
+    "n": 1,
+    "median_usd": 766.08
+   },
+   "Transport": {
+    "n": 1,
+    "median_usd": 167.58
+   },
+   "Hardware development": {
+    "n": 1,
+    "median_usd": 119.7
+   },
+   "Literature": {
+    "n": 1,
+    "median_usd": 334.16
+   }
+  },
+  "median_price_by_country": {
+   "United States": {
+    "n": 1608,
+    "median_usd": 349.12
+   },
+   "United Kingdom": {
+    "n": 88,
+    "median_usd": 586.53
+   },
+   "Italy": {
+    "n": 77,
+    "median_usd": 718.2
+   },
+   "Brazil": {
+    "n": 51,
+    "median_usd": 478.8
+   },
+   "India": {
+    "n": 48,
+    "median_usd": 196.7
+   },
+   "France": {
+    "n": 40,
+    "median_usd": 3591.0
+   },
+   "Ukraine": {
+    "n": 39,
+    "median_usd": 861.84
+   },
+   "Netherlands": {
+    "n": 39,
+    "median_usd": 3710.7
+   },
+   "Germany": {
+    "n": 35,
+    "median_usd": 199.5
+   },
+   "Poland": {
+    "n": 33,
+    "median_usd": 957.6
+   },
+   "Argentina": {
+    "n": 24,
+    "median_usd": 478.8
+   },
+   "Spain": {
+    "n": 23,
+    "median_usd": 1053.36
+   },
+   "Colombia": {
+    "n": 20,
+    "median_usd": 123.65
+   },
+   "Indonesia": {
+    "n": 14,
+    "median_usd": 361.59
+   },
+   "Romania": {
+    "n": 13,
+    "median_usd": 957.6
+   },
+   "Australia": {
+    "n": 13,
+    "median_usd": 2537.64
+   },
+   "Russia": {
+    "n": 10,
+    "median_usd": 474.01
+   },
+   "Greece": {
+    "n": 9,
+    "median_usd": 1149.12
+   },
+   "Nigeria": {
+    "n": 9,
+    "median_usd": 311.22
+   },
+   "Mexico": {
+    "n": 7,
+    "median_usd": 766.08
+   },
+   "Chile": {
+    "n": 6,
+    "median_usd": 629.62
+   },
+   "Canada": {
+    "n": 6,
+    "median_usd": 2231.21
+   },
+   "Peru": {
+    "n": 5,
+    "median_usd": 188.53
+   },
+   "Japan": {
+    "n": 5,
+    "median_usd": 94.16
+   },
+   "Portugal": {
+    "n": 5,
+    "median_usd": 478.8
+   },
+   "Sweden": {
+    "n": 5,
+    "median_usd": 1197.0
+   },
+   "Austria": {
+    "n": 4,
+    "median_usd": 722.69
+   },
+   "Belgium": {
+    "n": 4,
+    "median_usd": 2753.1
+   },
+   "Bulgaria": {
+    "n": 4,
+    "median_usd": 1903.23
+   },
+   "Lithuania": {
+    "n": 4,
+    "median_usd": 367.58
+   },
+   "Pakistan": {
+    "n": 4,
+    "median_usd": 387.03
+   },
+   "Kenya": {
+    "n": 4,
+    "median_usd": 837.9
+   },
+   "South Africa": {
+    "n": 3,
+    "median_usd": 478.8
+   },
+   "Saudi Arabia": {
+    "n": 3,
+    "median_usd": 7253.82
+   },
+   "Hungary": {
+    "n": 3,
+    "median_usd": 507.53
+   },
+   "Ireland": {
+    "n": 3,
+    "median_usd": 3591.0
+   },
+   "New Zealand": {
+    "n": 3,
+    "median_usd": 957.6
+   },
+   "Czech Republic": {
+    "n": 3,
+    "median_usd": 718.2
+   },
+   "Denmark": {
+    "n": 3,
+    "median_usd": 1527.37
+   },
+   "Vietnam": {
+    "n": 3,
+    "median_usd": 550.62
+   },
+   "Turkey": {
+    "n": 3,
+    "median_usd": 399.0
+   },
+   "Finland": {
+    "n": 3,
+    "median_usd": 2633.4
+   },
+   "Bosnia and Herzegovina": {
+    "n": 3,
+    "median_usd": 1005.48
+   },
+   "Serbia": {
+    "n": 2,
+    "median_usd": 382.66
+   },
+   "Ecuador": {
+    "n": 2,
+    "median_usd": 1364.58
+   },
+   "United Arab Emirates": {
+    "n": 2,
+    "median_usd": 2753.1
+   },
+   "Czechia": {
+    "n": 2,
+    "median_usd": 418.95
+   },
+   "Norway": {
+    "n": 2,
+    "median_usd": 309.21
+   },
+   "Philippines": {
+    "n": 2,
+    "median_usd": 234.41
+   },
+   "Kazakhstan": {
+    "n": 1,
+    "median_usd": 430.92
+   },
+   "Namibia": {
+    "n": 1,
+    "median_usd": 89.78
+   },
+   "Morocco": {
+    "n": 1,
+    "median_usd": 199.5
+   },
+   "Malta": {
+    "n": 1,
+    "median_usd": 526.68
+   },
+   "Uruguay": {
+    "n": 1,
+    "median_usd": 478.8
+   },
+   "Taiwan": {
+    "n": 1,
+    "median_usd": 167.58
+   },
+   "Egypt": {
+    "n": 1,
+    "median_usd": 1388.52
+   },
+   "Israel": {
+    "n": 1,
+    "median_usd": 1987.02
+   },
+   "Latvia": {
+    "n": 1,
+    "median_usd": 1661.44
+   },
+   "Nicaragua": {
+    "n": 1,
+    "median_usd": 526.68
+   },
+   "Uganda": {
+    "n": 1,
+    "median_usd": 622.44
+   },
+   "Switzerland": {
+    "n": 1,
+    "median_usd": 253.17
+   },
+   "Venezuela": {
+    "n": 1,
+    "median_usd": 718.2
+   },
+   "Singapore": {
+    "n": 1,
+    "median_usd": 428.92
+   },
+   "Ghana": {
+    "n": 1,
+    "median_usd": 1340.64
+   },
+   "Moldova": {
+    "n": 1,
+    "median_usd": 399.0
+   },
+   "Iran": {
+    "n": 1,
+    "median_usd": 314.21
+   }
+  },
+  "median_price_by_language": {
+   "English": {
+    "n": 1597,
+    "median_usd": 311.22
+   },
+   "Spanish": {
+    "n": 146,
+    "median_usd": 682.29
+   },
+   "Italian": {
+    "n": 95,
+    "median_usd": 718.2
+   },
+   "French": {
+    "n": 71,
+    "median_usd": 2585.52
+   },
+   "Portuguese": {
+    "n": 60,
+    "median_usd": 574.56
+   },
+   "German": {
+    "n": 55,
+    "median_usd": 199.5
+   },
+   "Ukrainian": {
+    "n": 45,
+    "median_usd": 646.38
+   },
+   "Other": {
+    "n": 39,
+    "median_usd": 861.84
+   },
+   "Dutch": {
+    "n": 37,
+    "median_usd": 4309.2
+   },
+   "Polish": {
+    "n": 32,
+    "median_usd": 981.54
+   },
+   "Arabic": {
+    "n": 30,
+    "median_usd": 1220.94
+   },
+   "Russian": {
+    "n": 23,
+    "median_usd": 478.8
+   },
+   "Indonesian": {
+    "n": 22,
+    "median_usd": 361.59
+   },
+   "Romanian": {
+    "n": 13,
+    "median_usd": 957.6
+   },
+   "Turkish": {
+    "n": 11,
+    "median_usd": 478.8
+   },
+   "Greek": {
+    "n": 9,
+    "median_usd": 1149.12
+   },
+   "Japanese": {
+    "n": 8,
+    "median_usd": 123.4
+   },
+   "Hindi": {
+    "n": 6,
+    "median_usd": 1388.52
+   },
+   "Bulgarian": {
+    "n": 6,
+    "median_usd": 1268.82
+   },
+   "Swedish": {
+    "n": 4,
+    "median_usd": 1197.0
+   },
+   "Chinese": {
+    "n": 3,
+    "median_usd": 119.7
+   },
+   "Latvian": {
+    "n": 2,
+    "median_usd": 2745.92
+   },
+   "Korean": {
+    "n": 2,
+    "median_usd": 642.95
+   },
+   "Norwegian": {
+    "n": 2,
+    "median_usd": 309.21
+   }
+  },
+  "niche_x_language_top": [
+   [
+    "Business",
+    "English",
+    473
+   ],
+   [
+    "General",
+    "English",
+    116
+   ],
+   [
+    "All Niches",
+    "English",
+    79
+   ],
+   [
+    "Entertainment",
+    "English",
+    67
+   ],
+   [
+    "News and Media",
+    "English",
+    66
+   ],
+   [
+    "Other",
+    "English",
+    55
+   ],
+   [
+    "Technology",
+    "English",
+    50
+   ],
+   [
+    "Agriculture",
+    "English",
+    50
+   ],
+   [
+    "Art",
+    "English",
+    48
+   ],
+   [
+    "Sports",
+    "English",
+    48
+   ],
+   [
+    "Games",
+    "English",
+    42
+   ],
+   [
+    "Health",
+    "English",
+    39
+   ],
+   [
+    "Automobiles",
+    "English",
+    38
+   ],
+   [
+    "Business",
+    "Spanish",
+    35
+   ],
+   [
+    "Computers",
+    "English",
+    32
+   ],
+   [
+    "Fashion",
+    "English",
+    31
+   ],
+   [
+    "General",
+    "Italian",
+    28
+   ],
+   [
+    "Education",
+    "English",
+    26
+   ],
+   [
+    "Finance",
+    "English",
+    25
+   ],
+   [
+    "Gadgets",
+    "English",
+    24
+   ],
+   [
+    "Beauty",
+    "English",
+    22
+   ],
+   [
+    "News and Media",
+    "Spanish",
+    22
+   ],
+   [
+    "Travelling",
+    "English",
+    21
+   ],
+   [
+    "Food",
+    "English",
+    21
+   ],
+   [
+    "Software development",
+    "English",
+    21
+   ],
+   [
+    "Agriculture",
+    "German",
+    21
+   ],
+   [
+    "Animals and Pets",
+    "English",
+    20
+   ],
+   [
+    "Business",
+    "Ukrainian",
+    19
+   ],
+   [
+    "Marketing",
+    "English",
+    19
+   ],
+   [
+    "Lifestyle",
+    "English",
+    17
+   ],
+   [
+    "Business",
+    "Polish",
+    17
+   ],
+   [
+    "Culture",
+    "English",
+    16
+   ],
+   [
+    "E-commerce",
+    "English",
+    15
+   ],
+   [
+    "Business",
+    "Portuguese",
+    14
+   ],
+   [
+    "Culture",
+    "Spanish",
+    13
+   ],
+   [
+    "Business",
+    "Arabic",
+    12
+   ],
+   [
+    "Home and Family",
+    "English",
+    12
+   ],
+   [
+    "Internet",
+    "English",
+    12
+   ],
+   [
+    "News and Media",
+    "Italian",
+    12
+   ],
+   [
+    "Business",
+    "Russian",
+    12
+   ]
+  ]
+ },
+ "segment_totals_from_site": {
+  "https://nameretailer.com/": {
+   "shown_total": 56079,
+   "rows": 30,
+   "last_page": 1870,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/price-50-to-100/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 563,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/price-100-to-150/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 530,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/price-150-to-200/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 172,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/price-200-above/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 515,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/price-0-to-50/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 92,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/above-500k/": {
+   "shown_total": null,
+   "rows": 1000,
+   "last_page": 2,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/100k-to-500k/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 50,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/backlinks-0-to-100k/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 1870,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/backlinks-100k-to-500k/": {
+   "shown_total": null,
+   "rows": 0,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/trust-flow-50-and-above/": {
+   "shown_total": null,
+   "rows": 0,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/trust-flow-41-to-50/": {
+   "shown_total": null,
+   "rows": 0,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/trust-flow-31-to-40/": {
+   "shown_total": null,
+   "rows": 0,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/trust-flow-21-to-30/": {
+   "shown_total": null,
+   "rows": 0,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/trust-flow-10-to-50/": {
+   "shown_total": null,
+   "rows": 0,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/trust-flow-0-to-10/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 1870,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/50k-to-500k/": {
+   "shown_total": null,
+   "rows": 1000,
+   "last_page": 2,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/zero-to-50k-traffic/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 1746,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da90toda100/": {
+   "shown_total": 173,
+   "rows": 30,
+   "last_page": 6,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da80toda90/": {
+   "shown_total": 425,
+   "rows": 30,
+   "last_page": 15,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da70toda80/": {
+   "shown_total": 1379,
+   "rows": 30,
+   "last_page": 46,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da60toda70/": {
+   "shown_total": 5108,
+   "rows": 30,
+   "last_page": 171,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da50toda60-sites/": {
+   "shown_total": 21119,
+   "rows": 30,
+   "last_page": 704,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da40toda50/": {
+   "shown_total": 8848,
+   "rows": 30,
+   "last_page": 295,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da30toda40/": {
+   "shown_total": 15263,
+   "rows": 30,
+   "last_page": 509,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da20toda30/": {
+   "shown_total": 6742,
+   "rows": 30,
+   "last_page": 225,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da10toda20/": {
+   "shown_total": 1363,
+   "rows": 30,
+   "last_page": 46,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/da1toda10/": {
+   "shown_total": 59,
+   "rows": 30,
+   "last_page": 2,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/monthly-200-above/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 515,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/monthly-150-to-200/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 172,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/monthly-100-to-150/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 563,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/monthly-50-to-100/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 563,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/monthly-0-to-50/": {
+   "shown_total": null,
+   "rows": 30,
+   "last_page": 92,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://nameretailer.com/backlinks-500k-above/": {
+   "shown_total": null,
+   "rows": 0,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "https://www.nameretailer.com/": {
+   "shown_total": 56079,
+   "rows": 30,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  },
+  "http://www.nameretailer.com/": {
+   "shown_total": 56079,
+   "rows": 30,
+   "last_page": null,
+   "estimated_total": null,
+   "estimation_limitation": "No total inferred from pagination: observed page sizes vary; use explicit shown_total or the owner's full listings CSV."
+  }
+ }
+}

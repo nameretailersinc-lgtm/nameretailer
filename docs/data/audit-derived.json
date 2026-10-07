@@ -1,0 +1,5782 @@
+{
+ "counts": {
+  "pages_recorded": 166,
+  "live_html": 139,
+  "sitemap_urls": 133,
+  "by_page_type_live": {
+   "home": 1,
+   "blog-index": 7,
+   "blog-post": 18,
+   "marketplace-segment": 45,
+   "tool": 30,
+   "support": 7,
+   "service": 11,
+   "other": 8,
+   "legal": 6,
+   "community": 5,
+   "account/commerce": 1
+  },
+  "by_page_type_sitemap": {
+   "blog-index": 2,
+   "blog-post": 18,
+   "home": 1,
+   "marketplace-segment": 45,
+   "tool": 30,
+   "support": 7,
+   "service": 11,
+   "other": 8,
+   "legal": 6,
+   "community": 5
+  },
+  "recommendations": {
+   "improve": 82,
+   "drop-301": 9,
+   "merge": 44,
+   "drop-410": 4
+  },
+  "distinct_link_details_urls_linked": 2318
+ },
+ "dup_title": {},
+ "dup_desc": {
+  "get in touch with name retailer for help with guest posting, seo services, account support, billing questions, and custom content requests.": [
+   "/customer-support-2/",
+   "/help-center/"
+  ]
+ },
+ "dup_h1": {
+  "name retailer blog": [
+   "/category/uncategorized/",
+   "/author/admin_123/",
+   "/2026/04/26/",
+   "/2025/10/02/",
+   "/2025/09/26/",
+   "/2025/07/12/"
+  ]
+ },
+ "templated_titles": {
+  "trust flow # to # guest post sites - guest post sites & ba": [
+   "/trust-flow-41-to-50/",
+   "/trust-flow-31-to-40/",
+   "/trust-flow-21-to-30/",
+   "/trust-flow-10-to-50/"
+  ],
+  "da#toda# - guest post sites & backlinks": [
+   "/da90toda100/",
+   "/da80toda90/",
+   "/da70toda80/",
+   "/da60toda70/",
+   "/da50toda60-sites/",
+   "/da40toda50/",
+   "/da30toda40/",
+   "/da20toda30/",
+   "/da10toda20/",
+   "/da1toda10/"
+  ]
+ },
+ "templated_descriptions": {
+  "browse trust flow # to # guest post sites listings to find quality guest post opportunities, relevant backlinks, and seo-friendly placements for your nic": [
+   "/trust-flow-41-to-50/",
+   "/trust-flow-31-to-40/",
+   "/trust-flow-21-to-30/",
+   "/trust-flow-10-to-50/"
+  ],
+  "browse da#toda# listings to find quality guest post opportunities, relevant backlinks, and seo-friendly placements for your niche.": [
+   "/da90toda100/",
+   "/da80toda90/",
+   "/da70toda80/",
+   "/da60toda70/",
+   "/da50toda60-sites/",
+   "/da40toda50/",
+   "/da30toda40/",
+   "/da20toda30/",
+   "/da10toda20/",
+   "/da1toda10/"
+  ],
+  "browse monthly price # to # listings to find quality guest post opportunities, relevant backlinks, and seo-friendly placements for your niche.": [
+   "/monthly-150-to-200/",
+   "/monthly-100-to-150/",
+   "/monthly-50-to-100/",
+   "/monthly-0-to-50/"
+  ]
+ },
+ "near_duplicates": [
+  {
+   "a": "/2025/07/12/",
+   "b": "/2025/09/26/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/07/12/",
+   "b": "/2025/10/02/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/07/12/",
+   "b": "/2026/04/26/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/07/12/",
+   "b": "/author/admin_123/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/07/12/",
+   "b": "/category/uncategorized/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/09/26/",
+   "b": "/2025/10/02/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/09/26/",
+   "b": "/2026/04/26/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/09/26/",
+   "b": "/author/admin_123/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/09/26/",
+   "b": "/category/uncategorized/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/10/02/",
+   "b": "/2026/04/26/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/10/02/",
+   "b": "/author/admin_123/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2025/10/02/",
+   "b": "/category/uncategorized/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2026/04/26/",
+   "b": "/author/admin_123/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/2026/04/26/",
+   "b": "/category/uncategorized/",
+   "jaccard_5gram": 1.0
+  },
+  {
+   "a": "/author/admin_123/",
+   "b": "/category/uncategorized/",
+   "jaccard_5gram": 1.0
+  }
+ ],
+ "same_listing_rows": [
+  {
+   "a": "/",
+   "b": "/backlinks-0-to-100k/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/",
+   "b": "/trust-flow-0-to-10/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/backlinks-0-to-100k/",
+   "b": "/trust-flow-0-to-10/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/monthly-0-to-50/",
+   "b": "/price-0-to-50/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/monthly-100-to-150/",
+   "b": "/monthly-50-to-100/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/monthly-100-to-150/",
+   "b": "/price-50-to-100/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/monthly-150-to-200/",
+   "b": "/price-150-to-200/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/monthly-200-above/",
+   "b": "/price-200-above/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/monthly-50-to-100/",
+   "b": "/price-50-to-100/",
+   "jaccard_domains": 1.0
+  },
+  {
+   "a": "/",
+   "b": "/zero-to-50k-traffic/",
+   "jaccard_domains": 0.875
+  },
+  {
+   "a": "/backlinks-0-to-100k/",
+   "b": "/zero-to-50k-traffic/",
+   "jaccard_domains": 0.875
+  },
+  {
+   "a": "/trust-flow-0-to-10/",
+   "b": "/zero-to-50k-traffic/",
+   "jaccard_domains": 0.875
+  }
+ ],
+ "orphans": [
+  "/best-guest-blogging-sites-to-supercharge-your-seo/",
+  "/everything-you-need-to-know-about-guest-blogging-services/",
+  "/hello-world/",
+  "/how-guest-posts-improve-your-domain-authority-real-results-explained/",
+  "/how-to-buy-links/",
+  "/test-blog-post/",
+  "/the-real-benefits-of-guest-blogging-you-shouldnt-miss/",
+  "/what-is-guest-posting-and-why-it-still-matters-in-2025/",
+  "/why-guest-posting-still-works-in-2025-and-how-to-get-maximum-seo-value/",
+  "/guest-post-by-dr/",
+  "/guest-posts-by-backlinks/",
+  "/guest-posts-by-majestic-tf-10-to-50/",
+  "/guest-posts-by-price/",
+  "/guest-posts-by-traffic/",
+  "/monthly-0-to-50/",
+  "/monthly-100-to-150/",
+  "/monthly-150-to-200/",
+  "/monthly-200-above/",
+  "/monthly-50-to-100/",
+  "/monthly/",
+  "/permanent/",
+  "/products/",
+  "/trust-flow-above-50/"
+ ],
+ "nav_only": [
+  "/custom-login/",
+  "/community-guidelines/",
+  "/networking-opportunities/",
+  "/top-blogging-forums-to-join-and-grow-your-blogging-journey/",
+  "/user-reviews/",
+  "/writers-community/",
+  "/cookie-policy/",
+  "/copyright-policy/",
+  "/dmca-compliance-policy/",
+  "/refund-policy/",
+  "/user-agreement/",
+  "/about/",
+  "/blog-post-formatting-guide/",
+  "/blogging-tips-tricks/",
+  "/headline-writing-tips/",
+  "/popular-article-categories/",
+  "/exclusive-content/",
+  "/guests-blogging-services/",
+  "/niche-blog-posts/",
+  "/plagiarism-checking/",
+  "/proofreading-editing/",
+  "/seo-optimized-blog-posts/",
+  "/social-media-promotion/",
+  "/contact-us/",
+  "/customer-support-2/",
+  "/faq/",
+  "/help-center/",
+  "/invoices-billing/",
+  "/payment-methods/"
+ ],
+ "broken_internal_links": [],
+ "internal_links_to_redirects": [
+  {
+   "source": "/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/why-guest-posting-still-works-in-2025-and-how-to-get-maximum-seo-value/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/why-guest-posting-still-works-in-2025-and-how-to-get-maximum-seo-value/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/the-real-benefits-of-guest-blogging-you-shouldnt-miss/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/how-guest-posts-improve-your-domain-authority-real-results-explained/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/how-guest-posts-improve-your-domain-authority-real-results-explained/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/best-guest-blogging-sites-to-supercharge-your-seo/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-50-to-100/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/price-200-above/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/how-it-works/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/guests-blogging-services/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/guests-blogging-services/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/content-marketing-services/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/seo-optimized-blog-posts/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/buy-blog-posts/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/buy-blog-posts/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/backlinks-0-to-100k/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/terms-privacy/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/terms-privacy/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/image-to-webp-converter",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/webp-to-png-converter",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/trust-flow-0-to-10/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/zero-to-50k-traffic/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da50toda60-sites/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da50toda60-sites/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da50toda60-sites/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da50toda60-sites/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da50toda60-sites/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da50toda60-sites/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da30toda40/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da30toda40/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da30toda40/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/da30toda40/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter/",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-200-above/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-200-above/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-200-above/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-200-above/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-200-above/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-200-above/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-100-to-150/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-100-to-150/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-100-to-150/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-100-to-150/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-50-to-100/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-50-to-100/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-50-to-100/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/monthly-50-to-100/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/community-guidelines/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/community-guidelines/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/user-agreement/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/user-agreement/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/dmca-compliance-policy/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/dmca-compliance-policy/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/exclusive-content/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/niche-blog-posts/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/popular-article-categories/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/trending-articles/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/request-a-custom-blog-post/",
+   "target": "/",
+   "final": "/",
+   "zone": "content"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/image-to-webp-converter",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/webp-to-png-converter",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/png-to-jpg-converter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/jpg-to-png-converter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/compress-image",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/rotate-image",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/crop-image",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-bw",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/text-case-converter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/reverse-text",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/word-counter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/base64-encode-decode",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/hex-to-rgb",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/px-to-rem",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/length-converter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/temperature-converter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/file-size-converter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/resize-image",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/cidadesdomeubrasil.com.br",
+   "final": "/link-details/cidadesdomeubrasil.com.br/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/globaltimeblog.com",
+   "final": "/link-details/globaltimeblog.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/heckhome.com",
+   "final": "/link-details/heckhome.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/thedailyencrypt.com",
+   "final": "/link-details/thedailyencrypt.com/",
+   "zone": "widget"
+  },
+  {
+   "source": "/",
+   "target": "/link-details/techradar.my.id",
+   "final": "/link-details/techradar.my.id/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/webp-to-png",
+   "final": "/webp-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/image-to-webp-converter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/png-to-jpg-converter",
+   "final": "/png-to-jpg-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/jpg-to-png-converter",
+   "final": "/jpg-to-png-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/image-to-webp",
+   "final": "/image-to-webp-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/resize-image",
+   "final": "/resize-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/compress-image",
+   "final": "/compress-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/rotate-image",
+   "final": "/rotate-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/crop-image",
+   "final": "/crop-image/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/image-to-bw",
+   "final": "/image-to-bw/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/text-case-converter",
+   "final": "/text-case-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/reverse-text",
+   "final": "/reverse-text/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/word-counter",
+   "final": "/word-counter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/base64-encode-decode",
+   "final": "/base64-encode-decode/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/hex-to-rgb",
+   "final": "/hex-to-rgb/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/px-to-rem",
+   "final": "/px-to-rem/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/length-converter",
+   "final": "/length-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/temperature-converter",
+   "final": "/temperature-converter/",
+   "zone": "widget"
+  },
+  {
+   "source": "/webp-to-png-converter",
+   "target": "/file-size-converter",
+   "final": "/file-size-converter/",
+   "zone": "widget"
+  }
+ ],
+ "sitemap_problems": [],
+ "linked_not_in_sitemap_indexable": [],
+ "risky_claims": {
+  "/": [
+   {
+    "claim": "unverified inventory size claim",
+    "snippet": "Retailer Buy high-quality guest posts on high authority sites. Browse 56,000+ vetted domains by DA, DR, traffic and price. Real dofollow links, fas"
+   }
+  ],
+  "/complete-guide-building-high-authority-backlinks-guest-blogging/": [
+   {
+    "claim": "ranking-speed promise",
+    "snippet": "-authority site can have a measurable impact on your keyword rankings within weeks. Step 1: Identify the Right Guest Post TargetsThe foundation of a suc"
+   }
+  ],
+  "/how-to-buy-links/": [
+   {
+    "claim": "SEO-safe claim",
+    "snippet": "How to Buy Backlinks Safely for SEO | Name Retailer Learn how to buy backlinks safely, what metrics matte"
+   }
+  ],
+  "/why-guest-posting-still-works-in-2025-and-how-to-get-maximum-seo-value/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "tion. Here’s how you can stay on the right side: Choose websites with real traffic and audience engagement Avoid sites that publish everything under the"
+   }
+  ],
+  "/everything-you-need-to-know-about-guest-blogging-services/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "s, many marketers choose to buy guest blog posts as it saves time and guarantees placement. This is especially useful when you need fast results or ha"
+   }
+  ],
+  "/the-real-benefits-of-guest-blogging-you-shouldnt-miss/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "nal content writing 3. Manual outreach or existing blogger network 4. Guaranteed placement Reliable guest blog posting services ensure that you get do"
+   }
+  ],
+  "/seo-optimized-blog-posts-vs-regular-blog-posts-whats-the-real-difference/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": " visitor through advertising. However, rankings and traffic are never guaranteed. Results depend on factors such as: Keyword competition Website autho"
+   }
+  ],
+  "/how-to-choose-right-guest-post-package-budget-seo-goals/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "cklinks carry more SEO weight.Organic Traffic: Sites with substantial real traffic have demonstrated Google’s trust — and that trust comes at a premium."
+   }
+  ],
+  "/price-50-to-100/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "cklink profile, a more consistent publishing history, or occasionally real traffic, without yet commanding the price tag of an established publication. "
+   }
+  ],
+  "/price-100-to-150/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": " even though the invoice looks identical. If a specific listing shows real traffic, cross-reference it against the 100K to 500K traffic bracket to see w"
+   }
+  ],
+  "/price-150-to-200/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "tern, but it's a pattern observed in one snapshot of inventory, not a guarantee built into the price tag. A single high-spam listing can still slip i"
+   },
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "hows \"below 500\" monthly visits regardless of price. In this bracket, real traffic numbers, five figures and occasionally six, start appearing with enou"
+   }
+  ],
+  "/price-200-above/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": " like the $150 to $200 tier just below it: DA in the 20s to 50s, some verified traffic, TAT typically under a week. Climb toward the middle and upper end of"
+   }
+  ],
+  "/price-0-to-50/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "n more depth if you want the mechanics behind why metrics alone don't guarantee results. The second mistake is buying every link from the same catego"
+   }
+  ],
+  "/amp-validator/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "ering the smooth, stable rendering experience that AMP is designed to guarantee. How to Use the AMP Validator Tool Step by Step Using a dedicated AMP"
+   }
+  ],
+  "/keyword-density-checker/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "n SEO circles, there is no single universally correct percentage that guarantees rankings or triggers penalties. Google has explicitly stated that it "
+   }
+  ],
+  "/high-authority-backlink-generator/": [
+   {
+    "claim": "white-hat claim on paid links",
+    "snippet": "n manufacture but smart content promotion can consistently encourage. White Hat Link Building: Staying Safe While Scaling Authority The term white ha"
+   },
+   {
+    "claim": "SEO-safe claim",
+    "snippet": "e produces the most valuable placements. Are backlink generator tools safe for SEO? Safety depends entirely on the type of tool and the links it generat"
+   },
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "le than those constructed through shortcuts. Authority earned through genuine editorial recognition does not disappear with the next algorithm update; it com"
+   }
+  ],
+  "/competitor-backlink-analyzer/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "alty. Treat competitor backlink data as a map of possibilities, not a guaranteed recipe for success. Your job is to identify which subset of their lin"
+   }
+  ],
+  "/guests-blogging-services/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "ces that build authority links and boost rankings. Vetted publishers, real traffic sites and full outreach handled for you. Guest Blogging Services to B"
+   }
+  ],
+  "/100k-to-500k/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "raffic Browse guest post sites getting 100k to 500k monthly visitors. Real traffic, vetted metrics and dofollow links. Filter by niche, DA, DR and price"
+   }
+  ],
+  "/about/": [
+   {
+    "claim": "white-hat claim on paid links",
+    "snippet": "gh-quality placements that would otherwise be difficult to obtain. 2. White-Hat SEO Practices We strictly adhere to ethical SEO techniques, ensuring "
+   }
+  ],
+  "/terms-privacy/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "ommercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security. Children’s Privacy Our Service does not addres"
+   }
+  ],
+  "/dr-50-above/": [
+   {
+    "claim": "ranking-speed promise",
+    "snippet": "oduce measurable ranking improvements for competitive target keywords within weeks of indexation. For campaigns targeting highly competitive search term"
+   }
+  ],
+  "/trust-flow-21-to-30/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "rd rankings. At the TF 21-30 tier, you are getting links that combine genuine editorial quality with meaningful trust metric scores a combination that produc"
+   }
+  ],
+  "/trust-flow-10-to-50/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "ogs covering specific hobby areas, regional business directories with genuine editorial content, industry-focused publications at early growth stages, and pr"
+   }
+  ],
+  "/da70toda80/": [
+   {
+    "claim": "guarantee claim",
+    "snippet": "tunities through a streamlined ordering process backed by our quality guarantee. Explore our DA 70 to DA 80 listings and filter by niche, language, a"
+   }
+  ],
+  "/da50toda60-sites/": [
+   {
+    "claim": "ranking-speed promise",
+    "snippet": "ive impact of multiple placements at this tier can produce measurable ranking improvements within weeks of indexation. The editorial standards on DA 50-60 websites are corre"
+   },
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "s a curated selection of DA 50 to DA 60 guest post opportunities with verified traffic data, spam scores, trust flow ratings, and niche classifications. Eve"
+   }
+  ],
+  "/da40toda50/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "r’s DA 40 to DA 50 inventory is curated to include only websites with verified traffic, low spam scores, and genuine editorial publishing histories. Filter "
+   }
+  ],
+  "/da1toda10/": [
+   {
+    "claim": "verification claim (needs evidence)",
+    "snippet": "g links from private blog networks or expired domains you are earning genuine editorial placements on real, actively maintained websites. Browse the full sel"
+   }
+  ],
+  "/category/uncategorized/": [
+   {
+    "claim": "superlative (#1) claim",
+    "snippet": "Uncategorized - Name Retailer Inc No.1 Guestpost Marketplace  Name Retailer Blog How to Choose the Right Gue"
+   }
+  ],
+  "/author/admin_123/": [
+   {
+    "claim": "superlative (#1) claim",
+    "snippet": "admin_123, Author at Name Retailer Inc No.1 Guestpost Marketplace  Name Retailer Blog How to Choose the Right Gue"
+   }
+  ],
+  "/2026/04/26/": [
+   {
+    "claim": "superlative (#1) claim",
+    "snippet": "April 26, 2026 - Name Retailer Inc No.1 Guestpost Marketplace  Name Retailer Blog How to Choose the Right Gue"
+   }
+  ],
+  "/2025/10/02/": [
+   {
+    "claim": "superlative (#1) claim",
+    "snippet": "October 2, 2025 - Name Retailer Inc No.1 Guestpost Marketplace  Name Retailer Blog How to Choose the Right Gue"
+   }
+  ],
+  "/2025/09/26/": [
+   {
+    "claim": "superlative (#1) claim",
+    "snippet": "September 26, 2025 - Name Retailer Inc No.1 Guestpost Marketplace  Name Retailer Blog How to Choose the Right Gue"
+   }
+  ],
+  "/2025/07/12/": [
+   {
+    "claim": "superlative (#1) claim",
+    "snippet": "July 12, 2025 - Name Retailer Inc No.1 Guestpost Marketplace  Name Retailer Blog How to Choose the Right Gue"
+   }
+  ]
+ },
+ "segment_inventory": {
+  "/": {
+   "shown_total": 56079,
+   "last_page": 1870,
+   "estimated_total_from_pagination": 56100,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/price-50-to-100/": {
+   "shown_total": null,
+   "last_page": 563,
+   "estimated_total_from_pagination": 16890,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/price-100-to-150/": {
+   "shown_total": null,
+   "last_page": 530,
+   "estimated_total_from_pagination": 15900,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/price-150-to-200/": {
+   "shown_total": null,
+   "last_page": 172,
+   "estimated_total_from_pagination": 5160,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/price-200-above/": {
+   "shown_total": null,
+   "last_page": 515,
+   "estimated_total_from_pagination": 15450,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/price-0-to-50/": {
+   "shown_total": null,
+   "last_page": 92,
+   "estimated_total_from_pagination": 2760,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/above-500k/": {
+   "shown_total": null,
+   "last_page": 2,
+   "estimated_total_from_pagination": 60,
+   "unique_rows_on_page1": 1000,
+   "has_filter_form": true
+  },
+  "/100k-to-500k/": {
+   "shown_total": null,
+   "last_page": 50,
+   "estimated_total_from_pagination": 1500,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/backlinks-0-to-100k/": {
+   "shown_total": null,
+   "last_page": 1870,
+   "estimated_total_from_pagination": 56100,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/backlinks-100k-to-500k/": {
+   "shown_total": null,
+   "last_page": null,
+   "estimated_total_from_pagination": 0,
+   "unique_rows_on_page1": 0,
+   "has_filter_form": true
+  },
+  "/trust-flow-50-and-above/": {
+   "shown_total": null,
+   "last_page": null,
+   "estimated_total_from_pagination": 0,
+   "unique_rows_on_page1": 0,
+   "has_filter_form": true
+  },
+  "/trust-flow-41-to-50/": {
+   "shown_total": null,
+   "last_page": null,
+   "estimated_total_from_pagination": 0,
+   "unique_rows_on_page1": 0,
+   "has_filter_form": true
+  },
+  "/trust-flow-31-to-40/": {
+   "shown_total": null,
+   "last_page": null,
+   "estimated_total_from_pagination": 0,
+   "unique_rows_on_page1": 0,
+   "has_filter_form": true
+  },
+  "/trust-flow-21-to-30/": {
+   "shown_total": null,
+   "last_page": null,
+   "estimated_total_from_pagination": 0,
+   "unique_rows_on_page1": 0,
+   "has_filter_form": true
+  },
+  "/trust-flow-10-to-50/": {
+   "shown_total": null,
+   "last_page": null,
+   "estimated_total_from_pagination": 0,
+   "unique_rows_on_page1": 0,
+   "has_filter_form": true
+  },
+  "/trust-flow-0-to-10/": {
+   "shown_total": null,
+   "last_page": 1870,
+   "estimated_total_from_pagination": 56100,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/50k-to-500k/": {
+   "shown_total": null,
+   "last_page": 2,
+   "estimated_total_from_pagination": 60,
+   "unique_rows_on_page1": 1000,
+   "has_filter_form": true
+  },
+  "/zero-to-50k-traffic/": {
+   "shown_total": null,
+   "last_page": 1746,
+   "estimated_total_from_pagination": 52380,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da90toda100/": {
+   "shown_total": 173,
+   "last_page": 6,
+   "estimated_total_from_pagination": 180,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da80toda90/": {
+   "shown_total": 425,
+   "last_page": 15,
+   "estimated_total_from_pagination": 450,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da70toda80/": {
+   "shown_total": 1379,
+   "last_page": 46,
+   "estimated_total_from_pagination": 1380,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da60toda70/": {
+   "shown_total": 5108,
+   "last_page": 171,
+   "estimated_total_from_pagination": 5130,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da50toda60-sites/": {
+   "shown_total": 21119,
+   "last_page": 704,
+   "estimated_total_from_pagination": 21120,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da40toda50/": {
+   "shown_total": 8848,
+   "last_page": 295,
+   "estimated_total_from_pagination": 8850,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da30toda40/": {
+   "shown_total": 15263,
+   "last_page": 509,
+   "estimated_total_from_pagination": 15270,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da20toda30/": {
+   "shown_total": 6742,
+   "last_page": 225,
+   "estimated_total_from_pagination": 6750,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da10toda20/": {
+   "shown_total": 1363,
+   "last_page": 46,
+   "estimated_total_from_pagination": 1380,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/da1toda10/": {
+   "shown_total": 59,
+   "last_page": 2,
+   "estimated_total_from_pagination": 60,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": true
+  },
+  "/monthly-200-above/": {
+   "shown_total": null,
+   "last_page": 515,
+   "estimated_total_from_pagination": 15450,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": false
+  },
+  "/monthly-150-to-200/": {
+   "shown_total": null,
+   "last_page": 172,
+   "estimated_total_from_pagination": 5160,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": false
+  },
+  "/monthly-100-to-150/": {
+   "shown_total": null,
+   "last_page": 563,
+   "estimated_total_from_pagination": 16890,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": false
+  },
+  "/monthly-50-to-100/": {
+   "shown_total": null,
+   "last_page": 563,
+   "estimated_total_from_pagination": 16890,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": false
+  },
+  "/monthly-0-to-50/": {
+   "shown_total": null,
+   "last_page": 92,
+   "estimated_total_from_pagination": 2760,
+   "unique_rows_on_page1": 30,
+   "has_filter_form": false
+  },
+  "/backlinks-500k-above/": {
+   "shown_total": null,
+   "last_page": null,
+   "estimated_total_from_pagination": 0,
+   "unique_rows_on_page1": 0,
+   "has_filter_form": true
+  }
+ },
+ "top_inbound_content": [
+  [
+   "/",
+   19,
+   0,
+   143
+  ],
+  [
+   "/dr-0-to-20/",
+   7,
+   0,
+   143
+  ],
+  [
+   "/competitor-backlink-analyzer/",
+   7,
+   0,
+   143
+  ],
+  [
+   "/how-to-choose-right-guest-post-package-budget-seo-goals/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/seo-optimized-blog-posts-vs-regular-blog-posts-whats-the-real-difference/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/what-is-trust-flow-why-it-matters-buying-guest-posts/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/complete-guide-building-high-authority-backlinks-guest-blogging/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/guest-post-sites-by-domain-rating-why-dr-matters-link-building-2/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/guest-post-sites-by-domain-rating-why-dr-matters-link-building/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/2824-2/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/guest-post-marketplace/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/definition-of-domain-authority-understanding-it-clearly/",
+   7,
+   0,
+   0
+  ],
+  [
+   "/da50toda60-sites/",
+   6,
+   0,
+   143
+  ],
+  [
+   "/da80toda90/",
+   6,
+   0,
+   143
+  ],
+  [
+   "/above-500k/",
+   6,
+   0,
+   143
+  ],
+  [
+   "/trust-flow-21-to-30/",
+   6,
+   0,
+   1
+  ],
+  [
+   "/da1toda10/",
+   5,
+   0,
+   143
+  ],
+  [
+   "/da20toda30/",
+   5,
+   0,
+   143
+  ],
+  [
+   "/da70toda80/",
+   5,
+   0,
+   143
+  ],
+  [
+   "/dr-20-to-50/",
+   5,
+   0,
+   143
+  ],
+  [
+   "/dr-50-above/",
+   5,
+   0,
+   143
+  ],
+  [
+   "/trust-flow-41-to-50/",
+   5,
+   0,
+   1
+  ],
+  [
+   "/da10toda20/",
+   4,
+   0,
+   143
+  ],
+  [
+   "/da30toda40/",
+   4,
+   0,
+   143
+  ],
+  [
+   "/da60toda70/",
+   4,
+   0,
+   143
+  ],
+  [
+   "/zero-to-50k-traffic/",
+   4,
+   0,
+   143
+  ],
+  [
+   "/100k-to-500k/",
+   4,
+   0,
+   143
+  ],
+  [
+   "/price-100-to-150/",
+   4,
+   0,
+   143
+  ],
+  [
+   "/bulk-domain-rating-checker-tool/",
+   4,
+   0,
+   143
+  ],
+  [
+   "/trust-flow-0-to-10/",
+   4,
+   0,
+   1
+  ],
+  [
+   "/trust-flow-31-to-40/",
+   4,
+   0,
+   1
+  ],
+  [
+   "/trust-flow-10-to-50/",
+   4,
+   0,
+   0
+  ],
+  [
+   "/da40toda50/",
+   3,
+   0,
+   143
+  ],
+  [
+   "/50k-to-500k/",
+   3,
+   0,
+   143
+  ],
+  [
+   "/price-0-to-50/",
+   3,
+   0,
+   143
+  ],
+  [
+   "/price-150-to-200/",
+   3,
+   0,
+   143
+  ],
+  [
+   "/rotate-image/",
+   3,
+   17,
+   143
+  ],
+  [
+   "/crop-image/",
+   3,
+   17,
+   143
+  ],
+  [
+   "/trust-flow-50-and-above/",
+   3,
+   0,
+   1
+  ],
+  [
+   "/da90toda100/",
+   2,
+   0,
+   143
+  ]
+ ]
+}
