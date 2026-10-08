@@ -31,6 +31,16 @@ export function organizationSchema(settings: SeoSettings): WithContext<Thing> {
   };
 }
 
+function authorNames(author: CmsRecord): string[] {
+  const name = String(author.data.name || author.title);
+  return author.data.entityType === "Organization"
+    ? [name]
+    : name
+        .split(/\s+and\s+|\s*&\s*|\s*,\s*/)
+        .map((part) => part.trim())
+        .filter(Boolean);
+}
+
 export function articleSchema(
   record: CmsRecord,
   author: CmsRecord | undefined,
@@ -52,17 +62,15 @@ export function articleSchema(
     "@id": canonicalUrl(record) + "#article",
     headline: record.title,
     mainEntityOfPage: canonicalUrl(record),
-    author: {
+    author: authorNames(author).map((name) => ({
       "@type":
         author.data.entityType === "Organization" ? "Organization" : "Person",
-      name: String(author.data.name || author.title),
+      name,
       url:
-        author.data.entityType === "Organization" &&
-        typeof author.data.url === "string" &&
-        isSafeUrl(author.data.url, false)
+        typeof author.data.url === "string" && isSafeUrl(author.data.url, false)
           ? author.data.url
           : `${canonicalOrigin}/author/${author.slug}/`,
-    },
+    })),
     ...(typeof record.data.publishedAt === "string" &&
     Number.isFinite(Date.parse(record.data.publishedAt))
       ? { datePublished: record.data.publishedAt }
@@ -116,8 +124,6 @@ export function jsonLdGraph(...nodes: Array<Record<string, unknown> | null>) {
     "@graph": nodes.filter((node): node is Record<string, unknown> => !!node),
   };
 }
-
-
 
 export function breadcrumbSchema(items: Array<[name: string, path: string]>) {
   return {
