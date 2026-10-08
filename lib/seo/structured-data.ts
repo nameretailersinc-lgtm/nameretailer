@@ -118,6 +118,7 @@ export function faqSchema(record: CmsRecord): WithContext<Thing> | null {
   };
 }
 
+
 export function jsonLdGraph(...nodes: Array<Record<string, unknown> | null>) {
   return {
     "@context": "https://schema.org",
