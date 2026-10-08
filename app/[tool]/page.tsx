@@ -31,14 +31,14 @@ export async function generateMetadata({
   if (range)
     return {
       title: range.title,
-      description: `Browse active publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices.`,
+      description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.`,
       alternates: { canonical: `https://nameretailer.com/${range.slug}/` },
     };
   const tool = toolBySlug(slug);
   if (!tool) notFound();
   return {
-    title: tool.title,
-    description: tool.description,
+    title: `${tool.title} – Free Online Tool`,
+    description: `${tool.description} A free Name Retailer tool for SEO, content and link-building teams planning guest-post campaigns.`,
     alternates: { canonical: `https://nameretailer.com/${tool.slug}/` },
   };
 }

@@ -1,7 +1,7 @@
 import { InformationPageView } from "@/components/site/information-page";
 import { informationPages } from "@/lib/site/pages";
 export const metadata = {
-  title: "Contact Name Retailer",
+  title: "Contact Name Retailer: Guest Post Support and Sales",
   description: informationPages.contact.description,
 };
 export default function Page() {

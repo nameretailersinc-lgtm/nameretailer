@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Source_Serif_4 } from "next/font/google";
+import { serializeJsonLd } from "@/lib/seo/structured-data";
 import "./globals.css";
 import "./marketplace.css";
 import "./customer.css";
@@ -23,13 +24,71 @@ const serif = Source_Serif_4({
   variable: "--font-editorial",
   adjustFontFallback: true,
 });
+const origin = "https://nameretailer.com";
+const siteTitle =
+  "Name Retailer | Guest Post Marketplace for Quality Backlinks";
+const siteDescription =
+  "Compare guest-post publications by topic, audience, placement price and supplied metrics, then plan and order placements and content services with Name Retailer.";
 export const metadata: Metadata = {
+  metadataBase: new URL(origin),
   title: {
-    default: "Name Retailer — Guest-post marketplace",
+    default: siteTitle,
     template: "%s | Name Retailer",
   },
-  description:
-    "Compare guest-post publications by topic, audience, placement price and supplied metrics with Name Retailer.",
+  description: siteDescription,
+  alternates: { canonical: "./" },
+  openGraph: {
+    type: "website",
+    siteName: "Name Retailer",
+    locale: "en_US",
+    title: siteTitle,
+    description: siteDescription,
+    images: [
+      {
+        url: "/01_hero_analytics_illustration.png",
+        width: 700,
+        height: 475,
+        alt: "Name Retailer guest-post marketplace analytics illustration",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: ["/01_hero_analytics_illustration.png"],
+  },
+};
+const siteSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["Organization", "ProfessionalService"],
+      "@id": `${origin}/#organization`,
+      name: "Name Retailer",
+      url: `${origin}/`,
+      logo: `${origin}/icon.png`,
+      image: `${origin}/logo.jpg`,
+      description: siteDescription,
+      email: "info@nameretailer.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "26 - G Hamriyah Freezone",
+        addressLocality: "Sharjah",
+        addressCountry: "AE",
+      },
+      areaServed: "Worldwide",
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${origin}/#website`,
+      url: `${origin}/`,
+      name: "Name Retailer",
+      description: siteDescription,
+      inLanguage: "en",
+      publisher: { "@id": `${origin}/#organization` },
+    },
+  ],
 };
 export default function RootLayout({
   children,
@@ -42,6 +101,10 @@ export default function RootLayout({
         <a className="skip-link" href="#main">
           Skip to main content
         </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteSchema) }}
+        />
         {children}
       </body>
     </html>

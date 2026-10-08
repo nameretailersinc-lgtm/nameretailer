@@ -12,7 +12,7 @@ import { SiteFooter, SiteHeader } from "@/components/site/chrome";
 export const metadata: Metadata = {
   title: "How to buy guest posts · Draft guide",
   description:
-    "A draft buying checklist for audience relevance, metrics, content scope and paid-link disclosure.",
+    "A buying checklist for guest posts and sponsored links: audience relevance, supplied metrics, content scope and paid-link disclosure, explained step by step.",
 };
 const sections = [
   ["audience", "Define your audience"],

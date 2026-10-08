@@ -2,9 +2,9 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { Marketplace } from "@/components/marketplace/marketplace";
 export const metadata: Metadata = {
-  title: "Guest-post marketplace",
+  title: "Guest-Post Marketplace: Publisher Listings and Prices",
   description:
-    "Browse publisher listings by topic, location, language, placement price and supplied metrics.",
+    "Browse guest-post publisher listings by topic, location, language, placement price and supplied metrics, then plan your placements and content with Name Retailer.",
 };
 export default function ProductsPage() {
   return (

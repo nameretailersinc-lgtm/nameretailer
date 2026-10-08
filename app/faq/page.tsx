@@ -1,9 +1,9 @@
 import { InformationShell } from "@/components/site/information-page";
 import { commonQuestions } from "@/lib/site/pages";
 export const metadata = {
-  title: "Name Retailer frequently asked questions",
+  title: "Name Retailer FAQ: Guest Post Buying Questions",
   description:
-    "Answers about publication visibility, placement pricing, accounts, saved plans and the rebuild preview.",
+    "Answers about guest-post publication visibility, placement pricing, accounts, saved plans and how the Name Retailer marketplace works for buyers.",
 };
 export default function Page() {
   return (

@@ -3,9 +3,9 @@ import { Suspense } from "react";
 import { Marketplace } from "@/components/marketplace/marketplace";
 import { HomeLanding } from "@/components/site/home";
 export const metadata: Metadata = {
-  title: { absolute: "Guest-post marketplace | Name Retailer" },
+  title: { absolute: "Guest Post Marketplace: Compare Sites & Prices | Name Retailer" },
   description:
-    "Browse publisher listings by topic, location, language, placement price and supplied metrics.",
+    "Browse guest-post publisher listings by topic, location, language, placement price and supplied metrics, then plan your placements and content with Name Retailer.",
 };
 export default function Home() {
   return (
