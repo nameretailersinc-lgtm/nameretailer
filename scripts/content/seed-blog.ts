@@ -50,19 +50,18 @@ try {
     createdAt: now,
     updatedAt: now,
   });
-  const author = make(
-    "authors",
-    "name-retailer-original-guides",
-    "Zuhoor Uddin and Fahad Sheikh",
-    "active",
-    {
+  const makeAuthor = (slug: string, name: string) =>
+    make("authors", slug, name, "active", {
       entityType: "Person",
-      name: "Zuhoor Uddin and Fahad Sheikh",
-      bio: "Zuhoor Uddin and Fahad Sheikh write practical guides on guest posting, SEO, AEO and GEO for Name Retailer, a guest-post publication marketplace.",
+      name,
+      bio: `${name} writes practical guides on guest posting, SEO, AEO and GEO for Name Retailer, a guest-post publication marketplace.`,
       url: "https://nameretailer.com/about/",
       verified: true,
-    },
-  );
+    });
+  const authors = [
+    makeAuthor("zuhoor-uddin", "Zuhoor Uddin"),
+    makeAuthor("fahad-sheikh", "Fahad Sheikh"),
+  ];
   const categories = blogClusters.map((cluster) =>
     make(
       "categories",
@@ -74,12 +73,12 @@ try {
       },
     ),
   );
-  const articles = blogLibrary.map((article) =>
+  const articles = blogLibrary.map((article, index) =>
     make("content", "blog/" + article.slug, article.title, "published", {
       type: "post",
       body: article.body,
       excerpt: article.answer,
-      authorId: author.id,
+      authorId: authors[index % authors.length].id,
       categoryIds: [
         categories.find((category) => category.title === article.cluster)!.id,
       ],
@@ -102,7 +101,7 @@ try {
       sources: article.source ? [article.source] : [],
     }),
   );
-  const proposed = [author, ...categories, ...articles];
+  const proposed = [...authors, ...categories, ...articles];
   const ids = proposed.map((record) => record.id);
   const execute = async (session?: ClientSession) => {
     const existing = await records
