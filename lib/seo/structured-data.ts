@@ -117,6 +117,8 @@ export function jsonLdGraph(...nodes: Array<Record<string, unknown> | null>) {
   };
 }
 
+
+
 export function breadcrumbSchema(items: Array<[name: string, path: string]>) {
   return {
     "@type": "BreadcrumbList",
