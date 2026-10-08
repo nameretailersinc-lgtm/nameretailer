@@ -1,6 +1,0 @@
-# Deployment is a later approved phase. Review DNS and the launch checklist first.
-nameretailer.com {
-  encode zstd gzip
-  reverse_proxy app:3000
-  header Strict-Transport-Security "max-age=31536000"
-}
