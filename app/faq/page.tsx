@@ -4,7 +4,6 @@ export const metadata = {
   title: "Name Retailer frequently asked questions",
   description:
     "Answers about publication visibility, placement pricing, accounts, saved plans and the rebuild preview.",
-  robots: { index: false, follow: false },
 };
 export default function Page() {
   return (

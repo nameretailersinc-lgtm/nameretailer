@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   title: "Guest post sites by Domain Rating",
   description:
     "Compare active guest-post publications by supplied Domain Rating, audience fit and placement price.",
-  robots: { index: false, follow: false },
 };
 export default function Page() {
   return (

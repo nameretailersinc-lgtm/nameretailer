@@ -30,7 +30,6 @@ export const metadata: Metadata = {
   },
   description:
     "Compare guest-post publications by topic, audience, placement price and supplied metrics with Name Retailer.",
-  robots: { index: false, follow: false },
 };
 export default function RootLayout({
   children,

@@ -5,7 +5,6 @@ export const metadata = {
   description:
     "Free writing, image, conversion, markup and SEO research tools with clear capabilities and privacy.",
   alternates: { canonical: "https://nameretailer.com/seo-tools/" },
-  robots: { index: false, follow: false },
 };
 export default function Page() {
   return (

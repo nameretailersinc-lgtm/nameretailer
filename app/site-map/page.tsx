@@ -4,7 +4,6 @@ export const metadata = {
   title: "Name Retailer page directory",
   description:
     "Find the rebuild's working marketplace, resource, company, support and account destinations.",
-  robots: { index: false, follow: false },
 };
 const groups = [
   [

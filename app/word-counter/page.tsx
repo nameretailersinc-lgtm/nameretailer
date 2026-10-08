@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: "Word counter",
   description:
     "Count words, Unicode characters, paragraphs and estimated reading time locally in your browser.",
-  robots: { index: false, follow: false },
 };
 export default function Page() {
   const tool = tools.find((entry) => entry.slug === "word-counter")!;

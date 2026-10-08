@@ -5,7 +5,6 @@ export const metadata: Metadata = {
   title: "Guest-post marketplace",
   description:
     "Browse publisher listings by topic, location, language, placement price and supplied metrics.",
-  robots: { index: false, follow: false },
 };
 export default function ProductsPage() {
   return (

@@ -42,7 +42,6 @@ export async function generateMetadata({
           twitter: { ...metadata.twitter, card: "summary" as const },
         }
       : {}),
-    robots: { index: false, follow: false },
   };
 }
 export default async function Page({

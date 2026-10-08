@@ -13,7 +13,6 @@ export const metadata: Metadata = {
   title: "How to buy guest posts · Draft guide",
   description:
     "A draft buying checklist for audience relevance, metrics, content scope and paid-link disclosure.",
-  robots: { index: false, follow: false },
 };
 const sections = [
   ["audience", "Define your audience"],

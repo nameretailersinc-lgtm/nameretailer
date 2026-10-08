@@ -33,7 +33,6 @@ export async function generateMetadata({
       title: range.title,
       description: `Browse active publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices.`,
       alternates: { canonical: `https://nameretailer.com/${range.slug}/` },
-      robots: { index: false, follow: false },
     };
   const tool = toolBySlug(slug);
   if (!tool) notFound();
@@ -41,7 +40,6 @@ export async function generateMetadata({
     title: tool.title,
     description: tool.description,
     alternates: { canonical: `https://nameretailer.com/${tool.slug}/` },
-    robots: { index: false, follow: false },
   };
 }
 export default async function Page({

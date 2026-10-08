@@ -5,7 +5,6 @@ export const metadata = {
   description:
     "Explore Name Retailer’s complete guide library: SEO, AEO, GEO, content, marketplace and measurement articles with search and topic filters.",
   alternates: { canonical: "https://nameretailer.com/guides/" },
-  robots: { index: false, follow: false },
 };
 export const dynamic = "force-dynamic";
 export default function Page({
