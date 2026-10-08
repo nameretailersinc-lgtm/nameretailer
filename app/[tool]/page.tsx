@@ -13,6 +13,12 @@ import {
 } from "@/components/tools/presentation";
 import { ToolWorkspace } from "@/components/tools/workspace";
 import { tools, toolBySlug } from "@/lib/tools/catalog";
+import {
+  breadcrumbSchema,
+  jsonLdGraph,
+  serializeJsonLd,
+  webApplicationNode,
+} from "@/lib/seo/structured-data";
 export function generateStaticParams() {
   return [
     ...marketplaceRanges.map((range) => ({ tool: range.slug })),

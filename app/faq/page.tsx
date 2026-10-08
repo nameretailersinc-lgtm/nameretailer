@@ -1,5 +1,11 @@
 import { InformationShell } from "@/components/site/information-page";
 import { commonQuestions } from "@/lib/site/pages";
+import {
+  breadcrumbSchema,
+  faqPageNode,
+  jsonLdGraph,
+  serializeJsonLd,
+} from "@/lib/seo/structured-data";
 export const metadata = {
   title: "Name Retailer FAQ: Guest Post Buying Questions",
   description:

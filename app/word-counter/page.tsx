@@ -7,6 +7,12 @@ import {
 } from "@/components/tools/presentation";
 import { WordCounter } from "@/components/tools/word-counter";
 import { tools } from "@/lib/tools/catalog";
+import {
+  breadcrumbSchema,
+  jsonLdGraph,
+  serializeJsonLd,
+  webApplicationNode,
+} from "@/lib/seo/structured-data";
 export const metadata: Metadata = {
   title: "Word Counter – Free Online Tool",
   description:
@@ -16,6 +22,21 @@ export default function Page() {
   const tool = tools.find((entry) => entry.slug === "word-counter")!;
   return (
     <ToolsShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(
+            jsonLdGraph(
+              breadcrumbSchema([
+                ["Home", "/home/"],
+                ["Free tools", "/seo-tools/"],
+                [tool.title, `/${tool.slug}/`],
+              ]),
+              webApplicationNode(tool),
+            ),
+          ),
+        }}
+      />
       <ToolHero tool={tool} />
       <WordCounter />
       <ToolSteps tool={tool} />

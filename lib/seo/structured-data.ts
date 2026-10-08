@@ -109,3 +109,52 @@ export function faqSchema(record: CmsRecord): WithContext<Thing> | null {
     })),
   };
 }
+
+export function jsonLdGraph(...nodes: Array<Record<string, unknown> | null>) {
+  return {
+    "@context": "https://schema.org",
+    "@graph": nodes.filter((node): node is Record<string, unknown> => !!node),
+  };
+}
+
+export function breadcrumbSchema(items: Array<[name: string, path: string]>) {
+  return {
+    "@type": "BreadcrumbList",
+    itemListElement: items.map(([name, path], index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name,
+      item: canonicalOrigin + path,
+    })),
+  };
+}
+
+export function faqPageNode(items: ReadonlyArray<readonly [string, string]>) {
+  if (!items.length) return null;
+  return {
+    "@type": "FAQPage",
+    mainEntity: items.map(([question, answer]) => ({
+      "@type": "Question",
+      name: question,
+      acceptedAnswer: { "@type": "Answer", text: answer },
+    })),
+  };
+}
+
+export function webApplicationNode(tool: {
+  slug: string;
+  title: string;
+  description: string;
+}) {
+  return {
+    "@type": "WebApplication",
+    "@id": `${canonicalOrigin}/${tool.slug}/#tool`,
+    name: tool.title,
+    description: tool.description,
+    url: `${canonicalOrigin}/${tool.slug}/`,
+    applicationCategory: "UtilitiesApplication",
+    operatingSystem: "Any (web browser)",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    publisher: { "@id": `${canonicalOrigin}/#organization` },
+  };
+}

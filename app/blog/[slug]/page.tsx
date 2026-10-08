@@ -11,7 +11,13 @@ import {
   wordCount,
 } from "@/lib/cms/content";
 import { buildSeoMetadata } from "@/lib/seo/metadata";
-import { articleSchema, serializeJsonLd } from "@/lib/seo/structured-data";
+import {
+  articleSchema,
+  breadcrumbSchema,
+  faqSchema,
+  serializeJsonLd,
+} from "@/lib/seo/structured-data";
+import { canonicalOrigin, canonicalUrl } from "@/lib/seo/metadata";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
@@ -57,6 +63,32 @@ export default async function Page({
     articleWithArtwork(article),
     context.author || undefined,
   );
+  const fallbackArticle = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": canonicalUrl(article) + "#article",
+    headline: article.title,
+    description: String(article.data.excerpt || ""),
+    mainEntityOfPage: canonicalUrl(article),
+    image: `${canonicalOrigin}${artwork.src}`,
+    author: { "@id": `${canonicalOrigin}/#organization` },
+    publisher: { "@id": `${canonicalOrigin}/#organization` },
+    datePublished: String(article.data.publishedAt || article.createdAt),
+    dateModified: article.updatedAt,
+    inLanguage: "en",
+  };
+  const schemas = [
+    schema || fallbackArticle,
+    {
+      "@context": "https://schema.org",
+      ...breadcrumbSchema([
+        ["Home", "/home/"],
+        ["Guides", "/guides/"],
+        [article.title, `/${article.slug}/`],
+      ]),
+    },
+    faqSchema(article),
+  ].filter(Boolean);
   const headings: Array<{ id: string; label: string }> = [];
   const html = sanitizeBody(String(article.data.body || "")).replace(
     /<h2>(.*?)<\/h2>/g,
@@ -90,12 +122,10 @@ export default async function Page({
       imageAlt={artwork.alt}
       className="journal-article"
     >
-      {schema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
-        />
-      )}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: serializeJsonLd(schemas) }}
+      />
       <div className="reference-article-meta journal-meta">
         <Link href="/blog/">← Journal</Link>
         <span>
