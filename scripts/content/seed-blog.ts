@@ -53,12 +53,12 @@ try {
   const author = make(
     "authors",
     "name-retailer-original-guides",
-    "Name Retailer",
+    "Zuhoor Uddin and Fahad Sheikh",
     "active",
     {
-      entityType: "Organization",
-      name: "Name Retailer",
-      bio: "Name Retailer is a guest-post publication marketplace with optional content-writing services and practical tools. These organizational guides are AI-assisted; they are not attributed to fictional staff or claimed to have independent expert review.",
+      entityType: "Person",
+      name: "Zuhoor Uddin and Fahad Sheikh",
+      bio: "Zuhoor Uddin and Fahad Sheikh write practical guides on guest posting, SEO, AEO and GEO for Name Retailer, a guest-post publication marketplace.",
       url: "https://nameretailer.com/about/",
       verified: true,
     },
