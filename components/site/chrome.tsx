@@ -14,9 +14,8 @@ export function SiteBrand({ preload = false }: { preload?: boolean }) {
         <Image
           className="marketplace-logo-image"
           src="/logo.jpg"
-          width={1799}
-          height={1498}
-          sizes="80px"
+          width={128}
+          height={107}
           alt=""
           preload={preload}
         />
