@@ -37,7 +37,7 @@ export async function generateMetadata({
   const tool = toolBySlug(slug);
   if (!tool) notFound();
   return {
-    title: `${tool.title} – Free Online Tool`,
+    title: `${tool.title} â€“ Free Online Tool`,
     description: `${tool.description} A free Name Retailer tool for SEO, content and link-building teams planning guest-post campaigns.`,
     alternates: { canonical: `https://nameretailer.com/${tool.slug}/` },
   };

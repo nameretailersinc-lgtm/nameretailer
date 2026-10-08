@@ -8,7 +8,7 @@ import {
 import { WordCounter } from "@/components/tools/word-counter";
 import { tools } from "@/lib/tools/catalog";
 export const metadata: Metadata = {
-  title: "Word Counter – Free Online Tool",
+  title: "Word Counter â€“ Free Online Tool",
   description:
     "Count words, Unicode characters, paragraphs and estimated reading time locally in your browser. A free Name Retailer tool for writers and SEO teams.",
 };
