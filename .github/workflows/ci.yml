@@ -39,4 +39,4 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           printf '%s\n' "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           ssh -i ~/.ssh/deploy_key "$SSH_USER@$SSH_HOST" \
-            'set -e; cd /opt/nameretailer && git fetch origin main && git reset --hard origin/main && docker compose up -d --build && docker image prune -f && curl -fsS -o /dev/null http://127.0.0.1:3100/'
+            'set -e; cd /opt/nameretailer && git fetch origin main && git reset --hard origin/main && docker compose up -d --build && docker image prune -f && curl -fsS -o /dev/null --retry 15 --retry-delay 2 --retry-all-errors --retry-connrefused http://127.0.0.1:3100/robots.txt'
