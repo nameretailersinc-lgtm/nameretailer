@@ -192,12 +192,10 @@ export default async function Page({
       )}
       <div className="tool-privacy">
         <p>
-          <strong>Editorial transparency.</strong>{" "}
-          {article.id.startsWith("nr-library-")
-            ? "This new organizational guide was prepared with AI assistance. It is not a migrated legacy article or claimed expert-reviewed reporting; owner editorial review remains pending before indexing."
-            : "Review the stated author, sources and publication scope before applying this guidance."}{" "}
-          Examples are illustrative, not customer results. No ranking, citation
-          or commercial outcome is guaranteed.
+          <strong>Editorial note.</strong> Review the stated author, sources and
+          publication scope before applying this guidance. Examples are
+          illustrative, not customer results. No ranking, citation or commercial
+          outcome is guaranteed.
         </p>
       </div>
       <section className="reference-information-next">

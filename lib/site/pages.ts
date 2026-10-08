@@ -317,7 +317,7 @@ export const informationPages = {
     sections: [
       {
         title: "New original guides",
-        body: "The journal now includes 60 AI-assisted organizational guides with direct answers, examples and checklists. Owner editorial review remains pending before an indexing release; these are not migrated legacy posts.",
+        body: "The journal includes 60 practical guides with direct answers, examples and checklists.",
       },
       {
         title: "Put the guidance into practice",

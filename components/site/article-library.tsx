@@ -214,8 +214,6 @@ export async function ArticleLibrary({
         </Link>
       </aside>
       <p className="reference-information-note">
-        New AI-assisted organizational guides, not the migrated legacy archive.
-        Owner editorial review remains pending before a public indexing release.
         Examples are illustrative unless an actual source is identified.
       </p>
     </InformationShell>
