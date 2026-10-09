@@ -31,6 +31,9 @@ export function organizationSchema(settings: SeoSettings): WithContext<Thing> {
   };
 }
 
+const oneOrMany = <T>(items: T[]): T | T[] =>
+  items.length === 1 ? items[0] : items;
+
 function authorNames(author: CmsRecord): string[] {
   const name = String(author.data.name || author.title);
   return author.data.entityType === "Organization"
@@ -62,15 +65,18 @@ export function articleSchema(
     "@id": canonicalUrl(record) + "#article",
     headline: record.title,
     mainEntityOfPage: canonicalUrl(record),
-    author: authorNames(author).map((name) => ({
-      "@type":
-        author.data.entityType === "Organization" ? "Organization" : "Person",
-      name,
-      url:
-        typeof author.data.url === "string" && isSafeUrl(author.data.url, false)
-          ? author.data.url
-          : `${canonicalOrigin}/author/${author.slug}/`,
-    })),
+    author: oneOrMany(
+      authorNames(author).map((name) => ({
+        "@type":
+          author.data.entityType === "Organization" ? "Organization" : "Person",
+        name,
+        url:
+          typeof author.data.url === "string" &&
+          isSafeUrl(author.data.url, false)
+            ? author.data.url
+            : `${canonicalOrigin}/author/${author.slug}/`,
+      })),
+    ),
     ...(typeof record.data.publishedAt === "string" &&
     Number.isFinite(Date.parse(record.data.publishedAt))
       ? { datePublished: record.data.publishedAt }
