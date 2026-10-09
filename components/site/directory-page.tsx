@@ -297,6 +297,40 @@ export function LandingExplore() {
           by metric or budget, or use the filters above to build your own
           shortlist.
         </p>
+        <h3>How to choose a publication</h3>
+        <p>
+          Begin with relevance. Read a publication’s recent articles and ask
+          whether your topic would sit naturally beside them, then use country
+          and language to confirm the audience. Domain Authority is Moz’s score
+          and Domain Rating is Ahrefs’; they are different measures, so compare
+          each only within its own system and treat them as one signal among
+          several. You can{" "}
+          <Link href="/guides/da-vs-dr-and-traffic/">
+            read how DA, DR and traffic estimates differ
+          </Link>{" "}
+          before you set filters. Shortlist several candidates rather than one,
+          because requirements and availability differ between publishers, and
+          compare their scope, topics and terms side by side before deciding.
+        </p>
+        <h3>What the price includes</h3>
+        <p>
+          Each listing shows a USD placement price. Writing is priced separately
+          where it is offered, so a placement price is not a full campaign
+          quote. Metrics are supplied with the catalogue and are not
+          independently verified here; a missing value is shown as unavailable,
+          never as zero. Sponsored content should be disclosed, and Google
+          recommends marking paid links with rel=&quot;sponsored&quot;; see the{" "}
+          <Link href="/how-to-buy-links/">buying checklist</Link> for the
+          questions to settle first.
+        </p>
+        <h3>Browse first, plan when ready</h3>
+        <p>
+          You can browse and compare without an account, and shortlist up to
+          four publications. Signing in lets you save a private placement plan.
+          Ordering and payment are not available yet, and a saved plan does not
+          reserve a price or a placement, so confirm scope, disclosure and
+          delivery timing with the team before you commit.
+        </p>
       </div>
       <DirectoryLinks />
     </section>
