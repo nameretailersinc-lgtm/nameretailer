@@ -15,3 +15,9 @@ Dates use Asia/Karachi. Entries describe local source changes and actual checks;
 - Removed public approval labels and missing-identity notices; recorded owner-dependent terms, identities and evidence in `TODO_CONTENT.md`. Existing legal policies and footer links are preserved.
 - Corrected historical seed/CMS wording at the presentation boundary without modifying records, IDs, source links or historical slugs. Technical article indexing/content review continues in phase 10.
 - Validation: lint, typecheck, production build and all 403 unit tests passed. Check logs are in `.local/seo-checks/phase-1/`.
+
+## 2026-10-10 — Phase 2: sourced trust configuration
+
+- Added a trust-claim configuration with no default numbers or customer endorsements. Statements render only with an HTTPS evidence link and a valid, nonfuture evidence date.
+- An empty configuration renders no trust claim; documented owner evidence is required to populate it.
+- Validation: lint, typecheck, production build and all 405 unit tests passed.
