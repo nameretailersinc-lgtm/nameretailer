@@ -3,6 +3,9 @@ export default function Page() {
   redirect("/");
 }
 
+
+
+
 // import type { Metadata } from "next";
 // import { Suspense } from "react";
 // import { Marketplace } from "@/components/marketplace/marketplace";
