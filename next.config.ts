@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { legacyRedirects } from "./lib/seo/redirect-map";
+import { loadCsvRedirects } from "./lib/seo/redirect-csv";
 const config: NextConfig = {
   distDir: process.env.NEXT_BUILD_DIR || ".next",
   output: "standalone",
@@ -11,11 +12,16 @@ const config: NextConfig = {
     imageSizes: [32, 48, 64, 80, 96, 128, 256, 384],
   },
   async redirects() {
-    return legacyRedirects.map(({ source, destination }) => ({
-      source,
-      destination,
-      statusCode: 301 as const,
-    }));
+    // docs/redirect-map.csv is owner-maintained; redirects defined in code win on conflict.
+    const known = new Set(legacyRedirects.map(({ source }) => source));
+    return [
+      ...legacyRedirects.map(({ source, destination }) => ({
+        source,
+        destination,
+        statusCode: 301 as const,
+      })),
+      ...loadCsvRedirects().filter(({ source }) => !known.has(source)),
+    ];
   },
   outputFileTracingExcludes: {
     "/*": [
