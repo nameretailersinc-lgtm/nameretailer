@@ -192,9 +192,9 @@ export function ToolSteps({ tool }: { tool: Tool }) {
       Upload,
     ],
     [
-      image ? "Convert and preview" : "Review your result",
+      image ? "Convert and compare" : "Review your result",
       image
-        ? `Click “${imageAction(tool.slug)}” and compare the preview with your original image.`
+        ? `Click “${imageAction(tool.slug)}” and compare the result with your original image.`
         : counter
           ? "Check words, characters, paragraphs and estimated reading time. Counts help you meet a brief."
           : "Run the tool and inspect the result. A structural check or research idea still needs your judgment.",

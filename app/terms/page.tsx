@@ -10,7 +10,7 @@ import { InformationShell } from "@/components/site/information-page";
 const baseMetadata: Metadata = {
   title: "Terms of Service",
   description:
-    "Name Retailer's terms of service are not yet published. The refund, privacy and cookie policies that apply to the marketplace today.",
+    "Find Name Retailer's published refund, privacy and cookie policies, and contact the team about the terms of a proposed placement request.",
   alternates: { canonical: "https://nameretailer.com/terms/" },
 };
 export default function Page() {
@@ -19,7 +19,7 @@ export default function Page() {
       path="/terms/"
       title="Terms of Service"
       label="Terms of service"
-      description="Our terms of service are not yet published. The policies below apply to the marketplace today."
+      description="Review our published policies and contact Name Retailer about the terms of your placement request."
       active="help"
       image="/01_guest_post_checklist.png"
     >
@@ -45,7 +45,7 @@ export default function Page() {
         <p>
           Contact{" "}
           <a href="mailto:info@nameretailer.com">info@nameretailer.com</a> for
-          questions about terms before you order.
+          questions about the terms of a placement request.
         </p>
       </section>
     </InformationShell>

@@ -101,7 +101,7 @@ export const buyerGuides: BuyerGuide[] = [
       },
       {
         title: "When is a new guest post the better choice?",
-        body: "A new article lets you shape the topic, angle and supporting sources, and it is easier to label clearly as sponsored. It needs more work: a brief, a draft that meets the publisher’s guidelines, and editorial review. Choose it when no existing article fits or when you want the content itself to inform readers.",
+        body: "A new article lets you shape the topic, angle and supporting sources, and it is easier to label clearly as sponsored. It needs more work: a brief, a manuscript that meets the publisher’s guidelines, and editorial review. Choose it when no existing article fits or when you want the content itself to inform readers.",
       },
       {
         title: "Do both formats need sponsored disclosure?",

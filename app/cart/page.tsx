@@ -5,7 +5,7 @@ export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Your shopping cart",
   description:
-    "Review placement briefs, article packages and current USD prices before preparing checkout. Payments are not connected in this preview.",
+    "Review your private placement briefs, article options and supplied USD prices. Save a plan and request placement details from Name Retailer.",
   robots: { index: false, follow: false },
 };
 export default async function Page({

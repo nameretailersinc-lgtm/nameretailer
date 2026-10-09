@@ -1,6 +1,7 @@
 import { marketplaceContent } from "./marketplace-content";
 import { technicalAeo } from "./technical-aeo";
 import { geoMeasurement } from "./geo-measurement";
+import { finishedCopy } from "@/lib/site/public-copy";
 import { escapeMarkup } from "@/lib/tools/core";
 import { normalizeSlug } from "@/lib/cms/validation";
 import { bodyText, wordCount, sanitizeBody } from "@/lib/cms/content";
@@ -12,8 +13,19 @@ export const blogDrafts = [
 export const blogClusters = [
   ...new Set(blogDrafts.map((article) => article.cluster)),
 ];
-export const blogLibrary = blogDrafts.map((article) => {
-  const slug = normalizeSlug("", article.title);
+export const blogLibrary = blogDrafts.map((source) => {
+  // Existing slug identities survive copy corrections.
+  const slug = normalizeSlug("", source.title);
+  const article = {
+    ...source,
+    title: finishedCopy(source.title),
+    answer: finishedCopy(source.answer),
+    example: finishedCopy(source.example),
+    steps: source.steps.map(finishedCopy),
+    avoid: finishedCopy(source.avoid),
+    question: finishedCopy(source.question),
+    response: finishedCopy(source.response),
+  };
   const e = escapeMarkup;
   const body = sanitizeBody(
     `<h2>The short answer</h2><p>${e(article.answer)}</p><h2>A worked example</h2><p>${e(article.example)}</p><h2>A practical checklist</h2><ol>${article.steps.map((step) => `<li>${e(step)}</li>`).join("")}</ol><h2>What to avoid</h2><p>${e(article.avoid)}</p><h2>A useful follow-up</h2><h3>${e(article.question)}</h3><p>${e(article.response)}</p>`,

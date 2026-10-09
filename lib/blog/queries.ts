@@ -1,4 +1,5 @@
 import { blogArticleIndexable } from "./indexing-policy";
+import { publicArticle } from "./public-copy";
 import { cache } from "react";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
@@ -21,10 +22,10 @@ export const getBlogArticle = cache(
         { projection: { _id: 0 } },
       );
     return record
-      ? {
+      ? publicArticle({
           ...record,
           data: { ...record.data, robotsIndex: blogArticleIndexable(record) },
-        }
+        })
       : null;
   },
 );
@@ -80,7 +81,7 @@ export async function blogIndex(
     .limit(pageSize)
     .toArray();
   return {
-    data,
+    data: data.map(publicArticle),
     total,
     page: currentPage,
     pageSize,
@@ -146,5 +147,5 @@ export async function articleContext(article: CmsRecord) {
       { projection: { _id: 0 } },
     ),
   ]);
-  return { author, related, categories, reviewer };
+  return { author, related: related.map(publicArticle), categories, reviewer };
 }

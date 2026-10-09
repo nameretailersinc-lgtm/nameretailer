@@ -111,11 +111,6 @@ export default async function Page({ params }: Props) {
       active="guides"
       image={image}
     >
-      {!guide.approved && (
-        <p className="reference-information-note">
-          <strong>DRAFT</strong> — This guide is awaiting content approval.
-        </p>
-      )}
       {article && (
         <script
           type="application/ld+json"

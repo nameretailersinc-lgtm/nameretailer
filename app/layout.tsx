@@ -29,7 +29,7 @@ const serif = Source_Serif_4({
 const siteTitle =
   "Name Retailer | Guest Post Marketplace for Quality Backlinks";
 const siteDescription =
-  "Compare guest-post publications by topic, audience, placement price and supplied metrics, then plan and order placements and content services with Name Retailer.";
+  "Compare guest-post publications by topic, audience, placement price and supplied metrics, then prepare a placement plan or contact Name Retailer.";
 export const metadata: Metadata = {
   metadataBase: new URL(origin),
   title: {

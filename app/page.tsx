@@ -13,7 +13,7 @@ const baseMetadata = {
     absolute: "Guest Post Marketplace: Compare Sites | Name Retailer",
   },
   description:
-    "Buy guest posts from a marketplace of active publishers. Filter by topic, country, DA, DR, traffic and USD price, shortlist sites and plan placements.",
+    "Compare active publications by topic, country, DA, DR, traffic and USD price. Shortlist sites, prepare a placement plan and request details from Name Retailer.",
   alternates: { canonical: "https://nameretailer.com/" },
 };
 export default function Page({
@@ -26,7 +26,6 @@ export default function Page({
       <LandingExplore />
     </ServerMarketplace>
   );
-  
 }
 
 export async function generateMetadata({

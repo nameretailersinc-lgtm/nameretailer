@@ -1,3 +1,4 @@
+import { buyerQuestions } from "./faq";
 export type SiteSection =
   | "home"
   | "marketplace"
@@ -89,7 +90,7 @@ export const informationPages = {
       },
       {
         title: "Plan with clear expectations",
-        body: "Compare publications, prepare your placement brief and save selections in your private cart. Billing review is available; ordering and payment are not available yet. Saving a plan is not an order or reservation.",
+        body: "Compare publications, prepare your placement brief and save selections in your private cart. Billing review is available; online ordering and payment are unavailable. Saving a plan is not an order or reservation.",
       },
     ],
     links: [
@@ -100,7 +101,8 @@ export const informationPages = {
       },
       {
         title: "Understand the process",
-        description: "See what works today and what comes next.",
+        description:
+          "Understand publication research, briefs and saved placement plans.",
         href: "/how-it-works/",
       },
       {
@@ -128,7 +130,7 @@ export const informationPages = {
       },
       {
         title: "Contact and ordering",
-        body: "Email links open your email application. This page does not submit or store a contact form. Ordering and payment are not available yet. Contact the team with publication questions.",
+        body: "Email links open your email application. This page does not submit or store a contact form. Online ordering and payment are unavailable. Contact the team with publication questions.",
       },
     ],
     links: [
@@ -208,7 +210,7 @@ export const informationPages = {
       },
       {
         title: "Account access",
-        body: "Register with your email and a strong password, then sign in explicitly. Use the password-reset page if needed. Email ownership verification is not yet implemented; reset delivery requires configured production email.",
+        body: "Register with your email and a strong password, then sign in explicitly. Use the password-reset page if needed. Use your account to manage private placement plans. Password reset messages are sent through the configured email service.",
       },
       {
         title: "Changes to saved placements",
@@ -349,11 +351,11 @@ export const informationPages = {
     active: "help",
     image: "/01_guest_post_checklist.png",
     description:
-      "The refund, privacy and cookie policies are published. Terms of service are not yet published. Contact Name Retailer for policy questions.",
+      "The refund, privacy and cookie policies are published. Contact Name Retailer to confirm the terms of a proposed placement request.",
     sections: [
       {
         title: "Terms and refund policy",
-        body: "The refund policy is published: a refund is issued if the site owner rejects your request within 1 business day, and orders are final once the link is approved. Terms of service and a replacement policy are not yet published. Ordering and payment are not available yet.",
+        body: "The refund policy is published: a refund is issued if the site owner rejects your request within 1 business day, and orders are final once the link is approved. Confirm the terms of any removal or replacement request with the team. Online ordering and payment are unavailable.",
       },
       {
         title: "Privacy and cookies",
@@ -452,53 +454,6 @@ export const toolGroups = [
 ] as const;
 
 // TODO(owner): confirm delivery/refund/replacement commitments; see OWNER_DECISIONS.md.
-export const commonQuestions = [
-  [
-    "How much does a guest post cost?",
-    "Each active listing shows its USD placement price. Compare the catalogue by price and confirm the full scope before choosing a publication.",
-  ],
-  [
-    "What does the placement price include?",
-    "Placement and writing are priced separately. Available writing options have their own prices. Check the publication requirements and any writing option before saving a plan.",
-  ],
-  [
-    "What is the difference between a guest post and a link insertion?",
-    "A guest post places a new article on a publication. A link insertion adds a link to an existing article. Confirm which placement format the publisher offers; a listing does not establish that both are available.",
-  ],
-  [
-    "What is the difference between DA and DR?",
-    "DA is Moz’s Domain Authority and DR is Ahrefs’ Domain Rating; they are different scores from different providers and are not interchangeable. Compare each within its own system and alongside topic relevance and the publication’s actual content.",
-  ],
-  [
-    "How can I check whether a guest-post site has real traffic?",
-    "Treat supplied traffic as an estimate and ask for the provider and measurement date. Check the site’s recent articles and audience fit, and compare the figure in an analytics or SEO tool you trust. A missing value means unavailable, not zero.",
-  ],
-  [
-    "How should paid links be disclosed?",
-    'Discuss sponsored-content labelling with the publisher. Google recommends rel="sponsored" for paid links; rel="nofollow" is also acceptable. Disclosure does not guarantee rankings.',
-  ],
-  [
-    "How long does publication take?",
-    "Check the listing’s supplied turnaround and confirm delivery timing with the team. A standard delivery commitment has not been published.",
-  ],
-  [
-    "Where do DA, DR and traffic metrics come from?",
-    "Metrics are supplied with the catalogue and are not independently verified here. Provider and measurement dates are unavailable unless supplied. Missing values appear as Unavailable.",
-  ],
-  [
-    "What happens if a placement is removed?",
-    "The refund policy covers requests the site owner rejects; once a link is approved the order is final. A replacement policy for a removed placement is not yet published, so ask the team which terms would apply before ordering.",
-  ],
-  [
-    "Can I order or pay now?",
-    "Ordering and payment are not available yet. You can browse publications, shortlist options and save a placement plan in your account.",
-  ],
-  [
-    "Do I need an account to browse?",
-    "You can browse and compare publications without signing in. Sign in to save your private placement plan.",
-  ],
-  [
-    "How do I contact Name Retailer?",
-    "Email info@nameretailer.com with the publication URL and your placement or content questions.",
-  ],
-] as const;
+export const commonQuestions = buyerQuestions.map(
+  (item) => [item.question, `${item.answer} ${item.detail}`] as const,
+);

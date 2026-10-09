@@ -296,7 +296,7 @@ export function ImageWorkspace({ tool }: { tool: Tool }) {
               {/* eslint-disable-next-line @next/next/no-img-element -- Selected local image uses an object URL. */}
               <img
                 src={original.url}
-                alt="Preview of your original image"
+                alt="Your original image"
                 width={original.width}
                 height={original.height}
               />
@@ -517,7 +517,7 @@ export function ImageWorkspace({ tool }: { tool: Tool }) {
             src={output.url}
             width={output.width}
             height={output.height}
-            alt="Preview of your processed image"
+            alt="Your processed image"
           />
           <a
             className="button button-primary"
@@ -544,7 +544,7 @@ export function ImageWorkspace({ tool }: { tool: Tool }) {
         <p>
           Conversions use this browser, not our server. Animated files become a
           single still image. Re-encoding may remove metadata and alter color;
-          compare the preview before using it. A higher quality setting does not
+          compare the result before using it. A higher quality setting does not
           guarantee a smaller file.
         </p>
       </div>

@@ -14,7 +14,6 @@ export function EditorialByline({
   reviewer,
   publishedAt,
   updatedAt,
-  hideMissingReviewer = false,
 }: {
   author?: string;
   reviewer?: string;
@@ -37,15 +36,9 @@ export function EditorialByline({
               author
             )}
           </>
-        ) : (
-          "Author details are not published."
-        )}
+        ) : null}
       </span>
-      {reviewer ? (
-        <span>Reviewer: {reviewer}</span>
-      ) : (
-        !hideMissingReviewer && <span>Reviewer details are not published.</span>
-      )}
+      {reviewer ? <span>Reviewer: {reviewer}</span> : null}
       {validDate(publishedAt) && (
         <span>
           Published:{" "}

@@ -5,12 +5,13 @@ export function BuyerGuideLinks() {
     <section className="reference-card">
       <h2>Guest-post buying questions</h2>
       <ul>
-        {buyerGuides.map((guide) => (
-          <li key={guide.slug}>
-            <Link href={`/guides/${guide.slug}/`}>{guide.title}</Link>
-            {!guide.approved && " — DRAFT"}
-          </li>
-        ))}
+        {buyerGuides
+          .filter((guide) => guide.approved)
+          .map((guide) => (
+            <li key={guide.slug}>
+              <Link href={`/guides/${guide.slug}/`}>{guide.title}</Link>
+            </li>
+          ))}
       </ul>
     </section>
   );

@@ -3,7 +3,7 @@ import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import type { Metadata } from "next";
 import { InformationShell } from "@/components/site/information-page";
-import { commonQuestions } from "@/lib/site/pages";
+import { buyerQuestions } from "@/lib/site/faq";
 import {
   faqPageNode,
   jsonLdGraph,
@@ -20,24 +20,34 @@ export default function Page() {
       path="/faq/"
       title="A few useful answers."
       label="Frequently asked questions"
-      description="Answers about guest-post prices, publication scope, metrics, disclosure and ordering."
+      description="Answers about placement prices, supplied metrics, sponsored disclosure, accounts and placement requests."
       active="help"
       image="/01_guest_post_checklist.png"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(jsonLdGraph(faqPageNode(commonQuestions))),
+          __html: serializeJsonLd(
+            jsonLdGraph(
+              faqPageNode(
+                buyerQuestions.map((item) => [
+                  item.question,
+                  `${item.answer} ${item.detail}`,
+                ]),
+              ),
+            ),
+          ),
         }}
       />
       <section
         className="reference-tool-faq reference-information-next"
         aria-label="Marketplace questions"
       >
-        {commonQuestions.map(([question, answer]) => (
+        {buyerQuestions.map(({ question, answer, detail }) => (
           <details key={question}>
             <summary>{question}</summary>
             <p>{answer}</p>
+            <p>{detail}</p>
           </details>
         ))}
       </section>
