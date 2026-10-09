@@ -6,6 +6,8 @@ import { tools } from "@/lib/tools/catalog";
 import { directories } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import { blogCategories, categorySlug } from "@/lib/blog/categories";
+import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
+import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
 
 export const dynamic = "force-dynamic";
 
@@ -29,10 +31,11 @@ const staticPaths = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [
     ...staticPaths,
-    ...directories.map((directory) => `/${directory.slug}/`),
-    ...marketplaceRanges.map((range) => `/${range.slug}/`),
     ...tools.map((tool) => `/${tool.slug}/`),
   ].map((path) => ({ url: canonicalOrigin + path }));
+  const segments = [...directories.map(directory => ({slug:directory.slug, query:"", directory:directory.slug})), ...marketplaceRanges.map(range => ({slug:range.slug, query:new URLSearchParams(range.bounds).toString(), directory:""}))];
+  const stats = await Promise.all(segments.map(segment => catalogueSummary(segment.query, segment.directory).catch(()=>null)));
+  segments.forEach((segment,index) => {const summary=stats[index]; if (summary && directoryIndexable(summary.total)) entries.push({url:`${canonicalOrigin}/${segment.slug}/`, ...(summary.updatedAt ? {lastModified:summary.updatedAt} : {})});});
   try {
     for (const category of await blogCategories()) entries.push({url: `${canonicalOrigin}/blog/category/${categorySlug(category)}/`});
     const posts = await (

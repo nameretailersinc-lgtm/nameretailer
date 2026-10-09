@@ -107,3 +107,4 @@ Sources return 301; targets return 200. Run npm run check:redirects.
 | /above-500k/ | /500k-plus-traffic/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
 | /dr-50-above/ | /dr-50-plus/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
 | /price-200-above/ | /price-200-plus/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /guest-posting-sites-under-50/ | /price-0-to-50/ | Consolidate identical budget directory intent |

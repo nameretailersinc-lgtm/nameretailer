@@ -229,7 +229,7 @@ export default function Page() {
               <Link href="/guest-posting-sites/">
                 Guest posting sites by niche
               </Link>
-              <Link href="/guest-posting-sites-under-50/">
+              <Link href="/price-0-to-50/">
                 Guest posting sites under $50
               </Link>
               <Link href="/guest-post-by-dr/">Domain Rating marketplace</Link>

@@ -31,3 +31,8 @@ Implemented 87 explicit 301 sources from the supplied examples and local WordPre
 
 Route metadata now completes matching OG/Twitter titles, descriptions and page-specific image alt text. Root homepage social fields were removed. Titles are capped at 60 and descriptions at 155 characters. DA/traffic/high-end DR/price slugs use consistent names; old slugs return 301, including the 50k-to-500k typo. Navigation tools are deduplicated by canonical slug. Build/lint and 51 relevant unit tests passed; check:meta passed across 148 public pages with unique titles/descriptions, one canonical and matching social tags.
 
+
+### Phase 5 — useful programme directories
+
+Inventoried all ranges and niches in DIRECTORY_INVENTORY.md. Consolidated under-50 into price-0-to-50; distinct ranges and audience intents remain, with shared inclusive boundaries documented. Each retained directory displays statistics across all visible active listings: count, full price range/median, top listing countries/topics and an actual supplied updatedAt. No measurement date is inferred. Threshold is MIN_DIRECTORY_LISTINGS=5; smaller/unknown directories are excluded from the sitemap and use noindex,follow. Statistics share active/committed-import visibility with the API. Added request-time metadata boundaries to prevent build-time database queries. Corrected build/lint and median/threshold tests passed.
+

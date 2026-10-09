@@ -4,6 +4,8 @@ import { InformationShell } from "./information-page";
 import { directoryListings } from "@/lib/commerce/products";
 import { directories, type Directory } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
+import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
+import { DirectorySummary } from "./directory-summary";
 import {
   breadcrumbSchema,
   faqPageNode,
@@ -113,6 +115,7 @@ export function DirectoryLinks({ exclude }: { exclude?: string }) {
 
 export async function DirectoryPage({ directory }: { directory: Directory }) {
   const result = await listings(directory);
+  const stats = await catalogueSummary("", directory.slug);
   const url = `${canonicalOrigin}/${directory.slug}/`;
   const schema = jsonLdGraph(
     {
@@ -221,6 +224,7 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
         </ul>
       </section>
       <div className="reference-information-sections">
+        <DirectorySummary label={directory.h1} stats={stats} />
         {directory.sections.map((section) => (
           <section className="reference-card" key={section.title}>
             <h2>{section.title}</h2>

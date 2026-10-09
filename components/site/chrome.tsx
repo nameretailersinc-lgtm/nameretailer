@@ -74,7 +74,7 @@ export function SiteFooter() {
           <Link href="/guest-posting-sites/">All directories</Link>
           <Link href="/technology-guest-posting-sites/">Technology</Link>
           <Link href="/saas-guest-posting-sites/">SaaS and software</Link>
-          <Link href="/guest-posting-sites-under-50/">Under $50</Link>
+          <Link href="/price-0-to-50/">Under $50</Link>
           <Link href="/guest-posting-sites-usa/">USA</Link>
         </div>
         <div>

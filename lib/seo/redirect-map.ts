@@ -513,5 +513,10 @@ export const legacyRedirects: Array<{source: string; destination: string; reason
     "source": "/price-200-above/",
     "destination": "/price-200-plus/",
     "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/guest-posting-sites-under-50/",
+    "destination": "/price-0-to-50/",
+    "reason": "Consolidate identical budget directory intent"
   }
 ];

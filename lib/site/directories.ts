@@ -28,7 +28,7 @@ const category = (name: string): [string, string] => [
   `/products/?category=${encodeURIComponent(name)}`,
 ];
 
-export const directories: Directory[] = [
+const directoryDefinitions: Directory[] = [
   {
     slug: "technology-guest-posting-sites",
     label: "Technology publishers",
@@ -461,6 +461,8 @@ export const directories: Directory[] = [
     ],
   },
 ];
+
+export const directories = directoryDefinitions.filter(directory => directory.slug !== "guest-posting-sites-under-50");
 
 export const directoryBySlug = (slug: string) =>
   directories.find((directory) => directory.slug === slug);

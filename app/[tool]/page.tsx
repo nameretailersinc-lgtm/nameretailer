@@ -1,4 +1,6 @@
 import { pageMetadata } from "@/lib/seo/page-metadata";
+import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
+import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
 import { facetMetadata } from "@/lib/seo/facets";
 import { publicProductPage } from "@/lib/commerce/public-page";
 import { marketplaceQuery, searchQuery } from "@/lib/commerce/marketplace-query";
@@ -48,21 +50,27 @@ export async function generateMetadata({
   const slug = (await params).tool;
   const range = marketplaceRangeBySlug(slug);
   if (range) {
+    await connection();
     const search = await searchParams;
     const data = await publicProductPage(marketplaceQuery(searchQuery(search), range).toString());
     return pageMetadata({
       ...facetMetadata(`/${range.slug}/`, search, data.data.length > 0),
+      ...(!directoryIndexable(data.total) ? {robots:{index:false,follow:true}} : {}),
       title: range.title + (data.page > 1 ? ` — Page ${data.page}` : ""),
       description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.${data.page > 1 ? ` Page ${data.page}.` : ""}`,
     }, `/${range.slug}/`);
   }
   const directory = directoryBySlug(slug);
-  if (directory)
+  if (directory) {
+    await connection();
+    const stats = await catalogueSummary("", directory.slug);
     return pageMetadata({
       ...facetMetadata(`/${directory.slug}/`, await searchParams),
+      ...(!directoryIndexable(stats.total) ? {robots:{index:false,follow:true}} : {}),
       title: directory.metaTitle,
       description: directory.metaDescription,
     }, `/${directory.slug}/`);
+  }
   const tool = toolBySlug(slug);
   if (!tool) notFound();
   return pageMetadata({

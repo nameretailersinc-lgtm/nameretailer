@@ -6,6 +6,8 @@ import { validateProduct } from "./validation";
 import { ProductError } from "./errors";
 import { applyProductRanges } from "./product-ranges";
 import type { Product, ProductImportAnalysis, ProductStatus } from "./types";
+import { priceMedian, type CatalogueStatistics } from "./catalogue-statistics";
+import type { DirectoryFilter } from "@/lib/site/directories";
 
 interface ImportBatch {
   _id: string;
@@ -256,6 +258,33 @@ export async function productFacets() {
     languages: clean(languages),
     categories: clean(categories),
   };
+}
+/** Statistics over all visible matching products, never just the first page. */
+export async function publicProductStatistics(params: URLSearchParams, directory: DirectoryFilter = {}): Promise<CatalogueStatistics> {
+  const {products} = await productStore();
+  const scope = query(params, false).filter;
+  if (directory.categories?.length) scope.category = {$in: directory.categories};
+  if (directory.country) scope.country = directory.country;
+  if (directory.maxPriceCents !== undefined) scope.priceCents = {$lte: directory.maxPriceCents};
+  const filter = {$and: [scope, await visibleFilter()]};
+  const rows = await products.aggregate<{
+    summary: Array<{total:number; min:number; max:number; updatedAt?:string}>;
+    prices: Array<{values:number[]}>;
+    countries: Array<{_id:string; count:number}>;
+    topics: Array<{_id:string; count:number}>;
+  }>([
+    {$match: filter},
+    {$facet: {
+      summary: [{$group: {_id:null, total:{$sum:1}, min:{$min:"$priceCents"}, max:{$max:"$priceCents"}, updatedAt:{$max:"$updatedAt"}}}],
+      prices: [{$group: {_id:null, values:{$push:"$priceCents"}}}],
+      countries: [{$match:{country:{$nin:["",null]}}}, {$group:{_id:"$country", count:{$sum:1}}}, {$sort:{count:-1,_id:1}}, {$limit:3}],
+      topics: [{$match:{category:{$nin:["",null]}}}, {$group:{_id:"$category", count:{$sum:1}}}, {$sort:{count:-1,_id:1}}, {$limit:3}],
+    }},
+  ]).toArray();
+  const result = rows[0];
+  const summary = result?.summary[0];
+  const updatedAt = summary?.updatedAt;
+  return {total: summary?.total ?? 0, minPriceCents: summary?.min ?? null, maxPriceCents: summary?.max ?? null, medianPriceCents: priceMedian(result?.prices[0]?.values || []), topCountries: (result?.countries || []).map(row=>({name:row._id,count:row.count})), topTopics: (result?.topics || []).map(row=>({name:row._id,count:row.count})), ...(updatedAt && Number.isFinite(Date.parse(updatedAt)) ? {updatedAt} : {})};
 }
 function validated(input: unknown) {
   try {
