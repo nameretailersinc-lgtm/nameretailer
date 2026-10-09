@@ -28,6 +28,7 @@ export default function Page({
   );
 }
 
+
 export async function generateMetadata({
   searchParams,
 }: {
