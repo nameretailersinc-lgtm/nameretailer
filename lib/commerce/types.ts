@@ -30,6 +30,10 @@ export interface Product extends ProductInput {
   updatedAt: string;
   importId?: string;
   source?: Record<string, string>;
+  /** ISO date the supplier measured `metrics`; absent until the supplier provides it. */
+  metricsUpdatedAt?: string | null;
+  /** Set by the data-quality review; listings are only excluded after owner confirmation. */
+  needsReview?: boolean;
 }
 export type PublicProduct = Omit<Product, "source" | "externalId" | "importId">;
 export interface ProductPage {
