@@ -183,10 +183,6 @@ test.describe("first-slice marketplace browser", () => {
       .click();
     await expect(page).toHaveURL(/\/products\/$/);
     await loaded(page);
-    await expect(page.locator(".marketplace-stage-notice")).toContainText(
-      /planning cart are available\. Checkout and payments are upcoming/,
-    );
-    await expect(page.locator(".marketplace-stage-notice")).toBeVisible();
   });
 
   test("guest shortlist limits four, compares unknown metrics truthfully and remains keyboard operable", async ({

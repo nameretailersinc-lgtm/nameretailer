@@ -314,14 +314,16 @@ test.describe("reference-led marketplace refresh", () => {
     await expect(page.getByRole("main")).toBeFocused();
     const help = page.locator("#marketplace-help > details").first();
     await help
-      .getByText("Can I order from this marketplace preview?", { exact: true })
+      .getByText("Does shortlisting reserve a publication or price?", {
+        exact: true,
+      })
       .focus();
     await page.keyboard.press("Enter");
     await expect(help).toHaveAttribute("open", "");
-    await expect(help.locator("p")).toContainText("Not yet.");
+    await expect(help.locator("p")).toContainText("No.");
     await expect(help.locator("p")).toBeVisible();
     await expect(help.locator("p")).toContainText(
-      "customer accounts and a planning cart are available, but checkout and payments are upcoming",
+      "does not reserve it or lock its price",
     );
     await page.keyboard.press("Enter");
     await expect(help).not.toHaveAttribute("open", "");
