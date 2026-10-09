@@ -714,7 +714,7 @@ export function Marketplace({
     <div
       className={`marketplace reference-site reference-marketplace${metricView ? "" : " marketplace-browser"}`}
     >
-      <SiteHeader active={pathname === "/" ? "home" : "marketplace"} />
+      <SiteHeader active="marketplace" />
       <main id="main" tabIndex={-1}>
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/products/">Marketplace</Link>

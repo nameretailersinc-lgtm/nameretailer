@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 
 const pages: Array<[string, string, string]> = [
   [
-    "/products/",
+    "/",
     "Guest-post marketplace",
     "Browse publisher listings by topic, location, language, placement price and supplied metrics.",
   ],

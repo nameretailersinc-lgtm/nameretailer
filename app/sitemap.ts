@@ -8,8 +8,8 @@ import { canonicalOrigin } from "@/lib/seo/metadata";
 export const dynamic = "force-dynamic";
 
 const staticPaths = [
+  "/",
   "/home/",
-  "/products/",
   "/guest-post-marketplace/",
   "/guest-post-by-dr/",
   "/services/",

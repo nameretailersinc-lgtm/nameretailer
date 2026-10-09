@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Guest Post Marketplace and Prices",
   description:
     "Browse guest-post publisher listings by topic, location, language, price and metrics, then plan your placements with Name Retailer.",
+  alternates: { canonical: "https://nameretailer.com/" },
 };
 // Render on the server per request so headings and links are in the HTML,
 // instead of bailing out to client-only rendering for useSearchParams.
