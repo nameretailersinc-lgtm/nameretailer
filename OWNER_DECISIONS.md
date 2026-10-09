@@ -12,6 +12,6 @@ No rankings or AI citations are guaranteed.
 - TODO: Confirm real social-profile URLs before adding sameAs.
 - TODO: Review technical/migration articles and legacy redirects using Search Console/backlink data. No such data available locally.
 - TODO: Closest-hub redirects have no exact replacement for community/reviews, former specialist services, monthly/permanent billing semantics, backlink/Trust Flow segments, archived WordPress articles and copyright/DMCA/community policies. See REDIRECT_MAP.md. Supply original content or approve a more specific destination after reviewing traffic/backlinks. No service, review or policy has been invented.
-- TODO: Approve five buyer-guide scaffolds before removing DRAFT/noindex; verify cited sources at approval time.
+- DONE 2026-10-09: Owner approved all five buyer guides; DRAFT/noindex removed and guides added to the sitemap. Cited sources re-checked (all resolve). Owner supplied author Zuhoor Uddin and original publication date 2026-07-02; no reviewer is published. Guides now emit Article JSON-LD.
 - TODO: Review the ten retained Technical SEO articles and their category against Search Console/backlinks before removing the code-level noindex policy. BLOG_AUDIT.md covers all 60 source articles; editorial rewrite/possible merge recommendations require real evidence and approval.
 - TODO: Supply original independent audit issues 1–20. Attachment has ten phases but no numbered issue list; handoff must identify any provisional crosswalk.

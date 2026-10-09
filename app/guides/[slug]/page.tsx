@@ -9,6 +9,7 @@ import { buyerGuideUpdatedAt } from "@/lib/site/buyer-guide-revision";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
+import { buyerGuideArticleNode, serializeJsonLd } from "@/lib/seo/json-ld";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 export const dynamic = "force-dynamic";
 type Props = {
@@ -37,6 +38,12 @@ export default async function Page({ params }: Props) {
   const stats =
     guide.slug === "guest-post-cost" ? await catalogueSummary("") : null;
   const answer = stats ? costAnswer(stats) : guide.answer;
+  const image = "/01_guest_post_checklist.png";
+  const article = buyerGuideArticleNode({
+    ...guide,
+    updatedAt: buyerGuideUpdatedAt,
+    image,
+  });
   return (
     <InformationShell
       path={`/guides/${guide.slug}/`}
@@ -45,19 +52,26 @@ export default async function Page({ params }: Props) {
       label={guide.title}
       description={answer}
       active="guides"
-      image="/01_guest_post_checklist.png"
+      image={image}
     >
       {!guide.approved && (
         <p className="reference-information-note">
           <strong>DRAFT</strong> — This guide is awaiting content approval.
         </p>
       )}
+      {article && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(article) }}
+        />
+      )}
       <EditorialByline
         author={guide.author}
         reviewer={guide.reviewer}
+        publishedAt={guide.publishedAt}
         updatedAt={buyerGuideUpdatedAt}
+        hideMissingReviewer={!!guide.author}
       />
-      {/* TODO(owner): complete Article markup only after real publication and author data are supplied. */}
       {guide.questions.map((section) => (
         <section className="reference-card" key={section.title}>
           <h2>{section.title}</h2>

@@ -76,3 +76,38 @@ export function toolBreadcrumbs(tool: {
     [tool.title, `/${tool.slug}/`],
   ]);
 }
+/** Article markup only for approved guides with owner-supplied author and publication date. */
+export function buyerGuideArticleNode(guide: {
+  slug: string;
+  title: string;
+  approved: boolean;
+  author?: string;
+  publishedAt?: string;
+  updatedAt: string;
+  image: string;
+}) {
+  if (
+    !guide.approved ||
+    !guide.author ||
+    !guide.publishedAt ||
+    !Number.isFinite(Date.parse(guide.publishedAt))
+  )
+    return null;
+  const url = `${canonicalOrigin}/guides/${guide.slug}/`;
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline: guide.title,
+    mainEntityOfPage: url,
+    author: {
+      "@type": "Person",
+      name: guide.author,
+      url: `${canonicalOrigin}/about/`,
+    },
+    publisher: { "@id": `${canonicalOrigin}/#organization` },
+    datePublished: guide.publishedAt,
+    dateModified: guide.updatedAt,
+    image: canonicalOrigin + guide.image,
+  };
+}

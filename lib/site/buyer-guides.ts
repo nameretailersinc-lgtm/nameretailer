@@ -31,13 +31,15 @@ const traffic = [
   "Ahrefs: organic traffic estimation",
   "https://help.ahrefs.com/en/articles/1863206-what-is-organic-traffic-in-ahrefs-and-how-do-we-calculate-it",
 ] as [string, string];
-// TODO(owner): approve these scaffolds and supply author/reviewer/original publication dates.
+// Content approved by owner 2026-10-09; author and original publication date supplied by owner. No reviewer published.
 export const buyerGuides: BuyerGuide[] = [
   {
     slug: "guest-post-cost",
     title: "How much does a guest post cost?",
     answer: "",
-    approved: false,
+    approved: true,
+    author: "Zuhoor Uddin",
+    publishedAt: "2026-07-02",
     sources: [google, spam],
     questions: [
       {
@@ -55,7 +57,9 @@ export const buyerGuides: BuyerGuide[] = [
     title: "Guest post vs link insertion",
     answer:
       "A guest post adds a new article to a publication; a link insertion adds a link to an existing article. Compare the surrounding content, editorial scope and disclosure before choosing a format. Confirm which format the publisher offers and what the quoted price covers, rather than assuming either option is included.",
-    approved: false,
+    approved: true,
+    author: "Zuhoor Uddin",
+    publishedAt: "2026-07-02",
     sources: [google, spam],
     questions: [
       {
@@ -80,7 +84,9 @@ export const buyerGuides: BuyerGuide[] = [
     title: "DA vs DR and traffic estimates",
     answer:
       "DA and DR are different third-party scores: Moz supplies Domain Authority and Ahrefs supplies Domain Rating. Traffic estimates are another signal and should be read with their provider, method and observation date. Use these measures to compare publications alongside audience relevance and editorial quality, while keeping missing values separate from zero.",
-    approved: false,
+    approved: true,
+    author: "Zuhoor Uddin",
+    publishedAt: "2026-07-02",
     sources: [da, dr, traffic],
     questions: [
       {
@@ -110,7 +116,9 @@ export const buyerGuides: BuyerGuide[] = [
     title: "How to vet a guest post site",
     answer:
       "Vet a guest-post site by checking its recent articles, topic relevance, editorial contacts and proposed placement scope. Compare supplied prices and metrics only after the publication makes sense for your audience. Ask for metric sources and dates, agree paid-link disclosure, and record questions about delivery and replacement terms before committing to an order.",
-    approved: false,
+    approved: true,
+    author: "Zuhoor Uddin",
+    publishedAt: "2026-07-02",
     sources: [dr, google, spam],
     questions: [
       {
@@ -130,7 +138,9 @@ export const buyerGuides: BuyerGuide[] = [
       "Paid guest posts need appropriate link qualification. Google recommends rel=" +
       '"sponsored"' +
       " for advertising and paid placements and also accepts nofollow. Its spam policies address links created primarily to manipulate rankings. Confirm the publisher’s disclosure and link markup before placement, and do not treat payment or a metric score as a promise of search performance.",
-    approved: false,
+    approved: true,
+    author: "Zuhoor Uddin",
+    publishedAt: "2026-07-02",
     sources: [google, spam],
     questions: [
       {
