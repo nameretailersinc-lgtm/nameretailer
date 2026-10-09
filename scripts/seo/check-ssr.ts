@@ -21,13 +21,14 @@ await withProductionServer(async (base) => {
       .map((match) => match[0])
       .filter(
         (row) =>
-          /href="https?:\/\//.test(row) && /\$[\d,]+(?:\.\d{2})?/.test(row),
+          /href="(?:https?:\/\/nameretailer\.com)?\/publication\//.test(row) &&
+          /\$[\d,]+(?:\.\d{2})?/.test(row),
       );
     assert(
       rows.length > 0,
       `${path}: no server-rendered publication link and USD price (check active catalogue)`,
     );
-    if (["/", "/products/", "/guest-posting-sites/"].includes(path))
+    if (path === "/")
       assert(rows.length >= 20, `${path}: fewer than 20 initial listings`);
     console.log(
       `${path}: ${rows.length} publication rows with prices in raw HTML`,

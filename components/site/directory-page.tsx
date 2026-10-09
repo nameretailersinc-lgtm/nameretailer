@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { InformationShell } from "./information-page";
-import { directoryListings } from "@/lib/commerce/products";
+import { publicDirectoryListings } from "@/lib/commerce/public-directory";
 import { directories, type Directory } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
@@ -28,7 +28,7 @@ const host = (domain: string) => {
 
 async function listings(directory: Directory) {
   try {
-    return await directoryListings(directory.filter);
+    return await publicDirectoryListings(directory);
   } catch {
     return null;
   }
@@ -115,8 +115,10 @@ export function DirectoryLinks({ exclude }: { exclude?: string }) {
 }
 
 export async function DirectoryPage({ directory }: { directory: Directory }) {
-  const result = await listings(directory);
-  const stats = await catalogueSummary("", directory.slug);
+  const [result, stats] = await Promise.all([
+    listings(directory),
+    catalogueSummary("", directory.slug).catch(() => null),
+  ]);
   const url = `${canonicalOrigin}/${directory.slug}/`;
   const schema = jsonLdGraph(
     {
@@ -222,7 +224,7 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
         </ul>
       </section>
       <div className="reference-information-sections">
-        <DirectorySummary label={directory.h1} stats={stats} />
+        {stats && <DirectorySummary label={directory.h1} stats={stats} />}
         {directory.sections.map((section) => (
           <section className="reference-card" key={section.title}>
             <h2>{section.title}</h2>

@@ -590,7 +590,13 @@ export function Marketplace({
   const [selectedProduct, setSelectedProduct] = useState<PublicProduct | null>(
     null,
   );
+  const firstQuery = useRef(true);
   useEffect(() => {
+    // Hydration retains the exact inventory delivered in the server HTML.
+    if (firstQuery.current) {
+      firstQuery.current = false;
+      if (initialPage && initialQuery === query && retry === 0) return;
+    }
     let active = true;
     const controller = new AbortController();
     api<ProductPage>(`/api/products/?${query}`, { signal: controller.signal })
@@ -607,7 +613,7 @@ export function Marketplace({
       active = false;
       controller.abort();
     };
-  }, [query, retry]);
+  }, [query, retry, initialPage, initialQuery]);
   useEffect(() => {
     let active = true;
     api<{ data: ProductFacets }>("/api/products/facets/")

@@ -1,4 +1,6 @@
 import { withProductionServer, pageHtml } from "./server";
+import { directories } from "../../lib/site/directories";
+import { marketplaceRanges } from "../../lib/commerce/marketplace-ranges";
 
 // Requests every URL in the sitemap and reports non-200 responses and slow pages.
 // Set SEO_BASE_URL to test a running server. Exits non-zero on any failure.
@@ -6,10 +8,22 @@ const slowMs = Number(process.env.HEALTH_SLOW_MS || 3000);
 
 await withProductionServer(async (base) => {
   const xml = await pageHtml(base, "/sitemap.xml");
-  const paths = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => {
+  const sitemapPaths = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => {
     const url = new URL(match[1]);
     return url.pathname + url.search;
   });
+  // Check every registered hub, including noindex hubs omitted from the sitemap.
+  const paths = [
+    ...new Set([
+      "/",
+      "/guest-posting-sites/",
+      "/guest-post-marketplace/",
+      "/guest-post-by-dr/",
+      ...directories.map((item) => `/${item.slug}/`),
+      ...marketplaceRanges.map((item) => `/${item.slug}/`),
+      ...sitemapPaths,
+    ]),
+  ];
   const failures: string[] = [];
   const slow: string[] = [];
   let next = 0;
@@ -34,7 +48,9 @@ await withProductionServer(async (base) => {
       }
     }),
   );
-  console.log(`Requested ${paths.length} sitemap URLs.`);
+  console.log(
+    `Requested ${paths.length} public URLs, including every registered hub.`,
+  );
   if (slow.length) console.warn(`Slow (>${slowMs}ms):\n${slow.join("\n")}`);
   if (failures.length) {
     console.error(`Failures:\n${failures.join("\n")}`);

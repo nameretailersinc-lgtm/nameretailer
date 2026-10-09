@@ -82,11 +82,11 @@ export async function generateMetadata({
   const directory = directoryBySlug(slug);
   if (directory) {
     await connection();
-    const stats = await catalogueSummary("", directory.slug);
+    const stats = await catalogueSummary("", directory.slug).catch(() => null);
     return pageMetadata(
       {
         ...facetMetadata(`/${directory.slug}/`, await searchParams),
-        ...(!directoryIndexable(stats.total)
+        ...(!stats || !directoryIndexable(stats.total)
           ? { robots: { index: false, follow: true } }
           : {}),
         title: directory.metaTitle,

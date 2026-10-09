@@ -233,12 +233,14 @@ export async function directoryListings(
           })
           .sort({ "metrics.dr": -1, id: 1 })
           .limit(limit)
+          .maxTimeMS(10000)
           .toArray(),
-    products.countDocuments(filter),
+    products.countDocuments(filter, { maxTimeMS: 10000 }),
     products
       .find(filter, { projection: { _id: 0, priceCents: 1 } })
       .sort({ priceCents: 1 })
       .limit(1)
+      .maxTimeMS(10000)
       .toArray(),
   ]);
   return { data, total, lowestPriceCents: cheapest[0]?.priceCents ?? null };

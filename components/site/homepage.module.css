@@ -8,7 +8,7 @@
   --ring: #00833f;
   background:
     radial-gradient(ellipse at 93% 9%, #ddf8f1 0, transparent 25%),
-    radial-gradient(ellipse at 3% 21%, #edf7ff 0, transparent 30%), #fbfdff;
+    radial-gradient(ellipse at 3% 21%, #eff8f5 0, transparent 30%), #fbfdff;
   color: var(--foreground);
 }
 
@@ -22,7 +22,7 @@
 }
 
 .page :global(.marketplace-discovery) {
-  margin: 0 0 38px;
+  margin: 0 0 24px;
 }
 
 .hero {
@@ -32,7 +32,7 @@
   gap: 28px;
   align-items: center;
   position: relative;
-  padding: 56px 0 48px;
+  padding: 30px 0 26px;
 }
 
 .heroCopy {
@@ -45,13 +45,13 @@
   display: inline-flex;
   align-items: center;
   gap: 9px;
-  padding: 9px 15px;
+  padding: 7px 12px;
   border: 1px solid #dbf5ec;
   border-radius: 50px;
-  margin: 0 0 17px;
+  margin: 0 0 12px;
   background: #e4f9f1;
   color: #174b3f;
-  font-size: 12px;
+  font-size: 10px;
   font-weight: 700;
 }
 
@@ -65,24 +65,24 @@
 
 .page .hero h1 {
   font-family: var(--font-ui), Arial, sans-serif;
-  font-size: clamp(36px, 4.1vw, 57px);
+  font-size: clamp(34px, 3.5vw, 49px);
   line-height: 1.1;
   font-weight: 780;
   letter-spacing: -0.055em;
-  color: #0d1924;
-  margin: 0 0 22px;
+  color: #073d37;
+  margin: 0 0 15px;
 }
 
 .hero h1 > span {
-  color: #009c48;
+  color: #073d37;
 }
 
 .page .lead {
   max-width: 490px;
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 14px;
+  line-height: 1.6;
   color: #405364;
-  margin: 0 0 26px;
+  margin: 0 0 19px;
 }
 
 .heroActions {
@@ -93,8 +93,8 @@
 
 .page :global(.button-primary),
 .page :global(.marketplace-search-modes button[aria-pressed="true"]) {
-  background: linear-gradient(110deg, #00af54, #00984c);
-  border-color: #00a34e;
+  background: linear-gradient(110deg, #00873e, #007c47);
+  border-color: #00823d;
   color: #fff;
   box-shadow: 0 5px 12px #00a34e14;
 }
@@ -105,10 +105,10 @@
 }
 
 .page .heroActions :global(.button) {
-  min-height: 49px;
-  padding: 12px 21px;
-  border-radius: 12px;
-  font-size: 13px;
+  min-height: 40px;
+  padding: 9px 16px;
+  border-radius: 8px;
+  font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -124,7 +124,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 25px;
-  margin-top: 36px;
+  margin-top: 22px;
 }
 
 .heroFacts > div {
@@ -146,7 +146,7 @@
 
 .heroFacts strong {
   display: block;
-  font-size: 19px;
+  font-size: 16px;
   line-height: 1.4;
   letter-spacing: -0.025em;
 }
@@ -162,7 +162,7 @@
   min-width: 0;
   position: relative;
   isolation: isolate;
-  padding: 16px 0;
+  padding: 0;
 }
 
 .heroArt::before {
@@ -183,6 +183,8 @@
   display: block;
   width: 100%;
   height: auto;
+  max-height: 315px;
+  object-fit: contain;
   mask-image: radial-gradient(
     ellipse 65% 67% at 50% 50%,
     #000 54%,
@@ -245,8 +247,8 @@
 }
 
 .page :global(.marketplace-search-panel) {
-  padding: 8px;
-  border-radius: 21px;
+  padding: 4px;
+  border-radius: 15px;
   border-color: #e3eef7;
   background: #ffffffb5;
   box-shadow: 0 7px 25px #3c82b908;
@@ -263,9 +265,9 @@
 .page :global(.marketplace-search-modes button) {
   flex: 1;
   justify-content: center;
-  min-height: 45px;
+  min-height: 39px;
   border: 0;
-  border-radius: 13px;
+  border-radius: 8px;
   color: #324b64;
   background: transparent;
 }
@@ -275,7 +277,7 @@
 }
 
 .page :global(.marketplace-search-body) {
-  padding: 17px 13px 12px;
+  padding: 12px 13px;
   background: transparent;
 }
 
@@ -340,7 +342,7 @@
 
 .page:global(.marketplace-browser) :global(.marketplace-results) {
   border-color: #dfebf5;
-  border-radius: 20px;
+  border-radius: 14px;
   box-shadow: 0 4px 16px #22578307;
   background: #ffffffc9;
 }
@@ -364,6 +366,18 @@
   color: #007c39;
 }
 
+.page:global(.marketplace-browser) :global(.marketplace-table td),
+.page:global(.marketplace-browser) :global(.marketplace-table tbody th) {
+  padding: 8px 7px;
+  font-size: 12px;
+}
+
+.page:global(.marketplace-browser) :global(.marketplace-table .placement-buy) {
+  min-height: 26px;
+  padding: 4px 6px;
+  font-size: 10px;
+}
+
 .page:global(.marketplace-browser) :global(.marketplace-view-details) {
   border: 1px solid #00a34e;
   border-radius: 30px;
@@ -381,65 +395,72 @@
   border: 1px solid #e1edf5;
   border-radius: 16px;
   padding: 22px;
-  background: #ffffff90;
+  background: linear-gradient(110deg, #eaf9f1, #f3f8f5);
 }
 
 .sections {
-  margin-top: 42px;
+  margin-top: 28px;
 }
 
 .tools {
   display: grid;
-  grid-template-columns: 1.65fr repeat(4, 1fr);
-  gap: 17px;
-  padding: 28px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  padding: 19px;
   border: 1px solid #e5f3f9;
-  border-radius: 27px;
-  background:
-    radial-gradient(ellipse at 55% 100%, #c7f4e873, transparent 55%),
-    linear-gradient(115deg, #eaf4fe, #eefcfa 58%, #def4ff);
+  border-radius: 15px;
+  background: #ffffffb5;
 }
 
 .toolsIntro {
+  position: relative;
+  grid-column: 1 / -1;
   align-self: center;
-  padding: 0 13px 0 5px;
+  padding: 0 140px 0 0;
 }
 
 .page .toolsIntro h2 {
   font:
-    750 25px/1.15 var(--font-ui),
+    750 22px/1.2 var(--font-ui),
     Arial,
     sans-serif;
   letter-spacing: -0.04em;
-  margin: 0 0 12px;
+  margin: 0 0 6px;
 }
 
 .page .toolsIntro p {
-  margin: 0 0 18px;
+  margin: 0;
   color: #52667c;
   font-size: 12px;
   line-height: 1.6;
 }
 
-.page .toolsIntro :global(.button) {
-  min-height: 38px;
-  border-radius: 9px;
-  padding: 8px 13px;
+.allToolsLink {
+  position: absolute;
+  right: 0;
+  top: 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  color: #007c47;
   font-size: 11px;
+  font-weight: 650;
+  text-decoration: none;
 }
 
 .toolCard {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 40px minmax(0, 1fr) 20px;
+  column-gap: 10px;
   align-items: center;
-  padding: 25px 12px 17px;
+  padding: 15px 12px;
   border: 1px solid #dfedf8;
-  border-radius: 16px;
+  border-radius: 11px;
   background: #ffffffab;
-  box-shadow: 0 8px 12px #194f6910;
+  box-shadow: 0 3px 8px #194f6905;
   color: #112a40;
   text-decoration: none;
-  text-align: center;
+  text-align: left;
   transition:
     transform 160ms ease,
     box-shadow 160ms ease;
@@ -455,9 +476,10 @@
   display: grid;
   place-items: center;
   border-radius: 13px;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 15px;
+  width: 40px;
+  height: 40px;
+  grid-row: 1 / span 2;
+  margin-bottom: 0;
   box-shadow:
     inset 0 2px 3px #ffffffa6,
     0 5px 12px #1c6f4e0a;
@@ -480,38 +502,45 @@
   background: linear-gradient(135deg, #f4eeff, #ccb6ff);
 }
 
+.pink {
+  color: #c71d66;
+  background: linear-gradient(135deg, #fff0f7, #ffd5e8);
+}
+
 .page .toolCard h3 {
-  font-size: 13px;
+  grid-column: 2;
+  font-size: 12px;
   line-height: 1.4;
   font-weight: 750;
-  margin: 0 0 8px;
+  margin: 0 0 4px;
 }
 
 .page .toolCard p {
+  grid-column: 2;
   color: #52667c;
   font-size: 10px;
   line-height: 1.6;
-  margin: 0 0 20px;
+  margin: 0;
 }
 
 .toolArrow {
   display: grid;
   place-items: center;
-  width: 32px;
-  height: 32px;
-  margin-top: auto;
+  grid-column: 3;
+  grid-row: 1 / span 2;
+  width: 20px;
+  height: 24px;
   border-radius: 50%;
-  background: #fff;
-  box-shadow: 0 2px 7px #294d7710;
+  background: transparent;
 }
 
 .benefits {
-  padding-top: 59px;
+  padding-top: 32px;
 }
 
 .sectionHeading {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 19px;
 }
 
 .page .sectionHeading h2 {
@@ -533,24 +562,25 @@
 .benefitGrid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 17px;
+  gap: 12px;
 }
 
 .benefitCard {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 43px minmax(0, 1fr);
+  column-gap: 12px;
   align-items: center;
   border: 1px solid #e0eaf6;
-  border-radius: 17px;
-  padding: 25px 23px 22px;
+  border-radius: 12px;
+  padding: 18px 16px;
   background: #ffffffb3;
-  text-align: center;
+  text-align: left;
 }
 
 .benefitIcon {
   background: transparent;
-  width: 53px;
-  height: 53px;
+  width: 43px;
+  height: 43px;
   border-radius: 50%;
   box-shadow: none;
   filter: drop-shadow(0 3px 5px #00b96325);
@@ -575,39 +605,279 @@
 }
 
 .page .benefitCard h3 {
-  font-size: 14px;
-  margin: 0 0 10px;
+  grid-column: 2;
+  font-size: 12px;
+  margin: 0 0 5px;
 }
 
 .page .benefitCard p {
+  grid-column: 2;
   max-width: 205px;
   color: #52667c;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.65;
   margin: 0;
 }
 
-.audiences {
-  padding: 56px 0 62px;
+.confidence {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr;
+  gap: 24px;
+  align-items: center;
+  position: relative;
+  overflow: clip;
+  padding: 28px;
+  margin-top: 32px;
+  border: 1px solid #e3eef8;
+  border-radius: 17px;
+  background: radial-gradient(ellipse at 85% 75%, #b4e5ff90, transparent 65%), linear-gradient(115deg, #fff, #f3faff);
 }
 
-.audienceList {
+.page .confidenceEyebrow {
+  color: #225ac4;
+  font-size: 10px;
+  font-weight: 750;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.page .confidenceCopy h2 {
+  font: 750 clamp(23px, 2.4vw, 31px)/1.16 var(--font-ui), Arial, sans-serif;
+  letter-spacing: -0.04em;
+  max-width: 420px;
+  margin: 0 0 12px;
+}
+
+.page .confidenceCopy > p:not(.confidenceEyebrow) {
+  max-width: 445px;
+  color: #52667c;
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 0 0 17px;
+}
+
+.confidenceActions {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
   flex-wrap: wrap;
-  gap: 20px;
-  margin-top: 33px;
+  gap: 10px;
 }
 
-.audienceList > span {
+.page .confidenceActions :global(.button) {
+  min-height: 36px;
+  border-radius: 7px;
+  font-size: 11px;
+  padding: 8px 13px;
+}
+
+.confidenceArt {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 15px;
+  padding: 15px 0 18px 42px;
+  min-width: 0;
+  position: relative;
+}
+
+.confidenceArt::before {
+  content: "";
+  position: absolute;
+  inset: 0 6% 0 12%;
+  border: 1px solid #cae9ff;
+  border-radius: 20px;
+  background: #dceeff50;
+  transform: rotate(-5deg);
+}
+
+.metricDashboard {
+  position: relative;
+  z-index: 1;
+  border: 1px solid #e5eff7;
+  border-radius: 13px;
+  padding: 18px;
+  background: #fff;
+  box-shadow: 0 10px 25px #2467b51a;
+}
+
+.page .metricDashboard h3 {
+  font-size: 11px;
+  margin: 0 0 12px;
+}
+
+.page .metricDashboard p {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 7px;
   align-items: center;
-  color: #647080;
-  font-size: 17px;
+  margin: 0 0 13px;
+}
+
+.metricDashboard strong {
+  font-size: 26px;
+  letter-spacing: -0.04em;
+}
+
+.metricDashboard p > span,
+.metricDashboard small {
+  color: #52667c;
+  font-size: 9px;
+}
+
+.chartBars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 7px;
+  height: 76px;
+  padding: 0 0 3px;
+  margin-bottom: 7px;
+  border-bottom: 1px solid #e3eef8;
+}
+
+.chartBars > span {
+  flex: 1;
+  max-width: 19px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(#5589ff, #07b9a6);
+}
+
+.domainScores {
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 58%;
+  gap: 9px;
+  margin: 0;
+}
+
+.domainScores > div {
+  padding: 10px 12px;
+  min-width: 53px;
+  border: 1px solid #e3effa;
+  border-radius: 9px;
+  background: #fff;
+  box-shadow: 0 7px 16px #2467b514;
+}
+
+.domainScores dt {
+  font-size: 10px;
   font-weight: 650;
+}
+
+.domainScores dd {
+  margin: 3px 0 0;
+  font-size: 22px;
+  font-weight: 750;
+}
+
+.metricChecklist {
+  position: relative;
+  z-index: 1;
+  align-self: center;
+  display: grid;
+  gap: 15px;
+  padding: 22px 16px;
+  border: 1px solid #e5eff7;
+  border-radius: 13px;
+  background: #fff;
+  box-shadow: 0 10px 25px #2467b51a;
+}
+
+.page .metricChecklist p {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 10px;
+  font-weight: 650;
+  margin: 0;
+}
+
+.metricChecklist svg {
+  color: #0673ec;
+  flex-shrink: 0;
+}
+
+.dashboardPlant {
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 53%;
+  color: #07854e;
+  filter: drop-shadow(0 5px 2px #123b4b12);
+}
+
+.niches {
+  padding: 30px 0 27px;
+}
+
+.nicheHeading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 17px;
+}
+
+.page .nicheHeading h2 {
+  font: 750 22px/1.2 var(--font-ui), Arial, sans-serif;
   letter-spacing: -0.03em;
+  margin: 0 0 6px;
+}
+
+.page .nicheHeading p {
+  font-size: 12px;
+  color: #52667c;
+  margin: 0;
+}
+
+.nicheHeading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 650;
+  color: #007c47;
+  text-decoration: none;
+}
+
+.nicheGrid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 9px;
+}
+
+.nicheCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 14px 6px;
+  min-width: 0;
+  border: 1px solid #e1eaf4;
+  border-radius: 11px;
+  background: #ffffffb5;
+  color: #17334c;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 650;
+  text-align: center;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.nicheCard:hover {
+  border-color: #88c9b0;
+  background: #f0faf6;
+}
+
+.nicheIcon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
 }
 
 .cta {
@@ -617,8 +887,8 @@
   align-items: center;
   justify-content: space-between;
   gap: 25px;
-  padding: 40px;
-  border-radius: 24px;
+  padding: 28px 34px;
+  border-radius: 15px;
   background:
     repeating-radial-gradient(
       ellipse at 90% 160%,
@@ -757,7 +1027,8 @@
     .toolCard p,
     .benefitCard p,
     .sectionHeading p,
-    .audienceList > span
+    .confidenceCopy h2,
+    .nicheHeading h2
   ) {
   color: #a6bbc9;
 }
@@ -826,10 +1097,10 @@
   }
   .hero {
     gap: 12px;
-    padding-block: 44px 38px;
+    padding-block: 28px 24px;
   }
   .page .hero h1 {
-    font-size: clamp(34px, 4.5vw, 49px);
+    font-size: clamp(32px, 3.5vw, 44px);
   }
   .heroFacts {
     gap: 16px;
@@ -847,13 +1118,19 @@
   }
   .toolsIntro {
     grid-column: 1 / -1;
-    padding: 0 0 5px;
+    padding: 0 140px 5px 0;
   }
   .toolsIntro h2 {
     max-width: none;
   }
   .ctaArt {
     display: none;
+  }
+  .tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .nicheGrid {
+    grid-template-columns: repeat(6, minmax(0, 1fr));
   }
 }
 
@@ -908,8 +1185,13 @@
   .benefitGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-  .audienceList > span {
-    font-size: 15px;
+  .confidence {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+  .confidenceArt {
+    width: min(100%, 560px);
+    margin-inline: auto;
   }
   .cta {
     padding: 30px;
@@ -929,7 +1211,7 @@
     padding: 34px 0 20px;
   }
   .page .hero h1 {
-    font-size: clamp(33px, 8.4vw, 47px);
+    font-size: clamp(32px, 8vw, 43px);
   }
   .page .badge {
     font-size: 10px;
@@ -1020,10 +1302,26 @@
   }
   .page .toolsIntro h2 {
     max-width: 260px;
-    font-size: 25px;
+    font-size: 22px;
+  }
+  .toolsIntro {
+    padding: 0;
+  }
+  .allToolsLink {
+    position: static;
+    margin-top: 12px;
   }
   .toolCard {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     padding: 21px 10px 14px;
+  }
+  .toolIcon {
+    margin-bottom: 12px;
+  }
+  .toolArrow {
+    margin-top: 12px;
   }
   .benefits {
     padding-top: 38px;
@@ -1032,7 +1330,13 @@
     gap: 12px;
   }
   .benefitCard {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
     padding: 18px 13px;
+  }
+  .benefitIcon {
+    margin-bottom: 10px;
   }
   .page .benefitCard h3 {
     font-size: 12px;
@@ -1043,21 +1347,22 @@
   .page .sectionHeading p {
     font-size: 12px;
   }
-  .audiences {
-    padding: 38px 0;
-  }
-  .audienceList {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 23px 13px;
-  }
-  .audienceList > span {
-    font-size: 13px;
-    gap: 7px;
-  }
-  .audienceList svg {
-    width: 19px;
-  }
+  .confidence { padding: 20px 17px; gap: 12px; }
+  .confidenceArt { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 8px; padding: 12px 0 18px 20px; }
+  .metricDashboard { padding: 13px; }
+  .metricDashboard strong { font-size: 22px; }
+  .chartBars { height: 60px; gap: 4px; }
+  .metricChecklist { padding: 16px 9px; gap: 12px; }
+  .page .metricChecklist p { font-size: 9px; gap: 6px; }
+  .metricChecklist svg { width: 14px; }
+  .domainScores { top: auto; bottom: 30px; gap: 5px; }
+  .domainScores > div { min-width: 40px; padding: 6px 8px; }
+  .domainScores dd { font-size: 18px; }
+  .nicheGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+  .nicheHeading { align-items: flex-start; }
+  .page .nicheHeading h2 { font-size: 20px; }
+  .nicheHeading > a { font-size: 10px; gap: 4px; }
+  .nicheHeading > a svg { width: 12px; }
   .cta {
     flex-direction: column;
     align-items: flex-start;

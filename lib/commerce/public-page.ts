@@ -6,7 +6,7 @@ import { listProducts } from "./products";
 export const publicProductPage = cache((query: string) =>
   cachedAsync(
     `page:${query}`,
-    { ttlMs: 60_000, staleOnErrorMs: 60 * 60_000 },
+    { ttlMs: 60_000, staleOnErrorMs: 60 * 60_000, timeoutMs: 12_000 },
     () => listProducts(new URLSearchParams(query)),
   ),
 );

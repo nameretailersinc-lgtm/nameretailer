@@ -39,9 +39,13 @@ if (entries.some((name) => name.startsWith(".env") || forbidden.includes(name)))
     "Private workspace files unexpectedly entered the deployment artifact.",
   );
 await access(path.join(output, "server.js"));
-await cp(path.join(dist, "static"), path.join(output, ".next", "static"), {
-  recursive: true,
-});
+await cp(
+  path.join(dist, "static"),
+  path.join(output, path.basename(dist), "static"),
+  {
+    recursive: true,
+  },
+);
 await cp(path.join(workspace, "public"), path.join(output, "public"), {
   recursive: true,
 });

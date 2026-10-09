@@ -24,7 +24,9 @@ const aliases: Record<string, string> = {
 export function CountryName({ country }: { country: string | null | undefined }) {
   const name = country || "Unavailable";
   const normalized = normalizeCountry(name);
-  const code = aliases[normalized] || countryRegions.get(normalized);
+  const code = Object.hasOwn(aliases, normalized)
+    ? aliases[normalized]
+    : countryRegions.get(normalized);
   return (
     <span className={styles.country}>
       {code && (
