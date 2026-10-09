@@ -433,5 +433,85 @@ export const legacyRedirects: Array<{source: string; destination: string; reason
     "source": "/high-authority-backlink-generator/",
     "destination": "/backlink-generator/",
     "reason": "Canonical tool name and current functionality"
+  },
+  {
+    "source": "/da1toda10/",
+    "destination": "/da-1-to-10/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da10toda20/",
+    "destination": "/da-10-to-20/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da20toda30/",
+    "destination": "/da-20-to-30/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da30toda40/",
+    "destination": "/da-30-to-40/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da40toda50/",
+    "destination": "/da-40-to-50/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da50toda60-sites/",
+    "destination": "/da-50-to-60/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da60toda70/",
+    "destination": "/da-60-to-70/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da70toda80/",
+    "destination": "/da-70-to-80/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da80toda90/",
+    "destination": "/da-80-to-90/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/da90toda100/",
+    "destination": "/da-90-to-100/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/zero-to-50k-traffic/",
+    "destination": "/0-to-50k-traffic/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/50k-to-500k/",
+    "destination": "/50k-to-100k-traffic/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/100k-to-500k/",
+    "destination": "/100k-to-500k-traffic/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/above-500k/",
+    "destination": "/500k-plus-traffic/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/dr-50-above/",
+    "destination": "/dr-50-plus/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
+  },
+  {
+    "source": "/price-200-above/",
+    "destination": "/price-200-plus/",
+    "reason": "Consistent metric slug; traffic typo retains its actual 50k–100k filter"
   }
 ];

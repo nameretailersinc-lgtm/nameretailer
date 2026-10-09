@@ -1,6 +1,6 @@
 # Legacy redirect map
 
-Sources use HTTP 301; targets must return 200. Run npm run check:redirects. Listed paths are canonical trailing-slash forms.
+Sources return 301; targets return 200. Run npm run check:redirects.
 
 | Old path | New path | Reason |
 |---|---|---|
@@ -91,3 +91,19 @@ Sources use HTTP 301; targets must return 200. Run npm run check:redirects. List
 | /image-to-bw/ | /image-to-black-and-white/ | Canonical tool name and current functionality |
 | /opengraph-generator/ | /open-graph-generator/ | Canonical tool name and current functionality |
 | /high-authority-backlink-generator/ | /backlink-generator/ | Canonical tool name and current functionality |
+| /da1toda10/ | /da-1-to-10/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da10toda20/ | /da-10-to-20/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da20toda30/ | /da-20-to-30/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da30toda40/ | /da-30-to-40/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da40toda50/ | /da-40-to-50/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da50toda60-sites/ | /da-50-to-60/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da60toda70/ | /da-60-to-70/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da70toda80/ | /da-70-to-80/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da80toda90/ | /da-80-to-90/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /da90toda100/ | /da-90-to-100/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /zero-to-50k-traffic/ | /0-to-50k-traffic/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /50k-to-500k/ | /50k-to-100k-traffic/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /100k-to-500k/ | /100k-to-500k-traffic/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /above-500k/ | /500k-plus-traffic/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /dr-50-above/ | /dr-50-plus/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |
+| /price-200-above/ | /price-200-plus/ | Consistent metric slug; traffic typo retains its actual 50k–100k filter |

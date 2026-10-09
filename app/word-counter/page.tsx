@@ -1,3 +1,6 @@
+import { pageMetadata } from "@/lib/seo/page-metadata";
+import { facetMetadata } from "@/lib/seo/facets";
+import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import type { Metadata } from "next";
 import {
   ToolHero,
@@ -13,7 +16,7 @@ import {
   serializeJsonLd,
   webApplicationNode,
 } from "@/lib/seo/structured-data";
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Word Counter – Free Online Tool",
   description:
     "Count words, Unicode characters, paragraphs and estimated reading time locally in your browser. A free Name Retailer tool for writers and SEO teams.",
@@ -75,3 +78,5 @@ export default function Page() {
     </ToolsShell>
   );
 }
+
+export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/word-counter/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/word-counter/");}

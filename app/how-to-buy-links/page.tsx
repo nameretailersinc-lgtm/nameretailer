@@ -1,9 +1,12 @@
+import { pageMetadata } from "@/lib/seo/page-metadata";
+import { facetMetadata } from "@/lib/seo/facets";
+import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, BookOpen, CheckCheck, FileText } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site/chrome";
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "How to Evaluate and Buy Guest Post Sites",
   description:
     "A buying checklist for guest posts and sponsored links: audience relevance, supplied metrics, content scope and paid-link disclosure, explained step by step.",
@@ -265,3 +268,5 @@ export default function Page() {
     </div>
   );
 }
+
+export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/how-to-buy-links/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/how-to-buy-links/");}

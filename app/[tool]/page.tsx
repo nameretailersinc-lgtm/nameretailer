@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
 import { publicProductPage } from "@/lib/commerce/public-page";
 import { marketplaceQuery, searchQuery } from "@/lib/commerce/marketplace-query";
@@ -49,26 +50,26 @@ export async function generateMetadata({
   if (range) {
     const search = await searchParams;
     const data = await publicProductPage(marketplaceQuery(searchQuery(search), range).toString());
-    return {
+    return pageMetadata({
       ...facetMetadata(`/${range.slug}/`, search, data.data.length > 0),
-      title: range.title,
-      description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.`,
-    };
+      title: range.title + (data.page > 1 ? ` — Page ${data.page}` : ""),
+      description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.${data.page > 1 ? ` Page ${data.page}.` : ""}`,
+    }, `/${range.slug}/`);
   }
   const directory = directoryBySlug(slug);
   if (directory)
-    return {
+    return pageMetadata({
       ...facetMetadata(`/${directory.slug}/`, await searchParams),
       title: directory.metaTitle,
       description: directory.metaDescription,
-    };
+    }, `/${directory.slug}/`);
   const tool = toolBySlug(slug);
   if (!tool) notFound();
-  return {
+  return pageMetadata({
     title: `${tool.title} – Free Online Tool`,
     description: `${tool.description} A free Name Retailer tool for SEO, content and link-building teams planning guest-post campaigns.`,
     alternates: { canonical: `https://nameretailer.com/${tool.slug}/` },
-  };
+  }, `/${tool.slug}/`);
 }
 export default async function Page({
   params,

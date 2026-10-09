@@ -37,27 +37,7 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   alternates: { canonical: "./" },
-  openGraph: {
-    type: "website",
-    siteName: "Name Retailer",
-    locale: "en_US",
-    title: siteTitle,
-    description: siteDescription,
-    images: [
-      {
-        url: "/01_hero_analytics_illustration.png",
-        width: 700,
-        height: 475,
-        alt: "Name Retailer guest-post marketplace analytics illustration",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: siteTitle,
-    description: siteDescription,
-    images: ["/01_hero_analytics_illustration.png"],
-  },
+
 };
 const siteSchema = {
   "@context": "https://schema.org",

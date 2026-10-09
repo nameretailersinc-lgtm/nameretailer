@@ -46,6 +46,7 @@ import { tools } from "@/lib/tools/catalog";
 import { toolGroups } from "@/lib/tools/presentation";
 import { MarketplaceMenu } from "./marketplace-menu";
 
+const navigationTools = [...new Map(tools.map(tool => [tool.slug, tool])).values()];
 const groupIcons = [
   FileText,
   ImageIcon,
@@ -91,7 +92,7 @@ const guideLinks = [
   },
 ];
 const searchItems = [
-  ...tools.map((tool) => ({
+  ...navigationTools.map((tool) => ({
     title: tool.title,
     description: tool.group,
     href: `/${tool.slug}/`,
@@ -467,7 +468,7 @@ export function SiteNavigation({
                           <strong>{group.name}</strong>
                           <small>
                             {
-                              tools.filter((tool) => tool.group === group.name)
+                              navigationTools.filter((tool) => tool.group === group.name)
                                 .length
                             }{" "}
                             tools

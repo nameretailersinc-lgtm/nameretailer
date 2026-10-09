@@ -1,3 +1,6 @@
+import { pageMetadata } from "@/lib/seo/page-metadata";
+import { facetMetadata } from "@/lib/seo/facets";
+import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { connection } from "next/server";
@@ -16,7 +19,7 @@ import {
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
 
-export const metadata: Metadata = {
+const baseMetadata: Metadata = {
   title: "Guest Posting Sites by Niche, Location and Price",
   description:
     "Browse guest posting sites by niche, country, budget and metrics. Compare technology, SaaS, marketing, business, health and travel publishers.",
@@ -183,3 +186,5 @@ export default async function Page() {
     </InformationShell>
   );
 }
+
+export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/guest-posting-sites/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/guest-posting-sites/");}

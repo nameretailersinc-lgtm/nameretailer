@@ -1,3 +1,4 @@
+import { pageMetadata } from "@/lib/seo/page-metadata";
 import Link from "next/link";
 import Image from "next/image";
 import { articleArtwork, articleWithArtwork } from "@/lib/blog/artwork";
@@ -30,7 +31,7 @@ export async function generateMetadata({
   const metadata = buildSeoMetadata(illustrated);
   const artwork = articleArtwork(record);
   const localArtwork = illustrated.data.ogImage === artwork.src;
-  return {
+  return pageMetadata({
     ...metadata,
     ...(localArtwork
       ? {
@@ -48,7 +49,7 @@ export async function generateMetadata({
           twitter: { ...metadata.twitter, card: "summary" as const },
         }
       : {}),
-  };
+  }, `/${record.slug}/`);
 }
 export default async function Page({
   params,

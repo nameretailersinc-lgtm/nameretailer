@@ -26,3 +26,8 @@ Marketplace pages now fetch the public catalogue per request before rendering, s
 ### Phase 3 â€” legacy URLs
 
 Implemented 87 explicit 301 sources from the supplied examples and local WordPress inventory. REDIRECT_MAP.md records destinations/reasons; nearest-hub cases are flagged in OWNER_DECISIONS.md. Legal availability stubs were added early so policy redirect targets return 200, with noindex and no invented legal text. About already renders through Next components; factual copy is addressed in Phase 6. Build and lint passed; check:redirects verifies every source and each distinct target.
+
+### Phase 4 — metadata and route names
+
+Route metadata now completes matching OG/Twitter titles, descriptions and page-specific image alt text. Root homepage social fields were removed. Titles are capped at 60 and descriptions at 155 characters. DA/traffic/high-end DR/price slugs use consistent names; old slugs return 301, including the 50k-to-500k typo. Navigation tools are deduplicated by canonical slug. Build/lint and 51 relevant unit tests passed; check:meta passed across 148 public pages with unique titles/descriptions, one canonical and matching social tags.
+

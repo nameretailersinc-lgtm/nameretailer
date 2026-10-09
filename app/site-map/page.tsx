@@ -1,6 +1,10 @@
+import { pageMetadata } from "@/lib/seo/page-metadata";
+import { facetMetadata } from "@/lib/seo/facets";
+import type { SearchParams } from "@/lib/commerce/marketplace-query";
+import type { Metadata } from "next";
 import Link from "next/link";
 import { InformationShell } from "@/components/site/information-page";
-export const metadata = {
+const baseMetadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Name Retailer Site Map: All Pages and Resources",
   description:
@@ -85,3 +89,5 @@ export default function Page() {
     </InformationShell>
   );
 }
+
+export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/site-map/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/site-map/");}

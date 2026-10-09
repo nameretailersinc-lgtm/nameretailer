@@ -35,7 +35,7 @@ export function buildSeoMetadata(
   const title = String(record.data.seoTitle || record.title);
   const description = bodyText(
     String(record.data.metaDescription || record.data.excerpt || ""),
-  ).slice(0, 300);
+  ).slice(0, 155);
   const canonical = canonicalUrl(record);
   const image =
     typeof record.data.ogImage === "string" && isSafeUrl(record.data.ogImage)
