@@ -29,12 +29,12 @@ for (const width of [320, 1536]) {
         exact: true,
       });
     await link.click();
-    await expect(page).toHaveURL(/\/products\/$/);
+    await expect(page).toHaveURL(/\/$/);
     await expect(link).toHaveAttribute("aria-current", "page");
     await expect(page.locator("#site-marketplace-menu")).toHaveCount(0);
     const { menu, trigger } = await openMenu(page);
     await expect(trigger).toHaveAttribute("aria-expanded", "true");
-    await expect(page).toHaveURL(/\/products\/$/);
+    await expect(page).toHaveURL(/\/$/);
     await link.click();
     await expect(menu).toHaveCount(0);
     await expect(trigger).toHaveAttribute("aria-expanded", "false");

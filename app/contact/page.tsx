@@ -12,4 +12,21 @@ export default function Page() {
   return <InformationPageView page={informationPages.contact} />;
 }
 
-export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/contact/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/contact/");}
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const facets = facetMetadata("/contact/", await searchParams);
+  return pageMetadata(
+    {
+      ...baseMetadata,
+      alternates: facets.alternates,
+      robots: {
+        ...(facets.robots as object),
+        ...(baseMetadata.robots as object),
+      },
+    },
+    "/contact/",
+  );
+}

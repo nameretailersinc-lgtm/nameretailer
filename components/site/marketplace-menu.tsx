@@ -79,11 +79,7 @@ export function MarketplaceMenu({
               alt=""
             />
           </div>
-          <Link
-            className="site-marketplace-all"
-            href="/"
-            onClick={onNavigate}
-          >
+          <Link className="site-marketplace-all" href="/" onClick={onNavigate}>
             All publications
             <ArrowRight size={22} aria-hidden="true" />
           </Link>

@@ -91,4 +91,21 @@ export default function Page() {
   );
 }
 
-export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/site-map/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/site-map/");}
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const facets = facetMetadata("/site-map/", await searchParams);
+  return pageMetadata(
+    {
+      ...baseMetadata,
+      alternates: facets.alternates,
+      robots: {
+        ...(facets.robots as object),
+        ...(baseMetadata.robots as object),
+      },
+    },
+    "/site-map/",
+  );
+}

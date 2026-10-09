@@ -6,6 +6,7 @@ import {
 } from "@/lib/seo/metadata";
 import {
   articleSchema,
+  completeArticleSchema,
   faqSchema,
   organizationSchema,
   serializeJsonLd,
@@ -40,6 +41,28 @@ const author: CmsRecord = {
   data: { name: "Test-only author", verified: true },
 };
 describe("prepared SEO builders", () => {
+  it("omits public article markup when publication dates or images are missing", () => {
+    expect(completeArticleSchema(record, author)).toMatchObject({
+      datePublished: record.data.publishedAt,
+      dateModified: record.updatedAt,
+      image: "https://nameretailer.com/media/test.webp",
+    });
+    expect(
+      completeArticleSchema(
+        { ...record, data: { ...record.data, publishedAt: undefined } },
+        author,
+      ),
+    ).toBeNull();
+    expect(
+      completeArticleSchema(
+        { ...record, data: { ...record.data, ogImage: undefined } },
+        author,
+      ),
+    ).toBeNull();
+    expect(
+      completeArticleSchema({ ...record, updatedAt: "unknown" }, author),
+    ).toBeNull();
+  });
   it("builds absolute self canonicals and sharing metadata without HTML markup", () => {
     const output = buildSeoMetadata(record);
     expect(output.title).toBe("Editorial guide");

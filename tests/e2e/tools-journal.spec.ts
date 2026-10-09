@@ -3,6 +3,7 @@ import AxeBuilder from "@axe-core/playwright";
 import sharp from "sharp";
 import { tools } from "../../lib/tools/catalog";
 import { imageAction } from "../../lib/tools/presentation";
+import { technicalArticleSlugs } from "../../lib/blog/indexing-policy";
 import { blogLibrary } from "../../lib/blog/library";
 import { fixtures, origin, actor, mutation, key } from "./helpers";
 const domain = key("rating") + ".com";
@@ -284,7 +285,11 @@ test("all 60 CMS article routes expose real content, metadata and organization s
     expect(html).toContain('id="section-1"');
     expect(html).toContain('"@type":"Organization"');
     expect(html).toContain(`https://nameretailer.com/blog/${article.slug}/`);
-    expect(html).toContain("noindex");
+    expect(html).toMatch(
+      technicalArticleSlugs.has("blog/" + article.slug)
+        ? /name="robots" content="noindex, follow"/
+        : /name="robots" content="index, follow"/,
+    );
   }
   expect((await request.get("/blog/not-a-real-article/")).status()).toBe(404);
 });

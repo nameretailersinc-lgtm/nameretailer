@@ -37,7 +37,6 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   alternates: { canonical: "./" },
-
 };
 const siteSchema = organizationNode();
 

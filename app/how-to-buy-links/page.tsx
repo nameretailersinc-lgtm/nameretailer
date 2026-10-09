@@ -26,7 +26,18 @@ export default function Page() {
     <div className="reference-site reference-article">
       <SiteHeader active="guides" />
       <main id="main" className="reference-container" tabIndex={-1}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd(breadcrumbSchema([["Home","/"],["Guides","/guides/"],["Buying guide","/how-to-buy-links/"]]))}} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd(
+              breadcrumbSchema([
+                ["Home", "/"],
+                ["Guides", "/guides/"],
+                ["Buying guide", "/how-to-buy-links/"],
+              ]),
+            ),
+          }}
+        />
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Home</Link>
           <span aria-hidden="true">›</span>
@@ -237,17 +248,13 @@ export default function Page() {
               <Link href="/guest-posting-sites/">
                 Guest posting sites by niche
               </Link>
-              <Link href="/price-0-to-50/">
-                Guest posting sites under $50
-              </Link>
+              <Link href="/price-0-to-50/">Guest posting sites under $50</Link>
               <Link href="/guest-post-by-dr/">Domain Rating marketplace</Link>
               <Link href="/bulk-domain-rating-checker/">
                 Bulk Domain Rating checker
               </Link>
               <Link href="/word-counter/">Word counter</Link>
-              <Link href="/products/#marketplace-help">
-                Marketplace questions
-              </Link>
+              <Link href="/#marketplace-help">Marketplace questions</Link>
             </div>
           </aside>
         </div>
@@ -277,4 +284,21 @@ export default function Page() {
   );
 }
 
-export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/how-to-buy-links/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/how-to-buy-links/");}
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const facets = facetMetadata("/how-to-buy-links/", await searchParams);
+  return pageMetadata(
+    {
+      ...baseMetadata,
+      alternates: facets.alternates,
+      robots: {
+        ...(facets.robots as object),
+        ...(baseMetadata.robots as object),
+      },
+    },
+    "/how-to-buy-links/",
+  );
+}

@@ -28,7 +28,9 @@ export function articleIndexHref(
 ) {
   const query = new URLSearchParams({
     ...(options.q ? { q: options.q } : {}),
-    ...(options.category && !path.startsWith("/blog/category/") ? { category: options.category } : {}),
+    ...(options.category && !path.startsWith("/blog/category/")
+      ? { category: options.category }
+      : {}),
     pageSize: String(options.pageSize),
     page: String(page),
   });

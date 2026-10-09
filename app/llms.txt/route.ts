@@ -94,14 +94,16 @@ export async function GET() {
         "",
         "## Guides (SEO, AEO, GEO, content and measurement)",
         link("/guides/", "Guide library"),
-        ...posts.filter(post => !technicalArticleSlugs.has(post.slug)).map((post) =>
-          link(
-            `/${post.slug.replace(/^\/+|\/+$/g, "")}/`,
-            post.title,
-            bodyText(String(post.data.excerpt || "")).slice(0, 160) ||
-              undefined,
+        ...posts
+          .filter((post) => !technicalArticleSlugs.has(post.slug))
+          .map((post) =>
+            link(
+              `/${post.slug.replace(/^\/+|\/+$/g, "")}/`,
+              post.title,
+              bodyText(String(post.data.excerpt || "")).slice(0, 160) ||
+                undefined,
+            ),
           ),
-        ),
       );
   } catch {
     // Database unavailable: serve the static sections only.

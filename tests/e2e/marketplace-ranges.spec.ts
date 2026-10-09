@@ -1,9 +1,11 @@
 import { test, expect, request as requests } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import {
+  rangeQuery,
   marketplaceGroups,
   marketplaceRanges,
 } from "../../lib/commerce/marketplace-ranges";
+import { MIN_DIRECTORY_LISTINGS } from "../../lib/commerce/catalogue-statistics";
 import { fixtures, key, mutation, origin, signIn } from "./helpers";
 
 test.beforeAll(async () => {
@@ -84,7 +86,7 @@ test("DA, DR, traffic and price bounds include endpoints, exclude missing/outsid
   await admin.dispose();
 });
 
-test("all legacy ranges render with their own title and canonical; tools and unknown routes still work", async ({
+test("all canonical ranges render with their own title and canonical; tools and unknown routes still work", async ({
   request,
 }) => {
   for (const range of marketplaceRanges) {
@@ -93,7 +95,14 @@ test("all legacy ranges render with their own title and canonical; tools and unk
     const html = await response.text();
     expect(html).toContain(range.title);
     expect(html).toContain(`https://nameretailer.com/${range.slug}/`);
-    expect(html).toContain("noindex");
+    const inventory = await (
+      await request.get(`/api/products/?${rangeQuery("", range)}`)
+    ).json();
+    expect(html).toMatch(
+      inventory.total < MIN_DIRECTORY_LISTINGS
+        ? /name="robots" content="noindex, follow"/
+        : /name="robots" content="index, follow"/,
+    );
   }
   expect((await request.get("/text-case-converter/")).status()).toBe(200);
   expect(
@@ -142,7 +151,7 @@ for (const width of [320, 375, 768, 1280])
     await expect(trigger).toBeFocused();
     await trigger.click();
     await page.getByRole("link", { name: "DA 1–10", exact: true }).click();
-    await expect(page).toHaveURL(/\/da1toda10\//);
+    await expect(page).toHaveURL(/\/da-1-to-10\//);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       "Guest post sites: DA 1–10",
     );
@@ -170,7 +179,7 @@ for (const width of [320, 375, 768, 1280])
     expect(params.get("maxDa")).toBe("10");
     await page.getByLabel("Results per page").selectOption("20");
     await expect(page).toHaveURL(/pageSize=20/);
-    await page.goto("/da1toda10/?q=range-reset-check&page=2");
+    await page.goto("/da-1-to-10/?q=range-reset-check&page=2");
     const resetRequest = page.waitForResponse((response) => {
       const url = new URL(response.url());
       return (
@@ -184,8 +193,8 @@ for (const width of [320, 375, 768, 1280])
     const resetParams = new URL((await resetRequest).url()).searchParams;
     expect(resetParams.get("maxDa")).toBe("10");
     expect(resetParams.get("page")).toBe("1");
-    await expect(page).toHaveURL(/\/da1toda10\/$/);
-    await page.goto("/da1toda10/?minDa=0&maxDa=100");
+    await expect(page).toHaveURL(/\/da-1-to-10\/$/);
+    await page.goto("/da-1-to-10/?minDa=0&maxDa=100");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
       "Guest post sites: DA 1–10",
     );

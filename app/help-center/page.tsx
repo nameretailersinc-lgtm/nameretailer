@@ -12,4 +12,21 @@ export default function Page() {
   return <InformationPageView page={informationPages["help-center"]} />;
 }
 
-export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/help-center/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/help-center/");}
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const facets = facetMetadata("/help-center/", await searchParams);
+  return pageMetadata(
+    {
+      ...baseMetadata,
+      alternates: facets.alternates,
+      robots: {
+        ...(facets.robots as object),
+        ...(baseMetadata.robots as object),
+      },
+    },
+    "/help-center/",
+  );
+}

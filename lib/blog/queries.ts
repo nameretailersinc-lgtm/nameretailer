@@ -3,20 +3,31 @@ import { cache } from "react";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
 import { articlePageSizes } from "./index-options";
-export const getBlogArticle = cache(async (slug: string): Promise<CmsRecord | null> => {
-  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 230)
-    return null;
-  const record = await (await getDb()).collection<CmsRecord>("cms_records").findOne(
-    {
-      collection: "content",
-      status: "published",
-      slug: "blog/" + slug,
-      "data.type": "post",
-    },
-    { projection: { _id: 0 } },
-  );
-  return record ? {...record, data:{...record.data, robotsIndex:blogArticleIndexable(record)}} : null;
-});
+export const getBlogArticle = cache(
+  async (slug: string): Promise<CmsRecord | null> => {
+    if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 230)
+      return null;
+    const record = await (
+      await getDb()
+    )
+      .collection<CmsRecord>("cms_records")
+      .findOne(
+        {
+          collection: "content",
+          status: "published",
+          slug: "blog/" + slug,
+          "data.type": "post",
+        },
+        { projection: { _id: 0 } },
+      );
+    return record
+      ? {
+          ...record,
+          data: { ...record.data, robotsIndex: blogArticleIndexable(record) },
+        }
+      : null;
+  },
+);
 export async function blogIndex(
   q: string,
   category: string,
@@ -122,7 +133,18 @@ export async function articleContext(article: CmsRecord) {
         { projection: { _id: 0 } },
       )
       .toArray(),
-    records.findOne({id: typeof article.data.reviewerId === "string" ? article.data.reviewerId : "", collection:"authors", status:"active", "data.verified":true}, {projection:{_id:0}}),
+    records.findOne(
+      {
+        id:
+          typeof article.data.reviewerId === "string"
+            ? article.data.reviewerId
+            : "",
+        collection: "authors",
+        status: "active",
+        "data.verified": true,
+      },
+      { projection: { _id: 0 } },
+    ),
   ]);
   return { author, related, categories, reviewer };
 }

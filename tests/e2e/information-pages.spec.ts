@@ -28,8 +28,12 @@ for (const width of [320, 375, 768, 820, 1024, 1280])
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
         "content",
-        /noindex/,
+        ["/policies/", "/site-map/"].includes(route) ? /noindex/ : /\bindex\b/,
       );
+      await page.locator("main img").evaluateAll((images) => {
+        for (const image of images)
+          (image as HTMLImageElement).loading = "eager";
+      });
       await expect
         .poll(() =>
           page
@@ -119,11 +123,9 @@ test("directories lead to real pages and FAQ controls expose truthful answers", 
     .click();
   await expect(page).toHaveURL(/\/word-counter\/$/);
   await page.goto("/faq/");
-  await page
-    .getByText("Does saving a cart place an order?", { exact: true })
-    .click();
+  await page.getByText("Can I order or pay now?", { exact: true }).click();
   await expect(
-    page.getByText(/Saving does not reserve inventory/),
+    page.getByText(/Ordering and payment are not available yet/),
   ).toBeVisible();
   await page.goto("/site-map/");
   const destinations = await page
@@ -140,7 +142,5 @@ test("directories lead to real pages and FAQ controls expose truthful answers", 
       .filter({ has: page.locator("svg") })
       .first(),
   ).toBeVisible();
-  await expect(
-    page.locator('main a[href="/products/?maxPrice=50"]'),
-  ).toHaveCount(1);
+  await expect(page.locator('main a[href="/?maxPrice=50"]')).toHaveCount(1);
 });

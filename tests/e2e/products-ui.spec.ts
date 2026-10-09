@@ -66,7 +66,9 @@ async function checkSemantics(page: Page) {
   await expect(page.getByRole("main").getByRole("alert")).toHaveCount(0);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
-    /noindex/,
+    [...new URL(page.url()).searchParams.keys()].some((key) => key !== "page")
+      ? /noindex/
+      : /\bindex\b/,
   );
   expect(
     await page.evaluate(
@@ -181,7 +183,7 @@ test.describe("first-slice marketplace browser", () => {
     await page
       .getByRole("button", { name: "Clear all filters", exact: true })
       .click();
-    await expect(page).toHaveURL(/\/products\/$/);
+    await expect(page).toHaveURL(/\/$/);
     await loaded(page);
   });
 
@@ -237,7 +239,7 @@ test.describe("first-slice marketplace browser", () => {
     await expect(page.locator(".marketplace-hero")).toHaveCount(0);
     await expect(
       page.getByLabel("Results per page", { exact: true }),
-    ).toHaveValue("10");
+    ).toHaveValue("20");
     await expect(page.locator(".marketplace-table tbody tr")).toHaveCount(10);
 
     await page.getByLabel("Minimum DR slider", { exact: true }).fill("40");
@@ -304,7 +306,7 @@ test.describe("first-slice marketplace browser", () => {
       page.getByRole("status").filter({ hasText: "1 matching publications" }),
     ).toBeVisible();
     await page.getByRole("button", { name: "Reset All", exact: true }).click();
-    await expect(page).toHaveURL(/\/products\/$/);
+    await expect(page).toHaveURL(/\/$/);
     await loaded(page);
     await expect(page.getByLabel("Minimum DR", { exact: true })).toHaveValue(
       "",

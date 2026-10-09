@@ -125,9 +125,9 @@ describe("bounded marketplace views", () => {
     expect(query.get("page")).toBe("2");
     expect(query.get("sort")).toBe("priceAsc");
     expect(query.get("country")).toBe("US");
-    expect(rangeQuery("", marketplaceRangeBySlug("da-1-to-10")).toString()).toBe(
-      "minDa=1&maxDa=10",
-    );
+    expect(
+      rangeQuery("", marketplaceRangeBySlug("da-1-to-10")).toString(),
+    ).toBe("minDa=1&maxDa=10");
   });
   it.each([
     "minDa=11&maxDa=10",

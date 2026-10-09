@@ -372,7 +372,8 @@ export const informationPages = {
       },
       {
         title: "Buyer questions",
-        description: "Understand prices, metric sources and ordering availability.",
+        description:
+          "Understand prices, metric sources and ordering availability.",
         href: "/faq/",
       },
     ],
@@ -439,42 +440,42 @@ export const toolGroups = [
 export const commonQuestions = [
   [
     "How much does a guest post cost?",
-    "Each active listing shows its USD placement price. Compare the catalogue by price and confirm the full scope before choosing a publication."
+    "Each active listing shows its USD placement price. Compare the catalogue by price and confirm the full scope before choosing a publication.",
   ],
   [
     "What does the placement price include?",
-    "Placement and writing are priced separately. Available writing options have their own prices. Check the publication requirements and any writing option before saving a plan."
+    "Placement and writing are priced separately. Available writing options have their own prices. Check the publication requirements and any writing option before saving a plan.",
   ],
   [
     "What is the difference between a guest post and a link insertion?",
-    "A guest post places a new article on a publication. A link insertion adds a link to an existing article. Confirm which placement format the publisher offers; a listing does not establish that both are available."
+    "A guest post places a new article on a publication. A link insertion adds a link to an existing article. Confirm which placement format the publisher offers; a listing does not establish that both are available.",
   ],
   [
     "How should paid links be disclosed?",
-    "Discuss sponsored-content labelling with the publisher. Google recommends rel=\"sponsored\" for paid links; rel=\"nofollow\" is also acceptable. Disclosure does not guarantee rankings."
+    'Discuss sponsored-content labelling with the publisher. Google recommends rel="sponsored" for paid links; rel="nofollow" is also acceptable. Disclosure does not guarantee rankings.',
   ],
   [
     "How long does publication take?",
-    "Check the listing’s supplied turnaround and confirm delivery timing with the team. A standard delivery commitment has not been published."
+    "Check the listing’s supplied turnaround and confirm delivery timing with the team. A standard delivery commitment has not been published.",
   ],
   [
     "Where do DA, DR and traffic metrics come from?",
-    "Metrics are supplied with the catalogue and are not independently verified here. Provider and measurement dates are unavailable unless supplied. Missing values appear as Unavailable."
+    "Metrics are supplied with the catalogue and are not independently verified here. Provider and measurement dates are unavailable unless supplied. Missing values appear as Unavailable.",
   ],
   [
     "What happens if a placement is removed?",
-    "A replacement or refund policy is not yet published. Ask the team which terms would apply before ordering."
+    "A replacement or refund policy is not yet published. Ask the team which terms would apply before ordering.",
   ],
   [
     "Can I order or pay now?",
-    "Ordering and payment are not available yet. You can browse publications, shortlist options and save a placement plan in your account."
+    "Ordering and payment are not available yet. You can browse publications, shortlist options and save a placement plan in your account.",
   ],
   [
     "Do I need an account to browse?",
-    "You can browse and compare publications without signing in. Sign in to save your private placement plan."
+    "You can browse and compare publications without signing in. Sign in to save your private placement plan.",
   ],
   [
     "How do I contact Name Retailer?",
-    "Email info@nameretailer.com with the publication URL and your placement or content questions."
-  ]
+    "Email info@nameretailer.com with the publication URL and your placement or content questions.",
+  ],
 ] as const;

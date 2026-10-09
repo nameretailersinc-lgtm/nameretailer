@@ -1,5 +1,7 @@
 import { EditorialByline } from "@/components/site/editorial-byline";
 import { pageMetadata } from "@/lib/seo/page-metadata";
+import { facetMetadata } from "@/lib/seo/facets";
+import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import Link from "next/link";
 import Image from "next/image";
 import { articleArtwork, articleWithArtwork } from "@/lib/blog/artwork";
@@ -14,15 +16,17 @@ import {
 } from "@/lib/cms/content";
 import { buildSeoMetadata } from "@/lib/seo/metadata";
 import {
-  articleSchema,
+  completeArticleSchema,
   faqSchema,
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<SearchParams>;
 }) {
   const record = await getBlogArticle((await params).slug);
   if (!record) notFound();
@@ -30,25 +34,29 @@ export async function generateMetadata({
   const metadata = buildSeoMetadata(illustrated);
   const artwork = articleArtwork(record);
   const localArtwork = illustrated.data.ogImage === artwork.src;
-  return pageMetadata({
-    ...metadata,
-    ...(localArtwork
-      ? {
-          openGraph: {
-            ...metadata.openGraph,
-            images: [
-              {
-                url: `https://nameretailer.com${artwork.src}`,
-                width: artwork.width,
-                height: artwork.height,
-                alt: artwork.alt,
-              },
-            ],
-          },
-          twitter: { ...metadata.twitter, card: "summary" as const },
-        }
-      : {}),
-  }, `/${record.slug}/`);
+  return pageMetadata(
+    {
+      ...metadata,
+      ...facetMetadata(`/${record.slug}/`, await searchParams),
+      ...(localArtwork
+        ? {
+            openGraph: {
+              ...metadata.openGraph,
+              images: [
+                {
+                  url: `https://nameretailer.com${artwork.src}`,
+                  width: artwork.width,
+                  height: artwork.height,
+                  alt: artwork.alt,
+                },
+              ],
+            },
+            twitter: { ...metadata.twitter, card: "summary" as const },
+          }
+        : {}),
+    },
+    `/${record.slug}/`,
+  );
 }
 export default async function Page({
   params,
@@ -59,7 +67,7 @@ export default async function Page({
   if (!article) notFound();
   const context = await articleContext(article);
   const artwork = articleArtwork(article);
-  const schema = articleSchema(
+  const schema = completeArticleSchema(
     articleWithArtwork(article),
     context.author || undefined,
   );
@@ -75,9 +83,10 @@ export default async function Page({
     },
   );
   const date =
-    typeof article.data.publishedAt === "string"
+    typeof article.data.publishedAt === "string" &&
+    Number.isFinite(Date.parse(article.data.publishedAt))
       ? article.data.publishedAt
-      : article.createdAt;
+      : undefined;
   const sources = Array.isArray(article.data.sources)
     ? article.data.sources.filter(
         (source): source is { label: string; url: string } =>
@@ -88,7 +97,9 @@ export default async function Page({
       )
     : [];
   return (
-    <InformationShell path={`/${article.slug}/`} parent={["Blog","/blog/"]}
+    <InformationShell
+      path={`/${article.slug}/`}
+      parent={["Blog", "/blog/"]}
       title={article.title}
       label={context.categories[0]?.title || "Journal guide"}
       description={String(article.data.excerpt || "")}
@@ -104,17 +115,31 @@ export default async function Page({
       />
       <div className="reference-article-meta journal-meta">
         <Link href="/blog/">← Journal</Link>
-        <time dateTime={date}>
-          {new Date(date).toLocaleDateString("en-US", {
-            month: "short",
-            day: "numeric",
-            year: "numeric",
-            timeZone: "UTC",
-          })}
-        </time>
+        {date && (
+          <time dateTime={date}>
+            {new Date(date).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+              timeZone: "UTC",
+            })}
+          </time>
+        )}
         <span>{Math.max(1, Math.ceil(wordCount(html) / 200))} min read</span>
       </div>
-      <EditorialByline author={context.author ? String(context.author.data.name || context.author.title) : undefined} reviewer={context.reviewer ? String(context.reviewer.data.name || context.reviewer.title) : undefined} updatedAt={article.updatedAt} />
+      <EditorialByline
+        author={
+          context.author
+            ? String(context.author.data.name || context.author.title)
+            : undefined
+        }
+        reviewer={
+          context.reviewer
+            ? String(context.reviewer.data.name || context.reviewer.title)
+            : undefined
+        }
+        updatedAt={article.updatedAt}
+      />
       <div className="reference-guide-layout journal-layout">
         <article
           className="journal-prose"
@@ -150,7 +175,27 @@ export default async function Page({
           </section>
         </aside>
       </div>
-      {Array.isArray(article.data.faq) && article.data.faq.length > 0 && <section className="reference-tool-faq"><h2>Article questions</h2>{article.data.faq.filter((item: unknown): item is {question:string; answer:string} => !!item && typeof item === "object" && "question" in item && "answer" in item && typeof item.question === "string" && typeof item.answer === "string").map(item=><details key={item.question}><summary>{bodyText(item.question)}</summary><p>{bodyText(item.answer)}</p></details>)}</section>}
+      {Array.isArray(article.data.faq) && article.data.faq.length > 0 && (
+        <section className="reference-tool-faq">
+          <h2>Article questions</h2>
+          {article.data.faq
+            .filter(
+              (item: unknown): item is { question: string; answer: string } =>
+                !!item &&
+                typeof item === "object" &&
+                "question" in item &&
+                "answer" in item &&
+                typeof item.question === "string" &&
+                typeof item.answer === "string",
+            )
+            .map((item) => (
+              <details key={item.question}>
+                <summary>{bodyText(item.question)}</summary>
+                <p>{bodyText(item.answer)}</p>
+              </details>
+            ))}
+        </section>
+      )}
       {sources.length > 0 && (
         <section className="reference-card journal-sources">
           <h2>Sources and further reading</h2>

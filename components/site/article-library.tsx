@@ -31,14 +31,19 @@ export async function ArticleLibrary({
   return (
     <InformationShell
       path={path}
-      parent={categoryTitle ? ["Blog","/blog/"] : undefined}
+      parent={categoryTitle ? ["Blog", "/blog/"] : undefined}
       title={
-        categoryTitle ? `${categoryTitle} articles` : guides
-          ? "Practical guides for your next move."
-          : "Ideas worth putting into practice."
+        categoryTitle
+          ? `${categoryTitle} articles`
+          : guides
+            ? "Practical guides for your next move."
+            : "Ideas worth putting into practice."
       }
       label={
-        categoryTitle || (guides ? "The Name Retailer guide library" : "The Name Retailer journal")
+        categoryTitle ||
+        (guides
+          ? "The Name Retailer guide library"
+          : "The Name Retailer journal")
       }
       description="Explore our SEO, AEO, GEO, content, marketplace and measurement articles. Find clear answers, worked examples and practical checklists—all in one library."
       active="guides"

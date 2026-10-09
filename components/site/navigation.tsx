@@ -46,7 +46,9 @@ import { tools } from "@/lib/tools/catalog";
 import { toolGroups } from "@/lib/tools/presentation";
 import { MarketplaceMenu } from "./marketplace-menu";
 
-const navigationTools = [...new Map(tools.map(tool => [tool.slug, tool])).values()];
+const navigationTools = [
+  ...new Map(tools.map((tool) => [tool.slug, tool])).values(),
+];
 const groupIcons = [
   FileText,
   ImageIcon,
@@ -468,8 +470,9 @@ export function SiteNavigation({
                           <strong>{group.name}</strong>
                           <small>
                             {
-                              navigationTools.filter((tool) => tool.group === group.name)
-                                .length
+                              navigationTools.filter(
+                                (tool) => tool.group === group.name,
+                              ).length
                             }{" "}
                             tools
                           </small>

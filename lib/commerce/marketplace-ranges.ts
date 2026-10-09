@@ -22,11 +22,10 @@ export const marketplaceGroups = [
     ranges: Array.from({ length: 10 }, (_, index) => {
       const min = index === 0 ? 1 : index * 10;
       const max = (index + 1) * 10;
-      return range(
-        `da-${min}-to-${max}`,
-        `DA ${min}–${max}`,
-        { minDa: String(min), maxDa: String(max) },
-      );
+      return range(`da-${min}-to-${max}`, `DA ${min}–${max}`, {
+        minDa: String(min),
+        maxDa: String(max),
+      });
     }),
   },
   {

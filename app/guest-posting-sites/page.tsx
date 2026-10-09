@@ -87,7 +87,8 @@ export default async function Page() {
     faqPageNode(faq),
   );
   return (
-    <InformationShell path="/guest-posting-sites/"
+    <InformationShell
+      path="/guest-posting-sites/"
       title="Guest posting sites by niche, location and budget"
       label="Guest posting sites"
       description="Find publishers that reach your audience. Start with a niche directory, filter by country or price, or compare sites by Domain Authority, Domain Rating and traffic."
@@ -175,4 +176,21 @@ export default async function Page() {
   );
 }
 
-export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/guest-posting-sites/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/guest-posting-sites/");}
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const facets = facetMetadata("/guest-posting-sites/", await searchParams);
+  return pageMetadata(
+    {
+      ...baseMetadata,
+      alternates: facets.alternates,
+      robots: {
+        ...(facets.robots as object),
+        ...(baseMetadata.robots as object),
+      },
+    },
+    "/guest-posting-sites/",
+  );
+}

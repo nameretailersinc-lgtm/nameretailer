@@ -5,7 +5,7 @@ async function check(page: Page) {
   await expect(page.getByRole("main")).toHaveCount(1);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
-    /noindex/,
+    /\bindex\b/,
   );
   expect(
     await page.evaluate(
@@ -52,25 +52,23 @@ for (const [route, label] of [
         .toBe(true);
       await expect(image).toHaveAttribute("alt", "");
       if (label === "home") {
+        await expect(page.locator(".marketplace-browser")).toBeVisible();
+        await expect(
+          page.locator(".marketplace-table tbody tr").first(),
+        ).toBeVisible();
         await expect(
           page
-            .locator(".reference-home-hero")
-            .getByRole("link", { name: "Browse publications", exact: true }),
-        ).toHaveAttribute("href", "/products/");
-        await expect(page.locator(".reference-feature")).toHaveCount(6);
-        await expect(page.locator(".reference-process li")).toHaveCount(4);
-        await expect(page.locator(".reference-proof-pending")).toContainText(
-          "Supporting details pending",
-        );
+            .locator(".reference-header")
+            .getByRole("link", { name: "Marketplace", exact: true }),
+        ).toHaveAttribute("href", "/");
         expect(await page.locator("body").innerText()).not.toMatch(
-          /Premier SEO|Ahmed R\.|Sara M\.|Usman K\.|300%|\+186%/,
+          /Trusted by 10,000|Ahmed R\.|Sara M\.|Usman K\.|300%|\+186%/,
         );
-        await expect(page.locator('img[src*="logo_"]')).toHaveCount(0);
+        await expect(page.locator(".reference-proof-pending")).toHaveCount(0);
       }
       if (label === "guide") {
-        await expect(page.locator(".reference-draft-notice")).toContainText(
-          "draft",
-        );
+        await expect(page.locator(".reference-draft-notice")).toHaveCount(0);
+        await expect(page.getByText(/Last updated:/)).toBeVisible();
         await expect(page.locator(".reference-guide-section")).toHaveCount(4);
         for (const href of await page
           .locator('.reference-guide-aside a[href^="#"]')

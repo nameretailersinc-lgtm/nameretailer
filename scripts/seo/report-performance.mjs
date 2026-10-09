@@ -4,10 +4,12 @@ for (const name of await readdir(".lighthouseci")) {
   if (!name.endsWith(".json")) continue;
   const data = JSON.parse(await readFile(`.lighthouseci/${name}`, "utf8"));
   if (!data.audits) continue;
-  if (data.runtimeError) throw new Error(`${name}: ${data.runtimeError.message}`);
-  const value = key => {
+  if (data.runtimeError)
+    throw new Error(`${name}: ${data.runtimeError.message}`);
+  const value = (key) => {
     const measured = data.audits[key]?.numericValue;
-    if (typeof measured !== "number") throw new Error(`${name}: missing ${key}`);
+    if (typeof measured !== "number")
+      throw new Error(`${name}: missing ${key}`);
     return measured;
   };
   reports.push({
@@ -18,7 +20,11 @@ for (const name of await readdir(".lighthouseci")) {
     cls: value("cumulative-layout-shift"),
   });
 }
-if (!reports.length) throw new Error("No Lighthouse measurements found. Run collect first.");
+if (!reports.length)
+  throw new Error("No Lighthouse measurements found. Run collect first.");
 await mkdir(".local", { recursive: true });
-await writeFile(".local/performance.json", JSON.stringify(reports, null, 2) + "\n");
+await writeFile(
+  ".local/performance.json",
+  JSON.stringify(reports, null, 2) + "\n",
+);
 console.table(reports);

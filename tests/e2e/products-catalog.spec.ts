@@ -104,6 +104,11 @@ test.describe("compact public catalog", () => {
     );
     await page.goto("/products/");
     await loaded(page);
+    await expect(page.locator(".marketplace-table tbody tr")).toHaveCount(20);
+    await page
+      .getByLabel("Results per page", { exact: true })
+      .selectOption("10");
+    await loaded(page);
     await expect(page.locator(".marketplace-table tbody tr")).toHaveCount(10);
     await page
       .getByLabel("Sort publications", { exact: true })
@@ -185,7 +190,7 @@ test.describe("compact public catalog", () => {
       product!.category,
     );
     await page.getByRole("button", { name: "Reset All", exact: true }).click();
-    await expect(page).toHaveURL(/\/products\/$/);
+    await expect(page).toHaveURL(/\/$/);
     await loaded(page);
     await expect(page.getByLabel("Minimum DR", { exact: true })).toHaveValue(
       "",
@@ -358,7 +363,7 @@ test.describe("compact public catalog", () => {
       page.getByLabel("Minimum DR", { exact: true }),
     ).not.toBeVisible();
     await page.getByRole("button", { name: "Reset All", exact: true }).click();
-    await expect(page).toHaveURL(/\/products\/$/);
+    await expect(page).toHaveURL(/\/$/);
     await loaded(page);
     await summary.click();
     await expect(page.getByLabel("Minimum DR", { exact: true })).toHaveValue(

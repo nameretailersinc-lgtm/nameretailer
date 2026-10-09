@@ -40,7 +40,11 @@ import {
   type MarketplaceRange,
 } from "@/lib/commerce/marketplace-ranges";
 import { marketplaceQuery } from "@/lib/commerce/marketplace-query";
-import { breadcrumbSchema, itemListNode, serializeJsonLd } from "@/lib/seo/json-ld";
+import {
+  breadcrumbSchema,
+  itemListNode,
+  serializeJsonLd,
+} from "@/lib/seo/json-ld";
 
 const filters = [
   "q",
@@ -518,9 +522,7 @@ function MetricContext({ compact = false }: { compact?: boolean }) {
         or refreshed here. Missing and legacy zero values are shown as
         Unavailable. No measurement date was supplied.
       </p>
-      <Link href="/how-to-buy-links/#metrics">
-        Read the metric checklist →
-      </Link>
+      <Link href="/how-to-buy-links/#metrics">Read the metric checklist →</Link>
     </Container>
   );
 }
@@ -552,8 +554,12 @@ export function Marketplace({
   const page = Number(normalized.get("page"));
   const pageSize = Number(normalized.get("pageSize"));
   const query = normalized.toString();
-  const [result, setResult] = useState<{ query: string; value: ProductPage } | undefined>(
-    initialPage && initialQuery ? { query: initialQuery, value: initialPage } : undefined,
+  const [result, setResult] = useState<
+    { query: string; value: ProductPage } | undefined
+  >(
+    initialPage && initialQuery
+      ? { query: initialQuery, value: initialPage }
+      : undefined,
   );
   const [facets, setFacets] = useState<ProductFacets>({
     countries: [],
@@ -711,8 +717,29 @@ export function Marketplace({
     >
       <SiteHeader active="marketplace" />
       <main id="main" tabIndex={-1}>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd(breadcrumbSchema([["Marketplace","/"],[range?.label || (metricView ? "Domain Rating" : "Publications"),pathname]]))}} />
-        {value && !error && !loading && <script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd(itemListNode(value.data))}} />}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd(
+              breadcrumbSchema([
+                ["Marketplace", "/"],
+                [
+                  range?.label ||
+                    (metricView ? "Domain Rating" : "Publications"),
+                  pathname,
+                ],
+              ]),
+            ),
+          }}
+        />
+        {value && !error && !loading && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: serializeJsonLd(itemListNode(value.data)),
+            }}
+          />
+        )}
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Marketplace</Link>
           <span aria-hidden="true">›</span>

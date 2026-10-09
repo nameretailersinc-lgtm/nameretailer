@@ -11,7 +11,11 @@ const config: NextConfig = {
     imageSizes: [32, 48, 64, 80, 96, 128, 256, 384],
   },
   async redirects() {
-    return legacyRedirects.map(({source, destination}) => ({source, destination, statusCode: 301 as const}));
+    return legacyRedirects.map(({ source, destination }) => ({
+      source,
+      destination,
+      statusCode: 301 as const,
+    }));
   },
   outputFileTracingExcludes: {
     "/*": [

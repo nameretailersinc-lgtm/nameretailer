@@ -57,14 +57,12 @@ export const POST = (request: Request) =>
     )
       throw new ApiError(422, "Unsupported image contents.");
     const id = randomUUID();
-    const image = sharp(bytes, { limitInputPixels: 40000000 })
-      .rotate()
-      .resize({
-        width: 2400,
-        height: 2400,
-        fit: "inside",
-        withoutEnlargement: true,
-      });
+    const image = sharp(bytes, { limitInputPixels: 40000000 }).rotate().resize({
+      width: 2400,
+      height: 2400,
+      fit: "inside",
+      withoutEnlargement: true,
+    });
     const [webp, avif] = await Promise.all([
       image.clone().webp({ quality: 82 }).toBuffer({ resolveWithObject: true }),
       image.clone().avif({ quality: 55 }).toBuffer(),

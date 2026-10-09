@@ -29,10 +29,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: serializeJsonLd(
-            jsonLdGraph(
-              toolBreadcrumbs(tool),
-              webApplicationNode(tool),
-            ),
+            jsonLdGraph(toolBreadcrumbs(tool), webApplicationNode(tool)),
           ),
         }}
       />
@@ -75,4 +72,21 @@ export default function Page() {
   );
 }
 
-export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/word-counter/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/word-counter/");}
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const facets = facetMetadata("/word-counter/", await searchParams);
+  return pageMetadata(
+    {
+      ...baseMetadata,
+      alternates: facets.alternates,
+      robots: {
+        ...(facets.robots as object),
+        ...(baseMetadata.robots as object),
+      },
+    },
+    "/word-counter/",
+  );
+}

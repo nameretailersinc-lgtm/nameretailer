@@ -3,7 +3,10 @@ import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
 import { facetMetadata } from "@/lib/seo/facets";
 import { publicProductPage } from "@/lib/commerce/public-page";
-import { marketplaceQuery, searchQuery } from "@/lib/commerce/marketplace-query";
+import {
+  marketplaceQuery,
+  searchQuery,
+} from "@/lib/commerce/marketplace-query";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { ServerMarketplace } from "@/components/marketplace/server-marketplace";
@@ -52,32 +55,47 @@ export async function generateMetadata({
   if (range) {
     await connection();
     const search = await searchParams;
-    const data = await publicProductPage(marketplaceQuery(searchQuery(search), range).toString());
-    return pageMetadata({
-      ...facetMetadata(`/${range.slug}/`, search, data.data.length > 0),
-      ...(!directoryIndexable(data.total) ? {robots:{index:false,follow:true}} : {}),
-      title: range.title + (data.page > 1 ? ` — Page ${data.page}` : ""),
-      description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.${data.page > 1 ? ` Page ${data.page}.` : ""}`,
-    }, `/${range.slug}/`);
+    const data = await publicProductPage(
+      marketplaceQuery(searchQuery(search), range).toString(),
+    );
+    return pageMetadata(
+      {
+        ...facetMetadata(`/${range.slug}/`, search, data.data.length > 0),
+        ...(!directoryIndexable(data.total)
+          ? { robots: { index: false, follow: true } }
+          : {}),
+        title: range.title + (data.page > 1 ? ` — Page ${data.page}` : ""),
+        description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.${data.page > 1 ? ` Page ${data.page}.` : ""}`,
+      },
+      `/${range.slug}/`,
+    );
   }
   const directory = directoryBySlug(slug);
   if (directory) {
     await connection();
     const stats = await catalogueSummary("", directory.slug);
-    return pageMetadata({
-      ...facetMetadata(`/${directory.slug}/`, await searchParams),
-      ...(!directoryIndexable(stats.total) ? {robots:{index:false,follow:true}} : {}),
-      title: directory.metaTitle,
-      description: directory.metaDescription,
-    }, `/${directory.slug}/`);
+    return pageMetadata(
+      {
+        ...facetMetadata(`/${directory.slug}/`, await searchParams),
+        ...(!directoryIndexable(stats.total)
+          ? { robots: { index: false, follow: true } }
+          : {}),
+        title: directory.metaTitle,
+        description: directory.metaDescription,
+      },
+      `/${directory.slug}/`,
+    );
   }
   const tool = toolBySlug(slug);
   if (!tool) notFound();
-  return pageMetadata({
-    title: `${tool.title} – Free Online Tool`,
-    description: `${tool.description} A free Name Retailer tool for SEO, content and link-building teams planning guest-post campaigns.`,
-    alternates: { canonical: `https://nameretailer.com/${tool.slug}/` },
-  }, `/${tool.slug}/`);
+  return pageMetadata(
+    {
+      ...facetMetadata(`/${tool.slug}/`, await searchParams),
+      title: `${tool.title} – Free Online Tool`,
+      description: `${tool.description} A free Name Retailer tool for SEO, content and link-building teams planning guest-post campaigns.`,
+    },
+    `/${tool.slug}/`,
+  );
 }
 export default async function Page({
   params,
@@ -89,7 +107,13 @@ export default async function Page({
   const slug = (await params).tool;
   const range = marketplaceRangeBySlug(slug);
   if (range) {
-    return <ServerMarketplace key={range.slug} range={range} searchParams={searchParams} />;
+    return (
+      <ServerMarketplace
+        key={range.slug}
+        range={range}
+        searchParams={searchParams}
+      />
+    );
   }
   const directory = directoryBySlug(slug);
   if (directory) {
@@ -104,10 +128,7 @@ export default async function Page({
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: serializeJsonLd(
-            jsonLdGraph(
-              toolBreadcrumbs(tool),
-              webApplicationNode(tool),
-            ),
+            jsonLdGraph(toolBreadcrumbs(tool), webApplicationNode(tool)),
           ),
         }}
       />

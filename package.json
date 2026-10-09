@@ -15,6 +15,7 @@
     "check:meta": "tsx scripts/seo/check-meta.ts",
     "check:jsonld": "tsx scripts/seo/check-jsonld.ts",
     "check:hygiene": "tsx scripts/seo/check-hygiene.ts",
+    "check:seo": "npm run check:ssr && npm run check:urls && npm run check:redirects && npm run check:meta && npm run check:jsonld && npm run check:hygiene",
     "measure:performance": "npm exec --package=@lhci/cli -- lhci collect --config=lighthouserc.cjs && node scripts/seo/report-performance.mjs",
     "format": "prettier --write .",
     "test": "vitest run",

@@ -130,7 +130,11 @@ for (const width of [320, 375, 768, 820, 1024, 1280])
       await expect(page.getByRole("heading", { level: 1 })).toHaveCount(1);
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
         "content",
-        /noindex/,
+        new URL(page.url()).searchParams.size ||
+          new URL(page.url()).pathname.startsWith("/my-account/") ||
+          new URL(page.url()).pathname === "/cart/"
+          ? /noindex/
+          : /\bindex\b/,
       );
       const measured = await geometry(page);
       expect(measured.overflow, `${route}: no document overflow`).toBe(false);

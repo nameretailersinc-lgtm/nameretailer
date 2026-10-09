@@ -224,10 +224,7 @@ const directoryDefinitions: Directory[] = [
     filter: { country: "United States" },
     browse: [
       ["All US publishers", "/?country=United%20States"],
-      [
-        "US publishers by price",
-        "/?country=United%20States&sort=priceAsc",
-      ],
+      ["US publishers by price", "/?country=United%20States&sort=priceAsc"],
       [
         "US publishers by traffic",
         "/?country=United%20States&sort=trafficDesc",
@@ -462,7 +459,9 @@ const directoryDefinitions: Directory[] = [
   },
 ];
 
-export const directories = directoryDefinitions.filter(directory => directory.slug !== "guest-posting-sites-under-50");
+export const directories = directoryDefinitions.filter(
+  (directory) => directory.slug !== "guest-posting-sites-under-50",
+);
 
 export const directoryBySlug = (slug: string) =>
   directories.find((directory) => directory.slug === slug);

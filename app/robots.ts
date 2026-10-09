@@ -13,7 +13,22 @@ const privatePaths = [
   "/cart/",
   "/checkout/",
   "/design-system/",
-  ...["q", "sort", "pageSize", "category", "country", "language", "minDa", "maxDa", "minDr", "maxDr", "minTraffic", "maxTraffic", "minPrice", "maxPrice"].map(key => `/*?*${key}=`),
+  ...[
+    "q",
+    "sort",
+    "pageSize",
+    "category",
+    "country",
+    "language",
+    "minDa",
+    "maxDa",
+    "minDr",
+    "maxDr",
+    "minTraffic",
+    "maxTraffic",
+    "minPrice",
+    "maxPrice",
+  ].map((key) => `/*?*${key}=`),
 ];
 
 // Search and answer-engine crawlers that fetch pages to cite them.

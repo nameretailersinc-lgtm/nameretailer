@@ -16,7 +16,8 @@ const baseMetadata: Metadata = {
 };
 export default function Page() {
   return (
-    <InformationShell path="/faq/"
+    <InformationShell
+      path="/faq/"
       title="A few useful answers."
       label="Frequently asked questions"
       description="Answers about guest-post prices, publication scope, metrics, disclosure and ordering."
@@ -26,11 +27,7 @@ export default function Page() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: serializeJsonLd(
-            jsonLdGraph(
-              faqPageNode(commonQuestions),
-            ),
-          ),
+          __html: serializeJsonLd(jsonLdGraph(faqPageNode(commonQuestions))),
         }}
       />
       <section
@@ -48,4 +45,21 @@ export default function Page() {
   );
 }
 
-export async function generateMetadata({searchParams}: {searchParams: Promise<SearchParams>}) {const facets=facetMetadata("/faq/",await searchParams);return pageMetadata({...baseMetadata, alternates: facets.alternates, robots: {...facets.robots as object,...baseMetadata.robots as object}},"/faq/");}
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}) {
+  const facets = facetMetadata("/faq/", await searchParams);
+  return pageMetadata(
+    {
+      ...baseMetadata,
+      alternates: facets.alternates,
+      robots: {
+        ...(facets.robots as object),
+        ...(baseMetadata.robots as object),
+      },
+    },
+    "/faq/",
+  );
+}

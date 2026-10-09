@@ -4,7 +4,6 @@ import type { CmsRecord } from "../cms/types";
 import { bodyText, isSafeUrl } from "../cms/content";
 import { canonicalOrigin, canonicalUrl, type SeoSettings } from "./metadata";
 
-
 export function organizationSchema(settings: SeoSettings): WithContext<Thing> {
   return {
     "@context": "https://schema.org",
@@ -69,7 +68,7 @@ export function articleSchema(
             : `${canonicalOrigin}/about/`,
       })),
     ),
-    publisher: {"@id": `${canonicalOrigin}/#organization`},
+    publisher: { "@id": `${canonicalOrigin}/#organization` },
     ...(typeof record.data.publishedAt === "string" &&
     Number.isFinite(Date.parse(record.data.publishedAt))
       ? { datePublished: record.data.publishedAt }
@@ -82,6 +81,22 @@ export function articleSchema(
       ? { image: new URL(record.data.ogImage, canonicalOrigin).href }
       : {}),
   };
+}
+
+/** Public Article markup needs real attribution, dates and an image. */
+export function completeArticleSchema(
+  record: CmsRecord,
+  author: CmsRecord | undefined,
+) {
+  if (
+    typeof record.data.publishedAt !== "string" ||
+    !Number.isFinite(Date.parse(record.data.publishedAt)) ||
+    !Number.isFinite(Date.parse(record.updatedAt)) ||
+    typeof record.data.ogImage !== "string" ||
+    !isSafeUrl(record.data.ogImage)
+  )
+    return null;
+  return articleSchema(record, author);
 }
 
 /** General Schema.org semantics only. Google restricts FAQ rich results; this supports machine readability, not a ranking promise. */
@@ -122,7 +137,6 @@ export function jsonLdGraph(...nodes: Array<Record<string, unknown> | null>) {
     "@graph": nodes.filter((node): node is Record<string, unknown> => !!node),
   };
 }
-
 
 // Google restricts FAQ rich results; exact visible Q&As only, with no ranking promise.
 export function faqPageNode(items: ReadonlyArray<readonly [string, string]>) {

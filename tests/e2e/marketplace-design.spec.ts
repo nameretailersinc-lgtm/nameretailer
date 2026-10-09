@@ -10,22 +10,15 @@ async function loaded(page: Page) {
   ).toBeVisible({ timeout: 30000 });
 }
 async function branding(page: Page) {
-  await expect(page).toHaveTitle(/Name Retailer/);
+  await expect(page).toHaveTitle(/Guest Post|Guest post|Guest Posting/);
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
     "content",
     /noindex/,
   );
   const text = await page.locator("body").innerText();
   expect(text).toContain("Name Retailer");
-  expect(text).toContain("Trusted by 10,000+ marketers");
-  await expect(page.locator(".marketplace-trust-note")).toBeVisible();
-  await expect(page.locator(".marketplace-trust-note")).toContainText(
-    "Trusted by 10,000+ marketers",
-  );
-  await expect(page.locator(".marketplace-trust-note")).toContainText(
-    "Owner-reported community size",
-  );
-  // The exact 10,000+ marketer line is owner-confirmed, not an inventory count.
+  expect(text).not.toContain("Trusted by 10,000+ marketers");
+  await expect(page.locator(".marketplace-trust-note")).toHaveCount(0);
   expect(text).not.toMatch(
     /Premier SEO Services|Ahmed R\.|Sara M\.|Usman K\.|300%|\+186%|245\.8K|ranked on page 1 for 50\+/i,
   );
@@ -129,7 +122,7 @@ test.describe("reference-led marketplace refresh", () => {
           await expect(page.locator(".marketplace-search-panel")).toBeVisible();
           await expect(
             page.getByLabel("Results per page", { exact: true }),
-          ).toHaveValue("10");
+          ).toHaveValue("20");
         } else {
           expect(
             await page
@@ -280,7 +273,7 @@ test.describe("reference-led marketplace refresh", () => {
     await page
       .getByRole("button", { name: "Clear all filters", exact: true })
       .click();
-    await expect(page).toHaveURL(/\/products\/$/);
+    await expect(page).toHaveURL(/\/$/);
     await expect(
       page.getByRole("status").filter({ hasText: /matching publications/ }),
     ).toBeVisible({ timeout: 30000 });
