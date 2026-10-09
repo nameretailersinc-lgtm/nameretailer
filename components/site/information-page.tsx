@@ -63,7 +63,8 @@ export function InformationShell({
             src={image}
             {...(imageDimensions || artworkDimensions[image])}
             alt={imageAlt}
-            sizes={imageDimensions ? "256px" : "(max-width:800px) 100vw, 45vw"}
+            sizes={imageDimensions ? "256px" : "(max-width:800px) calc(100vw - 48px), (max-width:1280px) 45vw, 540px"}
+            preload
           />
         </section>
         {children}

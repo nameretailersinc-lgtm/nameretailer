@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { SiteSection } from "@/lib/site/pages";
 import { SiteNavigation } from "./navigation";
-export function SiteBrand({ preload = false }: { preload?: boolean }) {
+export function SiteBrand() {
   return (
     <Link
       className="marketplace-brand"
@@ -17,7 +17,7 @@ export function SiteBrand({ preload = false }: { preload?: boolean }) {
           width={128}
           height={107}
           alt=""
-          preload={preload}
+          sizes="80px"
         />
       </span>
       <span className="marketplace-wordmark">
@@ -37,7 +37,7 @@ export function SiteHeader({ active }: { active?: SiteSection }) {
   return (
     <SiteNavigation
       active={active}
-      brand={<SiteBrand preload />}
+      brand={<SiteBrand />}
       trust={<TrustNote />}
     />
   );

@@ -161,6 +161,7 @@ export function MarketplaceHero({
         height={metricView ? 340 : 405}
         sizes="(max-width: 800px) calc(100vw - 48px), (max-width: 1280px) 44vw, 540px"
         alt=""
+        preload
       />
     </section>
   );

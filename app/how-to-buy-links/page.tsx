@@ -52,8 +52,9 @@ export default function Page() {
             src="/01_guest_post_checklist.png"
             width={730}
             height={550}
-            sizes="(max-width:800px) 100vw, 45vw"
+            sizes="(max-width:800px) calc(100vw - 48px), (max-width:1280px) 45vw, 540px"
             alt=""
+            preload
           />
         </section>
         <EditorialByline {...buyingGuideEditorial} />

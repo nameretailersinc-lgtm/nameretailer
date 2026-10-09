@@ -788,6 +788,7 @@ export function Marketplace({
                   height={405}
                   sizes="(max-width: 800px) 1px, (max-width: 1100px) 34vw, 380px"
                   alt=""
+                  preload
                 />
               </div>
             </div>

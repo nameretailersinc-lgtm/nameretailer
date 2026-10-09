@@ -49,4 +49,8 @@ Centralized safe serialization, organization/contact, homepage WebSite, breadcru
 ### Phase 8 — buyer content and blog audit
 
 BLOG_AUDIT.md records all 60 existing articles. Ten technical rebuild articles remain accessible with noindex pending Search Console/backlink review; the rest have keep/rewrite/merge recommendations without deleting URLs. Added five visibly marked DRAFT buyer guides, all noindex and excluded from the sitemap until approval. Their answer-first openings use real catalogue data or cited Google/Ahrefs/Moz sources; dates record the actual source revision, with unknown author/reviewer slots. Reusable metric definitions and descriptive links connect directories, the article library and guides. Build, lint and two guide-content tests passed.
+
+### Phase 9 — performance and technical hygiene
+
+Responsive sizes now reflect hero/logo layouts; AVIF/WebP are retained and generated widths cap at 1920 instead of 3840. The logo no longer preloads; only the page hero does, using Next 16 preload rather than deprecated priority. Other artwork stays lazy. check:hygiene validates explicit source alt/sizes and production language, H1/heading order, image alt/width and preload counts; all 152 public pages passed. Existing English lang and headings passed without content changes. Lighthouse CI collects three mobile runs for four representative routes, with a reporter for actual LCP/TBT/CLS artifacts and no assumed scores. Build and lint passed. All 376 unit tests also passed during verification preparation.
 

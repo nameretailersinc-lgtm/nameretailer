@@ -100,7 +100,7 @@ export function DirectoryHero() {
           width={650}
           height={445}
           alt=""
-          sizes="(max-width: 760px) 90vw, 48vw"
+          sizes="(max-width: 760px) 90vw, (max-width: 1280px) 48vw, 600px"
           preload
         />
         <span className="tools-art-caption">
@@ -153,7 +153,7 @@ export function ToolHero({ tool }: { tool: Tool }) {
             width={jpg ? 590 : counter ? 450 : 650}
             height={jpg ? 370 : counter ? 250 : 445}
             alt=""
-            sizes="(max-width: 760px) 90vw, 46vw"
+            sizes="(max-width: 760px) 90vw, (max-width: 1280px) 46vw, 580px"
             preload
           />
           {!jpg && !counter && (
