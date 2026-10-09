@@ -1,3 +1,5 @@
+import Link from "next/link";
+import { authorByName, authorPath } from "@/lib/site/authors";
 const formatDate = (value: string) =>
   new Date(value).toLocaleDateString("en-US", {
     month: "long",
@@ -24,7 +26,20 @@ export function EditorialByline({
   return (
     <div className="reference-article-meta journal-meta">
       <span>
-        {author ? `Author: ${author}` : "Author details are not published."}
+        {author ? (
+          <>
+            Author:{" "}
+            {authorByName(author) ? (
+              <Link href={authorPath(authorByName(author)!)} rel="author">
+                {author}
+              </Link>
+            ) : (
+              author
+            )}
+          </>
+        ) : (
+          "Author details are not published."
+        )}
       </span>
       {reviewer ? (
         <span>Reviewer: {reviewer}</span>
