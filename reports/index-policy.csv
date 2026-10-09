@@ -1,0 +1,34 @@
+slug,type,listings,intro_words,indexable,reason
+da-1-to-10,metric-range,59,157,true,meets listing and copy thresholds
+da-10-to-20,metric-range,1362,158,true,meets listing and copy thresholds
+da-20-to-30,metric-range,6737,158,true,meets listing and copy thresholds
+da-30-to-40,metric-range,15246,156,true,meets listing and copy thresholds
+da-40-to-50,metric-range,8829,156,true,meets listing and copy thresholds
+da-50-to-60,metric-range,21097,156,true,meets listing and copy thresholds
+da-60-to-70,metric-range,5099,156,true,meets listing and copy thresholds
+da-70-to-80,metric-range,1372,156,true,meets listing and copy thresholds
+da-80-to-90,metric-range,425,158,true,meets listing and copy thresholds
+da-90-to-100,metric-range,170,158,true,meets listing and copy thresholds
+0-to-50k-traffic,metric-range,9240,178,true,meets listing and copy thresholds
+50k-to-100k-traffic,metric-range,1082,178,true,meets listing and copy thresholds
+100k-to-500k-traffic,metric-range,1468,178,true,meets listing and copy thresholds
+500k-to-1m-traffic,metric-range,359,178,true,meets listing and copy thresholds
+1m-to-5m-traffic,metric-range,492,189,true,meets listing and copy thresholds
+5m-to-10m-traffic,metric-range,111,186,true,meets listing and copy thresholds
+10m-plus-traffic,metric-range,181,188,true,meets listing and copy thresholds
+dr-0-to-20,metric-range,15312,188,true,meets listing and copy thresholds
+dr-20-to-50,metric-range,32116,178,true,meets listing and copy thresholds
+dr-50-plus,metric-range,9453,178,true,meets listing and copy thresholds
+price-0-to-50,metric-range,2739,167,true,meets listing and copy thresholds
+price-50-to-100,metric-range,16861,161,true,meets listing and copy thresholds
+price-100-to-150,metric-range,15880,161,true,meets listing and copy thresholds
+price-150-to-200,metric-range,5132,169,true,meets listing and copy thresholds
+price-200-plus,metric-range,15393,170,true,meets listing and copy thresholds
+500k-plus-traffic,metric-range,1143,180,true,meets listing and copy thresholds
+technology-guest-posting-sites,directory,2725,,true,meets listing threshold
+saas-guest-posting-sites,directory,541,,true,meets listing threshold
+guest-posting-sites-usa,directory,44802,,true,meets listing threshold
+marketing-guest-posting-sites,directory,605,,true,meets listing threshold
+business-guest-posting-sites,directory,19498,,true,meets listing threshold
+health-guest-posting-sites,directory,3869,,true,meets listing threshold
+travel-lifestyle-guest-posting-sites,directory,4557,,true,meets listing threshold
