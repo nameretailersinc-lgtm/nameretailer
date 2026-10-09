@@ -341,8 +341,8 @@ export function CheckoutPage() {
                 </fieldset>
                 <p className="customer-hint">
                   Do not enter card numbers here. Draft billing details expire
-                  after 7 days. Approved terms, refunds and final fees/taxes are
-                  required before payment can be enabled.
+                  after 7 days. Approved terms and final fees/taxes are required
+                  before payment can be enabled.
                 </p>
                 <button
                   className="button button-primary"

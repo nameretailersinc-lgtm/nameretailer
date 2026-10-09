@@ -344,20 +344,20 @@ export const informationPages = {
     ],
   },
   policies: {
-    title: "Policies need clear, approved terms.",
+    title: "Policies that apply to Name Retailer.",
     label: "Policy information",
     active: "help",
     image: "/01_guest_post_checklist.png",
     description:
-      "Terms, privacy, cookie and refund policies are not yet published. Contact Name Retailer for policy questions.",
+      "The refund, privacy and cookie policies are published. Terms of service are not yet published. Contact Name Retailer for policy questions.",
     sections: [
       {
         title: "Terms and refund policy",
-        body: "Terms of service and refund or replacement policies are not yet published. Ordering and payment are not available yet.",
+        body: "The refund policy is published: a refund is issued if the site owner rejects your request within 1 business day, and orders are final once the link is approved. Terms of service and a replacement policy are not yet published. Ordering and payment are not available yet.",
       },
       {
         title: "Privacy and cookies",
-        body: "Privacy and cookie policies are not yet published. Contact the team with questions about your account or data.",
+        body: "The privacy policy explains how Name Retailer Inc collects, uses and protects personal data and how to ask for it to be deleted. The cookie policy lists the cookies this site sets: sign-in and form-security cookies only, with no advertising cookies.",
       },
       {
         title: "Questions and requests",
@@ -365,6 +365,21 @@ export const informationPages = {
       },
     ],
     links: [
+      {
+        title: "Refund policy",
+        description: "When an order is refunded and how to ask for one.",
+        href: "/refund-policy/",
+      },
+      {
+        title: "Privacy policy",
+        description: "How personal data is collected, used and protected.",
+        href: "/privacy/",
+      },
+      {
+        title: "Cookie policy",
+        description: "The cookies this site sets and how to control them.",
+        href: "/cookies/",
+      },
       {
         title: "Contact the team",
         description: "Ask for approved policy or commercial information.",
@@ -472,7 +487,7 @@ export const commonQuestions = [
   ],
   [
     "What happens if a placement is removed?",
-    "A replacement or refund policy is not yet published. Ask the team which terms would apply before ordering.",
+    "The refund policy covers requests the site owner rejects; once a link is approved the order is final. A replacement policy for a removed placement is not yet published, so ask the team which terms would apply before ordering.",
   ],
   [
     "Can I order or pay now?",

@@ -54,6 +54,8 @@ export function organizationNode() {
     "@type": "Organization",
     "@id": `${canonicalOrigin}/#organization`,
     name: "Name Retailer",
+    // Owner-confirmed 2026-10-09; the data controller named in the privacy policy.
+    legalName: "Name Retailer Inc",
     url: `${canonicalOrigin}/`,
     logo: `${canonicalOrigin}/logo.jpg`,
     email: "info@nameretailer.com",

@@ -25,8 +25,9 @@ export async function generateMetadata({
   );
 }
 
-// Only verifiable facts. TODO(owner): legal entity and registration number,
-// founding year, team names and roles, and official social profiles (sameAs).
+// Only verifiable facts. Legal entity owner-confirmed 2026-10-09.
+// TODO(owner): registration number, founding year, team names and roles, and
+// official social profiles (sameAs).
 // See OWNER_DECISIONS.md; do not invent them.
 export default async function Page() {
   await connection();
@@ -129,6 +130,12 @@ export default async function Page() {
           </address>
           <p>
             <a href="mailto:info@nameretailer.com">info@nameretailer.com</a>
+          </p>
+          <p>
+            Name Retailer is operated by Name Retailer Inc, a company registered
+            at 100 Business Park Ln, Unit E Ste US704946, Milton, Delaware
+            19968, United States. Read how we handle your data in our{" "}
+            <Link href="/privacy/">privacy policy</Link>.
           </p>
           <p>
             Questions about a listing or an order? See the{" "}

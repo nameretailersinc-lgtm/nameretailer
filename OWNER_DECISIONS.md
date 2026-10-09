@@ -3,7 +3,11 @@
 No rankings or AI citations are guaranteed.
 
 - TODO: Confirm checkout/payment opening and provider configuration; verify actual payment in the owner's environment. Preserve existing commerce behavior.
-- TODO: Supply approved terms, privacy, cookies, refund/replacement policies and turnaround commitments. Legal stubs remain noindex; do not draft legal text.
+- Refund policy: DONE 2026-10-09. Owner approved restoring the previous site's published policy (Wayback 2026-05-16) with only the contact email, removed phone placeholder and effective date changed. See app/refund-policy/page.tsx.
+- Privacy policy: DONE 2026-10-09. Restored verbatim from the previous site (Wayback 2026-05-16, last updated 2025-02-18), with the owner-confirmed data controller Name Retailer Inc (Delaware). One cut-off template sentence was completed. See lib/site/legal/privacy.ts.
+- Cookie policy: DONE 2026-10-09. Archived wording kept, but the cookie list and table were replaced with the cookies the new site actually sets; ad opt-out links were dropped. See lib/site/legal/cookies.ts. Update it if analytics or ad cookies are ever enabled.
+- Legal entity: Name Retailer Inc, 100 Business Park Ln, Unit E Ste US704946, Milton, Delaware 19968, United States (owner-confirmed 2026-10-09). The operating address stays 26 - G Hamriyah Freezone, Sharjah, UAE.
+- TODO: Supply approved terms of service, replacement policies and turnaround commitments. /terms/ is indexed at owner request but holds no terms; do not draft legal text.
 - TODO: Confirm legal entity/registration details and supplied address: 26 - G Hamriyah Freezone, Sharjah, United Arab Emirates. Contact: info@nameretailer.com.
 - TODO: Supply verified team, author and reviewer identities and biographies. Omit unknown schema attribution.
 - TODO: Confirm identities and biographies already marked verified in the CMS seed, including Zuhoor Uddin and Fahad Sheikh. Existing verified CMS authors are shown; missing authors/reviewers remain unpublished. Static buying-guide author/reviewer/original publication date need owner-supplied data before complete Article markup can be emitted.

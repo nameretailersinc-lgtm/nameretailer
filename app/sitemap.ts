@@ -33,6 +33,11 @@ const staticPaths = [
   "/contact/",
   "/faq/",
   "/help-center/",
+  "/refund-policy/",
+  "/privacy/",
+  "/cookies/",
+  "/terms/",
+  "/policies/",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {

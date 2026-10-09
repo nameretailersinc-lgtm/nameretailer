@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { InformationPageView } from "@/components/site/information-page";
 import { informationPages } from "@/lib/site/pages";
 const baseMetadata: Metadata = {
-  robots: { index: false, follow: true },
   title: "Policy Information | Name Retailer",
   description: informationPages.policies.description,
 };

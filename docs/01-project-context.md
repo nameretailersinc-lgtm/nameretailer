@@ -80,7 +80,7 @@ Page groups seen: marketplace segment pages (by DA, DR, TF, traffic, price, back
 - **Brand/logo:** default is for the design agent to propose 3 directions, including a wordmark.
 - **Named authors/editors, founding year, phone, other social profiles:** not provided. Use clearly marked placeholders.
 - **"56,000+ domains" claim:** not confirmed. Don't display it until confirmed or computed from the listings DB.
-- **Legal name:** "Name Retailer Inc" appears on /about/ but isn't confirmed.
+- **Legal name:** confirmed by the owner 2026-10-09: Name Retailer Inc, 100 Business Park Ln, Unit E Ste US704946, Milton, Delaware 19968, United States (data controller in the privacy policy). Operating address: 26 - G Hamriyah Freezone, Sharjah, UAE.
 
 ## Marketplace evidence update (2026-10-06)
 

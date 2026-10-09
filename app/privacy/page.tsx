@@ -3,32 +3,27 @@ import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import type { Metadata } from "next";
 import { InformationShell } from "@/components/site/information-page";
-// TODO(owner): publish approved privacy policy text. See OWNER_DECISIONS.md.
+import { PolicyBlocks } from "@/components/site/policy-blocks";
+import { privacyPolicy } from "@/lib/site/legal/privacy";
+
 const baseMetadata: Metadata = {
-  title: "Privacy policy | Name Retailer",
+  title: "Privacy Policy",
   description:
-    "Privacy policy availability and policy questions for Name Retailer.",
+    "How Name Retailer collects, uses, shares, retains and protects your personal data, your rights to delete it, and how to contact us.",
   alternates: { canonical: "https://nameretailer.com/privacy/" },
-  robots: { index: false, follow: true },
 };
+
 export default function Page() {
   return (
     <InformationShell
       path="/privacy/"
-      title="Privacy policy"
+      title="Privacy Policy"
       label="Privacy policy"
-      description="This policy is not yet published."
+      description="Last updated: February 18, 2025. How Name Retailer collects, uses and protects your personal data."
       active="help"
       image="/01_guest_post_checklist.png"
     >
-      <section className="reference-card">
-        <h2>Policy questions</h2>
-        <p>
-          Contact{" "}
-          <a href="mailto:info@nameretailer.com">info@nameretailer.com</a> for
-          policy questions.
-        </p>
-      </section>
+      <PolicyBlocks blocks={privacyPolicy} />
     </InformationShell>
   );
 }
@@ -43,10 +38,7 @@ export async function generateMetadata({
     {
       ...baseMetadata,
       alternates: facets.alternates,
-      robots: {
-        ...(facets.robots as object),
-        ...(baseMetadata.robots as object),
-      },
+      robots: facets.robots,
     },
     "/privacy/",
   );

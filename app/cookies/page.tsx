@@ -3,32 +3,27 @@ import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import type { Metadata } from "next";
 import { InformationShell } from "@/components/site/information-page";
-// TODO(owner): publish approved cookie policy text. See OWNER_DECISIONS.md.
+import { PolicyBlocks } from "@/components/site/policy-blocks";
+import { cookiePolicy } from "@/lib/site/legal/cookies";
+
 const baseMetadata: Metadata = {
-  title: "Cookie policy | Name Retailer",
+  title: "Cookie Policy",
   description:
-    "Cookie policy availability and policy questions for Name Retailer.",
+    "The cookies nameretailer.com sets, why, and for how long: sign-in and form-security cookies only, with no advertising cookies. How to control them.",
   alternates: { canonical: "https://nameretailer.com/cookies/" },
-  robots: { index: false, follow: true },
 };
+
 export default function Page() {
   return (
     <InformationShell
       path="/cookies/"
-      title="Cookie policy"
+      title="Cookie Policy"
       label="Cookie policy"
-      description="This policy is not yet published."
+      description="Last updated: October 9, 2026. Which cookies Name Retailer uses and how you can control them."
       active="help"
       image="/01_guest_post_checklist.png"
     >
-      <section className="reference-card">
-        <h2>Policy questions</h2>
-        <p>
-          Contact{" "}
-          <a href="mailto:info@nameretailer.com">info@nameretailer.com</a> for
-          policy questions.
-        </p>
-      </section>
+      <PolicyBlocks blocks={cookiePolicy} />
     </InformationShell>
   );
 }
@@ -43,10 +38,7 @@ export async function generateMetadata({
     {
       ...baseMetadata,
       alternates: facets.alternates,
-      robots: {
-        ...(facets.robots as object),
-        ...(baseMetadata.robots as object),
-      },
+      robots: facets.robots,
     },
     "/cookies/",
   );
