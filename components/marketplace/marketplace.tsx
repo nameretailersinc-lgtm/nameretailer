@@ -576,7 +576,7 @@ export function Marketplace({
   useEffect(() => {
     let active = true;
     const controller = new AbortController();
-    api<ProductPage>(`/api/products?${query}`, { signal: controller.signal })
+    api<ProductPage>(`/api/products/?${query}`, { signal: controller.signal })
       .then((value) => {
         if (active) {
           setResult({ query, value });
@@ -593,7 +593,7 @@ export function Marketplace({
   }, [query, retry]);
   useEffect(() => {
     let active = true;
-    api<{ data: ProductFacets }>("/api/products/facets")
+    api<{ data: ProductFacets }>("/api/products/facets/")
       .then(({ data }) => {
         if (active) {
           setFacets(data);
