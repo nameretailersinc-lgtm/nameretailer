@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "check:ssr": "tsx scripts/seo/check-ssr.ts",
     "check:urls": "tsx scripts/seo/check-urls.ts",
+    "check:redirects": "tsx scripts/seo/check-redirects.ts",
     "format": "prettier --write .",
     "test": "vitest run",
     "test:e2e": "playwright test",

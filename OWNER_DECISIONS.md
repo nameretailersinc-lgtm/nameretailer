@@ -9,5 +9,6 @@ No rankings or AI citations are guaranteed.
 - TODO: Supply evidence for customer counts, reviews, testimonials or business results. Unsupported 10,000+ claim will be removed.
 - TODO: Confirm real social-profile URLs before adding sameAs.
 - TODO: Review technical/migration articles and legacy redirects using Search Console/backlink data. No such data available locally.
+- TODO: Closest-hub redirects have no exact replacement for community/reviews, former specialist services, monthly/permanent billing semantics, backlink/Trust Flow segments, archived WordPress articles and copyright/DMCA/community policies. See REDIRECT_MAP.md. Supply original content or approve a more specific destination after reviewing traffic/backlinks. No service, review or policy has been invented.
 - TODO: Approve five buyer-guide scaffolds before removing DRAFT/noindex; verify cited sources at approval time.
 - TODO: Supply original independent audit issues 1–20. Attachment has ten phases but no numbered issue list; handoff must identify any provisional crosswalk.

@@ -22,3 +22,7 @@ Marketplace pages now fetch the public catalogue per request before rendering, s
 ### Phase 2 — canonical URLs and indexing
 
 `/products/` had identical listings and supporting content to `/`; consolidate with a 301. `/home/` redirects to `/`, `/contact-us/` to `/contact/`. Internal home links now use `/`. Parameter views canonicalize to the clean page and use noindex,follow; nonempty fixed-size page-only pagination uses its own canonical and remains indexable. Robots excludes private and internal filter/search URLs while permitting assets and AI crawlers. Pagination is deliberately crawlable so its indexing directives can be read. Policies and the useful linked HTML sitemap use noindex. XML sitemap omits redirects/private/status pages and uses real CMS dates. Clean blog category routes resolve actual CMS categories, with 301s from old ID filters. Facet unit tests and build/lint passed; production URL checks are included in final verification.
+
+### Phase 3 — legacy URLs
+
+Implemented 87 explicit 301 sources from the supplied examples and local WordPress inventory. REDIRECT_MAP.md records destinations/reasons; nearest-hub cases are flagged in OWNER_DECISIONS.md. Legal availability stubs were added early so policy redirect targets return 200, with noindex and no invented legal text. About already renders through Next components; factual copy is addressed in Phase 6. Build and lint passed; check:redirects verifies every source and each distinct target.
