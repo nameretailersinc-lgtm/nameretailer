@@ -1389,14 +1389,6 @@ export function Marketplace({
             {metricView && <MetricContext />}
           </section>
         </div>
-        <p className="marketplace-stage-notice">
-          <Info size={15} aria-hidden="true" />
-          <span>
-            Marketplace preview: browsing, comparison, customer accounts and a
-            planning cart are available. Checkout and payments are upcoming; no
-            purchase is taken here.
-          </span>
-        </p>
         {!metricView && <MetricContext compact />}
         <section
           className="marketplace-shortlist"

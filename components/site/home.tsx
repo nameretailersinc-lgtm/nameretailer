@@ -243,10 +243,7 @@ export function HomeLanding() {
               <div>
                 <p className="eyebrow">How it works</p>
                 <h2>A simple, considered process</h2>
-                <p>
-                  Browse freely. Save a plan when you are ready. Checkout is
-                  still upcoming.
-                </p>
+                <p>Browse freely and save a plan when you are ready.</p>
               </div>
               <Link className="button button-secondary" href="/products/">
                 Start comparing <ArrowUpRight size={15} aria-hidden="true" />

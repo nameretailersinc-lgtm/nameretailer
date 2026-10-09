@@ -271,11 +271,10 @@ export function MarketplaceBuyerGuide() {
       >
         <h3 id="marketplace-help-heading">A few useful details</h3>
         <details>
-          <summary>Can I order from this marketplace preview?</summary>
+          <summary>Does shortlisting reserve a publication or price?</summary>
           <p>
-            Not yet. Browsing, comparison, customer accounts and a planning cart
-            are available, but checkout and payments are upcoming. Saving or
-            shortlisting does not reserve a publication or its price.
+            No. Saving or shortlisting a publication does not reserve it or lock
+            its price.
           </p>
         </details>
         <details>
@@ -360,7 +359,6 @@ export function MarketplaceFooter() {
       </div>
       <div className="marketplace-footer-bottom">
         <p>© {new Date().getUTCFullYear()} Name Retailer</p>
-        <p>Marketplace preview · No purchases or payments taken here.</p>
       </div>
     </footer>
   );

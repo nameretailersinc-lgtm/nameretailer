@@ -33,7 +33,8 @@ export function TrustNote() {
   return (
     <p className="marketplace-trust-note">
       <UsersRound size={19} aria-hidden="true" />
-      Trusted by 10,000+ marketers     </p>
+      Trusted by 10,000+ marketers{" "}
+    </p>
   );
 }
 export function SiteHeader({ active }: { active?: SiteSection }) {
@@ -101,7 +102,6 @@ export function SiteFooter() {
       <div className="reference-footer-bottom">
         <span>© {new Date().getUTCFullYear()} Name Retailer</span>
         <Link href="/site-map/">Page directory</Link>
-        <span>Preview · No orders or payments taken.</span>
       </div>
     </footer>
   );
