@@ -1,17 +1,29 @@
+import "./hub.css";
+import Link from "next/link";
+import { connection } from "next/server";
+import {
+  ArrowRight,
+  BriefcaseBusiness,
+  Code2,
+  Cpu,
+  Flag,
+  HeartPulse,
+  Megaphone,
+  Plane,
+  type LucideIcon,
+} from "lucide-react";
+import { InformationShell } from "@/components/site/information-page";
+import { PublicationTable } from "@/components/site/publication-table";
+import { directories } from "@/lib/site/directories";
+import { directoryListings, productFacets } from "@/lib/commerce/products";
+import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
+import { priceBreakdown } from "@/lib/commerce/price-breakdown";
+import { cachedAsync } from "@/lib/cache/ttl";
+import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
+import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import { itemListNode } from "@/lib/seo/json-ld";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
-import type { SearchParams } from "@/lib/commerce/marketplace-query";
-import Link from "next/link";
-import type { Metadata } from "next";
-import { connection } from "next/server";
-import { ArrowUpRight } from "lucide-react";
-import { InformationShell } from "@/components/site/information-page";
-import { DirectoryLinks } from "@/components/site/directory-page";
-import { directories } from "@/lib/site/directories";
-import { directoryListings } from "@/lib/commerce/products";
-import { PublicationTable } from "@/components/site/publication-table";
-import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import {
   faqPageNode,
@@ -19,161 +31,405 @@ import {
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
 
-const baseMetadata: Metadata = {
-  title: "Guest Posting Sites by Niche, Location and Price",
-  description:
-    "Browse guest posting sites by niche, country, budget and metrics. Compare technology, SaaS, marketing, business, health and travel publishers.",
+const usd = (cents: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: cents < 1000 ? 2 : 0,
+  }).format(cents / 100);
+const count = (value: number) => value.toLocaleString("en-US");
+
+const nicheIcons: Record<string, LucideIcon> = {
+  "technology-guest-posting-sites": Cpu,
+  "saas-guest-posting-sites": Code2,
+  "guest-posting-sites-usa": Flag,
+  "marketing-guest-posting-sites": Megaphone,
+  "business-guest-posting-sites": BriefcaseBusiness,
+  "health-guest-posting-sites": HeartPulse,
+  "travel-lifestyle-guest-posting-sites": Plane,
 };
 
-const evaluation = [
+/** Reader-facing names for the metric groups in lib/commerce/marketplace-ranges.ts. */
+const groupNames: Record<string, [title: string, note: string]> = {
+  "Guest Posts By DA PA": ["Domain Authority", "Moz score, 1–100"],
+  "Guest Posts By Traffic": ["Monthly traffic", "Supplied estimate"],
+  "Guest Posts By DR": ["Domain Rating", "Ahrefs score, 0–100"],
+  "Guest Posts By Price": ["Placement price", "USD, placement only"],
+};
+
+const steps = [
   [
-    "Audience fit",
-    "Would your customers read this site? Read recent articles and check the topics, tone and comments.",
+    "Start with the audience",
+    "Pick sites your customers already read. Check recent articles for topic, tone and the country and language you need.",
   ],
   [
-    "Editorial quality",
-    "Look for named authors, regular publishing, accurate content and articles that are not crowded with unrelated outbound links.",
+    "Check editorial quality",
+    "Look for named authors, regular publishing and accurate articles that are not crowded with unrelated outbound links.",
   ],
   [
-    "Supplied metrics",
-    "Use DR, DA and traffic to compare sites, but treat them as third-party estimates, not proof of readers or results.",
+    "Compare metrics consistently",
+    "Use one authority score (DA or DR) plus traffic to rank a shortlist. They are third-party estimates, not proof of readers.",
   ],
   [
-    "Placement terms",
-    "Check link type, turnaround, content requirements and whether writing is included, so you compare total cost.",
+    "Confirm placement terms",
+    "Check link type, turnaround, content requirements and whether writing is extra, so you compare the total cost.",
   ],
   [
-    "Disclosure",
-    "Paid placements should be labelled according to the publisher’s policy and search-engine guidance on sponsored links.",
+    "Agree disclosure",
+    'Paid placements should be labelled as sponsored, and Google asks for paid links to use rel="sponsored" or nofollow.',
   ],
 ] as const;
 
-const faq = [
-  [
-    "What are guest posting sites?",
-    "Guest posting sites are publications that accept articles written by outside contributors, often in exchange for a link or a fee. Name Retailer lists publishers that offer paid placements, with supplied metrics and USD prices.",
-  ],
-  [
-    "How do I choose the right guest posting site?",
-    "Start with the audience: pick sites your customers already read. Then check editorial quality, compare supplied metrics and prices, and confirm placement terms and disclosure before ordering.",
-  ],
-  [
-    "Are the metrics independently verified?",
-    "No. DR, DA and traffic are supplied by the inventory owner from third-party providers. Missing values are shown as missing, never as zero.",
-  ],
-] as const;
+type Stats = Awaited<ReturnType<typeof catalogueSummary>>;
+
+function faqFor(stats: Stats | null) {
+  const median =
+    stats?.medianPriceCents != null ? usd(stats.medianPriceCents) : null;
+  return [
+    [
+      "What are guest posting sites?",
+      "Guest posting sites are publications that accept articles from outside contributors, usually in exchange for a link or a fee. Name Retailer lists publishers that offer paid placements, with their topic, country, supplied metrics and USD price, so you can compare them side by side.",
+    ],
+    [
+      "How much does a guest post cost?",
+      median && stats
+        ? `Across ${count(stats.total)} active listings the median placement price is ${median}. Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.`
+        : "Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.",
+    ],
+    [
+      "How do I choose the right guest posting site?",
+      "Start with the audience: choose sites your customers already read. Then check editorial quality, compare one authority score and traffic consistently, and confirm placement terms and sponsored disclosure before ordering.",
+    ],
+    [
+      "Are paid guest posts allowed by Google?",
+      'Sponsored content is allowed when it is labelled and its links are qualified. Google asks for paid links to use rel="sponsored" or nofollow; its spam policies target paid links meant to pass ranking credit.',
+    ],
+    [
+      "What is the difference between DA and DR?",
+      "Domain Authority (DA) is Moz’s 1–100 score and Domain Rating (DR) is Ahrefs’ 0–100 score. Both are based mainly on links, but they come from different indexes, so compare each only with the same metric.",
+    ],
+    [
+      "Are the metrics on Name Retailer verified?",
+      "No. DA, DR and traffic are supplied with each listing from third-party providers and are not independently re-measured. Missing values are shown as missing, never as zero.",
+    ],
+    [
+      "What is the difference between a guest post and a link insertion?",
+      "A guest post is a new article published on the site; a link insertion adds your link to an article that already exists. Ask the publisher which formats they offer and what the price covers.",
+    ],
+  ] as const;
+}
+
+const facetsCache = { ttlMs: 15 * 60_000, staleOnErrorMs: 24 * 60 * 60_000 };
+
+async function loadHub() {
+  await connection();
+  const [stats, facets, top, niches, breakdown] = await Promise.all([
+    catalogueSummary("").catch(() => null),
+    cachedAsync("facets", facetsCache, productFacets).catch(() => null),
+    directoryListings({}, 12).catch(() => null),
+    Promise.all(
+      directories.map((directory) =>
+        catalogueSummary("", directory.slug).catch(() => null),
+      ),
+    ),
+    priceBreakdown().catch(() => null),
+  ]);
+  return { stats, facets, top, niches, breakdown };
+}
 
 export default async function Page() {
-  await connection();
-  const publications = await directoryListings({}, 20);
-  const counts = await Promise.all(
-    directories.map((directory) =>
-      directoryListings(directory.filter, 0)
-        .then((result) => result.total)
-        .catch(() => null),
-    ),
-  );
+  const { stats, facets, top, niches, breakdown } = await loadHub();
+  const faq = faqFor(stats);
   const url = `${canonicalOrigin}/guest-posting-sites/`;
+  const list = top ? itemListNode(top.data) : null;
+  const lead = stats
+    ? `Guest posting sites are publications that accept articles from outside contributors. Compare ${count(stats.total)} active publishers by niche, country, Domain Rating, traffic and USD price, then shortlist the ones your audience actually reads.`
+    : "Guest posting sites are publications that accept articles from outside contributors. Compare publishers by niche, country, Domain Rating, traffic and USD price, then shortlist the ones your audience actually reads.";
   const schema = jsonLdGraph(
     {
       "@type": "CollectionPage",
       "@id": `${url}#page`,
       url,
-      name: "Guest posting sites by niche, location and price",
+      name: "Guest posting sites by niche, country and budget",
+      description: lead,
       isPartOf: { "@id": `${canonicalOrigin}/#website` },
       publisher: { "@id": `${canonicalOrigin}/#organization` },
-      ...(itemListNode(publications.data)
-        ? { mainEntity: itemListNode(publications.data) }
-        : {}),
+      ...(stats?.updatedAt ? { dateModified: stats.updatedAt } : {}),
+      ...(list ? { mainEntity: list } : {}),
     },
     faqPageNode(faq),
   );
+  const figures = [
+    stats && ["Active publications", count(stats.total)],
+    facets && ["Topics", count(facets.categories.length)],
+    facets && ["Countries", count(facets.countries.length)],
+    stats?.medianPriceCents != null && [
+      "Median placement price",
+      usd(stats.medianPriceCents),
+    ],
+  ].filter((item): item is [string, string] => Array.isArray(item));
+
   return (
     <InformationShell
       path="/guest-posting-sites/"
-      title="Guest posting sites by niche, location and budget"
+      title="Guest posting sites by niche, country and budget"
       label="Guest posting sites"
-      description="Find publishers that reach your audience. Start with a niche directory, filter by country or price, or compare sites by Domain Authority, Domain Rating and traffic."
+      description={lead}
       active="marketplace"
       image="/15_laptop_dashboard_illustration.png"
+      className="hub-page"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
       />
-      <section className="reference-information-next" aria-labelledby="niches">
-        <h2>Available guest posting publications</h2>
-        <PublicationTable products={publications.data} />
-        <h2 id="niches">Guest posting sites by niche and audience</h2>
-        <div className="reference-three-grid">
-          {directories.map((directory, index) => (
-            <article className="reference-card" key={directory.slug}>
-              <h3>{directory.h1}</h3>
-              <p>{directory.lead}</p>
-              {typeof counts[index] === "number" && (
-                <p className="reference-small">
-                  {counts[index]!.toLocaleString("en-US")} active publications
-                </p>
-              )}
-              <Link href={`/${directory.slug}/`}>
-                Compare publishers <ArrowUpRight size={15} aria-hidden="true" />
-              </Link>
-            </article>
-          ))}
+
+      <section className="hub-summary" aria-label="Catalogue at a glance">
+        {figures.length > 0 && (
+          <dl className="hub-stats">
+            {figures.map(([label, value]) => (
+              <div key={label}>
+                <dt>{label}</dt>
+                <dd>{value}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+        <div className="hub-actions">
+          <Link className="button button-primary" href="/">
+            Browse all publications <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+          <Link className="button button-secondary" href="#how-to-choose">
+            How to choose a site
+          </Link>
+        </div>
+        {stats?.updatedAt && (
+          <p className="hub-updated">
+            Live catalogue, last updated{" "}
+            <time dateTime={stats.updatedAt}>
+              {new Date(stats.updatedAt).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                timeZone: "UTC",
+              })}
+            </time>
+            . Metrics are supplied with each listing and not independently
+            verified.
+          </p>
+        )}
+      </section>
+
+      <nav className="hub-toc" aria-label="On this page">
+        <a href="#niches">Niches</a>
+        <a href="#top-publications">Top publications</a>
+        <a href="#by-metrics">DA, DR, traffic &amp; price</a>
+        {breakdown?.byTopic.length ? (
+          <a href="#prices">Prices by niche</a>
+        ) : null}
+        <a href="#how-to-choose">How to choose</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+
+      <section className="hub-section" aria-labelledby="niches">
+        <div className="hub-heading">
+          <p className="eyebrow">Directories</p>
+          <h2 id="niches">Browse guest posting sites by niche</h2>
+          <p>
+            Each directory shows its strongest publications, live prices and
+            advice for that audience.
+          </p>
+        </div>
+        <div className="hub-niches">
+          {directories.map((directory, index) => {
+            const Icon = nicheIcons[directory.slug] || Flag;
+            const niche = niches[index];
+            return (
+              <article className="hub-niche" key={directory.slug}>
+                <span className="hub-niche-icon" aria-hidden="true">
+                  <Icon size={22} />
+                </span>
+                <h3>
+                  <Link href={`/${directory.slug}/`}>{directory.h1}</Link>
+                </h3>
+                <p>{directory.lead}</p>
+                {niche && niche.total > 0 && (
+                  <ul className="hub-niche-facts">
+                    <li>
+                      <strong>{count(niche.total)}</strong> sites
+                    </li>
+                    {niche.minPriceCents !== null && (
+                      <li>
+                        from <strong>{usd(niche.minPriceCents)}</strong>
+                      </li>
+                    )}
+                    {niche.medianPriceCents !== null && (
+                      <li>
+                        median <strong>{usd(niche.medianPriceCents)}</strong>
+                      </li>
+                    )}
+                  </ul>
+                )}
+              </article>
+            );
+          })}
         </div>
       </section>
-      <section className="reference-card directory-listings">
-        <h2>Guest posting sites by metrics and price</h2>
-        <p>
-          Each view below is a fixed range of the live inventory. Missing
-          metrics are excluded rather than counted as zero.
-        </p>
-        <div className="directory-range-groups">
-          {marketplaceGroups.map((group) => (
-            <div key={group.title}>
-              <h3>{group.title}</h3>
-              <ul className="directory-link-list">
-                {group.ranges.map((range) => (
-                  <li key={range.slug}>
-                    <Link href={`/${range.slug}/`}>{range.title}</Link>
-                  </li>
+
+      {top && top.data.length > 0 && (
+        <section className="hub-section" aria-labelledby="top-publications">
+          <div className="hub-heading">
+            <p className="eyebrow">Highest rated</p>
+            <h2 id="top-publications">
+              Top guest posting sites by Domain Rating
+            </h2>
+            <p>
+              The {top.data.length} active listings with the highest supplied
+              Domain Rating. Linked names open a profile with full details and
+              price comparisons.
+            </p>
+          </div>
+          <PublicationTable products={top.data} />
+        </section>
+      )}
+
+      <section className="hub-section" aria-labelledby="by-metrics">
+        <div className="hub-heading">
+          <p className="eyebrow">Marketplace views</p>
+          <h2 id="by-metrics">Compare sites by DA, DR, traffic and price</h2>
+          <p>
+            Each view is a fixed range of the live catalogue. Listings without a
+            value for that metric are left out rather than counted as zero.
+          </p>
+        </div>
+        <div className="hub-ranges">
+          {marketplaceGroups.map((group) => {
+            const [title, note] = groupNames[group.title] || [group.title, ""];
+            return (
+              <div className="hub-range-group" key={group.title}>
+                <h3>{title}</h3>
+                {note && <p>{note}</p>}
+                <ul>
+                  {group.ranges.map((range) => (
+                    <li key={range.slug}>
+                      <Link href={`/${range.slug}/`}>
+                        {range.label.replace(/^Traffic /, "")}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </section>
+
+      {breakdown && breakdown.byTopic.length > 0 && (
+        <section className="hub-section" aria-labelledby="prices">
+          <div className="hub-heading">
+            <p className="eyebrow">Live price data</p>
+            <h2 id="prices">What does a guest post cost by niche?</h2>
+            {stats?.medianPriceCents != null && (
+              <p>
+                The median placement price across {count(stats.total)} active
+                listings is <strong>{usd(stats.medianPriceCents)}</strong>.
+                Medians by topic are below; writing is charged separately where
+                offered.
+              </p>
+            )}
+          </div>
+          <div className="directory-table-wrap">
+            <table className="directory-table">
+              <caption>
+                Placement price by topic: active listings, median and middle
+                half of prices in USD
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Topic</th>
+                  <th scope="col">Listings</th>
+                  <th scope="col">Median price</th>
+                  <th scope="col">Typical range</th>
+                </tr>
+              </thead>
+              <tbody>
+                {breakdown.byTopic.map((row) => (
+                  <tr key={row.label}>
+                    <th scope="row">{row.label}</th>
+                    <td>{count(row.count)}</td>
+                    <td>{usd(row.medianCents)}</td>
+                    <td>
+                      {usd(row.lowCents)}–{usd(row.highCents)}
+                    </td>
+                  </tr>
                 ))}
-              </ul>
-            </div>
-          ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="hub-note">
+            Typical range is the 25th to 75th percentile. Prices by DA, DR and
+            country are in the{" "}
+            <Link href="/guides/guest-post-cost/">guest post cost guide</Link>.
+          </p>
+        </section>
+      )}
+
+      <section className="hub-section" aria-labelledby="how-to-choose">
+        <div className="hub-heading">
+          <p className="eyebrow">Buyer checklist</p>
+          <h2 id="how-to-choose">How to choose a guest posting site</h2>
+          <p>Five checks to run before you add a placement to your plan.</p>
         </div>
-        <p>
-          Or <Link href="/">browse every publication in the marketplace</Link>{" "}
-          and combine filters for topic, country, language, metrics and price.
-        </p>
-      </section>
-      <section className="reference-card" aria-labelledby="evaluate">
-        <h2 id="evaluate">How to evaluate guest post sites</h2>
-        <ol>
-          {evaluation.map(([title, body]) => (
+        <ol className="hub-steps">
+          {steps.map(([title, body]) => (
             <li key={title}>
-              <strong>{title}.</strong> {body}
+              <h3>{title}</h3>
+              <p>{body}</p>
             </li>
           ))}
         </ol>
-        <p>
-          The <Link href="/how-to-buy-links/">guest-post buying guide</Link>{" "}
-          walks through each step in more detail.
+        <p className="hub-note">
+          More detail:{" "}
+          <Link href="/guides/vet-a-guest-post-site/">
+            how to vet a guest post site
+          </Link>
+          ,{" "}
+          <Link href="/guides/da-vs-dr-and-traffic/">DA vs DR and traffic</Link>{" "}
+          and the{" "}
+          <Link href="/how-to-buy-links/">guest post buying checklist</Link>.
         </p>
       </section>
-      <section
-        className="reference-tool-faq reference-information-next"
-        aria-labelledby="hub-faq"
-      >
-        <h2 id="hub-faq">Common questions about guest posting sites</h2>
-        {faq.map(([question, answer]) => (
-          <details key={question}>
-            <summary>{question}</summary>
-            <p>{answer}</p>
-          </details>
-        ))}
+
+      <section className="hub-section" aria-labelledby="faq">
+        <div className="hub-heading">
+          <p className="eyebrow">FAQ</p>
+          <h2 id="faq">Common questions about guest posting sites</h2>
+        </div>
+        <div className="hub-faq">
+          {faq.map(([question, answer], index) => (
+            <details key={question} open={index === 0}>
+              <summary>{question}</summary>
+              <p>{answer}</p>
+            </details>
+          ))}
+        </div>
       </section>
-      <DirectoryLinks />
+
+      <section className="hub-cta" aria-labelledby="hub-cta">
+        <h2 id="hub-cta">Find a site your audience already reads</h2>
+        <p>
+          Filter the full catalogue by topic, country, language, metrics and
+          price, and shortlist up to four publications to compare.
+        </p>
+        <div className="hub-actions">
+          <Link className="button button-primary" href="/">
+            Open the marketplace <ArrowRight size={16} aria-hidden="true" />
+          </Link>
+          <Link className="button button-secondary" href="/guides/">
+            Read the buying guides
+          </Link>
+        </div>
+      </section>
     </InformationShell>
   );
 }
@@ -184,14 +440,19 @@ export async function generateMetadata({
   searchParams: Promise<SearchParams>;
 }) {
   const facets = facetMetadata("/guest-posting-sites/", await searchParams);
+  const stats = await catalogueSummary("").catch(() => null);
+  const median =
+    stats?.medianPriceCents != null ? usd(stats.medianPriceCents) : null;
   return pageMetadata(
     {
-      ...baseMetadata,
+      title: stats?.total
+        ? `Guest Posting Sites: ${count(stats.total)} Publishers by Niche & Price`
+        : "Guest Posting Sites by Niche, Country and Price",
+      description: stats?.total
+        ? `Compare ${count(stats.total)} guest posting sites by niche, country, DA, DR, traffic and price${median ? ` (median ${median})` : ""}. Live listings, price data and a buyer checklist.`
+        : "Compare guest posting sites by niche, country, DA, DR, traffic and price. Live listings, price data and a buyer checklist.",
       alternates: facets.alternates,
-      robots: {
-        ...(facets.robots as object),
-        ...(baseMetadata.robots as object),
-      },
+      robots: facets.robots,
     },
     "/guest-posting-sites/",
   );

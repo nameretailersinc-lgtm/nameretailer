@@ -60,7 +60,7 @@ for (const [route, label] of [
           page
             .locator(".reference-header")
             .getByRole("link", { name: "Marketplace", exact: true }),
-        ).toHaveAttribute("href", "/");
+        ).toHaveAttribute("href", "/guest-posting-sites/");
         expect(await page.locator("body").innerText()).not.toMatch(
           /Trusted by 10,000|Ahmed R\.|Sara M\.|Usman K\.|300%|\+186%/,
         );

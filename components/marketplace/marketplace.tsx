@@ -730,7 +730,7 @@ export function Marketplace({
     <div
       className={`marketplace reference-site reference-marketplace${metricView ? "" : " marketplace-browser"}`}
     >
-      <SiteHeader active="marketplace" />
+      <SiteHeader active={pathname === "/" ? "home" : "marketplace"} />
       <main id="main" tabIndex={-1}>
         {pathname !== "/" && (
           <script

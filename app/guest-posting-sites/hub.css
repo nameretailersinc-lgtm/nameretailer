@@ -1,0 +1,362 @@
+/* Guest posting sites hub. Colours follow globals.css (light) and navigation.css (dark). */
+.hub-page {
+  --hub-surface: #fff;
+  --hub-border: #e1e7e5;
+  --hub-soft: #eef4ef;
+  --hub-ink: #172c28;
+  --hub-muted: #526370;
+  --hub-accent: #195844;
+  --hub-accent-soft: #e2efe6;
+}
+html[data-site-theme="dark"] .hub-page {
+  --hub-surface: #1b3632;
+  --hub-border: #40604f;
+  --hub-soft: #16322f;
+  --hub-ink: #e5f2ee;
+  --hub-muted: #b4cdca;
+  --hub-accent: #70dbb6;
+  --hub-accent-soft: #244b40;
+}
+
+.hub-page .hub-summary {
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-block: 8px 20px;
+  box-shadow: 0 6px 24px #0d38260d;
+}
+.hub-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 12px;
+  margin: 0 0 20px;
+}
+.hub-stats > div {
+  background: var(--hub-soft);
+  border-radius: 10px;
+  padding: 14px 16px;
+}
+.hub-stats dt {
+  color: var(--hub-muted);
+  font-size: 13px;
+}
+.hub-stats dd {
+  margin: 4px 0 0;
+  color: var(--hub-ink);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.15;
+}
+.hub-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.hub-updated,
+.hub-note {
+  color: var(--hub-muted);
+  font-size: 13px;
+  margin: 14px 0 0;
+}
+
+.hub-toc {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 0;
+  margin-bottom: 8px;
+  background: var(--background);
+  scrollbar-width: thin;
+}
+.hub-toc a {
+  flex: none;
+  padding: 7px 14px;
+  border: 1px solid var(--hub-border);
+  border-radius: 999px;
+  background: var(--hub-surface);
+  color: var(--hub-ink);
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.hub-toc a:hover,
+.hub-toc a:focus-visible {
+  border-color: var(--hub-accent);
+  color: var(--hub-accent);
+}
+
+.hub-section {
+  margin-block: 48px;
+  scroll-margin-top: 64px;
+}
+.hub-section [id] {
+  scroll-margin-top: 72px;
+}
+.hub-heading {
+  max-width: 720px;
+  margin-bottom: 20px;
+}
+.hub-heading h2 {
+  margin: 0 0 8px;
+  color: var(--hub-ink);
+  font-size: clamp(26px, 3.2vw, 34px);
+  line-height: 1.2;
+}
+.hub-heading p:not(.eyebrow) {
+  color: var(--hub-muted);
+  margin: 0;
+}
+html[data-site-theme="dark"] .hub-page .eyebrow {
+  color: var(--hub-accent);
+}
+
+.hub-niches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+.hub-niche {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  padding: 20px;
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s,
+    transform 0.15s;
+}
+.hub-niche:hover,
+.hub-niche:focus-within {
+  border-color: var(--hub-accent);
+  box-shadow: 0 8px 24px #0d382614;
+  transform: translateY(-2px);
+}
+.hub-niche-icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--hub-accent-soft);
+  color: var(--hub-accent);
+}
+.hub-niche h3 {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+}
+.hub-niche h3 a {
+  color: var(--hub-ink);
+  text-decoration: none;
+}
+/* The whole card is the link target; the heading link stays the accessible name. */
+.hub-niche h3 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+}
+.hub-niche h3 a:focus-visible {
+  outline: none;
+}
+.hub-niche:focus-within {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.hub-niche p {
+  margin: 0;
+  color: var(--hub-muted);
+  font-size: 14px;
+  flex: 1;
+}
+.hub-niche-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin: 4px 0 0;
+  padding: 12px 0 0;
+  border-top: 1px solid var(--hub-border);
+  list-style: none;
+  color: var(--hub-muted);
+  font-size: 13px;
+}
+.hub-niche-facts strong {
+  color: var(--hub-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.hub-ranges {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+.hub-range-group {
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  padding: 18px;
+}
+.hub-range-group h3 {
+  margin: 0;
+  color: var(--hub-ink);
+  font-size: 17px;
+}
+.hub-range-group > p {
+  margin: 2px 0 12px;
+  color: var(--hub-muted);
+  font-size: 13px;
+}
+.hub-range-group ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.hub-range-group a {
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--hub-accent-soft);
+  color: var(--hub-accent);
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.hub-range-group a:hover,
+.hub-range-group a:focus-visible {
+  background: var(--hub-accent);
+  color: var(--hub-surface);
+}
+
+.hub-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: hub-step;
+}
+.hub-steps li {
+  counter-increment: hub-step;
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+.hub-steps li::before {
+  content: counter(hub-step);
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: var(--hub-accent);
+  color: var(--hub-surface);
+  font-weight: 700;
+}
+.hub-steps h3 {
+  margin: 0 0 6px;
+  color: var(--hub-ink);
+  font-size: 16px;
+}
+.hub-steps p {
+  margin: 0;
+  color: var(--hub-muted);
+  font-size: 14px;
+}
+
+.hub-faq {
+  display: grid;
+  gap: 10px;
+  max-width: 860px;
+}
+.hub-faq details {
+  background: var(--hub-surface);
+  border: 1px solid var(--hub-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+}
+.hub-faq summary {
+  cursor: pointer;
+  color: var(--hub-ink);
+  font-weight: 650;
+}
+.hub-faq details[open] summary {
+  color: var(--hub-accent);
+}
+.hub-faq details p {
+  margin: 12px 0 0;
+  color: var(--hub-muted);
+}
+
+.hub-cta {
+  margin-block: 56px 24px;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #195844, #0f3d2f);
+  color: #fff;
+}
+.hub-cta h2 {
+  margin: 0 0 8px;
+  color: #fff;
+  font-size: clamp(24px, 3vw, 32px);
+}
+.hub-cta p {
+  max-width: 620px;
+  margin: 0 0 20px;
+  color: #d6ebe2;
+}
+.hub-cta .button-primary {
+  background: #fff;
+  border-color: #fff;
+  color: #195844;
+}
+.hub-cta .button-primary:hover {
+  background: #e2efe6;
+}
+.hub-cta .button-secondary {
+  background: transparent;
+  border-color: #ffffff80;
+  color: #fff;
+}
+.hub-cta .button-secondary:hover {
+  background: #ffffff1a;
+}
+
+@media (max-width: 640px) {
+  .hub-page .hub-summary {
+    padding: 16px;
+  }
+  .hub-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .hub-actions .button {
+    flex: 1 1 100%;
+  }
+  .hub-section {
+    margin-block: 36px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hub-niche {
+    transition: none;
+  }
+  .hub-niche:hover,
+  .hub-niche:focus-within {
+    transform: none;
+  }
+}

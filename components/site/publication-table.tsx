@@ -18,10 +18,15 @@ export function PublicationTable({
   return (
     <div className="directory-table-wrap">
       <table className="directory-table">
-        <caption>Active publication placement prices in USD</caption>
+        <caption>
+          Active publications with topic, supplied Domain Rating, traffic, links
+          included and placement price in USD
+        </caption>
         <thead>
           <tr>
             <th scope="col">Publication</th>
+            <th scope="col">Topic</th>
+            <th scope="col">DR</th>
             <th scope="col">Traffic</th>
             <th scope="col">Links</th>
             <th scope="col">Price (USD)</th>
@@ -48,6 +53,12 @@ export function PublicationTable({
                     </a>
                   )}
                 </th>
+                <td>{product.category || "Not provided"}</td>
+                <td>
+                  {typeof product.metrics?.dr === "number"
+                    ? product.metrics.dr
+                    : "Not provided"}
+                </td>
                 <td>
                   {typeof product.metrics?.traffic === "number"
                     ? product.metrics.traffic.toLocaleString("en-US")
