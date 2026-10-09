@@ -9,6 +9,7 @@
     "start": "next start",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
+    "check:ssr": "tsx scripts/seo/check-ssr.ts",
     "format": "prettier --write .",
     "test": "vitest run",
     "test:e2e": "playwright test",

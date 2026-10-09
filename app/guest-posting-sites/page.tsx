@@ -6,6 +6,7 @@ import { InformationShell } from "@/components/site/information-page";
 import { DirectoryLinks } from "@/components/site/directory-page";
 import { directories } from "@/lib/site/directories";
 import { directoryListings } from "@/lib/commerce/products";
+import { PublicationTable } from "@/components/site/publication-table";
 import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import {
@@ -61,6 +62,7 @@ const faq = [
 
 export default async function Page() {
   await connection();
+  const publications = await directoryListings({}, 20);
   const counts = await Promise.all(
     directories.map((directory) =>
       directoryListings(directory.filter, 0)
@@ -106,6 +108,8 @@ export default async function Page() {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
       />
       <section className="reference-information-next" aria-labelledby="niches">
+        <h2>Available guest posting publications</h2>
+        <PublicationTable products={publications.data} />
         <h2 id="niches">Guest posting sites by niche and audience</h2>
         <div className="reference-three-grid">
           {directories.map((directory, index) => (

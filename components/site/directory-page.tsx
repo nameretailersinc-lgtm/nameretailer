@@ -190,7 +190,7 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
                   <tbody>
                     {result.data.map((product) => (
                       <tr key={product.id}>
-                        <th scope="row">{host(product.domain)}</th>
+                        <th scope="row"><a href={product.domain} rel="nofollow noopener noreferrer" target="_blank">{host(product.domain)}</a></th>
                         <td>{product.category}</td>
                         <td>{product.country}</td>
                         <td>{number(product.metrics?.dr)}</td>

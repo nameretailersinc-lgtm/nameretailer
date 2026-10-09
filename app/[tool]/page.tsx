@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
-import { Suspense } from "react";
-import { Marketplace } from "@/components/marketplace/marketplace";
+import { ServerMarketplace } from "@/components/marketplace/server-marketplace";
+import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import {
   marketplaceRanges,
   marketplaceRangeBySlug,
@@ -64,24 +64,15 @@ export async function generateMetadata({
 }
 export default async function Page({
   params,
+  searchParams,
 }: {
   params: Promise<{ tool: string }>;
+  searchParams: Promise<SearchParams>;
 }) {
   const slug = (await params).tool;
   const range = marketplaceRangeBySlug(slug);
   if (range) {
-    await connection();
-    return (
-      <Suspense
-        fallback={
-          <main id="main" tabIndex={-1}>
-            Loading publications…
-          </main>
-        }
-      >
-        <Marketplace key={range.slug} range={range} />
-      </Suspense>
-    );
+    return <ServerMarketplace key={range.slug} range={range} searchParams={searchParams} />;
   }
   const directory = directoryBySlug(slug);
   if (directory) {

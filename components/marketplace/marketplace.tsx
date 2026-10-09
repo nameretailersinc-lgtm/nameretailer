@@ -39,6 +39,7 @@ import {
   rangeQuery,
   type MarketplaceRange,
 } from "@/lib/commerce/marketplace-ranges";
+import { marketplaceQuery } from "@/lib/commerce/marketplace-query";
 
 const filters = [
   "q",
@@ -527,11 +528,15 @@ export function Marketplace({
   metricView = false,
   range,
   children,
+  initialPage,
+  initialQuery,
 }: {
   metricView?: boolean;
   range?: MarketplaceRange;
   /** Server-rendered content placed after the marketplace tools. */
   children?: React.ReactNode;
+  initialPage?: ProductPage;
+  initialQuery?: string;
 }) {
   const compactViewport = useSyncExternalStore(
     subscribeToCompactViewport,
@@ -541,28 +546,14 @@ export function Marketplace({
   const searchParams = useSearchParams();
   const params = rangeQuery(searchParams.toString(), range);
   const pathname = usePathname();
-  const normalized = new URLSearchParams();
-  for (const key of filters) {
-    const value = params.get(key);
-    if (value) normalized.set(key, value.slice(0, 150));
-  }
-  const sort = sorts.some(([key]) => key === params.get("sort"))
-    ? params.get("sort")!
-    : "domain";
-  normalized.set("sort", sort);
-  const page = Math.max(
-    1,
-    Math.min(100000, Math.floor(Number(params.get("page")) || 1)),
-  );
-  normalized.set("page", String(page));
-  const pageSize = [10, 20, 50].includes(Number(params.get("pageSize")))
-    ? Number(params.get("pageSize"))
-    : metricView
-      ? 20
-      : 10;
-  normalized.set("pageSize", String(pageSize));
+  const normalized = marketplaceQuery(searchParams.toString(), range);
+  const sort = normalized.get("sort")!;
+  const page = Number(normalized.get("page"));
+  const pageSize = Number(normalized.get("pageSize"));
   const query = normalized.toString();
-  const [result, setResult] = useState<{ query: string; value: ProductPage }>();
+  const [result, setResult] = useState<{ query: string; value: ProductPage } | undefined>(
+    initialPage && initialQuery ? { query: initialQuery, value: initialPage } : undefined,
+  );
   const [facets, setFacets] = useState<ProductFacets>({
     countries: [],
     languages: [],

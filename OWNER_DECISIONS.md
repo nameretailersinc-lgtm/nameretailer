@@ -1,0 +1,13 @@
+# Owner decisions and supplied content
+
+No rankings or AI citations are guaranteed.
+
+- TODO: Confirm checkout/payment opening and provider configuration; verify actual payment in the owner's environment. Preserve existing commerce behavior.
+- TODO: Supply approved terms, privacy, cookies, refund/replacement policies and turnaround commitments. Legal stubs remain noindex; do not draft legal text.
+- TODO: Confirm legal entity/registration details and supplied address: 26 - G Hamriyah Freezone, Sharjah, United Arab Emirates. Contact: info@nameretailer.com.
+- TODO: Supply verified team, author and reviewer identities and biographies. Omit unknown schema attribution.
+- TODO: Supply evidence for customer counts, reviews, testimonials or business results. Unsupported 10,000+ claim will be removed.
+- TODO: Confirm real social-profile URLs before adding sameAs.
+- TODO: Review technical/migration articles and legacy redirects using Search Console/backlink data. No such data available locally.
+- TODO: Approve five buyer-guide scaffolds before removing DRAFT/noindex; verify cited sources at approval time.
+- TODO: Supply original independent audit issues 1–20. Attachment has ten phases but no numbered issue list; handoff must identify any provisional crosswalk.
