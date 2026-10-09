@@ -42,15 +42,11 @@ export function PublicationTable({
               <tr key={product.id}>
                 <th scope="row">
                   {path ? (
-                    <Link href={path}>{name}</Link>
-                  ) : (
-                    <a
-                      href={product.domain}
-                      rel="nofollow noopener noreferrer"
-                      target="_blank"
-                    >
+                    <Link href={path} prefetch={false}>
                       {name}
-                    </a>
+                    </Link>
+                  ) : (
+                    <span>{name}</span>
                   )}
                 </th>
                 <td>{product.category || "Not provided"}</td>

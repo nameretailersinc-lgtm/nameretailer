@@ -24,14 +24,19 @@ export function breadcrumbSchema(items: Array<[name: string, path: string]>) {
     })),
   };
 }
-/** Lists only listings with an internal profile page; third-party domains are not our entities. */
+/** Item URLs match the internal detail links shown in the marketplace. */
 export function itemListNode(
   items: ReadonlyArray<Parameters<typeof publicationPath>[0]>,
 ) {
   const listed = items.flatMap((item) => {
     const path = publicationPath(item);
     return path
-      ? [{ name: publicationHost(item.domain)!, url: canonicalOrigin + path }]
+      ? [
+          {
+            name: publicationHost(item.domain, false)!,
+            url: canonicalOrigin + path,
+          },
+        ]
       : [];
   });
   if (!listed.length) return null;

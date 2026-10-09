@@ -17,11 +17,23 @@ export const PROFILE_RULE = {
 
 type ProfileCandidate = Pick<PublicProduct, "domain" | "category" | "metrics">;
 
-/** Root-domain listings only; a URL with a path is a section, not a publication. */
-export function publicationHost(domain: string): string | null {
+/** Root domains qualify for indexing; section listings also have detail pages. */
+export function publicationHost(
+  domain: string,
+  rootOnly = true,
+): string | null {
   try {
     const url = new URL(domain);
-    if (url.pathname !== "/" || url.search || url.hash) return null;
+    if (
+      !["http:", "https:"].includes(url.protocol) ||
+      url.search ||
+      url.hash ||
+      url.username ||
+      url.password ||
+      url.port ||
+      (rootOnly && url.pathname !== "/")
+    )
+      return null;
     return url.hostname.toLowerCase().replace(/^www\./, "");
   } catch {
     return null;
@@ -52,11 +64,25 @@ export function hasPublicationProfile(product: ProfileCandidate): boolean {
  */
 export const publicationSlug = (host: string) => host.replaceAll(".", "-");
 
-/** Internal profile path, or null when the listing has no profile page. */
-export function publicationPath(product: ProfileCandidate): string | null {
-  if (!hasPublicationProfile(product)) return null;
-  return `/publication/${publicationSlug(publicationHost(product.domain)!)}/`;
+/** Detail-page availability is independent of the indexing criteria above. */
+export function publicationPath(
+  product: Pick<PublicProduct, "domain"> &
+    Partial<Pick<PublicProduct, "id" | "category" | "metrics">>,
+): string | null {
+  const host = publicationHost(product.domain, false);
+  if (!host) return null;
+  const slug = publicationSlug(host);
+  if (!validPublicationSlug(slug)) return null;
+  const path = `/publication/${slug}/`;
+  if (publicationHost(product.domain)) return path;
+  // Preserve section identity when several listings share the same host.
+  return product.id && validPublicationListingId(product.id)
+    ? `${path}${product.id}/`
+    : null;
 }
+
+export const validPublicationListingId = (value: string) =>
+  /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i.test(value);
 
 export const validPublicationSlug = (value: string) =>
   value.length <= 253 &&
@@ -65,4 +91,4 @@ export const validPublicationSlug = (value: string) =>
 
 /** Matches every domain whose slug could be this one ("-" may have been "."). */
 export const slugDomainPattern = (slug: string) =>
-  new RegExp(`^https?://(?:www\\.)?${slug.replaceAll("-", "[.-]")}$`);
+  new RegExp(`^https?://(?:www\\.)?${slug.replaceAll("-", "[.-]")}/?$`);

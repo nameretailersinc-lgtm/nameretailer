@@ -3,6 +3,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import type { SiteSection } from "@/lib/site/pages";
 import { SiteNavigation } from "./navigation";
+import { supportedTrustClaims, trustClaims } from "@/lib/config/trust";
 export function SiteBrand() {
   return (
     <Link
@@ -30,8 +31,22 @@ export function SiteBrand() {
   );
 }
 export function TrustNote() {
-  // TODO(owner): publish customer proof only when documented in OWNER_DECISIONS.md.
-  return null;
+  const claims = supportedTrustClaims(trustClaims);
+  if (!claims.length) return null;
+  return (
+    <aside className="marketplace-trust-note" aria-label="Supporting evidence">
+      {claims.map((claim) => (
+        <a
+          key={claim.evidenceUrl + claim.label}
+          href={claim.evidenceUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {claim.label}
+        </a>
+      ))}
+    </aside>
+  );
 }
 export function SiteHeader({ active }: { active?: SiteSection }) {
   return (

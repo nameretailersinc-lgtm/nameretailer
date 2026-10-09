@@ -15,7 +15,7 @@ const metrics = {
   backlinks: null,
   spamScore: 2,
 };
-it("lists only listings with internal profile pages", () => {
+it("uses internal listing URLs even when the listing is not indexable", () => {
   const schema = itemListNode([
     { domain: "https://www.example.com", category: "Business", metrics },
     { domain: "https://example.org", category: "General", metrics },
@@ -32,11 +32,21 @@ it("lists only listings with internal profile pages", () => {
       name: "example.com",
       url: "https://nameretailer.com/publication/example-com/",
     },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "example.org",
+      url: "https://nameretailer.com/publication/example-org/",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: "example.net",
+      url: "https://nameretailer.com/publication/example-net/",
+    },
   ]);
   expect(
-    itemListNode([
-      { domain: "https://example.org", category: "General", metrics },
-    ]),
+    itemListNode([{ domain: "invalid", category: "General", metrics }]),
   ).toBeNull();
 });
 it("emits supplied organization contact facts without reviews or guessed profiles", () => {

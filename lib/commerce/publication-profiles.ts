@@ -5,8 +5,11 @@ import {
   PROFILE_RULE,
   hasPublicationProfile,
   publicationHost,
+  publicationPath,
   publicationSlug,
   slugDomainPattern,
+  validPublicationSlug,
+  validPublicationListingId,
 } from "./publication-pages";
 import type { Product, PublicProduct } from "./types";
 
@@ -29,20 +32,14 @@ const publicFields = {
   updatedAt: 1,
 } as const;
 
-/** Mongo form of hasPublicationProfile(); the predicate re-checks each result. */
-async function profileFilter(): Promise<Filter<Product>> {
+/** Detail pages use the same active/committed visibility as the marketplace. */
+async function activePublicationFilter(): Promise<Filter<Product>> {
   const { imports } = await productStore();
   const committed = await imports
     .find({ status: "committed" }, { projection: { _id: 1 } })
     .toArray();
   return {
     status: "active",
-    category: { $nin: [...PROFILE_RULE.excludedCategories] },
-    domain: { $not: /^https?:\/\/[^/]+\/./ },
-    "metrics.traffic": { $gte: PROFILE_RULE.minTraffic },
-    "metrics.dr": { $gte: PROFILE_RULE.minDr },
-    "metrics.da": { $gte: PROFILE_RULE.minDa },
-    "metrics.spamScore": { $lte: PROFILE_RULE.maxSpamScore },
     $or: [
       { importId: { $exists: false } },
       { importId: { $in: committed.map((batch) => batch._id) } },
@@ -50,27 +47,52 @@ async function profileFilter(): Promise<Filter<Product>> {
   };
 }
 
+/** Mongo form of hasPublicationProfile(); the predicate re-checks each result. */
+async function profileFilter(): Promise<Filter<Product>> {
+  return {
+    ...(await activePublicationFilter()),
+    category: { $nin: [...PROFILE_RULE.excludedCategories] },
+    domain: { $not: /^https?:\/\/[^/]+\/./ },
+    "metrics.traffic": { $gte: PROFILE_RULE.minTraffic },
+    "metrics.dr": { $gte: PROFILE_RULE.minDr },
+    "metrics.da": { $gte: PROFILE_RULE.minDa },
+    "metrics.spamScore": { $lte: PROFILE_RULE.maxSpamScore },
+  };
+}
+
 /** Resolves a profile slug; a "-" in the slug may stand for "." or "-" in the host. */
 export const publicationProfile = cache(
-  async (slug: string): Promise<PublicProduct | null> => {
+  async (slug: string, listingId?: string): Promise<PublicProduct | null> => {
+    if (!validPublicationSlug(slug)) return null;
+    if (listingId !== undefined && !validPublicationListingId(listingId))
+      return null;
     const { products } = await productStore();
+    if (listingId !== undefined) {
+      const product = await products.findOne(
+        { ...(await activePublicationFilter()), id: listingId },
+        { projection: publicFields },
+      );
+      return product &&
+        publicationPath(product) === `/publication/${slug}/${listingId}/`
+        ? product
+        : null;
+    }
     const candidates = await products
       .find(
         {
           $and: [
-            await profileFilter(),
+            await activePublicationFilter(),
             { domain: { $regex: slugDomainPattern(slug) } },
           ],
         },
         { projection: publicFields },
       )
       .sort({ domain: 1 })
-      .limit(5)
       .toArray();
     return (
       candidates.find(
         (product) =>
-          hasPublicationProfile(product) &&
+          publicationHost(product.domain) !== null &&
           publicationSlug(publicationHost(product.domain) || "") === slug,
       ) || null
     );

@@ -1,0 +1,17 @@
+.country {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+.flag {
+  display: block;
+  flex-shrink: 0;
+  width: 24px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px #122d4312;
+}

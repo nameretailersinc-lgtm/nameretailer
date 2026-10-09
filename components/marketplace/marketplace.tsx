@@ -34,6 +34,9 @@ import {
   MarketplaceInquiry,
 } from "./presentation";
 import { SiteHeader, SiteFooter } from "@/components/site/chrome";
+import { HomepageHero, HomepageSections } from "@/components/site/homepage";
+import homepageStyles from "@/components/site/homepage.module.css";
+import { CountryName } from "@/components/site/country-name";
 import { BuyPlacement } from "@/components/cart/buy-placement";
 import { publicationPath } from "@/lib/commerce/publication-pages";
 import {
@@ -122,19 +125,16 @@ export function productDomain(domain: string) {
     return domain;
   }
 }
-/** Profiled listings link to their internal page; the rest open the publication. */
+/** Publication names open listing details on Name Retailer. */
 function PublicationName({ product }: { product: PublicProduct }) {
   const path = publicationPath(product);
-  if (path) return <Link href={path}>{productDomain(product.domain)}</Link>;
-  return (
-    <a href={product.domain} target="_blank" rel="noopener noreferrer nofollow">
-      {productDomain(product.domain)}
-      <span className="screen-reader-only">
-        {" "}
-        (opens publication in a new tab)
-      </span>
-    </a>
-  );
+  if (path)
+    return (
+      <Link href={path} prefetch={false}>
+        {productDomain(product.domain)}
+      </Link>
+    );
+  return <span>{productDomain(product.domain)}</span>;
 }
 function PlacementDetails({ product }: { product: PublicProduct }) {
   return (
@@ -287,7 +287,7 @@ function PublicationDialog({
         <span>{product.category || "Topic unavailable"}</span>
         <span>
           <Globe2 size={14} aria-hidden="true" />
-          {product.country || "Country unavailable"}
+          <CountryName country={product.country} />
         </span>
         <span>{product.language || "Language unavailable"}</span>
       </div>
@@ -564,6 +564,7 @@ export function Marketplace({
   const searchParams = useSearchParams();
   const params = rangeQuery(searchParams.toString(), range);
   const pathname = usePathname();
+  const homePage = pathname === "/" && !metricView && !range;
   const normalized = marketplaceQuery(searchParams.toString(), range);
   const sort = normalized.get("sort")!;
   const page = Number(normalized.get("page"));
@@ -728,7 +729,7 @@ export function Marketplace({
   );
   return (
     <div
-      className={`marketplace reference-site reference-marketplace${metricView ? "" : " marketplace-browser"}`}
+      className={`marketplace reference-site reference-marketplace${metricView ? "" : " marketplace-browser"}${homePage ? ` ${homepageStyles.page}` : ""}`}
     >
       <SiteHeader active={pathname === "/" ? "home" : "marketplace"} />
       <main id="main" tabIndex={-1}>
@@ -791,52 +792,56 @@ export function Marketplace({
             className="marketplace-discovery"
             aria-labelledby="publication-discovery-title"
           >
-            <div className="marketplace-browser-heading">
-              <div className="marketplace-discovery-copy">
-                <span className="marketplace-browser-label">
-                  <Sparkles size={13} aria-hidden="true" />
-                  Discover. Compare. Plan.
-                </span>
-                <h1 id="publication-discovery-title">
-                  {range ? (
-                    range.title
-                  ) : (
-                    <>
-                      A guest post marketplace that{" "}
-                      <span>fits your audience.</span>
-                    </>
-                  )}
-                </h1>
-                <p>
-                  Guest-post opportunities that fit your audience, topic and
-                  budget.
-                </p>
-                <ul className="marketplace-discovery-details">
-                  <li>
-                    <Globe2 size={15} aria-hidden="true" />
-                    Audience fit
-                  </li>
-                  <li>
-                    <ArrowDownUp size={15} aria-hidden="true" />
-                    DA &amp; DR metrics
-                  </li>
-                  <li>
-                    <CircleDollarSign size={15} aria-hidden="true" />
-                    Placement prices
-                  </li>
-                </ul>
+            {homePage ? (
+              <HomepageHero />
+            ) : (
+              <div className="marketplace-browser-heading">
+                <div className="marketplace-discovery-copy">
+                  <span className="marketplace-browser-label">
+                    <Sparkles size={13} aria-hidden="true" />
+                    Discover. Compare. Plan.
+                  </span>
+                  <h1 id="publication-discovery-title">
+                    {range ? (
+                      range.title
+                    ) : (
+                      <>
+                        A guest post marketplace that{" "}
+                        <span>fits your audience.</span>
+                      </>
+                    )}
+                  </h1>
+                  <p>
+                    Guest-post opportunities that fit your audience, topic and
+                    budget.
+                  </p>
+                  <ul className="marketplace-discovery-details">
+                    <li>
+                      <Globe2 size={15} aria-hidden="true" />
+                      Audience fit
+                    </li>
+                    <li>
+                      <ArrowDownUp size={15} aria-hidden="true" />
+                      DA &amp; DR metrics
+                    </li>
+                    <li>
+                      <CircleDollarSign size={15} aria-hidden="true" />
+                      Placement prices
+                    </li>
+                  </ul>
+                </div>
+                <div className="marketplace-discovery-art" aria-hidden="true">
+                  <Image
+                    src="/03_listing_browser_panel.png"
+                    width={880}
+                    height={405}
+                    sizes="(max-width: 800px) 1px, (max-width: 1100px) 34vw, 380px"
+                    alt=""
+                    preload
+                  />
+                </div>
               </div>
-              <div className="marketplace-discovery-art" aria-hidden="true">
-                <Image
-                  src="/03_listing_browser_panel.png"
-                  width={880}
-                  height={405}
-                  sizes="(max-width: 800px) 1px, (max-width: 1100px) 34vw, 380px"
-                  alt=""
-                  preload
-                />
-              </div>
-            </div>
+            )}
             <PublicationSearch
               query={query}
               facets={facets}
@@ -854,6 +859,20 @@ export function Marketplace({
               Start with the audience you want to reach, then weigh the details
               that matter to your placement.
             </p>
+          </div>
+        )}
+        {homePage && (
+          <div className={homepageStyles.catalogHeading}>
+            <div>
+              <h2>Explore Guest Post Sites</h2>
+              <p>
+                Compare publications, find your audience, and plan your next
+                placement.
+              </p>
+            </div>
+            <Link href="/guest-posting-sites/">
+              View All Sites <ArrowRight size={16} aria-hidden="true" />
+            </Link>
           </div>
         )}
         <div className="marketplace-workspace" id="inventory">
@@ -1145,13 +1164,7 @@ export function Marketplace({
                         <th scope="col">Country / language</th>
                         <th scope="col">Price (USD)</th>
                         {!metricView && <th scope="col">Action</th>}
-                        <th scope="col">
-                          {metricView ? (
-                            "Compare"
-                          ) : (
-                            <span className="screen-reader-only">Compare</span>
-                          )}
-                        </th>
+                        <th scope="col">Compare</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -1199,7 +1212,7 @@ export function Marketplace({
                           </td>
                           <td>
                             <span className="marketplace-publication-country">
-                              {product.country || "Unavailable"}
+                              <CountryName country={product.country} />
                             </span>
                             <span className="marketplace-publication-language">
                               {product.language || "Unavailable"}
@@ -1298,7 +1311,7 @@ export function Marketplace({
                           <>
                             <div>
                               <dt>Country</dt>
-                              <dd>{product.country || "Unavailable"}</dd>
+                              <dd><CountryName country={product.country} /></dd>
                             </div>
                             <div>
                               <dt>Language</dt>
@@ -1318,7 +1331,7 @@ export function Marketplace({
                           <div className="marketplace-listing-audience">
                             <Globe2 size={14} aria-hidden="true" />
                             <span>
-                              {product.country || "Country unavailable"}
+                              <CountryName country={product.country} />
                             </span>
                             <span>
                               {product.language || "Language unavailable"}
@@ -1532,7 +1545,17 @@ export function Marketplace({
             onClose={() => setSelectedProduct(null)}
           />
         )}
-        {children}
+        {homePage && <HomepageSections metrics={value?.data[0]?.metrics} />}
+        {homePage ? (
+          <details className={homepageStyles.explore}>
+            <summary>
+              Guest posting guides &amp; publication directories
+            </summary>
+            {children}
+          </details>
+        ) : (
+          children
+        )}
       </main>
       <SiteFooter />
     </div>

@@ -25,7 +25,7 @@ const strong = {
   metrics,
 };
 
-it("profiles only complete, strong root-domain listings", () => {
+it("indexes only complete, strong root-domain listings", () => {
   expect(publicationPath(strong)).toBe("/publication/example-com/");
   expect(hasPublicationProfile({ ...strong, category: "General" })).toBe(false);
   expect(
@@ -53,6 +53,37 @@ it("profiles only complete, strong root-domain listings", () => {
   expect(
     slugDomainPattern("my-site-com").test("https://evil.com/my-site-com"),
   ).toBe(false);
+});
+
+it("provides internal detail paths independently of indexing eligibility", () => {
+  expect(publicationPath({ domain: "https://0000yic.com" })).toBe(
+    "/publication/0000yic-com/",
+  );
+  expect(publicationPath({ ...strong, category: "General" })).toBe(
+    "/publication/example-com/",
+  );
+  expect(
+    publicationPath({ ...strong, metrics: { ...metrics, traffic: null } }),
+  ).toBe("/publication/example-com/");
+  expect(publicationPath({ domain: "https://artnews.com/" })).toBe(
+    "/publication/artnews-com/",
+  );
+  expect(publicationPath({ domain: "javascript:alert(1)" })).toBeNull();
+  expect(publicationPath({ domain: "invalid" })).toBeNull();
+});
+
+it("keeps section listings distinct from the host's root listing", () => {
+  const section = {
+    ...strong,
+    id: "aabbccdd-1111-2222-3333-444444444444",
+    domain: "https://example.com/blog/",
+  };
+  expect(publicationPath(section)).toBe(
+    "/publication/example-com/aabbccdd-1111-2222-3333-444444444444/",
+  );
+  expect(publicationHost(section.domain, false)).toBe("example.com");
+  expect(hasPublicationProfile(section)).toBe(false);
+  expect(publicationPath({ domain: section.domain })).toBeNull();
 });
 
 const stats = {

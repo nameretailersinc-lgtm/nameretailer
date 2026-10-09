@@ -182,17 +182,14 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
                       <tr key={product.id}>
                         <th scope="row">
                           {publicationPath(product) ? (
-                            <Link href={publicationPath(product)!}>
+                            <Link
+                              href={publicationPath(product)!}
+                              prefetch={false}
+                            >
                               {host(product.domain)}
                             </Link>
                           ) : (
-                            <a
-                              href={product.domain}
-                              rel="nofollow noopener noreferrer"
-                              target="_blank"
-                            >
-                              {host(product.domain)}
-                            </a>
+                            <span>{host(product.domain)}</span>
                           )}
                         </th>
                         <td>{product.category}</td>

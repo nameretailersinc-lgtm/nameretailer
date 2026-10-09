@@ -8,7 +8,9 @@ import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import {
   publicationPath,
   publicationHost,
+  hasPublicationProfile,
   validPublicationSlug,
+  validPublicationListingId,
 } from "@/lib/commerce/publication-pages";
 import {
   publicationProfile,
@@ -22,7 +24,7 @@ import { serializeJsonLd } from "@/lib/seo/json-ld";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 
 type Props = {
-  params: Promise<{ domain: string }>;
+  params: Promise<{ domain: string; listing?: string }>;
   searchParams: Promise<SearchParams>;
 };
 
@@ -42,13 +44,14 @@ const date = (value: string) =>
   });
 
 async function load(params: Props["params"]) {
-  const slug = (await params).domain;
+  const { domain: slug, listing } = await params;
   if (!validPublicationSlug(slug)) notFound();
+  if (listing !== undefined && !validPublicationListingId(listing)) notFound();
   await connection();
-  const product = await publicationProfile(slug);
+  const product = await publicationProfile(slug, listing);
   if (!product) notFound();
   return {
-    host: publicationHost(product.domain)!,
+    host: publicationHost(product.domain, false)!,
     path: publicationPath(product)!,
     product,
   };
@@ -69,11 +72,22 @@ function priceComparison(priceCents: number, medianCents: number | null) {
 export async function generateMetadata({ params, searchParams }: Props) {
   const { host, path, product } = await load(params);
   const { dr, traffic } = product.metrics;
+  const facts = [
+    `${usd(product.priceCents)} placement`,
+    dr !== null ? `supplied DR ${dr}` : null,
+    traffic !== null ? `about ${number(traffic)} monthly visits` : null,
+  ]
+    .filter(Boolean)
+    .join(", ");
+  const facets = facetMetadata(path, await searchParams);
   return pageMetadata(
     {
       title: `${host} Guest Post: Price, DR and Traffic`,
-      description: `Guest post on ${host} (${product.category}, ${product.country}): ${usd(product.priceCents)} placement, supplied DR ${dr} and about ${number(traffic ?? 0)} monthly visits. Compare before you order.`,
-      ...facetMetadata(path, await searchParams),
+      description: `Guest post on ${host}: ${facts}. Compare listing details before you order.`,
+      ...facets,
+      robots: hasPublicationProfile(product)
+        ? facets.robots
+        : { index: false, follow: true },
     },
     path,
   );
@@ -106,7 +120,14 @@ export default async function Page({ params }: Props) {
     ? priceComparison(product.priceCents, catalogue.medianPriceCents)
     : null;
   const url = canonicalOrigin + path;
-  const lead = `${host} is listed in the ${product.category} topic for ${product.country}, publishing in ${product.language}. A placement costs ${usd(product.priceCents)}, and the publisher supplied a Domain Rating of ${m.dr}, Domain Authority of ${m.da} and roughly ${number(m.traffic ?? 0)} estimated monthly visits.`;
+  const suppliedMetrics = [
+    m.dr !== null ? `a Domain Rating of ${m.dr}` : null,
+    m.da !== null ? `a Domain Authority of ${m.da}` : null,
+    m.traffic !== null
+      ? `roughly ${number(m.traffic)} estimated monthly visits`
+      : null,
+  ].filter(Boolean);
+  const lead = `${host} is listed${product.category ? ` in the ${product.category} topic` : ""}${product.country ? ` for ${product.country}` : ""}${product.language ? `, publishing in ${product.language}` : ""}. A placement costs ${usd(product.priceCents)}.${suppliedMetrics.length ? ` The publisher supplied ${suppliedMetrics.join(", ")}.` : ""}`;
   return (
     <InformationShell
       path={path}
@@ -142,13 +163,22 @@ export default async function Page({ params }: Props) {
           <Fact term="Placement price" value={usd(product.priceCents)} />
           <Fact term="Links included" value={product.linkType} />
           <Fact term="Turnaround" value={product.turnaround} />
-          <Fact term="Domain Rating (Ahrefs)" value={String(m.dr)} />
-          <Fact term="Domain Authority (Moz)" value={String(m.da)} />
+          <Fact
+            term="Domain Rating (Ahrefs)"
+            value={m.dr === null ? null : String(m.dr)}
+          />
+          <Fact
+            term="Domain Authority (Moz)"
+            value={m.da === null ? null : String(m.da)}
+          />
           <Fact
             term="Estimated monthly traffic"
             value={m.traffic === null ? null : number(m.traffic)}
           />
-          <Fact term="Spam score" value={String(m.spamScore)} />
+          <Fact
+            term="Spam score"
+            value={m.spamScore === null ? null : String(m.spamScore)}
+          />
           <Fact
             term="Referring domains"
             value={
