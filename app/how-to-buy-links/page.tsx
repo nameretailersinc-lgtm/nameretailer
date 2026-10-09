@@ -1,3 +1,4 @@
+import { MetricDefinitions } from "@/components/site/metric-definitions";
 import { breadcrumbSchema, serializeJsonLd } from "@/lib/seo/json-ld";
 import { EditorialByline } from "@/components/site/editorial-byline";
 import { buyingGuideEditorial } from "@/lib/site/editorial";
@@ -56,6 +57,7 @@ export default function Page() {
           />
         </section>
         <EditorialByline {...buyingGuideEditorial} />
+        <MetricDefinitions />
         <div className="reference-guide-layout">
           <article aria-label="Buying checklist">
             <div className="reference-takeaways">

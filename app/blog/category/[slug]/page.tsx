@@ -9,7 +9,8 @@ export async function generateMetadata({params, searchParams}: Props) {
   const slug = (await params).slug;
   const category = await findBlogCategory(slug);
   if (!category) notFound();
-  return indexMetadata(`/blog/category/${slug}/`, `${category.title} Articles | Name Retailer`, `Browse ${category.title} articles in the Name Retailer journal, with practical questions, sources and reading links.`, await searchParams, category.id);
+  const metadata = await indexMetadata(`/blog/category/${slug}/`, `${category.title} Articles | Name Retailer`, `Browse ${category.title} articles in the Name Retailer journal, with practical questions, sources and reading links.`, await searchParams, category.id);
+  return {...metadata, ...(slug === "technical-seo" ? {robots:{index:false,follow:true}} : {})};
 }
 export default async function Page({params, searchParams}: Props) {
   const slug = (await params).slug;

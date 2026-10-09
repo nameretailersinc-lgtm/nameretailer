@@ -1,11 +1,12 @@
+import { blogArticleIndexable } from "./indexing-policy";
 import { cache } from "react";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
 import { articlePageSizes } from "./index-options";
-export const getBlogArticle = cache(async (slug: string) => {
+export const getBlogArticle = cache(async (slug: string): Promise<CmsRecord | null> => {
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug) || slug.length > 230)
     return null;
-  return (await getDb()).collection<CmsRecord>("cms_records").findOne(
+  const record = await (await getDb()).collection<CmsRecord>("cms_records").findOne(
     {
       collection: "content",
       status: "published",
@@ -14,6 +15,7 @@ export const getBlogArticle = cache(async (slug: string) => {
     },
     { projection: { _id: 0 } },
   );
+  return record ? {...record, data:{...record.data, robotsIndex:blogArticleIndexable(record)}} : null;
 });
 export async function blogIndex(
   q: string,

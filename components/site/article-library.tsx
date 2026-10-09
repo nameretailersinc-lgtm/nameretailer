@@ -1,3 +1,4 @@
+import { BuyerGuideLinks } from "@/components/site/buyer-guide-links";
 import Link from "next/link";
 import Image from "next/image";
 import { articleArtwork } from "@/lib/blog/artwork";
@@ -43,6 +44,7 @@ export async function ArticleLibrary({
       active="guides"
       image="/01_guest_post_checklist.png"
     >
+      <BuyerGuideLinks />
       <form
         className="reference-card journal-search"
         method="get"

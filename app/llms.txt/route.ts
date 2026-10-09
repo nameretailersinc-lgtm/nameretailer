@@ -1,3 +1,4 @@
+import { technicalArticleSlugs } from "@/lib/blog/indexing-policy";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
 import { bodyText } from "@/lib/cms/content";
@@ -93,7 +94,7 @@ export async function GET() {
         "",
         "## Guides (SEO, AEO, GEO, content and measurement)",
         link("/guides/", "Guide library"),
-        ...posts.map((post) =>
+        ...posts.filter(post => !technicalArticleSlugs.has(post.slug)).map((post) =>
           link(
             `/${post.slug.replace(/^\/+|\/+$/g, "")}/`,
             post.title,

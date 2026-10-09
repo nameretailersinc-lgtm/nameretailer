@@ -1,3 +1,4 @@
+import { BuyerGuideLinks } from "@/components/site/buyer-guide-links";
 import Link from "next/link";
 import type { CatalogueStatistics } from "@/lib/commerce/catalogue-statistics";
 const usd = (value: number) => new Intl.NumberFormat("en-US", {style:"currency", currency:"USD", maximumFractionDigits:3}).format(value/100);
@@ -10,5 +11,6 @@ export function DirectorySummary({label, stats}: {label:string; stats:CatalogueS
     {stats.updatedAt && <p>Catalogue last updated: <time dateTime={stats.updatedAt}>{new Date(stats.updatedAt).toLocaleDateString("en-US",{year:"numeric",month:"long",day:"numeric",timeZone:"UTC"})}</time>.</p>}
     <p>DA, DR and traffic are owner-supplied estimates. Missing values appear as Unavailable. A catalogue update is not a metric measurement date. <Link href="/how-to-buy-links/#metrics">Understand metric sources and missing values</Link>.</p>
     <p><Link href="/guides/">Read guest-post buying guides</Link> and <Link href="/guest-posting-sites/">compare publication directories</Link>.</p>
+    <BuyerGuideLinks />
   </section>;
 }
