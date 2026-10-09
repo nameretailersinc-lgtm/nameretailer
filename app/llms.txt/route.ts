@@ -37,7 +37,16 @@ const pages: Array<[string, string, string]> = [
     "Buying checklist covering relevance, metrics and paid-link disclosure.",
   ],
   ["/faq/", "FAQ", "Answers about pricing, accounts and the marketplace."],
-  ["/about/", "About", "About Name Retailer."],
+  [
+    "/about/",
+    "About",
+    "Who runs Name Retailer, how listings are sourced, and contact details.",
+  ],
+  [
+    "/methodology/",
+    "Listing and metrics methodology",
+    "What DA, DR, traffic and spam score mean, how missing values and price statistics are handled.",
+  ],
   ["/contact/", "Contact", "Contact the Name Retailer team."],
 ];
 

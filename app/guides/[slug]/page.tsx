@@ -5,7 +5,7 @@ import { EditorialByline } from "@/components/site/editorial-byline";
 import { DirectorySummary } from "@/components/site/directory-summary";
 import { MetricDefinitions } from "@/components/site/metric-definitions";
 import { buyerGuides, costAnswer } from "@/lib/site/buyer-guides";
-import { buyerGuideUpdatedAt } from "@/lib/site/buyer-guide-revision";
+import { priceBreakdown, type PriceRow } from "@/lib/commerce/price-breakdown";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
@@ -24,24 +24,81 @@ export async function generateMetadata({ params, searchParams }: Props) {
   return pageMetadata(
     {
       title: item.title,
-      description: `${item.title}: catalogue context, comparison questions and cited sources for guest-post buyers.`,
+      description: item.description,
       ...facets,
       ...(!item.approved ? { robots: { index: false, follow: true } } : {}),
     },
     `/guides/${slug}/`,
   );
 }
+const usd = (cents: number) =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+    maximumFractionDigits: 0,
+  }).format(cents / 100);
+
+/** Live catalogue distribution; rows come from priceBreakdown(), never typed in. */
+function PriceTable({
+  caption,
+  group,
+  rows,
+}: {
+  caption: string;
+  group: string;
+  rows: PriceRow[];
+}) {
+  if (!rows.length) return null;
+  return (
+    <section className="reference-card">
+      <h2>{caption}</h2>
+      <div className="directory-table-wrap">
+        <table className="directory-table">
+          <caption>
+            {caption}: active listings, median and middle-half price range in
+            USD
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">{group}</th>
+              <th scope="col">Listings</th>
+              <th scope="col">Median price</th>
+              <th scope="col">Typical range (25th–75th percentile)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.label}>
+                <th scope="row">{row.label}</th>
+                <td>{row.count.toLocaleString("en-US")}</td>
+                <td>{usd(row.medianCents)}</td>
+                <td>
+                  {usd(row.lowCents)}–{usd(row.highCents)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  );
+}
+
 export default async function Page({ params }: Props) {
   const slug = (await params).slug;
   const guide = buyerGuides.find((item) => item.slug === slug);
   if (!guide) notFound();
-  const stats =
-    guide.slug === "guest-post-cost" ? await catalogueSummary("") : null;
+  const isCost = guide.slug === "guest-post-cost";
+  const [stats, breakdown] = isCost
+    ? await Promise.all([
+        catalogueSummary(""),
+        priceBreakdown().catch(() => null),
+      ])
+    : [null, null];
   const answer = stats ? costAnswer(stats) : guide.answer;
   const image = "/01_guest_post_checklist.png";
   const article = buyerGuideArticleNode({
     ...guide,
-    updatedAt: buyerGuideUpdatedAt,
     image,
   });
   return (
@@ -69,7 +126,7 @@ export default async function Page({ params }: Props) {
         author={guide.author}
         reviewer={guide.reviewer}
         publishedAt={guide.publishedAt}
-        updatedAt={buyerGuideUpdatedAt}
+        updatedAt={guide.updatedAt}
         hideMissingReviewer={!!guide.author}
       />
       {guide.questions.map((section) => (
@@ -111,6 +168,30 @@ export default async function Page({ params }: Props) {
       )}
       {stats && (
         <DirectorySummary label="Guest-post placement prices" stats={stats} />
+      )}
+      {breakdown && (
+        <>
+          <PriceTable
+            caption="Placement price by Domain Authority (Moz)"
+            group="DA band"
+            rows={breakdown.byDa}
+          />
+          <PriceTable
+            caption="Placement price by Domain Rating (Ahrefs)"
+            group="DR band"
+            rows={breakdown.byDr}
+          />
+          <PriceTable
+            caption="Placement price by listing country"
+            group="Country"
+            rows={breakdown.byCountry}
+          />
+          <PriceTable
+            caption="Placement price by topic"
+            group="Topic"
+            rows={breakdown.byTopic}
+          />
+        </>
       )}
       {(guide.slug === "da-vs-dr-and-traffic" ||
         guide.slug === "vet-a-guest-post-site") && <MetricDefinitions />}

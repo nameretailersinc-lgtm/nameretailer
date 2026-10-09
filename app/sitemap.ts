@@ -1,6 +1,5 @@
 import { technicalArticleSlugs } from "@/lib/blog/indexing-policy";
 import { buyerGuides } from "@/lib/site/buyer-guides";
-import { buyerGuideUpdatedAt } from "@/lib/site/buyer-guide-revision";
 import type { MetadataRoute } from "next";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
@@ -11,6 +10,10 @@ import { canonicalOrigin } from "@/lib/seo/metadata";
 import { blogCategories, categorySlug } from "@/lib/blog/categories";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
+import { marketplaceRangeBySlug } from "@/lib/commerce/marketplace-ranges";
+import { rangeCopy } from "@/lib/site/range-copy";
+import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
+import { publicationPath } from "@/lib/commerce/publication-pages";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +29,7 @@ const staticPaths = [
   "/guides/",
   "/blog/",
   "/about/",
+  "/methodology/",
   "/contact/",
   "/faq/",
   "/help-center/",
@@ -40,7 +44,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (guide.approved)
       entries.push({
         url: `${canonicalOrigin}/guides/${guide.slug}/`,
-        lastModified: buyerGuideUpdatedAt,
+        lastModified: guide.updatedAt,
       });
   const segments = [
     ...directories.map((directory) => ({
@@ -54,19 +58,40 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       directory: "",
     })),
   ];
-  const stats = await Promise.all(
-    segments.map((segment) =>
-      catalogueSummary(segment.query, segment.directory).catch(() => null),
+  const [stats, catalogue] = await Promise.all([
+    Promise.all(
+      segments.map((segment) =>
+        catalogueSummary(segment.query, segment.directory).catch(() => null),
+      ),
     ),
-  );
+    catalogueSummary("").catch(() => null),
+  ]);
   segments.forEach((segment, index) => {
     const summary = stats[index];
-    if (summary && directoryIndexable(summary.total))
+    const range = segment.directory
+      ? undefined
+      : marketplaceRangeBySlug(segment.slug);
+    const indexable = range
+      ? rangeCopy(range, summary, catalogue).indexable
+      : !!summary && directoryIndexable(summary.total);
+    if (summary && indexable)
       entries.push({
         url: `${canonicalOrigin}/${segment.slug}/`,
         ...(summary.updatedAt ? { lastModified: summary.updatedAt } : {}),
       });
   });
+  try {
+    for (const profile of await profileSitemapEntries()) {
+      const path = publicationPath(profile);
+      if (path)
+        entries.push({
+          url: canonicalOrigin + path,
+          lastModified: new Date(profile.updatedAt),
+        });
+    }
+  } catch {
+    // Database unavailable: profiles are omitted until it returns.
+  }
   try {
     for (const category of await blogCategories())
       if (categorySlug(category) !== "technical-seo")

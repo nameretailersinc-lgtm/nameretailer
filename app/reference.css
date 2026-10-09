@@ -1763,3 +1763,24 @@
 .landing-explore > .reference-card p + p {
   margin-top: 0.75rem;
 }
+.publication-facts {
+  display: grid;
+  gap: 0.75rem 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  margin-block: 1rem;
+}
+.publication-facts dt {
+  color: var(--muted-foreground);
+  font-size: 0.85rem;
+}
+.publication-facts dd {
+  font-weight: 600;
+  margin: 0;
+}
+.publication-actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}

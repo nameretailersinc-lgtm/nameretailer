@@ -9,9 +9,11 @@ import { ServerMarketplace } from "@/components/marketplace/server-marketplace";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import { LandingExplore } from "@/components/site/directory-page";
 const baseMetadata = {
-  title: { absolute: "Guest Posting Sites & Marketplace | Name Retailer" },
+  title: {
+    absolute: "Guest Post Marketplace: Compare Sites | Name Retailer",
+  },
   description:
-    "Compare guest posting sites by niche, country, DA, DR, traffic and price, then shortlist publishers and plan placements with Name Retailer.",
+    "Buy guest posts from a marketplace of active publishers. Filter by topic, country, DA, DR, traffic and USD price, shortlist sites and plan placements.",
   alternates: { canonical: "https://nameretailer.com/" },
 };
 export default function Page({

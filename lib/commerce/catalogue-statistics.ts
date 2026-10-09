@@ -1,4 +1,5 @@
-export const MIN_DIRECTORY_LISTINGS = 5;
+// Keep in step with MIN_INDEXABLE_LISTINGS in lib/site/range-copy.ts.
+export const MIN_DIRECTORY_LISTINGS = 15;
 export type CatalogueStatistics = {
   total: number;
   minPriceCents: number | null;

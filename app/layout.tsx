@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { canonicalOrigin as origin } from "@/lib/seo/origin";
 import { Inter, Source_Serif_4 } from "next/font/google";
 import { serializeJsonLd, organizationNode } from "@/lib/seo/json-ld";
+import { Analytics } from "@/components/site/analytics";
 import "./globals.css";
 import "./marketplace.css";
 import "./customer.css";
@@ -37,6 +38,15 @@ export const metadata: Metadata = {
   },
   description: siteDescription,
   alternates: { canonical: "./" },
+  // Search Console / Bing Webmaster ownership tokens; set in the deployment environment.
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+      : {}),
+    ...(process.env.BING_SITE_VERIFICATION
+      ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } }
+      : {}),
+  },
 };
 const siteSchema = organizationNode();
 
@@ -56,6 +66,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteSchema) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );

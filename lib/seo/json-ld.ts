@@ -1,4 +1,9 @@
 import { canonicalOrigin } from "./origin";
+import {
+  publicationHost,
+  publicationPath,
+} from "../commerce/publication-pages";
+import { authorByName, authorPath } from "../site/authors";
 export function serializeJsonLd(value: unknown): string {
   return JSON.stringify(value)
     .replaceAll("<", "\\u003c")
@@ -19,16 +24,26 @@ export function breadcrumbSchema(items: Array<[name: string, path: string]>) {
     })),
   };
 }
-export function itemListNode(items: ReadonlyArray<{ domain: string }>) {
+/** Lists only listings with an internal profile page; third-party domains are not our entities. */
+export function itemListNode(
+  items: ReadonlyArray<Parameters<typeof publicationPath>[0]>,
+) {
+  const listed = items.flatMap((item) => {
+    const path = publicationPath(item);
+    return path
+      ? [{ name: publicationHost(item.domain)!, url: canonicalOrigin + path }]
+      : [];
+  });
+  if (!listed.length) return null;
   return {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    numberOfItems: items.length,
-    itemListElement: items.map((item, index) => ({
+    numberOfItems: listed.length,
+    itemListElement: listed.map((item, index) => ({
       "@type": "ListItem",
       position: index + 1,
-      name: new URL(item.domain).hostname.replace(/^www\./, ""),
-      url: item.domain,
+      name: item.name,
+      url: item.url,
     })),
   };
 }
@@ -103,7 +118,11 @@ export function buyerGuideArticleNode(guide: {
     author: {
       "@type": "Person",
       name: guide.author,
-      url: `${canonicalOrigin}/about/`,
+      url:
+        canonicalOrigin +
+        (authorByName(guide.author)
+          ? authorPath(authorByName(guide.author)!)
+          : "/about/"),
     },
     publisher: { "@id": `${canonicalOrigin}/#organization` },
     datePublished: guide.publishedAt,

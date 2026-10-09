@@ -5,26 +5,39 @@ import {
   websiteNode,
   toolBreadcrumbs,
 } from "@/lib/seo/json-ld";
-it("describes only visible list items with real URLs", () => {
+const metrics = {
+  da: 70,
+  dr: 75,
+  tf: null,
+  ur: null,
+  traffic: 900_000,
+  referringDomains: null,
+  backlinks: null,
+  spamScore: 2,
+};
+it("lists only listings with internal profile pages", () => {
   const schema = itemListNode([
-    { domain: "https://www.example.com/" },
-    { domain: "https://example.org/" },
+    { domain: "https://www.example.com", category: "Business", metrics },
+    { domain: "https://example.org", category: "General", metrics },
+    {
+      domain: "https://example.net",
+      category: "Business",
+      metrics: { ...metrics, traffic: null },
+    },
   ]);
-  expect(schema.numberOfItems).toBe(2);
-  expect(schema.itemListElement).toEqual([
+  expect(schema?.itemListElement).toEqual([
     {
       "@type": "ListItem",
       position: 1,
       name: "example.com",
-      url: "https://www.example.com/",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "example.org",
-      url: "https://example.org/",
+      url: "https://nameretailer.com/publication/example-com/",
     },
   ]);
+  expect(
+    itemListNode([
+      { domain: "https://example.org", category: "General", metrics },
+    ]),
+  ).toBeNull();
 });
 it("emits supplied organization contact facts without reviews or guessed profiles", () => {
   expect(organizationNode()).toMatchObject({

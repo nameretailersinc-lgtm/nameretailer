@@ -35,6 +35,7 @@ import {
 } from "./presentation";
 import { SiteHeader, SiteFooter } from "@/components/site/chrome";
 import { BuyPlacement } from "@/components/cart/buy-placement";
+import { publicationPath } from "@/lib/commerce/publication-pages";
 import {
   rangeQuery,
   type MarketplaceRange,
@@ -120,6 +121,20 @@ export function productDomain(domain: string) {
   } catch {
     return domain;
   }
+}
+/** Profiled listings link to their internal page; the rest open the publication. */
+function PublicationName({ product }: { product: PublicProduct }) {
+  const path = publicationPath(product);
+  if (path) return <Link href={path}>{productDomain(product.domain)}</Link>;
+  return (
+    <a href={product.domain} target="_blank" rel="noopener noreferrer nofollow">
+      {productDomain(product.domain)}
+      <span className="screen-reader-only">
+        {" "}
+        (opens publication in a new tab)
+      </span>
+    </a>
+  );
 }
 function PlacementDetails({ product }: { product: PublicProduct }) {
   return (
@@ -717,22 +732,24 @@ export function Marketplace({
     >
       <SiteHeader active="marketplace" />
       <main id="main" tabIndex={-1}>
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: serializeJsonLd(
-              breadcrumbSchema([
-                ["Marketplace", "/"],
-                [
-                  range?.label ||
-                    (metricView ? "Domain Rating" : "Publications"),
-                  pathname,
-                ],
-              ]),
-            ),
-          }}
-        />
-        {value && !error && !loading && (
+        {pathname !== "/" && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: serializeJsonLd(
+                breadcrumbSchema([
+                  ["Marketplace", "/"],
+                  [
+                    range?.label ||
+                      (metricView ? "Domain Rating" : "Publications"),
+                    pathname,
+                  ],
+                ]),
+              ),
+            }}
+          />
+        )}
+        {value && !error && !loading && itemListNode(value.data) && (
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{
@@ -785,7 +802,8 @@ export function Marketplace({
                     range.title
                   ) : (
                     <>
-                      Guest posting sites that <span>fit your audience.</span>
+                      A guest post marketplace that{" "}
+                      <span>fits your audience.</span>
                     </>
                   )}
                 </h1>
@@ -1164,16 +1182,7 @@ export function Marketplace({
                                   .toUpperCase()}
                               </span>
                               <div>
-                                <a
-                                  href={product.domain}
-                                  target="_blank"
-                                  rel="noopener noreferrer nofollow"
-                                >
-                                  {productDomain(product.domain)}{" "}
-                                  <span className="screen-reader-only">
-                                    (opens publication in a new tab)
-                                  </span>
-                                </a>
+                                <PublicationName product={product} />
                                 <p>{product.category || "Topic unavailable"}</p>
                               </div>
                             </div>
@@ -1242,17 +1251,7 @@ export function Marketplace({
                         )}
                         <div>
                           <h3>
-                            <a
-                              href={product.domain}
-                              target="_blank"
-                              rel="noopener noreferrer nofollow"
-                            >
-                              {productDomain(product.domain)}
-                              <span className="screen-reader-only">
-                                {" "}
-                                (opens publication in a new tab)
-                              </span>
-                            </a>
+                            <PublicationName product={product} />
                           </h3>
                           {!metricView && (
                             <p className="marketplace-listing-topic">

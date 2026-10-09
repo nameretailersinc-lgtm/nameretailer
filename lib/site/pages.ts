@@ -18,12 +18,12 @@ export type InformationPage = {
 };
 export const informationPages = {
   "guest-post-marketplace": {
-    title: "Explore publications from more than one angle.",
+    title: "Guest post sites by DA, DR, traffic and price",
     label: "Marketplace directory",
     active: "marketplace",
     image: "/15_laptop_dashboard_illustration.png",
     description:
-      "Find the relevant marketplace view without navigating a long stack of overlapping menus. Every link below uses the same active catalog.",
+      "Go straight to the slice of the catalogue you need: Domain Authority bands, Domain Rating bands, traffic tiers and price brackets, each a live list of active publications.",
     sections: [
       {
         title: "Audience before scores",

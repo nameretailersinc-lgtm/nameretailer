@@ -2,6 +2,7 @@ import { pageMetadata } from "@/lib/seo/page-metadata";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
 import { facetMetadata } from "@/lib/seo/facets";
+import { rangeCopy } from "@/lib/site/range-copy";
 import { publicProductPage } from "@/lib/commerce/public-page";
 import {
   marketplaceQuery,
@@ -55,17 +56,25 @@ export async function generateMetadata({
   if (range) {
     await connection();
     const search = await searchParams;
-    const data = await publicProductPage(
-      marketplaceQuery(searchQuery(search), range).toString(),
-    );
+    const [data, stats, catalogue] = await Promise.all([
+      publicProductPage(
+        marketplaceQuery(searchQuery(search), range).toString(),
+      ),
+      catalogueSummary(new URLSearchParams(range.bounds).toString()).catch(
+        () => null,
+      ),
+      catalogueSummary("").catch(() => null),
+    ]);
+    const copy = rangeCopy(range, stats, catalogue);
     return pageMetadata(
       {
         ...facetMetadata(`/${range.slug}/`, search, data.data.length > 0),
-        ...(!directoryIndexable(data.total)
-          ? { robots: { index: false, follow: true } }
-          : {}),
-        title: range.title + (data.page > 1 ? ` — Page ${data.page}` : ""),
-        description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.${data.page > 1 ? ` Page ${data.page}.` : ""}`,
+        ...(!copy.indexable ? { robots: { index: false, follow: true } } : {}),
+        title:
+          `${range.label} Guest Post Sites: Prices & Metrics` +
+          (data.page > 1 ? ` — Page ${data.page}` : ""),
+        description:
+          copy.description + (data.page > 1 ? ` Page ${data.page}.` : ""),
       },
       `/${range.slug}/`,
     );

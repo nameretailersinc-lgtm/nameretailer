@@ -5,7 +5,7 @@ import type { Metadata } from "next";
 import { InformationPageView } from "@/components/site/information-page";
 import { informationPages } from "@/lib/site/pages";
 const baseMetadata: Metadata = {
-  title: "Guest Post Marketplace Directory by DA, DR and Price",
+  title: "Guest Post Sites by DA, DR, Traffic and Price",
   description: informationPages["guest-post-marketplace"].description,
 };
 export default function Page() {

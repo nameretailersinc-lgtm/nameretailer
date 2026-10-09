@@ -9,6 +9,7 @@ import {
 import type { MarketplaceRange } from "@/lib/commerce/marketplace-ranges";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { DirectorySummary } from "@/components/site/directory-summary";
+import { rangeCopy } from "@/lib/site/range-copy";
 import { websiteNode, serializeJsonLd } from "@/lib/seo/json-ld";
 export async function ServerMarketplace({
   searchParams,
@@ -25,9 +26,13 @@ export async function ServerMarketplace({
   const query = marketplaceQuery(searchQuery(await searchParams), range);
   // Fresh request-time inventory, with the existing active/committed visibility rules.
   const initialPage = await publicProductPage(query.toString());
-  const stats = range
-    ? await catalogueSummary(new URLSearchParams(range.bounds).toString())
-    : null;
+  const [stats, catalogue] = range
+    ? await Promise.all([
+        catalogueSummary(new URLSearchParams(range.bounds).toString()),
+        catalogueSummary("").catch(() => null),
+      ])
+    : [null, null];
+  const copy = range ? rangeCopy(range, stats, catalogue) : null;
   return (
     <Marketplace
       range={range}
@@ -40,6 +45,14 @@ export async function ServerMarketplace({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteNode()) }}
         />
+      )}
+      {copy && (
+        <section className="reference-card" aria-label={copy.heading}>
+          <h2>{copy.heading}</h2>
+          {copy.paragraphs.map((text) => (
+            <p key={text}>{text}</p>
+          ))}
+        </section>
       )}
       {stats && range && <DirectorySummary label={range.label} stats={stats} />}
       {children}

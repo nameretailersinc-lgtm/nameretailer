@@ -7,6 +7,7 @@ import { canonicalOrigin } from "@/lib/seo/metadata";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { DirectorySummary } from "./directory-summary";
 import { itemListNode } from "@/lib/seo/json-ld";
+import { publicationPath } from "@/lib/commerce/publication-pages";
 import {
   faqPageNode,
   jsonLdGraph,
@@ -126,10 +127,8 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
       description: directory.metaDescription,
       isPartOf: { "@id": `${canonicalOrigin}/#website` },
       publisher: { "@id": `${canonicalOrigin}/#organization` },
-      ...(result?.data.length
-        ? {
-            mainEntity: itemListNode(result.data),
-          }
+      ...(result && itemListNode(result.data)
+        ? { mainEntity: itemListNode(result.data) }
         : {}),
     },
     faqPageNode(directory.faq),
@@ -182,13 +181,19 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
                     {result.data.map((product) => (
                       <tr key={product.id}>
                         <th scope="row">
-                          <a
-                            href={product.domain}
-                            rel="nofollow noopener noreferrer"
-                            target="_blank"
-                          >
-                            {host(product.domain)}
-                          </a>
+                          {publicationPath(product) ? (
+                            <Link href={publicationPath(product)!}>
+                              {host(product.domain)}
+                            </Link>
+                          ) : (
+                            <a
+                              href={product.domain}
+                              rel="nofollow noopener noreferrer"
+                              target="_blank"
+                            >
+                              {host(product.domain)}
+                            </a>
+                          )}
                         </th>
                         <td>{product.category}</td>
                         <td>{product.country}</td>

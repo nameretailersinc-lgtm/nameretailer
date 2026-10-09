@@ -228,6 +228,7 @@ export async function directoryListings(
               language: 1,
               priceCents: 1,
               metrics: 1,
+              linkType: 1,
             },
           })
           .sort({ "metrics.dr": -1, id: 1 })

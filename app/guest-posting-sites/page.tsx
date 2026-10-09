@@ -82,7 +82,9 @@ export default async function Page() {
       name: "Guest posting sites by niche, location and price",
       isPartOf: { "@id": `${canonicalOrigin}/#website` },
       publisher: { "@id": `${canonicalOrigin}/#organization` },
-      mainEntity: itemListNode(publications.data),
+      ...(itemListNode(publications.data)
+        ? { mainEntity: itemListNode(publications.data) }
+        : {}),
     },
     faqPageNode(faq),
   );

@@ -17,7 +17,6 @@ import {
 import { buildSeoMetadata } from "@/lib/seo/metadata";
 import {
   completeArticleSchema,
-  faqSchema,
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
 export const dynamic = "force-dynamic";
@@ -72,7 +71,8 @@ export default async function Page({
     context.author || undefined,
   );
   // TODO(owner): without verified authorship, omit Article markup rather than fabricate attribution.
-  const schemas = [schema, faqSchema(article)].filter(Boolean);
+  // FAQ rich results are limited to authoritative government and health sites; the visible FAQ stays.
+  const schemas = [schema].filter(Boolean);
   const headings: Array<{ id: string; label: string }> = [];
   const html = sanitizeBody(String(article.data.body || "")).replace(
     /<h2>(.*?)<\/h2>/g,
