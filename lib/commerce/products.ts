@@ -191,8 +191,9 @@ export async function listProducts(params: URLSearchParams, admin = false) {
       .sort(options.sort)
       .skip((options.page - 1) * options.pageSize)
       .limit(options.pageSize)
+      .maxTimeMS(15000)
       .toArray(),
-    products.countDocuments(filter),
+    products.countDocuments(filter, { maxTimeMS: 15000 }),
   ]);
   return { data, total, page: options.page, pageSize: options.pageSize };
 }
@@ -283,37 +284,42 @@ export async function publicProductStatistics(
       prices: Array<{ values: number[] }>;
       countries: Array<{ _id: string; count: number }>;
       topics: Array<{ _id: string; count: number }>;
-    }>([
-      { $match: filter },
-      {
-        $facet: {
-          summary: [
-            {
-              $group: {
-                _id: null,
-                total: { $sum: 1 },
-                min: { $min: "$priceCents" },
-                max: { $max: "$priceCents" },
-                updatedAt: { $max: "$updatedAt" },
+    }>(
+      [
+        { $match: filter },
+        {
+          $facet: {
+            summary: [
+              {
+                $group: {
+                  _id: null,
+                  total: { $sum: 1 },
+                  min: { $min: "$priceCents" },
+                  max: { $max: "$priceCents" },
+                  updatedAt: { $max: "$updatedAt" },
+                },
               },
-            },
-          ],
-          prices: [{ $group: { _id: null, values: { $push: "$priceCents" } } }],
-          countries: [
-            { $match: { country: { $nin: ["", null] } } },
-            { $group: { _id: "$country", count: { $sum: 1 } } },
-            { $sort: { count: -1, _id: 1 } },
-            { $limit: 3 },
-          ],
-          topics: [
-            { $match: { category: { $nin: ["", null] } } },
-            { $group: { _id: "$category", count: { $sum: 1 } } },
-            { $sort: { count: -1, _id: 1 } },
-            { $limit: 3 },
-          ],
+            ],
+            prices: [
+              { $group: { _id: null, values: { $push: "$priceCents" } } },
+            ],
+            countries: [
+              { $match: { country: { $nin: ["", null] } } },
+              { $group: { _id: "$country", count: { $sum: 1 } } },
+              { $sort: { count: -1, _id: 1 } },
+              { $limit: 3 },
+            ],
+            topics: [
+              { $match: { category: { $nin: ["", null] } } },
+              { $group: { _id: "$category", count: { $sum: 1 } } },
+              { $sort: { count: -1, _id: 1 } },
+              { $limit: 3 },
+            ],
+          },
         },
-      },
-    ])
+      ],
+      { maxTimeMS: 15000 },
+    )
     .toArray();
   const result = rows[0];
   const summary = result?.summary[0];

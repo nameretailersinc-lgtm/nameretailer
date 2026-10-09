@@ -15,6 +15,7 @@ if (!/^\d{4,5}$/.test(port)) throw new Error("Use a valid test port.");
 const env = {
   ...process.env,
   NODE_ENV: "production",
+  PUBLIC_CACHE_DISABLED: "1",
   MONGODB_DB: fixtures.database,
   MONGODB_DNS_SERVERS: process.env.MONGODB_DNS_SERVERS || "1.1.1.1,8.8.8.8",
   NEXTAUTH_URL: `http://localhost:${port}`,
