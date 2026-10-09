@@ -69,7 +69,7 @@ const features = [
     130,
     "Compare publications",
     "Shortlist up to four sites and consider the whole picture.",
-    "/products/#shortlist",
+    "/#shortlist",
   ],
   [
     "10_icon_local_seo.png",
@@ -77,7 +77,7 @@ const features = [
     130,
     "Explore audiences",
     "Look for publications that match your geography and language.",
-    "/products/#inventory",
+    "/#inventory",
   ],
   [
     "11_icon_seo_audit.png",

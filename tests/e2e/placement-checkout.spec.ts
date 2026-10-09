@@ -256,7 +256,7 @@ test.describe("placement brief, private uploads and checkout drafts", () => {
       await b.dispose();
     }
   });
-  test("Buy now opens a real modal, writing package reaches cart and billing draft survives reload", async ({
+  test("Add to plan opens a real modal, writing package reaches cart and billing draft survives reload", async ({
     page,
   }) => {
     const api = await freshBuyer();

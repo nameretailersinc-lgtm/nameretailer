@@ -218,7 +218,7 @@ export function SiteNavigation({
             </li>
             <li>
               <Zap size={18} aria-hidden="true" />
-              Instant access
+              Searchable catalogue
             </li>
             <li>
               <Star size={18} aria-hidden="true" />

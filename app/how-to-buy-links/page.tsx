@@ -188,7 +188,7 @@ export default function Page() {
                 <a href="https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links">
                   Google’s guidance on qualifying outbound links
                 </a>
-                . Final wording requires editorial review before publication.
+                .
               </p>
             </section>
             <section className="reference-guide-section" id="scope">

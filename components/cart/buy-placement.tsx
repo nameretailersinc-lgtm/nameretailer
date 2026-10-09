@@ -1,4 +1,5 @@
 "use client";
+import { placementActionLabel } from "@/lib/config/features";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
@@ -166,7 +167,7 @@ export function BuyPlacement({ productId }: { productId: string }) {
         className="button button-primary placement-buy"
         onClick={() => setOpen(true)}
       >
-        <ShoppingCart size={15} aria-hidden="true" /> Buy now
+        <ShoppingCart size={15} aria-hidden="true" /> {placementActionLabel}
       </button>
       {open &&
         createPortal(

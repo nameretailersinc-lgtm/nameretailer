@@ -169,7 +169,7 @@ export const informationPages = {
       },
       {
         title: "03 · Prepare and save",
-        body: "Click Buy now to inspect the current placement and writing options. Sign in, add your destination URL and keyword, then provide an article brief or your own article text/file. The server recalculates prices and flags changed or unavailable products.",
+        body: "Click Add to plan to inspect the current placement and writing options. Sign in, add your destination URL and keyword, then provide an article brief or your own article text/file. The server recalculates prices and flags changed or unavailable products.",
       },
       {
         title: "04 · Review before ordering",
@@ -449,6 +449,14 @@ export const commonQuestions = [
   [
     "What is the difference between a guest post and a link insertion?",
     "A guest post places a new article on a publication. A link insertion adds a link to an existing article. Confirm which placement format the publisher offers; a listing does not establish that both are available.",
+  ],
+  [
+    "What is the difference between DA and DR?",
+    "DA is Moz’s Domain Authority and DR is Ahrefs’ Domain Rating; they are different scores from different providers and are not interchangeable. Compare each within its own system and alongside topic relevance and the publication’s actual content.",
+  ],
+  [
+    "How can I check whether a guest-post site has real traffic?",
+    "Treat supplied traffic as an estimate and ask for the provider and measurement date. Check the site’s recent articles and audience fit, and compare the figure in an analytics or SEO tool you trust. A missing value means unavailable, not zero.",
   ],
   [
     "How should paid links be disclosed?",
