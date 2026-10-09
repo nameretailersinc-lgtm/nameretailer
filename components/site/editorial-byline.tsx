@@ -33,12 +33,14 @@ export function EditorialByline({
       )}
       {validDate(publishedAt) && (
         <span>
-          Published: <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
+          Published:{" "}
+          <time dateTime={publishedAt}>{formatDate(publishedAt)}</time>
         </span>
       )}
       {validDate(updatedAt) && (
         <span>
-          Last updated: <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>
+          Last updated:{" "}
+          <time dateTime={updatedAt}>{formatDate(updatedAt)}</time>
         </span>
       )}
     </div>
