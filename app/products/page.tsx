@@ -1,12 +1,16 @@
 import { Suspense } from "react";
 import type { Metadata } from "next";
+import { connection } from "next/server";
 import { Marketplace } from "@/components/marketplace/marketplace";
 export const metadata: Metadata = {
-  title: "Guest-Post Marketplace: Publisher Listings and Prices",
+  title: "Guest Post Marketplace and Prices",
   description:
-    "Browse guest-post publisher listings by topic, location, language, placement price and supplied metrics, then plan your placements and content with Name Retailer.",
+    "Browse guest-post publisher listings by topic, location, language, price and metrics, then plan your placements with Name Retailer.",
 };
-export default function ProductsPage() {
+// Render on the server per request so headings and links are in the HTML,
+// instead of bailing out to client-only rendering for useSearchParams.
+export default async function ProductsPage() {
+  await connection();
   return (
     <Suspense
       fallback={

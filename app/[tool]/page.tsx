@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { connection } from "next/server";
 import { Suspense } from "react";
 import { Marketplace } from "@/components/marketplace/marketplace";
 import {
@@ -55,7 +56,8 @@ export default async function Page({
 }) {
   const slug = (await params).tool;
   const range = marketplaceRangeBySlug(slug);
-  if (range)
+  if (range) {
+    await connection();
     return (
       <Suspense
         fallback={
@@ -67,6 +69,7 @@ export default async function Page({
         <Marketplace key={range.slug} range={range} />
       </Suspense>
     );
+  }
   const tool = toolBySlug(slug);
   if (!tool) notFound();
   return (
