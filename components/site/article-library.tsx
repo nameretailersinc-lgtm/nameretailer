@@ -4,6 +4,7 @@ import { articleArtwork } from "@/lib/blog/artwork";
 import { ArrowRight, BookOpen } from "lucide-react";
 import { InformationShell } from "./information-page";
 import { blogIndex } from "@/lib/blog/queries";
+import { categorySlug } from "@/lib/blog/categories";
 import {
   articleIndexHref,
   articleIndexOptions,
@@ -14,9 +15,11 @@ import {
 export async function ArticleLibrary({
   path,
   searchParams,
+  categoryTitle,
 }: {
-  path: "/guides/" | "/blog/";
+  path: string;
   searchParams: Promise<ArticleSearchParams>;
+  categoryTitle?: string;
 }) {
   const guides = path === "/guides/";
   const options = articleIndexOptions(await searchParams, guides ? 24 : 12);
@@ -27,12 +30,12 @@ export async function ArticleLibrary({
   return (
     <InformationShell
       title={
-        guides
+        categoryTitle ? `${categoryTitle} articles` : guides
           ? "Practical guides for your next move."
           : "Ideas worth putting into practice."
       }
       label={
-        guides ? "The Name Retailer guide library" : "The Name Retailer journal"
+        categoryTitle || (guides ? "The Name Retailer guide library" : "The Name Retailer journal")
       }
       description="Explore our SEO, AEO, GEO, content, marketplace and measurement articles. Find clear answers, worked examples and practical checklists—all in one library."
       active="guides"
@@ -94,7 +97,7 @@ export async function ArticleLibrary({
       {result.categories.length > 0 && (
         <nav className="journal-topic-links" aria-label="Article topics">
           <Link
-            href={articleIndexHref(path, { ...options, q: "", category: "" })}
+            href="/blog/"
             aria-current={!category && !q ? "page" : undefined}
           >
             All topics
@@ -102,11 +105,7 @@ export async function ArticleLibrary({
           {result.categories.map((topic) => (
             <Link
               key={topic.id}
-              href={articleIndexHref(path, {
-                ...options,
-                q: "",
-                category: topic.id,
-              })}
+              href={`/blog/category/${categorySlug(topic)}/`}
               aria-current={category === topic.id ? "page" : undefined}
             >
               {topic.title}

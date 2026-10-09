@@ -7,7 +7,7 @@ export function SiteBrand({ preload = false }: { preload?: boolean }) {
   return (
     <Link
       className="marketplace-brand"
-      href="/home/"
+      href="/"
       aria-label="Name Retailer home"
     >
       <span className="marketplace-logo-mark" aria-hidden="true">

@@ -1,6 +1,20 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { randomBytes } from "node:crypto";
-export function proxy(request: NextRequest) {
+import { findBlogCategory, categorySlug } from "@/lib/blog/categories";
+export async function proxy(request: NextRequest) {
+  if (request.nextUrl.pathname.startsWith("/blog") || request.nextUrl.pathname.startsWith("/guides")) {
+    const value = request.nextUrl.searchParams.get("category");
+    if (value) {
+      const category = await findBlogCategory(value);
+      if (category) {
+        const target = request.nextUrl.clone();
+        target.pathname = `/blog/category/${categorySlug(category)}/`;
+        target.searchParams.delete("category");
+        return NextResponse.redirect(target, 301);
+      }
+    }
+    return NextResponse.next();
+  }
   const nonce = randomBytes(16).toString("base64");
   const dev = process.env.NODE_ENV !== "production";
   const csp = [
@@ -37,6 +51,8 @@ export function proxy(request: NextRequest) {
 // their cached HTML cannot contain a fresh per-request nonce.
 export const config = {
   matcher: [
+    "/blog/:path*",
+    "/guides/:path*",
     "/admin/:path*",
     "/design-system/:path*",
     "/my-account/:path*",

@@ -5,12 +5,12 @@ import { marketplaceRanges } from "@/lib/commerce/marketplace-ranges";
 import { tools } from "@/lib/tools/catalog";
 import { directories } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
+import { blogCategories, categorySlug } from "@/lib/blog/categories";
 
 export const dynamic = "force-dynamic";
 
 const staticPaths = [
   "/",
-  "/home/",
   "/guest-posting-sites/",
   "/guest-post-marketplace/",
   "/guest-post-by-dr/",
@@ -24,8 +24,6 @@ const staticPaths = [
   "/contact/",
   "/faq/",
   "/help-center/",
-  "/policies/",
-  "/site-map/",
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -36,6 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...tools.map((tool) => `/${tool.slug}/`),
   ].map((path) => ({ url: canonicalOrigin + path }));
   try {
+    for (const category of await blogCategories()) entries.push({url: `${canonicalOrigin}/blog/category/${categorySlug(category)}/`});
     const posts = await (
       await getDb()
     )

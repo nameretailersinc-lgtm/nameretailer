@@ -275,7 +275,7 @@ export function SiteNavigation({
         <nav className="site-primary-nav" aria-label="Site navigation">
           <Link
             className="site-nav-link"
-            href="/home/"
+            href="/"
             aria-current={active === "home" ? "page" : undefined}
           >
             <House size={20} aria-hidden="true" />

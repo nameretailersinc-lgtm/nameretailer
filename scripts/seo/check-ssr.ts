@@ -4,7 +4,7 @@ import { directories } from "../../lib/site/directories";
 import { withProductionServer, pageHtml, visibleHtml } from "./server";
 
 await withProductionServer(async base => {
-  const paths = ["/", "/products/", "/guest-posting-sites/", "/guest-post-by-dr/", ...marketplaceRanges.map(range => `/${range.slug}/`), ...directories.map(directory => `/${directory.slug}/`)];
+  const paths = ["/", "/guest-posting-sites/", "/guest-post-by-dr/", ...marketplaceRanges.map(range => `/${range.slug}/`), ...directories.map(directory => `/${directory.slug}/`)];
   for (const path of paths) {
     const html = visibleHtml(await pageHtml(base, path));
     assert(!/Loading publications|Loading marketplace/.test(html), `${path}: loading placeholder in server HTML`);

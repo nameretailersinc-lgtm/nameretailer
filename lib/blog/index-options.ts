@@ -22,13 +22,13 @@ export function articleIndexOptions(
   return { q, category, page, pageSize };
 }
 export function articleIndexHref(
-  path: "/guides/" | "/blog/",
+  path: string,
   options: ReturnType<typeof articleIndexOptions>,
   page = 1,
 ) {
   const query = new URLSearchParams({
     ...(options.q ? { q: options.q } : {}),
-    ...(options.category ? { category: options.category } : {}),
+    ...(options.category && !path.startsWith("/blog/category/") ? { category: options.category } : {}),
     pageSize: String(options.pageSize),
     page: String(page),
   });

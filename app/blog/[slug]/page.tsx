@@ -82,7 +82,7 @@ export default async function Page({
     {
       "@context": "https://schema.org",
       ...breadcrumbSchema([
-        ["Home", "/home/"],
+        ["Home", "/"],
         ["Guides", "/guides/"],
         [article.title, `/${article.slug}/`],
       ]),

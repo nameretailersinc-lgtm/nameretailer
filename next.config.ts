@@ -1,10 +1,14 @@
 import type { NextConfig } from "next";
+import { legacyRedirects } from "./lib/seo/redirect-map";
 const config: NextConfig = {
   distDir: process.env.NEXT_BUILD_DIR || ".next",
   output: "standalone",
   trailingSlash: true,
   poweredByHeader: false,
   images: { formats: ["image/avif", "image/webp"] },
+  async redirects() {
+    return legacyRedirects.map(({source, destination}) => ({source, destination, statusCode: 301 as const}));
+  },
   outputFileTracingExcludes: {
     "/*": [
       "./.env",

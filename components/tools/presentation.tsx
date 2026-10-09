@@ -124,7 +124,7 @@ export function ToolHero({ tool }: { tool: Tool }) {
   return (
     <>
       <nav className="tools-breadcrumbs" aria-label="Breadcrumb">
-        <Link href="/home/">Home</Link>
+        <Link href="/">Home</Link>
         <ChevronRight size={13} aria-hidden="true" />
         <Link href="/seo-tools/">Tools</Link>
         <ChevronRight size={13} aria-hidden="true" />

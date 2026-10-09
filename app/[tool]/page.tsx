@@ -1,3 +1,6 @@
+import { facetMetadata } from "@/lib/seo/facets";
+import { publicProductPage } from "@/lib/commerce/public-page";
+import { marketplaceQuery, searchQuery } from "@/lib/commerce/marketplace-query";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
 import { ServerMarketplace } from "@/components/marketplace/server-marketplace";
@@ -36,23 +39,28 @@ export function generateStaticParams() {
 }
 export async function generateMetadata({
   params,
+  searchParams,
 }: {
   params: Promise<{ tool: string }>;
+  searchParams: Promise<SearchParams>;
 }) {
   const slug = (await params).tool;
   const range = marketplaceRangeBySlug(slug);
-  if (range)
+  if (range) {
+    const search = await searchParams;
+    const data = await publicProductPage(marketplaceQuery(searchQuery(search), range).toString());
     return {
+      ...facetMetadata(`/${range.slug}/`, search, data.data.length > 0),
       title: range.title,
       description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.`,
-      alternates: { canonical: `https://nameretailer.com/${range.slug}/` },
     };
+  }
   const directory = directoryBySlug(slug);
   if (directory)
     return {
+      ...facetMetadata(`/${directory.slug}/`, await searchParams),
       title: directory.metaTitle,
       description: directory.metaDescription,
-      alternates: { canonical: `https://nameretailer.com/${directory.slug}/` },
     };
   const tool = toolBySlug(slug);
   if (!tool) notFound();

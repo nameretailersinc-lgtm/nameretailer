@@ -39,7 +39,7 @@ export function InformationShell({
       <SiteHeader active={active} />
       <main id="main" className="reference-container" tabIndex={-1}>
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/home/">Home</Link>
+          <Link href="/">Home</Link>
           <span aria-hidden="true">›</span>
           {parent && (
             <>

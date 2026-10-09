@@ -28,7 +28,7 @@ export default function Page() {
           __html: serializeJsonLd(
             jsonLdGraph(
               breadcrumbSchema([
-                ["Home", "/home/"],
+                ["Home", "/"],
                 ["Free tools", "/seo-tools/"],
                 [tool.title, `/${tool.slug}/`],
               ]),

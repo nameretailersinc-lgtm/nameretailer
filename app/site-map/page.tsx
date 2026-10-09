@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { InformationShell } from "@/components/site/information-page";
 export const metadata = {
+  robots: { index: false, follow: true },
   title: "Name Retailer Site Map: All Pages and Resources",
   description:
     "Find the rebuild's working marketplace, resource, company, support and account destinations.",

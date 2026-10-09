@@ -12,7 +12,7 @@ import {
 export function MarketplaceBrand() {
   return (
     <Link
-      href="/home/"
+      href="/"
       className="marketplace-brand"
       aria-label="Name Retailer home"
     >
