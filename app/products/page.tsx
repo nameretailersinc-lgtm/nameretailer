@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import type { Metadata } from "next";
 import { connection } from "next/server";
 import { Marketplace } from "@/components/marketplace/marketplace";
+import { LandingExplore } from "@/components/site/directory-page";
 export const metadata: Metadata = {
   title: "Guest Post Marketplace and Prices",
   description:
@@ -20,7 +21,9 @@ export default async function ProductsPage() {
         </main>
       }
     >
-      <Marketplace />
+      <Marketplace>
+        <LandingExplore />
+      </Marketplace>
     </Suspense>
   );
 }

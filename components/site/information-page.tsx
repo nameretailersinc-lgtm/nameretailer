@@ -19,6 +19,7 @@ export function InformationShell({
   imageDimensions,
   imageAlt = "",
   className = "",
+  parent,
   children,
 }: {
   title: string;
@@ -29,6 +30,8 @@ export function InformationShell({
   imageDimensions?: { width: number; height: number };
   imageAlt?: string;
   className?: string;
+  /** Optional intermediate breadcrumb: [label, href]. */
+  parent?: [string, string];
   children: React.ReactNode;
 }) {
   return (
@@ -38,6 +41,12 @@ export function InformationShell({
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/home/">Home</Link>
           <span aria-hidden="true">›</span>
+          {parent && (
+            <>
+              <Link href={parent[1]}>{parent[0]}</Link>
+              <span aria-hidden="true">›</span>
+            </>
+          )}
           <span aria-current="page">{label}</span>
         </nav>
         <section className="reference-page-hero">

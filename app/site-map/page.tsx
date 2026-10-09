@@ -11,6 +11,18 @@ const groups = [
     [
       ["Home", "/"],
       ["Publications", "/products/"],
+      ["Guest posting sites", "/guest-posting-sites/"],
+      ["Technology guest posting sites", "/technology-guest-posting-sites/"],
+      ["SaaS guest posting sites", "/saas-guest-posting-sites/"],
+      ["Guest posting sites under $50", "/guest-posting-sites-under-50/"],
+      ["Guest posting sites in the USA", "/guest-posting-sites-usa/"],
+      ["Marketing guest posting sites", "/marketing-guest-posting-sites/"],
+      ["Business guest posting sites", "/business-guest-posting-sites/"],
+      ["Health guest posting sites", "/health-guest-posting-sites/"],
+      [
+        "Travel and lifestyle guest posting sites",
+        "/travel-lifestyle-guest-posting-sites/",
+      ],
       ["Marketplace views", "/guest-post-marketplace/"],
       ["Domain Rating", "/guest-post-by-dr/"],
       ["Services", "/services/"],

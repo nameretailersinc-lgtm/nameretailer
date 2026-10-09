@@ -1,16 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import {
-  ArrowUpRight,
-  BookOpen,
-  CheckCheck,
-  FileText,
-  TriangleAlert,
-} from "lucide-react";
+import { ArrowUpRight, BookOpen, CheckCheck, FileText } from "lucide-react";
 import { SiteFooter, SiteHeader } from "@/components/site/chrome";
 export const metadata: Metadata = {
-  title: "How to buy guest posts · Draft guide",
+  title: "How to Evaluate and Buy Guest Post Sites",
   description:
     "A buying checklist for guest posts and sponsored links: audience relevance, supplied metrics, content scope and paid-link disclosure, explained step by step.",
 };
@@ -35,7 +29,7 @@ export default function Page() {
         <section className="reference-page-hero">
           <div>
             <p className="reference-pill">Buyer’s guide</p>
-            <h1>How to buy guest posts with a clear quality checklist</h1>
+            <h1>How to evaluate and buy guest post sites</h1>
             <p className="reference-lead">
               Define the audience and purpose first. Review the publication’s
               content, metric sources, placement scope and disclosure before you
@@ -43,8 +37,7 @@ export default function Page() {
             </p>
             <p className="reference-article-meta">
               <FileText size={16} aria-hidden="true" />
-              <span>Draft guide</span>
-              <span>Owner and editorial review pending</span>
+              <span>Buyer’s checklist</span>
             </p>
           </div>
           <Image
@@ -55,13 +48,8 @@ export default function Page() {
             alt=""
           />
         </section>
-        <p className="reference-draft-notice">
-          <TriangleAlert size={19} aria-hidden="true" />
-          This is a draft for design and editorial review, not a published
-          buying policy. No order can be placed in this preview.
-        </p>
         <div className="reference-guide-layout">
-          <article aria-label="Draft buying checklist">
+          <article aria-label="Buying checklist">
             <div className="reference-takeaways">
               <CheckCheck size={29} aria-hidden="true" />
               <div>
@@ -223,10 +211,6 @@ export default function Page() {
                   </li>
                 ))}
               </ol>
-              <p>
-                This draft requires owner and editorial review. It is not a
-                statement of final checkout terms.
-              </p>
             </div>
             <div className="reference-card reference-mint-card">
               <BookOpen size={30} aria-hidden="true" />
@@ -239,7 +223,16 @@ export default function Page() {
             </div>
             <div className="reference-card">
               <h2>Related resources</h2>
+              <Link href="/guest-posting-sites/">
+                Guest posting sites by niche
+              </Link>
+              <Link href="/guest-posting-sites-under-50/">
+                Guest posting sites under $50
+              </Link>
               <Link href="/guest-post-by-dr/">Domain Rating marketplace</Link>
+              <Link href="/bulk-domain-rating-checker/">
+                Bulk Domain Rating checker
+              </Link>
               <Link href="/word-counter/">Word counter</Link>
               <Link href="/products/#marketplace-help">
                 Marketplace questions

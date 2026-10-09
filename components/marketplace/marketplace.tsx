@@ -526,9 +526,12 @@ function MetricContext({ compact = false }: { compact?: boolean }) {
 export function Marketplace({
   metricView = false,
   range,
+  children,
 }: {
   metricView?: boolean;
   range?: MarketplaceRange;
+  /** Server-rendered content placed after the marketplace tools. */
+  children?: React.ReactNode;
 }) {
   const compactViewport = useSyncExternalStore(
     subscribeToCompactViewport,
@@ -761,7 +764,7 @@ export function Marketplace({
                     range.title
                   ) : (
                     <>
-                      Find your next <span>great publication.</span>
+                      Guest posting sites that <span>fit your audience.</span>
                     </>
                   )}
                 </h1>
@@ -1508,6 +1511,7 @@ export function Marketplace({
             onClose={() => setSelectedProduct(null)}
           />
         )}
+        {children}
       </main>
       <SiteFooter />
     </div>

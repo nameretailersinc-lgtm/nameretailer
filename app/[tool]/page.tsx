@@ -14,6 +14,11 @@ import {
 } from "@/components/tools/presentation";
 import { ToolWorkspace } from "@/components/tools/workspace";
 import { tools, toolBySlug } from "@/lib/tools/catalog";
+import { directories, directoryBySlug } from "@/lib/site/directories";
+import {
+  DirectoryLinks,
+  DirectoryPage,
+} from "@/components/site/directory-page";
 import {
   breadcrumbSchema,
   jsonLdGraph,
@@ -23,6 +28,7 @@ import {
 export function generateStaticParams() {
   return [
     ...marketplaceRanges.map((range) => ({ tool: range.slug })),
+    ...directories.map((directory) => ({ tool: directory.slug })),
     ...tools
       .filter((tool) => tool.slug !== "word-counter")
       .map((tool) => ({ tool: tool.slug })),
@@ -40,6 +46,13 @@ export async function generateMetadata({
       title: range.title,
       description: `Browse active guest-post publications in ${range.label}. Compare audience fit, supplied metrics and USD placement prices, then add placements to your plan.`,
       alternates: { canonical: `https://nameretailer.com/${range.slug}/` },
+    };
+  const directory = directoryBySlug(slug);
+  if (directory)
+    return {
+      title: directory.metaTitle,
+      description: directory.metaDescription,
+      alternates: { canonical: `https://nameretailer.com/${directory.slug}/` },
     };
   const tool = toolBySlug(slug);
   if (!tool) notFound();
@@ -70,14 +83,35 @@ export default async function Page({
       </Suspense>
     );
   }
+  const directory = directoryBySlug(slug);
+  if (directory) {
+    await connection();
+    return <DirectoryPage directory={directory} />;
+  }
   const tool = toolBySlug(slug);
   if (!tool) notFound();
   return (
     <ToolsShell>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(
+            jsonLdGraph(
+              breadcrumbSchema([
+                ["Home", "/"],
+                ["Free tools", "/seo-tools/"],
+                [tool.title, `/${tool.slug}/`],
+              ]),
+              webApplicationNode(tool),
+            ),
+          ),
+        }}
+      />
       <ToolHero tool={tool} />
       <ToolWorkspace tool={tool} />
       <ToolSteps tool={tool} />
       <ToolsNext />
+      <DirectoryLinks />
     </ToolsShell>
   );
 }

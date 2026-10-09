@@ -619,7 +619,7 @@
 }
 .reference-footer-grid {
   display: grid;
-  grid-template-columns: 1.45fr 1fr 1fr 1fr 1.25fr;
+  grid-template-columns: 1.45fr 1fr 1fr 1fr 1fr 1.25fr;
   gap: 35px;
 }
 .reference-footer h2 {
@@ -1717,4 +1717,49 @@
     align-items: start;
     flex-direction: column;
   }
+}
+
+/* Niche publisher directories */
+.directory-listings {
+  margin-block: 2rem;
+}
+.directory-table-wrap {
+  overflow-x: auto;
+  margin-block: 1rem;
+}
+.directory-table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+.directory-table th,
+.directory-table td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid rgba(127, 127, 127, 0.25);
+  text-align: left;
+  white-space: nowrap;
+}
+.directory-table thead th {
+  font-weight: 600;
+}
+.directory-table tbody th {
+  font-weight: 500;
+}
+.directory-link-list {
+  display: grid;
+  gap: 0.4rem;
+  padding-left: 1.1rem;
+}
+.directory-range-groups {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  margin-block: 1rem;
+}
+.landing-explore {
+  margin-block: 3rem 1rem;
+}
+.landing-explore > .reference-card p + p {
+  margin-top: 0.75rem;
 }

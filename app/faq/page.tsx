@@ -20,6 +20,20 @@ export default function Page() {
       active="help"
       image="/01_guest_post_checklist.png"
     >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd(
+            jsonLdGraph(
+              breadcrumbSchema([
+                ["Home", "/"],
+                ["FAQ", "/faq/"],
+              ]),
+              faqPageNode(commonQuestions),
+            ),
+          ),
+        }}
+      />
       <section
         className="reference-tool-faq reference-information-next"
         aria-label="Marketplace questions"

@@ -194,6 +194,51 @@ export async function listProducts(params: URLSearchParams, admin = false) {
   ]);
   return { data, total, page: options.page, pageSize: options.pageSize };
 }
+/** Server-rendered listings for a niche directory page, strongest DR first. */
+export async function directoryListings(
+  options: {
+    categories?: string[];
+    country?: string;
+    maxPriceCents?: number;
+  },
+  limit = 25,
+) {
+  const { products } = await productStore();
+  const scope: Filter<Product> = { status: "active" };
+  if (options.categories?.length) scope.category = { $in: options.categories };
+  if (options.country) scope.country = options.country;
+  if (options.maxPriceCents !== undefined)
+    scope.priceCents = { $lte: options.maxPriceCents };
+  const filter = { $and: [scope, await visibleFilter()] };
+  // Mongo treats limit(0) as "no limit"; a zero limit here means count only.
+  const [data, total, cheapest] = await Promise.all([
+    limit < 1
+      ? Promise.resolve([])
+      : products
+          .find(filter, {
+            projection: {
+              _id: 0,
+              id: 1,
+              domain: 1,
+              country: 1,
+              category: 1,
+              language: 1,
+              priceCents: 1,
+              metrics: 1,
+            },
+          })
+          .sort({ "metrics.dr": -1, id: 1 })
+          .limit(limit)
+          .toArray(),
+    products.countDocuments(filter),
+    products
+      .find(filter, { projection: { _id: 0, priceCents: 1 } })
+      .sort({ priceCents: 1 })
+      .limit(1)
+      .toArray(),
+  ]);
+  return { data, total, lowestPriceCents: cheapest[0]?.priceCents ?? null };
+}
 export async function productFacets() {
   const { products } = await productStore();
   const filter = {

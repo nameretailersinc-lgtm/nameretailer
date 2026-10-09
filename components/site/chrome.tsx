@@ -70,6 +70,14 @@ export function SiteFooter() {
           <Link href="/cart/">Your planning cart</Link>
         </div>
         <div>
+          <h2>Guest posting sites</h2>
+          <Link href="/guest-posting-sites/">All directories</Link>
+          <Link href="/technology-guest-posting-sites/">Technology</Link>
+          <Link href="/saas-guest-posting-sites/">SaaS and software</Link>
+          <Link href="/guest-posting-sites-under-50/">Under $50</Link>
+          <Link href="/guest-posting-sites-usa/">USA</Link>
+        </div>
+        <div>
           <h2>Resources</h2>
           <Link href="/guides/">Guides</Link>
           <Link href="/seo-tools/">Free tools</Link>

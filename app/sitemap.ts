@@ -3,6 +3,7 @@ import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
 import { marketplaceRanges } from "@/lib/commerce/marketplace-ranges";
 import { tools } from "@/lib/tools/catalog";
+import { directories } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 
 export const dynamic = "force-dynamic";
@@ -10,6 +11,7 @@ export const dynamic = "force-dynamic";
 const staticPaths = [
   "/",
   "/home/",
+  "/guest-posting-sites/",
   "/guest-post-marketplace/",
   "/guest-post-by-dr/",
   "/services/",
@@ -29,6 +31,7 @@ const staticPaths = [
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [
     ...staticPaths,
+    ...directories.map((directory) => `/${directory.slug}/`),
     ...marketplaceRanges.map((range) => `/${range.slug}/`),
     ...tools.map((tool) => `/${tool.slug}/`),
   ].map((path) => ({ url: canonicalOrigin + path }));

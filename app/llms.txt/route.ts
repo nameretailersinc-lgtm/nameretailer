@@ -3,6 +3,7 @@ import type { CmsRecord } from "@/lib/cms/types";
 import { bodyText } from "@/lib/cms/content";
 import { marketplaceRanges } from "@/lib/commerce/marketplace-ranges";
 import { tools } from "@/lib/tools/catalog";
+import { directories } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 
 export const dynamic = "force-dynamic";
@@ -50,6 +51,16 @@ export async function GET() {
     "",
     "## Marketplace and services",
     ...pages.map(([path, title, note]) => link(path, title, note)),
+    "",
+    "## Guest posting sites by niche",
+    link(
+      "/guest-posting-sites/",
+      "All guest posting site directories",
+      "Directories by niche, country, budget and metrics.",
+    ),
+    ...directories.map((directory) =>
+      link(`/${directory.slug}/`, directory.h1, directory.metaDescription),
+    ),
     "",
     "## Marketplace views",
     ...marketplaceRanges.map((range) => link(`/${range.slug}/`, range.title)),

@@ -169,6 +169,13 @@ export default async function Page({
             <Link className="button button-secondary" href="/products/">
               Browse publications ↗
             </Link>
+            <p>
+              Or start with a{" "}
+              <Link href="/guest-posting-sites/">
+                guest posting sites directory
+              </Link>{" "}
+              by niche, country or budget.
+            </p>
           </section>
         </aside>
       </div>
