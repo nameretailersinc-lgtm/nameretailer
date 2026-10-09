@@ -1,17 +1,9 @@
+export { serializeJsonLd, breadcrumbSchema, toolBreadcrumbs } from "./json-ld";
 import type { WithContext, Thing } from "schema-dts";
 import type { CmsRecord } from "../cms/types";
 import { bodyText, isSafeUrl } from "../cms/content";
 import { canonicalOrigin, canonicalUrl, type SeoSettings } from "./metadata";
 
-export function serializeJsonLd(value: unknown): string {
-  // Escape the raw-text script terminator and line separator characters, not just HTML attributes.
-  return JSON.stringify(value)
-    .replaceAll("<", "\\u003c")
-    .replaceAll(">", "\\u003e")
-    .replaceAll("&", "\\u0026")
-    .replaceAll("\u2028", "\\u2028")
-    .replaceAll("\u2029", "\\u2029");
-}
 
 export function organizationSchema(settings: SeoSettings): WithContext<Thing> {
   return {
@@ -74,9 +66,10 @@ export function articleSchema(
           typeof author.data.url === "string" &&
           isSafeUrl(author.data.url, false)
             ? author.data.url
-            : `${canonicalOrigin}/author/${author.slug}/`,
+            : `${canonicalOrigin}/about/`,
       })),
     ),
+    publisher: {"@id": `${canonicalOrigin}/#organization`},
     ...(typeof record.data.publishedAt === "string" &&
     Number.isFinite(Date.parse(record.data.publishedAt))
       ? { datePublished: record.data.publishedAt }
@@ -91,7 +84,7 @@ export function articleSchema(
   };
 }
 
-/** General Schema.org semantics only. Google FAQ rich results ended May 7, 2026. */
+/** General Schema.org semantics only. Google restricts FAQ rich results; this supports machine readability, not a ranking promise. */
 export function faqSchema(record: CmsRecord): WithContext<Thing> | null {
   if (
     record.status !== "published" ||
@@ -130,18 +123,8 @@ export function jsonLdGraph(...nodes: Array<Record<string, unknown> | null>) {
   };
 }
 
-export function breadcrumbSchema(items: Array<[name: string, path: string]>) {
-  return {
-    "@type": "BreadcrumbList",
-    itemListElement: items.map(([name, path], index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name,
-      item: canonicalOrigin + path,
-    })),
-  };
-}
 
+// Google restricts FAQ rich results; exact visible Q&As only, with no ranking promise.
 export function faqPageNode(items: ReadonlyArray<readonly [string, string]>) {
   if (!items.length) return null;
   return {

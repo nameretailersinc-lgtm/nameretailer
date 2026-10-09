@@ -15,11 +15,9 @@ import {
 import { buildSeoMetadata } from "@/lib/seo/metadata";
 import {
   articleSchema,
-  breadcrumbSchema,
   faqSchema,
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
-import { canonicalOrigin, canonicalUrl } from "@/lib/seo/metadata";
 export const dynamic = "force-dynamic";
 export async function generateMetadata({
   params,
@@ -65,32 +63,8 @@ export default async function Page({
     articleWithArtwork(article),
     context.author || undefined,
   );
-  const fallbackArticle = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "@id": canonicalUrl(article) + "#article",
-    headline: article.title,
-    description: String(article.data.excerpt || ""),
-    mainEntityOfPage: canonicalUrl(article),
-    image: `${canonicalOrigin}${artwork.src}`,
-    author: { "@id": `${canonicalOrigin}/#organization` },
-    publisher: { "@id": `${canonicalOrigin}/#organization` },
-    datePublished: String(article.data.publishedAt || article.createdAt),
-    dateModified: article.updatedAt,
-    inLanguage: "en",
-  };
-  const schemas = [
-    schema || fallbackArticle,
-    {
-      "@context": "https://schema.org",
-      ...breadcrumbSchema([
-        ["Home", "/"],
-        ["Guides", "/guides/"],
-        [article.title, `/${article.slug}/`],
-      ]),
-    },
-    faqSchema(article),
-  ].filter(Boolean);
+  // TODO(owner): without verified authorship, omit Article markup rather than fabricate attribution.
+  const schemas = [schema, faqSchema(article)].filter(Boolean);
   const headings: Array<{ id: string; label: string }> = [];
   const html = sanitizeBody(String(article.data.body || "")).replace(
     /<h2>(.*?)<\/h2>/g,
@@ -114,7 +88,7 @@ export default async function Page({
       )
     : [];
   return (
-    <InformationShell
+    <InformationShell path={`/${article.slug}/`} parent={["Blog","/blog/"]}
       title={article.title}
       label={context.categories[0]?.title || "Journal guide"}
       description={String(article.data.excerpt || "")}
@@ -176,6 +150,7 @@ export default async function Page({
           </section>
         </aside>
       </div>
+      {Array.isArray(article.data.faq) && article.data.faq.length > 0 && <section className="reference-tool-faq"><h2>Article questions</h2>{article.data.faq.filter((item: unknown): item is {question:string; answer:string} => !!item && typeof item === "object" && "question" in item && "answer" in item && typeof item.question === "string" && typeof item.answer === "string").map(item=><details key={item.question}><summary>{bodyText(item.question)}</summary><p>{bodyText(item.answer)}</p></details>)}</section>}
       {sources.length > 0 && (
         <section className="reference-card journal-sources">
           <h2>Sources and further reading</h2>

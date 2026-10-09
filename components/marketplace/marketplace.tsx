@@ -40,6 +40,7 @@ import {
   type MarketplaceRange,
 } from "@/lib/commerce/marketplace-ranges";
 import { marketplaceQuery } from "@/lib/commerce/marketplace-query";
+import { breadcrumbSchema, itemListNode, serializeJsonLd } from "@/lib/seo/json-ld";
 
 const filters = [
   "q",
@@ -710,6 +711,8 @@ export function Marketplace({
     >
       <SiteHeader active="marketplace" />
       <main id="main" tabIndex={-1}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd(breadcrumbSchema([["Marketplace","/"],[range?.label || (metricView ? "Domain Rating" : "Publications"),pathname]]))}} />
+        {value && !error && !loading && <script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd(itemListNode(value.data))}} />}
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Marketplace</Link>
           <span aria-hidden="true">›</span>

@@ -5,7 +5,6 @@ import type { Metadata } from "next";
 import { InformationShell } from "@/components/site/information-page";
 import { commonQuestions } from "@/lib/site/pages";
 import {
-  breadcrumbSchema,
   faqPageNode,
   jsonLdGraph,
   serializeJsonLd,
@@ -17,7 +16,7 @@ const baseMetadata: Metadata = {
 };
 export default function Page() {
   return (
-    <InformationShell
+    <InformationShell path="/faq/"
       title="A few useful answers."
       label="Frequently asked questions"
       description="Answers about guest-post prices, publication scope, metrics, disclosure and ordering."
@@ -29,10 +28,6 @@ export default function Page() {
         dangerouslySetInnerHTML={{
           __html: serializeJsonLd(
             jsonLdGraph(
-              breadcrumbSchema([
-                ["Home", "/"],
-                ["FAQ", "/faq/"],
-              ]),
               faqPageNode(commonQuestions),
             ),
           ),

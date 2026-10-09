@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import type { InformationPage, SiteSection } from "@/lib/site/pages";
+import { informationPages, type InformationPage, type SiteSection } from "@/lib/site/pages";
+import { breadcrumbSchema, serializeJsonLd } from "@/lib/seo/json-ld";
 import { SiteFooter, SiteHeader } from "./chrome";
 const artworkDimensions: Record<string, { width: number; height: number }> = {
   "/01_guest_post_checklist.png": { width: 730, height: 550 },
@@ -11,6 +12,7 @@ const artworkDimensions: Record<string, { width: number; height: number }> = {
 };
 
 export function InformationShell({
+  path,
   title,
   label,
   description,
@@ -22,6 +24,7 @@ export function InformationShell({
   parent,
   children,
 }: {
+  path: string;
   title: string;
   label: string;
   description: string;
@@ -38,6 +41,7 @@ export function InformationShell({
     <div className={`reference-site reference-information ${className}`}>
       <SiteHeader active={active} />
       <main id="main" className="reference-container" tabIndex={-1}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd(breadcrumbSchema([["Home","/"],...(parent ? [parent] : []),[label,path]]))}} />
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Home</Link>
           <span aria-hidden="true">›</span>
@@ -70,7 +74,7 @@ export function InformationShell({
 }
 export function InformationPageView({ page }: { page: InformationPage }) {
   return (
-    <InformationShell {...page}>
+    <InformationShell {...page} path={`/${Object.entries(informationPages).find(([,value])=>value === page)?.[0] || ""}/`}>
       <div className="reference-information-sections">
         {page.sections.map((section) => (
           <section className="reference-card" key={section.title}>

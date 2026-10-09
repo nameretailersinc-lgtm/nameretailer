@@ -9,7 +9,8 @@ export interface SeoSettings {
   address?: string;
   socialLinks?: string[];
 }
-export const canonicalOrigin = "https://nameretailer.com";
+import { canonicalOrigin } from "./origin";
+export { canonicalOrigin } from "./origin";
 
 export function canonicalUrl(record: Pick<CmsRecord, "slug" | "data">): string {
   const fallback = record.slug

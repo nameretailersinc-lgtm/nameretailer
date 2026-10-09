@@ -1,3 +1,4 @@
+import { itemListNode } from "@/lib/seo/json-ld";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
@@ -13,7 +14,6 @@ import { PublicationTable } from "@/components/site/publication-table";
 import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import {
-  breadcrumbSchema,
   faqPageNode,
   jsonLdGraph,
   serializeJsonLd,
@@ -82,24 +82,12 @@ export default async function Page() {
       name: "Guest posting sites by niche, location and price",
       isPartOf: { "@id": `${canonicalOrigin}/#website` },
       publisher: { "@id": `${canonicalOrigin}/#organization` },
-      mainEntity: {
-        "@type": "ItemList",
-        itemListElement: directories.map((directory, index) => ({
-          "@type": "ListItem",
-          position: index + 1,
-          name: directory.h1,
-          url: `${canonicalOrigin}/${directory.slug}/`,
-        })),
-      },
+      mainEntity: itemListNode(publications.data),
     },
-    breadcrumbSchema([
-      ["Home", "/"],
-      ["Guest posting sites", "/guest-posting-sites/"],
-    ]),
     faqPageNode(faq),
   );
   return (
-    <InformationShell
+    <InformationShell path="/guest-posting-sites/"
       title="Guest posting sites by niche, location and budget"
       label="Guest posting sites"
       description="Find publishers that reach your audience. Start with a niche directory, filter by country or price, or compare sites by Domain Authority, Domain Rating and traffic."

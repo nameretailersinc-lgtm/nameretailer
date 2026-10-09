@@ -11,7 +11,7 @@ import {
 import { WordCounter } from "@/components/tools/word-counter";
 import { tools } from "@/lib/tools/catalog";
 import {
-  breadcrumbSchema,
+  toolBreadcrumbs,
   jsonLdGraph,
   serializeJsonLd,
   webApplicationNode,
@@ -30,11 +30,7 @@ export default function Page() {
         dangerouslySetInnerHTML={{
           __html: serializeJsonLd(
             jsonLdGraph(
-              breadcrumbSchema([
-                ["Home", "/"],
-                ["Free tools", "/seo-tools/"],
-                [tool.title, `/${tool.slug}/`],
-              ]),
+              toolBreadcrumbs(tool),
               webApplicationNode(tool),
             ),
           ),

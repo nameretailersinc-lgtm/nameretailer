@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
+import { canonicalOrigin as origin } from "@/lib/seo/origin";
 import { Inter, Source_Serif_4 } from "next/font/google";
-import { serializeJsonLd } from "@/lib/seo/structured-data";
+import { serializeJsonLd, organizationNode } from "@/lib/seo/json-ld";
 import "./globals.css";
 import "./marketplace.css";
 import "./customer.css";
@@ -24,7 +25,6 @@ const serif = Source_Serif_4({
   variable: "--font-editorial",
   adjustFontFallback: true,
 });
-const origin = "https://nameretailer.com";
 const siteTitle =
   "Name Retailer | Guest Post Marketplace for Quality Backlinks";
 const siteDescription =
@@ -39,37 +39,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "./" },
 
 };
-const siteSchema = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": ["Organization", "ProfessionalService"],
-      "@id": `${origin}/#organization`,
-      name: "Name Retailer",
-      url: `${origin}/`,
-      logo: `${origin}/icon.png`,
-      image: `${origin}/logo.jpg`,
-      description: siteDescription,
-      email: "info@nameretailer.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "26 - G Hamriyah Freezone",
-        addressLocality: "Sharjah",
-        addressCountry: "AE",
-      },
-      areaServed: "Worldwide",
-    },
-    {
-      "@type": "WebSite",
-      "@id": `${origin}/#website`,
-      url: `${origin}/`,
-      name: "Name Retailer",
-      description: siteDescription,
-      inLanguage: "en",
-      publisher: { "@id": `${origin}/#organization` },
-    },
-  ],
-};
+const siteSchema = organizationNode();
+
 export default function RootLayout({
   children,
 }: {

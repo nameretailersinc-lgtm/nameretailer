@@ -6,8 +6,8 @@ import { directories, type Directory } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { DirectorySummary } from "./directory-summary";
+import { itemListNode } from "@/lib/seo/json-ld";
 import {
-  breadcrumbSchema,
   faqPageNode,
   jsonLdGraph,
   serializeJsonLd,
@@ -128,23 +128,10 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
       publisher: { "@id": `${canonicalOrigin}/#organization` },
       ...(result?.data.length
         ? {
-            mainEntity: {
-              "@type": "ItemList",
-              numberOfItems: result.total,
-              itemListElement: result.data.map((product, index) => ({
-                "@type": "ListItem",
-                position: index + 1,
-                name: host(product.domain),
-              })),
-            },
+            mainEntity: itemListNode(result.data),
           }
         : {}),
     },
-    breadcrumbSchema([
-      ["Home", "/"],
-      ["Guest posting sites", "/guest-posting-sites/"],
-      [directory.h1, `/${directory.slug}/`],
-    ]),
     faqPageNode(directory.faq),
   );
   const related = directory.related
@@ -152,6 +139,7 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
     .filter((item): item is Directory => !!item);
   return (
     <InformationShell
+      path={`/${directory.slug}/`}
       title={directory.h1}
       label={directory.label}
       parent={["Guest posting sites", "/guest-posting-sites/"]}

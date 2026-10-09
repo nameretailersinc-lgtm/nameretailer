@@ -26,7 +26,7 @@ import {
   DirectoryPage,
 } from "@/components/site/directory-page";
 import {
-  breadcrumbSchema,
+  toolBreadcrumbs,
   jsonLdGraph,
   serializeJsonLd,
   webApplicationNode,
@@ -105,11 +105,7 @@ export default async function Page({
         dangerouslySetInnerHTML={{
           __html: serializeJsonLd(
             jsonLdGraph(
-              breadcrumbSchema([
-                ["Home", "/"],
-                ["Free tools", "/seo-tools/"],
-                [tool.title, `/${tool.slug}/`],
-              ]),
+              toolBreadcrumbs(tool),
               webApplicationNode(tool),
             ),
           ),

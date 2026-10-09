@@ -66,6 +66,7 @@ const groups = [
 export default function Page() {
   return (
     <InformationShell
+      path="/site-map/"
       title="Find your next destination."
       label="Page directory"
       description="Browse marketplace directories, guides, tools and support pages."

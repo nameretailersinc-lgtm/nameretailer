@@ -29,6 +29,8 @@ export async function ArticleLibrary({
   const href = (next: number) => articleIndexHref(path, options, next);
   return (
     <InformationShell
+      path={path}
+      parent={categoryTitle ? ["Blog","/blog/"] : undefined}
       title={
         categoryTitle ? `${categoryTitle} articles` : guides
           ? "Practical guides for your next move."

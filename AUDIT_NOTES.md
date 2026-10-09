@@ -41,3 +41,8 @@ Inventoried all ranges and niches in DIRECTORY_INVENTORY.md. Consolidated under-
 
 Removed the unsupported 10,000+ band and unused testimonial placeholders. Public copy describes ordering/payment availability plainly; buyer FAQ covers prices, scope, formats, metrics, disclosure, turnaround and unpublished replacement terms. About uses only supplied marketplace/name/address/email facts, with code TODOs for registration/team details. Legal noindex notices are linked in the footer. CMS has optional reviewer fields; visible blog attribution uses verified active records, with real updatedAt and unknown-identity notices. Static buying guide records its actual source revision timestamp; original publication/author/reviewer remain owner decisions. Normalized internal marketplace links, and corrected unsupported country/audience and image-acceptance assumptions. Build/lint and 122 existing CMS/content/tool tests passed.
 
+
+### Phase 7 — structured data
+
+Centralized safe serialization, organization/contact, homepage WebSite, breadcrumb and visible ItemList builders. Information shells generate schema from the same visible breadcrumb labels; tools include their actual group trail. Directory ItemLists contain visible publication names/URLs and visible counts only; marketplace schema updates with its displayed results. Articles use verified CMS authors, actual dates/artwork and publisher; unverified organization-author fallback removed. Stored article FAQs are now visibly rendered when emitted. No Review/AggregateRating or publication Offer was added. Static buying-guide Article markup remains omitted until real original publication/author details are supplied. Build/lint and 11 schema tests passed; check:jsonld passed on all 147 public pages.
+

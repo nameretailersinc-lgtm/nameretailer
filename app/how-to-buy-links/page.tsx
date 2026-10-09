@@ -1,3 +1,4 @@
+import { breadcrumbSchema, serializeJsonLd } from "@/lib/seo/json-ld";
 import { EditorialByline } from "@/components/site/editorial-byline";
 import { buyingGuideEditorial } from "@/lib/site/editorial";
 import { pageMetadata } from "@/lib/seo/page-metadata";
@@ -24,10 +25,11 @@ export default function Page() {
     <div className="reference-site reference-article">
       <SiteHeader active="guides" />
       <main id="main" className="reference-container" tabIndex={-1}>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd(breadcrumbSchema([["Home","/"],["Guides","/guides/"],["Buying guide","/how-to-buy-links/"]]))}} />
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
           <Link href="/">Home</Link>
           <span aria-hidden="true">›</span>
-          <span>Guides</span>
+          <Link href="/guides/">Guides</Link>
           <span aria-hidden="true">›</span>
           <span aria-current="page">Buying guide</span>
         </nav>
