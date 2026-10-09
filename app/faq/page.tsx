@@ -20,7 +20,7 @@ export default function Page() {
     <InformationShell
       title="A few useful answers."
       label="Frequently asked questions"
-      description="Understand browsing, prices, metrics and the boundaries of this rebuild preview."
+      description="Answers about guest-post prices, publication scope, metrics, disclosure and ordering."
       active="help"
       image="/01_guest_post_checklist.png"
     >

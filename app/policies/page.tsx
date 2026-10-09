@@ -6,7 +6,7 @@ import { InformationPageView } from "@/components/site/information-page";
 import { informationPages } from "@/lib/site/pages";
 const baseMetadata: Metadata = {
   robots: { index: false, follow: true },
-  title: "Policy readiness · Rebuild preview",
+  title: "Policy information · Rebuild preview",
   description: informationPages.policies.description,
 };
 export default function Page() {

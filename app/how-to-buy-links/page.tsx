@@ -1,3 +1,5 @@
+import { EditorialByline } from "@/components/site/editorial-byline";
+import { buyingGuideEditorial } from "@/lib/site/editorial";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
@@ -51,6 +53,7 @@ export default function Page() {
             alt=""
           />
         </section>
+        <EditorialByline {...buyingGuideEditorial} />
         <div className="reference-guide-layout">
           <article aria-label="Buying checklist">
             <div className="reference-takeaways">
@@ -219,7 +222,7 @@ export default function Page() {
               <BookOpen size={30} aria-hidden="true" />
               <h2>New to guest-post placements?</h2>
               <p>Learn the key questions before comparing publications.</p>
-              <Link className="button button-secondary" href="/products/">
+              <Link className="button button-secondary" href="/">
                 Browse publications{" "}
                 <ArrowUpRight size={14} aria-hidden="true" />
               </Link>
@@ -251,7 +254,7 @@ export default function Page() {
               Use the checklist when comparing publications. Missing metrics
               remain unavailable, not zero.
             </p>
-            <Link href="/products/" className="button button-primary">
+            <Link href="/" className="button button-primary">
               Explore publications <ArrowUpRight size={16} aria-hidden="true" />
             </Link>
           </div>

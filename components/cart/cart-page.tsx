@@ -323,7 +323,7 @@ export function CartPage({ productId }: { productId?: string }) {
                   : usd(cart.totalCents)}
               </p>
               <div className="cart-checkout-actions">
-                <Link href="/products/" className="button button-secondary">
+                <Link href="/" className="button button-secondary">
                   Continue browsing
                 </Link>
                 {cart.totalCents !== null &&
@@ -357,7 +357,7 @@ export function CartPage({ productId }: { productId?: string }) {
                   Choose a publication in the marketplace and review its article
                   options.
                 </p>
-                <Link href="/products/" className="button button-secondary">
+                <Link href="/" className="button button-secondary">
                   Browse publications
                 </Link>
               </div>

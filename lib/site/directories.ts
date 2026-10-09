@@ -25,7 +25,7 @@ export type Directory = {
 
 const category = (name: string): [string, string] => [
   name,
-  `/products/?category=${encodeURIComponent(name)}`,
+  `/?category=${encodeURIComponent(name)}`,
 ];
 
 const directoryDefinitions: Directory[] = [
@@ -170,7 +170,7 @@ const directoryDefinitions: Directory[] = [
     browse: [
       ["$0–$50 price range", "/price-0-to-50/"],
       ["$50–$100 price range", "/price-50-to-100/"],
-      ["Sort all by lowest price", "/products/?sort=priceAsc"],
+      ["Sort all by lowest price", "/?sort=priceAsc"],
     ],
     sections: [
       {
@@ -220,23 +220,23 @@ const directoryDefinitions: Directory[] = [
     metaTitle: "Guest Posting Sites in the USA",
     metaDescription:
       "Browse US guest posting sites with live DA, DR, traffic and USD prices. Compare American publishers by topic before adding placements to your plan.",
-    lead: "Publishers whose primary audience is in the United States, for brands that sell to American customers or need US-relevant coverage.",
+    lead: "Publications with United States in the supplied country field. Confirm audience geography with each publisher before choosing a placement.",
     filter: { country: "United States" },
     browse: [
-      ["All US publishers", "/products/?country=United%20States"],
+      ["All US publishers", "/?country=United%20States"],
       [
         "US publishers by price",
-        "/products/?country=United%20States&sort=priceAsc",
+        "/?country=United%20States&sort=priceAsc",
       ],
       [
         "US publishers by traffic",
-        "/products/?country=United%20States&sort=trafficDesc",
+        "/?country=United%20States&sort=trafficDesc",
       ],
     ],
     sections: [
       {
         title: "Location is about readers, not hosting",
-        body: "A US listing means the publisher reports the United States as its main audience. That matters when you sell to US customers, need US spelling and examples, or want coverage that is relevant to American search results.",
+        body: "This directory filters the supplied country field to United States. The field alone does not establish hosting location or audience geography. Ask for audience evidence when geographic reach matters.",
       },
       {
         title: "Localise the article as well as the placement",
@@ -257,7 +257,7 @@ const directoryDefinitions: Directory[] = [
     faq: [
       [
         "How is a publisher’s country decided?",
-        "The country is supplied with each listing and describes the publication’s main audience. It is not independently verified, so check the site’s content and audience yourself.",
+        "The country is supplied with each listing. Audience geography is not independently verified, so check the publication’s content and request audience evidence yourself.",
       ],
       [
         "Can I filter US sites by niche too?",
@@ -451,7 +451,7 @@ const directoryDefinitions: Directory[] = [
       ],
       [
         "Can I include my own photos?",
-        "Most lifestyle publishers welcome original images. Check each listing’s requirements for image size and rights.",
+        "Ask the publication whether it accepts original images, and confirm the required dimensions and usage rights before submitting them.",
       ],
     ],
     related: [

@@ -8,14 +8,14 @@ const baseMetadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Name Retailer Site Map: All Pages and Resources",
   description:
-    "Find the rebuild's working marketplace, resource, company, support and account destinations.",
+    "Find marketplace, guide, tool, company and support pages on Name Retailer.",
 };
 const groups = [
   [
     "Marketplace",
     [
       ["Home", "/"],
-      ["Publications", "/products/"],
+      ["Publications", "/"],
       ["Guest posting sites", "/guest-posting-sites/"],
       ["Technology guest posting sites", "/technology-guest-posting-sites/"],
       ["SaaS guest posting sites", "/saas-guest-posting-sites/"],
@@ -40,7 +40,7 @@ const groups = [
       ["Free tools", "/seo-tools/"],
       ["Word counter", "/word-counter/"],
       ["Guides", "/guides/"],
-      ["Draft buying guide", "/how-to-buy-links/"],
+      ["Buying guide", "/how-to-buy-links/"],
       ["SEO, AEO & GEO journal", "/blog/"],
     ],
   ],
@@ -51,7 +51,7 @@ const groups = [
       ["Contact", "/contact/"],
       ["FAQ", "/faq/"],
       ["Help center", "/help-center/"],
-      ["Policy readiness", "/policies/"],
+      ["Policy information", "/policies/"],
     ],
   ],
   [
@@ -68,7 +68,7 @@ export default function Page() {
     <InformationShell
       title="Find your next destination."
       label="Page directory"
-      description="These destinations exist in the rebuild. This human-readable directory is not a public SEO sitemap or a migration redirect map."
+      description="Browse marketplace directories, guides, tools and support pages."
       active="help"
       image="/03_listing_browser_panel.png"
     >

@@ -188,7 +188,7 @@ export function CheckoutPage() {
   return (
     <CustomerShell title="Checkout review">
       <nav className="commerce-steps" aria-label="Placement progress">
-        <Link href="/products/">1 · Publication</Link>
+        <Link href="/">1 · Publication</Link>
         <Link href="/cart/">2 · Brief & cart</Link>
         <span aria-current="step">3 · Checkout review</span>
       </nav>

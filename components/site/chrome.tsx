@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowUpRight, UsersRound } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 import type { SiteSection } from "@/lib/site/pages";
 import { SiteNavigation } from "./navigation";
 export function SiteBrand({ preload = false }: { preload?: boolean }) {
@@ -30,12 +30,8 @@ export function SiteBrand({ preload = false }: { preload?: boolean }) {
   );
 }
 export function TrustNote() {
-  return (
-    <p className="marketplace-trust-note">
-      <UsersRound size={19} aria-hidden="true" />
-      Trusted by 10,000+ marketers{" "}
-    </p>
-  );
+  // TODO(owner): publish customer proof only when documented in OWNER_DECISIONS.md.
+  return null;
 }
 export function SiteHeader({ active }: { active?: SiteSection }) {
   return (
@@ -63,10 +59,10 @@ export function SiteFooter() {
         </div>
         <div>
           <h2>Marketplace</h2>
-          <Link href="/products/">Browse publications</Link>
+          <Link href="/">Browse publications</Link>
           <Link href="/guest-post-marketplace/">Marketplace views</Link>
           <Link href="/guest-post-by-dr/">Domain rating</Link>
-          <Link href="/products/?sort=priceAsc">Compare prices</Link>
+          <Link href="/?sort=priceAsc">Compare prices</Link>
           <Link href="/cart/">Your planning cart</Link>
         </div>
         <div>
@@ -91,7 +87,11 @@ export function SiteFooter() {
           <Link href="/services/">Services</Link>
           <Link href="/contact/">Contact</Link>
           <Link href="/help-center/">Help center</Link>
-          <Link href="/policies/">Policy readiness</Link>
+          <Link href="/policies/">Policy information</Link>
+          <Link href="/terms/">Terms of service</Link>
+          <Link href="/privacy/">Privacy policy</Link>
+          <Link href="/cookies/">Cookie policy</Link>
+          <Link href="/refund-policy/">Refund policy</Link>
         </div>
         <div>
           <h2>Stay in touch</h2>
@@ -102,9 +102,6 @@ export function SiteFooter() {
           >
             info@nameretailer.com <ArrowUpRight size={17} aria-hidden="true" />
           </a>
-          <p className="reference-small">
-            Newsletter signup and approved policies remain pending.
-          </p>
         </div>
       </div>
       <div className="reference-footer-bottom">

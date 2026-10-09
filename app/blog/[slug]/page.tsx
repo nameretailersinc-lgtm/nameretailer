@@ -1,3 +1,4 @@
+import { EditorialByline } from "@/components/site/editorial-byline";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import Link from "next/link";
 import Image from "next/image";
@@ -129,12 +130,6 @@ export default async function Page({
       />
       <div className="reference-article-meta journal-meta">
         <Link href="/blog/">← Journal</Link>
-        <span>
-          By{" "}
-          <Link href="/about/">
-            {String(context.author?.data.name || "Name Retailer")}
-          </Link>
-        </span>
         <time dateTime={date}>
           {new Date(date).toLocaleDateString("en-US", {
             month: "short",
@@ -145,6 +140,7 @@ export default async function Page({
         </time>
         <span>{Math.max(1, Math.ceil(wordCount(html) / 200))} min read</span>
       </div>
+      <EditorialByline author={context.author ? String(context.author.data.name || context.author.title) : undefined} reviewer={context.reviewer ? String(context.reviewer.data.name || context.reviewer.title) : undefined} updatedAt={article.updatedAt} />
       <div className="reference-guide-layout journal-layout">
         <article
           className="journal-prose"
@@ -167,7 +163,7 @@ export default async function Page({
               Keep audience, price and supplied metrics together when comparing
               publications.
             </p>
-            <Link className="button button-secondary" href="/products/">
+            <Link className="button button-secondary" href="/">
               Browse publications ↗
             </Link>
             <p>

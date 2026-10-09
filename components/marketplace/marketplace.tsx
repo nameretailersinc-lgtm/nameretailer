@@ -518,7 +518,7 @@ function MetricContext({ compact = false }: { compact?: boolean }) {
         Unavailable. No measurement date was supplied.
       </p>
       <Link href="/how-to-buy-links/#metrics">
-        Read the draft metric checklist →
+        Read the metric checklist →
       </Link>
     </Container>
   );
@@ -711,7 +711,7 @@ export function Marketplace({
       <SiteHeader active="marketplace" />
       <main id="main" tabIndex={-1}>
         <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/products/">Marketplace</Link>
+          <Link href="/">Marketplace</Link>
           <span aria-hidden="true">›</span>
           <span aria-current="page">
             {range?.label || (metricView ? "Domain Rating" : "Publications")}
@@ -728,7 +728,7 @@ export function Marketplace({
               unless the label says “above”. Missing metrics are excluded, not
               counted as zero.
             </p>
-            <Link href="/products/">
+            <Link href="/">
               Browse all publications{" "}
               <ArrowRight size={16} aria-hidden="true" />
             </Link>

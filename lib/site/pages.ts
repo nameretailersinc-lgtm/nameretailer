@@ -45,29 +45,29 @@ export const informationPages = {
         title: "Domain Authority",
         description:
           "Show listings with a supplied DA score of at least 1; missing scores remain excluded.",
-        href: "/products/?minDa=1",
+        href: "/?minDa=1",
       },
       {
         title: "Traffic",
         description:
           "Sort by supplied traffic estimates, highest first. Missing estimates are not invented.",
-        href: "/products/?sort=trafficDesc",
+        href: "/?sort=trafficDesc",
       },
       {
         title: "Prices",
         description: "Compare USD placement prices, lowest first.",
-        href: "/products/?sort=priceAsc",
+        href: "/?sort=priceAsc",
       },
       {
         title: "Placements up to $50",
         description: "Apply a real maximum USD placement price filter.",
-        href: "/products/?maxPrice=50",
+        href: "/?maxPrice=50",
       },
       {
         title: "All publications",
         description:
           "Start with the complete active catalog and choose your own filters.",
-        href: "/products/",
+        href: "/",
       },
     ],
   },
@@ -89,14 +89,14 @@ export const informationPages = {
       },
       {
         title: "Plan with clear expectations",
-        body: "Compare publications, prepare your placement brief and save selections in your private cart. Billing review is available; final order submission and Stripe/PayPal payments are not connected. Saving a draft is not an order or reservation.",
+        body: "Compare publications, prepare your placement brief and save selections in your private cart. Billing review is available; ordering and payment are not available yet. Saving a plan is not an order or reservation.",
       },
     ],
     links: [
       {
         title: "Browse publications",
         description: "Compare the active catalog using real listing data.",
-        href: "/products/",
+        href: "/",
       },
       {
         title: "Understand the process",
@@ -127,8 +127,8 @@ export const informationPages = {
         body: "26 - G Hamriyah Freezone, Sharjah, United Arab Emirates.",
       },
       {
-        title: "What to expect from this preview",
-        body: "Email links open your email application. This page does not submit or store a contact form. There is no promised response time, order confirmation or payment collection in this preview.",
+        title: "Contact and ordering",
+        body: "Email links open your email application. This page does not submit or store a contact form. Ordering and payment are not available yet. Contact the team with publication questions.",
       },
     ],
     links: [
@@ -146,7 +146,7 @@ export const informationPages = {
       },
       {
         title: "Common questions",
-        description: "Understand prices, metrics and the current preview.",
+        description: "Understand publication prices, metrics and saved plans.",
         href: "/faq/",
       },
     ],
@@ -173,18 +173,18 @@ export const informationPages = {
       },
       {
         title: "04 · Review before ordering",
-        body: "Review the saved brief in your cart, then prepare billing details in checkout review. Stripe and PayPal are selected but not connected; order submission and tracking remain unavailable. Saving a draft does not reserve a price or guarantee a placement. Agree content, disclosure and delivery terms before a future purchase.",
+        body: "Review the saved brief in your cart, then prepare billing details in checkout review. Ordering, payment and order tracking are not available yet. Saving a plan does not reserve a price or guarantee a placement. Agree content, disclosure and delivery terms before a future purchase.",
       },
     ],
     links: [
       {
         title: "Explore the catalog",
         description: "Find publications that fit your topic and budget.",
-        href: "/products/",
+        href: "/",
       },
       {
         title: "Read the buying checklist",
-        description: "Review the draft audience, metrics and scope guide.",
+        description: "Review audience, metrics and placement scope.",
         href: "/how-to-buy-links/",
       },
       {
@@ -204,7 +204,7 @@ export const informationPages = {
     sections: [
       {
         title: "Finding a publication",
-        body: "Clear filters if the catalog has no matching results. Only reviewed active inventory appears publicly; imported drafts stay in the admin workspace.",
+        body: "Clear filters if the catalog has no matching results. Only active publications appear in the catalogue.",
       },
       {
         title: "Account access",
@@ -251,14 +251,14 @@ export const informationPages = {
       },
       {
         title: "Questions about a custom brief",
-        body: "Contact the team to discuss audience, topic, language, links and editorial requirements. This preview does not accept briefs, collect files, issue custom quotes or create orders.",
+        body: "Contact the team to discuss audience, topic, language, links and editorial requirements. Ask the team about the available content services and their scope.",
       },
     ],
     links: [
       {
         title: "Compare placements",
         description: "Browse actual active publication listings.",
-        href: "/products/",
+        href: "/",
       },
       {
         title: "Prepare your text",
@@ -282,16 +282,16 @@ export const informationPages = {
     sections: [
       {
         title: "A buyer's checklist",
-        body: "The available draft covers audience relevance, metric sources, content scope and paid-link disclosure. It remains marked as a draft until owner and editorial review.",
+        body: "The buying guide covers audience relevance, metric sources, content scope and paid-link disclosure.",
       },
       {
         title: "No invented publishing history",
-        body: "The original site's articles and author information have not yet been migrated into this preview. We do not create publication dates, author identities or customer case studies to fill the gap.",
+        body: "The journal contains practical articles on guest posts, content, SEO and measurement. Read the stated sources and dates alongside each article.",
       },
     ],
     links: [
       {
-        title: "Draft buying guide",
+        title: "Buying guide",
         description: "Review the questions to ask before a placement.",
         href: "/how-to-buy-links/",
       },
@@ -339,29 +339,29 @@ export const informationPages = {
       {
         title: "Browse publications",
         description: "Explore the active marketplace catalog.",
-        href: "/products/",
+        href: "/",
       },
     ],
   },
   policies: {
     title: "Policies need clear, approved terms.",
-    label: "Policy readiness",
+    label: "Policy information",
     active: "help",
     image: "/01_guest_post_checklist.png",
     description:
-      "This is a rebuild status page, not a substitute for approved legal, privacy or commercial policies.",
+      "Terms, privacy, cookie and refund policies are not yet published. Contact Name Retailer for policy questions.",
     sections: [
       {
-        title: "Commercial policies pending",
-        body: "Terms of service, refund and replacement rules, delivery commitments, billing and payment methods require owner approval before checkout can open. No purchase or payment is accepted here.",
+        title: "Terms and refund policy",
+        body: "Terms of service and refund or replacement policies are not yet published. Ordering and payment are not available yet.",
       },
       {
-        title: "Privacy documentation pending",
-        body: "A final privacy and cookie notice must describe the deployed site's actual data handling, processors, retention and user rights. This page does not provide legal advice or claim that those notices are complete.",
+        title: "Privacy and cookies",
+        body: "Privacy and cookie policies are not yet published. Contact the team with questions about your account or data.",
       },
       {
         title: "Questions and requests",
-        body: "Contact info@nameretailer.com for policy or account questions. Copyright, DMCA and community processes have not yet been approved for the rebuild.",
+        body: "Contact info@nameretailer.com for policy or account questions. Ask the team about copyright or community questions.",
       },
     ],
     links: [
@@ -371,8 +371,8 @@ export const informationPages = {
         href: "/contact/",
       },
       {
-        title: "Preview questions",
-        description: "Understand the boundaries of this rebuild.",
+        title: "Buyer questions",
+        description: "Understand prices, metric sources and ordering availability.",
         href: "/faq/",
       },
     ],
@@ -435,33 +435,46 @@ export const toolGroups = [
   },
 ] as const;
 
+// TODO(owner): confirm delivery/refund/replacement commitments; see OWNER_DECISIONS.md.
 export const commonQuestions = [
   [
-    "Why can the catalog show no publications?",
-    "Only active products from completed imports appear. Drafts remain private. Clear filters to distinguish a narrow search from an empty active catalog.",
-  ],
-  [
-    "Do I need an account to browse?",
-    "No. You can browse, filter, shortlist and inspect publication options without signing in. Sign in to save your private planning cart.",
+    "How much does a guest post cost?",
+    "Each active listing shows its USD placement price. Compare the catalogue by price and confirm the full scope before choosing a publication."
   ],
   [
     "What does the placement price include?",
-    "Placement and article writing are separate. Available 500-, 750- and 1,000-word writing add-ons have their own prices. Missing or zero-priced source tiers are unavailable, not free.",
+    "Placement and writing are priced separately. Available writing options have their own prices. Check the publication requirements and any writing option before saving a plan."
   ],
   [
-    "Are the metrics independently verified?",
-    "The current imported metrics are owner-supplied. Provider and observation dates are unavailable unless explicitly supplied. Missing values are shown as unavailable; activating a listing does not verify its metrics or promise rankings.",
+    "What is the difference between a guest post and a link insertion?",
+    "A guest post places a new article on a publication. A link insertion adds a link to an existing article. Confirm which placement format the publisher offers; a listing does not establish that both are available."
   ],
   [
-    "Does saving a cart place an order?",
-    "No. Saving does not reserve inventory, a price or a publication. Checkout, payment and order tracking are not yet enabled in this rebuild.",
+    "How should paid links be disclosed?",
+    "Discuss sponsored-content labelling with the publisher. Google recommends rel=\"sponsored\" for paid links; rel=\"nofollow\" is also acceptable. Disclosure does not guarantee rankings."
   ],
   [
-    "Which free tools work now?",
-    "Writing, image, unit conversion and markup tools work in your browser. AMP uses the official validator on this server; Domain Rating lookup uses owner-supplied catalog records. Backlinks use your CSV report, keyword ideas are local brainstorming, and outreach planning does not create external links.",
+    "How long does publication take?",
+    "Check the listing’s supplied turnaround and confirm delivery timing with the team. A standard delivery commitment has not been published."
   ],
   [
-    "How can I contact the team?",
-    "Email info@nameretailer.com. Do not send passwords or payment details. Response times are not promised in this preview.",
+    "Where do DA, DR and traffic metrics come from?",
+    "Metrics are supplied with the catalogue and are not independently verified here. Provider and measurement dates are unavailable unless supplied. Missing values appear as Unavailable."
   ],
+  [
+    "What happens if a placement is removed?",
+    "A replacement or refund policy is not yet published. Ask the team which terms would apply before ordering."
+  ],
+  [
+    "Can I order or pay now?",
+    "Ordering and payment are not available yet. You can browse publications, shortlist options and save a placement plan in your account."
+  ],
+  [
+    "Do I need an account to browse?",
+    "You can browse and compare publications without signing in. Sign in to save your private placement plan."
+  ],
+  [
+    "How do I contact Name Retailer?",
+    "Email info@nameretailer.com with the publication URL and your placement or content questions."
+  ]
 ] as const;

@@ -75,6 +75,7 @@ const blank: RecordInput = {
     tagIds: [],
     relatedIds: [],
     authorId: null,
+    reviewerId: null,
     scheduledAt: null,
     publishedAt: null,
     lastReviewedAt: null,
@@ -1124,6 +1125,12 @@ export function ContentEditor({ id }: { id?: string }) {
                             : " — unverified/inactive"}
                         </option>
                       ))}
+                  </Select>
+                </Field>
+                <Field label="Reviewer (optional)">
+                  <Select value={String(draft.data.reviewerId || "")} onChange={event => change("reviewerId", event.target.value || null)}>
+                    <option value="">No reviewer selected</option>
+                    {entities.filter(row => row.collection === "authors" && row.status === "active" && row.data.verified === true).map(row => <option value={row.id} key={row.id}>{row.title}</option>)}
                   </Select>
                 </Field>
                 <p className="small muted">

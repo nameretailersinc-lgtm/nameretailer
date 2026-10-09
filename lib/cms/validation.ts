@@ -104,6 +104,7 @@ const contentData = z.object({
   body: z.string().max(250000).default(""),
   excerpt: optionalText(5000),
   authorId: id.nullable().optional(),
+  reviewerId: id.nullable().optional(),
   categoryIds: ids,
   tagIds: ids,
   relatedIds: ids,

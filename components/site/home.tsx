@@ -45,7 +45,7 @@ const features = [
     127,
     "Find a publication",
     "Filter by topic, language, country and budget.",
-    "/products/",
+    "/",
   ],
   [
     "07_icon_content_document.png",
@@ -60,7 +60,7 @@ const features = [
     140,
     128,
     "Content with context",
-    "Use the draft buying checklist to consider scope and disclosure.",
+    "Use the buying checklist to consider scope and disclosure.",
     "/how-to-buy-links/",
   ],
   [
@@ -105,7 +105,7 @@ export function HomeLanding() {
               placement with context.
             </p>
             <div className="reference-actions">
-              <Link className="button button-primary" href="/products/">
+              <Link className="button button-primary" href="/">
                 Browse publications{" "}
                 <ArrowUpRight size={16} aria-hidden="true" />
               </Link>
@@ -201,7 +201,7 @@ export function HomeLanding() {
                   placement details.
                 </p>
               </div>
-              <Link className="button button-secondary" href="/products/">
+              <Link className="button button-secondary" href="/">
                 Explore the marketplace{" "}
                 <ArrowUpRight size={15} aria-hidden="true" />
               </Link>
@@ -245,7 +245,7 @@ export function HomeLanding() {
                 <h2>A simple, considered process</h2>
                 <p>Browse freely and save a plan when you are ready.</p>
               </div>
-              <Link className="button button-secondary" href="/products/">
+              <Link className="button button-secondary" href="/">
                 Start comparing <ArrowUpRight size={15} aria-hidden="true" />
               </Link>
             </div>
@@ -324,37 +324,11 @@ export function HomeLanding() {
                 <div>
                   <p className="reference-pill">{String(title)}</p>
                   <h3>{String(text)}</h3>
-                  <Link href="/products/">
+                  <Link href="/">
                     Explore publications{" "}
                     <ArrowUpRight size={14} aria-hidden="true" />
                   </Link>
                 </div>
-              </article>
-            ))}
-          </div>
-        </section>
-        <section className="reference-section reference-container reference-proof-pending">
-          <p className="eyebrow">Client stories</p>
-          <h2>Space for the stories behind the work</h2>
-          <p>
-            The owner has confirmed genuine client proof. Approved quotes,
-            attributions and supporting results will be added when supplied.
-          </p>
-          <div className="reference-three-grid">
-            {[
-              "Approved client quotation",
-              "Named client attribution",
-              "Documented result and period",
-            ].map((label) => (
-              <article className="reference-card" key={label}>
-                <span className="reference-pending-icon" aria-hidden="true">
-                  “
-                </span>
-                <h3>{label}</h3>
-                <p>
-                  Supporting details pending. No sample review or growth figure
-                  is published here.
-                </p>
               </article>
             ))}
           </div>

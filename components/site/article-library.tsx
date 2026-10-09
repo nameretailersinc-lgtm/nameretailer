@@ -206,7 +206,7 @@ export async function ArticleLibrary({
         <BookOpen size={26} aria-hidden="true" />
         <div>
           <h2>Choosing your first publication?</h2>
-          <p>Use the draft buyer’s checklist alongside the article library.</p>
+          <p>Use the buyer’s checklist alongside the article library.</p>
         </div>
         <Link href="/how-to-buy-links/">
           Read the buying guide <ArrowRight size={16} aria-hidden="true" />

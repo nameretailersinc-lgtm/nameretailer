@@ -36,3 +36,8 @@ Route metadata now completes matching OG/Twitter titles, descriptions and page-s
 
 Inventoried all ranges and niches in DIRECTORY_INVENTORY.md. Consolidated under-50 into price-0-to-50; distinct ranges and audience intents remain, with shared inclusive boundaries documented. Each retained directory displays statistics across all visible active listings: count, full price range/median, top listing countries/topics and an actual supplied updatedAt. No measurement date is inferred. Threshold is MIN_DIRECTORY_LISTINGS=5; smaller/unknown directories are excluded from the sitemap and use noindex,follow. Statistics share active/committed-import visibility with the API. Added request-time metadata boundaries to prevent build-time database queries. Corrected build/lint and median/threshold tests passed.
 
+
+### Phase 6 — trust and attribution
+
+Removed the unsupported 10,000+ band and unused testimonial placeholders. Public copy describes ordering/payment availability plainly; buyer FAQ covers prices, scope, formats, metrics, disclosure, turnaround and unpublished replacement terms. About uses only supplied marketplace/name/address/email facts, with code TODOs for registration/team details. Legal noindex notices are linked in the footer. CMS has optional reviewer fields; visible blog attribution uses verified active records, with real updatedAt and unknown-identity notices. Static buying guide records its actual source revision timestamp; original publication/author/reviewer remain owner decisions. Normalized internal marketplace links, and corrected unsupported country/audience and image-acceptance assumptions. Build/lint and 122 existing CMS/content/tool tests passed.
+

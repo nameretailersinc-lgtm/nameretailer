@@ -77,7 +77,7 @@ export async function blogIndex(
 }
 export async function articleContext(article: CmsRecord) {
   const records = (await getDb()).collection<CmsRecord>("cms_records");
-  const [author, related, categories] = await Promise.all([
+  const [author, related, categories, reviewer] = await Promise.all([
     records.findOne(
       {
         id:
@@ -86,6 +86,7 @@ export async function articleContext(article: CmsRecord) {
             : "",
         collection: "authors",
         status: "active",
+        "data.verified": true,
       },
       { projection: { _id: 0 } },
     ),
@@ -119,6 +120,7 @@ export async function articleContext(article: CmsRecord) {
         { projection: { _id: 0 } },
       )
       .toArray(),
+    records.findOne({id: typeof article.data.reviewerId === "string" ? article.data.reviewerId : "", collection:"authors", status:"active", "data.verified":true}, {projection:{_id:0}}),
   ]);
-  return { author, related, categories };
+  return { author, related, categories, reviewer };
 }
