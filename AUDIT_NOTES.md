@@ -27,22 +27,26 @@ Marketplace pages now fetch the public catalogue per request before rendering, s
 
 Implemented 87 explicit 301 sources from the supplied examples and local WordPress inventory. REDIRECT_MAP.md records destinations/reasons; nearest-hub cases are flagged in OWNER_DECISIONS.md. Legal availability stubs were added early so policy redirect targets return 200, with noindex and no invented legal text. About already renders through Next components; factual copy is addressed in Phase 6. Build and lint passed; check:redirects verifies every source and each distinct target.
 
-### Phase 4 — metadata and route names
+### Phase 4 â€” metadata and route names
 
 Route metadata now completes matching OG/Twitter titles, descriptions and page-specific image alt text. Root homepage social fields were removed. Titles are capped at 60 and descriptions at 155 characters. DA/traffic/high-end DR/price slugs use consistent names; old slugs return 301, including the 50k-to-500k typo. Navigation tools are deduplicated by canonical slug. Build/lint and 51 relevant unit tests passed; check:meta passed across 148 public pages with unique titles/descriptions, one canonical and matching social tags.
+
 
-
-### Phase 5 — useful programme directories
+### Phase 5 â€” useful programme directories
 
 Inventoried all ranges and niches in DIRECTORY_INVENTORY.md. Consolidated under-50 into price-0-to-50; distinct ranges and audience intents remain, with shared inclusive boundaries documented. Each retained directory displays statistics across all visible active listings: count, full price range/median, top listing countries/topics and an actual supplied updatedAt. No measurement date is inferred. Threshold is MIN_DIRECTORY_LISTINGS=5; smaller/unknown directories are excluded from the sitemap and use noindex,follow. Statistics share active/committed-import visibility with the API. Added request-time metadata boundaries to prevent build-time database queries. Corrected build/lint and median/threshold tests passed.
+
 
-
-### Phase 6 — trust and attribution
+### Phase 6 â€” trust and attribution
 
 Removed the unsupported 10,000+ band and unused testimonial placeholders. Public copy describes ordering/payment availability plainly; buyer FAQ covers prices, scope, formats, metrics, disclosure, turnaround and unpublished replacement terms. About uses only supplied marketplace/name/address/email facts, with code TODOs for registration/team details. Legal noindex notices are linked in the footer. CMS has optional reviewer fields; visible blog attribution uses verified active records, with real updatedAt and unknown-identity notices. Static buying guide records its actual source revision timestamp; original publication/author/reviewer remain owner decisions. Normalized internal marketplace links, and corrected unsupported country/audience and image-acceptance assumptions. Build/lint and 122 existing CMS/content/tool tests passed.
+
 
-
-### Phase 7 — structured data
+### Phase 7 â€” structured data
 
 Centralized safe serialization, organization/contact, homepage WebSite, breadcrumb and visible ItemList builders. Information shells generate schema from the same visible breadcrumb labels; tools include their actual group trail. Directory ItemLists contain visible publication names/URLs and visible counts only; marketplace schema updates with its displayed results. Articles use verified CMS authors, actual dates/artwork and publisher; unverified organization-author fallback removed. Stored article FAQs are now visibly rendered when emitted. No Review/AggregateRating or publication Offer was added. Static buying-guide Article markup remains omitted until real original publication/author details are supplied. Build/lint and 11 schema tests passed; check:jsonld passed on all 147 public pages.
 
+### Phase 8 â€” buyer content and blog audit
+
+BLOG_AUDIT.md records all 60 existing articles. Ten technical rebuild articles remain accessible with noindex pending Search Console/backlink review; the rest have keep/rewrite/merge recommendations without deleting URLs. Added five visibly marked DRAFT buyer guides, all noindex and excluded from the sitemap until approval. Their answer-first openings use real catalogue data or cited Google/Ahrefs/Moz sources; dates record the actual source revision, with unknown author/reviewer slots. Reusable metric definitions and descriptive links connect directories, the article library and guides. Build, lint and two guide-content tests passed.
+
