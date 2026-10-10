@@ -51,3 +51,9 @@ Moved existing owner-confirmed organization facts to shared configuration. Added
 
 Validation: lint, typecheck, production build and 415 unit tests passed.
 
+# Phase 8 — About and editorial identity
+
+About now explains catalogue sourcing, supplied metrics, editorial disclosure, placement planning, and the existing company/contact configuration. Real configured authors and dates render where supplied; missing identities remain in TODO_CONTENT.md. Concurrent homepage edits exposed a missing icon import and stylesheet; both were restored without replacing the design work.
+
+Validation: lint, typecheck, production build and 415 unit tests passed after correcting those build errors. About source was included in the concurrent workspace commits; this checkpoint records the completed checks.
+
