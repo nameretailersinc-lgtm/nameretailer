@@ -1,4 +1,5 @@
-export const legacyRedirects: Array<{
+import { architectureRedirects } from './architecture';
+const previousRedirects: Array<{
   source: string;
   destination: string;
   reason: string;
@@ -562,9 +563,8 @@ export const legacyRedirects: Array<{
     reason:
       "Consistent metric slug; traffic typo retains its actual 50k–100k filter",
   },
-  {
-    source: "/guest-posting-sites-under-50/",
-    destination: "/price-0-to-50/",
-    reason: "Consolidate identical budget directory intent",
-  },
+];
+export const legacyRedirects = [
+  ...previousRedirects.map(r => ({ ...r, destination: architectureRedirects[r.destination] || r.destination })),
+  ...Object.entries(architectureRedirects).map(([source,destination]) => ({source,destination,reason:'Canonical non-overlapping catalogue band'})),
 ];

@@ -208,7 +208,7 @@ export default async function Page({ params }: Props) {
             Compare guest posting sites by niche
           </Link>
           ,{" "}
-          <Link href="/price-0-to-50/">browse placement prices up to $50</Link>,
+          <Link href="/guest-posting-sites-under-50/">browse placement prices up to $50</Link>,
           or <Link href="/">review the full active catalogue</Link>.
         </p>
       </section>

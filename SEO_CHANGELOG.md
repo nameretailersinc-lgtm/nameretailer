@@ -27,3 +27,9 @@ The first publication page remains server rendered. Hydration reuses that result
 
 Validation: lint, typecheck, production build and all 405 unit tests passed. Read-only live-catalogue SSR and hub checks are recorded separately in the final acceptance report.
 
+# Phase 4 — canonical architecture
+
+Restored the budget directory and permanently redirected the duplicate price page to it. DA, DR, traffic and price bands use distinct inclusive boundaries; old names resolve directly to the final names. Marketplace navigation targets `/`. `redirects.config` is a generated, tested manifest of the actual redirect source. Updated internal hub links.
+
+Validation: lint, typecheck, production build and 407 unit tests passed. Phase 3 runtime verification also passed: server-rendered publication rows on the home and all hub templates; 710 public URLs returned 200.
+

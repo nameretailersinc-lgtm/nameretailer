@@ -168,8 +168,8 @@ const directoryDefinitions: Directory[] = [
     lead: "Publications with a placement price of $50 USD or less, so you can test new topics and audiences without committing a large budget.",
     filter: { maxPriceCents: 5000 },
     browse: [
-      ["$0–$50 price range", "/price-0-to-50/"],
-      ["$50–$100 price range", "/price-50-to-100/"],
+      ["$0–$50 price range", "/guest-posting-sites-under-50/"],
+      ["$50–$100 price range", "/price-50-01-to-100/"],
       ["Sort all by lowest price", "/?sort=priceAsc"],
     ],
     sections: [
@@ -459,9 +459,7 @@ const directoryDefinitions: Directory[] = [
   },
 ];
 
-export const directories = directoryDefinitions.filter(
-  (directory) => directory.slug !== "guest-posting-sites-under-50",
-);
+export const directories = directoryDefinitions;
 
 export const directoryBySlug = (slug: string) =>
   directories.find((directory) => directory.slug === slug);

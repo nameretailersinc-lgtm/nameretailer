@@ -99,7 +99,7 @@ const stats = {
 };
 
 it("indexes range pages only with enough listings and unique copy", () => {
-  const range = marketplaceRangeBySlug("da-30-to-40")!;
+  const range = marketplaceRangeBySlug("da-30-to-39")!;
   const copy = rangeCopy(range, stats, { ...stats, medianPriceCents: 10000 });
   expect(copy.indexable).toBe(true);
   expect(copy.paragraphs[0]).toContain("50% above the catalogue-wide median");

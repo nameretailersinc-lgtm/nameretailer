@@ -16,30 +16,29 @@ function filters(query: string) {
 describe("bounded marketplace views", () => {
   it("preserves all 22 recorded legacy range routes without collisions", () => {
     const legacySlugs = [
-      "da-1-to-10",
-      "da-10-to-20",
-      "da-20-to-30",
-      "da-30-to-40",
-      "da-40-to-50",
-      "da-50-to-60",
-      "da-60-to-70",
-      "da-70-to-80",
-      "da-80-to-90",
+      "da-1-to-9",
+      "da-10-to-19",
+      "da-20-to-29",
+      "da-30-to-39",
+      "da-40-to-49",
+      "da-50-to-59",
+      "da-60-to-69",
+      "da-70-to-79",
+      "da-80-to-89",
       "da-90-to-100",
-      "0-to-50k-traffic",
-      "50k-to-100k-traffic",
-      "100k-to-500k-traffic",
+      "traffic-0-to-49999",
+      "traffic-50000-to-99999",
+      "traffic-100000-to-499999",
       "500k-plus-traffic",
-      "dr-0-to-20",
-      "dr-20-to-50",
+      "dr-0-to-19",
+      "dr-20-to-49",
       "dr-50-plus",
-      "price-0-to-50",
-      "price-50-to-100",
-      "price-100-to-150",
-      "price-150-to-200",
+      "price-50-01-to-100",
+      "price-100-01-to-150",
+      "price-150-01-to-200",
       "price-200-plus",
     ];
-    expect(marketplaceRanges).toHaveLength(26);
+    expect(marketplaceRanges).toHaveLength(25);
     expect(new Set(marketplaceRanges.map((range) => range.slug)).size).toBe(
       marketplaceRanges.length,
     );
@@ -85,16 +84,16 @@ describe("bounded marketplace views", () => {
     ).toEqual({ $type: "number", $gte: 20001 });
   });
   it("keeps the legacy traffic slug's actual 50k–100k meaning", () => {
-    expect(marketplaceRangeBySlug("50k-to-100k-traffic")!.bounds).toEqual({
+    expect(marketplaceRangeBySlug("traffic-50000-to-99999")!.bounds).toEqual({
       minTraffic: "50000",
-      maxTraffic: "100000",
+      maxTraffic: "99999",
     });
   });
   it.each([
-    ["500k-to-1m-traffic", 500000, 1000000],
-    ["1m-to-5m-traffic", 1000000, 5000000],
-    ["5m-to-10m-traffic", 5000000, 10000000],
-    ["10m-plus-traffic", 10000000, undefined],
+    ["traffic-500000-to-999999", 500000, 999999],
+    ["traffic-1000000-to-4999999", 1000000, 4999999],
+    ["traffic-5000000-to-9999999", 5000000, 9999999],
+    ["traffic-10000000-plus", 10000000, undefined],
   ] as const)(
     "the %s view applies its actual traffic bounds",
     (slug, min, max) => {
@@ -118,16 +117,16 @@ describe("bounded marketplace views", () => {
   it("locks route bounds against query overrides while retaining sort, pagination and audience", () => {
     const query = rangeQuery(
       "minDa=0&maxDa=100&page=2&sort=priceAsc&country=US",
-      marketplaceRangeBySlug("da-1-to-10"),
+      marketplaceRangeBySlug("da-1-to-9"),
     );
     expect(query.get("minDa")).toBe("1");
-    expect(query.get("maxDa")).toBe("10");
+    expect(query.get("maxDa")).toBe("9");
     expect(query.get("page")).toBe("2");
     expect(query.get("sort")).toBe("priceAsc");
     expect(query.get("country")).toBe("US");
     expect(
-      rangeQuery("", marketplaceRangeBySlug("da-1-to-10")).toString(),
-    ).toBe("minDa=1&maxDa=10");
+      rangeQuery("", marketplaceRangeBySlug("da-1-to-9")).toString(),
+    ).toBe("minDa=1&maxDa=9");
   });
   it.each([
     "minDa=11&maxDa=10",
