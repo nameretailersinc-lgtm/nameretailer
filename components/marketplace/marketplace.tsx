@@ -2,7 +2,7 @@
 
 import { finishedCopy } from "@/lib/site/public-copy";
 import { trackEvent } from "@/lib/analytics/events";
-import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { memo, useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -102,6 +102,7 @@ const usd = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",
 });
+const number = new Intl.NumberFormat("en-US");
 function subscribeToCompactViewport(onChange: () => void) {
   const viewport = window.matchMedia("(max-width: 800px)");
   viewport.addEventListener("change", onChange);
@@ -117,11 +118,9 @@ export function productPrice(cents: number) {
   return usd.format(cents / 100);
 }
 export function productMetric(value: number | null) {
-  return value === null
-    ? "Unavailable"
-    : new Intl.NumberFormat("en-US").format(value);
+  return value === null ? "Unavailable" : number.format(value);
 }
-function TableMetric({
+const TableMetric = memo(function TableMetric({
   value,
   tone,
 }: {
@@ -147,7 +146,7 @@ function TableMetric({
       {productMetric(value)}
     </span>
   );
-}
+});
 export function productDomain(domain: string) {
   try {
     return new URL(domain).hostname;
@@ -156,7 +155,11 @@ export function productDomain(domain: string) {
   }
 }
 /** Publication names open listing details on Name Retailer. */
-function PublicationName({ product }: { product: PublicProduct }) {
+const PublicationName = memo(function PublicationName({
+  product,
+}: {
+  product: PublicProduct;
+}) {
   const path = publicationPath(product);
   if (path)
     return (
@@ -165,7 +168,7 @@ function PublicationName({ product }: { product: PublicProduct }) {
       </Link>
     );
   return <span>{productDomain(product.domain)}</span>;
-}
+});
 function PlacementDetails({ product }: { product: PublicProduct }) {
   return (
     <>
@@ -230,14 +233,20 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
   );
 }
 
-function Detail({ product }: { product: PublicProduct }) {
+const Detail = memo(function Detail({ product }: { product: PublicProduct }) {
+  const [loaded, setLoaded] = useState(false);
   return (
-    <details className="publication-details">
+    <details
+      className="publication-details"
+      onToggle={(event) => {
+        if (event.currentTarget.open) setLoaded(true);
+      }}
+    >
       <summary>Placement details</summary>
-      <PlacementDetails product={product} />
+      {loaded && <PlacementDetails product={product} />}
     </details>
   );
-}
+});
 
 function PublicationDialog({
   product,
@@ -859,7 +868,13 @@ export function Marketplace({
   initialPage?: ProductPage;
   initialQuery?: string;
   catalogueAsOf?: string;
-  presentation: { header: React.ReactNode; footer: React.ReactNode; hero?: React.ReactNode; heading?: React.ReactNode; sections?: React.ReactNode };
+  presentation: {
+    header: React.ReactNode;
+    footer: React.ReactNode;
+    hero?: React.ReactNode;
+    heading?: React.ReactNode;
+    sections?: React.ReactNode;
+  };
 }) {
   const compactViewport = useSyncExternalStore(
     subscribeToCompactViewport,

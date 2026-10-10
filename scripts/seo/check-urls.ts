@@ -69,12 +69,7 @@ await withProductionServer(async (base) => {
       key + ": missing parameter disallow",
     );
   const sitemap = await sitemapUrlset(base);
-  for (const path of [
-    "/home/",
-    "/products/",
-    "/cart/",
-    "/site-map/",
-  ])
+  for (const path of ["/home/", "/products/", "/cart/", "/site-map/"])
     assert(
       !sitemap.includes(`https://nameretailer.com${path}</loc>`),
       `${path}: excluded URL in sitemap`,

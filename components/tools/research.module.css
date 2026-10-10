@@ -70,6 +70,29 @@
 .answers p {
   margin: 0;
 }
+:global(html[data-site-theme="dark"]) .research {
+  color: #e0edf3;
+}
+:global(html[data-site-theme="dark"]) .research a {
+  color: #9ce6c6;
+}
+:global(html[data-site-theme="dark"]) .research :global(.tools-eyebrow) {
+  color: #9ce6c6;
+  background: #244e42;
+  border-color: #365465;
+}
+:global(html[data-site-theme="dark"]) .table,
+:global(html[data-site-theme="dark"]) .answers section {
+  background: #173845;
+  border-color: #365465;
+}
+:global(html[data-site-theme="dark"]) .table thead {
+  background: #214357;
+}
+:global(html[data-site-theme="dark"]) .table th,
+:global(html[data-site-theme="dark"]) .table td {
+  border-color: #365465;
+}
 @media (max-width: 760px) {
   .answers {
     grid-template-columns: 1fr;

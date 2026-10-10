@@ -82,6 +82,7 @@
   background: var(--public-surface);
 }
 .reference-site .reference-card,
+.reference-site .publication-card,
 .reference-site .customer-card,
 .reference-site .reference-tool-panel,
 .reference-site .marketplace-filter-panel,
@@ -252,6 +253,31 @@
 }
 .reference-site .marketplace-table tbody tr:nth-child(even) {
   background: #f3f8fd;
+}
+.reference-site.marketplace-browser .marketplace-table tr > :nth-child(2) {
+  width: 22%;
+}
+.reference-site.marketplace-browser .marketplace-table tr > :nth-child(5) {
+  width: 10%;
+}
+.reference-site.marketplace-browser .marketplace-table tr > :nth-child(6) {
+  width: 14%;
+}
+.reference-site.marketplace-browser .marketplace-table tr > :nth-child(7) {
+  width: 9%;
+}
+.reference-site.marketplace-browser .marketplace-table tr > :nth-child(8) {
+  width: 24%;
+}
+.reference-site.marketplace-browser .marketplace-table tr > :nth-child(9) {
+  width: 6%;
+}
+.reference-site .marketplace-table .marketplace-bookmark {
+  width: 30px;
+  min-height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--public-surface);
 }
 .reference-site .marketplace-row-actions > .button {
   flex: 1;
@@ -473,7 +499,11 @@ html[data-site-theme="dark"] .reference-site .marketplace-faq details {
   background: #173845;
   border-color: #365465;
 }
-html[data-site-theme="dark"] .reference-site .marketplace-selection-steps li > span {
+html[data-site-theme="dark"]
+  .reference-site
+  .marketplace-selection-steps
+  li
+  > span {
   color: #9ce6c6;
   background: #173c33;
 }

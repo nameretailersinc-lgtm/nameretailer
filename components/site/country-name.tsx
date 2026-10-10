@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { countryCodes } from "@/lib/commerce/countries";
+import { countryRegions } from "@/lib/commerce/country-regions";
 import styles from "./country-name.module.css";
 
 const normalizeCountry = (value: string) =>
@@ -10,16 +10,6 @@ const normalizeCountry = (value: string) =>
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-z0-9]+/g, " ")
     .trim();
-const regionNames = new Intl.DisplayNames(["en"], { type: "region" });
-const countryRegions = new Map(
-  countryCodes.flatMap(
-    (code) =>
-      [
-        [code.toLowerCase(), code.toLowerCase()],
-        [normalizeCountry(regionNames.of(code) || code), code.toLowerCase()],
-      ] as [string, string][],
-  ),
-);
 const aliases: Record<string, string> = {
   usa: "us",
   "u s": "us",
@@ -50,7 +40,9 @@ export function countryCode(country: string | null | undefined) {
   const normalized = normalizeCountry(country || "");
   return Object.hasOwn(aliases, normalized)
     ? aliases[normalized]
-    : countryRegions.get(normalized);
+    : Object.hasOwn(countryRegions, normalized)
+      ? countryRegions[normalized]
+      : undefined;
 }
 
 export function CountryName({
