@@ -63,3 +63,9 @@ Added /guest-post-prices/ with real median/percentile prices by niche, DA/DR and
 
 Validation: lint, typecheck, production build and 418 unit tests passed.
 
+# Phase 10 — blog audit and research links
+
+Recorded ten existing noindex technical/migration articles in CONTENT_AUDIT.md with explicit rewrite criteria. Replaced obsolete public-site development-status claims while preserving CMS history and URLs. Added article-to-hub/report links and changed SEO Guides to the clean technical-SEO category URL. Existing hub and guide links cover the remaining directions.
+
+Validation: lint, typecheck, production build and 419 unit tests passed.
+

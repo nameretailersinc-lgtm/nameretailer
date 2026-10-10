@@ -1,5 +1,5 @@
 import { expect, it } from "vitest";
-import { finishedHtml, unfinishedCopy } from "@/lib/site/public-copy";
+import { finishedCopy, finishedHtml, unfinishedCopy } from "@/lib/site/public-copy";
 import { buyerQuestions } from "@/lib/site/faq";
 import { blogLibrary } from "@/lib/blog/library";
 
@@ -27,3 +27,5 @@ it("corrects visible historical CMS copy without altering links or markup", () =
     finishedHtml('<p>Compare the preview.</p><a href="/preview/">Draft</a>'),
   ).toBe('<p>Compare the result.</p><a href="/preview/">manuscript</a>');
 });
+
+it('replaces obsolete site-status claims with general indexing guidance',()=>{const text=finishedCopy('This rebuild remains noindex during development; canonical metadata does not override that restriction or activate a migration. This rebuild keeps public previews noindex until the migration and editorial release are approved.');expect(text).not.toMatch(/Name Retailer.*noindex|remains noindex|until the migration/);expect(text).toContain('canonical metadata serve separate purposes');});

@@ -60,7 +60,7 @@ const guideLinks = [
   {
     title: "SEO Guides",
     description: "Search, answers and discoverability",
-    href: "/blog/?q=SEO",
+    href: "/blog/category/technical-seo/",
     icon: Search,
     tone: "green",
   },

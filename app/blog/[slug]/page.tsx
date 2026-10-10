@@ -1,3 +1,4 @@
+import {RelatedResearch} from "@/components/site/related-research";
 import { EditorialByline } from "@/components/site/editorial-byline";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
@@ -207,6 +208,7 @@ export default async function Page({
           </p>
         </section>
       )}
+      <RelatedResearch/>
       <div className="tool-privacy">
         <p>
           <strong>Editorial note.</strong> Review the stated author, sources and
