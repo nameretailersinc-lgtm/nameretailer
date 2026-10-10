@@ -1,3 +1,4 @@
+import { sitemapUrlset } from "./sitemap";
 import { withProductionServer, pageHtml } from "./server";
 import { directories } from "../../lib/site/directories";
 import { marketplaceRanges } from "../../lib/commerce/marketplace-ranges";
@@ -7,7 +8,7 @@ import { marketplaceRanges } from "../../lib/commerce/marketplace-ranges";
 const slowMs = Number(process.env.HEALTH_SLOW_MS || 3000);
 
 await withProductionServer(async (base) => {
-  const xml = await pageHtml(base, "/sitemap.xml");
+  const xml = await sitemapUrlset(base);
   const sitemapPaths = [...xml.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => {
     const url = new URL(match[1]);
     return url.pathname + url.search;

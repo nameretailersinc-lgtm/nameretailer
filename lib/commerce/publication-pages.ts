@@ -5,7 +5,7 @@ import type { PublicProduct } from "./types";
  * 2026-10-09: a gated subset, not one page per listing). Meeting it means the
  * listing has strong, complete supplied metrics, not that Name Retailer has
  * editorially vetted the publication. Keep in sync with profileFilter().
- * At the 2026-10-09 catalogue snapshot this selects 569 of 56,005 listings.
+ * Indexing also requires a complete audience, price and substantial unique text.
  */
 export const PROFILE_RULE = {
   minTraffic: 500_000,
@@ -15,7 +15,7 @@ export const PROFILE_RULE = {
   excludedCategories: ["", "General", "All Niches", "Other"],
 } as const;
 
-type ProfileCandidate = Pick<PublicProduct, "domain" | "category" | "metrics">;
+type ProfileCandidate = Pick<PublicProduct, "domain" | "category" | "metrics"> & Partial<Pick<PublicProduct,"country" | "language" | "priceCents" | "requirements">>;
 
 /** Root domains qualify for indexing; section listings also have detail pages. */
 export function publicationHost(
@@ -44,6 +44,10 @@ export function hasPublicationProfile(product: ProfileCandidate): boolean {
   const { traffic, dr, da, spamScore } = product.metrics || {};
   return (
     publicationHost(product.domain) !== null &&
+    !!product.country?.trim() && !!product.language?.trim() &&
+    typeof product.priceCents === "number" && Number.isSafeInteger(product.priceCents) && product.priceCents > 0 &&
+    (product.requirements || "").trim().split(/\s+/).filter(Boolean).length >= 80 &&
+    new Set((product.requirements || "").toLowerCase().match(/[a-z0-9]+/g) || []).size >= 40 &&
     !(PROFILE_RULE.excludedCategories as readonly string[]).includes(
       product.category || "",
     ) &&

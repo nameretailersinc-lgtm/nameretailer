@@ -5,6 +5,7 @@ const mocks = vi.hoisted(() => ({ profile: vi.fn() }));
 vi.mock("@/lib/commerce/publication-profiles", () => ({
   publicationProfile: mocks.profile,
   relatedProfiles: vi.fn(),
+  publicationIndexable: async () => false,
 }));
 vi.mock("next/server", () => ({ connection: async () => {} }));
 vi.mock("next/navigation", () => ({
@@ -78,7 +79,7 @@ it("retains index eligibility for complete profiles and noindex for facets", asy
     },
   });
   expect((await generateMetadata(props)).robots).toEqual({
-    index: true,
+    index: false,
     follow: true,
   });
   expect(

@@ -1,3 +1,4 @@
+import { sitemapUrlset } from "./sitemap";
 import { withProductionServer, pageHtml } from "./server";
 
 // Crawls every sitemap URL, then every internal link found on those pages, and fails
@@ -20,7 +21,7 @@ async function mapLimit<T, R>(items: T[], run: (item: T) => Promise<R>) {
 }
 
 await withProductionServer(async (base) => {
-  const sitemapIndex = await pageHtml(base, "/sitemap.xml");
+  const sitemapIndex = await sitemapUrlset(base);
   const pages = new Set<string>();
   for (const match of sitemapIndex.matchAll(/<loc>(.*?)<\/loc>/g))
     pages.add(new URL(match[1]).pathname + new URL(match[1]).search);

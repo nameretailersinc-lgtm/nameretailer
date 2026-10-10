@@ -1,3 +1,4 @@
+import { sitemapUrlset } from "./sitemap";
 import { readdir } from "node:fs/promises";
 import { tools } from "../../lib/tools/catalog";
 import { directories } from "../../lib/site/directories";
@@ -28,7 +29,7 @@ export async function publicRoutes(base: string) {
       /* route handler */
     }
   }
-  const sitemap = await pageHtml(base, "/sitemap.xml");
+  const sitemap = await sitemapUrlset(base);
   for (const match of sitemap.matchAll(/<loc>(.*?)<\/loc>/g))
     paths.add(new URL(match[1]).pathname);
   // Include noindex articles too, so validation is not limited to the sitemap.

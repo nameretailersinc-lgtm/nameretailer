@@ -15,7 +15,7 @@ import { rangeCopy } from "@/lib/site/range-copy";
 import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
 import { publicationPath } from "@/lib/commerce/publication-pages";
 
-export const dynamic = "force-dynamic";
+
 
 const staticPaths = [
   "/",
@@ -36,11 +36,9 @@ const staticPaths = [
   "/refund-policy/",
   "/privacy/",
   "/cookies/",
-  "/terms/",
-  "/policies/",
 ];
 
-export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [
     ...staticPaths,
     ...tools.map((tool) => `/${tool.slug}/`),

@@ -8,12 +8,12 @@ import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import {
   publicationPath,
   publicationHost,
-  hasPublicationProfile,
   validPublicationSlug,
   validPublicationListingId,
 } from "@/lib/commerce/publication-pages";
 import {
   publicationProfile,
+  publicationIndexable,
   relatedProfiles,
 } from "@/lib/commerce/publication-profiles";
 import type { PublicProduct } from "@/lib/commerce/types";
@@ -85,7 +85,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
       title: `${host} Guest Post: Price, DR and Traffic`,
       description: `Guest post on ${host}: ${facts}. Compare listing details before you order.`,
       ...facets,
-      robots: hasPublicationProfile(product)
+      robots: await publicationIndexable(product)
         ? facets.robots
         : { index: false, follow: true },
     },

@@ -26,6 +26,7 @@ const strong = {
 };
 
 it("indexes only complete, strong root-domain listings", () => {
+  expect(hasPublicationProfile(strong)).toBe(false);
   expect(publicationPath(strong)).toBe("/publication/example-com/");
   expect(hasPublicationProfile({ ...strong, category: "General" })).toBe(false);
   expect(

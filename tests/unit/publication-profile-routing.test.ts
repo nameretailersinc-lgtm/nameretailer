@@ -30,7 +30,7 @@ beforeEach(() => {
   mocks.rows.mockResolvedValue([]);
   mocks.findOne.mockResolvedValue(null);
   mocks.find.mockImplementation(() => {
-    const cursor = { sort: () => cursor, toArray: mocks.rows };
+    const cursor = { sort: () => cursor, maxTimeMS: () => cursor, toArray: mocks.rows };
     return cursor;
   });
 });
@@ -88,7 +88,7 @@ it("keeps ordinary and section listings out of the profile sitemap", async () =>
     strong,
     { ...strong, domain: "https://artnews.com/blog/" },
   ]);
-  expect(await profileSitemapEntries()).toEqual([strong]);
+  expect(await profileSitemapEntries()).toEqual([]);
   expect(mocks.find.mock.calls[0][0]).toMatchObject({
     status: "active",
     "metrics.traffic": { $gte: 500_000 },

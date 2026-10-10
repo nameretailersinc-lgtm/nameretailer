@@ -1,3 +1,4 @@
+import { sitemapUrlset } from "./sitemap";
 import assert from "node:assert/strict";
 import { withProductionServer, pageHtml } from "./server";
 await withProductionServer(async (base) => {
@@ -53,7 +54,7 @@ await withProductionServer(async (base) => {
   const robots = await pageHtml(base, "/robots.txt");
   assert(robots.includes("Disallow: /custom-login/"));
   assert(!robots.includes("Disallow: /_next"));
-  const sitemap = await pageHtml(base, "/sitemap.xml");
+  const sitemap = await sitemapUrlset(base);
   for (const path of [
     "/home/",
     "/products/",

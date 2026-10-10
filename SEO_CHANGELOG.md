@@ -39,3 +39,9 @@ Added reproducible 1200 × 630 PNG cards for home, hub, guide and article templa
 
 Validation: lint, typecheck, production build and 411 unit tests passed. An initial build picked up prematurely staged phase 6 files; they were isolated and all four checks rerun successfully before this commit.
 
+# Phase 6 — split sitemaps and shared indexing gate
+
+Replaced the single URL set with an XML sitemap index and bounded static, hub, content and publication parts. Crawl checks traverse the index. Profile metadata and sitemap inclusion share eligibility based on audience fields, price, substantial distinct text and the existing metric threshold. Thin profiles remain internal detail pages with noindex,follow. Added INDEXING_POLICY.md and omitted unfinished terms and the noindex policy hub from the sitemap.
+
+Validation: typecheck, build and 413 unit tests passed. Lint passed with two unused-import warnings in crawl scripts; those imports are cleaned up in phase 7.
+
