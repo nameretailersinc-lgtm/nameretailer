@@ -86,7 +86,12 @@ export function rangeCopy(
   catalogue: CatalogueStatistics | null,
 ) {
   const paragraphs: string[] = [];
-  if (stats && stats.total > 0 && stats.updatedAt && Number.isFinite(Date.parse(stats.updatedAt))) {
+  if (
+    stats &&
+    stats.total > 0 &&
+    stats.updatedAt &&
+    Number.isFinite(Date.parse(stats.updatedAt))
+  ) {
     let summary = `${stats.total.toLocaleString("en-US")} active publications fall in ${range.label}.`;
     if (
       stats.minPriceCents !== null &&
@@ -110,7 +115,7 @@ export function rangeCopy(
     if (stats.topCountries.length)
       summary += `${stats.topTopics.length ? ", and" : " Most"} listings most often target ${list(stats.topCountries.map((row) => row.name))}.`;
     else if (stats.topTopics.length) summary += ".";
-    paragraphs.push(summary + ` These figures are owner-supplied, not independently verified, as of ${stats.updatedAt.slice(0,10)}.`);
+    paragraphs.push(summary);
   }
   paragraphs.push(...guidance(range));
   const words = paragraphs.join(" ").split(/\s+/).filter(Boolean).length;

@@ -1,4 +1,3 @@
-import {DataDisclosure} from "@/components/site/data-disclosure";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { InformationShell } from "@/components/site/information-page";
@@ -92,11 +91,22 @@ export default async function Page({ params }: Props) {
   const isCost = guide.slug === "guest-post-cost";
   const [stats, breakdown] = isCost
     ? await Promise.all([
-        catalogueSummary("").catch(()=>null),
+        catalogueSummary("").catch(() => null),
         priceBreakdown().catch(() => null),
       ])
     : [null, null];
-  const answer = isCost ? costAnswer(stats || {total:0,minPriceCents:null,maxPriceCents:null,medianPriceCents:null,topCountries:[],topTopics:[]}) : guide.answer;
+  const answer = isCost
+    ? costAnswer(
+        stats || {
+          total: 0,
+          minPriceCents: null,
+          maxPriceCents: null,
+          medianPriceCents: null,
+          topCountries: [],
+          topTopics: [],
+        },
+      )
+    : guide.answer;
   const image = "/01_guest_post_checklist.png";
   const article = buyerGuideArticleNode({
     ...guide,
@@ -167,7 +177,6 @@ export default async function Page({ params }: Props) {
       )}
       {breakdown?.asOf && (
         <>
-          <DataDisclosure asOf={breakdown.asOf}/>
           <PriceTable
             caption="Placement price by Domain Authority (Moz)"
             group="DA band"
@@ -210,8 +219,10 @@ export default async function Page({ params }: Props) {
             Compare guest posting sites by niche
           </Link>
           ,{" "}
-          <Link href="/guest-posting-sites-under-50/">browse placement prices up to $50</Link>,
-          or <Link href="/">review the full active catalogue</Link>.
+          <Link href="/guest-posting-sites-under-50/">
+            browse placement prices up to $50
+          </Link>
+          , or <Link href="/">review the full active catalogue</Link>.
         </p>
       </section>
     </InformationShell>

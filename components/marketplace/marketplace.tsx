@@ -554,8 +554,7 @@ function HomepageShortlist({
           </div>
           <p className={homepageStyles.shortlistNote}>
             Shortlisted values are the snapshots you selected, not live price or
-            availability reservations. All metrics remain owner-supplied and
-            unverified.
+            availability reservations.
           </p>
         </>
       )}
@@ -817,9 +816,8 @@ function MetricContext({ compact = false }: { compact?: boolean }) {
         or search results. Traffic figures are estimates.
       </p>
       <p>
-        Inventory metrics are supplied by the owner, not independently verified
-        or refreshed here. Missing and legacy zero values are shown as
-        Unavailable. No measurement date was supplied.
+        Missing values are shown as Unavailable.{" "}
+        <Link href="/methodology/">How we source listings and metrics</Link>.
       </p>
       <Link href="/how-to-buy-links/#metrics">Read the metric checklist →</Link>
     </Container>
@@ -1527,9 +1525,8 @@ export function Marketplace({
                 >
                   <table className="marketplace-table">
                     <caption className="screen-reader-only">
-                      Owner-supplied inventory. USD placement price; metric
-                      values are not independently verified. A dash means the
-                      metric is unavailable.
+                      Publications with USD placement price and metrics. A dash
+                      means the metric is unavailable.
                     </caption>
                     <thead>
                       <tr>
@@ -1938,8 +1935,7 @@ export function Marketplace({
                 </div>
                 <p className="small muted">
                   Shortlisted values are the snapshots you selected, not live
-                  price or availability reservations. All metrics remain
-                  owner-supplied and unverified.
+                  price or availability reservations.
                 </p>
               </>
             )}

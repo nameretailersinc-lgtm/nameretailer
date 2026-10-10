@@ -1,4 +1,3 @@
-import {DataDisclosure} from "./data-disclosure";
 import { BuyerGuideLinks } from "./buyer-guide-links";
 import Link from "next/link";
 import Image from "next/image";
@@ -352,12 +351,19 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
       />
       <section className="reference-card directory-listings">
         <h2>Publishers in this directory</h2>
-        <DataDisclosure asOf={stats?.updatedAt}/>
         {result ? (
           <>
             <p>
-              <strong>{stats?.updatedAt && Number.isFinite(Date.parse(stats.updatedAt)) ? number(result.total) : "Matching"}</strong> active publications
-              {stats?.updatedAt && Number.isFinite(Date.parse(stats.updatedAt)) && result.lowestPriceCents !== null
+              <strong>
+                {stats?.updatedAt &&
+                Number.isFinite(Date.parse(stats.updatedAt))
+                  ? number(result.total)
+                  : "Matching"}
+              </strong>{" "}
+              active publications
+              {stats?.updatedAt &&
+              Number.isFinite(Date.parse(stats.updatedAt)) &&
+              result.lowestPriceCents !== null
                 ? `, with placements from ${usd(result.lowestPriceCents)}`
                 : ""}
               . The {Math.min(result.data.length, result.total)} below have the
@@ -545,7 +551,7 @@ export function LandingExplore() {
             {
               Icon: CircleDollarSign,
               title: "What the price includes",
-              text: "Each listing shows a USD placement price. Metrics come from our catalogue and are not independently verified.",
+              text: "Each listing shows a USD placement price, shown separately from any article writing.",
             },
             {
               Icon: ShoppingCart,
@@ -596,11 +602,9 @@ export function LandingExplore() {
             <p>
               Each listing shows a USD placement price. Writing is priced
               separately where it is offered, so a placement price is not a full
-              campaign quote. Metrics are supplied with the catalogue and are
-              not independently verified here; a missing value is shown as
-              unavailable, never as zero. Sponsored content should be disclosed,
-              and Google recommends marking paid links with
-              rel=&quot;sponsored&quot;; see the{" "}
+              campaign quote. A missing value is shown as unavailable, never as
+              zero. Sponsored content should be disclosed, and Google recommends
+              marking paid links with rel=&quot;sponsored&quot;; see the{" "}
               <Link href="/how-to-buy-links/">buying checklist</Link> for the
               questions to settle first.
             </p>

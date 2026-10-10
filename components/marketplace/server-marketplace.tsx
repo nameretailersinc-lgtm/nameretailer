@@ -1,4 +1,3 @@
-import {DataDisclosure} from "@/components/site/data-disclosure";
 import { connection } from "next/server";
 import { Marketplace } from "./marketplace";
 import { publicProductPage } from "@/lib/commerce/public-page";
@@ -28,7 +27,9 @@ export async function ServerMarketplace({
   // Fresh request-time inventory, with the existing active/committed visibility rules.
   const [initialPage, stats, catalogue] = await Promise.all([
     publicProductPage(query.toString()),
-    catalogueSummary(range ? new URLSearchParams(range.bounds).toString() : "").catch(() => null),
+    catalogueSummary(
+      range ? new URLSearchParams(range.bounds).toString() : "",
+    ).catch(() => null),
     range ? catalogueSummary("").catch(() => null) : null,
   ]);
   const copy = range ? rangeCopy(range, stats, catalogue) : null;
@@ -46,7 +47,6 @@ export async function ServerMarketplace({
           dangerouslySetInnerHTML={{ __html: serializeJsonLd(websiteNode()) }}
         />
       )}
-      {stats?.updatedAt && <DataDisclosure asOf={stats.updatedAt}/>}
       {copy && (
         <section className="reference-card" aria-label={copy.heading}>
           <h2>{copy.heading}</h2>

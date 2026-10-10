@@ -4,7 +4,11 @@ export function BuyerGuideLinks() {
   return (
     <section className="reference-card">
       <h2>Guest-post buying questions</h2>
-      <p><Link href="/guest-post-prices/">Dated guest post prices by niche, DA and country</Link></p>
+      <p>
+        <Link href="/guest-post-prices/">
+          Dated guest post prices by niche, DA and country
+        </Link>
+      </p>
       <ul>
         {buyerGuides
           .filter((guide) => guide.approved)

@@ -1,4 +1,4 @@
-import {DataDisclosure,validAsOf} from "@/components/site/data-disclosure";
+import { validAsOf } from "@/components/site/data-disclosure";
 import "./hub.css";
 import Link from "next/link";
 import { connection } from "next/server";
@@ -85,7 +85,9 @@ type Stats = Awaited<ReturnType<typeof catalogueSummary>>;
 
 function faqFor(stats: Stats | null) {
   const median =
-    stats?.medianPriceCents != null && validAsOf(stats.updatedAt) ? usd(stats.medianPriceCents) : null;
+    stats?.medianPriceCents != null && validAsOf(stats.updatedAt)
+      ? usd(stats.medianPriceCents)
+      : null;
   return [
     [
       "What are guest posting sites?",
@@ -94,7 +96,7 @@ function faqFor(stats: Stats | null) {
     [
       "How much does a guest post cost?",
       median && stats
-        ? `Across ${count(stats.total)} active listings the median placement price is ${median}. These figures are owner-supplied, not independently verified, as of ${stats.updatedAt!.slice(0,10)}. Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.`
+        ? `Across ${count(stats.total)} active listings the median placement price is ${median}. Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.`
         : "Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.",
     ],
     [
@@ -140,7 +142,7 @@ async function loadHub() {
 
 export default async function Page() {
   const { stats, facets, top, niches, breakdown } = await loadHub();
-  const datedStats=validAsOf(stats?.updatedAt)?stats:null;
+  const datedStats = validAsOf(stats?.updatedAt) ? stats : null;
   const faq = faqFor(datedStats);
   const url = `${canonicalOrigin}/guest-posting-sites/`;
   const list = top ? itemListNode(top.data) : null;
@@ -187,7 +189,6 @@ export default async function Page() {
       />
 
       <section className="hub-summary" aria-label="Catalogue at a glance">
-        <DataDisclosure asOf={datedStats?.updatedAt}/>
         {figures.length > 0 && (
           <dl className="hub-stats">
             {figures.map(([label, value]) => (
@@ -273,7 +274,6 @@ export default async function Page() {
                     )}
                   </ul>
                 )}
-                <DataDisclosure asOf={niche?.updatedAt}/>
               </article>
             );
           })}
@@ -328,56 +328,59 @@ export default async function Page() {
         </div>
       </section>
 
-      {validAsOf(breakdown?.asOf) && breakdown && breakdown.byTopic.length > 0 && (
-        <section className="hub-section" aria-labelledby="prices">
-          <div className="hub-heading">
-            <p className="eyebrow">Live price data</p>
-            <h2 id="prices">What does a guest post cost by niche?</h2>
-            <DataDisclosure asOf={breakdown.asOf}/>
-            {datedStats?.medianPriceCents != null && (
-              <p>
-                The median placement price across {count(datedStats.total)} active
-                listings is <strong>{usd(datedStats.medianPriceCents)}</strong>.
-                Medians by topic are below; writing is charged separately where
-                offered.
-              </p>
-            )}
-          </div>
-          <div className="directory-table-wrap">
-            <table className="directory-table">
-              <caption>
-                Placement price by topic: active listings, median and middle
-                half of prices in USD
-              </caption>
-              <thead>
-                <tr>
-                  <th scope="col">Topic</th>
-                  <th scope="col">Listings</th>
-                  <th scope="col">Median price</th>
-                  <th scope="col">Typical range</th>
-                </tr>
-              </thead>
-              <tbody>
-                {breakdown.byTopic.map((row) => (
-                  <tr key={row.label}>
-                    <th scope="row">{row.label}</th>
-                    <td>{count(row.count)}</td>
-                    <td>{usd(row.medianCents)}</td>
-                    <td>
-                      {usd(row.lowCents)}–{usd(row.highCents)}
-                    </td>
+      {validAsOf(breakdown?.asOf) &&
+        breakdown &&
+        breakdown.byTopic.length > 0 && (
+          <section className="hub-section" aria-labelledby="prices">
+            <div className="hub-heading">
+              <p className="eyebrow">Live price data</p>
+              <h2 id="prices">What does a guest post cost by niche?</h2>
+              {datedStats?.medianPriceCents != null && (
+                <p>
+                  The median placement price across {count(datedStats.total)}{" "}
+                  active listings is{" "}
+                  <strong>{usd(datedStats.medianPriceCents)}</strong>. Medians
+                  by topic are below; writing is charged separately where
+                  offered.
+                </p>
+              )}
+            </div>
+            <div className="directory-table-wrap">
+              <table className="directory-table">
+                <caption>
+                  Placement price by topic: active listings, median and middle
+                  half of prices in USD
+                </caption>
+                <thead>
+                  <tr>
+                    <th scope="col">Topic</th>
+                    <th scope="col">Listings</th>
+                    <th scope="col">Median price</th>
+                    <th scope="col">Typical range</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-          <p className="hub-note">
-            Typical range is the 25th to 75th percentile. Prices by DA, DR and
-            country are in the{" "}
-            <Link href="/guides/guest-post-cost/">guest post cost guide</Link>.
-          </p>
-        </section>
-      )}
+                </thead>
+                <tbody>
+                  {breakdown.byTopic.map((row) => (
+                    <tr key={row.label}>
+                      <th scope="row">{row.label}</th>
+                      <td>{count(row.count)}</td>
+                      <td>{usd(row.medianCents)}</td>
+                      <td>
+                        {usd(row.lowCents)}–{usd(row.highCents)}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="hub-note">
+              Typical range is the 25th to 75th percentile. Prices by DA, DR and
+              country are in the{" "}
+              <Link href="/guides/guest-post-cost/">guest post cost guide</Link>
+              .
+            </p>
+          </section>
+        )}
 
       <section className="hub-section" aria-labelledby="how-to-choose">
         <div className="hub-heading">
@@ -445,5 +448,13 @@ export async function generateMetadata({
   searchParams: Promise<SearchParams>;
 }) {
   const facets = facetMetadata("/guest-posting-sites/", await searchParams);
-  return pageMetadata({title:'Guest Posting Sites by Niche, Country and Budget',description:'Compare guest posting sites by niche, country, DA, DR, traffic and USD placement price. Explore catalogue price data and a buyer checklist.',...facets},'/guest-posting-sites/');
+  return pageMetadata(
+    {
+      title: "Guest Posting Sites by Niche, Country and Budget",
+      description:
+        "Compare guest posting sites by niche, country, DA, DR, traffic and USD placement price. Explore catalogue price data and a buyer checklist.",
+      ...facets,
+    },
+    "/guest-posting-sites/",
+  );
 }

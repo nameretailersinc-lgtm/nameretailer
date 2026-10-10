@@ -1,2 +1,2 @@
-export const validAsOf=(value?:string)=>!!value && Number.isFinite(Date.parse(value));
-export function DataDisclosure({asOf}:{asOf?:string}) {if(!validAsOf(asOf))return null;return <p className="catalogue-disclosure">Catalogue figures are owner-supplied, not independently verified, as of <time dateTime={asOf}>{asOf!.slice(0,10)}</time>. A catalogue update is separate from a metric measurement date.</p>;}
+export const validAsOf = (value?: string) =>
+  !!value && Number.isFinite(Date.parse(value));
