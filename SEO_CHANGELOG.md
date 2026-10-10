@@ -75,3 +75,9 @@ Renamed the catalogue-only score tool to Catalogue Domain Rating lookup and the 
 
 Validation: lint, typecheck, production build and 419 unit tests passed.
 
+# Phase 12 — client loading and performance budgets
+
+Deferred the rich placement editor until its dialog is opened. Added median mobile Lighthouse budgets for home and three major hubs, with TBT labelled as a lab proxy rather than INP. Preserved server-rendered paginated rows and existing bounded image/font settings. The first audit exposed an inverse budget redirect in the owner CSV; corrected it and added shared redirect-chain protection and regression tests. Performance results will be recorded after the final production build.
+
+Validation: lint, typecheck, production build and 422 unit tests passed after the redirect fix. Source changes were included in concurrent commit 072fb6a; this checkpoint records the completed checks.
+
