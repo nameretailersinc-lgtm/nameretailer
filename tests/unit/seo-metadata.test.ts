@@ -1,5 +1,10 @@
 import { expect, it } from "vitest";
 import { pageMetadata } from "@/lib/seo/page-metadata";
+it.each([['/','home'],['/technology-guest-posting-sites/','hub'],['/guides/guest-post-cost/','guide'],['/blog/article/','article']])('shares %s with a full-size template image', (path,template) => {
+  const meta=pageMetadata({title:'Publication research',description:'Research publications and placement scope.'},path);
+  expect(meta.openGraph).toMatchObject({images:[{url:`https://nameretailer.com/og/${template}.png`,width:1200,height:630}]});
+  expect(meta.twitter).toMatchObject({card:'summary_large_image'});
+});
 it("bounds public metadata and shares the resolved title, description and canonical", () => {
   const meta = pageMetadata(
     {

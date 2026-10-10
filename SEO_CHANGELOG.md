@@ -33,3 +33,9 @@ Restored the budget directory and permanently redirected the duplicate price pag
 
 Validation: lint, typecheck, production build and 407 unit tests passed. Phase 3 runtime verification also passed: server-rendered publication rows on the home and all hub templates; 710 public URLs returned 200.
 
+# Phase 5 — route metadata and sharing images
+
+Added reproducible 1200 × 630 PNG cards for home, hub, guide and article templates. Page metadata supplies complete bounded sharing fields and canonical URLs. Generic article artwork no longer overrides the full-size card; explicitly supplied CMS artwork remains supported.
+
+Validation: lint, typecheck, production build and 411 unit tests passed. An initial build picked up prematurely staged phase 6 files; they were isolated and all four checks rerun successfully before this commit.
+

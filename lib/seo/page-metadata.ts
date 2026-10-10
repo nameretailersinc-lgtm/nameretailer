@@ -21,14 +21,16 @@ export function pageMetadata(base: Metadata, path: string): Metadata {
   const title = concise(String(raw), 60);
   const description = concise(base.description || "", 155);
   const canonical = base.alternates?.canonical || canonicalOrigin + path;
+  const template = path === '/' ? 'home' : path.startsWith('/blog/') && !path.includes('/category/') && path !== '/blog/' ? 'article' : path.startsWith('/guides/') || path === '/how-to-buy-links/' ? 'guide' : 'hub';
+  const shareImage = `${canonicalOrigin}/og/${template}.png`;
   const images =
     base.openGraph && "images" in base.openGraph && base.openGraph.images
       ? base.openGraph.images
       : [
           {
-            url: `${canonicalOrigin}/01_hero_analytics_illustration.png`,
-            width: 700,
-            height: 475,
+            url: shareImage,
+            width: 1200,
+            height: 630,
             alt: `${title} — Name Retailer`,
           },
         ];
@@ -60,7 +62,7 @@ export function pageMetadata(base: Metadata, path: string): Metadata {
       images:
         base.twitter && "images" in base.twitter && base.twitter.images
           ? base.twitter.images
-          : [`${canonicalOrigin}/01_hero_analytics_illustration.png`],
+          : images,
     },
   };
 }

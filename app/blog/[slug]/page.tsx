@@ -41,16 +41,9 @@ export async function generateMetadata({
         ? {
             openGraph: {
               ...metadata.openGraph,
-              images: [
-                {
-                  url: `https://nameretailer.com${artwork.src}`,
-                  width: artwork.width,
-                  height: artwork.height,
-                  alt: artwork.alt,
-                },
-              ],
+              images: undefined,
             },
-            twitter: { ...metadata.twitter, card: "summary" as const },
+            twitter: { ...metadata.twitter, card: "summary_large_image" as const, images: undefined },
           }
         : {}),
     },
