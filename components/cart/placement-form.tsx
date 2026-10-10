@@ -530,8 +530,8 @@ export function PlacementForm({
                 </span>
               </div>
               <p className="placement-format-help" id={`${id}-format-help`}>
-                Use the toolbar to format your text. Upload a document to keep its
-                original styling.
+                Use the toolbar to format your text. Upload a document to keep
+                its original styling.
               </p>
               {!words && (
                 <div className="placement-upload" id={`${id}-upload`}>
@@ -584,7 +584,7 @@ export function PlacementForm({
                     {!!retainedFiles.length && (
                       <div className="placement-retained-files">
                         <label htmlFor={`${id}-retained-file`}>
-                          Existing draft article file
+                          Existing article file
                         </label>
                         <select
                           id={`${id}-retained-file`}
@@ -611,7 +611,7 @@ export function PlacementForm({
                           ))}
                         </select>
                         <p className="customer-hint">
-                          Choose an unused draft file to reuse or remove it.
+                          Choose an unused article file to reuse or remove it.
                           Removing a file also invalidates any cart reference to
                           it.
                         </p>

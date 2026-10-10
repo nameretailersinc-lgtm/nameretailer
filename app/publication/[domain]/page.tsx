@@ -1,3 +1,5 @@
+import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
+import { finishedCopy } from "@/lib/site/public-copy";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { connection } from "next/server";
@@ -85,7 +87,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
       title: `${host} Guest Post: Price, DR and Traffic`,
       description: `Guest post on ${host}: ${facts}. Compare listing details before you order.`,
       ...facets,
-      robots: await publicationIndexable(product)
+      robots: (await publicationIndexable(product))
         ? facets.robots
         : { index: false, follow: true },
     },
@@ -113,12 +115,14 @@ export default async function Page({ params }: Props) {
     relatedProfiles(product).catch((): PublicProduct[] => []),
   ]);
   const m = product.metrics;
-  const topicComparison = topic
-    ? priceComparison(product.priceCents, topic.medianPriceCents)
-    : null;
-  const catalogueComparison = catalogue
-    ? priceComparison(product.priceCents, catalogue.medianPriceCents)
-    : null;
+  const topicComparison =
+    topic && validAsOf(topic.updatedAt)
+      ? priceComparison(product.priceCents, topic.medianPriceCents)
+      : null;
+  const catalogueComparison =
+    catalogue && validAsOf(catalogue.updatedAt)
+      ? priceComparison(product.priceCents, catalogue.medianPriceCents)
+      : null;
   const url = canonicalOrigin + path;
   const suppliedMetrics = [
     m.dr !== null ? `a Domain Rating of ${m.dr}` : null,
@@ -189,7 +193,8 @@ export default async function Page({ params }: Props) {
         </dl>
         {product.requirements && (
           <p>
-            <strong>Publisher requirements:</strong> {product.requirements}
+            <strong>Publisher requirements:</strong>{" "}
+            {finishedCopy(product.requirements)}
           </p>
         )}
         <p>
@@ -214,6 +219,10 @@ export default async function Page({ params }: Props) {
       {(topicComparison || catalogueComparison) && (
         <section className="reference-card" aria-labelledby="price-context">
           <h2 id="price-context">How does this price compare?</h2>
+          {topicComparison && <DataDisclosure asOf={topic?.updatedAt} />}
+          {catalogueComparison && (
+            <DataDisclosure asOf={catalogue?.updatedAt} />
+          )}
           {topic && topicComparison && topic.medianPriceCents !== null && (
             <p>
               This placement is <strong>{topicComparison}</strong> the median{" "}

@@ -11,7 +11,7 @@ await withProductionServer(async (base) => {
     ...marketplaceRanges.map((range) => `/${range.slug}/`),
     ...directories.map((directory) => `/${directory.slug}/`),
   ];
-  for (const path of paths) {
+  for (const path of [...paths, ...paths]) {
     const html = visibleHtml(await pageHtml(base, path));
     assert(
       !/Loading publications|Loading marketplace/.test(html),

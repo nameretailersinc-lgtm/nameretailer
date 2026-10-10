@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import guideStyles from "./homepage-guides.module.css";
 import { InformationShell } from "./information-page";
+import { CountryName } from "./country-name";
 import { publicDirectoryListings } from "@/lib/commerce/public-directory";
 import { directories, type Directory } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
@@ -400,11 +401,45 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
                           )}
                         </th>
                         <td>{product.category}</td>
-                        <td>{product.country}</td>
-                        <td>{number(product.metrics?.dr)}</td>
-                        <td>{number(product.metrics?.da)}</td>
-                        <td>{number(product.metrics?.traffic)}</td>
-                        <td>{usd(product.priceCents)}</td>
+                        <td>
+                          <CountryName country={product.country} />
+                        </td>
+                        <td>
+                          <span
+                            className={
+                              product.metrics?.dr == null
+                                ? undefined
+                                : "publication-metric-dr"
+                            }
+                          >
+                            {number(product.metrics?.dr)}
+                          </span>
+                        </td>
+                        <td>
+                          <span
+                            className={
+                              product.metrics?.da == null
+                                ? undefined
+                                : "publication-metric-da"
+                            }
+                          >
+                            {number(product.metrics?.da)}
+                          </span>
+                        </td>
+                        <td>
+                          <span
+                            className={
+                              product.metrics?.traffic == null
+                                ? undefined
+                                : "publication-metric-traffic"
+                            }
+                          >
+                            {number(product.metrics?.traffic)}
+                          </span>
+                        </td>
+                        <td className="publication-price">
+                          {usd(product.priceCents)}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

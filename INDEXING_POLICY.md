@@ -10,4 +10,6 @@ Hub eligibility requires at least 15 active listings and substantive distinct gu
 
 ## Owner-approved blog indexing — 2026-10-10
 
+The previously owner-published policy hub remains indexable alongside the actual Refund, Privacy and Cookie policies and is included in the static sitemap. The HTML page directory and incomplete Terms page retain their existing separate rules. Directory statistics require a valid record update date before supporting indexing.
+
 The owner explicitly requested indexing of every published blog article, including the ten technical/migration articles, and the Technical SEO category. The public published-only query overrides historical article robotsIndex flags for that scope; all published blog URLs and active journal categories are included in the content sitemap. Unpublished/private records remain inaccessible. Faceted search URLs retain their separate noindex rule, and publication-listing completeness gates are unaffected. CONTENT_AUDIT.md lists improvement suggestions without an indexing hold.

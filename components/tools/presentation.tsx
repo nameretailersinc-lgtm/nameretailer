@@ -84,7 +84,7 @@ export function DirectoryHero() {
       <div className="tools-hero-copy">
         <p className="tools-eyebrow">Free tools</p>
         <h1>
-          Useful tools.
+          Free online SEO tools.
           <br />
           <span>Less busywork.</span>
         </h1>

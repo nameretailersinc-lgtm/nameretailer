@@ -88,7 +88,7 @@ export const publicationProfile = cache(
         },
         { projection: publicFields },
       )
-      .sort({ domain: 1 })
+      .sort({ domain: 1, id: 1 })
       .toArray();
     return (
       candidates.find(
@@ -123,17 +123,49 @@ export async function relatedProfiles(
 }
 
 export function profileSitemapEntries(): Promise<PublicProduct[]> {
-  return cachedAsync('indexable-publication-profiles',{ttlMs:15*60_000,staleOnErrorMs:0,timeoutMs:12000},async () => {
-    const {products}=await productStore();
-    const rows=await products.find(await profileFilter(),{projection:publicFields}).sort({domain:1,id:1}).maxTimeMS(10000).toArray();
-    const fingerprints=new Map<string,number>();
-    const normalized=(text:string) => text.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
-    for(const row of rows) { const key=normalized(row.requirements || ''); fingerprints.set(key,(fingerprints.get(key)||0)+1); }
-    const paths=new Set<string>();
-    return rows.filter(row => { const path=publicationPath(row); if(!path || paths.has(path) || !hasPublicationProfile(row) || fingerprints.get(normalized(row.requirements))!==1)return false; paths.add(path);return true; });
-  });
+  return cachedAsync(
+    "indexable-publication-profiles",
+    { ttlMs: 15 * 60_000, staleOnErrorMs: 0, timeoutMs: 12000 },
+    async () => {
+      const { products } = await productStore();
+      const rows = await products
+        .find(await profileFilter(), { projection: publicFields })
+        .sort({ domain: 1, id: 1 })
+        .maxTimeMS(10000)
+        .toArray();
+      const fingerprints = new Map<string, number>();
+      const normalized = (text: string) =>
+        text
+          .toLowerCase()
+          .replace(/[^\p{L}\p{N}]+/gu, " ")
+          .trim();
+      for (const row of rows) {
+        const key = normalized(row.requirements || "");
+        fingerprints.set(key, (fingerprints.get(key) || 0) + 1);
+      }
+      const paths = new Set<string>();
+      return rows.filter((row) => {
+        const path = publicationPath(row);
+        if (
+          !path ||
+          paths.has(path) ||
+          !hasPublicationProfile(row) ||
+          fingerprints.get(normalized(row.requirements)) !== 1
+        )
+          return false;
+        paths.add(path);
+        return true;
+      });
+    },
+  );
 }
-export async function publicationIndexable(product:PublicProduct) {
-  if(!hasPublicationProfile(product))return false;
-  try { return (await profileSitemapEntries()).some(p=>p.id===product.id && p.domain===product.domain); } catch { return false; }
+export async function publicationIndexable(product: PublicProduct) {
+  if (!hasPublicationProfile(product)) return false;
+  try {
+    return (await profileSitemapEntries()).some(
+      (p) => p.id === product.id && p.domain === product.domain,
+    );
+  } catch {
+    return false;
+  }
 }

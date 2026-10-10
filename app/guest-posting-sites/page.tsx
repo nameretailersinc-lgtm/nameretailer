@@ -1,4 +1,4 @@
-import { validAsOf } from "@/components/site/data-disclosure";
+import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
 import "./hub.css";
 import Link from "next/link";
 import { connection } from "next/server";
@@ -90,6 +90,18 @@ function faqFor(stats: Stats | null) {
       : null;
   return [
     [
+      "How do I find a guest post marketplace?",
+      "Start with a marketplace that lists publications by topic, country and language, then narrow the directory to your audience and budget. Open each publication profile to review requirements and supplied metrics. On Name Retailer, use the niche directories and price bands to build a shortlist before contacting the team.",
+    ],
+    [
+      "How do I choose a guest post marketplace?",
+      "Choose a marketplace that explains its catalogue sources, metric limitations, placement prices and contact process. Check whether publication requirements, sponsorship disclosure and link qualification are clear. Ask how terms are confirmed and what happens if a placement cannot proceed. Treat broad promises of rankings or guaranteed traffic as claims requiring evidence.",
+    ],
+    [
+      "How do I compare websites for guest posts?",
+      "Compare audience relevance first, then country, language, recent articles and editorial standards. Use the same authority metric across your shortlist and ask for the source and date of traffic estimates. Compare placement and writing costs separately, and confirm link qualification, disclosure and turnaround with the publisher before committing to a placement.",
+    ],
+    [
       "What are guest posting sites?",
       "Guest posting sites are publications that accept articles from outside contributors, usually in exchange for a link or a fee. Name Retailer lists publishers that offer paid placements, with their topic, country, supplied metrics and USD price, so you can compare them side by side.",
     ],
@@ -166,7 +178,7 @@ export default async function Page() {
   const figures = [
     datedStats && ["Active publications", count(datedStats.total)],
     datedStats && facets && ["Topics", count(facets.categories.length)],
-    facets && ["Countries", count(facets.countries.length)],
+    datedStats && facets && ["Countries", count(facets.countries.length)],
     datedStats?.medianPriceCents != null && [
       "Median placement price",
       usd(datedStats!.medianPriceCents!),
@@ -189,6 +201,7 @@ export default async function Page() {
       />
 
       <section className="hub-summary" aria-label="Catalogue at a glance">
+        <DataDisclosure asOf={datedStats?.updatedAt} />
         {figures.length > 0 && (
           <dl className="hub-stats">
             {figures.map(([label, value]) => (
@@ -335,6 +348,7 @@ export default async function Page() {
             <div className="hub-heading">
               <p className="eyebrow">Live price data</p>
               <h2 id="prices">What does a guest post cost by niche?</h2>
+              <DataDisclosure asOf={breakdown.asOf} />
               {datedStats?.medianPriceCents != null && (
                 <p>
                   The median placement price across {count(datedStats.total)}{" "}

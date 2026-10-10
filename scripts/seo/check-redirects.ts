@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
-import { legacyRedirects } from "../../lib/seo/redirect-map";
+import { publicRedirects } from "../../lib/seo/public-redirects";
+const legacyRedirects = publicRedirects();
 import { withProductionServer } from "./server";
 await withProductionServer(async (base) => {
   const targets = new Set<string>();

@@ -25,7 +25,7 @@ const strong = {
   metrics,
 };
 
-it("indexes only complete, strong root-domain listings", () => {
+it("keeps incomplete listings available internally while excluding them from indexing", () => {
   expect(hasPublicationProfile(strong)).toBe(false);
   expect(publicationPath(strong)).toBe("/publication/example-com/");
   expect(hasPublicationProfile({ ...strong, category: "General" })).toBe(false);
@@ -89,7 +89,7 @@ it("keeps section listings distinct from the host's root listing", () => {
 
 const stats = {
   total: 40,
-  updatedAt:"2026-10-09",
+  updatedAt: "2026-10-09",
   minPriceCents: 1000,
   maxPriceCents: 90000,
   medianPriceCents: 15000,
@@ -107,4 +107,32 @@ it("indexes range pages only with enough listings and unique copy", () => {
   expect(copy.paragraphs[0]).toContain("50% above the catalogue-wide median");
   expect(rangeCopy(range, { ...stats, total: 14 }, null).indexable).toBe(false);
   expect(rangeCopy(range, null, null).indexable).toBe(false);
+  expect(
+    rangeCopy(range, { ...stats, updatedAt: undefined }, null).indexable,
+  ).toBe(false);
+});
+
+it("requires substantial distinct content and all audience fields for indexing", () => {
+  const sentence =
+    "Explain audience research editorial expectations technical examples content guidelines citation sources reporting process software evidence industry specialist readers publication topics market geography language budget pricing placement disclosure sponsored qualification accessibility photographs graphics ownership permissions factual accuracy useful descriptions practical recommendations current details product comparisons original manuscripts review scope delivery timing publisher contacts organisation quality standards questions answers implementation results measurements context relevance considerations.";
+  const complete = {
+    ...strong,
+    country: "United States",
+    language: "English",
+    priceCents: 9000,
+    requirements: sentence + " " + sentence,
+  };
+  expect(hasPublicationProfile(complete)).toBe(true);
+  expect(hasPublicationProfile({ ...complete, country: "" })).toBe(false);
+  expect(hasPublicationProfile({ ...complete, language: "" })).toBe(false);
+  expect(hasPublicationProfile({ ...complete, priceCents: 0 })).toBe(false);
+  expect(
+    hasPublicationProfile({ ...complete, requirements: "Repeat ".repeat(100) }),
+  ).toBe(false);
+  expect(
+    hasPublicationProfile({
+      ...complete,
+      requirements: "A short requirement.",
+    }),
+  ).toBe(false);
 });

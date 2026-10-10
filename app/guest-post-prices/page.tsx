@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { connection } from "next/server";
 import { InformationShell } from "@/components/site/information-page";
-import { validAsOf } from "@/components/site/data-disclosure";
+import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
 import { priceBreakdown, type PriceRow } from "@/lib/commerce/price-breakdown";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
@@ -83,6 +83,7 @@ export default async function Page() {
     >
       {data && (
         <>
+          <DataDisclosure asOf={data.asOf} />
           <PriceTable title="Prices by niche" rows={data.byTopic} />
           <PriceTable
             title="Prices by Domain Authority band"

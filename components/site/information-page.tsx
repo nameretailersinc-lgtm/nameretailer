@@ -1,6 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import {
+  BookOpen,
+  ChartNoAxesColumnIncreasing,
+  ChevronRight,
+  CircleDollarSign,
+  Crown,
+  FileText,
+  Globe2,
+  Tag,
+  Users,
+} from "lucide-react";
 import {
   informationPages,
   type InformationPage,
@@ -14,6 +24,14 @@ const artworkDimensions: Record<string, { width: number; height: number }> = {
   "/03_listing_browser_panel.png": { width: 880, height: 405 },
   "/15_laptop_dashboard_illustration.png": { width: 485, height: 340 },
 };
+const informationLinkIcons = [
+  ChartNoAxesColumnIncreasing,
+  Crown,
+  Globe2,
+  CircleDollarSign,
+  Tag,
+  FileText,
+];
 
 export function InformationShell({
   path,
@@ -71,7 +89,16 @@ export function InformationShell({
         <section className="reference-page-hero">
           <div>
             <p className="reference-pill">{label}</p>
-            <h1>{title}</h1>
+            <h1>
+              {title.includes(" by ") ? (
+                <>
+                  {title.slice(0, title.indexOf(" by ") + 4)}
+                  <span>{title.slice(title.indexOf(" by ") + 4)}</span>
+                </>
+              ) : (
+                title
+              )}
+            </h1>
             <p className="reference-lead">{description}</p>
           </div>
           <Image
@@ -101,6 +128,13 @@ export function InformationPageView({ page }: { page: InformationPage }) {
       <div className="reference-information-sections">
         {page.sections.map((section) => (
           <section className="reference-card" key={section.title}>
+            <span className="information-section-icon" aria-hidden="true">
+              {section.title.toLowerCase().includes("audience") ? (
+                <Users size={28} />
+              ) : (
+                <BookOpen size={28} />
+              )}
+            </span>
             <h2>{section.title}</h2>
             <p>{section.body}</p>
           </section>
@@ -108,16 +142,28 @@ export function InformationPageView({ page }: { page: InformationPage }) {
       </div>
       <section className="reference-information-next" aria-label="Next steps">
         <p className="eyebrow">Explore more</p>
+        <h2>
+          {page.active === "marketplace"
+            ? "Find the right list for your needs"
+            : "Keep exploring"}
+        </h2>
         <div className="reference-three-grid">
-          {page.links.map((link) => (
-            <article className="reference-card" key={link.href}>
-              <h2>{link.title}</h2>
-              <p>{link.description}</p>
-              <Link href={link.href}>
-                Continue <ArrowUpRight size={15} aria-hidden="true" />
-              </Link>
-            </article>
-          ))}
+          {page.links.map((link, index) => {
+            const Icon =
+              informationLinkIcons[index % informationLinkIcons.length];
+            return (
+              <article className="reference-card" key={link.href}>
+                <span className="information-link-icon" aria-hidden="true">
+                  <Icon size={28} />
+                </span>
+                <h3>{link.title}</h3>
+                <p>{link.description}</p>
+                <Link href={link.href}>
+                  Continue <ChevronRight size={15} aria-hidden="true" />
+                </Link>
+              </article>
+            );
+          })}
         </div>
       </section>
     </InformationShell>

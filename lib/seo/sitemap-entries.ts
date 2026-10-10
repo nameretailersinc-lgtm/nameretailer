@@ -29,6 +29,7 @@ const staticPaths = [
   "/about/",
   "/methodology/",
   "/contact/",
+    "/policies/",
   "/faq/",
   "/help-center/",
   "/refund-policy/",

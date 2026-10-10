@@ -1,5 +1,8 @@
+import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
 import { connection } from "next/server";
 import { Marketplace } from "./marketplace";
+import { SiteHeader, SiteFooter } from "@/components/site/chrome";
+import { HomepageHero, HomepageCatalogHeading, HomepageSections } from "@/components/site/homepage";
 import { publicProductPage } from "@/lib/commerce/public-page";
 import {
   marketplaceQuery,
@@ -33,14 +36,23 @@ export async function ServerMarketplace({
     range ? catalogueSummary("").catch(() => null) : null,
   ]);
   const copy = range ? rangeCopy(range, stats, catalogue) : null;
+  const homePage = !range && !metricView;
   return (
     <Marketplace
       range={range}
       metricView={metricView}
       initialPage={initialPage}
       initialQuery={query.toString()}
-      catalogueAsOf={stats?.updatedAt}
+      catalogueAsOf={validAsOf(stats?.updatedAt) ? stats?.updatedAt : undefined}
+      presentation={{
+        header: <SiteHeader active={homePage ? "home" : "marketplace"} />,
+        footer: <SiteFooter />,
+        hero: homePage ? <HomepageHero /> : undefined,
+        heading: homePage ? <HomepageCatalogHeading /> : undefined,
+        sections: homePage ? <HomepageSections metrics={initialPage?.data[0]?.metrics} total={validAsOf(stats?.updatedAt) ? stats?.total : undefined} /> : undefined,
+      }}
     >
+      {!range && <DataDisclosure asOf={stats?.updatedAt} />}
       {!range && !metricView && (
         <script
           type="application/ld+json"

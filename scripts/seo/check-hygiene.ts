@@ -1,3 +1,5 @@
+import { unfinishedCopy } from "../../lib/site/public-copy";
+import { bodyText } from "../../lib/cms/content";
 import assert from "node:assert/strict";
 import { readdir, readFile } from "node:fs/promises";
 import ts from "typescript";
@@ -46,7 +48,11 @@ async function checkSourceImages(directory: string): Promise<string[]> {
             1;
           if (!has("alt"))
             problems.push(`${path}:${line}: missing explicit alt`);
-          if (node.tagName.getText(source) !== "img" && !has("sizes"))
+          if (
+            node.tagName.getText(source) !== "img" &&
+            !has("sizes") &&
+            !has("unoptimized")
+          )
             problems.push(`${path}:${line}: missing Image sizes`);
         }
         ts.forEachChild(node, visit);
@@ -69,6 +75,8 @@ await withProductionServer(async (base) => {
     const html = visibleHtml(await pageHtml(base, path));
     if (!/<html\b[^>]*\blang="[a-z][a-z-]*"/i.test(html))
       problems.push(`${path}: missing document language`);
+    if (unfinishedCopy.test(bodyText(html)))
+      problems.push(path + ": unfinished public copy");
     const main = html.match(/<main\b[^>]*>([\s\S]*?)<\/main>/i)?.[1];
     if (!main) {
       problems.push(`${path}: missing main`);

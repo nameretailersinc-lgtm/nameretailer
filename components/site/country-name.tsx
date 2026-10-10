@@ -46,16 +46,20 @@ const aliases: Record<string, string> = {
   "ivory coast": "ci",
 };
 
+export function countryCode(country: string | null | undefined) {
+  const normalized = normalizeCountry(country || "");
+  return Object.hasOwn(aliases, normalized)
+    ? aliases[normalized]
+    : countryRegions.get(normalized);
+}
+
 export function CountryName({
   country,
 }: {
   country: string | null | undefined;
 }) {
   const name = country || "Unavailable";
-  const normalized = normalizeCountry(name);
-  const code = Object.hasOwn(aliases, normalized)
-    ? aliases[normalized]
-    : countryRegions.get(normalized);
+  const code = countryCode(country);
   return (
     <span className={styles.country}>
       {code && (

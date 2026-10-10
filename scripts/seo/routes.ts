@@ -1,3 +1,4 @@
+import { technicalArticleSlugs } from "../../lib/blog/indexing-policy";
 import { sitemapUrlset } from "./sitemap";
 import { readdir } from "node:fs/promises";
 import { tools } from "../../lib/tools/catalog";
@@ -36,6 +37,11 @@ export async function publicRoutes(base: string) {
   const library = await pageHtml(base, "/blog/?pageSize=60");
   for (const match of library.matchAll(
     /href="(\/blog\/(?:category\/)?[a-z0-9-]+\/)"/g,
+  ))
+    paths.add(match[1]);
+  for (const slug of technicalArticleSlugs) paths.add("/" + slug + "/");
+  for (const match of (await pageHtml(base, "/")).matchAll(
+    /href="(\/publication\/[^"?#]+)"/g,
   ))
     paths.add(match[1]);
   for (const row of legacyRedirects) paths.delete(row.source);

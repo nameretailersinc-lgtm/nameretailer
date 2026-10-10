@@ -1,0 +1,77 @@
+.research {
+  margin: 2.5rem 0;
+  color: var(--reference-ink, #123c43);
+}
+.research h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.2;
+  margin: 0.4rem 0 0.8rem;
+}
+.research p {
+  line-height: 1.7;
+  max-width: 78ch;
+}
+.research a {
+  color: #087867;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.table {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border: 1px solid #dbe8e5;
+  border-radius: 14px;
+  background: #fff;
+}
+.table table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 600px;
+  text-align: left;
+  font-size: 0.9rem;
+}
+.table caption {
+  text-align: left;
+  padding: 1rem;
+  font-weight: 600;
+}
+.table th,
+.table td {
+  padding: 0.9rem 1rem;
+  vertical-align: top;
+  border-top: 1px solid #dbe8e5;
+  line-height: 1.6;
+}
+.table thead {
+  background: #edf6f3;
+}
+.table tbody th {
+  width: 28%;
+}
+.table th a {
+  display: block;
+  font-weight: 500;
+}
+.answers {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+.answers section {
+  padding: 1.25rem;
+  border: 1px solid #dbe8e5;
+  border-radius: 14px;
+  background: #fff;
+}
+.answers h3 {
+  margin: 0 0 0.65rem;
+  font-size: 1.05rem;
+}
+.answers p {
+  margin: 0;
+}
+@media (max-width: 760px) {
+  .answers {
+    grid-template-columns: 1fr;
+  }
+}

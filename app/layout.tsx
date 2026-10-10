@@ -14,6 +14,7 @@ import "./navigation.css";
 import "./marketplace-menu.css";
 import "./commerce-flow.css";
 import "./placement.css";
+import "./public-theme.css";
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",

@@ -100,7 +100,11 @@ export function rangeCopy(
     ) {
       summary += ` Their placement prices run from ${usd(stats.minPriceCents)} to ${usd(stats.maxPriceCents)}, with a median of ${usd(stats.medianPriceCents)}`;
       const median = catalogue?.medianPriceCents;
-      if (median) {
+      if (
+        median &&
+        catalogue?.updatedAt &&
+        Number.isFinite(Date.parse(catalogue.updatedAt))
+      ) {
         const ratio = stats.medianPriceCents / median;
         summary +=
           ratio > 0.95 && ratio < 1.05
@@ -124,6 +128,8 @@ export function rangeCopy(
     paragraphs,
     indexable:
       !!stats &&
+      !!stats.updatedAt &&
+      Number.isFinite(Date.parse(stats.updatedAt)) &&
       stats.total >= MIN_INDEXABLE_LISTINGS &&
       words >= MIN_INDEXABLE_WORDS,
     description: `Guest post sites in ${range.label}. Compare topic, country, DR, traffic and USD price before you plan a placement.`,

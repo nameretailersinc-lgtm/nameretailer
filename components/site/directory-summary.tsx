@@ -1,4 +1,5 @@
 import { BuyerGuideLinks } from "@/components/site/buyer-guide-links";
+import { DataDisclosure } from "@/components/site/data-disclosure";
 import Link from "next/link";
 import type { CatalogueStatistics } from "@/lib/commerce/catalogue-statistics";
 const usd = (value: number) =>
@@ -22,6 +23,7 @@ export function DirectorySummary({
       aria-label={`${label} catalogue summary`}
     >
       <h2>{label}: catalogue snapshot</h2>
+      <DataDisclosure asOf={stats.updatedAt} />
       <p>
         {stats.total.toLocaleString("en-US")} active publications match this
         segment.

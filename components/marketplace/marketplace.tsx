@@ -1,5 +1,6 @@
 "use client";
 
+import { finishedCopy } from "@/lib/site/public-copy";
 import { trackEvent } from "@/lib/analytics/events";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
@@ -46,15 +47,10 @@ import {
   MarketplaceHero,
   MarketplaceInquiry,
 } from "./presentation";
-import { SiteHeader, SiteFooter } from "@/components/site/chrome";
-import {
-  HomepageCatalogHeading,
-  HomepageHero,
-  HomepageSections,
-} from "@/components/site/homepage";
 import homepageStyles from "@/components/site/homepage.module.css";
 import { CountryName } from "@/components/site/country-name";
 import { BuyPlacement } from "@/components/cart/buy-placement";
+import { CatalogBrowser } from "./catalog-browser";
 import { publicationPath } from "@/lib/commerce/publication-pages";
 import {
   rangeQuery,
@@ -143,7 +139,11 @@ function TableMetric({
       <span className="screen-reader-only">Unavailable</span>
     </span>
   ) : (
-    <span className={tone ? colors[tone] : undefined}>
+    <span
+      className={
+        tone ? `${colors[tone]} publication-metric-${tone}` : undefined
+      }
+    >
       {productMetric(value)}
     </span>
   );
@@ -215,7 +215,7 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
       </dl>
       <p className="marketplace-placement-requirements">
         <strong>Requirements:</strong>{" "}
-        {product.requirements ||
+        {finishedCopy(product.requirements) ||
           "Unavailable. Confirm placement requirements before ordering."}
       </p>
       <Link
@@ -624,6 +624,7 @@ function PublicationSearch({
   onAdvancedFilters?: () => void;
 }) {
   const params = new URLSearchParams(query);
+  const [browser, setBrowser] = useState<"category" | "country" | null>(null);
   const [mode, setMode] = useState<"q" | "category" | "country">(() =>
     params.get("q")
       ? "q"
@@ -685,7 +686,10 @@ function PublicationSearch({
             type="button"
             aria-label={title}
             aria-pressed={mode === key}
-            onClick={() => setMode(key as typeof mode)}
+            onClick={() => {
+              setMode(key as typeof mode);
+              if (key === "category" || key === "country") setBrowser(key);
+            }}
           >
             <span className="marketplace-search-mode-icon">
               <Icon size={21} aria-hidden="true" />
@@ -788,6 +792,9 @@ function PublicationSearch({
                   {topic === "Travelling" ? "Travel" : topic}
                 </button>
               ))}
+              <button type="button" onClick={() => setBrowser("category")}>
+                More <ChevronDown size={13} aria-hidden="true" />
+              </button>
             </div>
           )}
           <Link href="/how-to-buy-links/">
@@ -796,6 +803,18 @@ function PublicationSearch({
           </Link>
         </div>
       </div>
+      {browser && (
+        <CatalogBrowser
+          kind={browser}
+          values={browser === "category" ? facets.categories : facets.countries}
+          onClose={() => setBrowser(null)}
+          onSelect={(item) => {
+            setMode(browser);
+            onSearch({ q: "", [browser]: item });
+            setBrowser(null);
+          }}
+        />
+      )}
     </section>
   );
 }
@@ -831,6 +850,7 @@ export function Marketplace({
   initialPage,
   initialQuery,
   catalogueAsOf,
+  presentation,
 }: {
   metricView?: boolean;
   range?: MarketplaceRange;
@@ -839,6 +859,7 @@ export function Marketplace({
   initialPage?: ProductPage;
   initialQuery?: string;
   catalogueAsOf?: string;
+  presentation: { header: React.ReactNode; footer: React.ReactNode; hero?: React.ReactNode; heading?: React.ReactNode; sections?: React.ReactNode };
 }) {
   const compactViewport = useSyncExternalStore(
     subscribeToCompactViewport,
@@ -956,7 +977,7 @@ export function Marketplace({
   const shortlistControl = (product: PublicProduct) => (
     <Button
       variant="secondary"
-      className={metricView ? undefined : "marketplace-bookmark"}
+      className="marketplace-bookmark"
       aria-label={
         shortlist.some((item) => item.id === product.id)
           ? "Remove from shortlist"
@@ -974,30 +995,22 @@ export function Marketplace({
       }
       onClick={() => toggle(product)}
     >
-      {metricView ? (
-        shortlist.some((item) => item.id === product.id) ? (
-          "Remove from shortlist"
-        ) : (
-          "Shortlist"
-        )
-      ) : (
-        <>
-          <Bookmark
-            size={18}
-            aria-hidden="true"
-            fill={
-              shortlist.some((item) => item.id === product.id)
-                ? "currentColor"
-                : "none"
-            }
-          />
-          <span className="marketplace-bookmark-label">
-            {shortlist.some((item) => item.id === product.id)
-              ? "Remove from shortlist"
-              : "Shortlist"}
-          </span>
-        </>
-      )}
+      <>
+        <Bookmark
+          size={18}
+          aria-hidden="true"
+          fill={
+            shortlist.some((item) => item.id === product.id)
+              ? "currentColor"
+              : "none"
+          }
+        />
+        <span className="marketplace-bookmark-label">
+          {shortlist.some((item) => item.id === product.id)
+            ? "Remove from shortlist"
+            : "Shortlist"}
+        </span>
+      </>
     </Button>
   );
   const facet = (
@@ -1023,9 +1036,9 @@ export function Marketplace({
   );
   return (
     <div
-      className={`marketplace reference-site reference-marketplace${metricView ? "" : " marketplace-browser"}${homePage ? ` ${homepageStyles.page}` : ""}`}
+      className={`marketplace reference-site reference-marketplace marketplace-browser${homePage ? ` ${homepageStyles.page}` : ""}`}
     >
-      <SiteHeader active={pathname === "/" ? "home" : "marketplace"} />
+      {presentation.header}
       <main id="main" tabIndex={-1}>
         {pathname !== "/" && (
           <script
@@ -1052,13 +1065,15 @@ export function Marketplace({
             }}
           />
         )}
-        <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
-          <Link href="/">Marketplace</Link>
-          <span aria-hidden="true">›</span>
-          <span aria-current="page">
-            {range?.label || (metricView ? "Domain Rating" : "Publications")}
-          </span>
-        </nav>
+        {pathname !== "/" && (
+          <nav className="reference-breadcrumbs" aria-label="Breadcrumb">
+            <Link href="/">Marketplace</Link>
+            <span aria-hidden="true">›</span>
+            <span aria-current="page">
+              {range?.label || (metricView ? "Domain Rating" : "Publications")}
+            </span>
+          </nav>
+        )}
         {range && (
           <aside
             className="marketplace-range-notice"
@@ -1087,7 +1102,7 @@ export function Marketplace({
             aria-labelledby="publication-discovery-title"
           >
             {homePage ? (
-              <HomepageHero />
+              presentation.hero
             ) : (
               <div className="marketplace-browser-heading">
                 <div className="marketplace-discovery-copy">
@@ -1168,7 +1183,7 @@ export function Marketplace({
             </p>
           </div>
         )}
-        {homePage && <HomepageCatalogHeading />}
+        {homePage && presentation.heading}
         <div className="marketplace-workspace" id="inventory">
           <aside
             className={metricView ? undefined : "marketplace-filter-sidebar"}
@@ -1530,11 +1545,9 @@ export function Marketplace({
                     </caption>
                     <thead>
                       <tr>
-                        {!metricView && (
-                          <th scope="col" className="marketplace-rank-column">
-                            #
-                          </th>
-                        )}
+                        <th scope="col" className="marketplace-rank-column">
+                          #
+                        </th>
                         <th scope="col">Publication</th>
                         <th
                           scope="col"
@@ -1566,7 +1579,7 @@ export function Marketplace({
                         </th>
                         <th scope="col">Country / language</th>
                         <th scope="col">Price (USD)</th>
-                        {!metricView && <th scope="col">Action</th>}
+                        <th scope="col">Actions</th>
                         <th scope="col">Compare</th>
                       </tr>
                     </thead>
@@ -1579,13 +1592,11 @@ export function Marketplace({
                             undefined
                           }
                         >
-                          {!metricView && (
-                            <td>
-                              <span className="marketplace-row-number">
-                                {(value.page - 1) * value.pageSize + index + 1}
-                              </span>
-                            </td>
-                          )}
+                          <td>
+                            <span className="marketplace-row-number">
+                              {(value.page - 1) * value.pageSize + index + 1}
+                            </span>
+                          </td>
                           <th scope="row">
                             <div className="marketplace-publication-identity">
                               <span
@@ -1602,7 +1613,6 @@ export function Marketplace({
                                 <p>{product.category || "Topic unavailable"}</p>
                               </div>
                             </div>
-                            {metricView && <Detail product={product} />}
                           </th>
                           <td>
                             <TableMetric value={product.metrics.da} tone="da" />
@@ -1626,33 +1636,22 @@ export function Marketplace({
                           </td>
                           <td className="marketplace-price">
                             {productPrice(product.priceCents)}
-                            {!homePage && (
-                              <BuyPlacement productId={product.id} />
-                            )}
                           </td>
-                          {!metricView && (
-                            <td>
-                              <div
-                                className={
-                                  homePage
-                                    ? homepageStyles.rowActions
-                                    : undefined
-                                }
+                          <td>
+                            <div
+                              className={`marketplace-row-actions ${homepageStyles.rowActions}`}
+                            >
+                              <BuyPlacement productId={product.id} />
+                              <Button
+                                variant="secondary"
+                                className="marketplace-view-details"
+                                onClick={() => setSelectedProduct(product)}
                               >
-                                {homePage && (
-                                  <BuyPlacement productId={product.id} />
-                                )}
-                                <Button
-                                  variant="secondary"
-                                  className="marketplace-view-details"
-                                  onClick={() => setSelectedProduct(product)}
-                                >
-                                  View Details
-                                  <ArrowRight size={14} aria-hidden="true" />
-                                </Button>
-                              </div>
-                            </td>
-                          )}
+                                View Details
+                                <ArrowRight size={14} aria-hidden="true" />
+                              </Button>
+                            </div>
+                          </td>
                           <td>{shortlistControl(product)}</td>
                         </tr>
                       ))}
@@ -1797,11 +1796,11 @@ export function Marketplace({
                 aria-label="Publication result pages"
               >
                 <p>
-                  Showing{" "}
                   {value.total && catalogueAsOf
-                    ? `${((value.page - 1) * value.pageSize + 1).toLocaleString("en-US")}–${Math.min(value.page * value.pageSize, value.total).toLocaleString("en-US")} of ${value.total.toLocaleString("en-US")}`
-                    : "0 results"}
-                  {" publications"}
+                    ? `Showing ${((value.page - 1) * value.pageSize + 1).toLocaleString("en-US")}–${Math.min(value.page * value.pageSize, value.total).toLocaleString("en-US")} of ${value.total.toLocaleString("en-US")} publications`
+                    : value.total
+                      ? `Showing publications on page ${value.page}`
+                      : "No publications found"}
                 </p>
                 <div className="actions">
                   <Button
@@ -1980,12 +1979,7 @@ export function Marketplace({
             onClose={() => setSelectedProduct(null)}
           />
         )}
-        {homePage && (
-          <HomepageSections
-            metrics={value?.data[0]?.metrics}
-            total={value?.total}
-          />
-        )}
+        {homePage && presentation.sections}
         {homePage ? (
           <details className={homepageStyles.explore} open>
             <summary>
@@ -1999,7 +1993,7 @@ export function Marketplace({
           children
         )}
       </main>
-      <SiteFooter />
+      {presentation.footer}
     </div>
   );
 }

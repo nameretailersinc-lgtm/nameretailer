@@ -1,3 +1,5 @@
+import { canonicalOrigin } from "../../lib/seo/metadata";
+import { bodyText } from "../../lib/cms/content";
 import { sitemapUrlset } from "./sitemap";
 import { withProductionServer } from "./server";
 import { directories } from "../../lib/site/directories";
@@ -38,7 +40,16 @@ await withProductionServer(async (base) => {
             redirect: "manual",
             signal: AbortSignal.timeout(60000),
           });
-          await response.arrayBuffer();
+          const html = await response.text();
+          if (sitemapPaths.includes(path) && response.status === 200) {
+            const canonical = html.match(
+              /<link rel="canonical" href="([^"]+)"/,
+            );
+            if (!canonical || bodyText(canonical[1]) !== canonicalOrigin + path)
+              failures.push(path + ": sitemap canonical mismatch");
+            if (/<meta name="robots" content="noindex/i.test(html))
+              failures.push(path + ": noindex URL in sitemap");
+          }
           if (response.status !== 200)
             failures.push(`${path}: HTTP ${response.status}`);
         } catch (error) {

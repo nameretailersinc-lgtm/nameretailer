@@ -19,7 +19,7 @@
     "check:meta": "tsx scripts/seo/check-meta.ts",
     "check:jsonld": "tsx scripts/seo/check-jsonld.ts",
     "check:hygiene": "tsx scripts/seo/check-hygiene.ts",
-    "check:seo": "npm run check:ssr && npm run check:urls && npm run check:links && npm run check:redirects && npm run check:meta && npm run check:jsonld && npm run check:hygiene",
+    "check:seo": "npm run check:ssr && npm run check:urls && npm run check:links && npm run check:redirects && npm run check:meta && npm run check:jsonld && npm run check:hygiene && npm run check:health",
     "measure:performance": "npm exec --package=@lhci/cli -- lhci collect --config=lighthouserc.cjs && npm exec --package=@lhci/cli -- lhci assert --config=lighthouserc.cjs && node scripts/seo/report-performance.mjs",
     "format": "prettier --write .",
     "test": "vitest run",
@@ -34,7 +34,8 @@
     "products:activate-owner": "tsx scripts/commerce/activate-owner-import.ts",
     "blog:seed": "tsx scripts/content/seed-blog.ts",
     "products:import": "tsx scripts/commerce/import-products.ts",
-    "report:daily-health": "tsx scripts/seo/daily-health.ts"
+    "report:daily-health": "tsx scripts/seo/daily-health.ts",
+    "check:interactions": "tsx scripts/seo/check-interactions.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",

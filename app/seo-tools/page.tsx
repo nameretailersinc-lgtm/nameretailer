@@ -1,3 +1,4 @@
+import { ToolsResearch } from "@/components/tools/research";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
@@ -7,7 +8,7 @@ import { ToolDirectory } from "@/components/tools/directory";
 const baseMetadata: Metadata = {
   title: "Free SEO Tools for Guest Posts and Link Building",
   description:
-    "Free writing, image, conversion, markup and SEO research tools with clear capabilities and privacy.",
+    "Free online SEO tools for content checks, images and markup. Compare tool inputs, results, privacy and limits before choosing your next check.",
   alternates: { canonical: "https://nameretailer.com/seo-tools/" },
 };
 export default function Page() {
@@ -15,6 +16,7 @@ export default function Page() {
     <ToolsShell>
       <DirectoryHero />
       <ToolDirectory />
+      <ToolsResearch />
     </ToolsShell>
   );
 }

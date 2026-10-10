@@ -286,7 +286,7 @@ export function SiteNavigation({
           </Link>
           {(
             [
-              ["marketplace", "Marketplace", "/", Store],
+              ["marketplace", "Marketplace", "/guest-posting-sites/", Store],
               ["tools", "Tools", "/seo-tools/", Wrench],
               ["guides", "Guides", "/guides/", BookOpen],
             ] as const

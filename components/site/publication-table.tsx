@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ArrowRight } from "lucide-react";
 import type { PublicProduct } from "@/lib/commerce/types";
 import {
   publicationHost,
@@ -30,6 +31,7 @@ export function PublicationTable({
             <th scope="col">Traffic</th>
             <th scope="col">Links</th>
             <th scope="col">Price (USD)</th>
+            <th scope="col">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -51,21 +53,50 @@ export function PublicationTable({
                 </th>
                 <td>{product.category || "Not provided"}</td>
                 <td>
-                  {typeof product.metrics?.dr === "number"
-                    ? product.metrics.dr
-                    : "Not provided"}
+                  <span
+                    className={
+                      typeof product.metrics?.dr === "number"
+                        ? "publication-metric-dr"
+                        : undefined
+                    }
+                  >
+                    {typeof product.metrics?.dr === "number"
+                      ? product.metrics.dr
+                      : "Not provided"}
+                  </span>
                 </td>
                 <td>
-                  {typeof product.metrics?.traffic === "number"
-                    ? product.metrics.traffic.toLocaleString("en-US")
-                    : "Not provided"}
+                  <span
+                    className={
+                      typeof product.metrics?.traffic === "number"
+                        ? "publication-metric-traffic"
+                        : undefined
+                    }
+                  >
+                    {typeof product.metrics?.traffic === "number"
+                      ? product.metrics.traffic.toLocaleString("en-US")
+                      : "Not provided"}
+                  </span>
                 </td>
                 <td>{product.linkType?.trim() || "Ask before ordering"}</td>
-                <td>
+                <td className="publication-price">
                   {new Intl.NumberFormat("en-US", {
                     style: "currency",
                     currency: "USD",
                   }).format(product.priceCents / 100)}
+                </td>
+                <td>
+                  {path ? (
+                    <Link
+                      className="directory-view-details"
+                      href={path}
+                      prefetch={false}
+                    >
+                      View Details <ArrowRight size={13} aria-hidden="true" />
+                    </Link>
+                  ) : (
+                    "Unavailable"
+                  )}
                 </td>
               </tr>
             );
