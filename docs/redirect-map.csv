@@ -102,4 +102,4 @@ old_url,new_url,status,notes
 /above-500k/,/500k-plus-traffic/,301,"Consistent metric slug; traffic typo retains its actual 50k–100k filter"
 /dr-50-above/,/dr-50-plus/,301,"Consistent metric slug; traffic typo retains its actual 50k–100k filter"
 /price-200-above/,/price-200-plus/,301,"Consistent metric slug; traffic typo retains its actual 50k–100k filter"
-/guest-posting-sites-under-50/,/price-0-to-50/,301,"Consolidate identical budget directory intent"
+/price-0-to-50/,/guest-posting-sites-under-50/,301,"Consolidate identical budget directory intent at the canonical budget hub"

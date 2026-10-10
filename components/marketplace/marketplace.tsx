@@ -8,12 +8,14 @@ import {
   ArrowDownUp,
   ArrowRight,
   Bookmark,
+  BookOpen,
   ChartNoAxesColumnIncreasing,
   Check,
   CircleDollarSign,
   Clock3,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   FileText,
   Globe2,
   Info,
@@ -335,47 +337,219 @@ function HomepageShortlist({
   onRemove: (product: PublicProduct) => void;
 }) {
   return (
-    <section className={`marketplace-shortlist ${homepageStyles.shortlist}`} id="shortlist" tabIndex={-1} aria-labelledby="shortlist-heading">
+    <section
+      className={`marketplace-shortlist ${homepageStyles.shortlist}`}
+      id="shortlist"
+      data-empty={shortlist.length === 0 || undefined}
+      tabIndex={-1}
+      aria-labelledby="shortlist-heading"
+    >
       <div className={homepageStyles.shortlistHeading}>
         <div>
-          <span className={homepageStyles.shortlistBadge}><Layers3 size={17} aria-hidden="true" />Your Shortlist</span>
-          <h2 id="shortlist-heading">Your shortlist <span>({shortlist.length}/4)</span></h2>
-          <p>Compare up to four publications. This local shortlist lasts for this visit and is not a cart or reservation.</p>
+          <span className={homepageStyles.shortlistBadge}>
+            <Layers3 size={17} aria-hidden="true" />
+            Your Shortlist
+          </span>
+          <h2 id="shortlist-heading">
+            Your shortlist <span>({shortlist.length}/4)</span>
+          </h2>
+          <p>
+            Compare up to four publications. This local shortlist lasts for this
+            visit and is not a cart or reservation.
+          </p>
         </div>
-        {shortlist.length > 0 && <Button variant="secondary" className={homepageStyles.dangerButton} onClick={onClear}><Trash2 size={18} aria-hidden="true" />Clear shortlist</Button>}
-        <div className={homepageStyles.shortlistArt} aria-hidden="true"><div><i /><i /><i /></div><div><i /><i /><i /><Bookmark size={46} /></div><span><Check size={26} /></span></div>
+        {shortlist.length > 0 && (
+          <Button
+            variant="secondary"
+            className={homepageStyles.dangerButton}
+            onClick={onClear}
+          >
+            <Trash2 size={18} aria-hidden="true" />
+            Clear shortlist
+          </Button>
+        )}
+        <div className={homepageStyles.shortlistArt} aria-hidden="true">
+          <div>
+            <i />
+            <i />
+            <i />
+          </div>
+          <div>
+            <i />
+            <i />
+            <i />
+            <Bookmark size={46} />
+          </div>
+          <span>
+            <Check size={26} />
+          </span>
+        </div>
       </div>
-      <p className={`marketplace-status ${homepageStyles.shortlistStatus}`} role="status">{status ? <Check size={16} aria-hidden="true" /> : <Layers3 size={16} aria-hidden="true" />}{status || "Select Shortlist on a publication to compare its details here."}</p>
-      {shortlist.length > 0 && <>
-        <div className={homepageStyles.shortlistGrid}>
-          {shortlist.map((product, index) => <article className={`publication-card ${homepageStyles.shortlistCard}`} key={product.id}>
-            <div className={homepageStyles.shortlistCardTop}><span>{index + 1}</span><span aria-hidden="true"><Check size={15} /></span></div>
-            <div className={homepageStyles.shortlistIdentity}>
-              <span className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`} aria-hidden="true">{productDomain(product.domain).replace(/^www\./, "").slice(0, 2).toUpperCase()}</span>
-              <div><h3><PublicationName product={product} /></h3><p>{product.category || "Topic unavailable"}</p><strong className="marketplace-price">{productPrice(product.priceCents)}</strong></div>
+      <p
+        className={`marketplace-status ${homepageStyles.shortlistStatus}`}
+        role="status"
+      >
+        {status ? (
+          <Check size={16} aria-hidden="true" />
+        ) : (
+          <Layers3 size={16} aria-hidden="true" />
+        )}
+        {status ||
+          "Select Shortlist on a publication to compare its details here."}
+      </p>
+      {shortlist.length > 0 && (
+        <>
+          <div className={homepageStyles.shortlistGrid}>
+            {shortlist.map((product, index) => (
+              <article
+                className={`publication-card ${homepageStyles.shortlistCard}`}
+                key={product.id}
+              >
+                <div className={homepageStyles.shortlistCardTop}>
+                  <span>{index + 1}</span>
+                  <span aria-hidden="true">
+                    <Check size={15} />
+                  </span>
+                </div>
+                <div className={homepageStyles.shortlistIdentity}>
+                  <span
+                    className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
+                    aria-hidden="true"
+                  >
+                    {productDomain(product.domain)
+                      .replace(/^www\./, "")
+                      .slice(0, 2)
+                      .toUpperCase()}
+                  </span>
+                  <div>
+                    <h3>
+                      <PublicationName product={product} />
+                    </h3>
+                    <p>{product.category || "Topic unavailable"}</p>
+                    <strong className="marketplace-price">
+                      {productPrice(product.priceCents)}
+                    </strong>
+                  </div>
+                </div>
+                <dl>
+                  {[
+                    {
+                      label: "Topic",
+                      Icon: Tag,
+                      value: product.category || "Unavailable",
+                    },
+                    {
+                      label: "Country",
+                      Icon: Globe2,
+                      value: <CountryName country={product.country} />,
+                    },
+                    {
+                      label: "Language",
+                      Icon: Languages,
+                      value: product.language || "Unavailable",
+                    },
+                    {
+                      label: "DA",
+                      Icon: ChartNoAxesColumnIncreasing,
+                      value: (
+                        <span
+                          className={
+                            product.metrics.da === null
+                              ? homepageStyles.metricUnavailable
+                              : homepageStyles.metricDa
+                          }
+                        >
+                          {productMetric(product.metrics.da)}
+                        </span>
+                      ),
+                    },
+                    {
+                      label: "DR",
+                      Icon: ChartNoAxesColumnIncreasing,
+                      value: (
+                        <span
+                          className={
+                            product.metrics.dr === null
+                              ? homepageStyles.metricUnavailable
+                              : homepageStyles.metricDr
+                          }
+                        >
+                          {productMetric(product.metrics.dr)}
+                        </span>
+                      ),
+                    },
+                    {
+                      label: "Estimated traffic",
+                      Icon: ChartNoAxesColumnIncreasing,
+                      value: (
+                        <span
+                          className={
+                            product.metrics.traffic === null
+                              ? homepageStyles.metricUnavailable
+                              : homepageStyles.metricTraffic
+                          }
+                        >
+                          {productMetric(product.metrics.traffic)}
+                        </span>
+                      ),
+                    },
+                    {
+                      label: "Link type",
+                      Icon: Link2,
+                      value: product.linkType || "Unavailable",
+                    },
+                    {
+                      label: "Turnaround",
+                      Icon: Clock3,
+                      value: product.turnaround || "Unavailable",
+                    },
+                  ].map(({ label, Icon, value }) => (
+                    <div key={label}>
+                      <dt>
+                        <Icon size={15} aria-hidden="true" />
+                        {label}
+                      </dt>
+                      <dd>{value}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <Button
+                  variant="secondary"
+                  className={homepageStyles.dangerButton}
+                  onClick={() => onRemove(product)}
+                  aria-label={`Remove ${productDomain(product.domain)} from comparison`}
+                >
+                  <Trash2 size={17} aria-hidden="true" />
+                  Remove publication
+                </Button>
+              </article>
+            ))}
+          </div>
+          <div className={homepageStyles.shortlistSummary}>
+            <span className={homepageStyles.shortlistSummaryIcon}>
+              <Layers3 size={25} aria-hidden="true" />
+            </span>
+            <div>
+              <strong>
+                {shortlist.length}{" "}
+                {shortlist.length === 1 ? "publication" : "publications"}{" "}
+                selected
+              </strong>
+              <p>Compare key metrics, prices, and details side by side.</p>
             </div>
-            <dl>
-              {[
-                { label: "Topic", Icon: Tag, value: product.category || "Unavailable" },
-                { label: "Country", Icon: Globe2, value: <CountryName country={product.country} /> },
-                { label: "Language", Icon: Languages, value: product.language || "Unavailable" },
-                { label: "DA", Icon: ChartNoAxesColumnIncreasing, value: <span className={product.metrics.da === null ? homepageStyles.metricUnavailable : homepageStyles.metricDa}>{productMetric(product.metrics.da)}</span> },
-                { label: "DR", Icon: ChartNoAxesColumnIncreasing, value: <span className={product.metrics.dr === null ? homepageStyles.metricUnavailable : homepageStyles.metricDr}>{productMetric(product.metrics.dr)}</span> },
-                { label: "Estimated traffic", Icon: ChartNoAxesColumnIncreasing, value: <span className={product.metrics.traffic === null ? homepageStyles.metricUnavailable : homepageStyles.metricTraffic}>{productMetric(product.metrics.traffic)}</span> },
-                { label: "Link type", Icon: Link2, value: product.linkType || "Unavailable" },
-                { label: "Turnaround", Icon: Clock3, value: product.turnaround || "Unavailable" },
-              ].map(({ label, Icon, value }) => <div key={label}><dt><Icon size={15} aria-hidden="true" />{label}</dt><dd>{value}</dd></div>)}
-            </dl>
-            <Button variant="secondary" className={homepageStyles.dangerButton} onClick={() => onRemove(product)} aria-label={`Remove ${productDomain(product.domain)} from comparison`}><Trash2 size={17} aria-hidden="true" />Remove publication</Button>
-          </article>)}
-        </div>
-        <div className={homepageStyles.shortlistSummary}>
-          <span className={homepageStyles.shortlistSummaryIcon}><Layers3 size={25} aria-hidden="true" /></span>
-          <div><strong>{shortlist.length} {shortlist.length === 1 ? "publication" : "publications"} selected</strong><p>Compare key metrics, prices, and details side by side.</p></div>
-          <a className="button button-primary" href="#shortlist"><Scale size={20} aria-hidden="true" />Compare shortlist<ArrowRight size={17} aria-hidden="true" /></a>
-        </div>
-        <p className={homepageStyles.shortlistNote}>Shortlisted values are the snapshots you selected, not live price or availability reservations. All metrics remain owner-supplied and unverified.</p>
-      </>}
+            <a className="button button-primary" href="#shortlist">
+              <Scale size={20} aria-hidden="true" />
+              Compare shortlist
+              <ArrowRight size={17} aria-hidden="true" />
+            </a>
+          </div>
+          <p className={homepageStyles.shortlistNote}>
+            Shortlisted values are the snapshots you selected, not live price or
+            availability reservations. All metrics remain owner-supplied and
+            unverified.
+          </p>
+        </>
+      )}
     </section>
   );
 }
@@ -1103,6 +1277,18 @@ export function Marketplace({
                     />
                   </>
                 )}
+                {homePage && (
+                  <Field label="Minimum traffic">
+                    <Input
+                      name="minTraffic"
+                      type="number"
+                      min={0}
+                      step={1}
+                      defaultValue={params.get("minTraffic") || ""}
+                      placeholder="Any"
+                    />
+                  </Field>
+                )}
                 <details
                   className="marketplace-extra-ranges"
                   open={range ? true : undefined}
@@ -1124,7 +1310,11 @@ export function Marketplace({
                       "minPrice",
                     ] as const
                   )
-                    .filter((key) => !homePage || key !== "minPrice")
+                    .filter(
+                      (key) =>
+                        !homePage ||
+                        (key !== "minPrice" && key !== "minTraffic"),
+                    )
                     .map((key) => (
                       <Field
                         key={key}
@@ -1175,7 +1365,9 @@ export function Marketplace({
                   <h2 id="results-heading">Available Publications</h2>
                   <span role="status" className="marketplace-result-count">
                     {value
-                      ? catalogueAsOf ? `${value.total.toLocaleString("en-US")} matching publications` : "Matching publications"
+                      ? catalogueAsOf
+                        ? `${value.total.toLocaleString("en-US")} matching publications`
+                        : "Matching publications"
                       : "Loading…"}
                   </span>
                 </div>
@@ -1595,86 +1787,96 @@ export function Marketplace({
           </section>
         </div>
         {!metricView && <MetricContext compact />}
-        {homePage ? <HomepageShortlist shortlist={shortlist} status={status} onRemove={toggle} onClear={() => { setShortlist([]); setStatus("Shortlist cleared."); }} /> : (
-        <section
-          className="marketplace-shortlist"
-          id="shortlist"
-          tabIndex={-1}
-          aria-labelledby="shortlist-heading"
-        >
-          <div className="marketplace-results-heading">
-            <div>
-              <h2 id="shortlist-heading">
-                Your shortlist ({shortlist.length}/4)
-              </h2>
-              <p>
-                Compare up to four publications. This local shortlist lasts for
-                this visit and is not a cart or reservation.
-              </p>
-            </div>
-            {shortlist.length > 0 && (
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  setShortlist([]);
-                  setStatus("Shortlist cleared.");
-                }}
-              >
-                Clear shortlist
-              </Button>
-            )}
-          </div>
-          <p className="marketplace-status" role="status">
-            {status ||
-              "Select Shortlist on a publication to compare its details here."}
-          </p>
-          {shortlist.length > 0 && (
-            <>
-              <div className="marketplace-compare-grid">
-                {shortlist.map((product) => (
-                  <article className="publication-card" key={product.id}>
-                    <h3>{productDomain(product.domain)}</h3>
-                    <p className="marketplace-price">
-                      {productPrice(product.priceCents)}
-                    </p>
-                    <dl>
-                      {[
-                        ["Topic", product.category || "Unavailable"],
-                        ["Country", product.country || "Unavailable"],
-                        ["Language", product.language || "Unavailable"],
-                        ["DA", productMetric(product.metrics.da)],
-                        ["DR", productMetric(product.metrics.dr)],
-                        [
-                          "Estimated traffic",
-                          productMetric(product.metrics.traffic),
-                        ],
-                        ["Link type", product.linkType || "Unavailable"],
-                        ["Turnaround", product.turnaround || "Unavailable"],
-                      ].map(([label, number]) => (
-                        <div key={label}>
-                          <dt>{label}</dt>
-                          <dd>{number}</dd>
-                        </div>
-                      ))}
-                    </dl>
-                    <Button
-                      variant="secondary"
-                      onClick={() => toggle(product)}
-                      aria-label={`Remove ${productDomain(product.domain)} from comparison`}
-                    >
-                      Remove publication
-                    </Button>
-                  </article>
-                ))}
+        {homePage ? (
+          <HomepageShortlist
+            shortlist={shortlist}
+            status={status}
+            onRemove={toggle}
+            onClear={() => {
+              setShortlist([]);
+              setStatus("Shortlist cleared.");
+            }}
+          />
+        ) : (
+          <section
+            className="marketplace-shortlist"
+            id="shortlist"
+            tabIndex={-1}
+            aria-labelledby="shortlist-heading"
+          >
+            <div className="marketplace-results-heading">
+              <div>
+                <h2 id="shortlist-heading">
+                  Your shortlist ({shortlist.length}/4)
+                </h2>
+                <p>
+                  Compare up to four publications. This local shortlist lasts
+                  for this visit and is not a cart or reservation.
+                </p>
               </div>
-              <p className="small muted">
-                Shortlisted values are the snapshots you selected, not live
-                price or availability reservations. All metrics remain
-                owner-supplied and unverified.
-              </p>
-            </>
-          )}
-        </section>
+              {shortlist.length > 0 && (
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    setShortlist([]);
+                    setStatus("Shortlist cleared.");
+                  }}
+                >
+                  Clear shortlist
+                </Button>
+              )}
+            </div>
+            <p className="marketplace-status" role="status">
+              {status ||
+                "Select Shortlist on a publication to compare its details here."}
+            </p>
+            {shortlist.length > 0 && (
+              <>
+                <div className="marketplace-compare-grid">
+                  {shortlist.map((product) => (
+                    <article className="publication-card" key={product.id}>
+                      <h3>{productDomain(product.domain)}</h3>
+                      <p className="marketplace-price">
+                        {productPrice(product.priceCents)}
+                      </p>
+                      <dl>
+                        {[
+                          ["Topic", product.category || "Unavailable"],
+                          ["Country", product.country || "Unavailable"],
+                          ["Language", product.language || "Unavailable"],
+                          ["DA", productMetric(product.metrics.da)],
+                          ["DR", productMetric(product.metrics.dr)],
+                          [
+                            "Estimated traffic",
+                            productMetric(product.metrics.traffic),
+                          ],
+                          ["Link type", product.linkType || "Unavailable"],
+                          ["Turnaround", product.turnaround || "Unavailable"],
+                        ].map(([label, number]) => (
+                          <div key={label}>
+                            <dt>{label}</dt>
+                            <dd>{number}</dd>
+                          </div>
+                        ))}
+                      </dl>
+                      <Button
+                        variant="secondary"
+                        onClick={() => toggle(product)}
+                        aria-label={`Remove ${productDomain(product.domain)} from comparison`}
+                      >
+                        Remove publication
+                      </Button>
+                    </article>
+                  ))}
+                </div>
+                <p className="small muted">
+                  Shortlisted values are the snapshots you selected, not live
+                  price or availability reservations. All metrics remain
+                  owner-supplied and unverified.
+                </p>
+              </>
+            )}
+          </section>
         )}
         {metricView ? (
           <>
@@ -1722,9 +1924,11 @@ export function Marketplace({
           />
         )}
         {homePage ? (
-          <details className={homepageStyles.explore}>
+          <details className={homepageStyles.explore} open>
             <summary>
+              <BookOpen size={17} aria-hidden="true" />
               Guest posting guides &amp; publication directories
+              <ChevronDown size={16} aria-hidden="true" />
             </summary>
             {children}
           </details>

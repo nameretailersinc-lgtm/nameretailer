@@ -16,7 +16,8 @@ import {
   customerMutation,
   customerRequest,
 } from "@/components/account/shared";
-import { PlacementForm } from "./placement-form";
+import dynamic from 'next/dynamic';
+const PlacementForm=dynamic(()=>import('./placement-form').then(module=>module.PlacementForm),{ssr:false,loading:()=> <p role="status">Loading placement form…</p>});
 
 function PlacementDialog({
   productId,

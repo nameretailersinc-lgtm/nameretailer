@@ -44,6 +44,10 @@
   "exclude": [
     "node_modules",
     ".next-test",
-    ".next/dev"
+    ".next/dev",
+    ".local",
+    ".next-seo/standalone",
+    ".next-home-preview/standalone",
+    ".next/standalone"
   ]
 }

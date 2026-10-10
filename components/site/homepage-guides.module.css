@@ -1,0 +1,560 @@
+.guideSection {
+  margin-top: 15px;
+  color: #102451;
+}
+.guidePanel {
+  padding: 27px;
+  border: 1px solid #dfedf5;
+  border-radius: 18px;
+  background: linear-gradient(115deg, #fff, #f1fbfd);
+  box-shadow: 0 8px 24px #185b7b07;
+}
+.guideHero {
+  display: grid;
+  grid-template-columns: 1.07fr 1fr;
+  gap: 24px;
+  align-items: center;
+}
+.guideBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  border-radius: 20px;
+  color: #006c50;
+  background: #def4eb;
+  font-size: 10px;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 12px;
+}
+.guideSection .guideCopy h2 {
+  font:
+    700 clamp(28px, 3vw, 43px)/1.16 Georgia,
+    "Times New Roman",
+    serif;
+  letter-spacing: -0.03em;
+  color: #101739;
+  margin: 0 0 14px;
+}
+.guideCopy h2 > span {
+  color: #008457;
+}
+.guideSection .guideCopy p {
+  color: #566b8e;
+  font-size: 13px;
+  line-height: 1.75;
+  margin: 0;
+}
+.guideArt {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+}
+.guideArt > img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 25px;
+  mix-blend-mode: multiply;
+  mask-image: radial-gradient(ellipse at center, #000 55%, transparent 78%);
+}
+.guideMetricLabels {
+  position: absolute;
+  right: 5%;
+  top: 7%;
+  display: flex;
+  gap: 9px;
+}
+.guideMetricLabels > span {
+  padding: 9px 12px;
+  border: 1px solid #ffffffd9;
+  border-radius: 12px;
+  background: #e2faf3e0;
+  color: #008457;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 5px 15px #275ca614;
+}
+.guideMetricLabels > span:nth-child(2) {
+  background: #e8f1ffe0;
+  color: #235bd3;
+}
+.guideMetricLabels > span:nth-child(3) {
+  background: #f2eaffe0;
+  color: #7c3bc6;
+}
+.guideMagnifier {
+  position: absolute;
+  right: 9%;
+  bottom: 12%;
+  display: block;
+  width: 100px;
+  height: 100px;
+  color: #286c9f;
+  filter: drop-shadow(0 6px 4px #215a9230);
+}
+.guideMagnifier > svg:first-child {
+  position: absolute;
+  top: 15px;
+  left: 14px;
+  color: #2b91ed;
+  background: #effaff;
+  border-radius: 50%;
+  padding: 5px;
+  width: 50px;
+  height: 50px;
+}
+.guideMagnifier > svg:last-child {
+  position: absolute;
+  inset: 0;
+}
+.guideFlags {
+  position: absolute;
+  left: 33%;
+  top: 40%;
+  bottom: auto;
+  display: grid;
+  gap: 16px;
+}
+.guideFlags img {
+  border-radius: 3px;
+  box-shadow: 0 3px 5px #11366c20;
+}
+.guideSteps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 13px;
+  margin-top: 23px;
+}
+.guideSteps article {
+  position: relative;
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  align-items: center;
+  gap: 15px;
+  padding: 18px 16px 18px 43px;
+  border: 1px solid #edf4fa;
+  border-radius: 14px;
+  background: #ffffffcb;
+  box-shadow: 0 4px 18px #24598b05;
+}
+.stepNumber {
+  position: absolute;
+  top: 14px;
+  left: 13px;
+  display: grid;
+  place-items: center;
+  width: 21px;
+  height: 21px;
+  border-radius: 50%;
+  color: #fff;
+  background: #008457;
+  font-size: 11px;
+}
+.stepIcon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  color: #008457;
+  background: #e7f8f1;
+}
+.guideSteps article:nth-child(2) .stepIcon {
+  color: #1961c3;
+  background: #e6f1ff;
+}
+.guideSteps article:nth-child(2) .stepNumber {
+  background: #1961c3;
+}
+.guideSteps article:nth-child(3) .stepIcon {
+  color: #c26700;
+  background: #fff3e3;
+}
+.guideSteps article:nth-child(3) .stepNumber {
+  background: #c26700;
+}
+.guideSection .guideSteps h3 {
+  color: #102451;
+  font-size: 13px;
+  margin: 0 0 7px;
+  line-height: 1.4;
+}
+.guideSection .guideSteps p {
+  color: #5b7195;
+  font-size: 12px;
+  line-height: 1.6;
+  margin: 0;
+}
+.guideDetails {
+  margin-top: 14px;
+}
+.guideDetails > summary {
+  min-height: 30px;
+  font-size: 11px;
+  color: #007952;
+}
+.guideDetails > div {
+  padding: 15px 10px 0;
+  border-top: 1px solid #deebf4;
+  margin-top: 8px;
+}
+.guideSection .guideDetails p {
+  color: #526b8e;
+  font-size: 13px;
+  line-height: 1.75;
+}
+.guideSection .guideDetails h3 {
+  font-size: 16px;
+  margin-top: 22px;
+}
+.guideDetails a {
+  color: #007952;
+  text-decoration: underline;
+}
+.directoryExplore {
+  margin-top: 23px;
+}
+.directoryExplore > :global(.eyebrow) {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #007b55;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin: 0 0 17px;
+  font-weight: 750;
+}
+.directoryExplore > :global(.eyebrow)::after {
+  content: "";
+  width: 45px;
+  height: 1px;
+  background: #c6e2e8;
+}
+.directoryExplore :global(.reference-three-grid) {
+  gap: 16px;
+  align-items: stretch;
+}
+.directoryExplore .directoryCard {
+  --accent: #008457;
+  --subtle: #e7faf2;
+  padding: 20px 17px;
+  border-radius: 15px;
+  background: #ffffffcf;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px #265e7805;
+}
+.directoryExplore .blueCard {
+  --accent: #1766dc;
+  --subtle: #eaf4ff;
+}
+.directoryExplore .greenCard {
+  border-color: #dceef1;
+}
+.directoryExplore .amberCard {
+  --accent: #9d4900;
+  --subtle: #fff4e5;
+}
+.directoryCardHeading {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.directoryIcon {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--subtle);
+  color: var(--accent);
+}
+.directoryCardHeading > div {
+  flex: 1;
+  min-width: 0;
+}
+.directoryExplore .directoryCardHeading h2 {
+  color: #101739;
+  font:
+    700 21px/1.2 Georgia,
+    "Times New Roman",
+    serif;
+  letter-spacing: -0.035em;
+  margin: 0 0 6px;
+}
+.directoryExplore .directoryCardHeading p {
+  color: #5b7195;
+  font-size: 11px;
+  line-height: 1.55;
+  margin: 0;
+}
+.directoryCardHeading > a {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--subtle);
+  color: var(--accent);
+  border: 1px solid #e6f0f5;
+  flex-shrink: 0;
+}
+.directoryExplore :global(.directory-link-list) {
+  padding: 0;
+  margin: 0;
+  gap: 0;
+  list-style: none;
+  border: 1px solid #eef3fb;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.directoryExplore :global(.directory-link-list) a {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 10px;
+  color: #22375f;
+  font-size: 12px;
+  line-height: 1.5;
+  text-decoration: none;
+}
+.directoryExplore :global(.directory-link-list) li + li {
+  border-top: 1px solid #edf3fc;
+}
+.directoryExplore :global(.directory-link-list) a > span {
+  flex: 1;
+}
+.directoryExplore :global(.directory-link-list) a > svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.directoryExplore :global(.directory-link-list) a > svg:last-child {
+  color: #8097b9;
+}
+.directoryExplore :global(.directory-link-list) a:hover {
+  background: var(--subtle);
+}
+.directoryCallout {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--subtle);
+  color: var(--accent);
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 13px;
+}
+.directoryCallout > svg {
+  flex-shrink: 0;
+}
+.directoryExplore .directoryCallout p {
+  margin: 0 0 5px;
+  font-size: 12px;
+  line-height: 1.55;
+  color: #536c90;
+}
+.directoryCallout strong {
+  color: #102451;
+  font-size: 12px;
+}
+.directoryCallout a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--accent);
+  font-weight: 650;
+  font-size: 12px;
+}
+@media (max-width: 1100px) {
+  .guideHero {
+    gap: 16px;
+  }
+  .guideSteps article {
+    grid-template-columns: 40px minmax(0, 1fr);
+    padding-left: 36px;
+    gap: 10px;
+  }
+  .stepIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .stepIcon svg {
+    width: 24px;
+  }
+  .directoryCardHeading {
+    gap: 9px;
+  }
+  .directoryIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .directoryIcon svg {
+    width: 24px;
+  }
+  .directoryExplore .directoryCardHeading h2 {
+    font-size: 18px;
+  }
+  .directoryCardHeading > a {
+    width: 28px;
+    height: 28px;
+  }
+}
+@media (max-width: 800px) {
+  .guideHero {
+    grid-template-columns: 1fr;
+  }
+  .guideArt {
+    max-width: 540px;
+    width: 100%;
+    margin-inline: auto;
+  }
+  .guideSteps {
+    grid-template-columns: 1fr;
+  }
+  .guideSteps article {
+    grid-template-columns: 58px minmax(0, 1fr);
+    padding-left: 43px;
+    gap: 15px;
+  }
+  .stepIcon {
+    width: 58px;
+    height: 58px;
+  }
+  .directoryExplore :global(.reference-three-grid) {
+    grid-template-columns: 1fr;
+  }
+  .directoryCardHeading {
+    gap: 14px;
+  }
+  .directoryIcon {
+    width: 58px;
+    height: 58px;
+  }
+  .directoryExplore .directoryCardHeading h2 {
+    font-size: 22px;
+  }
+}
+@media (max-width: 640px) {
+  .guidePanel {
+    padding: 21px 15px;
+  }
+  .guideSection .guideCopy h2 {
+    font-size: 30px;
+  }
+  .guideSection .guideCopy p {
+    font-size: 12px;
+  }
+  .guideSteps article {
+    grid-template-columns: 39px minmax(0, 1fr);
+    gap: 10px;
+    padding: 16px 11px 16px 32px;
+  }
+  .stepIcon {
+    width: 39px;
+    height: 39px;
+  }
+  .stepNumber {
+    left: 7px;
+    top: 14px;
+    width: 18px;
+    height: 18px;
+  }
+  .guideSection .guideSteps h3 {
+    font-size: 12px;
+  }
+  .guideSection .guideSteps p {
+    font-size: 11px;
+  }
+  .guideMetricLabels {
+    gap: 5px;
+  }
+  .guideMetricLabels > span {
+    font-size: 9px;
+    padding: 6px 8px;
+  }
+  .guideMagnifier {
+    transform: scale(0.65);
+    transform-origin: right bottom;
+  }
+  .guideFlags {
+    gap: 7px;
+  }
+  .guideFlags img {
+    width: 18px;
+    height: 14px;
+  }
+  .directoryExplore .directoryCard {
+    padding: 17px 12px;
+  }
+  .directoryExplore .directoryCardHeading h2 {
+    font-size: 20px;
+  }
+  .directoryExplore :global(.directory-link-list) a {
+    font-size: 11px;
+    gap: 8px;
+  }
+}
+:global(html[data-site-theme="dark"]) .guidePanel,
+:global(html[data-site-theme="dark"]) .directoryExplore .directoryCard {
+  background: #132e39;
+  border-color: #365465;
+}
+:global(html[data-site-theme="dark"])
+  :is(.guideSection, .directoryExplore)
+  :is(h2, h3),
+:global(html[data-site-theme="dark"]) .directoryCallout strong {
+  color: #e0edf3;
+}
+:global(html[data-site-theme="dark"]) .guideCopy h2 > span {
+  color: #7adbb0;
+}
+:global(html[data-site-theme="dark"]) :is(.guideSection, .directoryExplore) p {
+  color: #a6bbc9;
+}
+:global(html[data-site-theme="dark"]) .guideSteps article {
+  background: #173845;
+  border-color: #365465;
+}
+:global(html[data-site-theme="dark"])
+  .directoryExplore
+  :is(.directoryCallout, .directoryIcon, .directoryCardHeading > a) {
+  background: #173845;
+  color: #9bd9c6;
+}
+:global(html[data-site-theme="dark"])
+  .directoryExplore
+  :global(.directory-link-list),
+:global(html[data-site-theme="dark"])
+  .directoryExplore
+  :global(.directory-link-list li) {
+  border-color: #365465;
+}
+:global(html[data-site-theme="dark"])
+  .directoryExplore
+  :global(.directory-link-list a) {
+  color: #c7dce8;
+}
+:global(html[data-site-theme="dark"])
+  .directoryExplore
+  :global(.directory-link-list a:hover) {
+  background: #173845;
+}
+:global(html[data-site-theme="dark"])
+  .directoryExplore
+  :global(.directory-link-list a > svg:first-child) {
+  color: #9bd9c6;
+}
+:global(html[data-site-theme="dark"])
+  :is(.guideDetails > summary, .guideDetails a, .directoryCallout a) {
+  color: #8bd8b9;
+}
+:global(html[data-site-theme="dark"]) .guideBadge {
+  background: #1c4136;
+  color: #9ce6c6;
+}

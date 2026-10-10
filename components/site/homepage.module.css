@@ -509,7 +509,7 @@
   height: 28px;
 }
 .page:global(.marketplace-browser) :global(.marketplace-filter-panel .field) {
-  margin-bottom: 18px;
+  margin-bottom: 14px;
 }
 .page:global(.marketplace-browser) :global(.marketplace-filter-panel .input) {
   color: #364d77;
@@ -623,7 +623,7 @@
 .page:global(.marketplace-browser) :global(.marketplace-table thead th) {
   background: #eaf3fb;
   color: #173164;
-  padding: 15px 8px;
+  padding: 12px 8px;
   font-size: 11px;
 }
 .page:global(.marketplace-browser)
@@ -661,7 +661,7 @@
 }
 .page:global(.marketplace-browser) :global(.marketplace-table td),
 .page:global(.marketplace-browser) :global(.marketplace-table tbody th) {
-  padding: 11px 8px;
+  padding: 9px 8px;
   border-bottom: 0;
   font-size: 13px;
   background: transparent;
@@ -709,7 +709,7 @@
   width: auto;
   max-width: none;
   margin: 0;
-  min-height: 37px;
+  min-height: 34px;
   padding: 8px;
   font-size: 11px;
   font-weight: 650;
@@ -730,7 +730,7 @@
   flex: 1.12;
   width: auto;
   max-width: none;
-  min-height: 37px;
+  min-height: 34px;
   padding: 8px;
   font-size: 11px;
   border-radius: 11px;
@@ -768,52 +768,350 @@
   background: linear-gradient(110deg, #eaf9f1, #f3f8f5);
 }
 
-.page:global(.marketplace-browser) .shortlist { position: relative; overflow: clip; padding: 25px 20px 20px; border: 0; border-radius: 20px; background: linear-gradient(125deg, #f8fcff, #eff9ff80); }
-.shortlistHeading { position: relative; isolation: isolate; display: flex; justify-content: space-between; align-items: center; gap: 25px; margin-bottom: 14px; }
-.shortlistHeading > div:first-child { flex: 1; }
-.shortlistBadge { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; margin-bottom: 10px; border-radius: 20px; color: #007952; background: #ddf8ec; font-size: 12px; font-weight: 650; }
-.page .shortlistHeading h2 { color: #0c194d; font: 750 clamp(26px, 3vw, 40px)/1.2 var(--font-ui), sans-serif; letter-spacing: -.04em; margin: 0 0 8px; scroll-margin-top: 25px; }
-.page .shortlistHeading h2 > span { color: #008457; }
-.page .shortlistHeading p { max-width: 790px; color: #5b7195; font-size: 13px; line-height: 1.6; margin: 0; }
-.shortlistArt { position: absolute; z-index: -1; right: 150px; top: -25px; width: 235px; height: 155px; opacity: .4; pointer-events: none; }
-.shortlistArt::before { content: ""; position: absolute; inset: -5px -35px 0; border-radius: 50%; background: #c7e9ff70; }
-.shortlistArt > div { position: absolute; width: 100px; height: 110px; padding: 18px 13px; border: 6px solid #fff; border-radius: 12px; background: #edf6ff; box-shadow: 0 9px 25px #24579d11; transform: rotate(-9deg); left: 15px; top: 25px; }
-.shortlistArt > div:nth-child(2) { left: 85px; top: 8px; width: 120px; height: 130px; transform: rotate(10deg); }
-.shortlistArt i { display: block; height: 9px; margin-bottom: 12px; border-radius: 5px; background: #c9ddf6; }
-.shortlistArt i:nth-child(2) { width: 65%; height: 25px; }
-.shortlistArt > div > svg { position: absolute; right: -5px; top: -10px; color: #008457; fill: #008457; }
-.shortlistArt > span { position: absolute; right: 10px; bottom: 0; display: grid; place-items: center; width: 46px; height: 46px; border: 4px solid #fff; border-radius: 50%; background: #00a673; color: #fff; }
-.page .dangerButton { min-height: 41px; gap: 8px; border-radius: 10px; color: #c41f43; border: 1px solid #ec829a; background: #fff7f9; box-shadow: none; font-size: 12px; }
-.page .dangerButton:hover { color: #ac1435; border-color: #d85373; background: #fff0f4; }
-.page .shortlistStatus { display: inline-flex; align-items: center; gap: 8px; padding: 8px 13px; margin: 0 0 16px; border-radius: 20px; color: #00734e; background: #e6f8f0; font-size: 12px; line-height: 1.5; }
-.shortlistStatus svg { flex-shrink: 0; }
-.shortlistGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.page:global(.marketplace-browser) .shortlistCard { padding: 18px; border: 1px solid #deebf9; border-radius: 16px; background: #ffffffde; box-shadow: 0 4px 13px #1e5d9b04; min-width: 0; }
-.shortlistCardTop { display: flex; align-items: center; justify-content: space-between; margin-bottom: 13px; }
-.shortlistCardTop > span:first-child { display: grid; place-items: center; width: 29px; height: 29px; border-radius: 50%; color: #2b4275; background: #edf2fb; font-size: 14px; }
-.shortlistCardTop > span:last-child { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 5px; background: #008457; color: #fff; }
-.shortlistIdentity { display: flex; align-items: center; gap: 14px; margin-bottom: 16px; }
-.shortlistIdentity > div { min-width: 0; }
-.page .shortlistIdentity :global(.marketplace-publication-mark) { width: 51px; height: 54px; border-radius: 13px; font-size: 19px; }
-.page .shortlistCard h3 { color: #0c194d; font-size: 14px; line-height: 1.4; margin: 0 0 4px; overflow-wrap: anywhere; }
-.page .shortlistCard h3 a { color: inherit; }
-.page .shortlistIdentity p { color: #62779c; font-size: 11px; line-height: 1.4; margin: 0 0 5px; }
-.page .shortlistIdentity strong { font-size: 19px; }
-.page .shortlistCard dl { margin: 0 0 15px; display: block; }
-.page .shortlistCard dl > div { display: grid; grid-template-columns: 45% minmax(0, 1fr); align-items: start; gap: 8px; padding: 8px 0; border-bottom: 1px solid #eaf0fa; min-height: 35px; }
-.page .shortlistCard dl > div:first-child { border-top: 1px solid #eaf0fa; }
-.page .shortlistCard dl > div:last-child { border-bottom: 0; }
-.page .shortlistCard dt { display: flex; align-items: center; gap: 7px; color: #61779d; font-size: 11px; font-weight: 400; line-height: 1.5; }
-.shortlistCard dt svg { flex-shrink: 0; }
-.page .shortlistCard dd { margin: 0; color: #152c55; font-size: 12px; line-height: 1.5; min-width: 0; overflow-wrap: anywhere; }
-.page .shortlistCard .dangerButton { width: 100%; }
-.shortlistSummary { display: flex; align-items: center; gap: 16px; border: 1px solid #deebf9; border-radius: 16px; padding: 16px 19px; margin-top: 12px; background: #ffffffde; }
-.shortlistSummaryIcon { display: grid; place-items: center; flex-shrink: 0; width: 45px; height: 45px; border-radius: 13px; background: #ddf8ec; color: #007952; }
-.shortlistSummary > div { flex: 1; }
-.shortlistSummary strong { color: #102451; font-size: 14px; }
-.page .shortlistSummary p { color: #5d759b; font-size: 12px; line-height: 1.5; margin: 4px 0 0; }
-.page .shortlistSummary :global(.button) { min-width: 220px; min-height: 44px; border-radius: 10px; gap: 10px; font-size: 13px; }
-.page .shortlistNote { color: #647b9c; font-size: 11px; line-height: 1.6; margin: 11px 4px 0; }
+.page:global(.marketplace-browser) .shortlist {
+  position: relative;
+  overflow: clip;
+  padding: 25px 20px 20px;
+  border: 0;
+  border-radius: 20px;
+  background: linear-gradient(125deg, #f8fcff, #eff9ff80);
+}
+.shortlistHeading {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+  margin-bottom: 14px;
+}
+.page .shortlist[data-empty] {
+  padding-block: 21px 16px;
+}
+.shortlist[data-empty] .shortlistHeading {
+  padding-left: 54px;
+  margin-bottom: 10px;
+}
+.shortlist[data-empty] .shortlistBadge {
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 41px;
+  height: 41px;
+  padding: 0;
+  display: grid;
+  place-items: center;
+  font-size: 0;
+  border-radius: 12px;
+}
+.shortlist[data-empty] .shortlistBadge svg {
+  width: 23px;
+  height: 23px;
+}
+.page .shortlist[data-empty] .shortlistHeading h2 {
+  font-size: 22px;
+  margin-bottom: 5px;
+}
+.page .shortlist[data-empty] .shortlistHeading p {
+  font-size: 12px;
+}
+.shortlist[data-empty] .shortlistArt {
+  top: -35px;
+  height: 125px;
+  opacity: 0.2;
+}
+.shortlistHeading > div:first-child {
+  flex: 1;
+}
+.shortlistBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 13px;
+  margin-bottom: 10px;
+  border-radius: 20px;
+  color: #007952;
+  background: #ddf8ec;
+  font-size: 12px;
+  font-weight: 650;
+}
+.page .shortlistHeading h2 {
+  color: #0c194d;
+  font:
+    750 clamp(26px, 3vw, 40px)/1.2 var(--font-ui),
+    sans-serif;
+  letter-spacing: -0.04em;
+  margin: 0 0 8px;
+  scroll-margin-top: 25px;
+}
+.page .shortlistHeading h2 > span {
+  color: #008457;
+}
+.page .shortlistHeading p {
+  max-width: 790px;
+  color: #5b7195;
+  font-size: 13px;
+  line-height: 1.6;
+  margin: 0;
+}
+.shortlistArt {
+  position: absolute;
+  z-index: -1;
+  right: 150px;
+  top: -25px;
+  width: 235px;
+  height: 155px;
+  opacity: 0.4;
+  pointer-events: none;
+}
+.shortlistArt::before {
+  content: "";
+  position: absolute;
+  inset: -5px -35px 0;
+  border-radius: 50%;
+  background: #c7e9ff70;
+}
+.shortlistArt > div {
+  position: absolute;
+  width: 100px;
+  height: 110px;
+  padding: 18px 13px;
+  border: 6px solid #fff;
+  border-radius: 12px;
+  background: #edf6ff;
+  box-shadow: 0 9px 25px #24579d11;
+  transform: rotate(-9deg);
+  left: 15px;
+  top: 25px;
+}
+.shortlistArt > div:nth-child(2) {
+  left: 85px;
+  top: 8px;
+  width: 120px;
+  height: 130px;
+  transform: rotate(10deg);
+}
+.shortlistArt i {
+  display: block;
+  height: 9px;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  background: #c9ddf6;
+}
+.shortlistArt i:nth-child(2) {
+  width: 65%;
+  height: 25px;
+}
+.shortlistArt > div > svg {
+  position: absolute;
+  right: -5px;
+  top: -10px;
+  color: #008457;
+  fill: #008457;
+}
+.shortlistArt > span {
+  position: absolute;
+  right: 10px;
+  bottom: 0;
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border: 4px solid #fff;
+  border-radius: 50%;
+  background: #00a673;
+  color: #fff;
+}
+.page .dangerButton {
+  min-height: 41px;
+  gap: 8px;
+  border-radius: 10px;
+  color: #c41f43;
+  border: 1px solid #ec829a;
+  background: #fff7f9;
+  box-shadow: none;
+  font-size: 12px;
+}
+.page .dangerButton:hover {
+  color: #ac1435;
+  border-color: #d85373;
+  background: #fff0f4;
+}
+.page .shortlistStatus {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 13px;
+  margin: 0 0 16px;
+  border-radius: 20px;
+  color: #00734e;
+  background: #e6f8f0;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.shortlistStatus svg {
+  flex-shrink: 0;
+}
+.shortlistGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+.page:global(.marketplace-browser) .shortlistCard {
+  padding: 18px;
+  border: 1px solid #deebf9;
+  border-radius: 16px;
+  background: #ffffffde;
+  box-shadow: 0 4px 13px #1e5d9b04;
+  min-width: 0;
+}
+.shortlistCardTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 13px;
+}
+.shortlistCardTop > span:first-child {
+  display: grid;
+  place-items: center;
+  width: 29px;
+  height: 29px;
+  border-radius: 50%;
+  color: #2b4275;
+  background: #edf2fb;
+  font-size: 14px;
+}
+.shortlistCardTop > span:last-child {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: #008457;
+  color: #fff;
+}
+.shortlistIdentity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.shortlistIdentity > div {
+  min-width: 0;
+}
+.page .shortlistIdentity :global(.marketplace-publication-mark) {
+  width: 51px;
+  height: 54px;
+  border-radius: 13px;
+  font-size: 19px;
+}
+.page .shortlistCard h3 {
+  color: #0c194d;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0 0 4px;
+  overflow-wrap: anywhere;
+}
+.page .shortlistCard h3 a {
+  color: inherit;
+}
+.page .shortlistIdentity p {
+  color: #62779c;
+  font-size: 11px;
+  line-height: 1.4;
+  margin: 0 0 5px;
+}
+.page .shortlistIdentity strong {
+  font-size: 19px;
+}
+.page .shortlistCard dl {
+  margin: 0 0 15px;
+  display: block;
+}
+.page .shortlistCard dl > div {
+  display: grid;
+  grid-template-columns: 45% minmax(0, 1fr);
+  align-items: start;
+  gap: 8px;
+  padding: 8px 0;
+  border-bottom: 1px solid #eaf0fa;
+  min-height: 35px;
+}
+.page .shortlistCard dl > div:first-child {
+  border-top: 1px solid #eaf0fa;
+}
+.page .shortlistCard dl > div:last-child {
+  border-bottom: 0;
+}
+.page .shortlistCard dt {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #61779d;
+  font-size: 11px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+.shortlistCard dt svg {
+  flex-shrink: 0;
+}
+.page .shortlistCard dd {
+  margin: 0;
+  color: #152c55;
+  font-size: 12px;
+  line-height: 1.5;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.page .shortlistCard .dangerButton {
+  width: 100%;
+}
+.shortlistSummary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #deebf9;
+  border-radius: 16px;
+  padding: 16px 19px;
+  margin-top: 12px;
+  background: #ffffffde;
+}
+.shortlistSummaryIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  border-radius: 13px;
+  background: #ddf8ec;
+  color: #007952;
+}
+.shortlistSummary > div {
+  flex: 1;
+}
+.shortlistSummary strong {
+  color: #102451;
+  font-size: 14px;
+}
+.page .shortlistSummary p {
+  color: #5d759b;
+  font-size: 12px;
+  line-height: 1.5;
+  margin: 4px 0 0;
+}
+.page .shortlistSummary :global(.button) {
+  min-width: 220px;
+  min-height: 44px;
+  border-radius: 10px;
+  gap: 10px;
+  font-size: 13px;
+}
+.page .shortlistNote {
+  color: #647b9c;
+  font-size: 11px;
+  line-height: 1.6;
+  margin: 11px 4px 0;
+}
 
 .sections {
   margin-top: 28px;
@@ -1531,29 +1829,32 @@
 
 .explore {
   margin-top: 30px;
-  padding: 20px 23px;
-  border: 1px solid #e1edf5;
-  border-radius: 16px;
-  background: #ffffff90;
+  padding: 0;
+  border: 0;
+  background: transparent;
 }
 
 .explore > summary {
-  color: #294761;
-  font-size: 13px;
-  font-weight: 650;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  color: #007852;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  list-style: none;
   cursor: pointer;
+}
+.explore > summary::-webkit-details-marker {
+  display: none;
+}
+.explore > summary > svg:last-child {
+  margin-left: auto;
 }
 
 .page .explore :global(.landing-explore) {
   margin-top: 22px;
-}
-
-.page .explore :global(.reference-card h2) {
-  font:
-    700 23px/1.3 var(--font-ui),
-    Arial,
-    sans-serif;
-  letter-spacing: -0.03em;
 }
 
 /* Match the new homepage while retaining every shared footer destination. */
@@ -1835,6 +2136,25 @@
 }
 
 @media (max-width: 1300px) {
+  .shortlistArt {
+    right: 135px;
+    width: 200px;
+    opacity: 0.2;
+  }
+  .page:global(.marketplace-browser) .shortlistCard {
+    padding: 15px;
+  }
+  .page .shortlistCard dl > div {
+    grid-template-columns: 47% minmax(0, 1fr);
+    gap: 6px;
+  }
+  .page .shortlistCard dt {
+    font-size: 10px;
+    gap: 5px;
+  }
+  .page .shortlistCard dd {
+    font-size: 11px;
+  }
   .page:global(.marketplace-browser) :global(.marketplace-workspace) {
     grid-template-columns: 260px minmax(0, 1fr);
   }
@@ -1922,6 +2242,16 @@
 }
 
 @media (max-width: 1100px) {
+  .shortlistGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .page .shortlistCard dt,
+  .page .shortlistCard dd {
+    font-size: 12px;
+  }
+  .shortlistArt {
+    display: none;
+  }
   .catalogHeading {
     flex-direction: column;
     align-items: flex-start;
@@ -2064,6 +2394,41 @@
 }
 
 @media (max-width: 640px) {
+  .page:global(.marketplace-browser) .shortlist {
+    padding: 21px 12px 15px;
+  }
+  .shortlistHeading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  .page .shortlistHeading p {
+    font-size: 12px;
+  }
+  .page .shortlist[data-empty] .shortlistHeading h2 {
+    font-size: 20px;
+  }
+  .shortlistGrid {
+    grid-template-columns: 1fr;
+  }
+  .shortlistSummary {
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px;
+  }
+  .page .shortlistSummary :global(.button) {
+    width: 100%;
+    min-width: 0;
+  }
+  .shortlistSummary strong {
+    font-size: 12px;
+  }
+  .page .shortlistSummary p {
+    font-size: 11px;
+  }
+  .page .shortlistStatus {
+    font-size: 11px;
+  }
   .page:global(.marketplace-browser.marketplace) {
     --site-gutter: 18px;
   }
@@ -2319,7 +2684,7 @@
     font-size: 12px;
   }
   .explore {
-    padding: 18px;
+    padding: 0;
   }
 }
 
@@ -2330,4 +2695,58 @@
   .toolCard:hover {
     transform: none;
   }
+}
+
+:global(html[data-site-theme="dark"])
+  .page:global(.marketplace-browser)
+  .shortlist {
+  background: linear-gradient(125deg, #112b38, #132e39);
+}
+:global(html[data-site-theme="dark"])
+  .page
+  :is(
+    .shortlistHeading h2,
+    .shortlistCard h3,
+    .shortlistCard dd,
+    .shortlistSummary strong
+  ) {
+  color: #e0edf3;
+}
+:global(html[data-site-theme="dark"]) .page .shortlistHeading h2 > span {
+  color: #7adbb0;
+}
+:global(html[data-site-theme="dark"])
+  .page
+  :is(
+    .shortlistHeading p,
+    .shortlistIdentity p,
+    .shortlistCard dt,
+    .shortlistSummary p,
+    .shortlistNote
+  ) {
+  color: #a6bbc9;
+}
+:global(html[data-site-theme="dark"])
+  .page
+  :is(.shortlistSummary, .shortlistCard) {
+  background: #173845;
+  border-color: #365465;
+}
+:global(html[data-site-theme="dark"]) .page .shortlistCard dl > div {
+  border-color: #365465;
+}
+:global(html[data-site-theme="dark"])
+  .page
+  :is(.shortlistBadge, .shortlistStatus, .shortlistSummaryIcon) {
+  color: #9ce6c6;
+  background: #1c4136;
+}
+:global(html[data-site-theme="dark"]) .page .dangerButton {
+  color: #ffb0c2;
+  background: #402833;
+  border-color: #905266;
+}
+:global(html[data-site-theme="dark"]) .page .dangerButton:hover {
+  color: #ffc5d3;
+  background: #502d3e;
 }
