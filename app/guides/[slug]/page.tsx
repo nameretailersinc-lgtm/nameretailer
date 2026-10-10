@@ -1,3 +1,4 @@
+import {DataDisclosure} from "@/components/site/data-disclosure";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { InformationShell } from "@/components/site/information-page";
@@ -91,11 +92,11 @@ export default async function Page({ params }: Props) {
   const isCost = guide.slug === "guest-post-cost";
   const [stats, breakdown] = isCost
     ? await Promise.all([
-        catalogueSummary(""),
+        catalogueSummary("").catch(()=>null),
         priceBreakdown().catch(() => null),
       ])
     : [null, null];
-  const answer = stats ? costAnswer(stats) : guide.answer;
+  const answer = isCost ? costAnswer(stats || {total:0,minPriceCents:null,maxPriceCents:null,medianPriceCents:null,topCountries:[],topTopics:[]}) : guide.answer;
   const image = "/01_guest_post_checklist.png";
   const article = buyerGuideArticleNode({
     ...guide,
@@ -164,8 +165,9 @@ export default async function Page({ params }: Props) {
       {stats && (
         <DirectorySummary label="Guest-post placement prices" stats={stats} />
       )}
-      {breakdown && (
+      {breakdown?.asOf && (
         <>
+          <DataDisclosure asOf={breakdown.asOf}/>
           <PriceTable
             caption="Placement price by Domain Authority (Moz)"
             group="DA band"
@@ -192,7 +194,7 @@ export default async function Page({ params }: Props) {
         guide.slug === "vet-a-guest-post-site") && <MetricDefinitions />}
       <section className="reference-card">
         <h2>Sources</h2>
-        <p>Sources checked October 9, 2026.</p>
+        <p>Sources checked {guide.sourcesCheckedAt || "2026-10-09"}.</p>
         <ul>
           {guide.sources.map(([label, url]) => (
             <li key={url}>

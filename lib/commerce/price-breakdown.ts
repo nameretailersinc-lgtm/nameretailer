@@ -10,12 +10,17 @@ export type PriceRow = {
   highCents: number;
 };
 export type PriceBreakdown = {
+  asOf?:string;
+  total:number;
+  withTraffic:number;
+  medianCents:number|null;
   byDa: PriceRow[];
   byDr: PriceRow[];
   byCountry: PriceRow[];
   byTopic: PriceRow[];
 };
 
+type Snapshot={updatedAt?:string,total:number,withTraffic:number,prices:number[]};
 type Group = { _id: string | number | null; prices: number[] };
 
 /** 25th and 75th percentiles bound the typical price better than min/max. */
@@ -53,17 +58,18 @@ const band = (field: string, edges: number[]) => ({
 export function priceBreakdown(): Promise<PriceBreakdown> {
   return cachedAsync(
     "price-breakdown",
-    { ttlMs: 15 * 60_000, staleOnErrorMs: 24 * 60 * 60_000 },
+    { ttlMs: 15 * 60_000, staleOnErrorMs: 24 * 60 * 60_000, timeoutMs: 12000 },
     async () => {
       const { products, imports } = await productStore();
       const committed = await imports
         .find({ status: "committed" }, { projection: { _id: 1 } })
         .toArray();
       const [result] = await products
-        .aggregate<Record<keyof PriceBreakdown, Group[]>>([
+        .aggregate<{byDa:Group[],byDr:Group[],byCountry:Group[],byTopic:Group[],snapshot:Snapshot[]}>([
           {
             $match: {
               status: "active",
+              currency:"USD",priceCents:{$type:"number",$gte:0},
               $or: [
                 { importId: { $exists: false } },
                 { importId: { $in: committed.map((batch) => batch._id) } },
@@ -72,8 +78,9 @@ export function priceBreakdown(): Promise<PriceBreakdown> {
           },
           {
             $facet: {
+              snapshot:[{$group:{_id:null,total:{$sum:1},withTraffic:{$sum:{$cond:[{$and:[{$isNumber:"$metrics.traffic"},{$gte:["$metrics.traffic",0]}]},1,0]}},updatedAt:{$max:"$updatedAt"},prices:{$push:"$priceCents"}}}],
               byDa: [
-                { $match: { "metrics.da": { $type: "number" } } },
+                { $match: { "metrics.da": { $type: "number",$gte:1,$lte:100 } } },
                 {
                   $group: {
                     _id: band(
@@ -86,7 +93,7 @@ export function priceBreakdown(): Promise<PriceBreakdown> {
                 { $sort: { _id: 1 } },
               ],
               byDr: [
-                { $match: { "metrics.dr": { $type: "number" } } },
+                { $match: { "metrics.dr": { $type: "number",$gte:0,$lte:100 } } },
                 {
                   $group: {
                     _id: band("$metrics.dr", [0, 20, 50, 70]),
@@ -102,7 +109,6 @@ export function priceBreakdown(): Promise<PriceBreakdown> {
                 },
                 { $addFields: { n: { $size: "$prices" } } },
                 { $sort: { n: -1, _id: 1 } },
-                { $limit: 8 },
               ],
               byTopic: [
                 {
@@ -120,11 +126,10 @@ export function priceBreakdown(): Promise<PriceBreakdown> {
                 },
                 { $addFields: { n: { $size: "$prices" } } },
                 { $sort: { n: -1, _id: 1 } },
-                { $limit: 10 },
               ],
             },
           },
-        ])
+        ],{maxTimeMS:10000})
         .toArray();
       const daLabel = (id: Group["_id"]) =>
         typeof id === "number"
@@ -136,7 +141,10 @@ export function priceBreakdown(): Promise<PriceBreakdown> {
         50: "DR 50–69",
         70: "DR 70+",
       };
+      const snapshot=result?.snapshot?.[0];
       return {
+        asOf:snapshot?.updatedAt && Number.isFinite(Date.parse(snapshot.updatedAt)) ? snapshot.updatedAt : undefined,
+        total:snapshot?.total || 0,withTraffic:snapshot?.withTraffic || 0,medianCents:priceMedian(snapshot?.prices || []),
         byDa: rows(result?.byDa || [], daLabel),
         byDr: rows(result?.byDr || [], (id) =>
           typeof id === "number" ? drLabels[id] || null : null,

@@ -91,6 +91,7 @@ export function SiteFooter() {
         <div>
           <h2>Resources</h2>
           <Link href="/guides/">Guides</Link>
+          <Link href="/guest-post-prices/">Guest post price data</Link>
           <Link href="/seo-tools/">Free tools</Link>
           <Link href="/blog/">SEO, AEO &amp; GEO journal</Link>
           <Link href="/faq/">Common questions</Link>

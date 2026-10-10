@@ -1,3 +1,4 @@
+import {priceBreakdown} from "@/lib/commerce/price-breakdown";
 import { technicalArticleSlugs } from "@/lib/blog/indexing-policy";
 import { buyerGuides } from "@/lib/site/buyer-guides";
 import type { MetadataRoute } from "next";
@@ -43,6 +44,8 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     ...staticPaths,
     ...tools.map((tool) => `/${tool.slug}/`),
   ].map((path) => ({ url: canonicalOrigin + path }));
+  const prices=await priceBreakdown().catch(()=>null);
+  if(prices?.asOf)entries.push({url:canonicalOrigin+'/guest-post-prices/',lastModified:prices.asOf});
   for (const guide of buyerGuides)
     if (guide.approved)
       entries.push({

@@ -57,3 +57,9 @@ About now explains catalogue sourcing, supplied metrics, editorial disclosure, p
 
 Validation: lint, typecheck, production build and 415 unit tests passed after correcting those build errors. About source was included in the concurrent workspace commits; this checkpoint records the completed checks.
 
+# Phase 9 — dated catalogue reports and niche guidance
+
+Added /guest-post-prices/ with real median/percentile prices by niche, DA/DR and country, traffic-data coverage, explicit methodology and refresh behavior. Added distinct 40–60 word niche introductions, sourcing FAQs and guide links. Added the guest-post-versus-sponsored-post guide without inventing an author or publication date. Aggregates use the required owner-supplied disclosure and a real catalogue update date; missing dates suppress summaries. Metadata avoids undated statistical claims.
+
+Validation: lint, typecheck, production build and 418 unit tests passed.
+

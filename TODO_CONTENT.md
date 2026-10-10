@@ -10,3 +10,5 @@ Do not place unresolved items or invented facts on public pages.
 - Provide publication-specific editorial text for listings that lack enough unique content for indexing. Catalogue activation and supplied metrics are not editorial verification.
 - Connect Search Console and GA4 using the existing environment hooks; verify indexing, sitemap discovery, consent behavior and events in those accounts.
 - Validate any live gateway failure against deployment/reverse-proxy logs and check field Core Web Vitals after deployment. Local builds do not prove live health or organic traffic.
+
+- Supply a real author/reviewer and original publication date for the commissioned guest-post-versus-sponsored-post guide; none are invented.

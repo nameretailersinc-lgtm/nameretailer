@@ -1,3 +1,4 @@
+import {directoryIntros} from "./directory-intros";
 // Niche publisher directories. Each page server-renders live inventory for its
 // filter, plus original guidance, so it stands on its own for search and
 // readers instead of being a thin filtered copy of the marketplace.
@@ -459,7 +460,7 @@ const directoryDefinitions: Directory[] = [
   },
 ];
 
-export const directories = directoryDefinitions;
+export const directories = directoryDefinitions.map(directory=>({...directory,lead:directoryIntros[directory.slug] || directory.lead,faq:[...directory.faq,['Are these metrics independently verified?','No. Catalogue metrics and prices are owner-supplied. Ask for each metric’s provider and measurement date, and confirm current scope with the publisher. A listing update date does not verify its readership.'] as [string,string]]}));
 
 export const directoryBySlug = (slug: string) =>
   directories.find((directory) => directory.slug === slug);

@@ -1,3 +1,4 @@
+import {DataDisclosure,validAsOf} from "@/components/site/data-disclosure";
 import "./hub.css";
 import Link from "next/link";
 import { connection } from "next/server";
@@ -51,7 +52,7 @@ const nicheIcons: Record<string, LucideIcon> = {
 
 /** Reader-facing names for the metric groups in lib/commerce/marketplace-ranges.ts. */
 const groupNames: Record<string, [title: string, note: string]> = {
-  "Guest Posts By DA PA": ["Domain Authority", "Moz score, 1–100"],
+  "By Domain Authority (DA)": ["Domain Authority", "Moz score, 1–100"],
   "Guest Posts By Traffic": ["Monthly traffic", "Supplied estimate"],
   "Guest Posts By DR": ["Domain Rating", "Ahrefs score, 0–100"],
   "Guest Posts By Price": ["Placement price", "USD, placement only"],
@@ -84,7 +85,7 @@ type Stats = Awaited<ReturnType<typeof catalogueSummary>>;
 
 function faqFor(stats: Stats | null) {
   const median =
-    stats?.medianPriceCents != null ? usd(stats.medianPriceCents) : null;
+    stats?.medianPriceCents != null && validAsOf(stats.updatedAt) ? usd(stats.medianPriceCents) : null;
   return [
     [
       "What are guest posting sites?",
@@ -93,7 +94,7 @@ function faqFor(stats: Stats | null) {
     [
       "How much does a guest post cost?",
       median && stats
-        ? `Across ${count(stats.total)} active listings the median placement price is ${median}. Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.`
+        ? `Across ${count(stats.total)} active listings the median placement price is ${median}. These figures are owner-supplied, not independently verified, as of ${stats.updatedAt!.slice(0,10)}. Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.`
         : "Prices depend on the publication’s audience, authority and topic, and article writing is charged separately where offered. See the cost guide for medians by DA, DR, country and topic.",
     ],
     [
@@ -139,11 +140,12 @@ async function loadHub() {
 
 export default async function Page() {
   const { stats, facets, top, niches, breakdown } = await loadHub();
-  const faq = faqFor(stats);
+  const datedStats=validAsOf(stats?.updatedAt)?stats:null;
+  const faq = faqFor(datedStats);
   const url = `${canonicalOrigin}/guest-posting-sites/`;
   const list = top ? itemListNode(top.data) : null;
-  const lead = stats
-    ? `Guest posting sites are publications that accept articles from outside contributors. Compare ${count(stats.total)} active publishers by niche, country, Domain Rating, traffic and USD price, then shortlist the ones your audience actually reads.`
+  const lead = datedStats
+    ? `Guest posting sites are publications that accept articles from outside contributors. Compare ${count(datedStats!.total)} active publishers by niche, country, Domain Rating, traffic and USD price, then shortlist the ones your audience actually reads.`
     : "Guest posting sites are publications that accept articles from outside contributors. Compare publishers by niche, country, Domain Rating, traffic and USD price, then shortlist the ones your audience actually reads.";
   const schema = jsonLdGraph(
     {
@@ -160,12 +162,12 @@ export default async function Page() {
     faqPageNode(faq),
   );
   const figures = [
-    stats && ["Active publications", count(stats.total)],
-    facets && ["Topics", count(facets.categories.length)],
+    datedStats && ["Active publications", count(datedStats.total)],
+    datedStats && facets && ["Topics", count(facets.categories.length)],
     facets && ["Countries", count(facets.countries.length)],
-    stats?.medianPriceCents != null && [
+    datedStats?.medianPriceCents != null && [
       "Median placement price",
-      usd(stats.medianPriceCents),
+      usd(datedStats!.medianPriceCents!),
     ],
   ].filter((item): item is [string, string] => Array.isArray(item));
 
@@ -185,6 +187,7 @@ export default async function Page() {
       />
 
       <section className="hub-summary" aria-label="Catalogue at a glance">
+        <DataDisclosure asOf={datedStats?.updatedAt}/>
         {figures.length > 0 && (
           <dl className="hub-stats">
             {figures.map(([label, value]) => (
@@ -253,7 +256,7 @@ export default async function Page() {
                   <Link href={`/${directory.slug}/`}>{directory.h1}</Link>
                 </h3>
                 <p>{directory.lead}</p>
-                {niche && niche.total > 0 && (
+                {validAsOf(niche?.updatedAt) && niche && niche.total > 0 && (
                   <ul className="hub-niche-facts">
                     <li>
                       <strong>{count(niche.total)}</strong> sites
@@ -270,6 +273,7 @@ export default async function Page() {
                     )}
                   </ul>
                 )}
+                <DataDisclosure asOf={niche?.updatedAt}/>
               </article>
             );
           })}
@@ -324,15 +328,16 @@ export default async function Page() {
         </div>
       </section>
 
-      {breakdown && breakdown.byTopic.length > 0 && (
+      {validAsOf(breakdown?.asOf) && breakdown && breakdown.byTopic.length > 0 && (
         <section className="hub-section" aria-labelledby="prices">
           <div className="hub-heading">
             <p className="eyebrow">Live price data</p>
             <h2 id="prices">What does a guest post cost by niche?</h2>
-            {stats?.medianPriceCents != null && (
+            <DataDisclosure asOf={breakdown.asOf}/>
+            {datedStats?.medianPriceCents != null && (
               <p>
-                The median placement price across {count(stats.total)} active
-                listings is <strong>{usd(stats.medianPriceCents)}</strong>.
+                The median placement price across {count(datedStats.total)} active
+                listings is <strong>{usd(datedStats.medianPriceCents)}</strong>.
                 Medians by topic are below; writing is charged separately where
                 offered.
               </p>
@@ -440,20 +445,5 @@ export async function generateMetadata({
   searchParams: Promise<SearchParams>;
 }) {
   const facets = facetMetadata("/guest-posting-sites/", await searchParams);
-  const stats = await catalogueSummary("").catch(() => null);
-  const median =
-    stats?.medianPriceCents != null ? usd(stats.medianPriceCents) : null;
-  return pageMetadata(
-    {
-      title: stats?.total
-        ? `Guest Posting Sites: ${count(stats.total)} Publishers by Niche & Price`
-        : "Guest Posting Sites by Niche, Country and Price",
-      description: stats?.total
-        ? `Compare ${count(stats.total)} guest posting sites by niche, country, DA, DR, traffic and price${median ? ` (median ${median})` : ""}. Live listings, price data and a buyer checklist.`
-        : "Compare guest posting sites by niche, country, DA, DR, traffic and price. Live listings, price data and a buyer checklist.",
-      alternates: facets.alternates,
-      robots: facets.robots,
-    },
-    "/guest-posting-sites/",
-  );
+  return pageMetadata({title:'Guest Posting Sites by Niche, Country and Budget',description:'Compare guest posting sites by niche, country, DA, DR, traffic and USD placement price. Explore catalogue price data and a buyer checklist.',...facets},'/guest-posting-sites/');
 }

@@ -2,8 +2,8 @@ import { expect, it } from "vitest";
 import { buyerGuides, costAnswer } from "@/lib/site/buyer-guides";
 import { buyerGuideArticleNode } from "@/lib/seo/json-ld";
 const words = (text: string) => text.split(/\s+/).filter(Boolean).length;
-it("keeps all five buyer guides approved with answer-first openings", () => {
-  expect(buyerGuides).toHaveLength(5);
+it("keeps the commissioned buyer guides approved with answer-first openings", () => {
+  expect(buyerGuides).toHaveLength(6);
   for (const guide of buyerGuides) {
     expect(guide.approved).toBe(true);
     expect(guide.sources.length).toBeGreaterThan(0);
@@ -16,6 +16,7 @@ it("keeps all five buyer guides approved with answer-first openings", () => {
 it("uses real supplied cost statistics and does not fabricate missing prices", () => {
   const stats = {
     total: 10,
+    updatedAt: "2026-10-09",
     minPriceCents: 1000,
     maxPriceCents: 10000,
     medianPriceCents: 5500,
@@ -30,7 +31,7 @@ it("uses real supplied cost statistics and does not fabricate missing prices", (
   );
 });
 it("emits Article markup only with owner-supplied author and publication date", () => {
-  for (const guide of buyerGuides) {
+  for (const guide of buyerGuides.filter(guide=>guide.slug!=='guest-post-vs-sponsored-post')) {
     expect(guide.author).toBe("Zuhoor Uddin");
     expect(guide.publishedAt).toBe("2026-07-02");
     expect(guide.reviewer).toBeUndefined();
@@ -54,3 +55,6 @@ it("emits Article markup only with owner-supplied author and publication date", 
     ).toBeNull();
   }
 });
+
+it('omits Article authorship for the new guide until the owner supplies it',()=>{const guide=buyerGuides.find(g=>g.slug==='guest-post-vs-sponsored-post')!;expect(buyerGuideArticleNode({...guide,image:'/x.png'})).toBeNull();});
+it('does not publish undated price aggregates',()=>{expect(costAnswer({total:10,minPriceCents:1000,maxPriceCents:10000,medianPriceCents:5500,topCountries:[],topTopics:[]})).not.toContain('$55');});

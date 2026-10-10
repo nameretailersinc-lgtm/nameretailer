@@ -1,3 +1,5 @@
+import {DataDisclosure} from "./data-disclosure";
+import { BuyerGuideLinks } from "./buyer-guide-links";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { InformationShell } from "./information-page";
@@ -154,11 +156,12 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
       />
       <section className="reference-card directory-listings">
         <h2>Publishers in this directory</h2>
+        <DataDisclosure asOf={stats?.updatedAt}/>
         {result ? (
           <>
             <p>
-              <strong>{number(result.total)}</strong> active publications
-              {result.lowestPriceCents !== null
+              <strong>{stats?.updatedAt && Number.isFinite(Date.parse(stats.updatedAt)) ? number(result.total) : "Matching"}</strong> active publications
+              {stats?.updatedAt && Number.isFinite(Date.parse(stats.updatedAt)) && result.lowestPriceCents !== null
                 ? `, with placements from ${usd(result.lowestPriceCents)}`
                 : ""}
               . The {Math.min(result.data.length, result.total)} below have the
@@ -274,6 +277,7 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
         </div>
       </section>
       <DirectoryLinks exclude={directory.slug} />
+      <BuyerGuideLinks />
     </InformationShell>
   );
 }

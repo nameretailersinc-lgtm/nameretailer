@@ -1,3 +1,4 @@
+import {DataDisclosure} from "./data-disclosure";
 import { BuyerGuideLinks } from "@/components/site/buyer-guide-links";
 import Link from "next/link";
 import type { CatalogueStatistics } from "@/lib/commerce/catalogue-statistics";
@@ -14,12 +15,14 @@ export function DirectorySummary({
   label: string;
   stats: CatalogueStatistics;
 }) {
+  if(!stats.updatedAt || !Number.isFinite(Date.parse(stats.updatedAt)))return null;
   return (
     <section
       className="reference-card directory-summary"
       aria-label={`${label} catalogue summary`}
     >
       <h2>{label}: catalogue snapshot</h2>
+      <DataDisclosure asOf={stats.updatedAt}/>
       <p>
         {stats.total.toLocaleString("en-US")} active publications match this
         segment.

@@ -86,7 +86,7 @@ export function rangeCopy(
   catalogue: CatalogueStatistics | null,
 ) {
   const paragraphs: string[] = [];
-  if (stats && stats.total > 0) {
+  if (stats && stats.total > 0 && stats.updatedAt && Number.isFinite(Date.parse(stats.updatedAt))) {
     let summary = `${stats.total.toLocaleString("en-US")} active publications fall in ${range.label}.`;
     if (
       stats.minPriceCents !== null &&
@@ -110,7 +110,7 @@ export function rangeCopy(
     if (stats.topCountries.length)
       summary += `${stats.topTopics.length ? ", and" : " Most"} listings most often target ${list(stats.topCountries.map((row) => row.name))}.`;
     else if (stats.topTopics.length) summary += ".";
-    paragraphs.push(summary);
+    paragraphs.push(summary + ` These figures are owner-supplied, not independently verified, as of ${stats.updatedAt.slice(0,10)}.`);
   }
   paragraphs.push(...guidance(range));
   const words = paragraphs.join(" ").split(/\s+/).filter(Boolean).length;
@@ -121,9 +121,6 @@ export function rangeCopy(
       !!stats &&
       stats.total >= MIN_INDEXABLE_LISTINGS &&
       words >= MIN_INDEXABLE_WORDS,
-    description:
-      stats && stats.total > 0 && stats.medianPriceCents !== null
-        ? `${stats.total.toLocaleString("en-US")} guest post sites in ${range.label}, median placement ${usd(stats.medianPriceCents)}. Compare topic, country, DR, traffic and USD price before you plan a placement.`
-        : `Guest post sites in ${range.label}. Compare topic, country, DR, traffic and USD price before you plan a placement.`,
+    description: `Guest post sites in ${range.label}. Compare topic, country, DR, traffic and USD price before you plan a placement.`,
   };
 }

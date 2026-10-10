@@ -12,6 +12,7 @@ export type BuyerGuide = {
   author?: string;
   reviewer?: string;
   publishedAt?: string;
+  sourcesCheckedAt?:string;
   /** Date this guide's content last changed (ISO); drives dateModified and the sitemap. */
   updatedAt: string;
 };
@@ -238,19 +239,12 @@ export const buyerGuides: BuyerGuide[] = [
       },
     ],
   },
+  {slug:'guest-post-vs-sponsored-post',title:'What is a guest post vs a sponsored post?',description:'Understand contributor authorship, paid sponsorship, disclosure and link qualification, and the questions to ask before planning a publication placement.',answer:'A guest post describes an article contributed by an outside writer; a sponsored post describes a paid commercial relationship. An article can be both. If payment or another benefit is involved, agree visible disclosure and qualify paid links with sponsored or nofollow. Confirm editorial scope separately from the format’s label.',approved:true,updatedAt:'2026-10-10',sourcesCheckedAt:'2026-10-10',sources:[google,spam],questions:[{title:'Can a guest post also be sponsored?',body:'Yes. Contributor authorship and commercial sponsorship describe different things. Calling a paid article a guest post does not remove the need to discuss disclosure and paid-link qualification.'},{title:'Does sponsorship determine the writing scope?',body:'No. Confirm who writes the article, which revisions are included, how many links are allowed and whether image rights are covered. The marketplace placement price and any writing service should be checked separately.'},{title:'What should readers be told?',body:'Agree a clear sponsored-content label with the publisher when the article involves a commercial relationship. Visible disclosure helps readers understand the relationship; a link attribute communicates a different signal to search engines.'},{title:'Does either format guarantee rankings?',body:'No. Assess readership, relevance and editorial standards, and measure referral visits or enquiries after publication. A format label, authority score or paid placement does not guarantee search performance.'}],table:{columns:['Question','Guest post','Sponsored post'],rows:[['What does it describe?','An outside contributor’s article','Paid content or a commercial relationship'],['Can it involve payment?','Yes; it can also be sponsored','Sponsorship involves a commercial benefit'],['How are paid links qualified?','Sponsored or nofollow when paid','Sponsored or nofollow for paid links']]}}
+
 ];
 export function costAnswer(stats: CatalogueStatistics) {
-  if (
-    stats.minPriceCents === null ||
-    stats.maxPriceCents === null ||
-    stats.medianPriceCents === null
-  )
-    return "A guest post’s cost depends on the publication and agreed placement scope. The active catalogue has no price distribution available right now, so a range or median cannot be reported. Check each listing when inventory returns, and confirm writing costs, delivery timing and sponsored-link disclosure with the team before planning an order.";
-  const money = (value: number) =>
-    new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 3,
-    }).format(value / 100);
-  return `Guest-post placement prices in this active catalogue range from ${money(stats.minPriceCents)} to ${money(stats.maxPriceCents)}, with a median of ${money(stats.medianPriceCents)} across ${stats.total.toLocaleString("en-US")} publications. These are supplied USD placement prices, not a full campaign quote. Writing may cost extra where available; compare audience fit and confirm scope and disclosure before choosing a publisher.`;
+  if(!stats.updatedAt || !Number.isFinite(Date.parse(stats.updatedAt)) || stats.minPriceCents===null || stats.maxPriceCents===null || stats.medianPriceCents===null)
+    return 'A guest post’s cost depends on the publication and agreed placement scope. The catalogue has no price distribution with a valid date available right now. Check each listing when inventory returns, and confirm writing costs, delivery timing and sponsored-link disclosure with the team before planning a placement.';
+  const money=(value:number)=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:3}).format(value/100);
+  return `Guest-post placements range from ${money(stats.minPriceCents)} to ${money(stats.maxPriceCents)}, with a median of ${money(stats.medianPriceCents)} across ${stats.total.toLocaleString('en-US')} active publications. These figures are owner-supplied, not independently verified, as of ${stats.updatedAt.slice(0,10)}. Writing may cost extra; compare audience fit and confirm editorial scope and sponsored-link disclosure with the publisher before planning a placement.`;
 }

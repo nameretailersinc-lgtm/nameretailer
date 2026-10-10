@@ -632,6 +632,7 @@ export function Marketplace({
   children,
   initialPage,
   initialQuery,
+  catalogueAsOf,
 }: {
   metricView?: boolean;
   range?: MarketplaceRange;
@@ -639,6 +640,7 @@ export function Marketplace({
   children?: React.ReactNode;
   initialPage?: ProductPage;
   initialQuery?: string;
+  catalogueAsOf?: string;
 }) {
   const compactViewport = useSyncExternalStore(
     subscribeToCompactViewport,
@@ -1173,7 +1175,7 @@ export function Marketplace({
                   <h2 id="results-heading">Available Publications</h2>
                   <span role="status" className="marketplace-result-count">
                     {value
-                      ? `${value.total.toLocaleString("en-US")} matching publications`
+                      ? catalogueAsOf ? `${value.total.toLocaleString("en-US")} matching publications` : "Matching publications"
                       : "Loading…"}
                   </span>
                 </div>
@@ -1540,7 +1542,7 @@ export function Marketplace({
               >
                 <p>
                   Showing{" "}
-                  {value.total
+                  {value.total && catalogueAsOf
                     ? `${((value.page - 1) * value.pageSize + 1).toLocaleString("en-US")}–${Math.min(value.page * value.pageSize, value.total).toLocaleString("en-US")} of ${value.total.toLocaleString("en-US")}`
                     : "0 results"}
                   {" publications"}

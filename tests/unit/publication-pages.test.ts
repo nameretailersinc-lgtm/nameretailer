@@ -89,6 +89,7 @@ it("keeps section listings distinct from the host's root listing", () => {
 
 const stats = {
   total: 40,
+  updatedAt:"2026-10-09",
   minPriceCents: 1000,
   maxPriceCents: 90000,
   medianPriceCents: 15000,
