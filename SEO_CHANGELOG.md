@@ -85,3 +85,11 @@ Validation: lint, typecheck, production build and 422 unit tests passed after th
 # Owner decision — index published blog articles
 
 On 2026-10-10, the owner explicitly requested indexing all published blog articles and approved the technical/migration articles discussed in phase 10. Removed the blog-only exclusions and Technical SEO category restriction and restored their sitemap inclusion. Private/unpublished records and faceted URL controls retain their separate policies. Validation is included in the next phase checkpoint.
+
+# Phase 13 — consent, events and published-blog indexing
+
+GA4 loads only after an explicit analytics consent choice and a configured measurement ID. Withdrawal disables events and clears accessible analytics cookies. Publication views, successful plan additions, shortlist changes, filter use and accepted registration requests use allowlisted parameters without personal details or search query values. Cookie preferences, Search Console verification configuration and a dated daily health-report command are available. MEASUREMENT.md documents event definitions and deployment requirements. Contact submission remains an integration item because the current Contact page sends email links and has no form submission endpoint.
+
+The owner's published-blog indexing approval is implemented in metadata and sitemap eligibility, including the Technical SEO category. This permits indexing; Google indexing still requires deployment and crawling.
+
+Validation: lint, typecheck, production build and all 425 unit tests passed. The first run exposed a cookie-policy expectation that omitted the newly consented analytics cookie; the expectation was updated and all four checks rerun. Source changes were included in concurrent commit 47e1023; this checkpoint records the completed checks.
