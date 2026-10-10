@@ -70,7 +70,7 @@ export default async function Page() {
   const data = validAsOf(result?.asOf) ? result : null;
   const summary =
     data && data.medianCents !== null
-      ? `Across ${data.total.toLocaleString("en-US")} active USD-priced listings, the median placement price is ${usd(data.medianCents)}. Traffic estimates are supplied for ${data.withTraffic.toLocaleString("en-US")} listings (${data.total ? ((100 * data.withTraffic) / data.total).toFixed(1) : "0"}%). These figures are owner-supplied, not independently verified, as of ${data.asOf!.slice(0, 10)}; writing and other campaign costs are separate.`
+      ? `Across ${data.total.toLocaleString("en-US")} active USD-priced listings, the median placement price is ${usd(data.medianCents)}. Traffic estimates are supplied for ${data.withTraffic.toLocaleString("en-US")} listings (${data.total ? ((100 * data.withTraffic) / data.total).toFixed(1) : "0"}%). Writing and other campaign costs are separate.`
       : "Compare publication placement prices by niche, authority band and listing country. A dated distribution is unavailable at present; individual listings remain available in the marketplace.";
   return (
     <InformationShell
