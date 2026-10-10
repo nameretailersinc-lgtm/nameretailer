@@ -1,4 +1,5 @@
 import { canonicalOrigin } from "./origin";
+import { organization } from '../config/organization';
 import {
   publicationHost,
   publicationPath,
@@ -58,18 +59,17 @@ export function organizationNode() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${canonicalOrigin}/#organization`,
-    name: "Name Retailer",
+    name: organization.name,
     // Owner-confirmed 2026-10-09; the data controller named in the privacy policy.
-    legalName: "Name Retailer Inc",
+    legalName: organization.legalName,
     url: `${canonicalOrigin}/`,
-    logo: `${canonicalOrigin}/logo.jpg`,
-    email: "info@nameretailer.com",
-    contactPoint: { "@type": "ContactPoint", email: "info@nameretailer.com" },
+    logo: organization.logo,
+    email: organization.email,
+    contactPoint: { "@type": "ContactPoint", email: organization.email },
+    ...(organization.sameAs.length ? {sameAs:organization.sameAs} : {}),
     address: {
       "@type": "PostalAddress",
-      streetAddress: "26 - G Hamriyah Freezone",
-      addressLocality: "Sharjah",
-      addressCountry: "AE",
+      ...organization.address,
     },
   };
 }

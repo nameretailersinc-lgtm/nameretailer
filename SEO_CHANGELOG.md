@@ -45,3 +45,9 @@ Replaced the single URL set with an XML sitemap index and bounded static, hub, c
 
 Validation: typecheck, build and 413 unit tests passed. Lint passed with two unused-import warnings in crawl scripts; those imports are cleaned up in phase 7.
 
+# Phase 7 — structured-data validation
+
+Moved existing owner-confirmed organization facts to shared configuration. Added validation of emitted JSON-LD shapes and restrictions on publication offers and unsupported ratings. Runtime checks parse every block and compare schema with visible breadcrumbs, internal listing links, FAQ text and article dates. Fixed the relative-link and nested-WebSite assertions and removed unused crawl imports.
+
+Validation: lint, typecheck, production build and 415 unit tests passed.
+

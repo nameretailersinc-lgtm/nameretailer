@@ -1,5 +1,5 @@
 import { sitemapUrlset } from "./sitemap";
-import { withProductionServer, pageHtml } from "./server";
+import { withProductionServer } from "./server";
 
 // Crawls every sitemap URL, then every internal link found on those pages, and fails
 // on any link that redirects or returns a non-200 status. Set SEO_BASE_URL to test a

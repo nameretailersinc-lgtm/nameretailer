@@ -1,5 +1,5 @@
 import { sitemapUrlset } from "./sitemap";
-import { withProductionServer, pageHtml } from "./server";
+import { withProductionServer } from "./server";
 import { directories } from "../../lib/site/directories";
 import { marketplaceRanges } from "../../lib/commerce/marketplace-ranges";
 

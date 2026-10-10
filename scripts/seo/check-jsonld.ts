@@ -1,3 +1,4 @@
+import {validateJsonLd} from "../../lib/seo/validate-jsonld";
 import assert from "node:assert/strict";
 import { withProductionServer, pageHtml, visibleHtml } from "./server";
 import { publicRoutes } from "./routes";
@@ -22,7 +23,7 @@ await withProductionServer(async (base) => {
       ...html.matchAll(
         /<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/g,
       ),
-    ].flatMap((match) => nodes(JSON.parse(match[1])));
+    ].flatMap((match) => { const value=JSON.parse(match[1]);assert.deepEqual(validateJsonLd(value,path),[],`${path}: invalid JSON-LD`);return nodes(value); });
     assert(
       schemas.some(
         (node) =>
@@ -66,7 +67,7 @@ await withProductionServer(async (base) => {
         `${path}: unsupported review/rating markup`,
       );
       if (type === "WebSite")
-        assert.equal(path, "/", `${path}: WebSite belongs on homepage`);
+        assert.equal(node.url, "https://nameretailer.com/", `${path}: inconsistent WebSite URL`);
       if (type === "ItemList") {
         const items = node.itemListElement as Node[];
         assert.equal(
@@ -81,9 +82,7 @@ await withProductionServer(async (base) => {
             `${path}: list name absent from visible content`,
           );
           assert(
-            main.includes(
-              `href="${String(item.url).replaceAll("&", "&amp;")}"`,
-            ),
+            (main.includes(`href="${String(item.url).replaceAll("&", "&amp;")}"`) || main.includes(`href="${new URL(String(item.url)).pathname}"`)),
             `${path}: ItemList URL absent from visible links`,
           );
         }
