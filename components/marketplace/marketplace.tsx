@@ -8,16 +8,26 @@ import {
   ArrowDownUp,
   ArrowRight,
   Bookmark,
+  ChartNoAxesColumnIncreasing,
+  Check,
   CircleDollarSign,
+  Clock3,
   ChevronLeft,
   ChevronRight,
   FileText,
   Globe2,
   Info,
+  Languages,
+  Layers3,
+  Link2,
   RotateCcw,
   Search,
+  Scale,
   SlidersHorizontal,
   Sparkles,
+  Tag,
+  Trash2,
+  Users,
   X,
 } from "lucide-react";
 import type {
@@ -34,7 +44,11 @@ import {
   MarketplaceInquiry,
 } from "./presentation";
 import { SiteHeader, SiteFooter } from "@/components/site/chrome";
-import { HomepageHero, HomepageSections } from "@/components/site/homepage";
+import {
+  HomepageCatalogHeading,
+  HomepageHero,
+  HomepageSections,
+} from "@/components/site/homepage";
 import homepageStyles from "@/components/site/homepage.module.css";
 import { CountryName } from "@/components/site/country-name";
 import { BuyPlacement } from "@/components/cart/buy-placement";
@@ -108,14 +122,27 @@ export function productMetric(value: number | null) {
     ? "Unavailable"
     : new Intl.NumberFormat("en-US").format(value);
 }
-function TableMetric({ value }: { value: number | null }) {
+function TableMetric({
+  value,
+  tone,
+}: {
+  value: number | null;
+  tone?: "da" | "dr" | "traffic";
+}) {
+  const colors = {
+    da: homepageStyles.metricDa,
+    dr: homepageStyles.metricDr,
+    traffic: homepageStyles.metricTraffic,
+  };
   return value === null ? (
-    <span title="Unavailable">
+    <span className={homepageStyles.metricUnavailable} title="Unavailable">
       <span aria-hidden="true">—</span>
       <span className="screen-reader-only">Unavailable</span>
     </span>
   ) : (
-    productMetric(value)
+    <span className={tone ? colors[tone] : undefined}>
+      {productMetric(value)}
+    </span>
   );
 }
 export function productDomain(domain: string) {
@@ -266,19 +293,19 @@ function PublicationDialog({
           <div>
             <dt>DA</dt>
             <dd>
-              <TableMetric value={product.metrics.da} />
+              <TableMetric value={product.metrics.da} tone="da" />
             </dd>
           </div>
           <div>
             <dt>DR</dt>
             <dd>
-              <TableMetric value={product.metrics.dr} />
+              <TableMetric value={product.metrics.dr} tone="dr" />
             </dd>
           </div>
           <div>
             <dt>Est. traffic</dt>
             <dd>
-              <TableMetric value={product.metrics.traffic} />
+              <TableMetric value={product.metrics.traffic} tone="traffic" />
             </dd>
           </div>
         </dl>
@@ -293,6 +320,63 @@ function PublicationDialog({
       </div>
       <PlacementDetails product={product} />
     </dialog>
+  );
+}
+
+function HomepageShortlist({
+  shortlist,
+  status,
+  onClear,
+  onRemove,
+}: {
+  shortlist: PublicProduct[];
+  status: string;
+  onClear: () => void;
+  onRemove: (product: PublicProduct) => void;
+}) {
+  return (
+    <section className={`marketplace-shortlist ${homepageStyles.shortlist}`} id="shortlist" tabIndex={-1} aria-labelledby="shortlist-heading">
+      <div className={homepageStyles.shortlistHeading}>
+        <div>
+          <span className={homepageStyles.shortlistBadge}><Layers3 size={17} aria-hidden="true" />Your Shortlist</span>
+          <h2 id="shortlist-heading">Your shortlist <span>({shortlist.length}/4)</span></h2>
+          <p>Compare up to four publications. This local shortlist lasts for this visit and is not a cart or reservation.</p>
+        </div>
+        {shortlist.length > 0 && <Button variant="secondary" className={homepageStyles.dangerButton} onClick={onClear}><Trash2 size={18} aria-hidden="true" />Clear shortlist</Button>}
+        <div className={homepageStyles.shortlistArt} aria-hidden="true"><div><i /><i /><i /></div><div><i /><i /><i /><Bookmark size={46} /></div><span><Check size={26} /></span></div>
+      </div>
+      <p className={`marketplace-status ${homepageStyles.shortlistStatus}`} role="status">{status ? <Check size={16} aria-hidden="true" /> : <Layers3 size={16} aria-hidden="true" />}{status || "Select Shortlist on a publication to compare its details here."}</p>
+      {shortlist.length > 0 && <>
+        <div className={homepageStyles.shortlistGrid}>
+          {shortlist.map((product, index) => <article className={`publication-card ${homepageStyles.shortlistCard}`} key={product.id}>
+            <div className={homepageStyles.shortlistCardTop}><span>{index + 1}</span><span aria-hidden="true"><Check size={15} /></span></div>
+            <div className={homepageStyles.shortlistIdentity}>
+              <span className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`} aria-hidden="true">{productDomain(product.domain).replace(/^www\./, "").slice(0, 2).toUpperCase()}</span>
+              <div><h3><PublicationName product={product} /></h3><p>{product.category || "Topic unavailable"}</p><strong className="marketplace-price">{productPrice(product.priceCents)}</strong></div>
+            </div>
+            <dl>
+              {[
+                { label: "Topic", Icon: Tag, value: product.category || "Unavailable" },
+                { label: "Country", Icon: Globe2, value: <CountryName country={product.country} /> },
+                { label: "Language", Icon: Languages, value: product.language || "Unavailable" },
+                { label: "DA", Icon: ChartNoAxesColumnIncreasing, value: <span className={product.metrics.da === null ? homepageStyles.metricUnavailable : homepageStyles.metricDa}>{productMetric(product.metrics.da)}</span> },
+                { label: "DR", Icon: ChartNoAxesColumnIncreasing, value: <span className={product.metrics.dr === null ? homepageStyles.metricUnavailable : homepageStyles.metricDr}>{productMetric(product.metrics.dr)}</span> },
+                { label: "Estimated traffic", Icon: ChartNoAxesColumnIncreasing, value: <span className={product.metrics.traffic === null ? homepageStyles.metricUnavailable : homepageStyles.metricTraffic}>{productMetric(product.metrics.traffic)}</span> },
+                { label: "Link type", Icon: Link2, value: product.linkType || "Unavailable" },
+                { label: "Turnaround", Icon: Clock3, value: product.turnaround || "Unavailable" },
+              ].map(({ label, Icon, value }) => <div key={label}><dt><Icon size={15} aria-hidden="true" />{label}</dt><dd>{value}</dd></div>)}
+            </dl>
+            <Button variant="secondary" className={homepageStyles.dangerButton} onClick={() => onRemove(product)} aria-label={`Remove ${productDomain(product.domain)} from comparison`}><Trash2 size={17} aria-hidden="true" />Remove publication</Button>
+          </article>)}
+        </div>
+        <div className={homepageStyles.shortlistSummary}>
+          <span className={homepageStyles.shortlistSummaryIcon}><Layers3 size={25} aria-hidden="true" /></span>
+          <div><strong>{shortlist.length} {shortlist.length === 1 ? "publication" : "publications"} selected</strong><p>Compare key metrics, prices, and details side by side.</p></div>
+          <a className="button button-primary" href="#shortlist"><Scale size={20} aria-hidden="true" />Compare shortlist<ArrowRight size={17} aria-hidden="true" /></a>
+        </div>
+        <p className={homepageStyles.shortlistNote}>Shortlisted values are the snapshots you selected, not live price or availability reservations. All metrics remain owner-supplied and unverified.</p>
+      </>}
+    </section>
   );
 }
 
@@ -867,20 +951,7 @@ export function Marketplace({
             </p>
           </div>
         )}
-        {homePage && (
-          <div className={homepageStyles.catalogHeading}>
-            <div>
-              <h2>Explore Guest Post Sites</h2>
-              <p>
-                Compare publications, find your audience, and plan your next
-                placement.
-              </p>
-            </div>
-            <Link href="/guest-posting-sites/">
-              View All Sites <ArrowRight size={16} aria-hidden="true" />
-            </Link>
-          </div>
-        )}
+        {homePage && <HomepageCatalogHeading />}
         <div className="marketplace-workspace" id="inventory">
           <aside
             className={metricView ? undefined : "marketplace-filter-sidebar"}
@@ -900,6 +971,11 @@ export function Marketplace({
               open={metricView || !compactViewport}
             >
               <summary>
+                {homePage && (
+                  <span className={homepageStyles.filterIcon}>
+                    <SlidersHorizontal size={20} aria-hidden="true" />
+                  </span>
+                )}
                 {metricView ? "Filter publications" : "Refine Results"}
                 {!metricView && activeFilters.length > 0 ? (
                   <span
@@ -934,6 +1010,11 @@ export function Marketplace({
                 </Field>
                 {!metricView && (
                   <div className="marketplace-filter-group-heading">
+                    {homePage && (
+                      <span className={homepageStyles.filterIcon}>
+                        <Users size={18} aria-hidden="true" />
+                      </span>
+                    )}
                     Audience
                   </div>
                 )}
@@ -942,19 +1023,43 @@ export function Marketplace({
                 {facet("language", "Languages", facets.languages)}
                 {!metricView && (
                   <div className="marketplace-filter-group-heading">
+                    {homePage && (
+                      <span
+                        className={`${homepageStyles.filterIcon} ${homepageStyles.budgetIcon}`}
+                      >
+                        <CircleDollarSign size={18} aria-hidden="true" />
+                      </span>
+                    )}
                     Budget &amp; metrics
                   </div>
                 )}
-                <Field label="Maximum price (USD)">
-                  <Input
-                    name="maxPrice"
-                    disabled={!!range?.bounds.maxPrice}
-                    type="number"
-                    min={0}
-                    step={0.01}
-                    defaultValue={params.get("maxPrice") || ""}
-                  />
-                </Field>
+                <div
+                  className={homePage ? homepageStyles.priceFilters : undefined}
+                >
+                  {homePage && (
+                    <Field label="Minimum price (USD)">
+                      <Input
+                        name="minPrice"
+                        type="number"
+                        min={0}
+                        step={0.01}
+                        defaultValue={params.get("minPrice") || ""}
+                        placeholder="Min"
+                      />
+                    </Field>
+                  )}
+                  <Field label="Maximum price (USD)">
+                    <Input
+                      name="maxPrice"
+                      disabled={!!range?.bounds.maxPrice}
+                      type="number"
+                      min={0}
+                      step={0.01}
+                      defaultValue={params.get("maxPrice") || ""}
+                      placeholder={homePage ? "Max" : undefined}
+                    />
+                  </Field>
+                </div>
                 {metricView ? (
                   <div className="marketplace-filter-metrics">
                     <Field label="Minimum DR">
@@ -1000,7 +1105,14 @@ export function Marketplace({
                   className="marketplace-extra-ranges"
                   open={range ? true : undefined}
                 >
-                  <summary>More range filters</summary>
+                  <summary>
+                    {homePage && (
+                      <span className={homepageStyles.filterIcon}>
+                        <SlidersHorizontal size={18} aria-hidden="true" />
+                      </span>
+                    )}
+                    More range filters
+                  </summary>
                   {(
                     [
                       "maxDa",
@@ -1009,24 +1121,26 @@ export function Marketplace({
                       "maxTraffic",
                       "minPrice",
                     ] as const
-                  ).map((key) => (
-                    <Field
-                      key={key}
-                      label={`${filterLabels[key]}${key === "minPrice" ? " (USD)" : ""}`}
-                    >
-                      <Input
-                        name={key}
-                        type="number"
-                        min={0}
-                        max={
-                          key === "maxDa" || key === "maxDr" ? 100 : undefined
-                        }
-                        step={key === "minPrice" ? 0.01 : 1}
-                        defaultValue={params.get(key) || ""}
-                        disabled={!!range?.bounds[key]}
-                      />
-                    </Field>
-                  ))}
+                  )
+                    .filter((key) => !homePage || key !== "minPrice")
+                    .map((key) => (
+                      <Field
+                        key={key}
+                        label={`${filterLabels[key]}${key === "minPrice" ? " (USD)" : ""}`}
+                      >
+                        <Input
+                          name={key}
+                          type="number"
+                          min={0}
+                          max={
+                            key === "maxDa" || key === "maxDr" ? 100 : undefined
+                          }
+                          step={key === "minPrice" ? 0.01 : 1}
+                          defaultValue={params.get(key) || ""}
+                          disabled={!!range?.bounds[key]}
+                        />
+                      </Field>
+                    ))}
                 </details>
                 <div className="actions">
                   <Button>
@@ -1164,9 +1278,34 @@ export function Marketplace({
                           </th>
                         )}
                         <th scope="col">Publication</th>
-                        <th scope="col">DA</th>
-                        <th scope="col">DR</th>
-                        <th scope="col">Est. traffic</th>
+                        <th
+                          scope="col"
+                          className={
+                            homePage ? homepageStyles.metricDa : undefined
+                          }
+                        >
+                          DA
+                        </th>
+                        <th
+                          scope="col"
+                          className={
+                            homePage ? homepageStyles.metricDr : undefined
+                          }
+                        >
+                          DR
+                        </th>
+                        <th scope="col">
+                          <span
+                            className={
+                              homePage
+                                ? homepageStyles.trafficHeading
+                                : undefined
+                            }
+                          >
+                            Est. traffic
+                            {homePage && <Info size={12} aria-hidden="true" />}
+                          </span>
+                        </th>
                         <th scope="col">Country / language</th>
                         <th scope="col">Price (USD)</th>
                         {!metricView && <th scope="col">Action</th>}
@@ -1208,13 +1347,16 @@ export function Marketplace({
                             {metricView && <Detail product={product} />}
                           </th>
                           <td>
-                            <TableMetric value={product.metrics.da} />
+                            <TableMetric value={product.metrics.da} tone="da" />
                           </td>
                           <td>
-                            <TableMetric value={product.metrics.dr} />
+                            <TableMetric value={product.metrics.dr} tone="dr" />
                           </td>
                           <td>
-                            <TableMetric value={product.metrics.traffic} />
+                            <TableMetric
+                              value={product.metrics.traffic}
+                              tone="traffic"
+                            />
                           </td>
                           <td>
                             <span className="marketplace-publication-country">
@@ -1226,18 +1368,31 @@ export function Marketplace({
                           </td>
                           <td className="marketplace-price">
                             {productPrice(product.priceCents)}
-                            <BuyPlacement productId={product.id} />
+                            {!homePage && (
+                              <BuyPlacement productId={product.id} />
+                            )}
                           </td>
                           {!metricView && (
                             <td>
-                              <Button
-                                variant="secondary"
-                                className="marketplace-view-details"
-                                onClick={() => setSelectedProduct(product)}
+                              <div
+                                className={
+                                  homePage
+                                    ? homepageStyles.rowActions
+                                    : undefined
+                                }
                               >
-                                View Details
-                                <ArrowRight size={14} aria-hidden="true" />
-                              </Button>
+                                {homePage && (
+                                  <BuyPlacement productId={product.id} />
+                                )}
+                                <Button
+                                  variant="secondary"
+                                  className="marketplace-view-details"
+                                  onClick={() => setSelectedProduct(product)}
+                                >
+                                  View Details
+                                  <ArrowRight size={14} aria-hidden="true" />
+                                </Button>
+                              </div>
                             </td>
                           )}
                           <td>{shortlistControl(product)}</td>
@@ -1296,13 +1451,13 @@ export function Marketplace({
                         <div>
                           <dt>DA</dt>
                           <dd>
-                            <TableMetric value={product.metrics.da} />
+                            <TableMetric value={product.metrics.da} tone="da" />
                           </dd>
                         </div>
                         <div>
                           <dt>DR</dt>
                           <dd>
-                            <TableMetric value={product.metrics.dr} />
+                            <TableMetric value={product.metrics.dr} tone="dr" />
                           </dd>
                         </div>
                         <div>
@@ -1310,14 +1465,19 @@ export function Marketplace({
                             {metricView ? "Estimated traffic" : "Est. traffic"}
                           </dt>
                           <dd>
-                            <TableMetric value={product.metrics.traffic} />
+                            <TableMetric
+                              value={product.metrics.traffic}
+                              tone="traffic"
+                            />
                           </dd>
                         </div>
                         {metricView && (
                           <>
                             <div>
                               <dt>Country</dt>
-                              <dd><CountryName country={product.country} /></dd>
+                              <dd>
+                                <CountryName country={product.country} />
+                              </dd>
                             </div>
                             <div>
                               <dt>Language</dt>
@@ -1433,6 +1593,7 @@ export function Marketplace({
           </section>
         </div>
         {!metricView && <MetricContext compact />}
+        {homePage ? <HomepageShortlist shortlist={shortlist} status={status} onRemove={toggle} onClear={() => { setShortlist([]); setStatus("Shortlist cleared."); }} /> : (
         <section
           className="marketplace-shortlist"
           id="shortlist"
@@ -1512,6 +1673,7 @@ export function Marketplace({
             </>
           )}
         </section>
+        )}
         {metricView ? (
           <>
             <MarketplaceBuyerGuide />
@@ -1551,7 +1713,12 @@ export function Marketplace({
             onClose={() => setSelectedProduct(null)}
           />
         )}
-        {homePage && <HomepageSections metrics={value?.data[0]?.metrics} />}
+        {homePage && (
+          <HomepageSections
+            metrics={value?.data[0]?.metrics}
+            total={value?.total}
+          />
+        )}
         {homePage ? (
           <details className={homepageStyles.explore}>
             <summary>

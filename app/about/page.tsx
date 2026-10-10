@@ -1,149 +1,19 @@
-import Link from "next/link";
-import { connection } from "next/server";
-import { InformationShell } from "@/components/site/information-page";
-import { pageMetadata } from "@/lib/seo/page-metadata";
-import { facetMetadata } from "@/lib/seo/facets";
-import { canonicalOrigin } from "@/lib/seo/metadata";
-import { serializeJsonLd } from "@/lib/seo/json-ld";
-import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
-import { authorPath, authors } from "@/lib/site/authors";
-import type { SearchParams } from "@/lib/commerce/marketplace-query";
-
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
-  return pageMetadata(
-    {
-      title: "About Name Retailer: Guest Post Marketplace",
-      description:
-        "Who runs Name Retailer, where listings and metrics come from, what we check and what we don’t, and how to contact the team in Sharjah, UAE.",
-      ...facetMetadata("/about/", await searchParams),
-    },
-    "/about/",
-  );
-}
-
-// Only verifiable facts. Legal entity owner-confirmed 2026-10-09.
-// TODO(owner): registration number, founding year, team names and roles, and
-// official social profiles (sameAs).
-// See OWNER_DECISIONS.md; do not invent them.
-export default async function Page() {
-  await connection();
-  const stats = await catalogueSummary("").catch(() => null);
-  const count = stats?.total ? stats.total.toLocaleString("en-US") : null;
-  return (
-    <InformationShell
-      path="/about/"
-      title="About Name Retailer"
-      label="About"
-      description="Name Retailer is a guest post marketplace. We bring publisher-supplied listings into one catalogue so brands, agencies and SEO teams can compare publications by topic, audience, metrics and price before they plan a sponsored placement."
-      active="about"
-      image="/03_listing_browser_panel.png"
-    >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            "@context": "https://schema.org",
-            "@type": "AboutPage",
-            "@id": `${canonicalOrigin}/about/#page`,
-            url: `${canonicalOrigin}/about/`,
-            name: "About Name Retailer",
-            isPartOf: { "@id": `${canonicalOrigin}/#website` },
-            mainEntity: { "@id": `${canonicalOrigin}/#organization` },
-          }),
-        }}
-      />
-      <div className="reference-information-sections">
-        <section className="reference-card">
-          <h2>What Name Retailer does</h2>
-          <p>
-            Name Retailer runs a marketplace of guest post and sponsored
-            placement listings
-            {count ? `, currently ${count} active publications` : ""}. Each
-            listing shows the publication’s topic, country and language, its
-            supplied Domain Authority, Domain Rating and traffic estimate, and a
-            USD placement price. You can browse and compare without an account,
-            shortlist publications, and save a private placement plan when
-            signed in.
-          </p>
-          <p>
-            Article writing is offered separately where a publisher supports it,
-            in 500-, 750- and 1,000-word tiers. The placement price never
-            includes writing.
-          </p>
-        </section>
-        <section className="reference-card">
-          <h2>Where listings and metrics come from</h2>
-          <p>
-            Listings come from publisher-supplied inventory. Each import is
-            validated before it goes live: rows with placeholder, invalid or
-            conflicting data are excluded rather than published. Domain
-            Authority is Moz’s score and Domain Rating is Ahrefs’; traffic
-            figures are supplied estimates. We show missing values as
-            unavailable, never as zero.
-          </p>
-          <p>
-            We do not independently re-measure every metric, and we do not
-            promise rankings from any placement. The{" "}
-            <Link href="/methodology/">methodology page</Link> explains each
-            field, how catalogue statistics are calculated and which listings
-            get a profile page.
-          </p>
-        </section>
-        <section className="reference-card">
-          <h2>Our position on paid links</h2>
-          <p>
-            A guest post bought through a marketplace is a paid placement.
-            Google asks for paid links to be qualified with
-            rel=&quot;sponsored&quot; or nofollow, and readers should be able to
-            see that content is sponsored. We encourage buyers to agree
-            disclosure and link markup with each publisher before ordering; see{" "}
-            <Link href="/guides/paid-guest-posts-google-link-policies/">
-              paid guest posts and Google’s link policies
-            </Link>
-            .
-          </p>
-        </section>
-        <section className="reference-card">
-          <h2>Who writes our guides</h2>
-          <ul>
-            {authors.map((author) => (
-              <li key={author.slug}>
-                <Link href={authorPath(author)}>{author.name}</Link>
-                {author.jobTitle ? `, ${author.jobTitle}` : ""} writes the{" "}
-                <Link href="/guides/">guest post buying guides</Link>. Every
-                guide lists its sources and the date they were checked.
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section className="reference-card">
-          <h2>Contact information</h2>
-          <p>Name Retailer</p>
-          <address>
-            26 - G Hamriyah Freezone
-            <br />
-            Sharjah, United Arab Emirates
-          </address>
-          <p>
-            <a href="mailto:info@nameretailer.com">info@nameretailer.com</a>
-          </p>
-          <p>
-            Name Retailer is operated by Name Retailer Inc, a company registered
-            at 100 Business Park Ln, Unit E Ste US704946, Milton, Delaware
-            19968, United States. Read how we handle your data in our{" "}
-            <Link href="/privacy/">privacy policy</Link>.
-          </p>
-          <p>
-            Questions about a listing or an order? See the{" "}
-            <Link href="/help-center/">help center</Link> or{" "}
-            <Link href="/contact/">contact the team</Link>.
-          </p>
-        </section>
-      </div>
-    </InformationShell>
-  );
-}
+import Link from 'next/link';
+import {InformationShell} from '@/components/site/information-page';
+import {pageMetadata} from '@/lib/seo/page-metadata';
+import {facetMetadata} from '@/lib/seo/facets';
+import {organization} from '@/lib/config/organization';
+import {authors,authorPath} from '@/lib/site/authors';
+import {serializeJsonLd} from '@/lib/seo/json-ld';
+import type {SearchParams} from '@/lib/commerce/marketplace-query';
+export async function generateMetadata({searchParams}:{searchParams:Promise<SearchParams>}) {return pageMetadata({title:'About Name Retailer: Catalogue and Editorial Standards',description:'How Name Retailer sources listings, handles supplied metrics and disclosures, publishes guides, and supports placement enquiries.',...facetMetadata('/about/',await searchParams)},'/about/');}
+export default function Page() {return <InformationShell path="/about/" title="About Name Retailer" label="Our marketplace and standards" description="Research publications, understand placement scope and prepare a plan with clear expectations." active="about" image="/03_listing_browser_panel.png">
+<script type="application/ld+json" dangerouslySetInnerHTML={{__html:serializeJsonLd({'@context':'https://schema.org','@type':'AboutPage',url:organization.url+'about/',name:'About Name Retailer',mainEntity:{'@id':organization.url+'#organization'}})}}/>
+<div className="reference-information-sections">
+<section className="reference-card"><h2>What the marketplace offers</h2><p>Compare guest-post and sponsored publication listings by topic, country, language, USD placement price and supplied metrics. Browse without an account, shortlist candidates and save a private placement plan after signing in. Article writing is a separate option where available. Online ordering and payment are unavailable; saving a plan does not reserve a placement.</p><Link href="/">Compare publication listings</Link></section>
+<section className="reference-card"><h2>Where the catalogue comes from</h2><p>The catalogue uses owner-supplied publication inventory. Imports are checked for valid fields and conflicts before activation. These checks confirm that records can be used by the marketplace; they do not establish a publication's readership, editorial quality or ownership.</p><Link href="/methodology/">Read the catalogue methodology</Link></section>
+<section className="reference-card"><h2>How metrics are handled</h2><p>Domain Authority and Domain Rating are third-party scores supplied with each listing. Traffic is an estimate. Missing metrics remain unavailable. We do not independently remeasure the entire catalogue. A listing update date is separate from a metric measurement date, and no score or placement guarantees search performance.</p><Link href="/guides/da-vs-dr-and-traffic/">Compare DA and DR</Link></section>
+<section className="reference-card"><h2>Editorial standards and disclosure</h2><p>Our buying guides link to their sources and show supplied authorship and publication or update dates when available. Unknown reviewers and biographies are omitted. Paid placements should be disclosed to readers, and paid links should use sponsored or nofollow qualification. Confirm these details with the publisher before preparing content.</p><Link href="/guides/paid-guest-posts-google-link-policies/">Read the paid-link disclosure guide</Link></section>
+{authors.length>0 && <section className="reference-card"><h2>Guide authors</h2><ul>{authors.map(author=><li key={author.slug}><Link href={authorPath(author)}>{author.name}</Link>{author.jobTitle ? ', '+author.jobTitle : ''}{author.bio && <p>{author.bio}</p>}</li>)}</ul></section>}
+<section className="reference-card"><h2>Contact and legal entity</h2>{organization.name && <p>{organization.name}</p>}{organization.email && <p><a href={'mailto:'+organization.email}>{organization.email}</a></p>}{organization.address.streetAddress && <address>{organization.address.streetAddress}, {organization.address.addressLocality}, United Arab Emirates</address>}{organization.legalName && <p>The legal entity named in our <Link href="/privacy/">privacy policy</Link> is {organization.legalName}{organization.registeredAddress ? ', '+organization.registeredAddress : ''}.</p>}<Link href="/contact/">Contact Name Retailer about a placement</Link></section>
+</div></InformationShell>;}
