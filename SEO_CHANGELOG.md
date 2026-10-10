@@ -21,3 +21,9 @@ Dates use Asia/Karachi. Entries describe local source changes and actual checks;
 - Added a trust-claim configuration with no default numbers or customer endorsements. Statements render only with an HTTPS evidence link and a valid, nonfuture evidence date.
 - An empty configuration renders no trust claim; documented owner evidence is required to populate it.
 - Validation: lint, typecheck, production build and all 405 unit tests passed.
+# Phase 3 — server rendering and hub stability
+
+The first publication page remains server rendered. Hydration reuses that result. Directory queries now have ten-second database limits and a shared stale-capable cache; unavailable statistics produce noindex metadata. The health script covers every registered hub, including thin hubs omitted from the sitemap. Custom build directories retain their static assets.
+
+Validation: lint, typecheck, production build and all 405 unit tests passed. Read-only live-catalogue SSR and hub checks are recorded separately in the final acceptance report.
+
