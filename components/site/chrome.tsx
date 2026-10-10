@@ -29,7 +29,6 @@ export function SiteBrand() {
       </span>
     </Link>
   );
-
   
 }
 export function TrustNote() {
