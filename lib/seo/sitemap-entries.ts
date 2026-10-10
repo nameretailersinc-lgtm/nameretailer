@@ -1,5 +1,4 @@
-import {priceBreakdown} from "@/lib/commerce/price-breakdown";
-import { technicalArticleSlugs } from "@/lib/blog/indexing-policy";
+import { priceBreakdown } from "@/lib/commerce/price-breakdown";
 import { buyerGuides } from "@/lib/site/buyer-guides";
 import type { MetadataRoute } from "next";
 import { getDb } from "@/lib/db";
@@ -15,8 +14,6 @@ import { marketplaceRangeBySlug } from "@/lib/commerce/marketplace-ranges";
 import { rangeCopy } from "@/lib/site/range-copy";
 import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
 import { publicationPath } from "@/lib/commerce/publication-pages";
-
-
 
 const staticPaths = [
   "/",
@@ -44,8 +41,12 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     ...staticPaths,
     ...tools.map((tool) => `/${tool.slug}/`),
   ].map((path) => ({ url: canonicalOrigin + path }));
-  const prices=await priceBreakdown().catch(()=>null);
-  if(prices?.asOf)entries.push({url:canonicalOrigin+'/guest-post-prices/',lastModified:prices.asOf});
+  const prices = await priceBreakdown().catch(() => null);
+  if (prices?.asOf)
+    entries.push({
+      url: canonicalOrigin + "/guest-post-prices/",
+      lastModified: prices.asOf,
+    });
   for (const guide of buyerGuides)
     if (guide.approved)
       entries.push({
@@ -100,10 +101,9 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   }
   try {
     for (const category of await blogCategories())
-      if (categorySlug(category) !== "technical-seo")
-        entries.push({
-          url: `${canonicalOrigin}/blog/category/${categorySlug(category)}/`,
-        });
+      entries.push({
+        url: `${canonicalOrigin}/blog/category/${categorySlug(category)}/`,
+      });
     const posts = await (
       await getDb()
     )
@@ -113,14 +113,12 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
           collection: "content",
           status: "published",
           "data.type": "post",
-          "data.robotsIndex": { $ne: false },
           slug: { $regex: "^blog/" },
         },
         { projection: { _id: 0, slug: 1, updatedAt: 1 } },
       )
       .toArray();
     for (const post of posts) {
-      if (technicalArticleSlugs.has(post.slug)) continue;
       const lastModified = Date.parse(post.updatedAt);
       entries.push({
         url: `${canonicalOrigin}/${post.slug.replace(/^\/+|\/+$/g, "")}/`,

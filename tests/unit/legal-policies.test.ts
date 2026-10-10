@@ -10,6 +10,7 @@ it("lists only cookies the new site sets", () => {
     expect(cookies).not.toContain(legacy);
   const table = cookiePolicy.find((block) => block.type === "table");
   expect(table && "rows" in table && table.rows.map((row) => row[0])).toEqual([
+    "_ga and _ga_*",
     "__Secure-next-auth.session-token",
     "__Host-next-auth.csrf-token",
     "__Secure-next-auth.callback-url",

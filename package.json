@@ -33,7 +33,8 @@
     "products:activation-preview": "tsx scripts/commerce/preview-activation.ts",
     "products:activate-owner": "tsx scripts/commerce/activate-owner-import.ts",
     "blog:seed": "tsx scripts/content/seed-blog.ts",
-    "products:import": "tsx scripts/commerce/import-products.ts"
+    "products:import": "tsx scripts/commerce/import-products.ts",
+    "report:daily-health": "tsx scripts/seo/daily-health.ts"
   },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.0",

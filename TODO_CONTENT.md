@@ -12,3 +12,7 @@ Do not place unresolved items or invented facts on public pages.
 - Validate any live gateway failure against deployment/reverse-proxy logs and check field Core Web Vitals after deployment. Local builds do not prove live health or organic traffic.
 
 - Supply a real author/reviewer and original publication date for the commissioned guest-post-versus-sponsored-post guide; none are invented.
+
+- Provide the GA4 measurement ID and Search Console verification token in deployment settings; review property consent and disable automatic enhanced measurement for the explicit-event setup. Verify actual event receipt and search coverage after deployment.
+- Connect contact_submit only when a real contact delivery handler exists. Current mail links cannot confirm delivery. Registration’s privacy-preserving 202 response counts accepted requests, not verified new accounts.
+- Schedule report:daily-health and collect production field INP/CrUX measurements.

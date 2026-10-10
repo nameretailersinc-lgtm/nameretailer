@@ -19,12 +19,7 @@ export async function generateMetadata({ params, searchParams }: Props) {
     await searchParams,
     category.id,
   );
-  return {
-    ...metadata,
-    ...(slug === "technical-seo"
-      ? { robots: { index: false, follow: true } }
-      : {}),
-  };
+  return metadata;
 }
 export default async function Page({ params, searchParams }: Props) {
   const slug = (await params).slug;

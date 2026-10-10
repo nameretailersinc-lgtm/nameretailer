@@ -1,4 +1,5 @@
 "use client";
+import {trackEvent} from "@/lib/analytics/events";
 import { useEffect, useState } from "react";
 import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
@@ -138,6 +139,7 @@ export function AccountPage({ productId }: { productId?: string }) {
                       body: JSON.stringify({ name, email, password, website }),
                     },
                   );
+                  trackEvent("sign_up",{method:"email",registration_state:"request_accepted"});
                   setMessage(data.message);
                   setRegister(false);
                   setPassword("");

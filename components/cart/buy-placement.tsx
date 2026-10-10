@@ -1,4 +1,5 @@
 "use client";
+import {trackEvent} from "@/lib/analytics/events";
 import { placementActionLabel } from "@/lib/config/features";
 import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -82,6 +83,7 @@ function PlacementDialog({
           item,
         }),
       );
+      trackEvent("add_to_plan",{product_id:productId});
       router.push("/cart/");
       onClose();
       return true;

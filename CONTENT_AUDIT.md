@@ -1,8 +1,8 @@
 # Content audit — 2026-10-10
 
-The following existing articles remain reachable with noindex,follow and are excluded from sitemaps through lib/blog/indexing-policy.ts. Historical slugs and CMS records are preserved. Obsolete claims about the public site being a development environment are replaced at the presentation boundary; that does not constitute a full editorial rewrite.
+The owner explicitly approved all published blog articles for indexing on 2026-10-10. The following articles are now indexable and included in sitemaps. Historical slugs and CMS records are preserved. Obsolete claims about the public site being a development environment are replaced at the presentation boundary; that does not constitute a full editorial rewrite.
 
-| Article slug (under /blog/) | Recommendation | Before indexing |
+| Article slug (under /blog/) | Recommendation | Suggested improvement |
 | --- | --- | --- |
 | a-canonical-url-checklist-for-a-rebuilt-website | Rewrite | Audience-specific canonical examples and source review |
 | internal-links-that-make-an-article-library-easier-to-use | Rewrite | Publication research navigation examples |
@@ -17,4 +17,4 @@ The following existing articles remain reachable with noindex,follow and are exc
 
 Other published articles retain their existing owner-supplied attribution and dates. Illustrative scenarios must remain explicitly illustrative, with no customer-result claims. Owner editorial review is still required for factual currency, legal/medical/financial statements and source interpretation; public pages do not display missing-review notices. No original publication dates are changed by this audit.
 
-The SEO Guides navigation now uses /blog/category/technical-seo/. That category retains noindex while its articles are being reviewed. Niche hubs link to comparison guides and related hubs; guides and articles link to catalogue research and price data. Home links to both the directory and article indexes, keeping these important destinations within three clicks.
+The SEO Guides navigation now uses /blog/category/technical-seo/. The category is also indexable under the owner’s approval. Recommendations below remain editorial improvement suggestions, rather than an indexing hold. Niche hubs link to comparison guides and related hubs; guides and articles link to catalogue research and price data. Home links to both the directory and article indexes, keeping these important destinations within three clicks.

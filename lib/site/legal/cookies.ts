@@ -10,7 +10,7 @@ import type { PolicyBlock } from "@/components/site/policy-blocks";
  * to Contact Us. Keep sections 3 and 4 in step with the code (lib/auth.ts,
  * lib/security/registration.ts, components/site/analytics.tsx).
  */
-export const cookiesLastUpdated = "2026-10-09";
+export const cookiesLastUpdated = "2026-10-10";
 export const cookiePolicy: PolicyBlock[] = [
   {
     type: "p",
@@ -18,7 +18,7 @@ export const cookiePolicy: PolicyBlock[] = [
   },
   {
     type: "p",
-    text: "By using our Website, you consent to the use of cookies as outlined in this policy. If you do not agree with the use of cookies, you may disable them through your browser settings, but this may impact the functionality of the Website.",
+    text: "Essential cookies support sign-in and form security. Optional analytics loads only if configured and you accept it. Declining optional analytics does not prevent catalogue browsing; you can change that choice on this page.",
   },
   { type: "h2", text: "2. What Are Cookies?" },
   {
@@ -36,11 +36,12 @@ export const cookiePolicy: PolicyBlock[] = [
     items: [
       "Essential Cookies – These cookies are necessary for the Website to function properly. They keep you signed in to your account and protect sign-in and registration forms against forged requests. Without them, signing in and registering will not work.",
       "Third-Party Cookies – Some articles embed videos from YouTube (in its privacy-enhanced mode) or Vimeo. Those services may set their own cookies when you play a video.",
+      "Optional Analytics – When configured and accepted, Google Analytics records catalogue use. Declining prevents the analytics script from loading.",
     ],
   },
   {
     type: "p",
-    text: "We do not use advertising or marketing cookies. Browsing the marketplace without an account sets no cookies from Name Retailer. If we enable Google Analytics, it runs with cookie storage turned off and does not set analytics cookies; we will update this policy before that changes.",
+    text: "We do not use advertising cookies. When Google Analytics is configured, its script loads only after you accept analytics. It may then set analytics cookies. Your accept or decline choice is saved in local storage under nr-analytics-consent-v1 until you change or clear it. Declining stops analytics events and removes accessible _ga cookies; essential account cookies are unaffected.",
   },
   { type: "h2", text: "4. Types of Cookies We Use" },
   {
@@ -52,6 +53,12 @@ export const cookiePolicy: PolicyBlock[] = [
     caption: "Cookies set by nameretailer.com",
     columns: ["Cookie", "Type", "Purpose", "Duration"],
     rows: [
+      [
+        "_ga and _ga_*",
+        "Optional analytics",
+        "Analytics use after explicit acceptance, when configured",
+        "Controlled by Google Analytics and browser settings",
+      ],
       [
         "__Secure-next-auth.session-token",
         "Essential",

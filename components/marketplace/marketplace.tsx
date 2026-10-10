@@ -1,5 +1,6 @@
 "use client";
 
+import { trackEvent } from "@/lib/analytics/events";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -385,18 +386,26 @@ function HomepageShortlist({
           </span>
         </div>
       </div>
-      <p
-        className={`marketplace-status ${homepageStyles.shortlistStatus}`}
-        role="status"
-      >
-        {status ? (
-          <Check size={16} aria-hidden="true" />
-        ) : (
-          <Layers3 size={16} aria-hidden="true" />
+      <div className={homepageStyles.shortlistActivity}>
+        <p
+          className={`marketplace-status ${homepageStyles.shortlistStatus}`}
+          role="status"
+        >
+          {status ? (
+            <Check size={16} aria-hidden="true" />
+          ) : (
+            <Layers3 size={16} aria-hidden="true" />
+          )}
+          {status ||
+            "Select Shortlist on a publication to compare its details here."}
+        </p>
+        {shortlist.length === 0 && (
+          <Button variant="secondary" disabled>
+            <Scale size={15} aria-hidden="true" />
+            Compare shortlist
+          </Button>
         )}
-        {status ||
-          "Select Shortlist on a publication to compare its details here."}
-      </p>
+      </div>
       {shortlist.length > 0 && (
         <>
           <div className={homepageStyles.shortlistGrid}>
@@ -608,10 +617,12 @@ function PublicationSearch({
   query,
   facets,
   onSearch,
+  onAdvancedFilters,
 }: {
   query: string;
   facets: ProductFacets;
   onSearch: (changes: Record<string, string>) => void;
+  onAdvancedFilters?: () => void;
 }) {
   const params = new URLSearchParams(query);
   const [mode, setMode] = useState<"q" | "category" | "country">(() =>
@@ -690,6 +701,21 @@ function PublicationSearch({
             </span>
           </button>
         ))}
+        {onAdvancedFilters && (
+          <button type="button" onClick={onAdvancedFilters}>
+            <span className="marketplace-search-mode-icon">
+              <SlidersHorizontal size={21} aria-hidden="true" />
+            </span>
+            <span className="marketplace-search-mode-copy">
+              <strong>
+                <span className="marketplace-search-mode-name">
+                  Advanced filters
+                </span>
+                <span className="marketplace-search-mode-compact">Filters</span>
+              </strong>
+            </span>
+          </button>
+        )}
       </div>
       <div className="marketplace-search-body">
         <form
@@ -850,6 +876,7 @@ export function Marketplace({
   const [selectedProduct, setSelectedProduct] = useState<PublicProduct | null>(
     null,
   );
+  const filtersPanel = useRef<HTMLDetailsElement>(null);
   const firstQuery = useRef(true);
   useEffect(() => {
     // Hydration retains the exact inventory delivered in the server HTML.
@@ -893,6 +920,7 @@ export function Marketplace({
   const loading = result?.query !== query && !error;
   const value = result?.query === query ? result.value : undefined;
   function navigate(changes: Record<string, string>, resetPage = true) {
+    trackEvent("filter_use", { filter_fields: Object.keys(changes).join(",") });
     const next = new URLSearchParams(query);
     for (const [key, item] of Object.entries(changes)) {
       if (item) next.set(key, item);
@@ -909,6 +937,7 @@ export function Marketplace({
   function toggle(product: PublicProduct) {
     const selected = shortlist.some((item) => item.id === product.id);
     if (selected) {
+      trackEvent("shortlist", { product_id: product.id, action: "remove" });
       setShortlist((items) => items.filter((item) => item.id !== product.id));
       setStatus(
         `${productDomain(product.domain)} removed from your shortlist.`,
@@ -918,6 +947,7 @@ export function Marketplace({
         "Your shortlist is limited to four publications. Remove one to add another.",
       );
     else {
+      trackEvent("shortlist", { product_id: product.id, action: "add" });
       setShortlist((items) => [...items, product]);
       setStatus(`${productDomain(product.domain)} added to your shortlist.`);
     }
@@ -1112,6 +1142,19 @@ export function Marketplace({
               query={query}
               facets={facets}
               onSearch={navigate}
+              onAdvancedFilters={
+                homePage
+                  ? () => {
+                      const panel = filtersPanel.current;
+                      if (!panel) return;
+                      panel.open = true;
+                      panel.scrollIntoView({ block: "start" });
+                      panel
+                        .querySelector<HTMLInputElement>('input[name="q"]')
+                        ?.focus({ preventScroll: true });
+                    }
+                  : undefined
+              }
             />
           </section>
         )}
@@ -1143,6 +1186,7 @@ export function Marketplace({
               </button>
             )}
             <details
+              ref={filtersPanel}
               className="marketplace-filter-panel"
               open={metricView || !compactViewport}
             >
@@ -1371,10 +1415,33 @@ export function Marketplace({
                       : "Loading…"}
                   </span>
                 </div>
-                <p>
+                <p className={homePage ? "screen-reader-only" : undefined}>
                   Compare publications and find the right fit for your next
                   placement.
                 </p>
+                {homePage && (
+                  <div
+                    className={homepageStyles.catalogSortShortcuts}
+                    role="group"
+                    aria-label="Quick publication sorting"
+                  >
+                    {[
+                      ["domain", "All Publications"],
+                      ["trafficDesc", "Highest Traffic"],
+                      ["drDesc", "Highest DR"],
+                      ["priceAsc", "Lowest Price"],
+                    ].map(([key, label]) => (
+                      <button
+                        key={key}
+                        type="button"
+                        aria-pressed={sort === key}
+                        onClick={() => navigate({ sort: key })}
+                      >
+                        {label}
+                      </button>
+                    ))}
+                  </div>
+                )}
               </div>
               <div className="marketplace-sort">
                 <div className="marketplace-toolbar-field">

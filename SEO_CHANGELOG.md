@@ -81,3 +81,7 @@ Deferred the rich placement editor until its dialog is opened. Added median mobi
 
 Validation: lint, typecheck, production build and 422 unit tests passed after the redirect fix. Source changes were included in concurrent commit 072fb6a; this checkpoint records the completed checks.
 
+
+# Owner decision — index published blog articles
+
+On 2026-10-10, the owner explicitly requested indexing all published blog articles and approved the technical/migration articles discussed in phase 10. Removed the blog-only exclusions and Technical SEO category restriction and restored their sitemap inclusion. Private/unpublished records and faceted URL controls retain their separate policies. Validation is included in the next phase checkpoint.

@@ -359,7 +359,7 @@ export const informationPages = {
       },
       {
         title: "Privacy and cookies",
-        body: "The privacy policy explains how Name Retailer Inc collects, uses and protects personal data and how to ask for it to be deleted. The cookie policy lists the cookies this site sets: sign-in and form-security cookies only, with no advertising cookies.",
+        body: "The privacy policy explains how Name Retailer Inc collects, uses and protects personal data and how to ask for it to be deleted. The cookie policy lists the cookies this site sets: essential sign-in and form-security cookies, plus optional analytics only after consent.",
       },
       {
         title: "Questions and requests",

@@ -1,29 +1,90 @@
+"use client";
+import { useEffect, useRef, useSyncExternalStore } from "react";
 import Script from "next/script";
-
-const id = process.env.NEXT_PUBLIC_GA4_ID;
-const validId = !!id && /^G-[A-Z0-9]{4,16}$/.test(id);
-
-/**
- * GA4, off unless NEXT_PUBLIC_GA4_ID is set. There is no consent banner yet,
- * so Consent Mode defaults every storage type to "denied": GA4 sends cookieless
- * pings and sets no cookies. Granting analytics_storage needs a consent UI and
- * a cookie-policy update first. AI-assistant referrals (chatgpt.com,
- * perplexity.ai, copilot.microsoft.com, gemini.google.com) appear in GA4
- * as session sources without extra tagging.
- */
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import {
+  analyticsId,
+  analyticsConfigured,
+  getConsent,
+  serverConsent,
+  consentSubscribe,
+  setConsent,
+  initializeAnalytics,
+  disableAnalytics,
+  trackEvent,
+  publicAnalyticsPath,
+} from "@/lib/analytics/events";
+export function AnalyticsPreferences() {
+  const consent = useSyncExternalStore(
+    consentSubscribe,
+    getConsent,
+    serverConsent,
+  );
+  if (!analyticsConfigured) return null;
+  return (
+    <section
+      className="analytics-preferences"
+      aria-label="Analytics preferences"
+    >
+      <p>
+        Optional analytics helps us understand catalogue use. Your choice is{" "}
+        {consent === "granted"
+          ? "accepted"
+          : consent === "denied"
+            ? "declined"
+            : "unset"}
+        .
+      </p>
+      <button type="button" onClick={() => setConsent("granted")}>
+        Accept analytics
+      </button>
+      <button type="button" onClick={() => setConsent("denied")}>
+        Decline analytics
+      </button>
+    </section>
+  );
+}
 export function Analytics() {
-  if (!validId) return null;
+  const consent = useSyncExternalStore(
+    consentSubscribe,
+    getConsent,
+    serverConsent,
+  );
+  const path = usePathname();
+  const lastView = useRef("");
+  useEffect(() => {
+    if (consent !== "granted") {
+      disableAnalytics();
+      lastView.current = "";
+      return;
+    }
+    if (!analyticsConfigured) return;
+    initializeAnalytics();
+    if (path && publicAnalyticsPath(path) && lastView.current !== path) {
+      trackEvent("page_view");
+      if (path.startsWith("/publication/")) trackEvent("publication_view");
+      lastView.current = path;
+    }
+  }, [consent, path]);
+  if (!analyticsConfigured) return null;
   return (
     <>
-      <Script id="ga4-consent" strategy="afterInteractive">
-        {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
-gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
-gtag('js',new Date());gtag('config','${id}');`}
-      </Script>
-      <Script
-        src={`https://www.googletagmanager.com/gtag/js?id=${id}`}
-        strategy="afterInteractive"
-      />
+      {consent === "granted" && (
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${analyticsId}`}
+          strategy="afterInteractive"
+        />
+      )}
+      {consent === "unknown" && (
+        <aside className="analytics-consent" aria-label="Optional analytics">
+          <p>
+            Allow optional analytics to help us understand how the marketplace
+            is used? <Link href="/cookies/">Cookie information</Link>
+          </p>
+          <AnalyticsPreferences />
+        </aside>
+      )}
     </>
   );
 }

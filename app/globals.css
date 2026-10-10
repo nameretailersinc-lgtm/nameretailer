@@ -885,3 +885,5 @@ summary {
     animation: none !important;
   }
 }
+
+.analytics-consent{position:fixed;bottom:16px;left:16px;right:16px;z-index:1000;max-width:680px;margin:auto;padding:18px;background:#fff;border:1px solid #d9e8e5;border-radius:16px;box-shadow:0 12px 40px #12343d30}.analytics-preferences button{margin:6px;padding:10px 14px;border:1px solid #08785f;border-radius:8px;background:white;color:#075b4d;cursor:pointer}.analytics-preferences p{font-size:14px;line-height:1.5}
