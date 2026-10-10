@@ -48,7 +48,7 @@ export function ToolDirectory() {
                 setQuery(event.target.value);
                 setSearched(true);
               }}
-              placeholder="Search tools… (e.g. word counter, image converter, schema validator)"
+              placeholder="Search tools… (e.g. word counter, image converter, JSON-LD checker)"
             />
           </div>
           <button className="button button-primary">

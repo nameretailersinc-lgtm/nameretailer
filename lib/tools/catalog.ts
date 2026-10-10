@@ -152,7 +152,7 @@ export const tools: Tool[] = [
     ],
     [
       "schema-markup-validator",
-      "Schema markup validator",
+      "JSON-LD structure checker",
       "Check JSON-LD syntax, context, type and common structural fields.",
     ],
     [
@@ -203,7 +203,7 @@ export const tools: Tool[] = [
     [
       [
         "bulk-domain-rating-checker",
-        "Bulk Domain Rating checker",
+        "Catalogue Domain Rating lookup",
         "Look up owner-supplied scores in the active marketplace. Not live Ahrefs measurements.",
       ],
     ],

@@ -62,7 +62,7 @@ export function DirectoryLinks({ exclude }: { exclude?: string }) {
           <ul className="directory-link-list">
             <li>
               <Link href="/bulk-domain-rating-checker/">
-                Bulk Domain Rating checker
+                Catalogue Domain Rating lookup
               </Link>
             </li>
             <li>
@@ -77,7 +77,7 @@ export function DirectoryLinks({ exclude }: { exclude?: string }) {
             </li>
             <li>
               <Link href="/schema-markup-validator/">
-                Schema markup validator
+                JSON-LD structure checker
               </Link>
             </li>
             <li>

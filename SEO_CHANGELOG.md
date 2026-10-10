@@ -69,3 +69,9 @@ Recorded ten existing noindex technical/migration articles in CONTENT_AUDIT.md w
 
 Validation: lint, typecheck, production build and 419 unit tests passed.
 
+# Phase 11 — accurate tool labels
+
+Renamed the catalogue-only score tool to Catalogue Domain Rating lookup and the structural JSON-LD aid to JSON-LD structure checker. Preserved established URLs and existing licensed AMP validation. Descriptions state the actual data source and validation scope.
+
+Validation: lint, typecheck, production build and 419 unit tests passed.
+
