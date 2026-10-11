@@ -14,4 +14,5 @@ test-results/
 __pycache__/
 *.tsbuildinfo
 uploads/
-mobile/
+# Keep the local Flutter project ignored without excluding the backend API.
+/mobile/
