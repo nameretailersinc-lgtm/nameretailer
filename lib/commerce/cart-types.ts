@@ -43,5 +43,5 @@ export interface CartView {
   currency: "USD";
   items: CartItem[];
   totalCents: number | null;
-  checkoutAvailable: false;
+  checkoutAvailable: boolean;
 }

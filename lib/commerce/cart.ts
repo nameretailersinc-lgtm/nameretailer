@@ -8,6 +8,7 @@ import { ProductError } from "./errors";
 import { cartDeleteSchema, cartPutSchema } from "./cart-validation";
 import type { CartSelection, CartItem, CartView } from "./cart-types";
 import { ownArticleFile } from "./article-files";
+import { paymentMethods } from "./payment-config";
 interface SavedCart {
   _id: string;
   version: number;
@@ -91,7 +92,7 @@ export async function cartView(
     currency: "USD",
     items,
     totalCents,
-    checkoutAvailable: false,
+    checkoutAvailable: Object.values(paymentMethods()).some(Boolean),
   };
 }
 export async function getCart(actor: AccountIdentity) {

@@ -178,9 +178,14 @@ export function CatalogBrowser({
     const previousRootOverflow = root.style.overflow;
     const previousBodyOverflow = document.body.style.overflow;
     const previousGutter = root.style.scrollbarGutter;
-    root.style.scrollbarGutter = "stable";
+    const previousBodyPadding = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - root.clientWidth;
+    const bodyPadding =
+      parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+    root.style.scrollbarGutter = "auto";
     root.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${bodyPadding + scrollbarWidth}px`;
     element?.showModal();
     searchInput.current?.focus();
     return () => {
@@ -188,6 +193,7 @@ export function CatalogBrowser({
       root.style.overflow = previousRootOverflow;
       root.style.scrollbarGutter = previousGutter;
       document.body.style.overflow = previousBodyOverflow;
+      document.body.style.paddingRight = previousBodyPadding;
       opener?.focus({ preventScroll: true });
     };
   }, []);

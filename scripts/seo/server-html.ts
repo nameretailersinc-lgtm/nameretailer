@@ -13,14 +13,20 @@ export function completedServerHtml(html: string): string {
   );
 
   function fragment(id: string) {
-    const opening = new RegExp(`<div\\b[^>]*\\bid="${id}"[^>]*>`).exec(result);
+    const opening = new RegExp(
+      `<(div|table|tbody|tr|colgroup|svg|math)\\b[^>]*\\bid="${id}"[^>]*>`,
+      "i",
+    ).exec(result);
     if (!opening) return;
     const start = opening.index;
     const contentStart = start + opening[0].length;
+    const container = opening[1];
     let depth = 1;
     for (const tag of result
       .slice(contentStart)
-      .matchAll(/<div\b[^>]*>|<\/div\s*>/gi)) {
+      .matchAll(
+        new RegExp(`<${container}\\b[^>]*>|<\\/${container}\\s*>`, "gi"),
+      )) {
       depth += /^<\//.test(tag[0]) ? -1 : 1;
       if (depth === 0) {
         const contentEnd = contentStart + tag.index!;

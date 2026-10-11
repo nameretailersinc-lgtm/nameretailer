@@ -11,6 +11,7 @@ import {
   customerRequest,
 } from "@/components/account/shared";
 import type { CheckoutView } from "@/lib/commerce/checkout-types";
+import type { PaymentRedirect } from "@/lib/commerce/payment-types";
 import type { BillingDetails } from "@/lib/commerce/checkout-validation";
 import { checkoutPutSchema } from "@/lib/commerce/checkout-validation";
 import { countryCodes } from "@/lib/commerce/countries";
@@ -103,6 +104,7 @@ export function CheckoutPage() {
   const [billing, setBilling] = useState<BillingDetails>(emptyBilling);
   const [notes, setNotes] = useState(""),
     [payment, setPayment] = useState<"stripe" | "paypal">("stripe");
+  const [termsAccepted, setTermsAccepted] = useState(false);
   const [loading, setLoading] = useState(true),
     [busy, setBusy] = useState(false);
   const [error, setError] = useState(""),
@@ -112,7 +114,14 @@ export function CheckoutPage() {
     setView(data);
     setBilling(data.draft?.billing || emptyBilling);
     setNotes(data.draft?.notes || "");
-    setPayment(data.draft?.paymentPreference || "stripe");
+    setPayment(
+      data.draft?.paymentPreference ||
+        (data.paymentMethods?.stripe
+          ? "stripe"
+          : data.paymentMethods?.paypal
+            ? "paypal"
+            : "stripe"),
+    );
   }
   useEffect(() => {
     let active = true;
@@ -149,6 +158,15 @@ export function CheckoutPage() {
   async function save(event: FormEvent) {
     event.preventDefault();
     if (!view) return;
+    const pay =
+      (event.nativeEvent as SubmitEvent).submitter instanceof
+        HTMLButtonElement &&
+      ((event.nativeEvent as SubmitEvent).submitter as HTMLButtonElement)
+        .value === "pay";
+    if (pay && !termsAccepted) {
+      setError("Accept the terms of service and refund policy to continue.");
+      return;
+    }
     const input = {
       version: view.draft?.version || 0,
       cartVersion: view.cart.version,
@@ -169,16 +187,28 @@ export function CheckoutPage() {
     }
     setBusy(true);
     try {
-      apply(
-        await customerMutation<CheckoutView>(
-          "/api/checkout/",
-          "PUT",
-          parsed.data,
-        ),
+      const saved = await customerMutation<CheckoutView>(
+        "/api/checkout/",
+        "PUT",
+        parsed.data,
       );
-      setMessage(
-        "Checkout draft saved privately for 7 days. No order has been placed and no payment has been charged.",
-      );
+      apply(saved);
+      if (pay) {
+        const redirect = await customerMutation<PaymentRedirect>(
+          "/api/checkout/payments/",
+          "POST",
+          {
+            cartVersion: saved.cart.version,
+            draftVersion: saved.draft!.version,
+            provider: payment,
+            termsAccepted: true,
+          },
+        );
+        window.location.assign(redirect.url);
+      } else
+        setMessage(
+          "Checkout draft saved privately for 7 days. No order has been placed and no payment has been charged.",
+        );
     } catch (cause) {
       setError(customerError(cause));
     } finally {
@@ -186,17 +216,16 @@ export function CheckoutPage() {
     }
   }
   return (
-    <CustomerShell title="Checkout review">
+    <CustomerShell title="Secure checkout">
       <nav className="commerce-steps" aria-label="Placement progress">
         <Link href="/">1 · Publication</Link>
         <Link href="/cart/">2 · Brief & cart</Link>
-        <span aria-current="step">3 · Checkout review</span>
+        <span aria-current="step">3 · Checkout</span>
       </nav>
       <p className="customer-notice">
-        <ShieldCheck size={20} aria-hidden="true" /> Preview: save your billing
-        details and review your placement briefs. Stripe and PayPal are selected
-        for integration but not connected. No order, payment or reservation is
-        created.
+        <ShieldCheck size={20} aria-hidden="true" /> Review your billing and
+        placement details. Complete your payment securely with Stripe or PayPal.
+        Your card details stay with the payment provider.
       </p>
       <CustomerFeedback error={error} message={message} />
       {loading ? (
@@ -218,6 +247,12 @@ export function CheckoutPage() {
             <div className="customer-actions">
               <Link href="/cart/" className="button button-secondary">
                 Back to cart
+              </Link>
+              <Link
+                href="/my-account/orders/"
+                className="button button-secondary"
+              >
+                Your orders
               </Link>
               <button
                 className="button button-secondary"
@@ -248,13 +283,17 @@ export function CheckoutPage() {
               </p>
             )}
             <div className="checkout-grid">
-              <form className="checkout-form customer-card" onSubmit={save}>
+              <form
+                id="payment-checkout"
+                className="checkout-form customer-card"
+                onSubmit={save}
+              >
                 <h2>
                   <FileText size={22} aria-hidden="true" /> Billing information
                 </h2>
                 <p className="customer-hint">
                   Required fields are marked *. Postal code and region may not
-                  apply in every country. This is a draft, not an invoice.
+                  apply in every country.
                 </p>
                 <fieldset disabled={busy} className="checkout-fields">
                   {billingFields.map((field) => (
@@ -316,7 +355,7 @@ export function CheckoutPage() {
                 </fieldset>
                 <fieldset className="checkout-payments" disabled={busy}>
                   <legend>
-                    <CreditCard size={20} aria-hidden="true" /> Preferred
+                    <CreditCard size={20} aria-hidden="true" /> Choose your
                     payment method
                   </legend>
                   <label>
@@ -324,25 +363,39 @@ export function CheckoutPage() {
                       type="radio"
                       name="paymentPreference"
                       checked={payment === "stripe"}
+                      disabled={
+                        view.paymentAvailable && !view.paymentMethods?.stripe
+                      }
                       onChange={() => setPayment("stripe")}
                     />{" "}
                     Debit / credit card via Stripe{" "}
-                    <small>Not connected yet</small>
+                    <small>
+                      {view.paymentMethods?.stripe
+                        ? "Secure card checkout"
+                        : "Currently unavailable"}
+                    </small>
                   </label>
                   <label>
                     <input
                       type="radio"
                       name="paymentPreference"
                       checked={payment === "paypal"}
+                      disabled={
+                        view.paymentAvailable && !view.paymentMethods?.paypal
+                      }
                       onChange={() => setPayment("paypal")}
                     />{" "}
-                    PayPal <small>Not connected yet</small>
+                    PayPal{" "}
+                    <small>
+                      {view.paymentMethods?.paypal
+                        ? "Pay with your PayPal account"
+                        : "Currently unavailable"}
+                    </small>
                   </label>
                 </fieldset>
                 <p className="customer-hint">
-                  Do not enter card numbers here. Draft billing details expire
-                  after 7 days. Approved terms and final fees/taxes are required
-                  before payment can be enabled.
+                  Save a draft to return later, or continue to the selected
+                  payment provider. Draft billing details expire after 7 days.
                 </p>
                 <button
                   className="button button-primary"
@@ -445,7 +498,7 @@ export function CheckoutPage() {
                   </article>
                 ))}
                 <p className="checkout-total">
-                  <span>Preview subtotal (USD)</span>
+                  <span>Total (USD)</span>
                   <strong>
                     {view.cart.totalCents === null
                       ? "Review cart"
@@ -453,11 +506,42 @@ export function CheckoutPage() {
                   </strong>
                 </p>
                 <p className="customer-hint">
-                  No coupon, tax or additional fee calculation is configured.
-                  This is not a final payable total.
+                  Includes the selected placement and writing packages. You will
+                  confirm this amount with the payment provider.
                 </p>
-                <button className="button button-primary" disabled>
-                  Place order · payments not connected
+                <label className="checkout-terms">
+                  <input
+                    type="checkbox"
+                    checked={termsAccepted}
+                    disabled={busy}
+                    onChange={(event) => setTermsAccepted(event.target.checked)}
+                  />
+                  <span>
+                    I agree to the <Link href="/terms/">terms of service</Link>{" "}
+                    and <Link href="/refund-policy/">refund policy</Link>.
+                  </span>
+                </label>
+                {!view.paymentAvailable && (
+                  <p className="customer-notice">
+                    Online payments are currently unavailable. You can save your
+                    billing draft and return later.
+                  </p>
+                )}
+                <button
+                  form="payment-checkout"
+                  type="submit"
+                  value="pay"
+                  className="button button-primary"
+                  disabled={
+                    busy ||
+                    !!view.issues.length ||
+                    !view.paymentMethods?.[payment] ||
+                    !termsAccepted
+                  }
+                >
+                  {busy
+                    ? "Preparing checkout…"
+                    : `Pay ${view.cart.totalCents === null ? "" : usd(view.cart.totalCents)} with ${payment === "stripe" ? "card" : "PayPal"}`}
                 </button>
               </aside>
             </div>

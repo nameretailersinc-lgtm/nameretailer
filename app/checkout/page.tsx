@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { CheckoutPage } from "@/components/cart/checkout-page";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Checkout review",
+  title: "Secure checkout",
   description:
-    "Prepare private billing details and review your placement plan. Saving billing information does not submit an order or authorize a payment.",
+    "Review your placement details and pay securely with Stripe or PayPal.",
   robots: { index: false, follow: false },
 };
 export default function Page() {

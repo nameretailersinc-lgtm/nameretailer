@@ -1,5 +1,7 @@
 # Keyword review — 2026-10-10
 
+The owner's additional domain buying, education, tool and industry clusters are researched separately in [DOMAIN_KEYWORD_RESEARCH.md](./DOMAIN_KEYWORD_RESEARCH.md), dated 2026-10-11. That plan distinguishes domain ownership from the current publication-placement catalogue and records the requirements for each proposed destination.
+
 Source: the owner's pasted keyword report. The reporting tool, date range, market, language, competitor domains and underlying keyword export were not supplied. Counts, demand, intent labels, competitor gaps and “Low” competition are reported claims, not independently verified measurements. Nothing in this document establishes an organic difficulty score or promises rankings.
 
 ## Report consistency

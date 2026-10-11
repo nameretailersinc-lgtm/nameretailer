@@ -25,6 +25,12 @@ const env = {
   MEDIA_ROOT: path.join(workspace, ".local", "test-media"),
   MAIL_TRANSPORT: "disabled",
   SMTP_HOST: "",
+  // This suite exercises planning drafts and must never use private payment keys.
+  STRIPE_SECRET_KEY: "",
+  STRIPE_WEBHOOK_SECRET: "",
+  PAYPAL_CLIENT_ID: "",
+  PAYPAL_CLIENT_SECRET: "",
+  PAYPAL_WEBHOOK_ID: "",
 };
 const child = spawn(
   process.execPath,

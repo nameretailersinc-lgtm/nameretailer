@@ -16,3 +16,5 @@ Do not place unresolved items or invented facts on public pages.
 - Provide the GA4 measurement ID and Search Console verification token in deployment settings; review property consent and disable automatic enhanced measurement for the explicit-event setup. Verify actual event receipt and search coverage after deployment.
 - Connect contact_submit only when a real contact delivery handler exists. Current mail links cannot confirm delivery. Registration’s privacy-preserving 202 response counts accepted requests, not verified new accounts.
 - Schedule report:daily-health and collect production field INP/CrUX measurements.
+
+- For the proposed domain expansion, supply the target buyer market and a dated keyword export before selecting new pages. Domain-sale pages require genuine inventory, seller authority and a documented transfer/enquiry process; tool pages require working functionality. The bounded plan and source research are in DOMAIN_KEYWORD_RESEARCH.md. Publication placements must not be relabelled as domain ownership for sale.

@@ -5,6 +5,7 @@ import { attachArticleFiles, cartView, savedOwnCart } from "./cart";
 import { checkoutIssues, checkoutPutSchema } from "./checkout-validation";
 import { ProductError } from "./errors";
 import type { CheckoutDraft, CheckoutView } from "./checkout-types";
+import { paymentMethods } from "./payment-config";
 interface SavedDraft extends Omit<CheckoutDraft, "expiresAt"> {
   _id: string;
   expiresAt: Date;
@@ -50,8 +51,9 @@ export async function getCheckout(
       cart,
       draft: publicDraft(saved),
       issues: checkoutIssues(cart),
-      paymentAvailable: false,
-      orderSubmissionAvailable: false,
+      paymentAvailable: Object.values(paymentMethods()).some(Boolean),
+      orderSubmissionAvailable: Object.values(paymentMethods()).some(Boolean),
+      paymentMethods: paymentMethods(),
     };
   });
 }
@@ -110,8 +112,9 @@ export async function putCheckout(
       cart,
       draft: publicDraft(next),
       issues: [],
-      paymentAvailable: false,
-      orderSubmissionAvailable: false,
+      paymentAvailable: Object.values(paymentMethods()).some(Boolean),
+      orderSubmissionAvailable: Object.values(paymentMethods()).some(Boolean),
+      paymentMethods: paymentMethods(),
     };
   });
 }

@@ -1,4 +1,19 @@
 /* Shared customer-facing theme. Admin and mobile workspaces use their own styles. */
+.checkout-terms {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-block: 18px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+.checkout-terms input {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  margin-top: 3px;
+  accent-color: #008457;
+}
 .reference-site {
   --site-max-width: 1480px;
   --site-gutter: 40px;
@@ -500,6 +515,21 @@ html[data-site-theme="dark"] .reference-site .publication-price {
 }
 html[data-site-theme="dark"] .reference-site .reference-footer {
   background: #102c36;
+}
+html[data-site-theme="dark"] .reference-site .commerce-steps [aria-current] {
+  color: #83e0bb;
+}
+html[data-site-theme="dark"] .reference-site .checkout-payments label {
+  color: #e1f2ed;
+  background: #173845;
+  border-color: #365465;
+}
+html[data-site-theme="dark"] .reference-site .checkout-payments label:has(input:checked) {
+  background: #1c4136;
+  border-color: #62e3b5;
+}
+html[data-site-theme="dark"] .reference-site .checkout-payments small {
+  color: #b6cdc7;
 }
 html[data-site-theme="dark"]
   .reference-site

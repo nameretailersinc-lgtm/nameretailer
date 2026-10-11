@@ -21,6 +21,7 @@ const links = [
   ["/admin/", "Overview", LayoutDashboard, "author"],
   ["/admin/content/", "Content", FileText, "author"],
   ["/admin/products/", "Publications & inventory", List, "admin"],
+  ["/admin/orders/", "Placement orders", List, "admin"],
   ["/admin/categories/", "Categories", List, "editor"],
   ["/admin/tags/", "Tags", List, "editor"],
   ["/admin/authors/", "Authors", UsersIcon, "editor"],

@@ -4,6 +4,7 @@ import { finishedCopy } from "@/lib/site/public-copy";
 import { trackEvent } from "@/lib/analytics/events";
 import {
   memo,
+  startTransition,
   Suspense,
   useEffect,
   useRef,
@@ -58,6 +59,12 @@ import homepageStyles from "@/components/site/homepage.module.css";
 import { CountryName } from "@/components/site/country-name";
 import { BuyPlacement } from "@/components/cart/buy-placement";
 import { CatalogBrowser } from "./catalog-browser";
+import {
+  ShortlistProvider,
+  ShortlistListing,
+  ShortlistButton,
+  useShortlist,
+} from "./shortlist";
 import searchStyles from "./publication-search.module.css";
 import { publicationPath } from "@/lib/commerce/publication-pages";
 import {
@@ -900,7 +907,123 @@ function MetricContext({ compact = false }: { compact?: boolean }) {
   );
 }
 
-export function Marketplace({
+function ShortlistPanel({ homePage }: { homePage: boolean }) {
+  const { items: shortlist, status, toggle, clear } = useShortlist();
+  return homePage ? (
+    <HomepageShortlist
+      shortlist={shortlist}
+      status={status}
+      onRemove={toggle}
+      onClear={clear}
+    />
+  ) : (
+    <section
+      className="marketplace-shortlist"
+      id="shortlist"
+      tabIndex={-1}
+      aria-labelledby="shortlist-heading"
+    >
+      <div className="marketplace-results-heading">
+        <div>
+          <h2 id="shortlist-heading">Your shortlist ({shortlist.length}/4)</h2>
+          <p>
+            Compare up to four publications. This local shortlist lasts for this
+            visit and is not a cart or reservation.
+          </p>
+        </div>
+        {shortlist.length > 0 && (
+          <Button variant="secondary" onClick={clear}>
+            Clear shortlist
+          </Button>
+        )}
+      </div>
+      <p className="marketplace-status" role="status">
+        {status ||
+          "Select Shortlist on a publication to compare its details here."}
+      </p>
+      {shortlist.length > 0 && (
+        <>
+          <div className="marketplace-compare-grid">
+            {shortlist.map((product) => (
+              <article className="publication-card" key={product.id}>
+                <h3>{productDomain(product.domain)}</h3>
+                <p className="marketplace-price">
+                  {productPrice(product.priceCents)}
+                </p>
+                <dl>
+                  {[
+                    ["Topic", product.category || "Unavailable"],
+                    ["Country", product.country || "Unavailable"],
+                    ["Language", product.language || "Unavailable"],
+                    ["DA", productMetric(product.metrics.da)],
+                    ["DR", productMetric(product.metrics.dr)],
+                    [
+                      "Estimated traffic",
+                      productMetric(product.metrics.traffic),
+                    ],
+                    ["Link type", product.linkType || "Unavailable"],
+                    ["Turnaround", product.turnaround || "Unavailable"],
+                  ].map(([label, number]) => (
+                    <div key={label}>
+                      <dt>{label}</dt>
+                      <dd>{number}</dd>
+                    </div>
+                  ))}
+                </dl>
+                <Button
+                  variant="secondary"
+                  onClick={() => toggle(product)}
+                  aria-label={`Remove ${productDomain(product.domain)} from comparison`}
+                >
+                  Remove publication
+                </Button>
+              </article>
+            ))}
+          </div>
+          <p className="small muted">
+            Shortlisted values are the snapshots you selected, not live price or
+            availability reservations.
+          </p>
+        </>
+      )}
+    </section>
+  );
+}
+function ShortlistBar({ metricView }: { metricView: boolean }) {
+  const { items: shortlist } = useShortlist();
+  return (
+    !metricView &&
+    shortlist.length > 0 && (
+      <aside
+        className="marketplace-comparison-bar"
+        aria-label="Selected publications"
+      >
+        <div>
+          <span className="marketplace-comparison-count">
+            {shortlist.length}
+          </span>
+          <span>
+            Selected <small>Compare up to 4</small>
+          </span>
+        </div>
+        <a href="#shortlist">
+          Compare shortlist
+          <ArrowRight size={16} aria-hidden="true" />
+        </a>
+      </aside>
+    )
+  );
+}
+
+export function Marketplace(props: Parameters<typeof MarketplaceContent>[0]) {
+  return (
+    <ShortlistProvider>
+      <MarketplaceContent {...props} />
+    </ShortlistProvider>
+  );
+}
+
+function MarketplaceContent({
   metricView = false,
   range,
   children,
@@ -953,8 +1076,6 @@ export function Marketplace({
   const [error, setError] = useState("");
   const [facetError, setFacetError] = useState("");
   const [retry, setRetry] = useState(0);
-  const [shortlist, setShortlist] = useState<PublicProduct[]>([]);
-  const [status, setStatus] = useState("");
   const [selectedProduct, setSelectedProduct] = useState<PublicProduct | null>(
     null,
   );
@@ -988,8 +1109,10 @@ export function Marketplace({
     api<{ data: ProductFacets }>("/api/products/facets/")
       .then(({ data }) => {
         if (active) {
-          setFacets(data);
-          setFacetError("");
+          startTransition(() => {
+            setFacets(data);
+            setFacetError("");
+          });
         }
       })
       .catch((cause) => {
@@ -1016,65 +1139,8 @@ export function Marketplace({
     setError("");
     window.history.pushState(null, "", pathname);
   }
-  function toggle(product: PublicProduct) {
-    const selected = shortlist.some((item) => item.id === product.id);
-    if (selected) {
-      trackEvent("shortlist", { product_id: product.id, action: "remove" });
-      setShortlist((items) => items.filter((item) => item.id !== product.id));
-      setStatus(
-        `${productDomain(product.domain)} removed from your shortlist.`,
-      );
-    } else if (shortlist.length >= 4)
-      setStatus(
-        "Your shortlist is limited to four publications. Remove one to add another.",
-      );
-    else {
-      trackEvent("shortlist", { product_id: product.id, action: "add" });
-      setShortlist((items) => [...items, product]);
-      setStatus(`${productDomain(product.domain)} added to your shortlist.`);
-    }
-  }
   const activeFilters = filters.filter(
     (key) => normalized.has(key) && !(key in (range?.bounds || {})),
-  );
-  const shortlistControl = (product: PublicProduct) => (
-    <Button
-      variant="secondary"
-      className="marketplace-bookmark"
-      aria-label={
-        shortlist.some((item) => item.id === product.id)
-          ? "Remove from shortlist"
-          : "Shortlist"
-      }
-      title={
-        shortlist.some((item) => item.id === product.id)
-          ? "Remove from shortlist"
-          : "Shortlist"
-      }
-      aria-pressed={shortlist.some((item) => item.id === product.id)}
-      disabled={
-        shortlist.length >= 4 &&
-        !shortlist.some((item) => item.id === product.id)
-      }
-      onClick={() => toggle(product)}
-    >
-      <>
-        <Bookmark
-          size={18}
-          aria-hidden="true"
-          fill={
-            shortlist.some((item) => item.id === product.id)
-              ? "currentColor"
-              : "none"
-          }
-        />
-        <span className="marketplace-bookmark-label">
-          {shortlist.some((item) => item.id === product.id)
-            ? "Remove from shortlist"
-            : "Shortlist"}
-        </span>
-      </>
-    </Button>
   );
   const facet = (
     key: "country" | "language" | "category",
@@ -1648,62 +1714,196 @@ export function Marketplace({
                     </thead>
                     <tbody>
                       {value.data.map((product, index) => (
-                        <tr
-                          key={product.id}
-                          data-shortlisted={
-                            shortlist.some((item) => item.id === product.id) ||
-                            undefined
+                        <Suspense key={product.id} fallback={null}>
+                          <ShortlistListing as="tr" productId={product.id}>
+                            <td>
+                              <span className="marketplace-row-number">
+                                {(value.page - 1) * value.pageSize + index + 1}
+                              </span>
+                            </td>
+                            <th scope="row">
+                              <div className="marketplace-publication-identity">
+                                <span
+                                  className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
+                                  aria-hidden="true"
+                                >
+                                  {productDomain(product.domain)
+                                    .replace(/^www\./, "")
+                                    .slice(0, 2)
+                                    .toUpperCase()}
+                                </span>
+                                <div>
+                                  <PublicationName product={product} />
+                                  <p>
+                                    {product.category || "Topic unavailable"}
+                                  </p>
+                                </div>
+                              </div>
+                            </th>
+                            <td>
+                              <TableMetric
+                                value={product.metrics.da}
+                                tone="da"
+                              />
+                            </td>
+                            <td>
+                              <TableMetric
+                                value={product.metrics.dr}
+                                tone="dr"
+                              />
+                            </td>
+                            <td>
+                              <TableMetric
+                                value={product.metrics.traffic}
+                                tone="traffic"
+                              />
+                            </td>
+                            <td>
+                              <span className="marketplace-publication-country">
+                                <CountryName country={product.country} />
+                              </span>
+                              <span className="marketplace-publication-language">
+                                {product.language || "Unavailable"}
+                              </span>
+                            </td>
+                            <td className="marketplace-price">
+                              {productPrice(product.priceCents)}
+                            </td>
+                            <td>
+                              <div
+                                className={`marketplace-row-actions ${homepageStyles.rowActions}`}
+                              >
+                                <BuyPlacement productId={product.id} />
+                                <Button
+                                  variant="secondary"
+                                  className="marketplace-view-details"
+                                  onClick={() => setSelectedProduct(product)}
+                                >
+                                  View Details
+                                  <ArrowRight size={14} aria-hidden="true" />
+                                </Button>
+                              </div>
+                            </td>
+                            <td>
+                              <ShortlistButton product={product} />
+                            </td>
+                          </ShortlistListing>
+                        </Suspense>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="marketplace-cards">
+                  {value.data.map((product, index) => (
+                    <Suspense key={product.id} fallback={null}>
+                      <ShortlistListing
+                        as="article"
+                        productId={product.id}
+                        className={`publication-card${metricView ? "" : " marketplace-listing-card"}`}
+                      >
+                        <div className="publication-card-heading">
+                          {!metricView && (
+                            <span
+                              className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
+                              aria-hidden="true"
+                            >
+                              {productDomain(product.domain)
+                                .replace(/^www\./, "")
+                                .slice(0, 2)
+                                .toUpperCase()}
+                            </span>
+                          )}
+                          <div>
+                            <h3>
+                              <PublicationName product={product} />
+                            </h3>
+                            {!metricView && (
+                              <p className="marketplace-listing-topic">
+                                {product.category || "Topic unavailable"}
+                              </p>
+                            )}
+                          </div>
+                          <strong className="marketplace-price">
+                            {productPrice(product.priceCents)}
+                            {!metricView && <small>per placement</small>}
+                          </strong>
+                        </div>
+                        {metricView && (
+                          <p className="muted">
+                            {product.category || "Topic unavailable"}
+                          </p>
+                        )}
+                        <dl
+                          className={
+                            metricView
+                              ? undefined
+                              : "marketplace-listing-metrics"
                           }
                         >
-                          <td>
-                            <span className="marketplace-row-number">
-                              {(value.page - 1) * value.pageSize + index + 1}
-                            </span>
-                          </td>
-                          <th scope="row">
-                            <div className="marketplace-publication-identity">
-                              <span
-                                className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
-                                aria-hidden="true"
-                              >
-                                {productDomain(product.domain)
-                                  .replace(/^www\./, "")
-                                  .slice(0, 2)
-                                  .toUpperCase()}
-                              </span>
+                          <div>
+                            <dt>DA</dt>
+                            <dd>
+                              <TableMetric
+                                value={product.metrics.da}
+                                tone="da"
+                              />
+                            </dd>
+                          </div>
+                          <div>
+                            <dt>DR</dt>
+                            <dd>
+                              <TableMetric
+                                value={product.metrics.dr}
+                                tone="dr"
+                              />
+                            </dd>
+                          </div>
+                          <div>
+                            <dt>
+                              {metricView
+                                ? "Estimated traffic"
+                                : "Est. traffic"}
+                            </dt>
+                            <dd>
+                              <TableMetric
+                                value={product.metrics.traffic}
+                                tone="traffic"
+                              />
+                            </dd>
+                          </div>
+                          {metricView && (
+                            <>
                               <div>
-                                <PublicationName product={product} />
-                                <p>{product.category || "Topic unavailable"}</p>
+                                <dt>Country</dt>
+                                <dd>
+                                  <CountryName country={product.country} />
+                                </dd>
                               </div>
+                              <div>
+                                <dt>Language</dt>
+                                <dd>{product.language || "Unavailable"}</dd>
+                              </div>
+                            </>
+                          )}
+                        </dl>
+                        {metricView ? (
+                          <>
+                            <Detail product={product} />
+                            <BuyPlacement productId={product.id} />
+                            <ShortlistButton product={product} />
+                          </>
+                        ) : (
+                          <>
+                            <div className="marketplace-listing-audience">
+                              <Globe2 size={14} aria-hidden="true" />
+                              <span>
+                                <CountryName country={product.country} />
+                              </span>
+                              <span>
+                                {product.language || "Language unavailable"}
+                              </span>
                             </div>
-                          </th>
-                          <td>
-                            <TableMetric value={product.metrics.da} tone="da" />
-                          </td>
-                          <td>
-                            <TableMetric value={product.metrics.dr} tone="dr" />
-                          </td>
-                          <td>
-                            <TableMetric
-                              value={product.metrics.traffic}
-                              tone="traffic"
-                            />
-                          </td>
-                          <td>
-                            <span className="marketplace-publication-country">
-                              <CountryName country={product.country} />
-                            </span>
-                            <span className="marketplace-publication-language">
-                              {product.language || "Unavailable"}
-                            </span>
-                          </td>
-                          <td className="marketplace-price">
-                            {productPrice(product.priceCents)}
-                          </td>
-                          <td>
-                            <div
-                              className={`marketplace-row-actions ${homepageStyles.rowActions}`}
-                            >
+                            <div className="marketplace-listing-actions">
                               <BuyPlacement productId={product.id} />
                               <Button
                                 variant="secondary"
@@ -1713,131 +1913,12 @@ export function Marketplace({
                                 View Details
                                 <ArrowRight size={14} aria-hidden="true" />
                               </Button>
-                            </div>
-                          </td>
-                          <td>{shortlistControl(product)}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="marketplace-cards">
-                  {value.data.map((product, index) => (
-                    <article
-                      key={product.id}
-                      className={`publication-card${metricView ? "" : " marketplace-listing-card"}`}
-                      data-shortlisted={
-                        shortlist.some((item) => item.id === product.id) ||
-                        undefined
-                      }
-                    >
-                      <div className="publication-card-heading">
-                        {!metricView && (
-                          <span
-                            className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
-                            aria-hidden="true"
-                          >
-                            {productDomain(product.domain)
-                              .replace(/^www\./, "")
-                              .slice(0, 2)
-                              .toUpperCase()}
-                          </span>
-                        )}
-                        <div>
-                          <h3>
-                            <PublicationName product={product} />
-                          </h3>
-                          {!metricView && (
-                            <p className="marketplace-listing-topic">
-                              {product.category || "Topic unavailable"}
-                            </p>
-                          )}
-                        </div>
-                        <strong className="marketplace-price">
-                          {productPrice(product.priceCents)}
-                          {!metricView && <small>per placement</small>}
-                        </strong>
-                      </div>
-                      {metricView && (
-                        <p className="muted">
-                          {product.category || "Topic unavailable"}
-                        </p>
-                      )}
-                      <dl
-                        className={
-                          metricView ? undefined : "marketplace-listing-metrics"
-                        }
-                      >
-                        <div>
-                          <dt>DA</dt>
-                          <dd>
-                            <TableMetric value={product.metrics.da} tone="da" />
-                          </dd>
-                        </div>
-                        <div>
-                          <dt>DR</dt>
-                          <dd>
-                            <TableMetric value={product.metrics.dr} tone="dr" />
-                          </dd>
-                        </div>
-                        <div>
-                          <dt>
-                            {metricView ? "Estimated traffic" : "Est. traffic"}
-                          </dt>
-                          <dd>
-                            <TableMetric
-                              value={product.metrics.traffic}
-                              tone="traffic"
-                            />
-                          </dd>
-                        </div>
-                        {metricView && (
-                          <>
-                            <div>
-                              <dt>Country</dt>
-                              <dd>
-                                <CountryName country={product.country} />
-                              </dd>
-                            </div>
-                            <div>
-                              <dt>Language</dt>
-                              <dd>{product.language || "Unavailable"}</dd>
+                              <ShortlistButton product={product} />
                             </div>
                           </>
                         )}
-                      </dl>
-                      {metricView ? (
-                        <>
-                          <Detail product={product} />
-                          <BuyPlacement productId={product.id} />
-                          {shortlistControl(product)}
-                        </>
-                      ) : (
-                        <>
-                          <div className="marketplace-listing-audience">
-                            <Globe2 size={14} aria-hidden="true" />
-                            <span>
-                              <CountryName country={product.country} />
-                            </span>
-                            <span>
-                              {product.language || "Language unavailable"}
-                            </span>
-                          </div>
-                          <div className="marketplace-listing-actions">
-                            <BuyPlacement productId={product.id} />
-                            <Button
-                              variant="secondary"
-                              className="marketplace-view-details"
-                              onClick={() => setSelectedProduct(product)}
-                            >
-                              View Details
-                              <ArrowRight size={14} aria-hidden="true" />
-                            </Button>
-                            {shortlistControl(product)}
-                          </div>
-                        </>
-                      )}
-                    </article>
+                      </ShortlistListing>
+                    </Suspense>
                   ))}
                 </div>
               </>
@@ -1913,96 +1994,7 @@ export function Marketplace({
           </section>
         </div>
         {!metricView && <MetricContext compact />}
-        {homePage ? (
-          <HomepageShortlist
-            shortlist={shortlist}
-            status={status}
-            onRemove={toggle}
-            onClear={() => {
-              setShortlist([]);
-              setStatus("Shortlist cleared.");
-            }}
-          />
-        ) : (
-          <section
-            className="marketplace-shortlist"
-            id="shortlist"
-            tabIndex={-1}
-            aria-labelledby="shortlist-heading"
-          >
-            <div className="marketplace-results-heading">
-              <div>
-                <h2 id="shortlist-heading">
-                  Your shortlist ({shortlist.length}/4)
-                </h2>
-                <p>
-                  Compare up to four publications. This local shortlist lasts
-                  for this visit and is not a cart or reservation.
-                </p>
-              </div>
-              {shortlist.length > 0 && (
-                <Button
-                  variant="secondary"
-                  onClick={() => {
-                    setShortlist([]);
-                    setStatus("Shortlist cleared.");
-                  }}
-                >
-                  Clear shortlist
-                </Button>
-              )}
-            </div>
-            <p className="marketplace-status" role="status">
-              {status ||
-                "Select Shortlist on a publication to compare its details here."}
-            </p>
-            {shortlist.length > 0 && (
-              <>
-                <div className="marketplace-compare-grid">
-                  {shortlist.map((product) => (
-                    <article className="publication-card" key={product.id}>
-                      <h3>{productDomain(product.domain)}</h3>
-                      <p className="marketplace-price">
-                        {productPrice(product.priceCents)}
-                      </p>
-                      <dl>
-                        {[
-                          ["Topic", product.category || "Unavailable"],
-                          ["Country", product.country || "Unavailable"],
-                          ["Language", product.language || "Unavailable"],
-                          ["DA", productMetric(product.metrics.da)],
-                          ["DR", productMetric(product.metrics.dr)],
-                          [
-                            "Estimated traffic",
-                            productMetric(product.metrics.traffic),
-                          ],
-                          ["Link type", product.linkType || "Unavailable"],
-                          ["Turnaround", product.turnaround || "Unavailable"],
-                        ].map(([label, number]) => (
-                          <div key={label}>
-                            <dt>{label}</dt>
-                            <dd>{number}</dd>
-                          </div>
-                        ))}
-                      </dl>
-                      <Button
-                        variant="secondary"
-                        onClick={() => toggle(product)}
-                        aria-label={`Remove ${productDomain(product.domain)} from comparison`}
-                      >
-                        Remove publication
-                      </Button>
-                    </article>
-                  ))}
-                </div>
-                <p className="small muted">
-                  Shortlisted values are the snapshots you selected, not live
-                  price or availability reservations.
-                </p>
-              </>
-            )}
-          </section>
-        )}
+        <ShortlistPanel homePage={homePage} />
         {metricView ? (
           <>
             <MarketplaceBuyerGuide />
@@ -2017,25 +2009,7 @@ export function Marketplace({
             </Link>
           </p>
         )}
-        {!metricView && shortlist.length > 0 && (
-          <aside
-            className="marketplace-comparison-bar"
-            aria-label="Selected publications"
-          >
-            <div>
-              <span className="marketplace-comparison-count">
-                {shortlist.length}
-              </span>
-              <span>
-                Selected <small>Compare up to 4</small>
-              </span>
-            </div>
-            <a href="#shortlist">
-              Compare shortlist
-              <ArrowRight size={16} aria-hidden="true" />
-            </a>
-          </aside>
-        )}
+        <ShortlistBar metricView={!!metricView} />
         {selectedProduct && (
           <PublicationDialog
             product={selectedProduct}

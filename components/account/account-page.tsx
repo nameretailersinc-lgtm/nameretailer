@@ -1,5 +1,5 @@
 "use client";
-import {trackEvent} from "@/lib/analytics/events";
+import { trackEvent } from "@/lib/analytics/events";
 import { useEffect, useState } from "react";
 import { signIn, signOut } from "next-auth/react";
 import Link from "next/link";
@@ -96,6 +96,12 @@ export function AccountPage({ productId }: { productId?: string }) {
             <Link className="button button-secondary" href={cartUrl}>
               View your cart
             </Link>
+            <Link
+              className="button button-secondary"
+              href="/my-account/orders/"
+            >
+              Your orders
+            </Link>
             <button
               className="button button-secondary"
               onClick={() => void signOut({ callbackUrl: "/my-account/" })}
@@ -139,7 +145,10 @@ export function AccountPage({ productId }: { productId?: string }) {
                       body: JSON.stringify({ name, email, password, website }),
                     },
                   );
-                  trackEvent("sign_up",{method:"email",registration_state:"request_accepted"});
+                  trackEvent("sign_up", {
+                    method: "email",
+                    registration_state: "request_accepted",
+                  });
                   setMessage(data.message);
                   setRegister(false);
                   setPassword("");

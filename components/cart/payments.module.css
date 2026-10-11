@@ -1,0 +1,142 @@
+.receipt {
+  max-width: 960px;
+  margin: 28px auto;
+}
+.status {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+.status > span,
+.method {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background: #e5f8f0;
+  color: #007e54;
+}
+.status h2 {
+  margin-bottom: 8px;
+}
+.status p,
+.details dt,
+.placements p,
+.historyCard p,
+.historyCard small {
+  color: var(--muted-foreground, #526780);
+}
+.details {
+  margin-block: 24px;
+}
+.details > div {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 20px;
+  padding-block: 12px;
+  border-bottom: 1px solid var(--border, #e2edf0);
+}
+.details dd {
+  margin: 0;
+}
+.orderId {
+  overflow-wrap: anywhere;
+  font-family: monospace;
+  font-size: 13px;
+}
+.total,
+.paid {
+  color: #008356;
+  font-weight: 750;
+}
+.placements {
+  margin-block: 16px 24px;
+}
+.placements article {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-bottom: 1px solid var(--border, #e2edf0);
+  padding: 16px 0;
+}
+.placements article > div {
+  min-width: 0;
+}
+.placements p {
+  margin-top: 6px;
+  overflow-wrap: anywhere;
+}
+.history {
+  display: grid;
+  gap: 14px;
+  margin-block: 28px;
+}
+.historyCard {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  text-decoration: none;
+  transition: box-shadow 0.2s;
+}
+.historyCard:hover {
+  box-shadow: 0 8px 24px #005e4210;
+}
+.historyCard > div:first-of-type {
+  flex: 1;
+}
+.historyCard p {
+  margin-block: 6px;
+}
+.pending {
+  color: #856013 !important;
+}
+.failed,
+.expired {
+  color: #b83a51 !important;
+}
+:global(html[data-site-theme="dark"]) .total,
+:global(html[data-site-theme="dark"]) .paid {
+  color: #62e3b5;
+}
+:global(html[data-site-theme="dark"]) .pending {
+  color: #f2c873 !important;
+}
+:global(html[data-site-theme="dark"]) .failed,
+:global(html[data-site-theme="dark"]) .expired {
+  color: #ffb4bf !important;
+}
+:global(html[data-site-theme="dark"]) .status > span,
+:global(html[data-site-theme="dark"]) .method {
+  background: #17493d;
+  color: #7ae9c0;
+}
+@media (max-width: 600px) {
+  .status {
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .status > span,
+  .method {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+  .details > div {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .historyCard {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .historyCard > svg {
+    display: none;
+  }
+  .placements article {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

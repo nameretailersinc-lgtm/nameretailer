@@ -26,4 +26,15 @@ describe("completed server HTML", () => {
       '<main><!--$?--><template id="B:0"></template><p>Loading publications</p><!--/$--></main><script>$RC("B:0","S:0")</script>';
     expect(completedServerHtml(html)).toContain("Loading publications");
   });
+
+  it("resolves streamed table rows and cells inside their correct table context", () => {
+    const html =
+      '<main><table><tbody><template id="P:1"></template><tr><template id="P:2"></template></tr></tbody></table></main><table hidden><tbody id="S:1"><tr><th>artnews.com</th><td>$50</td></tr></tbody></table><table hidden><tr id="S:2"><th>bbc.co.uk</th><td>$75</td></tr></table><script>$RS("S:1","P:1");$RS("S:2","P:2")</script>';
+    const completed = completedServerHtml(html);
+    expect(completed).toContain(
+      "<main><table><tbody><tr><th>artnews.com</th><td>$50</td></tr><tr><th>bbc.co.uk</th><td>$75</td></tr></tbody></table></main>",
+    );
+    expect(completed).not.toContain("<template");
+    expect(completed).not.toMatch(/id="S:/);
+  });
 });

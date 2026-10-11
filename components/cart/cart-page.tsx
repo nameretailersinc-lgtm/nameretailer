@@ -329,7 +329,7 @@ export function CartPage({ productId }: { productId?: string }) {
                 {cart.totalCents !== null &&
                 cart.items.every((item) => !briefIssue(item, !!item.file)) ? (
                   <Link href="/checkout/" className="button button-primary">
-                    Proceed to checkout review
+                    Proceed to checkout
                   </Link>
                 ) : (
                   <p>
@@ -377,8 +377,8 @@ export function CartPage({ productId }: { productId?: string }) {
           Refresh cart and prices
         </button>
         <p className="customer-hint">
-          Save your brief and review server-calculated prices. Final order
-          submission and Stripe / PayPal payments are not yet connected.
+          Save your brief and review current prices before continuing to secure
+          checkout.
         </p>
       </div>
     </CustomerShell>

@@ -291,9 +291,7 @@ test.describe("placement brief, private uploads and checkout drafts", () => {
       await expect(page.locator(".cart-brief-details")).toContainText(
         brief.keyword,
       );
-      await page
-        .getByRole("link", { name: "Proceed to checkout review" })
-        .click();
+      await page.getByRole("link", { name: "Proceed to checkout" }).click();
       await expect(page).toHaveURL(/\/checkout\/$/);
       await page
         .getByLabel("Billing email", { exact: false })
@@ -322,7 +320,7 @@ test.describe("placement brief, private uploads and checkout drafts", () => {
       ).toHaveValue(billing.email);
       await expect(page.getByRole("radio", { name: /PayPal/ })).toBeChecked();
       await expect(
-        page.getByRole("button", { name: /Place order/ }),
+        page.getByRole("button", { name: /^Pay .* with/ }),
       ).toBeDisabled();
     } finally {
       await api.dispose();
@@ -365,7 +363,7 @@ test.describe("placement brief, private uploads and checkout drafts", () => {
         page.getByRole("heading", { name: "Saved placements (1)" }),
       ).toBeVisible();
       await expect(
-        page.getByRole("link", { name: "Proceed to checkout review" }),
+        page.getByRole("link", { name: "Proceed to checkout" }),
       ).toBeVisible();
       await page.reload();
       await expect(
@@ -387,7 +385,7 @@ test.describe("placement brief, private uploads and checkout drafts", () => {
         "expired or is unavailable",
       );
       await expect(
-        page.getByRole("link", { name: "Proceed to checkout review" }),
+        page.getByRole("link", { name: "Proceed to checkout" }),
       ).toHaveCount(0);
     } finally {
       await api.dispose();
