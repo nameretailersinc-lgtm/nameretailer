@@ -119,8 +119,8 @@ function subscribeToCompactViewport(onChange: () => void) {
 function isCompactViewport() {
   return window.matchMedia("(max-width: 800px)").matches;
 }
-function desktopViewport() {
-  return false;
+function serverCompactViewport() {
+  return true;
 }
 export function productPrice(cents: number) {
   return usd.format(cents / 100);
@@ -927,7 +927,7 @@ export function Marketplace({
   const compactViewport = useSyncExternalStore(
     subscribeToCompactViewport,
     isCompactViewport,
-    desktopViewport,
+    serverCompactViewport,
   );
   const searchParams = useSearchParams();
   const params = rangeQuery(searchParams.toString(), range);

@@ -122,6 +122,7 @@ export function CatalogBrowser({
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
+  const resultsPanel = useRef<HTMLElement>(null);
   const [search, setSearch] = useState("");
   const [group, setGroup] = useState("All");
   const country = kind === "country";
@@ -161,17 +162,33 @@ export function CatalogBrowser({
       : group;
   const HeaderIcon = selectedGroup?.Icon || (country ? Globe2 : Grid2X2);
 
+  function chooseGroup(value: string) {
+    setGroup(value);
+    setSearch("");
+    resultsPanel.current?.scrollTo({ top: 0 });
+  }
+
   useEffect(() => {
     const element = dialog.current;
     const opener =
       document.activeElement instanceof HTMLElement
         ? document.activeElement
         : null;
+    const root = document.documentElement;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousGutter = root.style.scrollbarGutter;
+    root.style.scrollbarGutter = "stable";
+    root.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
     element?.showModal();
     searchInput.current?.focus();
     return () => {
       element?.close();
-      opener?.focus();
+      root.style.overflow = previousRootOverflow;
+      root.style.scrollbarGutter = previousGutter;
+      document.body.style.overflow = previousBodyOverflow;
+      opener?.focus({ preventScroll: true });
     };
   }, []);
 
@@ -180,35 +197,44 @@ export function CatalogBrowser({
       ref={dialog}
       className={styles.dialog}
       aria-labelledby="catalog-browser-title"
+      aria-describedby="catalog-browser-description"
       onCancel={onClose}
       onClick={(event) => {
         if (event.target === event.currentTarget) onClose();
       }}
     >
-      <div className={styles.search}>
-        <Search size={22} aria-hidden="true" />
-        <input
-          ref={searchInput}
-          type="search"
-          value={search}
-          onChange={(event) => setSearch(event.target.value)}
-          aria-label={
-            country
-              ? "Search available countries"
-              : "Search available publication topics"
-          }
-          placeholder={
-            country
-              ? "Search countries (e.g. United States, Canada, UK...)"
-              : "Search publication topics, categories or keywords..."
-          }
-        />
+      <div className={styles.toolbar}>
+        <div className={styles.search}>
+          <Search size={21} aria-hidden="true" />
+          <input
+            ref={searchInput}
+            type="search"
+            value={search}
+            onChange={(event) => {
+              setSearch(event.target.value);
+              setGroup("All");
+              resultsPanel.current?.scrollTo({ top: 0 });
+            }}
+            aria-label={
+              country
+                ? "Search available countries"
+                : "Search available publication topics"
+            }
+            placeholder={
+              country
+                ? "Search countries (e.g. United States, Canada, UK...)"
+                : "Search publication topics, categories or keywords..."
+            }
+          />
+        </div>
         <button
           type="button"
+          className={styles.close}
           onClick={onClose}
           aria-label={country ? "Close country browser" : "Close topic browser"}
         >
           <X size={22} aria-hidden="true" />
+          <span>Close</span>
         </button>
       </div>
       <div className={styles.body}>
@@ -219,7 +245,7 @@ export function CatalogBrowser({
           <button
             type="button"
             aria-pressed={group === "All"}
-            onClick={() => setGroup("All")}
+            onClick={() => chooseGroup("All")}
           >
             {country ? (
               <Globe2 size={22} aria-hidden="true" />
@@ -235,7 +261,7 @@ export function CatalogBrowser({
               key={label}
               aria-pressed={group === label}
               data-tone={index % 5}
-              onClick={() => setGroup(label)}
+              onClick={() => chooseGroup(label)}
             >
               <Icon size={22} aria-hidden="true" />
               <span>{label}</span>
@@ -266,17 +292,17 @@ export function CatalogBrowser({
               </div>
             )}
         </aside>
-        <section className={styles.results}>
+        <section ref={resultsPanel} className={styles.results}>
           <header>
             <span className={styles.headerIcon}>
               <HeaderIcon size={36} aria-hidden="true" />
             </span>
             <div>
               <h2 id="catalog-browser-title">{title}</h2>
-              <p>
+              <p id="catalog-browser-description">
                 {country
-                  ? "Choose an audience location for your next publication."
-                  : "Find guest posting publications that match your niche."}
+                  ? "Select a country to find publications for your audience."
+                  : "Select a topic to see matching guest posting publications."}
               </p>
             </div>
             <div className={styles.headerActions}>

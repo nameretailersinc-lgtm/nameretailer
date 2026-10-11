@@ -39,6 +39,13 @@ await withProductionServer(async (base) => {
     ]) {
       await page.goto(base + path, { waitUntil: "networkidle" });
       if (path === "/") {
+        assert.equal(
+          await page
+            .locator(".marketplace-filter-panel")
+            .evaluate((element) => (element as HTMLDetailsElement).open),
+          false,
+          "Mobile filters must be collapsed before the first interaction",
+        );
         await page
           .getByRole("button", { name: "Shortlist", exact: true })
           .first()
