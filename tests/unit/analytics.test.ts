@@ -129,10 +129,14 @@ it("updates the current choice when another tab changes consent", async () => {
     throw new Error("Consent must subscribe to browser storage changes.");
   events.setConsent("granted");
   stored.set(events.consentKey, "denied");
-  storageListener(Object.assign(new Event("storage"), { key: "unrelated-setting" }));
+  storageListener(
+    Object.assign(new Event("storage"), { key: "unrelated-setting" }),
+  );
   expect(events.getConsent()).toBe("granted");
   expect(notify).not.toHaveBeenCalled();
-  storageListener(Object.assign(new Event("storage"), { key: events.consentKey }));
+  storageListener(
+    Object.assign(new Event("storage"), { key: events.consentKey }),
+  );
   expect(events.getConsent()).toBe("denied");
   expect(notify).toHaveBeenCalledOnce();
   unsubscribe();
