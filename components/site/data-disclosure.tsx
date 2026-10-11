@@ -5,7 +5,7 @@ export function DataDisclosure({ asOf }: { asOf?: string }) {
   if (!validAsOf(asOf)) return null;
   return (
     <p className="catalogue-data-disclosure">
-      Catalogue data is owner-supplied, not independently verified; as of{" "}
+      Catalogue data is owner-supplied as of{" "}
       <time dateTime={asOf}>
         {new Date(asOf!).toLocaleDateString("en-US", {
           year: "numeric",
