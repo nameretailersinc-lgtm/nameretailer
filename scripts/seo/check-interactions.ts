@@ -65,16 +65,27 @@ await withProductionServer(async (base) => {
         samples: samples.length,
         maxObservedInteractionMs: maximum,
       });
-      assert(
-        maximum === null || maximum <= 200,
-        path + ": sampled interaction exceeded 200 ms (" + maximum + ")",
-      );
     }
     await writeFile(
       ".local/interaction-performance.json",
       JSON.stringify(results, null, 2),
     );
     console.table(results);
+    const failures = results.filter(
+      (result) =>
+        result.maxObservedInteractionMs !== null &&
+        result.maxObservedInteractionMs > 200,
+    );
+    assert.equal(
+      failures.length,
+      0,
+      failures
+        .map(
+          (result) =>
+            `${result.path}: sampled interaction exceeded 200 ms (${result.maxObservedInteractionMs})`,
+        )
+        .join("\n"),
+    );
     console.log(
       "Local interaction samples passed. These are not field INP or a production percentile.",
     );

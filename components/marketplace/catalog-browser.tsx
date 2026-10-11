@@ -5,6 +5,7 @@ import {
   ArrowRight,
   BookOpen,
   BriefcaseBusiness,
+  Check,
   ChevronRight,
   Globe2,
   GraduationCap,
@@ -109,11 +110,13 @@ const popularCountryCodes = ["us", "gb", "ca", "au", "de", "fr", "in", "pk"];
 export function CatalogBrowser({
   kind,
   values,
+  selectedValue = "",
   onSelect,
   onClose,
 }: {
   kind: "category" | "country";
   values: string[];
+  selectedValue?: string;
   onSelect: (value: string) => void;
   onClose: () => void;
 }) {
@@ -276,9 +279,18 @@ export function CatalogBrowser({
                   : "Find guest posting publications that match your niche."}
               </p>
             </div>
-            <span className={styles.count} role="status">
-              {visible.length} {country ? "countries" : "topics"}
-            </span>
+            <div className={styles.headerActions}>
+              <span className={styles.count} role="status">
+                {visible.length} {country ? "countries" : "topics"}
+              </span>
+              <button
+                type="button"
+                className={styles.allOptions}
+                onClick={() => onSelect("")}
+              >
+                {country ? "Use all countries" : "Use all topics"}
+              </button>
+            </div>
           </header>
           {visible.length ? (
             <div
@@ -293,6 +305,7 @@ export function CatalogBrowser({
                     type="button"
                     key={value}
                     onClick={() => onSelect(value)}
+                    aria-pressed={selectedValue === value}
                     data-tone={index % 5}
                   >
                     {country ? (
@@ -308,7 +321,15 @@ export function CatalogBrowser({
                         </span>
                       </>
                     )}
-                    <ChevronRight size={17} aria-hidden="true" />
+                    {selectedValue === value ? (
+                      <Check
+                        size={19}
+                        className={styles.selectedCheck}
+                        aria-hidden="true"
+                      />
+                    ) : (
+                      <ChevronRight size={17} aria-hidden="true" />
+                    )}
                   </button>
                 );
               })}

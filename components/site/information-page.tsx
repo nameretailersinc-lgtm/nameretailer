@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -61,7 +62,9 @@ export function InformationShell({
 }) {
   return (
     <div className={`reference-site reference-information ${className}`}>
-      <SiteHeader active={active} />
+      <Suspense fallback={null}>
+        <SiteHeader active={active} />
+      </Suspense>
       <main id="main" className="reference-container" tabIndex={-1}>
         <script
           type="application/ld+json"
@@ -115,7 +118,9 @@ export function InformationShell({
         </section>
         {children}
       </main>
-      <SiteFooter />
+      <Suspense fallback={null}>
+        <SiteFooter />
+      </Suspense>
     </div>
   );
 }

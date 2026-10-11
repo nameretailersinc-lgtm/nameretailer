@@ -17,7 +17,10 @@ import { InformationShell } from "@/components/site/information-page";
 import { PublicationTable } from "@/components/site/publication-table";
 import { directories } from "@/lib/site/directories";
 import { directoryListings, productFacets } from "@/lib/commerce/products";
-import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
+import {
+  catalogueSummary,
+  directorySummaries,
+} from "@/lib/commerce/catalogue-summary";
 import { priceBreakdown } from "@/lib/commerce/price-breakdown";
 import { cachedAsync } from "@/lib/cache/ttl";
 import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
@@ -142,11 +145,7 @@ async function loadHub() {
     catalogueSummary("").catch(() => null),
     cachedAsync("facets", facetsCache, productFacets).catch(() => null),
     directoryListings({}, 12).catch(() => null),
-    Promise.all(
-      directories.map((directory) =>
-        catalogueSummary("", directory.slug).catch(() => null),
-      ),
-    ),
+    directorySummaries().catch(() => directories.map(() => null)),
     priceBreakdown().catch(() => null),
   ]);
   return { stats, facets, top, niches, breakdown };

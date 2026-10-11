@@ -152,7 +152,8 @@ export function HomepageHero() {
           height={475}
           sizes="(max-width: 640px) 92vw, (max-width: 1000px) 48vw, 620px"
           alt=""
-          preload
+          loading="eager"
+          fetchPriority="high"
         />
         <span className={styles.rocket}>
           <Rocket size={44} strokeWidth={1.5} />
@@ -428,9 +429,7 @@ export function HomepageSections({
                 </span>
               ))}
             </div>
-            <small>
-              Illustrative chart · first displayed publication metrics
-            </small>
+            <small>First displayed publication metrics</small>
           </div>
           <dl className={styles.domainScores}>
             <div>

@@ -466,11 +466,18 @@ html[data-site-theme="dark"]
 }
 html[data-site-theme="dark"]
   .reference-site
-  :is(.directory-table, .marketplace-table)
+  :is(.directory-table, .marketplace-table, .reference-guide-table)
   thead
   th {
   color: #c1d7e8;
   background: #214357;
+}
+html[data-site-theme="dark"]
+  .reference-site
+  :is(.directory-table, .reference-guide-table)
+  tbody
+  th {
+  background: transparent;
 }
 html[data-site-theme="dark"]
   .reference-site
@@ -494,7 +501,10 @@ html[data-site-theme="dark"] .reference-site .publication-price {
 html[data-site-theme="dark"] .reference-site .reference-footer {
   background: #102c36;
 }
-html[data-site-theme="dark"] .reference-site .marketplace-faq details {
+html[data-site-theme="dark"]
+  .reference-site
+  :is(.marketplace-faq, .reference-tool-faq)
+  details {
   color: #e0edf3;
   background: #173845;
   border-color: #365465;

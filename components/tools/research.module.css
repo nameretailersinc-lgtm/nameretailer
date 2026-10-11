@@ -93,6 +93,9 @@
 :global(html[data-site-theme="dark"]) .table td {
   border-color: #365465;
 }
+:global(html[data-site-theme="dark"]) .research .table tbody th {
+  background: #173845;
+}
 @media (max-width: 760px) {
   .answers {
     grid-template-columns: 1fr;

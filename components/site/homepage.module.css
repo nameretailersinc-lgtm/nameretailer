@@ -1186,7 +1186,15 @@
 }
 
 .sections {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 1300px;
   margin-top: 28px;
+}
+
+@media (max-width: 800px) {
+  .sections {
+    contain-intrinsic-size: auto 2871px;
+  }
 }
 
 .tools {

@@ -221,9 +221,6 @@ export async function ArticleLibrary({
           Read the buying guide <ArrowRight size={16} aria-hidden="true" />
         </Link>
       </aside>
-      <p className="reference-information-note">
-        Examples are illustrative unless an actual source is identified.
-      </p>
     </InformationShell>
   );
 }

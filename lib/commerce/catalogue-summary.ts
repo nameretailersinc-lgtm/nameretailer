@@ -1,7 +1,7 @@
 import { cache } from "react";
 import { cachedAsync } from "../cache/ttl";
-import { publicProductStatistics } from "./products";
-import { directoryBySlug } from "../site/directories";
+import { publicDirectorySummaries, publicProductStatistics } from "./products";
+import { directories, directoryBySlug } from "../site/directories";
 
 // Aggregates scan every matching listing, so share one result across requests.
 const statisticsCache = {
@@ -15,5 +15,11 @@ export const catalogueSummary = cache((query: string, directorySlug = "") =>
       new URLSearchParams(query),
       directoryBySlug(directorySlug)?.filter,
     ),
+  ),
+);
+
+export const directorySummaries = cache(() =>
+  cachedAsync("directory-card-summaries", statisticsCache, () =>
+    publicDirectorySummaries(directories.map((directory) => directory.filter)),
   ),
 );

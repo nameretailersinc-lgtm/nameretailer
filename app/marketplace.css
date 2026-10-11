@@ -289,6 +289,12 @@
   border-radius: 8px;
   min-width: 0;
 }
+
+/* Keep catalogue HTML available while postponing off-screen card layout. */
+.marketplace-cards > .marketplace-listing-card {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 272px;
+}
 .marketplace .publication-card h3 {
   font-size: 18px;
   line-height: 1.4;

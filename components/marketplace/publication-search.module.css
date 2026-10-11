@@ -1,0 +1,107 @@
+.selectionField.selectionField {
+  padding-left: 0;
+  gap: 0;
+  overflow: hidden;
+}
+
+.selector {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  width: 100%;
+  min-width: 0;
+  min-height: 60px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: inherit;
+  background: transparent;
+  color: #102451;
+  text-align: left;
+  font-family: var(--font-ui), sans-serif;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+.selector:hover,
+.selector[aria-expanded="true"] {
+  background: #edf9f4;
+}
+.selector:focus-visible {
+  outline: 2px solid #008457;
+  outline-offset: -3px;
+}
+.selectorIcon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 11px;
+  color: #00764b;
+  background: #ddf6eb;
+}
+.selectorCopy {
+  flex: 1;
+  min-width: 0;
+}
+.selectorCopy small {
+  display: block;
+  color: #5b7094;
+  font-size: 11px;
+  line-height: 1.4;
+  margin-bottom: 3px;
+}
+.selectorCopy strong {
+  display: block;
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.4;
+  overflow-wrap: anywhere;
+}
+.selectorHint {
+  padding: 5px 10px;
+  border: 1px solid #c9e8dc;
+  border-radius: 7px;
+  color: #00764b;
+  font-size: 11px;
+  font-weight: 600;
+}
+.selector > svg {
+  flex-shrink: 0;
+  color: #00764b;
+}
+:global(html[data-site-theme="dark"]) .selector {
+  color: #e0edf3;
+}
+:global(html[data-site-theme="dark"]) .selector:hover,
+:global(html[data-site-theme="dark"]) .selector[aria-expanded="true"] {
+  background: #244e42;
+}
+:global(html[data-site-theme="dark"]) .selectorCopy small {
+  color: #a6bbc9;
+}
+:global(html[data-site-theme="dark"]) .selectorIcon {
+  color: #9ce6c6;
+  background: #244e42;
+}
+:global(html[data-site-theme="dark"]) .selectorHint,
+:global(html[data-site-theme="dark"]) .selector > svg {
+  color: #9ce6c6;
+  border-color: #3f6e5e;
+}
+@media (max-width: 640px) {
+  .selector {
+    gap: 10px;
+    padding: 8px 11px;
+    min-height: 58px;
+  }
+  .selectorIcon {
+    width: 35px;
+    height: 35px;
+  }
+  .selectorHint {
+    display: none;
+  }
+  .selectorCopy strong {
+    font-size: 13px;
+  }
+}

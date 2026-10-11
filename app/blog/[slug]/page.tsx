@@ -1,4 +1,4 @@
-import {RelatedResearch} from "@/components/site/related-research";
+import { RelatedResearch } from "@/components/site/related-research";
 import { EditorialByline } from "@/components/site/editorial-byline";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
@@ -44,7 +44,11 @@ export async function generateMetadata({
               ...metadata.openGraph,
               images: undefined,
             },
-            twitter: { ...metadata.twitter, card: "summary_large_image" as const, images: undefined },
+            twitter: {
+              ...metadata.twitter,
+              card: "summary_large_image" as const,
+              images: undefined,
+            },
           }
         : {}),
     },
@@ -202,21 +206,9 @@ export default async function Page({
               </li>
             ))}
           </ul>
-          <p>
-            Sources support the referenced facts, not a business endorsement or
-            promised outcome.
-          </p>
         </section>
       )}
-      <RelatedResearch/>
-      <div className="tool-privacy">
-        <p>
-          <strong>Editorial note.</strong> Review the stated author, sources and
-          publication scope before applying this guidance. Examples are
-          illustrative, not customer results. No ranking, citation or commercial
-          outcome is guaranteed.
-        </p>
-      </div>
+      <RelatedResearch />
       <section className="reference-information-next">
         <p className="eyebrow">Continue with context</p>
         <h2>Related reading</h2>

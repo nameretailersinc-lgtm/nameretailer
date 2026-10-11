@@ -263,6 +263,70 @@ export async function productFacets() {
     categories: clean(categories),
   };
 }
+
+/** Directory card figures in one catalogue scan, without extra audience aggregates. */
+export async function publicDirectorySummaries(directories: DirectoryFilter[]) {
+  type Summary = {
+    total: number;
+    minPriceCents: number | null;
+    medianPriceCents: number | null;
+    updatedAt?: string;
+  };
+  if (!directories.length) return [] as Summary[];
+  const { products } = await productStore();
+  const facets = Object.fromEntries(
+    directories.map((directory, index) => {
+      const scope: Filter<Product> = {};
+      if (directory.categories?.length)
+        scope.category = { $in: directory.categories };
+      if (directory.country) scope.country = directory.country;
+      if (directory.maxPriceCents !== undefined)
+        scope.priceCents = { $lte: directory.maxPriceCents };
+      return [
+        `directory${index}`,
+        [
+          { $match: scope },
+          {
+            $group: {
+              _id: null,
+              total: { $sum: 1 },
+              minPriceCents: { $min: "$priceCents" },
+              prices: { $push: "$priceCents" },
+              updatedAt: { $max: "$updatedAt" },
+            },
+          },
+        ],
+      ];
+    }),
+  );
+  const [result] = await products
+    .aggregate<
+      Record<
+        string,
+        Array<Omit<Summary, "medianPriceCents"> & { prices: number[] }>
+      >
+    >(
+      [
+        { $match: { $and: [{ status: "active" }, await visibleFilter()] } },
+        { $facet: facets },
+      ],
+      { maxTimeMS: 15000 },
+    )
+    .toArray();
+  return directories.map((_, index): Summary => {
+    const summary = result?.[`directory${index}`]?.[0];
+    const updatedAt = summary?.updatedAt;
+    return {
+      total: summary?.total ?? 0,
+      minPriceCents: summary?.minPriceCents ?? null,
+      medianPriceCents: priceMedian(summary?.prices || []),
+      ...(updatedAt && Number.isFinite(Date.parse(updatedAt))
+        ? { updatedAt }
+        : {}),
+    };
+  });
+}
+
 /** Statistics over all visible matching products, never just the first page. */
 export async function publicProductStatistics(
   params: URLSearchParams,

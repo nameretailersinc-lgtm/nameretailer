@@ -2,7 +2,14 @@
 
 import { finishedCopy } from "@/lib/site/public-copy";
 import { trackEvent } from "@/lib/analytics/events";
-import { memo, useEffect, useRef, useState, useSyncExternalStore } from "react";
+import {
+  memo,
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  useSyncExternalStore,
+} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useSearchParams } from "next/navigation";
@@ -51,6 +58,7 @@ import homepageStyles from "@/components/site/homepage.module.css";
 import { CountryName } from "@/components/site/country-name";
 import { BuyPlacement } from "@/components/cart/buy-placement";
 import { CatalogBrowser } from "./catalog-browser";
+import searchStyles from "./publication-search.module.css";
 import { publicationPath } from "@/lib/commerce/publication-pages";
 import {
   rangeQuery,
@@ -633,6 +641,7 @@ function PublicationSearch({
   onAdvancedFilters?: () => void;
 }) {
   const params = new URLSearchParams(query);
+  const selectionTrigger = useRef<HTMLButtonElement>(null);
   const [browser, setBrowser] = useState<"category" | "country" | null>(null);
   const [mode, setMode] = useState<"q" | "category" | "country">(() =>
     params.get("q")
@@ -695,6 +704,8 @@ function PublicationSearch({
             type="button"
             aria-label={title}
             aria-pressed={mode === key}
+            aria-haspopup={key === "q" ? undefined : "dialog"}
+            aria-expanded={key === "q" ? undefined : browser === key}
             onClick={() => {
               setMode(key as typeof mode);
               if (key === "category" || key === "country") setBrowser(key);
@@ -738,8 +749,10 @@ function PublicationSearch({
             onSearch({ [mode]: String(form.get(mode) || "").trim() });
           }}
         >
-          <div className="marketplace-search-input">
-            <Search size={22} aria-hidden="true" />
+          <div
+            className={`marketplace-search-input ${mode === "q" ? "" : searchStyles.selectionField}`}
+          >
+            {mode === "q" && <Search size={22} aria-hidden="true" />}
             {mode === "q" ? (
               <Input
                 name="q"
@@ -750,26 +763,51 @@ function PublicationSearch({
                 defaultValue={params.get("q") || ""}
               />
             ) : (
-              <Select
-                name={mode}
-                aria-label={
-                  mode === "category"
-                    ? "Find publications by topic"
-                    : "Find publications by country"
-                }
-                defaultValue={params.get(mode) || ""}
-              >
-                <option value="">
-                  {mode === "category"
-                    ? "All publication topics"
-                    : "All countries"}
-                </option>
-                {options.map((item) => (
-                  <option key={item} value={item}>
-                    {item}
-                  </option>
-                ))}
-              </Select>
+              <>
+                <input type="hidden" name={mode} value={selectedOption || ""} />
+                <button
+                  ref={selectionTrigger}
+                  type="button"
+                  className={searchStyles.selector}
+                  aria-label={
+                    mode === "category"
+                      ? "Find publications by topic"
+                      : "Find publications by country"
+                  }
+                  aria-haspopup="dialog"
+                  aria-expanded={browser === mode}
+                  onClick={() => setBrowser(mode)}
+                >
+                  <span className={searchStyles.selectorIcon}>
+                    {mode === "category" ? (
+                      <Layers3 size={23} aria-hidden="true" />
+                    ) : (
+                      <Globe2 size={23} aria-hidden="true" />
+                    )}
+                  </span>
+                  <span className={searchStyles.selectorCopy}>
+                    <small>
+                      {mode === "category"
+                        ? "Publication topic"
+                        : "Audience location"}
+                    </small>
+                    <strong>
+                      {mode === "country" && selectedOption ? (
+                        <CountryName country={selectedOption} />
+                      ) : (
+                        selectedOption ||
+                        (mode === "category"
+                          ? "All publication topics"
+                          : "All countries")
+                      )}
+                    </strong>
+                  </span>
+                  <span className={searchStyles.selectorHint}>
+                    {selectedOption ? "Change" : "Browse"}
+                  </span>
+                  <ChevronDown size={19} aria-hidden="true" />
+                </button>
+              </>
             )}
           </div>
           <Button>
@@ -815,12 +853,22 @@ function PublicationSearch({
       {browser && (
         <CatalogBrowser
           kind={browser}
-          values={browser === "category" ? facets.categories : facets.countries}
+          values={
+            browser === mode
+              ? options
+              : browser === "category"
+                ? facets.categories
+                : facets.countries
+          }
+          selectedValue={params.get(browser) || ""}
           onClose={() => setBrowser(null)}
           onSelect={(item) => {
             setMode(browser);
             onSearch({ q: "", [browser]: item });
             setBrowser(null);
+            requestAnimationFrame(() =>
+              selectionTrigger.current?.focus({ preventScroll: true }),
+            );
           }}
         />
       )}
@@ -1053,7 +1101,7 @@ export function Marketplace({
     <div
       className={`marketplace reference-site reference-marketplace marketplace-browser${homePage ? ` ${homepageStyles.page}` : ""}`}
     >
-      {presentation.header}
+      <Suspense fallback={null}>{presentation.header}</Suspense>
       <main id="main" tabIndex={-1}>
         {pathname !== "/" && (
           <script
@@ -1676,8 +1724,8 @@ export function Marketplace({
                 <div className="marketplace-cards">
                   {value.data.map((product, index) => (
                     <article
-                      className={`publication-card${metricView ? "" : " marketplace-listing-card"}`}
                       key={product.id}
+                      className={`publication-card${metricView ? "" : " marketplace-listing-card"}`}
                       data-shortlisted={
                         shortlist.some((item) => item.id === product.id) ||
                         undefined
@@ -1994,7 +2042,9 @@ export function Marketplace({
             onClose={() => setSelectedProduct(null)}
           />
         )}
-        {homePage && presentation.sections}
+        {homePage && (
+          <Suspense fallback={null}>{presentation.sections}</Suspense>
+        )}
         {homePage ? (
           <details className={homepageStyles.explore} open>
             <summary>
@@ -2002,13 +2052,13 @@ export function Marketplace({
               Guest posting guides &amp; publication directories
               <ChevronDown size={16} aria-hidden="true" />
             </summary>
-            {children}
+            <Suspense fallback={null}>{children}</Suspense>
           </details>
         ) : (
-          children
+          <Suspense fallback={null}>{children}</Suspense>
         )}
       </main>
-      {presentation.footer}
+      <Suspense fallback={null}>{presentation.footer}</Suspense>
     </div>
   );
 }

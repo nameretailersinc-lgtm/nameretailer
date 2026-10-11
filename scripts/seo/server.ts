@@ -1,5 +1,6 @@
 import { spawn } from "node:child_process";
 import { setTimeout } from "node:timers/promises";
+import { completedServerHtml } from "./server-html";
 
 export async function withProductionServer(
   check: (base: string) => Promise<void>,
@@ -54,5 +55,5 @@ export async function pageHtml(base: string, path: string) {
     signal: AbortSignal.timeout(60000),
   });
   if (!response.ok) throw new Error(`${path}: HTTP ${response.status}`);
-  return response.text();
+  return completedServerHtml(await response.text());
 }

@@ -289,7 +289,6 @@ export function HomeLanding() {
             <div>
               <p className="eyebrow">Different briefs, different audiences</p>
               <h2>Plan for the audience you want to reach</h2>
-              <p>Illustrative use cases, not published customer outcomes.</p>
             </div>
           </div>
           <div className="reference-three-grid">
