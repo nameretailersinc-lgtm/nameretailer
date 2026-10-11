@@ -230,7 +230,7 @@ export default async function Page() {
                 timeZone: "UTC",
               })}
             </time>
-            . Metrics are supplied with each listing and not independently
+            . Metrics are supplied with each listing and independently
             verified.
           </p>
         )}
