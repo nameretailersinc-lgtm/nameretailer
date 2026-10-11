@@ -336,11 +336,11 @@ describe("checkout order integrity", () => {
     await confirmPayment(actor, { orderId });
     expect(state.confirm).toHaveBeenCalledTimes(1);
     expect(
-      state.collections.get("commerce_carts")!.get(actor.id).items,
+      state.collections.get("commerce_carts")!.get(actor.id)!.items,
     ).toEqual([]);
-    expect(state.collections.get("commerce_carts")!.get(actor.id).version).toBe(
-      4,
-    );
+    expect(
+      state.collections.get("commerce_carts")!.get(actor.id)!.version,
+    ).toBe(4);
     expect(
       state.audits.mock.calls.filter((args) => args[1] === "order.paid"),
     ).toHaveLength(1);
@@ -351,15 +351,15 @@ describe("checkout order integrity", () => {
   });
   it("preserves a newer cart and billing draft when an older order gets paid", async () => {
     const { orderId } = await startPayment(actor, input);
-    state.collections.get("commerce_carts")!.get(actor.id).version = 4;
-    state.collections.get("commerce_checkout_drafts")!.get(actor.id).version =
+    state.collections.get("commerce_carts")!.get(actor.id)!.version = 4;
+    state.collections.get("commerce_checkout_drafts")!.get(actor.id)!.version =
       3;
     await confirmPayment(actor, { orderId });
     expect(
-      state.collections.get("commerce_carts")!.get(actor.id).items,
+      state.collections.get("commerce_carts")!.get(actor.id)!.items,
     ).toHaveLength(1);
     expect(
-      state.collections.get("commerce_checkout_drafts")!.get(actor.id).version,
+      state.collections.get("commerce_checkout_drafts")!.get(actor.id)!.version,
     ).toBe(3);
   });
   it("never exposes or confirms another customer's order", async () => {
@@ -382,7 +382,7 @@ describe("checkout order integrity", () => {
     const { orderId } = await startPayment(actor, input);
     expect((await confirmPayment(actor, { orderId })).status).toBe("pending");
     expect(
-      state.collections.get("commerce_carts")!.get(actor.id).items,
+      state.collections.get("commerce_carts")!.get(actor.id)!.items,
     ).toHaveLength(1);
   });
   it("reconciles Stripe webhook replay once and does not regress paid status", async () => {
@@ -424,7 +424,7 @@ describe("checkout order integrity", () => {
   it("rejects a different PayPal approval token before capture", async () => {
     state.collections
       .get("commerce_checkout_drafts")!
-      .get(actor.id).paymentPreference = "paypal";
+      .get(actor.id)!.paymentPreference = "paypal";
     state.create.mockResolvedValue({
       id: "PAYPALORDER",
       url: "https://www.sandbox.paypal.com/checkoutnow?token=PAYPALORDER",
@@ -441,7 +441,7 @@ describe("checkout order integrity", () => {
   it("reconciles PayPal approval that arrives before its remote ID is persisted", async () => {
     state.collections
       .get("commerce_checkout_drafts")!
-      .get(actor.id).paymentPreference = "paypal";
+      .get(actor.id)!.paymentPreference = "paypal";
     state.create.mockResolvedValue({
       id: "PAYPALORDER",
       url: "https://www.sandbox.paypal.com/checkoutnow?token=PAYPALORDER",
@@ -450,7 +450,7 @@ describe("checkout order integrity", () => {
       ...input,
       provider: "paypal",
     });
-    delete state.collections.get("commerce_orders")!.get(orderId).remoteId;
+    delete state.collections.get("commerce_orders")!.get(orderId)!.remoteId;
     await handlePaypalEvent({
       event_type: "CHECKOUT.ORDER.APPROVED",
       resource: { id: "PAYPALORDER", purchase_units: [{ custom_id: orderId }] },
@@ -480,8 +480,9 @@ describe("checkout order integrity", () => {
     });
     const { orderId } = await startPayment(actor, input);
     expect(
-      state.collections.get("commerce_order_files")!.get(`${orderId}:${fileId}`)
-        .expiresAt,
+      state.collections
+        .get("commerce_order_files")!
+        .get(`${orderId}:${fileId}`)!.expiresAt,
     ).toBeInstanceOf(Date);
     await confirmPayment(actor, { orderId });
     state.collections.get("commerce_article_files")!.clear();
