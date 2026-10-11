@@ -192,7 +192,9 @@ test.describe("admin order management", () => {
         .getByRole("button", { name: `View order ${id.slice(0, 12)}` })
         .click();
       await page.getByRole("button", { name: "Save order progress" }).click();
-      await expect(page.getByRole("alert").filter({ hasText: "This order changed" })).toContainText("This order changed");
+      await expect(
+        page.getByRole("alert").filter({ hasText: "This order changed" }),
+      ).toContainText("This order changed");
       paid = false;
       await page.getByRole("button", { name: "Reload order details" }).click();
       await expect(

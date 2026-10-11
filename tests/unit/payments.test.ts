@@ -1,33 +1,74 @@
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 import type { AccountIdentity } from "@/lib/account";
 import type { CartView } from "@/lib/commerce/cart-types";
+import type { ClientSession } from "mongodb";
+
+type MockRow = Record<string, unknown> & { _id: string };
+interface MockUpdate {
+  $set?: Record<string, unknown>;
+  $inc?: Record<string, number>;
+  $unset?: Record<string, unknown>;
+}
 const state = vi.hoisted(() => ({
-  collections: new Map<string, Map<string, any>>(),
-  cart: null as any,
-  create: vi.fn(),
-  confirm: vi.fn(),
-  audits: vi.fn(),
+  collections: new Map<string, Map<string, MockRow>>(),
+  cart: {
+    version: 0,
+    currency: "USD",
+    checkoutAvailable: false,
+    totalCents: 0,
+    items: [],
+  } as CartView,
+  create:
+    vi.fn<
+      typeof import("@/lib/commerce/payment-providers").createProviderSession
+    >(),
+  confirm:
+    vi.fn<
+      typeof import("@/lib/commerce/payment-providers").confirmProviderPayment
+    >(),
+  audits: vi.fn<typeof import("@/lib/audit").logAudit>(),
   lock: Promise.resolve(),
 }));
-function matches(row: any, filter: any): boolean {
-  return Object.entries(filter).every(([key, expected]: [string, any]) => {
-    if (key === "$or") return expected.some((part: any) => matches(row, part));
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+function matches(row: MockRow, filter: Record<string, unknown>): boolean {
+  return Object.entries(filter).every(([key, expected]) => {
+    if (key === "$or")
+      return (
+        Array.isArray(expected) &&
+        expected.some((part: unknown) => isRecord(part) && matches(row, part))
+      );
     const actual = key
       .split(".")
-      .reduce((value: any, part) => value?.[part], row);
-    if (
-      expected &&
-      typeof expected === "object" &&
-      !(expected instanceof Date)
-    ) {
+      .reduce<unknown>(
+        (value, part) => (isRecord(value) ? value[part] : undefined),
+        row,
+      );
+    if (isRecord(expected) && !(expected instanceof Date)) {
       if ("$exists" in expected)
         return (actual !== undefined) === expected.$exists;
-      if ("$gt" in expected) return actual > expected.$gt;
+      if ("$gt" in expected) {
+        const minimum = expected.$gt;
+        if (actual instanceof Date && minimum instanceof Date)
+          return actual.getTime() > minimum.getTime();
+        if (typeof actual === "number" && typeof minimum === "number")
+          return actual > minimum;
+        if (typeof actual === "string" && typeof minimum === "string")
+          return actual > minimum;
+        return false;
+      }
       if ("$ne" in expected) return actual !== expected.$ne;
       if ("$regex" in expected)
         return (
           typeof actual === "string" &&
-          new RegExp(expected.$regex, expected.$options).test(actual)
+          typeof expected.$regex === "string" &&
+          new RegExp(
+            expected.$regex,
+            typeof expected.$options === "string"
+              ? expected.$options
+              : undefined,
+          ).test(actual)
         );
     }
     return actual === expected;
@@ -38,35 +79,39 @@ function collection(name: string) {
   const rows = state.collections.get(name)!;
   return {
     createIndex: async () => "index",
-    findOne: async (filter: any) =>
+    findOne: async (filter: Record<string, unknown>) =>
       structuredClone(
         [...rows.values()].find((row) => matches(row, filter)) || null,
       ),
-    insertOne: async (row: any) => {
+    insertOne: async (row: MockRow) => {
       if (rows.has(row._id)) throw new Error("Duplicate");
       rows.set(row._id, structuredClone(row));
     },
-    updateOne: async (filter: any, update: any) => {
+    updateOne: async (filter: Record<string, unknown>, update: MockUpdate) => {
       const row = [...rows.values()].find((value) => matches(value, filter));
       if (!row) return { modifiedCount: 0 };
       Object.assign(row, update.$set);
-      for (const [key, value] of Object.entries(update.$inc || {}))
-        row[key] += value;
+      for (const [key, value] of Object.entries(update.$inc || {})) {
+        const current = row[key];
+        if (current !== undefined && typeof current !== "number")
+          throw new Error(`Cannot increment non-numeric field ${key}`);
+        row[key] = (current ?? 0) + value;
+      }
       for (const key of Object.keys(update.$unset || {})) delete row[key];
       return { modifiedCount: 1 };
     },
-    updateMany: async (filter: any, update: any) => {
+    updateMany: async (filter: Record<string, unknown>, update: MockUpdate) => {
       for (const row of rows.values())
         if (matches(row, filter))
           for (const key of Object.keys(update.$unset || {})) delete row[key];
     },
-    deleteOne: async (filter: any) => {
+    deleteOne: async (filter: Record<string, unknown>) => {
       const row = [...rows.values()].find((value) => matches(value, filter));
       if (row) rows.delete(row._id);
     },
-    countDocuments: async (filter: any) =>
+    countDocuments: async (filter: Record<string, unknown>) =>
       [...rows.values()].filter((row) => matches(row, filter)).length,
-    find: (filter: any) => {
+    find: (filter: Record<string, unknown>) => {
       let offset = 0,
         limit = Infinity;
       const cursor = {
@@ -92,9 +137,10 @@ function collection(name: string) {
 }
 vi.mock("@/lib/db", () => ({
   getDb: async () => ({ collection }),
-  transaction: async (fn: any) => fn({}),
-  userTransaction: async (fn: any) => {
-    const run = state.lock.then(() => fn({}));
+  transaction: async <T>(fn: (session: ClientSession) => Promise<T>) =>
+    fn({} as ClientSession),
+  userTransaction: async <T>(fn: (session: ClientSession) => Promise<T>) => {
+    const run = state.lock.then(() => fn({} as ClientSession));
     state.lock = run.then(
       () => undefined,
       () => undefined,
@@ -103,23 +149,23 @@ vi.mock("@/lib/db", () => ({
   },
 }));
 vi.mock("@/lib/account", () => ({
-  freshAccount: vi.fn(async (actor: any) => actor),
+  freshAccount: vi.fn(async (actor: AccountIdentity) => actor),
 }));
 vi.mock("@/lib/audit", () => ({
-  logAudit: (...args: any[]) => state.audits(...args),
+  logAudit: state.audits,
 }));
 vi.mock("@/lib/commerce/cart", () => ({
   savedOwnCart: async () => state.cart,
   cartView: async () => state.cart,
-  attachArticleFiles: async (cart: any) => cart,
+  attachArticleFiles: async (cart: CartView) => cart,
 }));
 vi.mock("@/lib/commerce/payment-providers", async (importOriginal) => {
   const real =
     await importOriginal<typeof import("@/lib/commerce/payment-providers")>();
   return {
     ...real,
-    createProviderSession: (...args: any[]) => state.create(...args),
-    confirmProviderPayment: (...args: any[]) => state.confirm(...args),
+    createProviderSession: state.create,
+    confirmProviderPayment: state.confirm,
   };
 });
 import {
@@ -266,7 +312,7 @@ describe("checkout order integrity", () => {
     await expect(
       startPayment(actor, { ...input, draftVersion: 1 }),
     ).rejects.toThrow(/billing/);
-    state.cart.items[0].brief.articleText = "";
+    state.cart.items[0].brief!.articleText = "";
     await expect(startPayment(actor, input)).rejects.toThrow(/article/);
     expect(state.create).not.toHaveBeenCalled();
   });

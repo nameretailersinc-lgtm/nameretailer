@@ -43,8 +43,7 @@ export function Orders() {
   const [busy, setBusy] = useState(false);
   const requestUrl = `/api/admin/orders/?page=${page}${status ? `&status=${status}` : ""}${fulfillmentFilter ? `&fulfillment=${fulfillmentFilter}` : ""}${query ? `&q=${encodeURIComponent(query)}` : ""}`;
   const requestKey = `${requestUrl}:${reload}`;
-  const result =
-    loadedResult?.requestKey === requestKey ? loadedResult : null;
+  const result = loadedResult?.requestKey === requestKey ? loadedResult : null;
   useEffect(() => {
     let active = true;
     api<{ data: AdminOrderSummary[]; total: number }>(requestUrl)
