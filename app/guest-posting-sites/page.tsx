@@ -219,6 +219,7 @@ export default async function Page() {
             How to choose a site
           </Link>
         </div>
+
         {stats?.updatedAt && (
           <p className="hub-updated">
             Live catalogue, last updated{" "}
@@ -230,8 +231,7 @@ export default async function Page() {
                 timeZone: "UTC",
               })}
             </time>
-            . Metrics are supplied with each listing and independently
-            verified.
+            . Metrics are supplied with each listing and verified.
           </p>
         )}
       </section>
