@@ -58,6 +58,11 @@ const fixtureOrder: AdminOrderView = {
   ],
 };
 test.describe("admin order management", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.addInitScript(() => {
+      localStorage.setItem("nr-analytics-consent-v1", "denied");
+    });
+  });
   test("requires an administrator and CSRF protection for updates", async () => {
     const data = await fixtures(),
       customer = await actor(data.customer),

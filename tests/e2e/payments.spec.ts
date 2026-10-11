@@ -179,6 +179,41 @@ test.describe("hosted payment checkout", () => {
       "No order has been placed",
     );
   });
+  test("uses PayPal when a saved card preference is unavailable", async ({
+    page,
+  }) => {
+    await page.route("**/api/checkout/", (route) =>
+      route.request().method() === "GET"
+        ? route.fulfill({
+            json: {
+              ...checkout,
+              paymentMethods: { stripe: false, paypal: true },
+            },
+          })
+        : route.fallback(),
+    );
+    await page.route("**/api/checkout/payments/", (route) => {
+      expect(route.request().postDataJSON()).toMatchObject({
+        provider: "paypal",
+      });
+      return route.fulfill({
+        json: {
+          orderId: id,
+          url: "https://www.sandbox.paypal.com/checkoutnow?token=MOCKORDER",
+        },
+      });
+    });
+    await page.goto("/checkout/");
+    await expect(page.getByRole("radio", { name: /PayPal/ })).toBeChecked();
+    await expect(
+      page.getByRole("radio", { name: /Debit \/ credit card/ }),
+    ).toBeDisabled();
+    await page.getByRole("checkbox", { name: /I agree to the/ }).check();
+    await page
+      .getByRole("button", { name: /^Pay \$123\.45 with PayPal/ })
+      .click();
+    await expect(page).toHaveURL(/sandbox\.paypal\.com/);
+  });
   test("verifies a return through the server and shows its receipt", async ({
     page,
   }) => {
@@ -253,9 +288,9 @@ test.describe("hosted payment checkout", () => {
       return route.fulfill({ json: order });
     });
     await page.goto("/checkout/return/?order=invalid");
-    await expect(page.getByRole("alert")).toContainText(
-      "This order link is invalid",
-    );
+    await expect(
+      page.getByRole("alert").filter({ hasText: "This order link is invalid" }),
+    ).toContainText("This order link is invalid");
     await expect(page.getByText("Checking your payment…")).toHaveCount(0);
     expect(confirmations).toBe(0);
   });

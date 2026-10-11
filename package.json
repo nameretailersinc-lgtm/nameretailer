@@ -13,6 +13,7 @@
     "check:urls": "tsx scripts/seo/check-urls.ts",
     "check:links": "tsx scripts/seo/check-links.ts",
     "check:health": "tsx scripts/seo/check-health.ts",
+    "check:services": "tsx scripts/qa/check-services.ts",
     "report:inventory": "tsx scripts/data/inventory-quality.ts",
     "report:index-policy": "tsx scripts/seo/index-policy-report.ts",
     "check:redirects": "tsx scripts/seo/check-redirects.ts",

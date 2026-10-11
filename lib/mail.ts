@@ -3,8 +3,10 @@ import { randomUUID } from "node:crypto";
 import path from "node:path";
 import nodemailer from "nodemailer";
 function localMail() {
-  return process.env.MAIL_TRANSPORT === "local" &&
-    process.env.NODE_ENV !== "production";
+  return (
+    process.env.MAIL_TRANSPORT === "local" &&
+    process.env.NODE_ENV !== "production"
+  );
 }
 function smtpOptions() {
   const host = process.env.SMTP_HOST?.trim();
@@ -13,12 +15,20 @@ function smtpOptions() {
   let pass = process.env.SMTP_PASSWORD || "";
   // Google displays app passwords in four groups. The separators are not
   // part of the password; other SMTP providers may use meaningful spaces.
-  if (host?.toLowerCase() === "smtp.gmail.com" &&
-    /^[a-zA-Z0-9]{4}(?:[ \t]+[a-zA-Z0-9]{4}){3}$/.test(pass))
+  if (
+    host?.toLowerCase() === "smtp.gmail.com" &&
+    /^[a-zA-Z0-9]{4}(?:[ \t]+[a-zA-Z0-9]{4}){3}$/.test(pass)
+  )
     pass = pass.replace(/[ \t]/g, "");
-  if (process.env.MAIL_TRANSPORT === "disabled" || !host ||
-    !Number.isInteger(port) || port < 1 || port > 65535 ||
-    (user && !pass)) return null;
+  if (
+    process.env.MAIL_TRANSPORT === "disabled" ||
+    !host ||
+    !Number.isInteger(port) ||
+    port < 1 ||
+    port > 65535 ||
+    (user && !pass)
+  )
+    return null;
   return {
     host,
     port,

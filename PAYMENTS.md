@@ -18,6 +18,8 @@ PAYPAL_WEBHOOK_ID=...
 
 Each payment method becomes available only when all its keys are present. Either method can be configured independently. Hosted checkout needs no Stripe publishable key. Production requires an HTTPS return origin; localhost HTTP is accepted in development. MongoDB must support transactions, as the existing cart and account flows require.
 
+Run `npm run check:services` after adding credentials. It verifies SMTP authentication, enabled payment credentials, and the PayPal webhook URL and subscriptions. It prints status and missing variable names, without exposing secrets or creating payments. SMTP setup is documented in [SMTP.md](SMTP.md).
+
 ## Stripe
 
 Create a webhook endpoint at `https://your-domain.com/api/payments/stripe/webhook/` and copy its signing secret into `STRIPE_WEBHOOK_SECRET`. Subscribe to `checkout.session.completed`, `checkout.session.expired`, `checkout.session.async_payment_succeeded` and `checkout.session.async_payment_failed`.

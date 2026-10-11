@@ -66,8 +66,15 @@ await withProductionServer(async (base) => {
         !["Review", "AggregateRating"].includes(String(type)),
         `${path}: unsupported review/rating markup`,
       );
-      if (type === "WebSite")
+      if (
+        type === "WebSite" &&
+        node["@id"] === "https://nameretailer.com/#website"
+      )
         assert.equal(node.url, "https://nameretailer.com/", `${path}: inconsistent WebSite URL`);
+      if (type === "WebSite" && path.startsWith("/publication/") && !node["@id"]) {
+        assert(content.includes(String(node.name)), `${path}: publisher website name absent`);
+        assert(main.includes(`href="${String(node.url).replaceAll("&", "&amp;")}"`), `${path}: publisher website URL absent from visible links`);
+      }
       if (type === "ItemList") {
         const items = node.itemListElement as Node[];
         assert.equal(

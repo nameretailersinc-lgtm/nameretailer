@@ -114,13 +114,13 @@ export function CheckoutPage() {
     setView(data);
     setBilling(data.draft?.billing || emptyBilling);
     setNotes(data.draft?.notes || "");
+    const preferred = data.draft?.paymentPreference || "stripe";
     setPayment(
-      data.draft?.paymentPreference ||
-        (data.paymentMethods?.stripe
+      data.paymentMethods?.[preferred] || !data.paymentAvailable
+        ? preferred
+        : data.paymentMethods?.stripe
           ? "stripe"
-          : data.paymentMethods?.paypal
-            ? "paypal"
-            : "stripe"),
+          : "paypal",
     );
   }
   useEffect(() => {

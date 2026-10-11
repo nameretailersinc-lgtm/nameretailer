@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import "./admin.css";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
   title: "Editorial workspace",
@@ -10,5 +11,5 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <div className="admin-area">{children}</div>;
 }
