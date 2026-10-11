@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { CheckCircle2, Clock3, CreditCard, ArrowRight } from "lucide-react";
 import {
   CustomerShell,
@@ -16,50 +17,88 @@ import { usd } from "./placement-form";
 import styles from "./payments.module.css";
 
 export function PaymentResult() {
+  const query = useSearchParams();
+  const id = query.get("order") || "";
+  const token = query.get("token");
+  const cancelled = query.get("cancelled") === "1";
+  return (
+    <PaymentReceipt
+      key={JSON.stringify([id, token, cancelled])}
+      id={id}
+      token={token}
+      cancelled={cancelled}
+    />
+  );
+}
+
+function PaymentReceipt({
+  id,
+  token,
+  cancelled,
+}: {
+  id: string;
+  token: string | null;
+  cancelled: boolean;
+}) {
   const pollCount = useRef(0);
   const [order, setOrder] = useState<OrderView | null>(null);
   const [busy, setBusy] = useState(true),
     [error, setError] = useState("");
-  const [anonymous, setAnonymous] = useState(false),
-    [cancelled, setCancelled] = useState(false);
-  const refresh = useCallback(async (cancel: boolean) => {
-    const query = new URLSearchParams(window.location.search);
-    const id = query.get("order") || "";
-    if (!/^[a-f0-9]{64}$/.test(id)) {
-      setError(
-        "This order link is invalid. Open your order history to find your payment.",
-      );
-      setBusy(false);
-      return;
-    }
-    setBusy(true);
-    setError("");
-    try {
-      const data = cancel
+  const [anonymous, setAnonymous] = useState(false);
+  const load = useCallback(
+    async (cancel: boolean) => {
+      if (!/^[a-f0-9]{64}$/.test(id))
+        throw new Error(
+          "This order link is invalid. Open your order history to find your payment.",
+        );
+      return cancel
         ? await customerRequest<OrderView>(`/api/orders/${id}/`)
         : await customerMutation<OrderView>(
             "/api/checkout/payments/confirm/",
             "POST",
             {
               orderId: id,
-              ...(query.get("token") ? { token: query.get("token") } : {}),
+              ...(token ? { token } : {}),
             },
           );
-      setOrder(data);
-    } catch (cause) {
-      if (cause instanceof CustomerRequestError && cause.status === 401)
-        setAnonymous(true);
-      else setError(customerError(cause));
-    } finally {
-      setBusy(false);
-    }
+    },
+    [id, token],
+  );
+  const handleError = useCallback((cause: unknown) => {
+    if (cause instanceof CustomerRequestError && cause.status === 401)
+      setAnonymous(true);
+    else setError(customerError(cause));
   }, []);
+  const refresh = useCallback(
+    async (cancel: boolean) => {
+      setBusy(true);
+      setError("");
+      try {
+        setOrder(await load(cancel));
+      } catch (cause) {
+        handleError(cause);
+      } finally {
+        setBusy(false);
+      }
+    },
+    [load, handleError],
+  );
   useEffect(() => {
-    const cancel =
-      new URLSearchParams(window.location.search).get("cancelled") === "1";
-    setCancelled(cancel);
-    void refresh(cancel);
-  }, [refresh]);
+    let active = true;
+    load(cancelled)
+      .then((data) => {
+        if (active) setOrder(data);
+      })
+      .catch((cause) => {
+        if (active) handleError(cause);
+      })
+      .finally(() => {
+        if (active) setBusy(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, [load, cancelled, handleError]);
   useEffect(() => {
     if (
       !order ||

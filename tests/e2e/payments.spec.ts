@@ -117,7 +117,7 @@ test.describe("hosted payment checkout", () => {
     test(`saves billing and redirects to ${provider} with no client amount`, async ({
       page,
     }) => {
-      let payload: any;
+      let payload: unknown;
       await page.route("**/api/checkout/payments/", (route) => {
         payload = route.request().postDataJSON();
         expect(route.request().headers()["x-csrf-token"]).toBe("mock-csrf");

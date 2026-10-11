@@ -23,7 +23,8 @@ import { fulfillmentLabels } from "@/lib/commerce/payment-types";
 import { usd } from "@/components/cart/placement-form";
 
 export function Orders() {
-  const [result, setResult] = useState<{
+  const [loadedResult, setResult] = useState<{
+    requestKey: string;
     data: AdminOrderSummary[];
     total: number;
   } | null>(null);
@@ -40,15 +41,16 @@ export function Orders() {
   const [order, setOrder] = useState<AdminOrderView | null>(null),
     [error, setError] = useState("");
   const [busy, setBusy] = useState(false);
+  const requestUrl = `/api/admin/orders/?page=${page}${status ? `&status=${status}` : ""}${fulfillmentFilter ? `&fulfillment=${fulfillmentFilter}` : ""}${query ? `&q=${encodeURIComponent(query)}` : ""}`;
+  const requestKey = `${requestUrl}:${reload}`;
+  const result =
+    loadedResult?.requestKey === requestKey ? loadedResult : null;
   useEffect(() => {
     let active = true;
-    setResult(null);
-    api<{ data: AdminOrderSummary[]; total: number }>(
-      `/api/admin/orders/?page=${page}${status ? `&status=${status}` : ""}${fulfillmentFilter ? `&fulfillment=${fulfillmentFilter}` : ""}${query ? `&q=${encodeURIComponent(query)}` : ""}`,
-    )
+    api<{ data: AdminOrderSummary[]; total: number }>(requestUrl)
       .then((data) => {
         if (active) {
-          setResult(data);
+          setResult({ ...data, requestKey });
           setError("");
         }
       })
@@ -58,7 +60,7 @@ export function Orders() {
     return () => {
       active = false;
     };
-  }, [page, status, fulfillmentFilter, query, reload]);
+  }, [requestUrl, requestKey]);
   function apply(data: AdminOrderView) {
     setOrder(data);
     setFulfillment(data.fulfillmentStatus);

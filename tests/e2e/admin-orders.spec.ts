@@ -4,6 +4,10 @@ import { actor, fixtures } from "./helpers";
 import type { AdminOrderView } from "../../lib/commerce/payment-types";
 const id = "a".repeat(64),
   productId = "e67939ad-8f50-41d7-912b-62928b8a1775";
+type OrderUpdate = Pick<
+  AdminOrderView,
+  "version" | "fulfillmentStatus" | "internalNotes" | "publishedPlacements"
+>;
 const fixtureOrder: AdminOrderView = {
   id,
   version: 2,
@@ -79,7 +83,7 @@ test.describe("admin order management", () => {
         await page.context().addCookies((await admin.storageState()).cookies);
         await page.setViewportSize({ width, height: 950 });
         let order = structuredClone(fixtureOrder),
-          submitted: any;
+          submitted: OrderUpdate | undefined;
         await page.route("**/api/admin/orders/**", (route) => {
           const url = new URL(route.request().url());
           if (url.pathname === "/api/admin/orders/")
