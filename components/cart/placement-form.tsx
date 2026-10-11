@@ -16,6 +16,8 @@ import {
   ArrowRight,
   LockKeyhole,
   ImageIcon,
+  Lightbulb,
+  CheckCircle2,
 } from "lucide-react";
 import { ArticleEditor } from "./article-editor";
 import type {
@@ -259,6 +261,33 @@ export function PlacementForm({
               </span>
             </p>
           </div>
+          <section
+            className="placement-tips"
+            aria-label="Tips for a better placement"
+          >
+            <div className="placement-aside-heading">
+              <span className="placement-round-icon">
+                <Lightbulb size={29} aria-hidden="true" />
+              </span>
+              <div>
+                <h3>Tips for a better placement</h3>
+                <p>Be clear, specific and provide useful content.</p>
+              </div>
+            </div>
+            <ul>
+              {[
+                "Use relevant and natural anchor text",
+                "Provide original and well written content",
+                "Follow the publication’s guidelines",
+                "Review your brief before payment",
+              ].map((tip) => (
+                <li key={tip}>
+                  <CheckCircle2 size={18} aria-hidden="true" />
+                  {tip}
+                </li>
+              ))}
+            </ul>
+          </section>
           <div className="placement-aside-heading placement-before-heading">
             <span className="placement-round-icon">
               <ShieldCheck size={32} aria-hidden="true" />
@@ -459,6 +488,7 @@ export function PlacementForm({
             <fieldset className="placement-article-fields" disabled={disabled}>
               <legend className="sr-only">Article content</legend>
               <label
+                id={`${id}-article-label`}
                 className="placement-article-label"
                 htmlFor={`${id}-article`}
               >
@@ -517,6 +547,8 @@ export function PlacementForm({
                   value={brief.articleText}
                   disabled={disabled}
                   describedBy={`${id}-format-help`}
+                  labelledBy={`${id}-article-label`}
+                  required={!!words || !file}
                   placeholder={
                     words
                       ? "Describe the topic, structure, audience and points the writer should cover."

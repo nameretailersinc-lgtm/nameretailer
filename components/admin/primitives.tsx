@@ -16,15 +16,42 @@ import {
 import { clsx } from "clsx";
 import Link from "next/link";
 import { Button as BaseButton } from "@/components/ui/button";
-import { Home, FileText, Database, ShoppingCart, LayoutGrid, Tags, Users, Image, Link2, Settings, History, PanelsTopLeft, Inbox, LoaderCircle, ChevronRight, type LucideIcon } from "lucide-react";
+import {
+  Home,
+  FileText,
+  Database,
+  ShoppingCart,
+  LayoutGrid,
+  Tags,
+  Users,
+  Image,
+  Link2,
+  Settings,
+  History,
+  PanelsTopLeft,
+  Inbox,
+  LoaderCircle,
+  ChevronRight,
+  type LucideIcon,
+} from "lucide-react";
 
 const headingIcons: Record<string, LucideIcon> = {
-  "Workspace overview": Home, Content: FileText, "Create content": FileText,
-  "Edit content": FileText, "Publications & inventory": Database,
-  "Placement orders": ShoppingCart, Categories: LayoutGrid, Tags,
-  Authors: Users, "Media library": Image, Redirects: Link2,
-  "Site settings": Settings, Users, "Audit log": History,
-  "Homepage sections": PanelsTopLeft, "Leads inbox": Inbox,
+  "Workspace overview": Home,
+  Content: FileText,
+  "Create content": FileText,
+  "Edit content": FileText,
+  "Publications & inventory": Database,
+  "Placement orders": ShoppingCart,
+  Categories: LayoutGrid,
+  Tags,
+  Authors: Users,
+  "Media library": Image,
+  Redirects: Link2,
+  "Site settings": Settings,
+  Users,
+  "Audit log": History,
+  "Homepage sections": PanelsTopLeft,
+  "Leads inbox": Inbox,
 };
 
 export function Button({
@@ -137,10 +164,19 @@ export function PageHeading({
   return (
     <div className="page-heading">
       <div>
-        <p className="eyebrow workspace-breadcrumb"><Link href="/admin/">Name Retailer</Link><ChevronRight size={12} aria-hidden="true" /><span>Editorial workspace</span></p>
+        <p className="eyebrow workspace-breadcrumb">
+          <Link href="/admin/">Name Retailer</Link>
+          <ChevronRight size={12} aria-hidden="true" />
+          <span>Editorial workspace</span>
+        </p>
         <div className="workspace-heading-copy">
-          <span className="workspace-heading-icon"><Icon size={23} aria-hidden="true" /></span>
-          <div><h1>{title}</h1>{description && <p className="muted">{description}</p>}</div>
+          <span className="workspace-heading-icon">
+            <Icon size={23} aria-hidden="true" />
+          </span>
+          <div>
+            <h1>{title}</h1>
+            {description && <p className="muted">{description}</p>}
+          </div>
         </div>
       </div>
       {actions && <div className="actions">{actions}</div>}
@@ -164,7 +200,18 @@ export function Panel({
 }) {
   return (
     <section className={clsx("panel", className)}>
-      {title && <div className="panel-heading"><div className="panel-heading-copy">{icon && <span className="panel-heading-icon">{icon}</span>}<div><h2>{title}</h2>{description && <p>{description}</p>}</div></div>{actions}</div>}
+      {title && (
+        <div className="panel-heading">
+          <div className="panel-heading-copy">
+            {icon && <span className="panel-heading-icon">{icon}</span>}
+            <div>
+              <h2>{title}</h2>
+              {description && <p>{description}</p>}
+            </div>
+          </div>
+          {actions}
+        </div>
+      )}
       {children}
     </section>
   );
@@ -178,10 +225,24 @@ export function Loading({ label = "Loading records…" }: { label?: string }) {
   );
 }
 export function Empty({ children }: { children: ReactNode }) {
-  return <div className="empty-state"><Inbox size={28} aria-hidden="true" /><div>{children}</div></div>;
+  return (
+    <div className="empty-state">
+      <Inbox size={28} aria-hidden="true" />
+      <div>{children}</div>
+    </div>
+  );
 }
 export function Badge({ children }: { children: ReactNode }) {
-  return <span className="badge" data-status={typeof children === "string" ? children.toLowerCase() : undefined}>{children}</span>;
+  return (
+    <span
+      className="badge"
+      data-status={
+        typeof children === "string" ? children.toLowerCase() : undefined
+      }
+    >
+      {children}
+    </span>
+  );
 }
 export function date(value: string) {
   const parsed = new Date(value);

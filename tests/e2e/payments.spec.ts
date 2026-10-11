@@ -73,6 +73,9 @@ const order: OrderView = {
   publishedPlacements: [],
 };
 async function mocks(page: Page) {
+  await page.addInitScript(() =>
+    localStorage.setItem("nr-analytics-consent-v1", "denied"),
+  );
   await page.route("**/api/auth/session/**", (route) =>
     route.fulfill({ json: null }),
   );
@@ -321,7 +324,7 @@ test.describe("hosted payment checkout", () => {
     for (const theme of ["light", "dark"])
       test(`checkout and receipt reflow and accessibility ${width}px ${theme}`, async ({
         page,
-      }) => {
+      }, info) => {
         await page.setViewportSize({ width, height: 900 });
         await page.addInitScript(
           (value) => localStorage.setItem("nr-site-theme", value),
@@ -363,6 +366,11 @@ test.describe("hosted payment checkout", () => {
               nodes: issue.nodes.map((node) => node.failureSummary),
             })),
           ).toEqual([]);
+          if (path === "/checkout/" && [375, 1440].includes(width))
+            await page.screenshot({
+              path: info.outputPath(`checkout-${width}-${theme}.png`),
+              fullPage: true,
+            });
         }
       });
 });

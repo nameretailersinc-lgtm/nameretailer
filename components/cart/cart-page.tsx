@@ -3,7 +3,26 @@ import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { FilePlus2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ChevronDown,
+  CreditCard,
+  FilePlus2,
+  FileText,
+  Headphones,
+  LockKeyhole,
+  Pencil,
+  RotateCw,
+  ShoppingCart,
+  Trash2,
+} from "lucide-react";
+import {
+  DeskHeader,
+  DeskHeading,
+  PublicationIdentity,
+} from "@/components/account/desk";
+import styles from "@/components/account/desk.module.css";
 import type { UserSummary } from "@/lib/cms/types";
 import type {
   CartSelection,
@@ -114,6 +133,7 @@ export function CartPage({ productId }: { productId?: string }) {
   return (
     <CustomerShell
       title={productId ? "Prepare Your Placement" : "Your shopping cart"}
+      className={`${styles.root} ${productId ? styles.preparing : ""}`}
       header={
         productId ? (
           <header className="placement-page-header">
@@ -140,7 +160,20 @@ export function CartPage({ productId }: { productId?: string }) {
               </li>
             </ol>
           </header>
-        ) : undefined
+        ) : (
+          <DeskHeader
+            title="Your shopping cart"
+            description="Review your selected placements and proceed to checkout."
+            icon={ShoppingCart}
+          >
+            <Link
+              href="/"
+              className={`button button-secondary ${styles.compactButton}`}
+            >
+              <ArrowLeft size={16} aria-hidden="true" /> Continue browsing
+            </Link>
+          </DeskHeader>
+        )
       }
     >
       <CustomerFeedback error={error} message={message} />
@@ -186,162 +219,229 @@ export function CartPage({ productId }: { productId?: string }) {
             </section>
           )}
           {cart?.items.length ? (
-            <section aria-labelledby="saved-placements">
-              <h2 id="saved-placements">
-                Saved placements ({cart.items.length})
-              </h2>
-              <div className="customer-cart-items">
-                {cart.items.map((item) => (
-                  <article className="customer-card" key={item.productId}>
-                    <h3>{item.domain || "Unavailable publication"}</h3>
-                    <p>
-                      {item.writingWords
-                        ? `${item.writingWords}-word writing add-on`
-                        : "Placement only"}{" "}
-                      ·{" "}
-                      {item.totalCents === null
-                        ? "Price unavailable"
-                        : usd(item.totalCents)}
-                    </p>
-                    <dl className="cart-brief-details">
-                      <div>
-                        <dt>Promoted URL</dt>
-                        <dd>{item.brief?.promotedUrl || "Not yet supplied"}</dd>
-                      </div>
-                      <div>
-                        <dt>Keyword / anchor</dt>
-                        <dd>{item.brief?.keyword || "Not yet supplied"}</dd>
-                      </div>
-                      <div>
-                        <dt>Link type</dt>
-                        <dd>{item.options?.linkType || "Not supplied"}</dd>
-                      </div>
-                      <div>
-                        <dt>Quantity</dt>
-                        <dd>1 placement</dd>
-                      </div>
-                      <div>
-                        <dt>Article file</dt>
-                        <dd>
-                          {item.file ? (
-                            <a href={`/api/cart/files/${item.file.id}/`}>
-                              Download {item.file.name}
-                            </a>
-                          ) : item.brief?.fileId ? (
-                            "Expired or unavailable"
-                          ) : (
-                            "No file supplied"
-                          )}
-                        </dd>
-                      </div>
-                    </dl>
-                    {briefIssue(item, !!item.file) && (
-                      <p className="customer-notice">
-                        {briefIssue(item, !!item.file)}
-                      </p>
-                    )}
-                    <details>
-                      <summary>View saved article brief</summary>
-                      <p className="cart-article-text">
-                        {item.brief?.articleText ||
-                          "No article text / writing brief yet."}
-                      </p>
-                      <p className="cart-article-text">
-                        {item.brief?.specialRequirements ||
-                          "No special requirements."}
-                      </p>
-                    </details>
-                    {item.status !== "ready" && (
-                      <p className="customer-notice">
-                        {item.status === "changed"
-                          ? "This listing changed. Review its current options and save again to accept them."
-                          : "This selection is unavailable. Remove it or choose an available writing option."}
-                      </p>
-                    )}
-                    {item.options && (
-                      <details>
-                        <summary>Review or change article option</summary>
-                        <PlacementForm
-                          key={`${cart.version}:${item.options.productVersion}:${item.writingWords}`}
-                          options={item.options}
-                          initial={
-                            item.options.writingOptions.some(
-                              (option) => option.words === item.writingWords,
-                            )
-                              ? item.writingWords
-                              : 0
-                          }
-                          busy={busy}
-                          signedIn
-                          initialBrief={item.brief}
-                          initialFile={item.file}
-                          onSave={save}
-                        />
-                      </details>
-                    )}
-                    <button
-                      className="button button-secondary"
-                      disabled={busy}
-                      aria-label={`Remove ${item.domain || "unavailable publication"}`}
-                      onClick={async () => {
-                        setBusy(true);
-                        setError("");
-                        setMessage("");
-                        try {
-                          setCart(
-                            await customerMutation<CartView>(
-                              "/api/cart/",
-                              "DELETE",
-                              {
-                                version: cart.version,
-                                productId: item.productId,
-                              },
-                            ),
-                          );
-                          setMessage("Placement removed.");
-                        } catch (cause) {
-                          setError(customerError(cause));
-                          if (
-                            cause instanceof CustomerRequestError &&
-                            [401, 409].includes(cause.status)
-                          )
-                            await refresh();
-                        } finally {
-                          setBusy(false);
-                        }
-                      }}
+            <div className={styles.cartLayout}>
+              <section
+                className={`customer-card ${styles.card} ${styles.savedPanel}`}
+                aria-labelledby="saved-placements"
+              >
+                <DeskHeading
+                  icon={ShoppingCart}
+                  title={`Saved placements (${cart.items.length})`}
+                  id="saved-placements"
+                  description="Review your items, edit options, or remove them from your cart."
+                />
+                <div className={styles.savedItems}>
+                  {cart.items.map((item) => (
+                    <article
+                      className={`customer-card ${styles.savedItem}`}
+                      key={item.productId}
                     >
-                      Remove placement
-                    </button>
-                  </article>
-                ))}
-              </div>
-              <p className="customer-price">
-                Cart total:{" "}
-                {cart.totalCents === null
-                  ? "Review unavailable or changed selections first"
-                  : usd(cart.totalCents)}
-              </p>
-              <div className="cart-checkout-actions">
-                <Link href="/" className="button button-secondary">
-                  Continue browsing
-                </Link>
-                {cart.totalCents !== null &&
-                cart.items.every((item) => !briefIssue(item, !!item.file)) ? (
-                  <Link href="/checkout/" className="button button-primary">
-                    Proceed to checkout
-                  </Link>
-                ) : (
-                  <p>
-                    Complete each brief and review changed prices to continue.
+                      <div className={styles.itemHeading}>
+                        <div>
+                          <PublicationIdentity domain={item.domain} />
+                          <p>
+                            {item.writingWords
+                              ? `${item.writingWords}-word writing add-on`
+                              : "Placement only"}
+                          </p>
+                        </div>
+                        <strong className={styles.itemPrice}>
+                          {item.totalCents === null
+                            ? "Price unavailable"
+                            : usd(item.totalCents)}
+                        </strong>
+                      </div>
+                      <dl className={styles.itemDetails}>
+                        <div>
+                          <dt>Promoted URL</dt>
+                          <dd>
+                            {item.brief?.promotedUrl || "Not yet supplied"}
+                          </dd>
+                        </div>
+                        <div>
+                          <dt>Keyword / anchor</dt>
+                          <dd>{item.brief?.keyword || "Not yet supplied"}</dd>
+                        </div>
+                        <div>
+                          <dt>Link type</dt>
+                          <dd>{item.options?.linkType || "Not supplied"}</dd>
+                        </div>
+                        <div>
+                          <dt>Quantity</dt>
+                          <dd>1 placement</dd>
+                        </div>
+                        <div>
+                          <dt>Article file</dt>
+                          <dd>
+                            {item.file ? (
+                              <a href={`/api/cart/files/${item.file.id}/`}>
+                                Download {item.file.name}
+                              </a>
+                            ) : item.brief?.fileId ? (
+                              "Expired or unavailable"
+                            ) : (
+                              "No file supplied"
+                            )}
+                          </dd>
+                        </div>
+                      </dl>
+                      {briefIssue(item, !!item.file) && (
+                        <p className="customer-notice">
+                          {briefIssue(item, !!item.file)}
+                        </p>
+                      )}
+                      <details>
+                        <summary>
+                          <FileText size={18} aria-hidden="true" /> View saved
+                          article brief{" "}
+                          <ChevronDown size={16} aria-hidden="true" />
+                        </summary>
+                        <p className="cart-article-text">
+                          {item.brief?.articleText ||
+                            "No article text / writing brief yet."}
+                        </p>
+                        <p className="cart-article-text">
+                          {item.brief?.specialRequirements ||
+                            "No special requirements."}
+                        </p>
+                      </details>
+                      {item.status !== "ready" && (
+                        <p className="customer-notice">
+                          {item.status === "changed"
+                            ? "This listing changed. Review its current options and save again to accept them."
+                            : "This selection is unavailable. Remove it or choose an available writing option."}
+                        </p>
+                      )}
+                      {item.options && (
+                        <details>
+                          <summary>
+                            <Pencil size={18} aria-hidden="true" /> Review or
+                            change article option{" "}
+                            <ChevronDown size={16} aria-hidden="true" />
+                          </summary>
+                          <PlacementForm
+                            key={`${cart.version}:${item.options.productVersion}:${item.writingWords}`}
+                            options={item.options}
+                            initial={
+                              item.options.writingOptions.some(
+                                (option) => option.words === item.writingWords,
+                              )
+                                ? item.writingWords
+                                : 0
+                            }
+                            busy={busy}
+                            signedIn
+                            initialBrief={item.brief}
+                            initialFile={item.file}
+                            onSave={save}
+                          />
+                        </details>
+                      )}
+                      <div className={styles.itemActions}>
+                        <button
+                          className={`button button-secondary ${styles.compactButton} ${styles.dangerButton}`}
+                          disabled={busy}
+                          aria-label={`Remove ${item.domain || "unavailable publication"}`}
+                          onClick={async () => {
+                            setBusy(true);
+                            setError("");
+                            setMessage("");
+                            try {
+                              setCart(
+                                await customerMutation<CartView>(
+                                  "/api/cart/",
+                                  "DELETE",
+                                  {
+                                    version: cart.version,
+                                    productId: item.productId,
+                                  },
+                                ),
+                              );
+                              setMessage("Placement removed.");
+                            } catch (cause) {
+                              setError(customerError(cause));
+                              if (
+                                cause instanceof CustomerRequestError &&
+                                [401, 409].includes(cause.status)
+                              )
+                                await refresh();
+                            } finally {
+                              setBusy(false);
+                            }
+                          }}
+                        >
+                          <Trash2 size={15} aria-hidden="true" /> Remove
+                          placement
+                        </button>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              </section>
+              <aside className={styles.cartAside} aria-label="Order summary">
+                <section className={`customer-card ${styles.card}`}>
+                  <DeskHeading icon={CreditCard} title="Order summary" />
+                  <dl className={styles.summaryDetails}>
+                    <div>
+                      <dt>Placements</dt>
+                      <dd>{cart.items.length}</dd>
+                    </div>
+                    <div>
+                      <dt>Subtotal</dt>
+                      <dd>
+                        {cart.totalCents === null
+                          ? "Review selections"
+                          : usd(cart.totalCents)}
+                      </dd>
+                    </div>
+                  </dl>
+                  <p className={styles.total}>
+                    <span>Total (USD)</span>
+                    <strong>
+                      {cart.totalCents === null
+                        ? "Review unavailable or changed selections first"
+                        : usd(cart.totalCents)}
+                    </strong>
                   </p>
-                )}
-              </div>
-              <p className="customer-hint">
-                Coupons are not connected yet. No discount, fee or tax
-                calculation is implied by this preview total.
-              </p>
-            </section>
+                  {cart.totalCents !== null &&
+                  cart.items.every((item) => !briefIssue(item, !!item.file)) ? (
+                    <Link
+                      href="/checkout/"
+                      className={`button button-primary ${styles.payButton}`}
+                    >
+                      <LockKeyhole size={18} aria-hidden="true" /> Proceed to
+                      checkout <ArrowRight size={18} aria-hidden="true" />
+                    </Link>
+                  ) : (
+                    <p className="customer-notice">
+                      Complete each brief and review changed prices to continue.
+                    </p>
+                  )}
+                  <p className={styles.hint}>
+                    Coupons are not connected yet. No discount, fee or tax
+                    calculation is implied by this preview total.
+                  </p>
+                </section>
+                <section
+                  className={`customer-card ${styles.card} ${styles.helpCard}`}
+                >
+                  <DeskHeading
+                    icon={Headphones}
+                    title="Need help with your placement?"
+                  />
+                  <p>
+                    Review the publication requirements and your article brief
+                    before payment.
+                  </p>
+                  <Link
+                    href="/contact/"
+                    className={`button button-secondary ${styles.compactButton}`}
+                  >
+                    Contact support <ArrowRight size={15} aria-hidden="true" />
+                  </Link>
+                </section>
+              </aside>
+            </div>
           ) : !options ? (
             <section className="customer-empty">
               <Image
@@ -365,21 +465,28 @@ export function CartPage({ productId }: { productId?: string }) {
           ) : null}
         </>
       )}
-      <div className="cart-page-utilities">
+      <div className={styles.cartUtilities}>
+        <div>
+          <strong>
+            {cart?.totalCents != null
+              ? `Cart total: ${usd(cart.totalCents)}`
+              : "Review your placement details"}
+          </strong>
+          <p>
+            Save your brief and review current prices before continuing to
+            secure checkout.
+          </p>
+        </div>
         <button
-          className="button button-secondary"
+          className={`button button-secondary ${styles.compactButton}`}
           disabled={busy || loading}
           onClick={() => {
             setError("");
             void refresh();
           }}
         >
-          Refresh cart and prices
+          <RotateCw size={16} aria-hidden="true" /> Refresh cart and prices
         </button>
-        <p className="customer-hint">
-          Save your brief and review current prices before continuing to secure
-          checkout.
-        </p>
       </div>
     </CustomerShell>
   );

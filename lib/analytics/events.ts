@@ -1,52 +1,68 @@
 export const consentKey = "nr-analytics-consent-v1";
 export type Consent = "unknown" | "granted" | "denied";
 type AnalyticsWindow = Window & {
+  nrAnalyticsConsent?: Exclude<Consent, "unknown">;
   dataLayer?: unknown[][];
   gtag?: (...args: unknown[]) => void;
   [key: `ga-disable-${string}`]: boolean | undefined;
 };
-let fallback: Consent = "unknown";
 let initialized = false;
 export const analyticsId = process.env.NEXT_PUBLIC_GA4_ID || "";
 export const analyticsConfigured = /^G-[A-Z0-9]{4,16}$/.test(analyticsId);
 export function getConsent(): Consent {
   if (typeof window === "undefined") return "unknown";
+  const choice = analyticsWindow().nrAnalyticsConsent;
+  if (choice) return choice;
   try {
     const saved = localStorage.getItem(consentKey);
-    return saved === "granted" || saved === "denied" ? saved : fallback;
+    return saved === "granted" || saved === "denied" ? saved : "unknown";
   } catch {
-    return fallback;
+    return "unknown";
   }
 }
 export function consentSubscribe(listener: () => void) {
+  const storageChanged = (event: StorageEvent) => {
+    if (event.key !== null && event.key !== consentKey) return;
+    delete analyticsWindow().nrAnalyticsConsent;
+    listener();
+  };
   window.addEventListener("nr-consent", listener);
-  window.addEventListener("storage", listener);
+  window.addEventListener("storage", storageChanged);
   return () => {
     window.removeEventListener("nr-consent", listener);
-    window.removeEventListener("storage", listener);
+    window.removeEventListener("storage", storageChanged);
   };
 }
 export const serverConsent = (): Consent => "unknown";
 function analyticsWindow() {
   return window as unknown as AnalyticsWindow;
 }
+function callAnalytics(...args: unknown[]) {
+  try {
+    analyticsWindow().gtag?.(...args);
+  } catch {
+    /* A blocked analytics script must not interrupt the site or consent controls. */
+  }
+}
 export function setConsent(value: Exclude<Consent, "unknown">) {
-  fallback = value;
+  const state = analyticsWindow();
+  state.nrAnalyticsConsent = value;
+  state[`ga-disable-${analyticsId}`] = value !== "granted";
   try {
     localStorage.setItem(consentKey, value);
   } catch {
     /* session-only choice */
   }
-  const state = analyticsWindow();
-  state[`ga-disable-${analyticsId}`] = value !== "granted";
-  if (state.gtag)
-    state.gtag("consent", "update", {
-      analytics_storage: value,
-      ad_storage: "denied",
-      ad_user_data: "denied",
-      ad_personalization: "denied",
-    });
-  if (value === "denied")
+  // Apply the choice to the UI before any optional analytics or cookie work.
+  window.dispatchEvent(new Event("nr-consent"));
+  callAnalytics("consent", "update", {
+    analytics_storage: value,
+    ad_storage: "denied",
+    ad_user_data: "denied",
+    ad_personalization: "denied",
+  });
+  if (value !== "denied") return;
+  try {
     for (const cookie of document.cookie.split(";")) {
       const name = cookie.trim().split("=")[0];
       if (!/^_ga(?:_|$)/.test(name)) continue;
@@ -55,13 +71,15 @@ export function setConsent(value: Exclude<Consent, "unknown">) {
       for (let index = 0; index < host.length - 1; index++)
         document.cookie = `${name}=; Max-Age=0; Path=/; Domain=.${host.slice(index).join(".")}`;
     }
-  window.dispatchEvent(new Event("nr-consent"));
+  } catch {
+    /* The choice still applies when the browser restricts cookie access. */
+  }
 }
 export function disableAnalytics() {
   if (typeof window === "undefined") return;
   const state = analyticsWindow();
   state[`ga-disable-${analyticsId}`] = true;
-  state.gtag?.("consent", "update", {
+  callAnalytics("consent", "update", {
     analytics_storage: "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
@@ -76,20 +94,20 @@ export function initializeAnalytics() {
   initialized = true;
   state.dataLayer ||= [];
   state.gtag ||= (...args) => state.dataLayer!.push(args);
-  state.gtag("consent", "default", {
+  callAnalytics("consent", "default", {
     analytics_storage: "denied",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
   });
-  state.gtag("consent", "update", {
+  callAnalytics("consent", "update", {
     analytics_storage: "granted",
     ad_storage: "denied",
     ad_user_data: "denied",
     ad_personalization: "denied",
   });
-  state.gtag("js", new Date());
-  state.gtag("config", analyticsId, {
+  callAnalytics("js", new Date());
+  callAnalytics("config", analyticsId, {
     send_page_view: false,
     cookie_domain: "none",
     allow_google_signals: false,
@@ -170,7 +188,7 @@ export function trackEvent(
     return;
   const state = analyticsWindow();
   if (!state.gtag || state[`ga-disable-${analyticsId}`]) return;
-  state.gtag("event", name, {
+  callAnalytics("event", name, {
     ...safeEventParameters(parameters),
     page_location:
       location.origin +

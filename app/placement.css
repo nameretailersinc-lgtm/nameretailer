@@ -1282,7 +1282,9 @@ html[data-site-theme="dark"] .placement-dialog {
   color: #006747;
   text-decoration: underline;
 }
-.placement-article-editor .placement-rich-text p.is-editor-empty:first-child::before {
+.placement-article-editor
+  .placement-rich-text
+  p.is-editor-empty:first-child::before {
   content: attr(data-placeholder);
   float: left;
   height: 0;
@@ -1324,4 +1326,31 @@ html[data-site-theme="dark"] .placement-dialog {
 .placement-upload-signin a {
   font-weight: 700;
   text-decoration: underline;
+}
+
+.placement-builder .placement-tips {
+  border-radius: 12px;
+  padding: 18px 14px;
+  margin-top: 20px;
+  background: var(--placement-mint);
+  border: 1px solid var(--placement-line);
+}
+.placement-builder .placement-tips ul {
+  list-style: none;
+  padding: 0;
+  margin: 18px 0 0;
+  display: grid;
+  gap: 12px;
+}
+.placement-builder .placement-tips li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.placement-tips li svg {
+  margin-top: 1px;
+  flex-shrink: 0;
+  color: var(--placement-green);
 }

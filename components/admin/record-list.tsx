@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Plus, Image as ImageIcon, Upload } from "lucide-react";
 import { useWorkspaceUser } from "./admin-shell";
 import type { Collection, CmsRecord, RecordInput } from "@/lib/cms/types";
 import { api, apiPath, mutation, errorMessage } from "./api";
@@ -49,6 +50,22 @@ const states: Record<Collection, string[]> = {
   widgets: ["draft", "active", "published", "archived"],
   leads: ["new", "read", "archived"],
   subscribers: ["pending", "subscribed", "unsubscribed", "archived"],
+};
+const descriptions: Record<Collection, string> = {
+  content: "Create, organize, and publish your posts and pages.",
+  categories: "Give every story a home with clear, useful topics.",
+  tags: "Connect related ideas and make your content easier to discover.",
+  authors: "Manage the people, profiles, and expertise behind your content.",
+  media: "Upload and organize the images that bring your stories to life.",
+  redirects:
+    "Keep visitors on the right path. Review and manage your redirect rules.",
+  notFound:
+    "Find missing-page requests and plan a useful destination for visitors.",
+  menus: "Build clear navigation so visitors can find what they need.",
+  sections: "Arrange your homepage content and highlight what matters most.",
+  widgets: "Manage helpful links, information, and content in your footer.",
+  leads: "Keep track of inquiries and the conversations that come next.",
+  subscribers: "Manage your audience and their subscription preferences.",
 };
 type MenuItem = { label: string; url: string; children?: MenuItem[] };
 function defaultData(collection: Collection): Record<string, unknown> {
@@ -595,26 +612,28 @@ export function RecordList({ collection }: { collection: Collection }) {
     <>
       <PageHeading
         title={names[collection]}
-        description={
-          collection === "content"
-            ? "Posts and pages, editorial status and SEO fields."
-            : collection === "notFound"
-              ? "Actual missing-page requests will appear when public routing is activated."
-              : `Manage ${names[collection].toLowerCase()} in the private workspace.`
-        }
+        description={descriptions[collection]}
         actions={
           collection === "content" ? (
             <Link className="button" href={contentHref("new")}>
+              <Plus size={17} aria-hidden="true" />
               Create content
             </Link>
           ) : collection !== "media" && collection !== "notFound" ? (
-            <Button onClick={() => edit(null)}>Create record</Button>
+            <Button onClick={() => edit(null)}>
+              <Plus size={17} aria-hidden="true" />
+              Create record
+            </Button>
           ) : undefined
         }
       />
       <Feedback error={error} success={success} />
       {collection === "media" && (
-        <Panel title="Upload image">
+        <Panel
+          title="Upload image"
+          icon={<Upload size={20} aria-hidden="true" />}
+          description="Choose an image and add a helpful description for your readers."
+        >
           <form
             onSubmit={async (e) => {
               e.preventDefault();
@@ -830,6 +849,41 @@ export function RecordList({ collection }: { collection: Collection }) {
             </div>
           </form>
         </Panel>
+      )}
+      {collection === "content" && (
+        <nav
+          className="record-status-filters"
+          aria-label="Filter content by status"
+        >
+          {[
+            { value: "", label: "All content" },
+            ...states.content.map((value) => ({
+              value,
+              label: value.charAt(0).toUpperCase() + value.slice(1),
+            })),
+          ].map((item) => (
+            <button
+              key={item.value}
+              type="button"
+              aria-pressed={status === item.value}
+              onClick={() => {
+                setStatus(item.value);
+                setPage(1);
+              }}
+            >
+              {item.label}
+            </button>
+          ))}
+        </nav>
+      )}
+      {collection === "media" && (
+        <div className="media-library-heading">
+          <ImageIcon size={18} aria-hidden="true" />
+          <h2>Your image library</h2>
+          <span>
+            {total} {total === 1 ? "image" : "images"}
+          </span>
+        </div>
       )}
       <form
         className="toolbar"

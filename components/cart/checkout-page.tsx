@@ -1,7 +1,36 @@
 "use client";
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
-import { CreditCard, FileText, ShieldCheck } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Building2,
+  CreditCard,
+  FileText,
+  Globe2,
+  Headphones,
+  LockKeyhole,
+  Mail,
+  MapPin,
+  Pencil,
+  Phone,
+  RotateCw,
+  Save,
+  ShieldCheck,
+  ShoppingBag,
+  ShoppingCart,
+  Store,
+  Trash2,
+  UserRound,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
+import {
+  DeskHeader,
+  DeskHeading,
+  PublicationIdentity,
+} from "@/components/account/desk";
+import styles from "@/components/account/desk.module.css";
 import {
   CustomerShell,
   CustomerFeedback,
@@ -99,6 +128,26 @@ const billingFields: {
   },
   { key: "phone", label: "Phone", autoComplete: "tel", max: 50, type: "tel" },
 ];
+const billingIcons: Record<
+  Exclude<keyof BillingDetails, "country">,
+  LucideIcon
+> = {
+  email: Mail,
+  firstName: UserRound,
+  lastName: UserRound,
+  street: MapPin,
+  apartment: Building2,
+  city: Building2,
+  region: Store,
+  postalCode: MapPin,
+  phone: Phone,
+};
+const flag = (code: string) =>
+  /^[A-Z]{2}$/.test(code)
+    ? String.fromCodePoint(
+        ...[...code].map((letter) => 127397 + letter.charCodeAt(0)),
+      )
+    : "";
 export function CheckoutPage() {
   const [view, setView] = useState<CheckoutView | null>(null);
   const [billing, setBilling] = useState<BillingDetails>(emptyBilling);
@@ -216,17 +265,33 @@ export function CheckoutPage() {
     }
   }
   return (
-    <CustomerShell title="Secure checkout">
-      <nav className="commerce-steps" aria-label="Placement progress">
-        <Link href="/">1 · Publication</Link>
-        <Link href="/cart/">2 · Brief & cart</Link>
-        <span aria-current="step">3 · Checkout</span>
-      </nav>
-      <p className="customer-notice">
-        <ShieldCheck size={20} aria-hidden="true" /> Review your billing and
-        placement details. Complete your payment securely with Stripe or PayPal.
-        Your card details stay with the payment provider.
-      </p>
+    <CustomerShell
+      title="Secure checkout"
+      className={`${styles.root} ${styles.checkoutHeader}`}
+      header={
+        <DeskHeader
+          title="Secure checkout"
+          description="Complete your billing and placement details, then continue to your payment provider."
+          icon={LockKeyhole}
+          checkout
+        />
+      }
+    >
+      <div className={styles.securityBanner}>
+        <ShieldCheck size={32} aria-hidden="true" />
+        <div>
+          <strong>Your information stays private</strong>
+          <p>
+            Payments are handled by Stripe or PayPal. Your card details stay
+            with the payment provider.
+          </p>
+        </div>
+        <div className={styles.providerBrands}>
+          <small>Payment providers</small>
+          <span className={styles.stripe}>stripe</span>
+          <span className={styles.paypal}>PayPal</span>
+        </div>
+      </div>
       <CustomerFeedback error={error} message={message} />
       {loading ? (
         <p role="status">Loading your checkout…</p>
@@ -244,22 +309,26 @@ export function CheckoutPage() {
       ) : (
         view && (
           <>
-            <div className="customer-actions">
-              <Link href="/cart/" className="button button-secondary">
-                Back to cart
+            <div className={`customer-actions ${styles.toolbar}`}>
+              <Link
+                href="/cart/"
+                className={`button button-secondary ${styles.compactButton}`}
+              >
+                <ArrowLeft size={15} aria-hidden="true" /> Back to cart
               </Link>
               <Link
                 href="/my-account/orders/"
-                className="button button-secondary"
+                className={`button button-secondary ${styles.compactButton}`}
               >
-                Your orders
+                <ShoppingBag size={15} aria-hidden="true" /> Your orders
               </Link>
               <button
-                className="button button-secondary"
+                className={`button button-secondary ${styles.compactButton}`}
                 disabled={busy}
                 onClick={() => void reload()}
               >
-                Reload draft and current prices
+                <RotateCw size={15} aria-hidden="true" /> Reload draft and
+                current prices
               </button>
             </div>
             {!!view.issues.length && (
@@ -282,162 +351,221 @@ export function CheckoutPage() {
                 latest details and save again.
               </p>
             )}
-            <div className="checkout-grid">
+            <div className={styles.checkoutGrid}>
               <form
                 id="payment-checkout"
-                className="checkout-form customer-card"
+                className={`customer-card ${styles.card} ${styles.billingForm}`}
                 onSubmit={save}
               >
-                <h2>
-                  <FileText size={22} aria-hidden="true" /> Billing information
-                </h2>
-                <p className="customer-hint">
-                  Required fields are marked *. Postal code and region may not
-                  apply in every country.
-                </p>
-                <fieldset disabled={busy} className="checkout-fields">
-                  {billingFields.map((field) => (
-                    <div key={field.key}>
-                      <label htmlFor={`billing-${field.key}`}>
-                        {field.label}
-                        {field.required ? " *" : " (optional)"}
-                      </label>
-                      <input
-                        id={`billing-${field.key}`}
-                        name={field.key}
-                        type={field.type || "text"}
-                        required={field.required}
-                        autoComplete={field.autoComplete}
-                        maxLength={field.max}
-                        value={billing[field.key]}
+                <DeskHeading
+                  icon={ShoppingBag}
+                  title="Billing information"
+                  description="Required fields are marked *. Postal code and region may not apply in every country."
+                />
+                <fieldset disabled={busy} className={styles.fields}>
+                  <legend className="sr-only">Billing details</legend>
+                  {billingFields.map((field) => {
+                    const Icon = billingIcons[field.key];
+                    return (
+                      <div
+                        key={field.key}
+                        className={
+                          field.key === "email" ? styles.fullField : undefined
+                        }
+                      >
+                        <label htmlFor={`billing-${field.key}`}>
+                          {field.label}
+                          {field.required ? " *" : " (optional)"}
+                        </label>
+                        <div className={styles.fieldControl}>
+                          <Icon size={17} aria-hidden="true" />
+                          <input
+                            id={`billing-${field.key}`}
+                            name={field.key}
+                            type={field.type || "text"}
+                            required={field.required}
+                            autoComplete={field.autoComplete}
+                            maxLength={field.max}
+                            value={billing[field.key]}
+                            onChange={(event) =>
+                              setBilling((old) => ({
+                                ...old,
+                                [field.key]: event.target.value,
+                              }))
+                            }
+                          />
+                        </div>
+                      </div>
+                    );
+                  })}
+                  <div className={styles.fullField}>
+                    <label htmlFor="billing-country">Country / region *</label>
+                    <div className={styles.fieldControl}>
+                      {billing.country ? (
+                        <span className={styles.countryFlag} aria-hidden="true">
+                          {flag(billing.country)}
+                        </span>
+                      ) : (
+                        <Globe2 size={17} aria-hidden="true" />
+                      )}
+                      <select
+                        id="billing-country"
+                        required
+                        autoComplete="country"
+                        value={billing.country}
                         onChange={(event) =>
                           setBilling((old) => ({
                             ...old,
-                            [field.key]: event.target.value,
+                            country: event.target.value,
                           }))
                         }
-                      />
+                      >
+                        <option value="">Choose your country</option>
+                        {countries.map(({ code, name }) => (
+                          <option key={code} value={code}>
+                            {name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
-                  ))}
-                  <div className="billing-country">
-                    <label htmlFor="billing-country">Country / region *</label>
-                    <select
-                      id="billing-country"
-                      required
-                      autoComplete="country"
-                      value={billing.country}
-                      onChange={(event) =>
-                        setBilling((old) => ({
-                          ...old,
-                          country: event.target.value,
-                        }))
-                      }
-                    >
-                      <option value="">Choose your country</option>
-                      {countries.map(({ code, name }) => (
-                        <option key={code} value={code}>
-                          {name}
-                        </option>
-                      ))}
-                    </select>
                   </div>
-                  <div className="billing-notes">
+                  <div className={styles.fullField}>
                     <label htmlFor="order-notes">Order notes (optional)</label>
-                    <textarea
-                      id="order-notes"
-                      rows={4}
-                      maxLength={4000}
-                      value={notes}
-                      onChange={(event) => setNotes(event.target.value)}
-                      placeholder="Notes for your placement; do not include payment details."
-                    />
+                    <div className={styles.notes}>
+                      <textarea
+                        id="order-notes"
+                        rows={4}
+                        maxLength={4000}
+                        value={notes}
+                        onChange={(event) => setNotes(event.target.value)}
+                        placeholder="Notes for your placement; do not include payment details."
+                      />
+                      <span className={styles.counter}>
+                        {notes.length.toLocaleString()}/4,000
+                      </span>
+                    </div>
                   </div>
                 </fieldset>
-                <fieldset className="checkout-payments" disabled={busy}>
+                <fieldset className={styles.paymentChoices} disabled={busy}>
                   <legend>
                     <CreditCard size={20} aria-hidden="true" /> Choose your
                     payment method
                   </legend>
-                  <label>
-                    <input
-                      type="radio"
-                      name="paymentPreference"
-                      checked={payment === "stripe"}
-                      disabled={
-                        view.paymentAvailable && !view.paymentMethods?.stripe
-                      }
-                      onChange={() => setPayment("stripe")}
-                    />{" "}
-                    Debit / credit card via Stripe{" "}
-                    <small>
-                      {view.paymentMethods?.stripe
-                        ? "Secure card checkout"
-                        : "Currently unavailable"}
-                    </small>
-                  </label>
-                  <label>
-                    <input
-                      type="radio"
-                      name="paymentPreference"
-                      checked={payment === "paypal"}
-                      disabled={
-                        view.paymentAvailable && !view.paymentMethods?.paypal
-                      }
-                      onChange={() => setPayment("paypal")}
-                    />{" "}
-                    PayPal{" "}
-                    <small>
-                      {view.paymentMethods?.paypal
-                        ? "Pay with your PayPal account"
-                        : "Currently unavailable"}
-                    </small>
-                  </label>
+                  <p className={styles.hint}>
+                    Choose a payment provider. Your payment information is never
+                    stored on our servers.
+                  </p>
+                  <div className={styles.paymentOptions}>
+                    <label className={styles.paymentOption}>
+                      <input
+                        type="radio"
+                        name="paymentPreference"
+                        checked={payment === "stripe"}
+                        disabled={
+                          view.paymentAvailable && !view.paymentMethods?.stripe
+                        }
+                        onChange={() => setPayment("stripe")}
+                      />{" "}
+                      <CreditCard size={19} aria-hidden="true" />
+                      <span>
+                        <strong>Debit / credit card via Stripe</strong>
+                        <small>
+                          {view.paymentMethods?.stripe
+                            ? "Secure card checkout"
+                            : "Currently unavailable"}
+                        </small>
+                      </span>
+                    </label>
+                    <label className={styles.paymentOption}>
+                      <input
+                        type="radio"
+                        name="paymentPreference"
+                        checked={payment === "paypal"}
+                        disabled={
+                          view.paymentAvailable && !view.paymentMethods?.paypal
+                        }
+                        onChange={() => setPayment("paypal")}
+                      />{" "}
+                      <span className={styles.paypal} aria-hidden="true">
+                        P
+                      </span>
+                      <span>
+                        <strong>PayPal</strong>
+                        <small>
+                          {view.paymentMethods?.paypal
+                            ? "Pay with your PayPal account"
+                            : "Currently unavailable"}
+                        </small>
+                      </span>
+                    </label>
+                  </div>
                 </fieldset>
-                <p className="customer-hint">
-                  Save a draft to return later, or continue to the selected
-                  payment provider. Draft billing details expire after 7 days.
-                </p>
-                <button
-                  className="button button-primary"
-                  disabled={busy || !!view.issues.length}
-                >
-                  {busy ? "Saving…" : "Save checkout draft"}
-                </button>
-                {view.draft && (
+                <div className={styles.saveActions}>
                   <button
-                    type="button"
-                    className="button button-secondary"
-                    disabled={busy}
-                    onClick={async () => {
-                      setBusy(true);
-                      setError("");
-                      setMessage("");
-                      try {
-                        await customerMutation("/api/checkout/", "DELETE", {});
-                        apply(
-                          await customerRequest<CheckoutView>("/api/checkout/"),
-                        );
-                        setMessage("Saved billing draft removed.");
-                      } catch (cause) {
-                        setError(customerError(cause));
-                      } finally {
-                        setBusy(false);
-                      }
-                    }}
+                    className={`button button-primary ${styles.compactButton}`}
+                    disabled={busy || !!view.issues.length}
                   >
-                    Delete saved billing draft
+                    <Save size={16} aria-hidden="true" />{" "}
+                    {busy ? "Saving…" : "Save checkout draft"}
                   </button>
-                )}
+                  {view.draft && (
+                    <button
+                      type="button"
+                      className={`button button-secondary ${styles.compactButton} ${styles.dangerButton}`}
+                      disabled={busy}
+                      onClick={async () => {
+                        setBusy(true);
+                        setError("");
+                        setMessage("");
+                        try {
+                          await customerMutation(
+                            "/api/checkout/",
+                            "DELETE",
+                            {},
+                          );
+                          apply(
+                            await customerRequest<CheckoutView>(
+                              "/api/checkout/",
+                            ),
+                          );
+                          setMessage("Saved billing draft removed.");
+                        } catch (cause) {
+                          setError(customerError(cause));
+                        } finally {
+                          setBusy(false);
+                        }
+                      }}
+                    >
+                      <Trash2 size={15} aria-hidden="true" /> Delete saved
+                      billing draft
+                    </button>
+                  )}
+                </div>
+                <p className={styles.hint}>
+                  Save your progress and return later. Draft billing details
+                  expire after 7 days.
+                </p>
               </form>
               <aside
-                className="checkout-summary customer-card"
+                className={`customer-card ${styles.card}`}
                 aria-labelledby="order-summary"
               >
-                <h2 id="order-summary">Your placement details</h2>
+                <DeskHeading
+                  icon={ShoppingCart}
+                  title="Your placement details"
+                  id="order-summary"
+                >
+                  <Link
+                    href="/cart/"
+                    className={`button button-secondary ${styles.compactButton}`}
+                  >
+                    <Pencil size={14} aria-hidden="true" /> Edit placement
+                  </Link>
+                </DeskHeading>
                 {view.cart.items.map((item) => (
-                  <article key={item.productId}>
-                    <h3>{item.domain || "Unavailable publication"}</h3>
-                    <dl className="cart-brief-details">
+                  <article key={item.productId} className={styles.summaryItem}>
+                    <PublicationIdentity domain={item.domain} />
+                    <dl className={styles.summaryDetails}>
                       <div>
                         <dt>Promoted URL</dt>
                         <dd>{item.brief?.promotedUrl || "Missing"}</dd>
@@ -497,7 +625,7 @@ export function CheckoutPage() {
                     </dl>
                   </article>
                 ))}
-                <p className="checkout-total">
+                <p className={styles.total}>
                   <span>Total (USD)</span>
                   <strong>
                     {view.cart.totalCents === null
@@ -505,11 +633,11 @@ export function CheckoutPage() {
                       : usd(view.cart.totalCents)}
                   </strong>
                 </p>
-                <p className="customer-hint">
+                <p className={styles.hint}>
                   Includes the selected placement and writing packages. You will
                   confirm this amount with the payment provider.
                 </p>
-                <label className="checkout-terms">
+                <label className={`checkout-terms ${styles.terms}`}>
                   <input
                     type="checkbox"
                     checked={termsAccepted}
@@ -531,7 +659,7 @@ export function CheckoutPage() {
                   form="payment-checkout"
                   type="submit"
                   value="pay"
-                  className="button button-primary"
+                  className={`button button-primary ${styles.payButton}`}
                   disabled={
                     busy ||
                     !!view.issues.length ||
@@ -539,11 +667,73 @@ export function CheckoutPage() {
                     !termsAccepted
                   }
                 >
-                  {busy
-                    ? "Preparing checkout…"
-                    : `Pay ${view.cart.totalCents === null ? "" : usd(view.cart.totalCents)} with ${payment === "stripe" ? "card" : "PayPal"}`}
+                  <CreditCard size={20} aria-hidden="true" />
+                  <span>
+                    {busy
+                      ? "Preparing checkout…"
+                      : `Pay ${view.cart.totalCents === null ? "" : usd(view.cart.totalCents)} with ${payment === "stripe" ? "card" : "PayPal"}`}
+                  </span>
+                  <ArrowRight size={18} aria-hidden="true" />
                 </button>
+                <div className={styles.privacyNote}>
+                  <ShieldCheck size={27} aria-hidden="true" />
+                  <div>
+                    <strong>Payment details stay with your provider</strong>
+                    <p>
+                      You’ll review and confirm your payment on{" "}
+                      {payment === "stripe" ? "Stripe" : "PayPal"} before
+                      returning here.
+                    </p>
+                  </div>
+                </div>
+                <div className={styles.reassurance}>
+                  <div>
+                    <Zap size={24} aria-hidden="true" />
+                    <strong>Hosted checkout</strong>
+                    <p>Continue to your selected payment provider.</p>
+                  </div>
+                  <div>
+                    <ShieldCheck size={24} aria-hidden="true" />
+                    <strong>Private details</strong>
+                    <p>Your billing draft belongs to your account.</p>
+                  </div>
+                  <div>
+                    <LockKeyhole size={24} aria-hidden="true" />
+                    <strong>Clear total</strong>
+                    <p>Review the amount before you pay.</p>
+                  </div>
+                </div>
               </aside>
+            </div>
+            <div className={styles.trustRow}>
+              <div>
+                <CreditCard size={28} aria-hidden="true" />
+                <div>
+                  <strong>Hosted payments</strong>
+                  <p>Processed by Stripe or PayPal.</p>
+                </div>
+              </div>
+              <div>
+                <ShieldCheck size={28} aria-hidden="true" />
+                <div>
+                  <strong>Private planning</strong>
+                  <p>Drafts are saved to your account.</p>
+                </div>
+              </div>
+              <div>
+                <Headphones size={28} aria-hidden="true" />
+                <div>
+                  <strong>Placement support</strong>
+                  <p>Help with your brief and order.</p>
+                </div>
+              </div>
+              <div>
+                <FileText size={28} aria-hidden="true" />
+                <div>
+                  <strong>Review your order</strong>
+                  <p>Publication, writing and pricing together.</p>
+                </div>
+              </div>
             </div>
           </>
         )

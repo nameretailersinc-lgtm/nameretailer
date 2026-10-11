@@ -1,5 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import {
+  Building2,
+  ChartNoAxesCombined,
+  FileCode2,
+  Download,
+  Save,
+} from "lucide-react";
 import { api, mutation, errorMessage, apiPath } from "./api";
 import {
   PageHeading,
@@ -51,8 +58,14 @@ export function Settings() {
     <>
       <PageHeading
         title="Site settings"
-        description="Brand, contact details and stored search configuration. Integration secrets stay in environment variables."
+        description="Make the workspace your own. Manage your brand, website configuration, and exports."
       />
+      <nav className="settings-section-nav" aria-label="Settings sections">
+        <a href="#business-settings">Business & brand</a>
+        <a href="#analytics-settings">Analytics & verification</a>
+        <a href="#search-settings">Search files</a>
+        <a href="#backup-settings">Backup & exports</a>
+      </nav>
       <Feedback error={error} success={success} />
       {!data && !error ? (
         <Loading />
@@ -85,76 +98,96 @@ export function Settings() {
               }
             }}
           >
-            <Panel title="Business & brand">
-              <div className="grid-two">
-                {["brandName", "contactEmail", "address", "logo"].map((key) => (
-                  <Field label={labels[key]} key={key}>
-                    <Input
-                      type={key === "contactEmail" ? "email" : "text"}
-                      value={String(data[key] || "")}
-                      onChange={(e) => change(key, e.target.value)}
-                    />
-                  </Field>
-                ))}
-              </div>
-              <Field
-                label="Social profile links"
-                hint="One confirmed URL per line."
+            <section className="settings-section" id="business-settings">
+              <Panel
+                title="Business & brand"
+                icon={<Building2 size={20} aria-hidden="true" />}
+                description="The details that help readers recognize and reach you."
               >
-                <Textarea
-                  value={social}
-                  onChange={(e) => {
-                    setSocial(e.target.value);
-                    setDirty(true);
-                  }}
-                />
-              </Field>
-            </Panel>
-            <Panel title="Analytics & verification">
-              <p className="notice">
-                Saving an ID does not load tracking. Public consent-aware
-                integration follows in Phase 4.
-              </p>
-              <div className="grid-two">
-                {["ga4Id", "gtmId", "googleVerification", "metaPixelId"].map(
-                  (key) => (
-                    <Field label={labels[key]} key={key}>
-                      <Input
+                <div className="grid-two">
+                  {["brandName", "contactEmail", "address", "logo"].map(
+                    (key) => (
+                      <Field label={labels[key]} key={key}>
+                        <Input
+                          type={key === "contactEmail" ? "email" : "text"}
+                          value={String(data[key] || "")}
+                          onChange={(e) => change(key, e.target.value)}
+                        />
+                      </Field>
+                    ),
+                  )}
+                </div>
+                <Field
+                  label="Social profile links"
+                  hint="One confirmed URL per line."
+                >
+                  <Textarea
+                    value={social}
+                    onChange={(e) => {
+                      setSocial(e.target.value);
+                      setDirty(true);
+                    }}
+                  />
+                </Field>
+              </Panel>
+            </section>
+            <section className="settings-section" id="analytics-settings">
+              <Panel
+                title="Analytics & verification"
+                icon={<ChartNoAxesCombined size={20} aria-hidden="true" />}
+                description="Keep your website measurement and ownership details together."
+              >
+                <p className="notice">
+                  Saving an ID does not load tracking. Public consent-aware
+                  integration follows in Phase 4.
+                </p>
+                <div className="grid-two">
+                  {["ga4Id", "gtmId", "googleVerification", "metaPixelId"].map(
+                    (key) => (
+                      <Field label={labels[key]} key={key}>
+                        <Input
+                          value={String(data[key] || "")}
+                          onChange={(e) => change(key, e.target.value)}
+                        />
+                      </Field>
+                    ),
+                  )}
+                </div>
+              </Panel>
+            </section>
+            <section className="settings-section" id="search-settings">
+              <Panel
+                title="Search files"
+                icon={<FileCode2 size={20} aria-hidden="true" />}
+              >
+                <div className="settings-code">
+                  {[
+                    ["robotsText", "robots.txt configuration"],
+                    ["llmsText", "llms.txt configuration"],
+                    ["llmsFullText", "llms-full.txt configuration"],
+                  ].map(([key, label]) => (
+                    <Field label={label} key={key}>
+                      <Textarea
+                        className="code-input"
                         value={String(data[key] || "")}
                         onChange={(e) => change(key, e.target.value)}
                       />
                     </Field>
-                  ),
-                )}
-              </div>
-            </Panel>
-            <Panel title="Search files">
-              <div className="settings-code">
-                {[
-                  ["robotsText", "robots.txt configuration"],
-                  ["llmsText", "llms.txt configuration"],
-                  ["llmsFullText", "llms-full.txt configuration"],
-                ].map(([key, label]) => (
-                  <Field label={label} key={key}>
-                    <Textarea
-                      className="code-input"
-                      value={String(data[key] || "")}
-                      onChange={(e) => change(key, e.target.value)}
-                    />
-                  </Field>
-                ))}
-              </div>
-              <label className="check">
-                <input
-                  type="checkbox"
-                  checked={data.sitemapEnabled !== false}
-                  onChange={(e) => change("sitemapEnabled", e.target.checked)}
-                />
-                Enable sitemap when public routes are available
-              </label>
-            </Panel>
-            <div className="actions">
+                  ))}
+                </div>
+                <label className="check">
+                  <input
+                    type="checkbox"
+                    checked={data.sitemapEnabled !== false}
+                    onChange={(e) => change("sitemapEnabled", e.target.checked)}
+                  />
+                  Enable sitemap when public routes are available
+                </label>
+              </Panel>
+            </section>
+            <div className="actions settings-save-bar">
               <Button disabled={busy}>
+                <Save size={16} aria-hidden="true" />
                 {busy ? "Saving…" : "Save settings"}
               </Button>
               <span className="status-line">
@@ -164,32 +197,37 @@ export function Settings() {
           </form>
         )
       )}
-      <Panel title="Backup & exports">
-        <p className="muted">
-          Download a server-generated export. Store it securely; it can contain
-          business or personal information.
-        </p>
-        <div className="actions">
-          <a
-            className="button button-secondary"
-            href={apiPath("/api/admin/export?format=json")}
-          >
-            Export all JSON
-          </a>
-          <a
-            className="button button-secondary"
-            href={apiPath("/api/admin/export?format=csv&collection=content")}
-          >
-            Export content CSV
-          </a>
-          <a
-            className="button button-secondary"
-            href={apiPath("/api/admin/export?format=wxr&collection=content")}
-          >
-            Export content WXR
-          </a>
-        </div>
-      </Panel>
+      <section className="settings-section" id="backup-settings">
+        <Panel
+          title="Backup & exports"
+          icon={<Download size={20} aria-hidden="true" />}
+        >
+          <p className="muted">
+            Download a server-generated export. Store it securely; it can
+            contain business or personal information.
+          </p>
+          <div className="actions">
+            <a
+              className="button button-secondary"
+              href={apiPath("/api/admin/export?format=json")}
+            >
+              Export all JSON
+            </a>
+            <a
+              className="button button-secondary"
+              href={apiPath("/api/admin/export?format=csv&collection=content")}
+            >
+              Export content CSV
+            </a>
+            <a
+              className="button button-secondary"
+              href={apiPath("/api/admin/export?format=wxr&collection=content")}
+            >
+              Export content WXR
+            </a>
+          </div>
+        </Panel>
+      </section>
     </>
   );
 }

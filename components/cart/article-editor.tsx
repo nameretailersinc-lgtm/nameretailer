@@ -89,7 +89,9 @@ function blockToMarkdown(node: JsonNode): string {
       inlineToMarkdown(item.content?.[0]?.content),
     );
     return items
-      .map((text, i) => (node.type === "bulletList" ? `- ${text}` : `${i + 1}. ${text}`))
+      .map((text, i) =>
+        node.type === "bulletList" ? `- ${text}` : `${i + 1}. ${text}`,
+      )
       .join("\n");
   }
   const text = inlineToMarkdown(node.content);
@@ -110,6 +112,8 @@ export function ArticleEditor({
   disabled,
   placeholder,
   describedBy,
+  labelledBy,
+  required,
   onChange,
   onFocus,
 }: {
@@ -119,6 +123,8 @@ export function ArticleEditor({
   disabled: boolean;
   placeholder: string;
   describedBy: string;
+  labelledBy: string;
+  required: boolean;
   onChange: (value: string) => void;
   onFocus: () => void;
 }) {
@@ -146,6 +152,8 @@ export function ArticleEditor({
         role: "textbox",
         "aria-multiline": "true",
         "aria-describedby": describedBy,
+        "aria-labelledby": labelledBy,
+        "aria-required": String(required),
         class: "placement-rich-text",
       },
     },

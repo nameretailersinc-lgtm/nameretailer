@@ -564,7 +564,7 @@ test("dashboard warning preview stays bounded while reporting the actual larger 
   });
   const panel = page
     .getByRole("heading", { name: "SEO & editorial checks", exact: true })
-    .locator("..");
+    .locator("xpath=ancestor::section[1]");
   await expect(panel.getByRole("listitem")).toHaveCount(10);
   await expect(panel).toContainText(
     `Showing 10 of ${response.data.warnings.length} current warnings.`,

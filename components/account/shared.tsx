@@ -84,15 +84,19 @@ export function CustomerFeedback({
 export function CustomerShell({
   title,
   header,
+  className = "",
   children,
 }: {
   title: string;
   header?: React.ReactNode;
+  className?: string;
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
   return (
-    <div className="reference-site reference-customer customer-site">
+    <div
+      className={`reference-site reference-customer customer-site ${className}`}
+    >
       <SiteHeader
         active={
           pathname.startsWith("/cart") || pathname.startsWith("/checkout")
