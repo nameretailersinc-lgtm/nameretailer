@@ -30,6 +30,7 @@ export function SiteBrand() {
     </Link>
   );
   
+  
 }
 export function TrustNote() {
   const claims = supportedTrustClaims(trustClaims);
