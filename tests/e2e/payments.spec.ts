@@ -244,6 +244,44 @@ test.describe("hosted payment checkout", () => {
     ).toBeVisible();
     await expect(page.getByText("example.com", { exact: true })).toHaveCount(0);
   });
+  test("rejects an invalid order link without making a payment request", async ({
+    page,
+  }) => {
+    let confirmations = 0;
+    await page.route("**/api/checkout/payments/confirm/", (route) => {
+      confirmations++;
+      return route.fulfill({ json: order });
+    });
+    await page.goto("/checkout/return/?order=invalid");
+    await expect(page.getByRole("alert")).toContainText(
+      "This order link is invalid",
+    );
+    await expect(page.getByText("Checking your payment…")).toHaveCount(0);
+    expect(confirmations).toBe(0);
+  });
+  test("loads the new receipt when the order query changes without a reload", async ({
+    page,
+  }) => {
+    const nextId = "b".repeat(64);
+    await page.route("**/api/checkout/payments/confirm/", (route) => {
+      const payload = route.request().postDataJSON() as { orderId: string };
+      return route.fulfill({
+        json:
+          payload.orderId === nextId
+            ? { ...order, id: nextId, items: [{ ...item, domain: "next.com" }] }
+            : order,
+      });
+    });
+    await page.goto(`/checkout/return/?order=${id}`);
+    await expect(page.getByText(id, { exact: true })).toBeVisible();
+    await page.evaluate((orderId) => {
+      window.history.pushState(null, "", `?order=${orderId}`);
+    }, nextId);
+    await expect(page.getByText(nextId, { exact: true })).toBeVisible();
+    await expect(page.getByText("next.com", { exact: true })).toBeVisible();
+    await expect(page.getByText(id, { exact: true })).toHaveCount(0);
+    await expect(page.getByText("example.com", { exact: true })).toHaveCount(0);
+  });
   for (const width of [320, 375, 768, 1440])
     for (const theme of ["light", "dark"])
       test(`checkout and receipt reflow and accessibility ${width}px ${theme}`, async ({
