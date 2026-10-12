@@ -4,7 +4,7 @@ export const validAsOf = (value?: string) =>
 export function DataDisclosure({ asOf }: { asOf?: string }) {
   if (!validAsOf(asOf)) return null;
   return (
-    
+
     <p className="catalogue-data-disclosure">
       Catalogue data is owner-supplied as of{" "}
       <time dateTime={asOf}>
@@ -12,8 +12,10 @@ export function DataDisclosure({ asOf }: { asOf?: string }) {
           year: "numeric",
           month: "long",
           day: "numeric",
+          
           timeZone: "UTC",
         })}
+
       </time>
       .
     </p>
