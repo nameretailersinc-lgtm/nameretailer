@@ -360,7 +360,7 @@ export function AdminShell({
               )}
             </button>
             <details className="workspace-profile" ref={profileRef}>
-              <summary aria-label="Account menu">
+              <summary role="button" aria-label="Account menu">
                 <span className="workspace-avatar">
                   {user.name.trim().charAt(0).toUpperCase() || "U"}
                 </span>

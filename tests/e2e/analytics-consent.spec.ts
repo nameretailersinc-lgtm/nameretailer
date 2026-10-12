@@ -37,11 +37,15 @@ test.describe("analytics consent banner", () => {
         ),
       ).toBe(choice);
       await expect(
-        page.getByRole("region", { name: "Analytics preferences" }),
+        page
+          .getByRole("main")
+          .getByRole("region", { name: "Analytics preferences" }),
       ).toContainText(choice === "granted" ? "accepted" : "declined");
       await page.reload();
       await expect(
-        page.getByRole("region", { name: "Analytics preferences" }),
+        page
+          .getByRole("main")
+          .getByRole("region", { name: "Analytics preferences" }),
       ).toContainText(choice === "granted" ? "accepted" : "declined");
       await expect(banner).toHaveCount(0);
     });
@@ -71,7 +75,9 @@ test.describe("analytics consent banner", () => {
     await banner.getByRole("button", { name: "Decline analytics" }).click();
     await expect(banner).toHaveCount(0);
     await expect(
-      page.getByRole("region", { name: "Analytics preferences" }),
+      page
+        .getByRole("main")
+        .getByRole("region", { name: "Analytics preferences" }),
     ).toContainText("declined");
   });
 });

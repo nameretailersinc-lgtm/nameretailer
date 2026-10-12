@@ -18,25 +18,26 @@ export function DesignGallery() {
   return (
     <>
       <PageHeading
-        title="Publication desk design system"
+        title="Workspace design system"
         description="Private component review — illustrative states, no fabricated business data."
       />
       <div className="grid-two">
         <Panel title="Typography & palette">
-          <h3 className="font-serif text-3xl">
+          <h3 className="workspace-type-sample">
             Editorial headlines. Practical details.
           </h3>
           <p>
-            Warm paper, dark ink and forest-green actions. This workspace uses
-            the approved publication-desk direction.
+            Clear type, calm surfaces, and emerald actions keep the workspace
+            focused. Use the theme control to review these components in dark
+            mode.
           </p>
           <div className="palette-grid">
             {[
-              ["Paper", "#f6f4ed"],
-              ["Ink", "#172c28"],
-              ["Forest", "#195844"],
-              ["Focus", "#205a83"],
-              ["Danger", "#a3292d"],
+              ["Canvas", "#f5f8fb"],
+              ["Ink", "#111d30"],
+              ["Emerald", "#00845c"],
+              ["Focus", "#008b60"],
+              ["Danger", "#bd3448"],
             ].map(([label, color]) => (
               <div key={label}>
                 <span

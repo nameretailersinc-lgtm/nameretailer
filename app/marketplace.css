@@ -331,6 +331,10 @@
 .marketplace-pagination .button {
   font-size: 13px;
 }
+.marketplace-pagination [aria-disabled="true"] {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .marketplace-error {
   border: 1px solid var(--destructive);
   border-radius: 6px;

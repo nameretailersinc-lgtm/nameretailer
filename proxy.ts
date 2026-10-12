@@ -1,8 +1,31 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { randomBytes } from "node:crypto";
 import { findBlogCategory, categorySlug } from "@/lib/blog/categories";
+import {
+  marketplaceHref,
+  marketplaceLocationQuery,
+} from "@/lib/commerce/marketplace-url";
 export async function proxy(request: NextRequest) {
-  if (request.nextUrl.pathname.startsWith("/blog") || request.nextUrl.pathname.startsWith("/guides")) {
+  const pathname = request.nextUrl.pathname;
+  if (pathname === "/" || pathname.startsWith("/page/")) {
+    if (pathname === "/" || /^\/page\/\d+\/?$/.test(pathname)) {
+      const target = marketplaceHref(
+        pathname,
+        marketplaceLocationQuery(
+          pathname,
+          request.nextUrl.searchParams.toString(),
+        ),
+      );
+      if (target !== pathname + request.nextUrl.search) {
+        return NextResponse.redirect(new URL(target, request.url), 301);
+      }
+    }
+    return NextResponse.next();
+  }
+  if (
+    request.nextUrl.pathname.startsWith("/blog") ||
+    request.nextUrl.pathname.startsWith("/guides")
+  ) {
     const value = request.nextUrl.searchParams.get("category");
     if (value) {
       const category = await findBlogCategory(value);
@@ -51,6 +74,8 @@ export async function proxy(request: NextRequest) {
 // their cached HTML cannot contain a fresh per-request nonce.
 export const config = {
   matcher: [
+    "/",
+    "/page/:path*",
     "/blog/:path*",
     "/guides/:path*",
     "/admin/:path*",

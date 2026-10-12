@@ -52,9 +52,10 @@ export function Analytics() {
     serverConsent,
   );
   const path = usePathname();
+  const privateWorkspace = /^\/(?:admin|design-system)(?:\/|$)/.test(path);
   const lastView = useRef("");
   useEffect(() => {
-    if (consent !== "granted") {
+    if (privateWorkspace || consent !== "granted") {
       disableAnalytics();
       lastView.current = "";
       return;
@@ -66,8 +67,8 @@ export function Analytics() {
       if (path.startsWith("/publication/")) trackEvent("publication_view");
       lastView.current = path;
     }
-  }, [consent, path]);
-  if (!analyticsConfigured) return null;
+  }, [consent, path, privateWorkspace]);
+  if (!analyticsConfigured || privateWorkspace) return null;
   return (
     <>
       {consent === "granted" && (

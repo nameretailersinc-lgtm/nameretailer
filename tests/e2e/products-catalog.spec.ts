@@ -120,7 +120,7 @@ test.describe("compact public catalog", () => {
       .selectOption("20");
     await loaded(page);
     await expect(page.locator(".marketplace-table tbody tr")).toHaveCount(20);
-    await page.getByRole("button", { name: "Next page", exact: true }).click();
+    await page.getByRole("link", { name: "Next page", exact: true }).click();
     await loaded(page);
     await expect(page.locator(".marketplace-row-number").first()).toHaveText(
       "21",
@@ -134,7 +134,7 @@ test.describe("compact public catalog", () => {
       page.getByLabel("Results per page", { exact: true }),
     ).toHaveValue("20");
     await expect(
-      page.getByRole("button", { name: "Page 2", exact: true }),
+      page.getByRole("link", { name: "Page 2", exact: true }),
     ).toHaveAttribute("aria-current", "page");
   });
 

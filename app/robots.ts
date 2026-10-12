@@ -15,8 +15,6 @@ const privatePaths = [
   "/design-system/",
   ...[
     "q",
-    "sort",
-    "pageSize",
     "category",
     "country",
     "language",

@@ -6,6 +6,9 @@ await withProductionServer(async (base) => {
     ["/home/", "/"],
     ["/products/", "/"],
     ["/contact-us/", "/contact/"],
+    ["/?sort=domain&page=2&pageSize=20", "/page/2/"],
+    ["/?page=2", "/page/2/"],
+    ["/page/1/", "/"],
   ]) {
     const response = await fetch(base + source, { redirect: "manual" });
     assert.equal(response.status, 301, source);
@@ -19,8 +22,9 @@ await withProductionServer(async (base) => {
     ["/?q=business", "/", false],
     ["/?pageSize=50", "/", false],
     ["/?page=1", "/", true],
-    ["/?page=2", "/?page=2", true],
-    ["/?page=10000", "/?page=10000", false],
+    ["/page/2/", "/page/2/", true],
+    ["/page/2/?sort=priceAsc", "/", false],
+    ["/page/2/?pageSize=50", "/", false],
     ["/blog/?q=SEO", "/blog/", false],
     ["/policies/", "/policies/", true],
     ["/site-map/", "/site-map/", false],
@@ -56,17 +60,32 @@ await withProductionServer(async (base) => {
   assert(!robots.includes("Disallow: /_next"));
   for (const key of [
     "q",
-    "sort",
     "category",
     "country",
     "language",
-    "pageSize",
     "minDa",
     "maxPrice",
   ])
     assert(
       robots.includes("Disallow: /*?*" + key + "="),
       key + ": missing parameter disallow",
+    );
+  for (const key of ["sort", "pageSize"])
+    assert(
+      !robots.includes("Disallow: /*?*" + key + "="),
+      key + ": redirects and noindex must be crawlable",
+    );
+  const pagination = await pageHtml(base, "/page/2/");
+  assert(
+    /<a\b[^>]*href="\/page\/3\/"/.test(pagination),
+    "Next catalogue page needs a crawlable link",
+  );
+  for (const path of ["/page/invalid/", "/page/10000/"])
+    assert.equal(
+      (await fetch(base + path, { headers: { "user-agent": "Googlebot" } }))
+        .status,
+      404,
+      path,
     );
   const sitemap = await sitemapUrlset(base);
   for (const path of ["/home/", "/products/", "/cart/", "/site-map/"])

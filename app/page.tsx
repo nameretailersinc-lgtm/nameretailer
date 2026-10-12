@@ -8,6 +8,9 @@ import {
 import { ServerMarketplace } from "@/components/marketplace/server-marketplace";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import { LandingExplore } from "@/components/site/directory-page";
+import { marketplaceHref } from "@/lib/commerce/marketplace-url";
+import { canonicalOrigin } from "@/lib/seo/metadata";
+import { notFound } from "next/navigation";
 const baseMetadata = {
   title: {
     absolute: "Guest Post Marketplace: Compare Sites | Name Retailer",
@@ -28,7 +31,6 @@ export default function Page({
   );
 }
 
-
 export async function generateMetadata({
   searchParams,
 }: {
@@ -38,10 +40,21 @@ export async function generateMetadata({
   const data = await publicProductPage(
     marketplaceQuery(searchQuery(params)).toString(),
   );
+  if (data.page > 1 && data.data.length === 0) notFound();
+  const cleanParams = { ...params };
+  if (cleanParams.sort === "domain") delete cleanParams.sort;
+  if (cleanParams.pageSize === "20") delete cleanParams.pageSize;
+  const facets = facetMetadata("/", cleanParams, data.data.length > 0);
+  const canonical = new URL(String(facets.alternates?.canonical));
   return pageMetadata(
     {
       ...baseMetadata,
-      ...facetMetadata("/", params, data.data.length > 0),
+      ...facets,
+      alternates: {
+        canonical:
+          canonicalOrigin +
+          marketplaceHref("/", canonical.searchParams.toString()),
+      },
       ...(data.page > 1
         ? {
             title: {

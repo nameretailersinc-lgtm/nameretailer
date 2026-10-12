@@ -140,8 +140,8 @@ test.describe("first-slice marketplace browser", () => {
     await expect(
       page.locator(".marketplace-table tbody tr").first(),
     ).toContainText("$120.01");
-    await page.getByRole("button", { name: "Next page", exact: true }).click();
-    await expect(page).toHaveURL(/page=2/);
+    await page.getByRole("link", { name: "Next page", exact: true }).click();
+    await expect(page).toHaveURL(/\/page\/2\//);
     await loaded(page);
     await expect(page.locator(".marketplace-table tbody tr")).toHaveCount(1);
     await page.reload();

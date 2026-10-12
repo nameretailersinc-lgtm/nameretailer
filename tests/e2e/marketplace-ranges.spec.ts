@@ -178,7 +178,7 @@ for (const width of [320, 375, 768, 1280])
     expect(params.get("minDa")).toBe("1");
     expect(params.get("maxDa")).toBe("10");
     await page.getByLabel("Results per page").selectOption("20");
-    await expect(page).toHaveURL(/pageSize=20/);
+    expect(new URL(page.url()).searchParams.has("pageSize")).toBe(false);
     await page.goto("/da-1-to-10/?q=range-reset-check&page=2");
     const resetRequest = page.waitForResponse((response) => {
       const url = new URL(response.url());

@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
   useSyncExternalStore,
+  type MouseEvent,
 } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -72,6 +73,11 @@ import {
   type MarketplaceRange,
 } from "@/lib/commerce/marketplace-ranges";
 import { marketplaceQuery } from "@/lib/commerce/marketplace-query";
+import {
+  marketplaceBasePath,
+  marketplaceHref,
+  marketplaceLocationQuery,
+} from "@/lib/commerce/marketplace-url";
 import {
   breadcrumbSchema,
   itemListNode,
@@ -1053,10 +1059,15 @@ function MarketplaceContent({
     serverCompactViewport,
   );
   const searchParams = useSearchParams();
-  const params = rangeQuery(searchParams.toString(), range);
   const pathname = usePathname();
-  const homePage = pathname === "/" && !metricView && !range;
-  const normalized = marketplaceQuery(searchParams.toString(), range);
+  const basePath = marketplaceBasePath(pathname);
+  const locationQuery = marketplaceLocationQuery(
+    pathname,
+    searchParams.toString(),
+  );
+  const params = rangeQuery(locationQuery, range);
+  const homePage = basePath === "/" && !metricView && !range;
+  const normalized = marketplaceQuery(locationQuery, range);
   const sort = normalized.get("sort")!;
   const page = Number(normalized.get("page"));
   const pageSize = Number(normalized.get("pageSize"));
@@ -1133,11 +1144,35 @@ function MarketplaceContent({
     }
     if (resetPage) next.set("page", "1");
     setError("");
-    window.history.pushState(null, "", `${pathname}?${next}`);
+    window.history.pushState(
+      null,
+      "",
+      marketplaceHref(basePath, next.toString()),
+    );
   }
   function reset() {
     setError("");
-    window.history.pushState(null, "", pathname);
+    window.history.pushState(null, "", basePath);
+  }
+  function pageHref(targetPage: number) {
+    const next = new URLSearchParams(query);
+    next.set("page", String(targetPage));
+    return marketplaceHref(basePath, next.toString());
+  }
+  function followPage(
+    event: MouseEvent<HTMLAnchorElement>,
+    targetPage: number,
+  ) {
+    if (
+      event.button !== 0 ||
+      event.metaKey ||
+      event.ctrlKey ||
+      event.shiftKey ||
+      event.altKey
+    )
+      return;
+    event.preventDefault();
+    navigate({ page: String(targetPage) }, false);
   }
   const activeFilters = filters.filter(
     (key) => normalized.has(key) && !(key in (range?.bounds || {})),
@@ -1930,14 +1965,20 @@ function MarketplaceContent({
                       : "No publications found"}
                 </p>
                 <div className="actions">
-                  <Button
-                    variant="secondary"
+                  <a
+                    className="button button-secondary"
                     aria-label="Previous page"
-                    disabled={page <= 1}
-                    onClick={() => navigate({ page: String(page - 1) }, false)}
+                    href={page > 1 ? pageHref(page - 1) : undefined}
+                    role={page <= 1 ? "link" : undefined}
+                    aria-disabled={page <= 1 || undefined}
+                    onClick={
+                      page > 1
+                        ? (event) => followPage(event, page - 1)
+                        : undefined
+                    }
                   >
                     <ChevronLeft size={16} aria-hidden="true" />
-                  </Button>
+                  </a>
                   {Array.from(
                     new Set([
                       1,
@@ -1952,24 +1993,35 @@ function MarketplaceContent({
                       {index > 0 && item - pages[index - 1] > 1 && (
                         <span aria-hidden="true">…</span>
                       )}
-                      <Button
-                        variant={item === page ? "primary" : "secondary"}
+                      <a
+                        className={`button button-${item === page ? "primary" : "secondary"}`}
+                        href={pageHref(item)}
                         aria-label={`Page ${item}`}
                         aria-current={item === page ? "page" : undefined}
-                        onClick={() => navigate({ page: String(item) }, false)}
+                        onClick={(event) => followPage(event, item)}
                       >
                         {item}
-                      </Button>
+                      </a>
                     </span>
                   ))}
-                  <Button
-                    variant="secondary"
+                  <a
+                    className="button button-secondary"
                     aria-label="Next page"
-                    disabled={page * pageSize >= value.total}
-                    onClick={() => navigate({ page: String(page + 1) }, false)}
+                    href={
+                      page * pageSize < value.total
+                        ? pageHref(page + 1)
+                        : undefined
+                    }
+                    role={page * pageSize >= value.total ? "link" : undefined}
+                    aria-disabled={page * pageSize >= value.total || undefined}
+                    onClick={
+                      page * pageSize < value.total
+                        ? (event) => followPage(event, page + 1)
+                        : undefined
+                    }
                   >
                     <ChevronRight size={16} aria-hidden="true" />
-                  </Button>
+                  </a>
                 </div>
               </nav>
             )}

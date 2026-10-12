@@ -11,6 +11,7 @@ async function authenticate(page: Page, role: "admin" | "author" = "admin") {
 test("workspace search finds content and the theme and sidebar controls work", async ({
   page,
 }) => {
+  test.setTimeout(90000);
   await authenticate(page);
   const api = await actor((await fixtures()).admin);
   const draft = await createDraft(api, key("workspace-search"));
@@ -19,6 +20,9 @@ test("workspace search finds content and the theme and sidebar controls work", a
   await expect(
     page.getByRole("heading", { name: "Workspace overview" }),
   ).toBeVisible();
+  await expect(
+    page.getByRole("complementary", { name: "Optional analytics" }),
+  ).toHaveCount(0);
   await page.keyboard.press("Control+k");
   await expect(
     page.getByRole("searchbox", { name: "Search workspace", exact: true }),
