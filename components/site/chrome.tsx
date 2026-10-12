@@ -29,10 +29,6 @@ export function SiteBrand() {
       </span>
     </Link>
   );
-  
-  
-
-  
 }
 export function TrustNote() {
   const claims = supportedTrustClaims(trustClaims);
@@ -127,6 +123,7 @@ export function SiteFooter() {
       <div className="reference-footer-bottom">
         <span>© {new Date().getUTCFullYear()} Name Retailer</span>
         <Link href="/site-map/">Page directory</Link>
+        <Link href="/cookies/#analytics-preferences">Cookie preferences</Link>
       </div>
     </footer>
   );
