@@ -156,23 +156,25 @@ export function Dashboard() {
   const user = useWorkspaceUser();
   const [data, setData] = useState<Data>();
   const [error, setError] = useState("");
-  const [refreshing, setRefreshing] = useState(false);
+  const [refreshing, setRefreshing] = useState(true);
   const [allChecks, setAllChecks] = useState(false);
   const [tipIndex, setTipIndex] = useState(0);
-  const load = useCallback(async (signal?: AbortSignal) => {
-    setRefreshing(true);
-    try {
-      const result = await api<{ data: Data }>("/api/admin/dashboard", {
-        signal,
-      });
-      setData(result.data);
-      setError("");
-    } catch (cause) {
-      if (!signal?.aborted) setError(errorMessage(cause));
-    } finally {
-      if (!signal?.aborted) setRefreshing(false);
-    }
-  }, []);
+  const load = useCallback(
+    (signal?: AbortSignal) =>
+      api<{ data: Data }>("/api/admin/dashboard", { signal })
+        .then((result) => {
+          if (signal?.aborted) return;
+          setData(result.data);
+          setError("");
+        })
+        .catch((cause) => {
+          if (!signal?.aborted) setError(errorMessage(cause));
+        })
+        .finally(() => {
+          if (!signal?.aborted) setRefreshing(false);
+        }),
+    [],
+  );
   useEffect(() => {
     const controller = new AbortController();
     void load(controller.signal);
@@ -216,7 +218,10 @@ export function Dashboard() {
               className="workspace-icon-button workspace-refresh"
               aria-label="Refresh dashboard"
               disabled={refreshing}
-              onClick={() => void load()}
+              onClick={() => {
+                setRefreshing(true);
+                void load();
+              }}
             >
               <RefreshCw
                 size={17}

@@ -10,6 +10,8 @@ Existing metric/range pages retain their query-based pagination. Browser-generat
 
 Validate with `npm test -- tests/unit/marketplace-url.test.ts tests/unit/seo-facets.test.ts`, `npm run check:urls` against a populated local server, and `tests/e2e/marketplace-seo.spec.ts` against the isolated test database.
 
+Verification on October 12, 2026: 59 relevant unit tests, both browser regressions, TypeScript, lint and the production build passed. Browser tests create and remove their own listings in the isolated test database. The broader URL audit passed its canonical, indexing, redirect, robots, category and pagination-status assertions, then stopped at the existing local sitemap endpoint returning 503 during a cold generation. The live sitemap returned HTTP 200.
+
 ## Search Console redirect report
 
 On October 12, 2026, all four reported blog URLs returned one 308 redirect to the trailing-slash URL followed by HTTP 200, a matching canonical and `index, follow`, including GET requests using a Googlebot user agent:

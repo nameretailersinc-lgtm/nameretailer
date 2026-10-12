@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { fixtures, key } from "./helpers";
+import { fixtures, key, origin } from "./helpers";
 import { randomUUID } from "node:crypto";
 import { setServers } from "node:dns";
 import dotenv from "dotenv";
@@ -85,7 +85,9 @@ test("old catalogue URLs redirect directly to crawlable, self-canonical pages", 
   ]) {
     const response = await request.get(source, { maxRedirects: 0 });
     expect(response.status()).toBe(301);
-    expect(new URL(response.headers().location).pathname).toBe(destination);
+    expect(new URL(response.headers().location, origin).pathname).toBe(
+      destination,
+    );
     const final = await request.get(destination, {
       maxRedirects: 0,
       headers: { "user-agent": "Googlebot" },
