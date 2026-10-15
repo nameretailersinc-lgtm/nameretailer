@@ -14,6 +14,7 @@ import { marketplaceRangeBySlug } from "@/lib/commerce/marketplace-ranges";
 import { rangeCopy } from "@/lib/site/range-copy";
 import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
 import { publicationPath } from "@/lib/commerce/publication-pages";
+import { blogSitemapEntry } from "@/lib/blog/seo";
 
 const staticPaths = [
   "/",
@@ -25,6 +26,7 @@ const staticPaths = [
   "/how-to-buy-links/",
   "/seo-tools/",
   "/guides/",
+  "/domain-names/",
   "/blog/",
   "/about/",
   "/methodology/",
@@ -35,6 +37,7 @@ const staticPaths = [
   "/refund-policy/",
   "/privacy/",
   "/cookies/",
+  "/site-map/",
 ];
 
 export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
@@ -101,10 +104,6 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     // Database unavailable: profiles are omitted until it returns.
   }
   try {
-    for (const category of await blogCategories())
-      entries.push({
-        url: `${canonicalOrigin}/blog/category/${categorySlug(category)}/`,
-      });
     const posts = await (
       await getDb()
     )
@@ -116,18 +115,27 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
           "data.type": "post",
           slug: { $regex: "^blog/" },
         },
-        { projection: { _id: 0, slug: 1, updatedAt: 1 } },
+        { projection: { _id: 0 } },
       )
       .toArray();
+    const eligibleCategoryIds = new Set<string>();
     for (const post of posts) {
-      const lastModified = Date.parse(post.updatedAt);
-      entries.push({
-        url: `${canonicalOrigin}/${post.slug.replace(/^\/+|\/+$/g, "")}/`,
-        ...(Number.isFinite(lastModified)
-          ? { lastModified: new Date(lastModified) }
-          : {}),
-      });
+      const entry = blogSitemapEntry(post);
+      if (entry) {
+        entries.push(entry);
+        if (Array.isArray(post.data.categoryIds))
+          for (const id of post.data.categoryIds)
+            if (typeof id === "string") eligibleCategoryIds.add(id);
+      }
     }
+    for (const category of await blogCategories())
+      if (
+        eligibleCategoryIds.has(category.id) &&
+        /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(categorySlug(category))
+      )
+        entries.push({
+          url: `${canonicalOrigin}/blog/category/${categorySlug(category)}/`,
+        });
   } catch {
     // Database unavailable: still serve the static public routes.
   }

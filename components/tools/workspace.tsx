@@ -17,6 +17,7 @@ import {
   validateSchema,
 } from "@/lib/tools/core";
 import { ImageWorkspace } from "./image-workspace";
+import { DomainLengthChecker } from "./domain-length-checker";
 
 const textModes: Record<string, Array<[string, string]>> = {
   "text-case-converter": [
@@ -157,6 +158,7 @@ export function ToolWorkspace({ tool }: { tool: Tool }) {
       ? ["C", "F", "K"]
       : Object.keys(tool.slug === "length-converter" ? lengthUnits : sizeUnits);
   if (tool.kind === "image") return <ImageWorkspace tool={tool} />;
+  if (tool.slug === "domain-length-checker") return <DomainLengthChecker />;
   return (
     <section
       className="reference-card tool-workspace"

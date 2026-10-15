@@ -1,7 +1,36 @@
 import { beforeEach, expect, it, vi } from "vitest";
-import { cachedAsync, clearTtlCache } from "@/lib/cache/ttl";
+import {
+  cachedAsync,
+  clearTtlCache,
+  invalidateTtlCache,
+} from "@/lib/cache/ttl";
 
 beforeEach(() => clearTtlCache());
+
+it("does not let an in-flight read repopulate a cache after publishing invalidates it", async () => {
+  let finish!: (value: string) => void;
+  const pending = cachedAsync(
+    "sitemap-files",
+    { ttlMs: 1000 },
+    () =>
+      new Promise<string>((resolve) => {
+        finish = resolve;
+      }),
+  );
+  invalidateTtlCache("sitemap-files");
+  expect(
+    await cachedAsync("sitemap-files", { ttlMs: 1000 }, async () => "new"),
+  ).toBe("new");
+  finish("old");
+  await pending;
+  expect(
+    await cachedAsync(
+      "sitemap-files",
+      { ttlMs: 1000 },
+      async () => "unexpected",
+    ),
+  ).toBe("new");
+});
 
 it("shares one load between concurrent callers and then serves the cache", async () => {
   const load = vi.fn(async () => "value");

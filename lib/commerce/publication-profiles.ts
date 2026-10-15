@@ -34,7 +34,7 @@ const publicFields = {
 } as const;
 
 /** Detail pages use the same active/committed visibility as the marketplace. */
-async function activePublicationFilter(): Promise<Filter<Product>> {
+export async function activePublicationFilter(): Promise<Filter<Product>> {
   const { imports } = await productStore();
   const committed = await imports
     .find({ status: "committed" }, { projection: { _id: 1 } })
@@ -133,25 +133,10 @@ export function profileSitemapEntries(): Promise<PublicProduct[]> {
         .sort({ domain: 1, id: 1 })
         .maxTimeMS(10000)
         .toArray();
-      const fingerprints = new Map<string, number>();
-      const normalized = (text: string) =>
-        text
-          .toLowerCase()
-          .replace(/[^\p{L}\p{N}]+/gu, " ")
-          .trim();
-      for (const row of rows) {
-        const key = normalized(row.requirements || "");
-        fingerprints.set(key, (fingerprints.get(key) || 0) + 1);
-      }
       const paths = new Set<string>();
       return rows.filter((row) => {
         const path = publicationPath(row);
-        if (
-          !path ||
-          paths.has(path) ||
-          !hasPublicationProfile(row) ||
-          fingerprints.get(normalized(row.requirements)) !== 1
-        )
+        if (!path || paths.has(path) || !hasPublicationProfile(row))
           return false;
         paths.add(path);
         return true;

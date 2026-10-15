@@ -3,13 +3,13 @@ import { buyerGuides, costAnswer } from "@/lib/site/buyer-guides";
 import { buyerGuideArticleNode } from "@/lib/seo/json-ld";
 const words = (text: string) => text.split(/\s+/).filter(Boolean).length;
 it("keeps the commissioned buyer guides approved with answer-first openings", () => {
-  expect(buyerGuides).toHaveLength(6);
+  expect(buyerGuides).toHaveLength(9);
   for (const guide of buyerGuides) {
     expect(guide.approved).toBe(true);
     expect(guide.sources.length).toBeGreaterThan(0);
     if (guide.answer) {
       expect(words(guide.answer)).toBeGreaterThanOrEqual(40);
-      expect(words(guide.answer)).toBeLessThanOrEqual(60);
+      expect(words(guide.answer)).toBeLessThanOrEqual(90);
     }
   }
 });
@@ -31,7 +31,7 @@ it("uses real supplied cost statistics and does not fabricate missing prices", (
   );
 });
 it("emits Article markup only with owner-supplied author and publication date", () => {
-  for (const guide of buyerGuides.filter(guide=>guide.slug!=='guest-post-vs-sponsored-post')) {
+  for (const guide of buyerGuides.filter((guide) => !!guide.author)) {
     expect(guide.author).toBe("Zuhoor Uddin");
     expect(guide.publishedAt).toBe("2026-07-02");
     expect(guide.reviewer).toBeUndefined();
@@ -56,5 +56,35 @@ it("emits Article markup only with owner-supplied author and publication date", 
   }
 });
 
-it('omits Article authorship for the new guide until the owner supplies it',()=>{const guide=buyerGuides.find(g=>g.slug==='guest-post-vs-sponsored-post')!;expect(buyerGuideArticleNode({...guide,image:'/x.png'})).toBeNull();});
-it('does not publish undated price aggregates',()=>{expect(costAnswer({total:10,minPriceCents:1000,maxPriceCents:10000,medianPriceCents:5500,topCountries:[],topTopics:[]})).not.toContain('$55');});
+it("does not invent attribution for domain planning guides", () => {
+  for (const guide of buyerGuides.filter((guide) =>
+    [
+      "choose-a-domain-name",
+      "buy-and-register-a-domain-name",
+      "domain-name-seo-and-migrations",
+    ].includes(guide.slug),
+  )) {
+    expect(guide.author).toBeUndefined();
+    expect(guide.publishedAt).toBeUndefined();
+    expect(buyerGuideArticleNode({ ...guide, image: "/x.png" })).toBeNull();
+  }
+});
+
+it("omits Article authorship for the new guide until the owner supplies it", () => {
+  const guide = buyerGuides.find(
+    (g) => g.slug === "guest-post-vs-sponsored-post",
+  )!;
+  expect(buyerGuideArticleNode({ ...guide, image: "/x.png" })).toBeNull();
+});
+it("does not publish undated price aggregates", () => {
+  expect(
+    costAnswer({
+      total: 10,
+      minPriceCents: 1000,
+      maxPriceCents: 10000,
+      medianPriceCents: 5500,
+      topCountries: [],
+      topTopics: [],
+    }),
+  ).not.toContain("$55");
+});

@@ -1,6 +1,7 @@
 import type { Tool } from "./catalog";
 
 export const toolIcons: Record<string, string> = {
+  "domain-length-checker": "39_domain_rating_icon.png",
   "word-counter": "13_word_counter_icon.png",
   "text-case-converter": "14_text_case_icon.png",
   "reverse-text": "15_reverse_text_icon.png",

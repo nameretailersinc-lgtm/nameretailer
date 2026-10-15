@@ -5,6 +5,7 @@ import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import type { Metadata } from "next";
 import { DirectoryHero, ToolsShell } from "@/components/tools/presentation";
 import { ToolDirectory } from "@/components/tools/directory";
+import Link from "next/link";
 const baseMetadata: Metadata = {
   title: "Free SEO Tools for Guest Posts and Link Building",
   description:
@@ -16,6 +17,19 @@ export default function Page() {
     <ToolsShell>
       <DirectoryHero />
       <ToolDirectory />
+      <section className="reference-card">
+        <h2>Planning a business domain?</h2>
+        <p>
+          <Link href="/domain-names/">
+            Explore naming, registration and domain SEO guidance
+          </Link>
+          , then{" "}
+          <Link href="/domain-length-checker/">
+            check the length of your shortlist
+          </Link>
+          .
+        </p>
+      </section>
       <ToolsResearch />
     </ToolsShell>
   );

@@ -1,4 +1,5 @@
 import type { CatalogueStatistics } from "../commerce/catalogue-statistics";
+import { domainGuides } from "./domain-guides";
 export type BuyerGuide = {
   slug: string;
   title: string;
@@ -39,6 +40,7 @@ const traffic = [
 // Content approved by owner 2026-10-09; author and original publication date supplied by owner. No reviewer published.
 // Sections marked "expanded 2026-10-09" were added in the SEO audit pass and need the author's review.
 export const buyerGuides: BuyerGuide[] = [
+  ...domainGuides,
   {
     slug: "guest-post-cost",
     title: "How much does a guest post cost?",

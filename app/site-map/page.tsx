@@ -4,65 +4,84 @@ import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { InformationShell } from "@/components/site/information-page";
+import { directories } from "@/lib/site/directories";
+import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
+import { buyerGuides } from "@/lib/site/buyer-guides";
+import { tools } from "@/lib/tools/catalog";
 const baseMetadata: Metadata = {
-  robots: { index: false, follow: true },
+  robots: { index: true, follow: true },
   title: "Name Retailer Site Map: All Pages and Resources",
   description:
-    "Find marketplace, guide, tool, company and support pages on Name Retailer.",
+    "Browse every public Name Retailer page: guest posting directories, DA, DR, traffic and price ranges, buying guides, free SEO tools, the journal, and company and policy pages.",
 };
-const groups = [
+type LinkGroup = [title: string, description: string, links: [string, string][]];
+const groups: LinkGroup[] = [
   [
     "Marketplace",
+    "Browse and compare publications that accept guest posts, with prices and SEO metrics.",
     [
       ["Home", "/"],
-      ["Publications", "/"],
       ["Guest posting sites", "/guest-posting-sites/"],
-      ["Technology guest posting sites", "/technology-guest-posting-sites/"],
-      ["SaaS guest posting sites", "/saas-guest-posting-sites/"],
-      ["Guest posting sites under $50", "/guest-posting-sites-under-50/"],
-      ["Guest posting sites in the USA", "/guest-posting-sites-usa/"],
-      ["Marketing guest posting sites", "/marketing-guest-posting-sites/"],
-      ["Business guest posting sites", "/business-guest-posting-sites/"],
-      ["Health guest posting sites", "/health-guest-posting-sites/"],
-      [
-        "Travel and lifestyle guest posting sites",
-        "/travel-lifestyle-guest-posting-sites/",
-      ],
       ["Marketplace views", "/guest-post-marketplace/"],
-      ["Domain Rating", "/guest-post-by-dr/"],
+      ["Guest post prices", "/guest-post-prices/"],
+      ["Guest posts by Domain Rating", "/guest-post-by-dr/"],
       ["Services", "/services/"],
       ["How it works", "/how-it-works/"],
     ],
   ],
   [
-    "Resources",
+    "Guest posting directories",
+    "Curated lists by topic, region and budget.",
+    directories.map((d): [string, string] => [d.label, `/${d.slug}/`]),
+  ],
+  ...marketplaceGroups.map((group): LinkGroup => [
+    group.title,
+    group.description,
+    group.ranges
+      .filter((r) => r.slug !== "guest-posting-sites-under-50")
+      .map((r): [string, string] => [r.label, `/${r.slug}/`]),
+  ]),
+  [
+    "Buying guides",
+    "Plain-language answers on cost, quality and risk before you buy a link.",
     [
-      ["Free tools", "/seo-tools/"],
-      ["Word counter", "/word-counter/"],
-      ["Guides", "/guides/"],
-      ["Buying guide", "/how-to-buy-links/"],
-      ["SEO, AEO & GEO journal", "/blog/"],
+      ["All guides", "/guides/"],
+      ["How to buy links", "/how-to-buy-links/"],
+      ...buyerGuides
+        .filter((g) => g.approved)
+        .map((g): [string, string] => [g.title, `/guides/${g.slug}/`]),
     ],
   ],
   [
+    "Free SEO tools",
+    "Browser-based utilities for writers and link builders.",
+    [
+      ["All SEO tools", "/seo-tools/"],
+      ...tools.map((t): [string, string] => [t.title, `/${t.slug}/`]),
+    ],
+  ],
+  [
+    "Journal",
+    "SEO, AEO and GEO articles from Name Retailer.",
+    [["SEO, AEO & GEO journal", "/blog/"]],
+  ],
+  [
     "Company and support",
+    "About Name Retailer, how we work, and where to get help.",
     [
       ["About", "/about/"],
+      ["Methodology", "/methodology/"],
       ["Contact", "/contact/"],
       ["FAQ", "/faq/"],
       ["Help center", "/help-center/"],
       ["Policy information", "/policies/"],
+      ["Refund policy", "/refund-policy/"],
+      ["Privacy", "/privacy/"],
+      ["Cookies", "/cookies/"],
+      ["Terms", "/terms/"],
     ],
   ],
-  [
-    "Your account",
-    [
-      ["Account", "/my-account/"],
-      ["Planning cart", "/cart/"],
-      ["Forgot password", "/my-account/forgot-password/"],
-    ],
-  ],
-] as const;
+];
 export default function Page() {
   return (
     <InformationShell
@@ -74,9 +93,10 @@ export default function Page() {
       image="/03_listing_browser_panel.png"
     >
       <div className="reference-information-sections">
-        {groups.map(([title, links]) => (
+        {groups.map(([title, description, links]) => (
           <section className="reference-card" key={title}>
             <h2>{title}</h2>
+            <p>{description}</p>
             <ul>
               {links.map(([name, href]) => (
                 <li key={href}>

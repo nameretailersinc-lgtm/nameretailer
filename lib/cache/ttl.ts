@@ -50,6 +50,8 @@ export async function cachedAsync<T>(
   if (pending) return pending as Promise<T>;
   const loading = withTimeout(load(), options.timeoutMs ?? 20000, key)
     .then((value) => {
+      // A publishing mutation may have invalidated this load while it ran.
+      if (store.inflight.get(key) !== loading) return value;
       store.entries.delete(key);
       store.entries.set(key, { value, storedAt: Date.now() });
       while (store.entries.size > maxEntries)
@@ -63,7 +65,9 @@ export async function cachedAsync<T>(
       }
       throw error;
     })
-    .finally(() => store.inflight.delete(key));
+    .finally(() => {
+      if (store.inflight.get(key) === loading) store.inflight.delete(key);
+    });
   store.inflight.set(key, loading);
   return loading;
 }
@@ -71,4 +75,9 @@ export async function cachedAsync<T>(
 export function clearTtlCache() {
   store.entries.clear();
   store.inflight.clear();
+}
+
+export function invalidateTtlCache(key: string) {
+  store.entries.delete(key);
+  store.inflight.delete(key);
 }

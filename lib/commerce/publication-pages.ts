@@ -5,7 +5,9 @@ import type { PublicProduct } from "./types";
  * 2026-10-09: a gated subset, not one page per listing). Meeting it means the
  * listing has strong, complete supplied metrics, not that Name Retailer has
  * editorially vetted the publication. Keep in sync with profileFilter().
- * Indexing also requires a complete audience, price and substantial unique text.
+ * Indexing also requires a complete audience and price. Publisher requirements
+ * text is optional: profile pages carry computed per-listing comparisons
+ * (rank, percentile, price per visit, peers; see publication-insights.ts).
  */
 export const PROFILE_RULE = {
   minTraffic: 500_000,
@@ -52,11 +54,6 @@ export function hasPublicationProfile(product: ProfileCandidate): boolean {
     typeof product.priceCents === "number" &&
     Number.isSafeInteger(product.priceCents) &&
     product.priceCents > 0 &&
-    (product.requirements || "").trim().split(/\s+/).filter(Boolean).length >=
-      80 &&
-    new Set(
-      (product.requirements || "").toLowerCase().match(/[\p{L}\p{N}]+/gu) || [],
-    ).size >= 40 &&
     !(PROFILE_RULE.excludedCategories as readonly string[]).includes(
       product.category || "",
     ) &&

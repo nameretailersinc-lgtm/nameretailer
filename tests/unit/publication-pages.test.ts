@@ -112,27 +112,16 @@ it("indexes range pages only with enough listings and unique copy", () => {
   ).toBe(false);
 });
 
-it("requires substantial distinct content and all audience fields for indexing", () => {
-  const sentence =
-    "Explain audience research editorial expectations technical examples content guidelines citation sources reporting process software evidence industry specialist readers publication topics market geography language budget pricing placement disclosure sponsored qualification accessibility photographs graphics ownership permissions factual accuracy useful descriptions practical recommendations current details product comparisons original manuscripts review scope delivery timing publisher contacts organisation quality standards questions answers implementation results measurements context relevance considerations.";
+it("requires all audience fields for indexing and treats requirements text as optional", () => {
   const complete = {
     ...strong,
     country: "United States",
     language: "English",
     priceCents: 9000,
-    requirements: sentence + " " + sentence,
+    requirements: "",
   };
   expect(hasPublicationProfile(complete)).toBe(true);
   expect(hasPublicationProfile({ ...complete, country: "" })).toBe(false);
   expect(hasPublicationProfile({ ...complete, language: "" })).toBe(false);
   expect(hasPublicationProfile({ ...complete, priceCents: 0 })).toBe(false);
-  expect(
-    hasPublicationProfile({ ...complete, requirements: "Repeat ".repeat(100) }),
-  ).toBe(false);
-  expect(
-    hasPublicationProfile({
-      ...complete,
-      requirements: "A short requirement.",
-    }),
-  ).toBe(false);
 });

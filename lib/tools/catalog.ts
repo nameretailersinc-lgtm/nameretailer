@@ -33,6 +33,14 @@ const group = (
   }));
 export const tools: Tool[] = [
   {
+    slug: "domain-length-checker",
+    title: "Domain name length checker",
+    group: "SEO research and planning",
+    kind: "text",
+    description: "Check domain and label lengths, including the ASCII form of internationalized names. No availability lookup.",
+    mode: "Browser-local",
+  },
+  {
     slug: "word-counter",
     title: "Word counter",
     group: "Writing and text",

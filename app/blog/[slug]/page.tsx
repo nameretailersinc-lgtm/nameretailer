@@ -1,7 +1,7 @@
 import { RelatedResearch } from "@/components/site/related-research";
 import { EditorialByline } from "@/components/site/editorial-byline";
 import { pageMetadata } from "@/lib/seo/page-metadata";
-import { facetMetadata } from "@/lib/seo/facets";
+import { blogRouteMetadata } from "@/lib/blog/seo";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import Link from "next/link";
 import Image from "next/image";
@@ -37,7 +37,7 @@ export async function generateMetadata({
   return pageMetadata(
     {
       ...metadata,
-      ...facetMetadata(`/${record.slug}/`, await searchParams),
+      ...blogRouteMetadata(record, await searchParams),
       ...(localArtwork
         ? {
             openGraph: {

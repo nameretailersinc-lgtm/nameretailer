@@ -5,6 +5,7 @@ import { EditorialByline } from "@/components/site/editorial-byline";
 import { DirectorySummary } from "@/components/site/directory-summary";
 import { MetricDefinitions } from "@/components/site/metric-definitions";
 import { buyerGuides, costAnswer } from "@/lib/site/buyer-guides";
+import { domainGuides } from "@/lib/site/domain-guides";
 import { priceBreakdown, type PriceRow } from "@/lib/commerce/price-breakdown";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { pageMetadata } from "@/lib/seo/page-metadata";
@@ -52,7 +53,7 @@ function PriceTable({
   return (
     <section className="reference-card">
       <h2>{caption}</h2>
-      <div className="directory-table-wrap">
+      <div className="directory-table-wrap" tabIndex={0} role="region" aria-label={caption}>
         <table className="directory-table">
           <caption>
             {caption}: active listings, median and middle-half price range in
@@ -142,7 +143,7 @@ export default async function Page({ params }: Props) {
         </section>
       ))}
       {guide.table && (
-        <div className="directory-table-wrap">
+        <div className="directory-table-wrap" tabIndex={0} role="region" aria-label={`${guide.title} comparison`}>
           <table className="directory-table">
             <caption>{guide.title} comparison</caption>
             <thead>
@@ -201,6 +202,28 @@ export default async function Page({ params }: Props) {
       )}
       {(guide.slug === "da-vs-dr-and-traffic" ||
         guide.slug === "vet-a-guest-post-site") && <MetricDefinitions />}
+      {domainGuides.some((item) => item.slug === guide.slug) && (
+        <section className="reference-card">
+          <h2>Continue planning your domain</h2>
+          <ul>
+            <li>
+              <Link href="/domain-names/">Domain planning hub</Link>
+            </li>
+            <li>
+              <Link href="/domain-length-checker/">
+                Domain name length checker
+              </Link>
+            </li>
+            {domainGuides
+              .filter((item) => item.slug !== guide.slug)
+              .map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/guides/${item.slug}/`}>{item.title}</Link>
+                </li>
+              ))}
+          </ul>
+        </section>
+      )}
       <section className="reference-card">
         <h2>Sources</h2>
         <p>Sources checked {guide.sourcesCheckedAt || "2026-10-09"}.</p>

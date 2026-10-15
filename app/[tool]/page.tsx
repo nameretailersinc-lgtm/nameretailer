@@ -40,7 +40,7 @@ export function generateStaticParams() {
     ...marketplaceRanges.map((range) => ({ tool: range.slug })),
     ...directories.map((directory) => ({ tool: directory.slug })),
     ...tools
-      .filter((tool) => tool.slug !== "word-counter")
+      .filter((tool) => !["word-counter", "domain-length-checker"].includes(tool.slug))
       .map((tool) => ({ tool: tool.slug })),
   ];
 }

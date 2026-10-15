@@ -28,7 +28,7 @@ for (const width of [320, 375, 768, 820, 1024, 1280])
       await expect(page.locator("h1")).toHaveCount(1);
       await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
         "content",
-        ["/policies/", "/site-map/"].includes(route) ? /noindex/ : /\bindex\b/,
+        ["/policies/"].includes(route) ? /noindex/ : /\bindex\b/,
       );
       await page.locator("main img").evaluateAll((images) => {
         for (const image of images)

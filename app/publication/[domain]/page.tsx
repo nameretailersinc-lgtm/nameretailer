@@ -18,6 +18,7 @@ import {
   publicationIndexable,
   relatedProfiles,
 } from "@/lib/commerce/publication-profiles";
+import { publicationInsights } from "@/lib/commerce/publication-insights";
 import type { PublicProduct } from "@/lib/commerce/types";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
@@ -107,12 +108,13 @@ function Fact({ term, value }: { term: string; value?: string | null }) {
 
 export default async function Page({ params }: Props) {
   const { host, path, product } = await load(params);
-  const [topic, catalogue, related] = await Promise.all([
+  const [topic, catalogue, related, insights] = await Promise.all([
     catalogueSummary(
       new URLSearchParams({ category: product.category }).toString(),
     ).catch(() => null),
     catalogueSummary("").catch(() => null),
     relatedProfiles(product).catch((): PublicProduct[] => []),
+    publicationInsights(product).catch(() => null),
   ]);
   const m = product.metrics;
   const topicComparison =
@@ -132,6 +134,33 @@ export default async function Page({ params }: Props) {
       : null,
   ].filter(Boolean);
   const lead = `${host} is listed${product.category ? ` in the ${product.category} topic` : ""}${product.country ? ` for ${product.country}` : ""}${product.language ? `, publishing in ${product.language}` : ""}. A placement costs ${usd(product.priceCents)}.${suppliedMetrics.length ? ` The publisher supplied ${suppliedMetrics.join(", ")}.` : ""}`;
+  const per100k = insights ? insights.centsPer100kVisits : null;
+  const turnaroundNote =
+    product.turnaround && insights?.topicMedianTurnaroundDays != null
+      ? `${product.turnaround} against a ${product.category} median of about ${Math.round(insights.topicMedianTurnaroundDays)} days`
+      : product.turnaround || null;
+  const faq: Array<[string, string]> = [
+    [
+      `How much does a guest post on ${host} cost?`,
+      `A placement on ${host} is listed at ${usd(product.priceCents)}.${topicComparison && topic?.medianPriceCents ? ` That is ${topicComparison} the ${usd(topic.medianPriceCents)} median for ${product.category} listings.` : ""} Check what the price covers before ordering.`,
+    ],
+    [
+      `What are the Domain Rating and traffic of ${host}?`,
+      `The listing supplies ${suppliedMetrics.length ? suppliedMetrics.join(", ") : "no metrics"}. These figures come with the listing and are not independently verified by Name Retailer.`,
+    ],
+    [
+      `Which topic and audience does ${host} cover?`,
+      `${host} is listed in ${product.category}, for ${product.country}, publishing in ${product.language}.`,
+    ],
+    ...(turnaroundNote
+      ? ([
+          [
+            `How long does a placement on ${host} take?`,
+            `The listing states a turnaround of ${turnaroundNote}.`,
+          ],
+        ] as Array<[string, string]>)
+      : []),
+  ];
   return (
     <InformationShell
       path={path}
@@ -155,6 +184,21 @@ export default async function Page({ params }: Props) {
             isPartOf: { "@id": `${canonicalOrigin}/#website` },
             about: { "@type": "WebSite", name: host, url: product.domain },
             dateModified: product.updatedAt,
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonLd({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "@id": `${url}#faq`,
+            mainEntity: faq.map(([name, text]) => ({
+              "@type": "Question",
+              name,
+              acceptedAnswer: { "@type": "Answer", text },
+            })),
           }),
         }}
       />
@@ -215,6 +259,71 @@ export default async function Page({ params }: Props) {
             <span className="screen-reader-only"> (opens in a new tab)</span>
           </a>
         </div>
+      </section>
+      {insights && insights.topicTotal > 1 && (
+        <section className="reference-card" aria-labelledby="how-it-ranks">
+          <h2 id="how-it-ranks">How {host} compares in {product.category}</h2>
+          <p>
+            Among {number(insights.topicTotal)} active {product.category}{" "}
+            listings, {host} ranks <strong>#{number(insights.topicTrafficRank)}</strong>{" "}
+            for estimated traffic and sits above{" "}
+            <strong>{insights.topicDrPercentile}%</strong> of them on Domain
+            Rating. Across all {number(insights.catalogueTotal)} active
+            listings its traffic rank is #{number(insights.catalogueTrafficRank)}.
+          </p>
+          <p>
+            Its placement costs {usd(product.priceCents)}, which is cheaper
+            than {insights.topicCheaperThanPercent}% of {product.category}{" "}
+            listings
+            {per100k !== null && (
+              <>
+                {" "}
+                and works out to about{" "}
+                <strong>{usd(Math.round(per100k))}</strong> per 100,000
+                estimated monthly visits
+                {insights.topicMedianCentsPer100kVisits !== null && (
+                  <>
+                    {" "}
+                    (topic median:{" "}
+                    {usd(Math.round(insights.topicMedianCentsPer100kVisits))})
+                  </>
+                )}
+              </>
+            )}
+            .{turnaroundNote && <> Stated turnaround: {turnaroundNote}.</>}
+          </p>
+          {insights.peers.length > 0 && (
+            <>
+              <h3>Similar publications (DR within 5 points)</h3>
+              <ul className="directory-link-list">
+                {insights.peers.map((peer) => {
+                  const href = publicationPath(peer);
+                  const peerHost = publicationHost(peer.domain, false);
+                  if (!href || !peerHost) return null;
+                  return (
+                    <li key={peer.id}>
+                      <Link href={href}>{peerHost}</Link> · DR{" "}
+                      {peer.metrics.dr} · {usd(peer.priceCents)}
+                    </li>
+                  );
+                })}
+              </ul>
+            </>
+          )}
+          <p>
+            Rankings use the supplied metrics and the active catalogue at the
+            time of the request; they are comparisons, not quality ratings.
+          </p>
+        </section>
+      )}
+      <section className="reference-card" aria-labelledby="publication-faq">
+        <h2 id="publication-faq">Questions about {host}</h2>
+        {faq.map(([question, answer]) => (
+          <div key={question}>
+            <h3>{question}</h3>
+            <p>{answer}</p>
+          </div>
+        ))}
       </section>
       {(topicComparison || catalogueComparison) && (
         <section className="reference-card" aria-labelledby="price-context">
