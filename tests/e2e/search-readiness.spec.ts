@@ -1,5 +1,55 @@
 import { test, expect } from "@playwright/test";
 
+test("URL mode sends the address and analyzes fetched HTML", async ({
+  page,
+}) => {
+  await page.goto("/aeo-geo-seo-checker/");
+  await page.getByLabel("Check from").selectOption("url");
+  await expect(page.getByLabel("Page HTML", { exact: true })).toHaveCount(0);
+  await page.route("**/api/tools/readiness/", async (route) => {
+    expect(route.request().postDataJSON()).toEqual({
+      input: "https://example.com/guide/",
+    });
+    await route.fulfill({
+      json: {
+        html: "<title>A useful guide to search readiness</title><h1>Guide</h1>",
+        url: "https://example.com/final/",
+      },
+    });
+  });
+  await page
+    .getByLabel("Page URL", { exact: true })
+    .fill("https://example.com/guide/");
+  await page
+    .getByRole("button", { name: "Run AEO, GEO and SEO check" })
+    .click();
+  await expect(
+    page.getByText("Checked URL: https://example.com/final/", { exact: true }),
+  ).toBeVisible();
+  await expect(
+    page.getByText("Pass: Page title", { exact: true }),
+  ).toBeVisible();
+  await page.unroute("**/api/tools/readiness/");
+  await page.route("**/api/tools/readiness/", (route) =>
+    route.fulfill({
+      status: 422,
+      json: { error: "Only publicly accessible websites can be checked." },
+    }),
+  );
+  await page
+    .getByRole("button", { name: "Run AEO, GEO and SEO check" })
+    .click();
+  await expect(
+    page.locator(".tool-workspace").getByRole("alert"),
+  ).toContainText("publicly accessible");
+  await expect(
+    page.getByRole("button", { name: "Run AEO, GEO and SEO check" }),
+  ).toBeEnabled();
+  await expect(
+    page.getByRole("button", { name: "Download report" }),
+  ).toHaveCount(0);
+});
+
 test("search readiness inspects HTML safely and exports actionable reports", async ({
   page,
 }) => {
@@ -59,5 +109,7 @@ test("search readiness inspects HTML safely and exports actionable reports", asy
   await page
     .getByRole("button", { name: "Run AEO, GEO and SEO check" })
     .click();
-  await expect(page.locator(".tool-workspace").getByRole("alert")).toContainText("Paste page HTML");
+  await expect(
+    page.locator(".tool-workspace").getByRole("alert"),
+  ).toContainText("Paste page HTML");
 });

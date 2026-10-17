@@ -25,7 +25,10 @@ export function ToolsShell({ children }: { children: React.ReactNode }) {
 }
 
 export function ToolsBenefits({ tool }: { tool?: Tool }) {
-  const server = tool?.kind === "amp" || tool?.kind === "rating";
+  const server =
+    tool?.kind === "amp" ||
+    tool?.kind === "rating" ||
+    tool?.slug === "aeo-geo-seo-checker";
   const image = tool?.kind === "image";
   const benefits = [
     [
@@ -188,7 +191,7 @@ export function ToolSteps({ tool }: { tool: Tool }) {
       image
         ? "Choose a file or drop it into the workspace. Keep your original: all edits produce a separate copy."
         : readiness
-          ? "Paste the full page HTML, including title, metadata and body content. The HTML stays in your browser."
+          ? "Enter a public page URL to fetch its HTML, or paste the full page source to check it locally."
           : counter
             ? "Paste your text or start writing. Word and character counts update as you type."
             : "Use the labeled fields to add your text, values or report. Choose the settings that fit your task.",

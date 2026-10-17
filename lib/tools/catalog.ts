@@ -38,8 +38,8 @@ export const tools: Tool[] = [
     group: "SEO research and planning",
     kind: "markup",
     description:
-      "Audit pasted page HTML for search optimization, answer readiness and signals useful to generative search. Get three checklists with practical fixes.",
-    mode: "Browser-local",
+      "Check a public page URL or pasted HTML for search optimization, answer readiness and signals useful to generative search. Get three checklists with practical fixes.",
+    mode: "Browser-local or server URL fetch",
   },
   {
     slug: "domain-length-checker",
