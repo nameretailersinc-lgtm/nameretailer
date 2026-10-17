@@ -2,6 +2,15 @@
 
 import { useState, useRef, useEffect } from "react";
 import {
+  ArrowUpRight,
+  CheckCircle2,
+  Download,
+  Globe2,
+  ShieldCheck,
+  Sparkles,
+  TriangleAlert,
+} from "lucide-react";
+import {
   inspectSearchReadiness,
   type ReadinessReport,
 } from "@/lib/tools/search-readiness";
@@ -26,6 +35,10 @@ export function SearchReadinessChecker() {
   const [reports, setReports] = useState<ReadinessReport[]>([]);
   const [error, setError] = useState("");
   const [status, setStatus] = useState("");
+  const [issuesOnly, setIssuesOnly] = useState(false);
+  const checks = reports.flatMap((report) => report.checks);
+  const passed = checks.filter((check) => check.passed).length;
+  const score = checks.length ? Math.round((passed / checks.length) * 100) : 0;
   const reportText = reports
     .map(
       (report) =>
@@ -34,10 +47,19 @@ export function SearchReadinessChecker() {
     .join("\n\n");
   return (
     <section
-      className="reference-card tool-workspace"
+      className="reference-card tool-workspace readiness-workspace"
       aria-label="AEO, GEO and SEO checker workspace"
     >
-      <h2>Check your page’s search readiness</h2>
+      <div className="readiness-intro">
+        <span className="readiness-kicker">
+          <Sparkles size={16} aria-hidden="true" /> One page. Three
+          perspectives.
+        </span>
+        <h2>Check your page’s search readiness</h2>
+        <p className="readiness-subtitle">
+          Turn your page into a practical improvement plan.
+        </p>
+      </div>
       <p>
         Enter a public page URL or paste its full HTML source, including the
         head and body. URL checks send the address to our server to fetch the
@@ -124,6 +146,12 @@ export function SearchReadinessChecker() {
           <option value="html">Pasted HTML</option>
           <option value="url">Page URL</option>
         </select>
+        <div className="readiness-assurance">
+          <ShieldCheck size={16} aria-hidden="true" />
+          <span>
+            No account needed · No scripts executed · 14 transparent checks
+          </span>
+        </div>
         {mode === "url" ? (
           <>
             <label htmlFor="readiness-url">Page URL</label>
@@ -172,7 +200,17 @@ export function SearchReadinessChecker() {
             type="submit"
             disabled={busy}
           >
-            {busy ? "Checking page…" : "Run AEO, GEO and SEO check"}
+            {busy ? (
+              <>
+                <span className="readiness-spinner" aria-hidden="true" />{" "}
+                Checking page…
+              </>
+            ) : (
+              <>
+                Run AEO, GEO and SEO check{" "}
+                <ArrowUpRight size={18} aria-hidden="true" />
+              </>
+            )}
           </button>
           <button
             className="button button-secondary"
@@ -195,6 +233,72 @@ export function SearchReadinessChecker() {
       {source && <p>Checked URL: {source}</p>}
       {reports.length > 0 && (
         <>
+          <div className="readiness-summary">
+            <div
+              className="readiness-score"
+              aria-label={`${score} percent of checklist signals passed`}
+            >
+              <strong>
+                {score}
+                <small>%</small>
+              </strong>
+              <span>Checklist score</span>
+            </div>
+            <div>
+              <span className="readiness-kicker">Your page report</span>
+              <h3>
+                {score >= 85
+                  ? "A strong structural foundation"
+                  : score >= 50
+                    ? "Good foundations. Room to improve."
+                    : "Your next improvements start here."}
+              </h3>
+              <p>
+                {passed} signals passed · {checks.length - passed} need review.
+                Start with indexing and page metadata, then work through answer
+                clarity and attribution.
+              </p>
+            </div>
+          </div>
+          <div className="readiness-category-grid">
+            {reports.map((report) => {
+              const count = report.checks.filter(
+                (check) => check.passed,
+              ).length;
+              return (
+                <a
+                  href={`#readiness-${report.category.slice(0, 3).toLowerCase()}`}
+                  className="readiness-category"
+                  key={report.category}
+                >
+                  <span>
+                    {report.category.split(" · ")[0]}{" "}
+                    <ArrowUpRight size={17} aria-hidden="true" />
+                  </span>
+                  <strong>
+                    {Math.round((count / report.checks.length) * 100)}
+                    <small>%</small>
+                  </strong>
+                  <span>
+                    {count} of {report.checks.length} signals passed
+                  </span>
+                  <progress
+                    value={count}
+                    max={report.checks.length}
+                    aria-label={`${report.category} signals passed`}
+                  />
+                </a>
+              );
+            })}
+          </div>
+          <label className="readiness-filter">
+            <input
+              type="checkbox"
+              checked={issuesOnly}
+              onChange={(event) => setIssuesOnly(event.target.checked)}
+            />{" "}
+            Show only checks that need review
+          </label>
           <p>
             Checklist scores count detected signals equally. They do not measure
             rankings, indexing, AI citations or the accuracy of your content.
@@ -202,7 +306,11 @@ export function SearchReadinessChecker() {
             reputation require separate checks.
           </p>
           {reports.map((report) => (
-            <section className="reference-card" key={report.category}>
+            <section
+              className="readiness-report"
+              id={`readiness-${report.category.slice(0, 3).toLowerCase()}`}
+              key={report.category}
+            >
               <h3>{report.category}</h3>
               <p>
                 <strong>
@@ -210,15 +318,35 @@ export function SearchReadinessChecker() {
                   {report.checks.length} checks passed
                 </strong>
               </p>
-              <ul>
-                {report.checks.map((check) => (
-                  <li key={check.label}>
-                    <strong>
-                      {check.passed ? "Pass" : "Review"}: {check.label}
-                    </strong>
-                    <p>{check.detail}</p>
-                  </li>
-                ))}
+              {issuesOnly && report.checks.every((check) => check.passed) && (
+                <p className="readiness-all-clear">
+                  <CheckCircle2 size={18} aria-hidden="true" /> All signals
+                  passed in this category.
+                </p>
+              )}
+              <ul className="readiness-checks">
+                {report.checks
+                  .filter((check) => !issuesOnly || !check.passed)
+                  .map((check) => (
+                    <li
+                      className={
+                        check.passed ? "readiness-pass" : "readiness-review"
+                      }
+                      key={check.label}
+                    >
+                      {check.passed ? (
+                        <CheckCircle2 size={21} aria-hidden="true" />
+                      ) : (
+                        <TriangleAlert size={21} aria-hidden="true" />
+                      )}
+                      <div>
+                        <strong>
+                          {check.passed ? "Pass" : "Review"}: {check.label}
+                        </strong>
+                        <p>{check.detail}</p>
+                      </div>
+                    </li>
+                  ))}
               </ul>
             </section>
           ))}
@@ -243,9 +371,19 @@ export function SearchReadinessChecker() {
               setTimeout(() => URL.revokeObjectURL(url), 1000);
             }}
           >
-            Download report
+            <Download size={17} aria-hidden="true" /> Download report
           </button>
         </>
+      )}
+      {!reports.length && !busy && (
+        <div className="readiness-empty">
+          <Globe2 size={30} aria-hidden="true" />
+          <h3>A useful audit starts with your page.</h3>
+          <p>
+            Add a URL or page HTML above. Get separate search, answer and
+            generative search checklists, plus a report you can keep.
+          </p>
+        </div>
       )}
     </section>
   );

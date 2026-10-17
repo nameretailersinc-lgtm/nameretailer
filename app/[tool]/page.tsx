@@ -23,6 +23,7 @@ import {
   ToolsShell,
 } from "@/components/tools/presentation";
 import { ToolWorkspace } from "@/components/tools/workspace";
+import { ReadinessGuide } from "@/components/tools/readiness-guide";
 import { tools, toolBySlug } from "@/lib/tools/catalog";
 import { directories, directoryBySlug } from "@/lib/site/directories";
 import {
@@ -143,6 +144,7 @@ export default async function Page({
       />
       <ToolHero tool={tool} />
       <ToolWorkspace tool={tool} />
+      {tool.slug === "aeo-geo-seo-checker" && <ReadinessGuide />}
       <ToolSteps tool={tool} />
       <ToolsNext />
       <DirectoryLinks />
