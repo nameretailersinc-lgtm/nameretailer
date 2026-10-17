@@ -27,7 +27,7 @@ await withProductionServer(async (base) => {
     ["/page/2/?pageSize=50", "/", false],
     ["/blog/?q=SEO", "/blog/", false],
     ["/policies/", "/policies/", true],
-    ["/site-map/", "/site-map/", false],
+    ["/site-map/", "/site-map/", true],
   ] as const) {
     const html = await pageHtml(base, path);
     assert(
@@ -67,8 +67,8 @@ await withProductionServer(async (base) => {
     "maxPrice",
   ])
     assert(
-      robots.includes("Disallow: /*?*" + key + "="),
-      key + ": missing parameter disallow",
+      !robots.includes("Disallow: /*?*" + key + "="),
+      key + ": noindex must be crawlable",
     );
   for (const key of ["sort", "pageSize"])
     assert(
@@ -88,7 +88,7 @@ await withProductionServer(async (base) => {
       path,
     );
   const sitemap = await sitemapUrlset(base);
-  for (const path of ["/home/", "/products/", "/cart/", "/site-map/"])
+  for (const path of ["/home/", "/products/", "/cart/"])
     assert(
       !sitemap.includes(`https://nameretailer.com${path}</loc>`),
       `${path}: excluded URL in sitemap`,

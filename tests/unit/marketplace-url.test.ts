@@ -4,6 +4,7 @@ import {
   marketplaceBasePath,
   marketplaceHref,
   marketplaceLocationQuery,
+  marketplacePaginationFiltered,
 } from "@/lib/commerce/marketplace-url";
 import robots from "@/app/robots";
 
@@ -40,7 +41,38 @@ describe("marketplace URLs", () => {
         "/da-30-to-39/",
         "minDa=30&maxDa=39&sort=domain&page=2&pageSize=20",
       ),
-    ).toBe("/da-30-to-39/?maxDa=39&minDa=30&page=2");
+    ).toBe("/da-30-to-39/?page=2");
+  });
+
+  it("follows clean curated pagination without expanding transient filter combinations", () => {
+    expect(
+      marketplacePaginationFiltered("/", "page=2&sort=domain&pageSize=20"),
+    ).toBe(false);
+    expect(
+      marketplacePaginationFiltered(
+        "/da-30-to-39/",
+        "minDa=30&maxDa=39&page=2",
+      ),
+    ).toBe(false);
+    expect(
+      marketplacePaginationFiltered(
+        "/da-30-to-39/",
+        "minDa=30&maxDa=39&country=United+States&page=2",
+      ),
+    ).toBe(true);
+    expect(
+      marketplaceHref(
+        "/da-30-to-39/",
+        "minDa=0&maxDa=100&country=United+States&page=2",
+      ),
+    ).toBe("/da-30-to-39/?country=United+States&page=2");
+    for (const query of [
+      "category=Technology",
+      "sort=priceAsc",
+      "pageSize=50",
+      "country=US&language=English&minPrice=10",
+    ])
+      expect(marketplacePaginationFiltered("/", query)).toBe(true);
   });
 
   it("normalizes malformed controls and preserves tracking parameters", () => {
@@ -78,12 +110,28 @@ describe("marketplace URLs", () => {
     }
   });
 
-  it("lets crawlers see sort and size redirects and noindex directives", () => {
+  it("lets crawlers see public filter noindex directives and canonical redirects", () => {
     const rules = robots().rules;
     for (const rule of Array.isArray(rules) ? rules : [rules]) {
-      expect(rule.disallow).not.toContain("/*?*sort=");
-      expect(rule.disallow).not.toContain("/*?*pageSize=");
+      for (const key of [
+        "q",
+        "category",
+        "country",
+        "language",
+        "minDa",
+        "maxDa",
+        "minDr",
+        "maxDr",
+        "minTraffic",
+        "maxTraffic",
+        "minPrice",
+        "maxPrice",
+        "sort",
+        "pageSize",
+      ])
+        expect(rule.disallow).not.toContain(`/*?*${key}=`);
       expect(rule.disallow).toContain("/admin/");
+      expect(rule.disallow).toContain("/api/");
     }
   });
 });

@@ -1,16 +1,16 @@
 {
-  "checkedAt": "2026-10-15T10:57:59.506Z",
+  "checkedAt": "2026-10-17T13:41:02.046Z",
   "scope": "Live sitemap URLs only; not a Google index count or a complete URL inventory. Robots.txt crawl matching, rendered content quality and Google-selected canonicals need separate checks.",
   "sitemaps": [
     {
       "url": "https://nameretailer.com/sitemap.xml",
       "status": 200,
-      "locations": 3
+      "locations": 4
     },
     {
       "url": "https://nameretailer.com/sitemaps/static-0.xml",
       "status": 200,
-      "locations": 48
+      "locations": 50
     },
     {
       "url": "https://nameretailer.com/sitemaps/hubs-0.xml",
@@ -21,10 +21,15 @@
       "url": "https://nameretailer.com/sitemaps/content-0.xml",
       "status": 200,
       "locations": 77
+    },
+    {
+      "url": "https://nameretailer.com/sitemaps/publications-0.xml",
+      "status": 200,
+      "locations": 569
     }
   ],
-  "total": 159,
-  "passedHttpRobotsCanonical": 159,
+  "total": 730,
+  "passedHttpRobotsCanonical": 730,
   "withIssues": 0,
   "rows": [
     {
@@ -50,6 +55,15 @@
       "status": 200,
       "location": null,
       "canonical": "https://nameretailer.com/about/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/aeo-geo-seo-checker/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/aeo-geo-seo-checker/",
       "robots": "index, follow",
       "headerRobots": "",
       "issues": []
@@ -1234,6 +1248,5127 @@
       "issues": []
     },
     {
+      "url": "https://nameretailer.com/publication/24tv-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/24tv-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/7days-ru/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/7days-ru/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/9to5google-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/9to5google-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/9to5toys-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/9to5toys-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/aajtak-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/aajtak-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/abovethelaw-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/abovethelaw-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/aero-telegraf-rs/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/aero-telegraf-rs/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/afaqs-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/afaqs-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/al-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/al-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/alkhaleej-ae/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/alkhaleej-ae/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/alriyadh-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/alriyadh-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/alwafd-news/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/alwafd-news/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ameba-jp/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ameba-jp/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ammonnews-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ammonnews-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/anandtech-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/anandtech-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/androidheadlines-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/androidheadlines-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/androidworld-nl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/androidworld-nl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/aninews-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/aninews-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/annahar-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/annahar-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/antena3-ro/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/antena3-ro/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/apnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/apnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/appadvice-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/appadvice-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/appleinsider-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/appleinsider-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/aps-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/aps-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/arabianbusiness-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/arabianbusiness-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/arageek-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/arageek-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/aramco-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/aramco-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/architizer-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/architizer-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/are-na/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/are-na/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ariva-de/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ariva-de/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/artnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/artnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/atlassian-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/atlassian-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/auslogics-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/auslogics-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/autoblog-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/autoblog-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/autoblog-nl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/autoblog-nl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/autojournal-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/autojournal-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/autoplus-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/autoplus-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/autovisie-nl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/autovisie-nl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/azazie-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/azazie-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/azcentral-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/azcentral-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/baenegocios-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/baenegocios-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/barchart-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/barchart-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/befonts-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/befonts-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/beforeitsnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/beforeitsnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/belfastlive-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/belfastlive-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bemparana-com-br/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bemparana-com-br/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/benzinga-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/benzinga-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/besoccer-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/besoccer-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bibamagazine-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bibamagazine-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/billboard-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/billboard-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/birminghammail-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/birminghammail-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bitcoin-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bitcoin-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bitcoinist-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bitcoinist-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/blackpoolgazette-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/blackpoolgazette-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/blitz-bg/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/blitz-bg/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/blog-ipleaders-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/blog-ipleaders-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/blog-recruitee-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/blog-recruitee-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/blogs-eltiempo-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/blogs-eltiempo-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/blogs-futbolred-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/blogs-futbolred-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/blogs-portafolio-co/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/blogs-portafolio-co/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bloknot-ru/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bloknot-ru/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bluestacks-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bluestacks-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/boldsky-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/boldsky-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bollywoodhungama-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bollywoodhungama-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bollywoodlife-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bollywoodlife-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bolognafc-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bolognafc-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/books-google-ae/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/books-google-ae/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/boston-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/boston-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bresciaoggi-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bresciaoggi-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bristol247-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bristol247-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bristolpost-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bristolpost-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bucksfreepress-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bucksfreepress-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/businessday-ng/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/businessday-ng/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/businessinsider-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/businessinsider-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/businessoffashion-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/businessoffashion-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/businesstoday-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/businesstoday-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/bustle-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/bustle-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cabidigitallibrary-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cabidigitallibrary-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/caclubindia-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/caclubindia-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/calgaryherald-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/calgaryherald-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cambridge-news-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cambridge-news-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/canberratimes-com-au/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/canberratimes-com-au/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cancan-ro/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cancan-ro/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/careers-redfin-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/careers-redfin-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/caughtoffside-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/caughtoffside-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cheshire-live-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cheshire-live-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/chicagotribune-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/chicagotribune-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cision-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cision-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/citizen-co-za/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/citizen-co-za/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cittadellaspezia-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cittadellaspezia-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/clarin-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/clarin-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/clevescene-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/clevescene-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/clio-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/clio-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/close-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/close-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/closermag-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/closermag-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/clubic-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/clubic-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/coincodex-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/coincodex-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/coindesk-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/coindesk-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/coingape-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/coingape-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cointelegraph-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cointelegraph-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cointribune-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cointribune-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/completesports-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/completesports-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/consequence-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/consequence-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/core77-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/core77-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/courrier-picard-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/courrier-picard-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/creately-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/creately-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cronica-com-ar/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cronica-com-ar/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cryptonews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cryptonews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cryptopolitan-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cryptopolitan-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cults3d-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cults3d-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/cybersecuritynews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/cybersecuritynews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/daijiworld-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/daijiworld-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dailyexcelsior-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dailyexcelsior-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dailypost-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dailypost-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dailypost-ng/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dailypost-ng/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dailystar-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dailystar-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dailytrust-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dailytrust-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dawn-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dawn-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/deavita-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/deavita-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/degrouptest-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/degrouptest-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/delfi-ee/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/delfi-ee/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/delo-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/delo-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/derbytelegraph-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/derbytelegraph-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/detik-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/detik-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/devonlive-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/devonlive-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dezeen-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dezeen-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dhnet-be/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dhnet-be/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/diaridetarragona-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/diaridetarragona-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/diario-mx/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/diario-mx/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/diariodecuyo-com-ar/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/diariodecuyo-com-ar/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/diariodeleon-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/diariodeleon-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/diariodepontevedra-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/diariodepontevedra-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/diariodorio-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/diariodorio-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/diariopopular-com-ar/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/diariopopular-com-ar/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/digitalsynopsis-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/digitalsynopsis-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/digitaltrends-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/digitaltrends-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/distractify-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/distractify-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dmnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dmnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/doba-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/doba-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dobreprogramy-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dobreprogramy-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/docsend-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/docsend-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dogster-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dogster-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dostor-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dostor-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/drivespark-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/drivespark-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dtf-ru/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dtf-ru/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dwell-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dwell-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/dziennikwschodni-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/dziennikwschodni-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eastidahonews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eastidahonews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/economictimes-indiatimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/economictimes-indiatimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ecoportal-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ecoportal-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ecoticias-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ecoticias-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ed-ac-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ed-ac-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/edinburghlive-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/edinburghlive-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/edmontonjournal-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/edmontonjournal-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ehealth-eletsonline-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ehealth-eletsonline-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elbalad-news/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elbalad-news/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elchapuzasinformatico-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elchapuzasinformatico-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elconfidencialdigital-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elconfidencialdigital-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elcorreogallego-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elcorreogallego-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eldeber-com-bo/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eldeber-com-bo/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eldesconcierto-cl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eldesconcierto-cl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eldestapeweb-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eldestapeweb-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eldiario-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eldiario-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eldiarioar-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eldiarioar-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eleconomista-com-ar/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eleconomista-com-ar/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/eleconomista-com-mx/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/eleconomista-com-mx/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elfsight-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elfsight-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elle-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elle-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ellitoral-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ellitoral-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elpais-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elpais-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/elsol-com-ar/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/elsol-com-ar/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/em-com-br/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/em-com-br/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/engadget-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/engadget-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/english-newsnationtv-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/english-newsnationtv-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/english-sakshi-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/english-sakshi-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/epicurious-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/epicurious-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/epoznan-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/epoznan-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/esdiario-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/esdiario-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/espn-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/espn-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/esports-news-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/esports-news-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/estense-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/estense-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/etvbharat-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/etvbharat-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/euroweeklynews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/euroweeklynews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/examinerlive-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/examinerlive-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/expreso-com-pe/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/expreso-com-pe/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/expreso-ec/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/expreso-ec/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/express-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/express-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/extremetech-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/extremetech-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/faithlife-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/faithlife-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fastercapital-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fastercapital-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fightful-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fightful-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/finance-monthly-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/finance-monthly-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/finance-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/finance-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/financialexpress-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/financialexpress-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/financialpost-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/financialpost-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/finanzen-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/finanzen-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fingerlakes1-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fingerlakes1-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fixthephoto-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fixthephoto-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/focus-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/focus-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/foot01-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/foot01-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/football-espana-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/football-espana-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/football365-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/football365-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/forbes-com-au/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/forbes-com-au/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/forbes-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/forbes-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/forbes-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/forbes-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/forbes-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/forbes-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/forbes-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/forbes-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/forbesindia-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/forbesindia-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fortune-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fortune-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fortuneindia-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fortuneindia-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fourfourtwo-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fourfourtwo-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fox9-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fox9-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/freep-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/freep-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/freepressjournal-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/freepressjournal-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fronda-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fronda-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/futura-sciences-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/futura-sciences-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/fxstreet-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/fxstreet-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gamekult-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gamekult-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gazetaesportiva-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gazetaesportiva-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gazetaprawna-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gazetaprawna-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gazettelive-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gazettelive-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/geekflare-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/geekflare-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/geeky-gadgets-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/geeky-gadgets-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/getintopc-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/getintopc-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/getsurrey-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/getsurrey-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gizbot-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gizbot-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gizmodo-uol-com-br/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gizmodo-uol-com-br/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gmauthority-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gmauthority-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/goldenstateofmind-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/goldenstateofmind-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/goodnewsnetwork-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/goodnewsnetwork-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/goodreturns-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/goodreturns-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gpone-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gpone-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/granadadigital-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/granadadigital-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/grazia-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/grazia-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/guardian-ng/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/guardian-ng/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/gulfnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/gulfnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hackerearth-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hackerearth-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hancinema-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hancinema-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hardzone-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hardzone-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/harpersbazaar-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/harpersbazaar-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hatenablog-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hatenablog-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hatenadiary-jp/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hatenadiary-jp/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/health-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/health-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/health-state-mn-us/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/health-state-mn-us/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/healthshots-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/healthshots-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hercampus-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hercampus-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hindustantimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hindustantimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hiphopdx-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hiphopdx-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hizliresim-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hizliresim-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/hollywoodreporter-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/hollywoodreporter-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/horo-mail-ru/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/horo-mail-ru/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/howtogeek-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/howtogeek-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/huntendcom-wpcomstaging-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/huntendcom-wpcomstaging-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ibelieve-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ibelieve-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ibtimes-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ibtimes-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/icc-cricket-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/icc-cricket-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/idiva-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/idiva-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ign-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ign-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/iheart-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/iheart-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ilgiornaledivicenza-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ilgiornaledivicenza-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/imweb-me/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/imweb-me/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/inc42-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/inc42-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/index-hr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/index-hr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/indianexpress-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/indianexpress-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/indiatimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/indiatimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/indiatvnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/indiatvnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/infosecwriteups-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/infosecwriteups-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/inquirer-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/inquirer-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/insidermonkey-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/insidermonkey-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/instyle-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/instyle-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/interfax-com-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/interfax-com-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/intouchweekly-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/intouchweekly-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/investing-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/investing-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/investopedia-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/investopedia-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/invezz-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/invezz-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/invideo-io/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/invideo-io/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/iol-co-za/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/iol-co-za/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/iplocation-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/iplocation-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/iprofesional-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/iprofesional-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/iproup-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/iproup-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/irishmirror-ie/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/irishmirror-ie/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/irishstar-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/irishstar-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/israelnationalnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/israelnationalnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/jpost-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/jpost-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/jsonline-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/jsonline-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ka-news-de/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ka-news-de/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/kdnuggets-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/kdnuggets-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/khaleejtimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/khaleejtimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/khelnow-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/khelnow-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/komoot-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/komoot-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/komputerswiat-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/komputerswiat-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/kuchnia-wp-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/kuchnia-wp-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/kxan-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/kxan-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/kyivindependent-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/kyivindependent-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lampungnewspaper-disway-id/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lampungnewspaper-disway-id/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lanouvelletribune-info/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lanouvelletribune-info/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lapatilla-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lapatilla-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/laprovence-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/laprovence-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/laptopmag-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/laptopmag-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lastwordonsports-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lastwordonsports-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/latimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/latimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lavoz-com-ar/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lavoz-com-ar/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lavozdeasturias-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lavozdeasturias-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lavozdegalicia-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lavozdegalicia-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lavozdelsur-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lavozdelsur-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lawandcrime-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lawandcrime-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/laweekly-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/laweekly-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lb-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lb-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ldplayer-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ldplayer-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/leadership-ng/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/leadership-ng/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/learn-g2-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/learn-g2-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/leeds-live-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/leeds-live-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lemessager-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lemessager-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lest-eclair-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lest-eclair-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/libertatea-ro/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/libertatea-ro/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lifehacker-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lifehacker-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lifewire-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lifewire-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/linternaute-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/linternaute-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/linuxconfig-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/linuxconfig-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/livemint-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/livemint-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/liverpoolecho-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/liverpoolecho-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/livestrong-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/livestrong-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/lookfantastic-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/lookfantastic-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/losandes-com-ar/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/losandes-com-ar/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/loudersound-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/loudersound-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/luccaindiretta-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/luccaindiretta-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/luxurylaunches-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/luxurylaunches-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/m-timesofindia-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/m-timesofindia-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/maannews-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/maannews-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/madridiario-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/madridiario-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/maketecheasier-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/maketecheasier-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/malagahoy-es/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/malagahoy-es/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/manilatimes-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/manilatimes-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/manoramaonline-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/manoramaonline-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/marieclaire-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/marieclaire-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/mariefrance-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/mariefrance-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/marketwatch-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/marketwatch-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/masculin-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/masculin-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/mashable-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/mashable-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/masrawy-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/masrawy-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/massey-ac-nz/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/massey-ac-nz/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/maxim-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/maxim-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/medindia-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/medindia-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/medium-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/medium-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/mejorconsalud-as-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/mejorconsalud-as-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/mensxp-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/mensxp-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/merkur-de/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/merkur-de/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/metro-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/metro-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/miaminewtimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/miaminewtimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/midilibre-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/midilibre-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/militarytimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/militarytimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/milligazete-com-tr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/milligazete-com-tr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/mindbodygreen-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/mindbodygreen-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/minecraftforum-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/minecraftforum-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/mirror-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/mirror-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/monday-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/monday-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/money-informator-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/money-informator-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/montevideo-com-uy/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/montevideo-com-uy/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/montrealgazette-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/montrealgazette-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/moroccoworldnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/moroccoworldnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/motorsport-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/motorsport-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/moviemad-com-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/moviemad-com-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/myfitnesspal-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/myfitnesspal-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/mynewsdesk-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/mynewsdesk-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/naijanews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/naijanews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/neliti-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/neliti-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/neozone-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/neozone-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newatlas-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newatlas-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newcastleherald-com-au/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newcastleherald-com-au/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newindianexpress-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newindianexpress-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/news-com-au/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/news-com-au/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/news24online-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/news24online-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newsblaze-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newsblaze-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newsbtc-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newsbtc-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newsshopper-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newsshopper-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newsweek-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newsweek-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/newsx-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/newsx-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/nltimes-nl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/nltimes-nl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/nordlittoral-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/nordlittoral-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/noroeste-com-mx/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/noroeste-com-mx/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/northjersey-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/northjersey-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/nwitimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/nwitimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/nypost-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/nypost-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/obozrevatel-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/obozrevatel-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/oe24-at/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/oe24-at/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/oilprice-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/oilprice-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ok-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ok-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/omnisend-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/omnisend-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/onefootball-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/onefootball-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/online-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/online-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/onlymyhealth-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/onlymyhealth-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/orfonline-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/orfonline-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/outbrain-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/outbrain-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/parade-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/parade-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/paris-normandie-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/paris-normandie-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pcgamer-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pcgamer-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pcworld-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pcworld-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/periodistadigital-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/periodistadigital-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/phoenixnewtimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/phoenixnewtimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pinkvilla-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pinkvilla-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/plainenglish-io/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/plainenglish-io/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/planable-io/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/planable-io/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pojoksatu-id/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pojoksatu-id/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pokemongohub-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pokemongohub-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/popsci-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/popsci-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/portal-abczdrowie-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/portal-abczdrowie-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/postype-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/postype-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/poundsterlinglive-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/poundsterlinglive-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/prevention-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/prevention-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/primagames-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/primagames-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/prnewswire-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/prnewswire-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/proko-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/proko-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/propakistani-pk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/propakistani-pk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/psu-edu/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/psu-edu/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pubhtml5-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pubhtml5-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pulse-ng/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pulse-ng/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/punchng-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/punchng-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pv-magazine-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pv-magazine-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pwc-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pwc-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/pwinsider-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/pwinsider-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/python-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/python-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/rbc-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/rbc-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/republicworld-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/republicworld-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/researchgate-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/researchgate-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/reviewjournal-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/reviewjournal-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/rgu-ac-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/rgu-ac-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/richmond-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/richmond-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/rri-co-id/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/rri-co-id/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/rudebaguette-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/rudebaguette-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ruhr24-de/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ruhr24-de/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/salon24-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/salon24-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sanremonews-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sanremonews-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/savonanews-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/savonanews-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/scam-detector-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/scam-detector-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sciencepost-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sciencepost-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/scoop-co-nz/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/scoop-co-nz/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/searchenginejournal-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/searchenginejournal-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/searchengineland-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/searchengineland-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/self-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/self-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sentinelone-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sentinelone-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sheerluxe-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sheerluxe-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/shorouknews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/shorouknews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/shutterfly-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/shutterfly-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/signalscv-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/signalscv-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/simplified-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/simplified-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/slashgear-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/slashgear-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/smartworld-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/smartworld-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/snov-io/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/snov-io/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/socialmediaexplorer-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/socialmediaexplorer-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/socialpilot-co/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/socialpilot-co/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sofoot-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sofoot-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/spin-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/spin-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sport-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sport-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sports-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sports-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/sports-ru/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/sports-ru/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/spox-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/spox-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/stackblitz-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/stackblitz-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/standartnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/standartnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/stockwatch-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/stockwatch-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/suara-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/suara-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/t-j-ru/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/t-j-ru/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/t-online-de/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/t-online-de/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tag24-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tag24-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/taiwannews-com-tw/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/taiwannews-com-tw/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tally-so/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tally-so/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tampabay-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tampabay-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/targatocn-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/targatocn-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/teacherspayteachers-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/teacherspayteachers-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/techadvisor-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/techadvisor-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/technave-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/technave-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/technologynetworks-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/technologynetworks-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/techrepublic-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/techrepublic-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tecnoandroid-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tecnoandroid-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tecnoblog-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tecnoblog-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tele1-com-tr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tele1-com-tr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/telegraph-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/telegraph-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/the-star-co-ke/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/the-star-co-ke/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theathletic-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theathletic-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thebaltimorebanner-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thebaltimorebanner-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thecable-ng/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thecable-ng/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theclinic-cl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theclinic-cl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thedailymeal-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thedailymeal-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thediplomat-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thediplomat-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thedrive-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thedrive-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theepochtimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theepochtimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theglobeandmail-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theglobeandmail-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thehackernews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thehackernews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thehealthsite-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thehealthsite-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thehealthy-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thehealthy-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thehindubusinessline-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thehindubusinessline-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/themanual-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/themanual-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thenationonlineng-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thenationonlineng-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theobjective-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theobjective-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theportugalnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theportugalnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theprint-in/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theprint-in/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theprovince-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theprovince-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/therealdeal-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/therealdeal-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thesportster-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thesportster-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thestar-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thestar-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thethaiger-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thethaiger-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thetravel-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thetravel-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theverge-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theverge-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/theweek-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/theweek-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thewindowsclub-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thewindowsclub-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thezoereport-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thezoereport-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/thisdaylive-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/thisdaylive-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tiempodesanjuan-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tiempodesanjuan-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/timeoutdubai-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/timeoutdubai-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/timesofmalta-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/timesofmalta-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/today-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/today-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tomandlorenzo-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tomandlorenzo-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/topsante-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/topsante-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/torinoggi-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/torinoggi-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/torontosun-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/torontosun-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/travelandleisure-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/travelandleisure-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/travelandtourworld-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/travelandtourworld-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/travelweekly-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/travelweekly-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tribunademinas-com-br/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tribunademinas-com-br/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tribuneonlineng-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tribuneonlineng-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tsn-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tsn-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tuexperto-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tuexperto-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tv3-lv/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tv3-lv/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tvazteca-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tvazteca-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/tycsports-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/tycsports-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ultahost-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ultahost-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/unimagdalena-edu-co/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/unimagdalena-edu-co/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/upwork-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/upwork-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/urdupoint-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/urdupoint-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vancouversun-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vancouversun-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vanityfair-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vanityfair-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/variety-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/variety-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vcita-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vcita-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/veed-io/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/veed-io/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vegnews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vegnews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/velog-io/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/velog-io/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/venngage-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/venngage-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/viepratique-fr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/viepratique-fr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vietgiaitri-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vietgiaitri-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/villagevoice-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/villagevoice-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/viva-co-id/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/viva-co-id/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/voanews-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/voanews-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vogue-com-au/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vogue-com-au/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vogue-ua/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vogue-ua/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/vwvortex-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/vwvortex-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/walesonline-co-uk/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/walesonline-co-uk/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/washingtoncitypaper-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/washingtoncitypaper-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/washingtontimes-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/washingtontimes-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/weareteachers-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/weareteachers-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/webtekno-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/webtekno-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wellandgood-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wellandgood-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/welt-de/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/welt-de/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wetter-net/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wetter-net/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/whowhatwear-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/whowhatwear-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wiadomosci-wp-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wiadomosci-wp-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wikiart-org/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wikiart-org/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/winnipegsun-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/winnipegsun-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wired-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wired-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wpengine-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wpengine-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wpforms-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wpforms-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wprost-pl/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wprost-pl/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/writer-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/writer-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/wwd-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/wwd-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/yale-edu/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/yale-edu/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/yucatan-com-mx/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/yucatan-com-mx/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/zdnet-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/zdnet-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/ziare-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/ziare-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/zmescience-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/zmescience-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/zoominfo-com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/zoominfo-com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/publication/zpravy-tiscali-cz/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/publication/zpravy-tiscali-cz/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
       "url": "https://nameretailer.com/px-to-rem/",
       "status": 200,
       "location": null,
@@ -1346,6 +6481,15 @@
       "status": 200,
       "location": null,
       "canonical": "https://nameretailer.com/temperature-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/terms/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/terms/",
       "robots": "index, follow",
       "headerRobots": "",
       "issues": []

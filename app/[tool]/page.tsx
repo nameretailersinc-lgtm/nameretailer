@@ -70,6 +70,7 @@ export async function generateMetadata({
       catalogueSummary("").catch(() => null),
     ]);
     const copy = rangeCopy(range, stats, catalogue);
+    if (data.page > 1 && data.data.length === 0) notFound();
     return pageMetadata(
       {
         ...facetMetadata(`/${range.slug}/`, search, data.data.length > 0),

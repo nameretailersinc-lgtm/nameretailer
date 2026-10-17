@@ -1,5 +1,6 @@
 import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
 import { connection } from "next/server";
+import { notFound } from "next/navigation";
 import { Marketplace } from "./marketplace";
 import { SiteHeader, SiteFooter } from "@/components/site/chrome";
 import {
@@ -39,6 +40,7 @@ export async function ServerMarketplace({
     ).catch(() => null),
     range ? catalogueSummary("").catch(() => null) : null,
   ]);
+  if (initialPage.page > 1 && initialPage.data.length === 0) notFound();
   const copy = range ? rangeCopy(range, stats, catalogue) : null;
   const homePage = !range && !metricView;
   return (

@@ -1,4 +1,5 @@
 import { marketplaceQuery } from "./marketplace-query";
+import { marketplaceRangeBySlug } from "./marketplace-ranges";
 
 const homepagePagination = /^\/page\/(\d+)\/?$/;
 
@@ -20,6 +21,10 @@ export function marketplaceLocationQuery(
 /** Keep defaults implicit and give each homepage result page one stable URL. */
 export function marketplaceHref(pathname: string, query: string): string {
   const params = new URLSearchParams(query);
+  // Curated ranges already fix these bounds in the path. Repeating them in
+  // pagination links creates noindex query variants instead of clean next pages.
+  const range = marketplaceRangeBySlug(pathname.replace(/^\/+|\/+$/g, ""));
+  for (const key of Object.keys(range?.bounds || {})) params.delete(key);
   const normalized = marketplaceQuery(query);
   for (const [key, fallback] of [
     ["sort", "domain"],
@@ -36,4 +41,14 @@ export function marketplaceHref(pathname: string, query: string): string {
   params.sort();
   const search = params.toString();
   return path + (search ? `?${search}` : "");
+}
+
+/** Suppress crawl expansion through transient filters; keep clean pagination followed. */
+export function marketplacePaginationFiltered(
+  pathname: string,
+  query: string,
+): boolean {
+  const href = marketplaceHref(pathname, query);
+  const params = new URLSearchParams(href.split("?")[1] || "");
+  return [...params.keys()].some((key) => key !== "page");
 }

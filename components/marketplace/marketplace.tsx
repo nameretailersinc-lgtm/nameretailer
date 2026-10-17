@@ -77,6 +77,7 @@ import {
   marketplaceBasePath,
   marketplaceHref,
   marketplaceLocationQuery,
+  marketplacePaginationFiltered,
 } from "@/lib/commerce/marketplace-url";
 import {
   breadcrumbSchema,
@@ -1071,6 +1072,9 @@ function MarketplaceContent({
   const sort = normalized.get("sort")!;
   const page = Number(normalized.get("page"));
   const pageSize = Number(normalized.get("pageSize"));
+  const paginationRel = marketplacePaginationFiltered(basePath, locationQuery)
+    ? "nofollow"
+    : undefined;
   const query = normalized.toString();
   const [result, setResult] = useState<
     { query: string; value: ProductPage } | undefined
@@ -1969,6 +1973,7 @@ function MarketplaceContent({
                     className="button button-secondary"
                     aria-label="Previous page"
                     href={page > 1 ? pageHref(page - 1) : undefined}
+                    rel={paginationRel}
                     role={page <= 1 ? "link" : undefined}
                     aria-disabled={page <= 1 || undefined}
                     onClick={
@@ -1996,6 +2001,7 @@ function MarketplaceContent({
                       <a
                         className={`button button-${item === page ? "primary" : "secondary"}`}
                         href={pageHref(item)}
+                        rel={paginationRel}
                         aria-label={`Page ${item}`}
                         aria-current={item === page ? "page" : undefined}
                         onClick={(event) => followPage(event, item)}
@@ -2007,6 +2013,7 @@ function MarketplaceContent({
                   <a
                     className="button button-secondary"
                     aria-label="Next page"
+                    rel={paginationRel}
                     href={
                       page * pageSize < value.total
                         ? pageHref(page + 1)

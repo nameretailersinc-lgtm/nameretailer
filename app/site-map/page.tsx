@@ -8,13 +8,22 @@ import { directories } from "@/lib/site/directories";
 import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
 import { buyerGuides } from "@/lib/site/buyer-guides";
 import { tools } from "@/lib/tools/catalog";
+import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
+import {
+  publicationHost,
+  publicationPath,
+} from "@/lib/commerce/publication-pages";
 const baseMetadata: Metadata = {
   robots: { index: true, follow: true },
   title: "Name Retailer Site Map: All Pages and Resources",
   description:
     "Browse every public Name Retailer page: guest posting directories, DA, DR, traffic and price ranges, buying guides, free SEO tools, the journal, and company and policy pages.",
 };
-type LinkGroup = [title: string, description: string, links: [string, string][]];
+type LinkGroup = [
+  title: string,
+  description: string,
+  links: [string, string][],
+];
 const groups: LinkGroup[] = [
   [
     "Marketplace",
@@ -41,6 +50,11 @@ const groups: LinkGroup[] = [
       .filter((r) => r.slug !== "guest-posting-sites-under-50")
       .map((r): [string, string] => [r.label, `/${r.slug}/`]),
   ]),
+  [
+    "Broader traffic view",
+    "Compare publications above 500,000 supplied monthly visits.",
+    [["Traffic above 500,000", "/500k-plus-traffic/"]],
+  ],
   [
     "Buying guides",
     "Plain-language answers on cost, quality and risk before you buy a link.",
@@ -82,7 +96,10 @@ const groups: LinkGroup[] = [
     ],
   ],
 ];
-export default function Page() {
+export default async function Page() {
+  // Link the same eligible profiles advertised by XML, including those beyond
+  // the first catalogue pages. Never expose inactive or uncommitted inventory.
+  const profiles = await profileSitemapEntries().catch(() => []);
   return (
     <InformationShell
       path="/site-map/"
@@ -106,6 +123,33 @@ export default function Page() {
             </ul>
           </section>
         ))}
+        {profiles.length > 0 && (
+          <section className="reference-card">
+            <h2>Publication profiles</h2>
+            <p>
+              Explore eligible publisher profiles, then check each listing’s
+              supplied metrics, price and editorial requirements.
+            </p>
+            <details>
+              <summary>
+                Browse {profiles.length.toLocaleString("en-US")} publication
+                profiles
+              </summary>
+              <ul>
+                {profiles.map((profile) => {
+                  const path = publicationPath(profile);
+                  return path ? (
+                    <li key={path}>
+                      <Link href={path} prefetch={false}>
+                        {publicationHost(profile.domain)}
+                      </Link>
+                    </li>
+                  ) : null;
+                })}
+              </ul>
+            </details>
+          </section>
+        )}
       </div>
     </InformationShell>
   );

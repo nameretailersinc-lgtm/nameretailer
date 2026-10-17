@@ -13,21 +13,11 @@ const privatePaths = [
   "/cart/",
   "/checkout/",
   "/design-system/",
-  ...[
-    "q",
-    "category",
-    "country",
-    "language",
-    "minDa",
-    "maxDa",
-    "minDr",
-    "maxDr",
-    "minTraffic",
-    "maxTraffic",
-    "minPrice",
-    "maxPrice",
-  ].map((key) => `/*?*${key}=`),
 ];
+
+// Public filter URLs must be crawlable for bots to see their noindex and clean
+// canonical. Blocking them here can leave discovered URLs indexed without content.
+// The shared facetMetadata policy prevents indexing arbitrary combinations.
 
 // Search and answer-engine crawlers that fetch pages to cite them.
 const aiCrawlers = [

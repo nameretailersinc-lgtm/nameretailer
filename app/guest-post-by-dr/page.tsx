@@ -1,5 +1,6 @@
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
+import { notFound } from "next/navigation";
 import { publicProductPage } from "@/lib/commerce/public-page";
 import {
   marketplaceQuery,
@@ -36,6 +37,7 @@ export async function generateMetadata({
   const data = await publicProductPage(
     marketplaceQuery(searchQuery(params)).toString(),
   );
+  if (data.page > 1 && data.data.length === 0) notFound();
   return pageMetadata(
     {
       ...baseMetadata,
