@@ -18,7 +18,7 @@ import { articleSchema } from "@/lib/seo/structured-data";
 import type { CmsRecord } from "@/lib/cms/types";
 describe("professional tool calculations", () => {
   it("has distinct named tools with honest modes", () => {
-    expect(tools).toHaveLength(29);
+    expect(tools).toHaveLength(30);
     expect(new Set(tools.map((tool) => tool.slug)).size).toBe(tools.length);
     expect(tools.find((tool) => tool.kind === "rating")?.mode).toBe(
       "Catalog lookup",

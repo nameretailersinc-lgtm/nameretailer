@@ -181,14 +181,17 @@ export function ToolHero({ tool }: { tool: Tool }) {
 export function ToolSteps({ tool }: { tool: Tool }) {
   const image = tool.kind === "image";
   const counter = tool.slug === "word-counter";
+  const readiness = tool.slug === "aeo-geo-seo-checker";
   const steps = [
     [
       "Add your input",
       image
         ? "Choose a file or drop it into the workspace. Keep your original: all edits produce a separate copy."
-        : counter
-          ? "Paste your text or start writing. Word and character counts update as you type."
-          : "Use the labeled fields to add your text, values or report. Choose the settings that fit your task.",
+        : readiness
+          ? "Paste the full page HTML, including title, metadata and body content. The HTML stays in your browser."
+          : counter
+            ? "Paste your text or start writing. Word and character counts update as you type."
+            : "Use the labeled fields to add your text, values or report. Choose the settings that fit your task.",
       Upload,
     ],
     [
@@ -201,12 +204,18 @@ export function ToolSteps({ tool }: { tool: Tool }) {
       Settings2,
     ],
     [
-      image ? "Download and use" : "Copy and keep working",
+      image
+        ? "Download and use"
+        : readiness
+          ? "Download your report"
+          : "Copy and keep working",
       image
         ? "Download your processed image and use it anywhere. The file stays on your device."
-        : counter
-          ? "Copy the count summary without including your text. Clear the input when you are done."
-          : "Copy the output into your workflow. Review generated markup and research plans before using them.",
+        : readiness
+          ? "Download the three checklists as a text report, apply relevant fixes and check the updated HTML."
+          : counter
+            ? "Copy the count summary without including your text. Clear the input when you are done."
+            : "Copy the output into your workflow. Review generated markup and research plans before using them.",
       Download,
     ],
   ] as const;

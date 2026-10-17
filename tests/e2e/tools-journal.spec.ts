@@ -37,7 +37,9 @@ test.beforeAll(async () => {
     ).status(),
   ).toBe(201);
 });
-for (const tool of tools.filter((item) => item.slug !== "word-counter"))
+for (const tool of tools.filter(
+  (item) => !["word-counter", "aeo-geo-seo-checker"].includes(item.slug),
+))
   test(`${tool.title} produces a real result in its stated mode`, async ({
     page,
   }) => {

@@ -33,11 +33,21 @@ const group = (
   }));
 export const tools: Tool[] = [
   {
+    slug: "aeo-geo-seo-checker",
+    title: "AEO, GEO and SEO checker",
+    group: "SEO research and planning",
+    kind: "markup",
+    description:
+      "Audit pasted page HTML for search optimization, answer readiness and signals useful to generative search. Get three checklists with practical fixes.",
+    mode: "Browser-local",
+  },
+  {
     slug: "domain-length-checker",
     title: "Domain name length checker",
     group: "SEO research and planning",
     kind: "text",
-    description: "Check domain and label lengths, including the ASCII form of internationalized names. No availability lookup.",
+    description:
+      "Check domain and label lengths, including the ASCII form of internationalized names. No availability lookup.",
     mode: "Browser-local",
   },
   {

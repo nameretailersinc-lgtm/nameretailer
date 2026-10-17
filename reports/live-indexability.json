@@ -1,0 +1,1462 @@
+{
+  "checkedAt": "2026-10-15T10:57:59.506Z",
+  "scope": "Live sitemap URLs only; not a Google index count or a complete URL inventory. Robots.txt crawl matching, rendered content quality and Google-selected canonicals need separate checks.",
+  "sitemaps": [
+    {
+      "url": "https://nameretailer.com/sitemap.xml",
+      "status": 200,
+      "locations": 3
+    },
+    {
+      "url": "https://nameretailer.com/sitemaps/static-0.xml",
+      "status": 200,
+      "locations": 48
+    },
+    {
+      "url": "https://nameretailer.com/sitemaps/hubs-0.xml",
+      "status": 200,
+      "locations": 34
+    },
+    {
+      "url": "https://nameretailer.com/sitemaps/content-0.xml",
+      "status": 200,
+      "locations": 77
+    }
+  ],
+  "total": 159,
+  "passedHttpRobotsCanonical": 159,
+  "withIssues": 0,
+  "rows": [
+    {
+      "url": "https://nameretailer.com/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/500k-plus-traffic/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/500k-plus-traffic/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/about/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/about/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/amp-validator/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/amp-validator/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/backlink-generator/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/backlink-generator/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/base64-encode-decode/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/base64-encode-decode/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-backlink-report-quality-check-before-analysis/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-backlink-report-quality-check-before-analysis/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-canonical-url-checklist-for-a-rebuilt-website/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-canonical-url-checklist-for-a-rebuilt-website/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-citation-ready-claim-has-a-clear-source-boundary/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-citation-ready-claim-has-a-clear-source-boundary/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-content-experiment-log-that-records-confounders/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-content-experiment-log-that-records-confounders/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-content-refresh-decision-log/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-content-refresh-decision-log/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-fair-comparison-page-brief-for-a-brand-website/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-fair-comparison-page-brief-for-a-brand-website/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-geo-experiment-brief-with-a-useful-stopping-rule/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-geo-experiment-brief-with-a-useful-stopping-rule/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-practical-guest-post-budget-worksheet/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-practical-guest-post-budget-worksheet/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-practical-seo-measurement-plan-before-publishing/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-practical-seo-measurement-plan-before-publishing/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-referral-traffic-worksheet-for-publication-campaigns/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-referral-traffic-worksheet-for-publication-campaigns/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-responsive-article-page-qa-checklist/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-responsive-article-page-qa-checklist/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-source-log-for-fact-checking-content-drafts/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-source-log-for-fact-checking-content-drafts/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-structured-data-review-checklist-for-blog-articles/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-structured-data-review-checklist-for-blog-articles/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/a-wordpress-to-next-js-content-migration-worksheet/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/a-wordpress-to-next-js-content-migration-worksheet/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/aeo-readiness-is-not-the-same-as-indexing-approval/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/aeo-readiness-is-not-the-same-as-indexing-approval/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/ai-crawler-access-needs-a-documented-product-specific-policy/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/ai-crawler-access-needs-a-documented-product-specific-policy/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/an-answer-quality-review-sheet-for-editors/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/an-answer-quality-review-sheet-for-editors/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/an-editorial-handoff-checklist-before-publication/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/an-editorial-handoff-checklist-before-publication/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/an-editorial-review-checklist-for-a-publication-shortlist/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/an-editorial-review-checklist-for-a-publication-shortlist/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/build-a-question-map-before-drafting-answer-led-content/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/build-a-question-map-before-drafting-answer-led-content/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/build-an-evidence-inventory-before-writing-brand-claims/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/build-an-evidence-inventory-before-writing-brand-claims/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/calculate-percentage-growth-without-hiding-the-baseline/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/calculate-percentage-growth-without-hiding-the-baseline/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/category/aeo/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/category/aeo/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/category/content/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/category/content/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/category/geo/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/category/geo/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/category/marketplace/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/category/marketplace/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/category/measurement/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/category/measurement/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/category/technical-seo/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/category/technical-seo/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/check-server-rendered-article-content-before-launch/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/check-server-rendered-article-content-before-launch/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/choose-a-reporting-window-before-evaluating-content/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/choose-a-reporting-window-before-evaluating-content/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/choose-image-dimensions-and-formats-deliberately/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/choose-image-dimensions-and-formats-deliberately/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/comparison-tables-that-preserve-meaningful-differences/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/comparison-tables-that-preserve-meaningful-differences/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/definitions-that-remain-useful-outside-their-paragraph/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/definitions-that-remain-useful-outside-their-paragraph/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/domain-rating-and-domain-authority-a-comparison-worksheet/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/domain-rating-and-domain-authority-a-comparison-worksheet/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/geo-content-planning-without-publishing-query-duplicates/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/geo-content-planning-without-publishing-query-duplicates/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/headlines-that-describe-the-article-instead-of-overselling-it/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/headlines-that-describe-the-article-instead-of-overselling-it/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/how-to-audit-an-answer-for-unsupported-certainty/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/how-to-audit-an-answer-for-unsupported-certainty/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/how-to-choose-a-guest-post-publication-for-your-audience/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/how-to-choose-a-guest-post-publication-for-your-audience/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/how-to-compare-publication-language-and-geography/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/how-to-compare-publication-language-and-geography/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/how-to-read-a-publication-traffic-estimate/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/how-to-read-a-publication-traffic-estimate/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/how-to-write-a-guest-post-brief-an-editor-can-use/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/how-to-write-a-guest-post-brief-an-editor-can-use/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/how-to-write-helpful-faq-answers/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/how-to-write-helpful-faq-answers/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/image-alt-text-describe-purpose-not-every-pixel/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/image-alt-text-describe-purpose-not-every-pixel/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/internal-links-that-make-an-article-library-easier-to-use/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/internal-links-that-make-an-article-library-easier-to-use/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/keep-important-answers-available-as-readable-text/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/keep-important-answers-available-as-readable-text/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/keep-missing-metrics-separate-from-zero/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/keep-missing-metrics-separate-from-zero/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/keep-organization-information-consistent-across-content/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/keep-organization-information-consistent-across-content/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/match-article-structure-to-the-reader-s-search-intent/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/match-article-structure-to-the-reader-s-search-intent/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/measure-page-experience-with-a-repeatable-test-setup/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/measure-page-experience-with-a-repeatable-test-setup/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/meta-descriptions-that-help-readers-choose-a-page/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/meta-descriptions-that-help-readers-choose-a-page/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/noindex-and-robots-txt-are-different-controls/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/noindex-and-robots-txt-are-different-controls/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/original-observations-versus-hypothetical-examples/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/original-observations-versus-hypothetical-examples/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/paid-link-disclosure-questions-to-ask-before-placement/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/paid-link-disclosure-questions-to-ask-before-placement/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/placement-only-versus-article-writing-packages/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/placement-only-versus-article-writing-packages/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/plan-a-sitemap-around-approved-public-pages/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/plan-a-sitemap-around-approved-public-pages/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/plan-useful-follow-up-answers-without-duplicating-pages/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/plan-useful-follow-up-answers-without-duplicating-pages/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/record-generative-search-appearances-as-observations/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/record-generative-search-appearances-as-observations/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/report-keyword-ideas-without-invented-demand-metrics/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/report-keyword-ideas-without-invented-demand-metrics/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/search-console-and-analytics-answer-different-questions/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/search-console-and-analytics-answer-different-questions/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/turn-an-seo-report-into-a-useful-next-action-list/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/turn-an-seo-report-into-a-useful-next-action-list/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/use-examples-to-make-an-answer-actionable/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/use-examples-to-make-an-answer-actionable/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/what-aeo-means-in-a-practical-content-workflow/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/what-aeo-means-in-a-practical-content-workflow/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/what-geo-means-for-a-small-content-team/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/what-geo-means-for-a-small-content-team/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/what-to-confirm-in-a-guest-post-placement-brief/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/what-to-confirm-in-a-guest-post-placement-brief/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/what-to-record-after-a-placement-is-published/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/what-to-record-after-a-placement-is-published/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/blog/write-a-direct-answer-without-losing-important-context/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/blog/write-a-direct-answer-without-losing-important-context/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/bulk-domain-rating-checker/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/bulk-domain-rating-checker/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/business-guest-posting-sites/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/business-guest-posting-sites/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/competitor-backlink-analyzer/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/competitor-backlink-analyzer/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/compress-image/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/compress-image/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/contact/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/contact/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/cookies/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/cookies/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/crop-image/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/crop-image/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-1-to-9/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-1-to-9/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-10-to-19/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-10-to-19/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-20-to-29/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-20-to-29/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-30-to-39/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-30-to-39/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-40-to-49/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-40-to-49/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-50-to-59/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-50-to-59/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-60-to-69/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-60-to-69/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-70-to-79/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-70-to-79/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-80-to-89/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-80-to-89/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/da-90-to-100/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/da-90-to-100/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/domain-length-checker/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/domain-length-checker/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/domain-names/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/domain-names/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/dr-0-to-19/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/dr-0-to-19/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/dr-20-to-49/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/dr-20-to-49/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/dr-50-plus/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/dr-50-plus/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/faq/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/faq/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/file-size-converter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/file-size-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guest-post-by-dr/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guest-post-by-dr/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guest-post-marketplace/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guest-post-marketplace/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guest-post-prices/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guest-post-prices/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guest-posting-sites-under-50/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guest-posting-sites-under-50/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guest-posting-sites-usa/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guest-posting-sites-usa/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guest-posting-sites/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guest-posting-sites/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/buy-and-register-a-domain-name/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/buy-and-register-a-domain-name/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/choose-a-domain-name/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/choose-a-domain-name/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/da-vs-dr-and-traffic/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/da-vs-dr-and-traffic/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/domain-name-seo-and-migrations/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/domain-name-seo-and-migrations/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/guest-post-cost/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/guest-post-cost/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/guest-post-vs-link-insertion/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/guest-post-vs-link-insertion/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/guest-post-vs-sponsored-post/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/guest-post-vs-sponsored-post/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/paid-guest-posts-google-link-policies/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/paid-guest-posts-google-link-policies/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/guides/vet-a-guest-post-site/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/guides/vet-a-guest-post-site/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/health-guest-posting-sites/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/health-guest-posting-sites/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/help-center/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/help-center/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/hex-to-rgb/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/hex-to-rgb/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/how-it-works/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/how-it-works/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/how-to-buy-links/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/how-to-buy-links/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/image-alt-checker/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/image-alt-checker/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/image-to-black-and-white/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/image-to-black-and-white/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/image-to-webp-converter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/image-to-webp-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/jpg-to-png-converter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/jpg-to-png-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/keyword-density-checker/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/keyword-density-checker/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/keyword-suggestion-tool/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/keyword-suggestion-tool/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/length-converter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/length-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/marketing-guest-posting-sites/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/marketing-guest-posting-sites/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/methodology/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/methodology/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/open-graph-generator/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/open-graph-generator/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/policies/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/policies/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/price-100-01-to-150/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/price-100-01-to-150/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/price-150-01-to-200/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/price-150-01-to-200/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/price-200-plus/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/price-200-plus/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/price-50-01-to-100/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/price-50-01-to-100/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/privacy/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/privacy/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/px-to-rem/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/px-to-rem/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/refund-policy/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/refund-policy/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/resize-image/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/resize-image/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/reverse-text/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/reverse-text/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/rotate-image/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/rotate-image/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/saas-guest-posting-sites/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/saas-guest-posting-sites/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/schema-generator/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/schema-generator/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/schema-markup-validator/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/schema-markup-validator/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/seo-tools/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/seo-tools/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/services/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/services/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/site-map/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/site-map/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/technology-guest-posting-sites/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/technology-guest-posting-sites/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/temperature-converter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/temperature-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/text-case-converter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/text-case-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/traffic-0-to-49999/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/traffic-0-to-49999/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/traffic-100000-to-499999/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/traffic-100000-to-499999/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/traffic-1000000-to-4999999/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/traffic-1000000-to-4999999/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/traffic-10000000-plus/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/traffic-10000000-plus/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/traffic-50000-to-99999/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/traffic-50000-to-99999/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/traffic-500000-to-999999/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/traffic-500000-to-999999/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/traffic-5000000-to-9999999/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/traffic-5000000-to-9999999/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/travel-lifestyle-guest-posting-sites/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/travel-lifestyle-guest-posting-sites/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/twitter-card-generator/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/twitter-card-generator/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/webp-to-png-converter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/webp-to-png-converter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    },
+    {
+      "url": "https://nameretailer.com/word-counter/",
+      "status": 200,
+      "location": null,
+      "canonical": "https://nameretailer.com/word-counter/",
+      "robots": "index, follow",
+      "headerRobots": "",
+      "issues": []
+    }
+  ]
+}

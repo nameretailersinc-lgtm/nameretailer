@@ -1,7 +1,19 @@
 import {legacyRedirects} from './redirect-map';
 import {loadCsvRedirects,type CsvRedirect} from './redirect-csv';
+import { canonicalOrigin } from './origin';
+
+function localDestination(destination: string): string {
+  const url = new URL(destination, canonicalOrigin);
+  if (url.origin !== canonicalOrigin)
+    throw new Error('Redirect destination must be on-site');
+  return url.pathname + url.search + url.hash;
+}
 /** Code owns canonical destinations. Old CSV aliases resolve directly to those destinations. */
 export function mergePublicRedirects(primary:CsvRedirect[],extra:CsvRedirect[]):CsvRedirect[]{
+  // Normalize every hop before building the graph. A CSV absolute URL can point
+  // to another alias; normalizing only the first hop leaves chains and cycles.
+  primary = primary.map(row => ({ ...row, destination: localDestination(row.destination) }));
+  extra = extra.map(row => ({ ...row, destination: localDestination(row.destination) }));
   const known=new Set(primary.map(row=>row.source));
   const canonical=new Set(primary.map(row=>row.destination));
   const merged=[...primary,...extra.filter(row=>!known.has(row.source)&&!canonical.has(row.source))];

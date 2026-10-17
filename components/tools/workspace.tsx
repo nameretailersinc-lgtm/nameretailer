@@ -18,6 +18,7 @@ import {
 } from "@/lib/tools/core";
 import { ImageWorkspace } from "./image-workspace";
 import { DomainLengthChecker } from "./domain-length-checker";
+import { SearchReadinessChecker } from "./search-readiness-checker";
 
 const textModes: Record<string, Array<[string, string]>> = {
   "text-case-converter": [
@@ -159,6 +160,7 @@ export function ToolWorkspace({ tool }: { tool: Tool }) {
       : Object.keys(tool.slug === "length-converter" ? lengthUnits : sizeUnits);
   if (tool.kind === "image") return <ImageWorkspace tool={tool} />;
   if (tool.slug === "domain-length-checker") return <DomainLengthChecker />;
+  if (tool.slug === "aeo-geo-seo-checker") return <SearchReadinessChecker />;
   return (
     <section
       className="reference-card tool-workspace"

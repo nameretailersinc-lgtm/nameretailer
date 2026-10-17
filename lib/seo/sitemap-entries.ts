@@ -37,6 +37,7 @@ const staticPaths = [
   "/refund-policy/",
   "/privacy/",
   "/cookies/",
+  "/terms/",
   "/site-map/",
 ];
 

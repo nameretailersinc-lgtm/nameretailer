@@ -1,17 +1,17 @@
 import { MongoClient, type Db, type ClientSession } from "mongodb";
 import { setServers } from "node:dns";
+import { setServers as setPromiseServers } from "node:dns/promises";
 import type { AuditRow, CmsRecord, Revision, User } from "./cms/types";
 
 const globals = globalThis as typeof globalThis & {
   cmsMongo?: Promise<MongoClient>;
 };
 async function connect(uri: string) {
-  if (process.env.MONGODB_DNS_SERVERS)
-    setServers(
-      process.env.MONGODB_DNS_SERVERS.split(",")
-        .map((value) => value.trim())
-        .filter(Boolean),
-    );
+  if (process.env.MONGODB_DNS_SERVERS) {
+    const servers = process.env.MONGODB_DNS_SERVERS.split(",").map(value => value.trim()).filter(Boolean);
+    setServers(servers);
+    setPromiseServers(servers);
+  }
   let client = new MongoClient(uri, {
     serverSelectionTimeoutMS: 10000,
     connectTimeoutMS: 10000,
@@ -21,6 +21,18 @@ async function connect(uri: string) {
     return await client.connect();
   } catch (error) {
     await client.close();
+    if (
+      process.env.NODE_ENV === "production" &&
+      uri.startsWith("mongodb+srv:") &&
+      error &&
+      typeof error === "object" &&
+      "code" in error &&
+      error.code === "ECONNREFUSED"
+    ) {
+      console.error(
+        "MongoDB SRV resolution was refused. Verify the host resolver or configure MONGODB_DNS_SERVERS explicitly; no automatic production DNS fallback is enabled.",
+      );
+    }
     // The owner's Windows resolver refuses SRV queries. This process-only development
     // fallback does not modify Windows DNS and never affects production implicitly.
     if (
@@ -32,6 +44,7 @@ async function connect(uri: string) {
       error.code === "ECONNREFUSED"
     ) {
       setServers(["1.1.1.1", "8.8.8.8"]);
+      setPromiseServers(["1.1.1.1", "8.8.8.8"]);
       client = new MongoClient(uri, {
         serverSelectionTimeoutMS: 10000,
         connectTimeoutMS: 10000,
