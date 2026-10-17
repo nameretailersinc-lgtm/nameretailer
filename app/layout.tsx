@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { canonicalOrigin as origin } from "@/lib/seo/origin";
 import { Inter, Source_Serif_4 } from "next/font/google";
+
 import { serializeJsonLd, organizationNode } from "@/lib/seo/json-ld";
 import { Analytics } from "@/components/site/analytics";
 import "./globals.css";
@@ -16,6 +17,7 @@ import "./marketplace-menu.css";
 import "./commerce-flow.css";
 import "./placement.css";
 import "./public-theme.css";
+
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
