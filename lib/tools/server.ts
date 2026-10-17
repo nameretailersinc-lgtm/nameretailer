@@ -5,7 +5,13 @@ export async function toolInput(
   request: Request,
   name: string,
 ): Promise<string> {
-  if (!sameOrigin(request))
+  // A production NEXTAUTH_URL in .env must not disable local tool development.
+  const requestUrl = new URL(request.url);
+  const localOrigin =
+    process.env.NODE_ENV === "development" &&
+    ["localhost", "127.0.0.1", "[::1]"].includes(requestUrl.hostname) &&
+    request.headers.get("origin") === requestUrl.origin;
+  if (!sameOrigin(request) && !localOrigin)
     throw new ApiError(403, "Use this tool from the site.");
   if (!request.headers.get("content-type")?.startsWith("application/json"))
     throw new ApiError(415, "Send JSON input.");

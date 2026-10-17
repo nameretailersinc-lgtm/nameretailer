@@ -41,7 +41,10 @@ export function generateStaticParams() {
     ...marketplaceRanges.map((range) => ({ tool: range.slug })),
     ...directories.map((directory) => ({ tool: directory.slug })),
     ...tools
-      .filter((tool) => !["word-counter", "domain-length-checker"].includes(tool.slug))
+      .filter(
+        (tool) =>
+          !["word-counter", "domain-length-checker"].includes(tool.slug),
+      )
       .map((tool) => ({ tool: tool.slug })),
   ];
 }
@@ -102,7 +105,10 @@ export async function generateMetadata({
     {
       ...facetMetadata(`/${tool.slug}/`, await searchParams),
       title: `${tool.title} – Free Online Tool`,
-      description: `${tool.description} A free Name Retailer tool for SEO, content and link-building teams planning guest-post campaigns.`,
+      description:
+        tool.slug === "aeo-geo-seo-checker"
+          ? "Free SEO, AEO and GEO checker. Audit a page URL or HTML with 14 transparent checks, separate scores, practical recommendations and a downloadable report."
+          : `${tool.description} A free Name Retailer tool for SEO, content and link-building teams planning guest-post campaigns.`,
     },
     `/${tool.slug}/`,
   );

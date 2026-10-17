@@ -29,6 +29,25 @@ test("URL mode sends the address and analyzes fetched HTML", async ({
   await expect(
     page.getByText("Pass: Page title", { exact: true }),
   ).toBeVisible();
+  await page.getByLabel("Show only checks that need review").check();
+  await expect(page.getByText("Pass: Page title", { exact: true })).toHaveCount(
+    0,
+  );
+  await expect(
+    page.getByText("Review: Meta description", { exact: true }),
+  ).toBeVisible();
+  await page.getByLabel("Show only checks that need review").uncheck();
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= window.innerWidth,
+    ),
+  ).toBe(true);
+  await expect(
+    page.getByRole("heading", {
+      name: "What does an SEO, AEO and GEO checker do?",
+    }),
+  ).toBeVisible();
   await page.unroute("**/api/tools/readiness/");
   await page.route("**/api/tools/readiness/", (route) =>
     route.fulfill({
