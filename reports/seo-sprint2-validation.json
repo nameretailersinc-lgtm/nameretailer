@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-18",
+  "scope": "Local Sprint 2 commercial content and buyer guide changes; no deployment by this task",
+  "canonicalPagesImproved": 6,
+  "newPages": 0,
+  "newTools": 0,
+  "productionBuild": "passed, including TypeScript, 137 static pages and secure standalone packaging",
+  "typecheck": "passed after final regression additions",
+  "eslint": "passed after final regression additions",
+  "unitTests": { "files": 55, "passed": 573, "failed": 0 },
+  "browserTests": { "passed": 3, "failed": 0, "widths": [375, 1280], "pageViewportStates": 12, "checks": ["main-content axe accessibility", "one visible H1", "no page overflow", "unique bounded metadata", "canonical/index directives", "social titles", "JSON-LD", "visible Article dates", "hypothetical budget labeling", "related links", "query noindex", "price sitemap lastmod"] },
+  "hygiene": { "changedPages": 6, "result": "passed", "sourceImages": "passed" },
+  "observedLocalPages": "reports/seo-sprint2-pages.json",
+  "unchangedProductionSnapshot": "docs/seo-keyword-inventory-2026.csv",
+  "notVerified": ["Google indexing and selected canonicals", "Search Console keyword overlap", "Real payments and fulfillment", "Reset-mail delivery", "Field Core Web Vitals", "Numeric Keyword Planner estimates"],
+  "report": "docs/seo-sprint2-2026.md"
+}

@@ -1,4 +1,6 @@
 import { RelatedResearch } from "@/components/site/related-research";
+import { GuestPostBudgetWorksheet } from "@/components/site/guest-post-budget-worksheet";
+import { budgetWorksheetEditorial } from "@/lib/blog/editorial";
 import { EditorialByline } from "@/components/site/editorial-byline";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { blogRouteMetadata } from "@/lib/blog/seo";
@@ -208,6 +210,7 @@ export default async function Page({
           </ul>
         </section>
       )}
+      {article.slug === budgetWorksheetEditorial.slug && <GuestPostBudgetWorksheet />}
       <RelatedResearch />
       <section className="reference-information-next">
         <p className="eyebrow">Continue with context</p>

@@ -1,0 +1,21 @@
+{
+  "date": "2026-10-18",
+  "deployment": "Not deployed; no push or merge performed",
+  "applicationBuild": "Passed, including secure standalone packaging; later edits were QA-only",
+  "typecheck": "passed after final QA changes",
+  "eslint": "passed after final QA changes",
+  "unitTests": { "files": 55, "passed": 573, "failed": 0 },
+  "sitemapAudit": { "productionUrls": 730, "localUrls": 730, "issues": 0, "duplicateUrls": 0, "canonicalSetsMatch": true },
+  "metadata": { "routes": 750, "result": "passed" },
+  "structuredData": { "routes": 750, "result": "passed; not external rich-result certification" },
+  "hygiene": { "fullRoutesChecked": 750, "initialFalsePositives": 2, "affectedRouteRerunPassed": 2, "sourceImages": "passed", "correction": "QA detector no longer misclassifies legitimate search/answer readiness wording" },
+  "internalLinks": { "sitemapSourcePages": 730, "distinctDestinations": 1893, "result": "passed; prior to HTML site-map additions whose destinations were already validated" },
+  "redirects": { "aliases": 125, "distinctTargets": 51, "result": "passed" },
+  "keywordInventory": { "existingCanonicalUrls": 730, "gatedProposals": 4, "numericVolumesSupplied": false },
+  "publicBrowserRun": { "passed": 8, "failed": 0, "includes": "Domain tool/accessibility and Sprint 1 routes" },
+  "finalFocusedBrowserRun": { "passed": 8, "failed": 1, "sprint1CasesPassed": 5, "failure": "Legacy placement test calls textarea setSelectionRange on the existing rich-text editor" },
+  "isolatedRegressionRun": { "passed": 20, "failed": 4, "skipped": 7, "limitations": ["Removed UI labels expected by two old specs", "Reset mail disabled by test launcher", "Placement suite initially refused port 3260"] },
+  "placementApiRerun": { "port": 3003, "passed": 1, "failed": 0, "scope": "Synthetic isolated DB: ownership, private uploads/downloads, billing drafts and stale price/cart guards; no real payment" },
+  "unverified": ["Google index status and selected canonicals", "Real provider payments and fulfillment", "Live reset mail", "Field Core Web Vitals", "Numeric Keyword Planner estimates", "Licensed live SEO metric providers"],
+  "details": "docs/seo-audit-2026.md"
+}

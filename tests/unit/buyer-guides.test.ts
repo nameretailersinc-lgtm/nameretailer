@@ -3,7 +3,7 @@ import { buyerGuides, costAnswer } from "@/lib/site/buyer-guides";
 import { buyerGuideArticleNode } from "@/lib/seo/json-ld";
 const words = (text: string) => text.split(/\s+/).filter(Boolean).length;
 it("keeps the commissioned buyer guides approved with answer-first openings", () => {
-  expect(buyerGuides).toHaveLength(9);
+  expect(buyerGuides).toHaveLength(25);
   for (const guide of buyerGuides) {
     expect(guide.approved).toBe(true);
     expect(guide.sources.length).toBeGreaterThan(0);

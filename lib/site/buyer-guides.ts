@@ -1,5 +1,6 @@
 import type { CatalogueStatistics } from "../commerce/catalogue-statistics";
 import { domainGuides } from "./domain-guides";
+import { guestPostingGuides } from "./guest-posting-guides";
 export type BuyerGuide = {
   slug: string;
   title: string;
@@ -7,7 +8,12 @@ export type BuyerGuide = {
   description: string;
   answer: string;
   questions: Array<{ title: string; body: string }>;
+  steps?: string[];
+  checklist?: string[];
+  templates?: Array<{ title: string; text: string }>;
+  faq?: Array<[question: string, answer: string]>;
   table?: { columns: string[]; rows: string[][] };
+  related?: Array<[label: string, path: string]>;
   sources: Array<[string, string]>;
   approved: boolean;
   author?: string;
@@ -41,12 +47,14 @@ const traffic = [
 // Sections marked "expanded 2026-10-09" were added in the SEO audit pass and need the author's review.
 export const buyerGuides: BuyerGuide[] = [
   ...domainGuides,
+  ...guestPostingGuides,
   {
     slug: "guest-post-cost",
     title: "How much does a guest post cost?",
-    updatedAt: "2026-10-09",
+    updatedAt: "2026-10-18",
+    sourcesCheckedAt: "2026-10-18",
     description:
-      "Guest post prices across every active listing: median cost, typical ranges by DA, DR, country and topic, and what a placement price leaves out.",
+      "Understand guest post costs, placement versus writing charges and a worked budget example. Compare dated catalogue price ranges and publisher scope.",
     answer: "",
     approved: true,
     author: "Zuhoor Uddin",
@@ -64,7 +72,7 @@ export const buyerGuides: BuyerGuide[] = [
       // expanded 2026-10-09
       {
         title: "Why do guest post prices vary so much?",
-        body: "Publishers set their own prices. Higher authority scores and larger traffic estimates usually cost more, but the relationship is loose: two sites with the same DA can differ several-fold in price because of topic demand, editorial standards, how many links are allowed and whether the post is marked as sponsored. The tables below show the spread inside each band, so compare a quote with the typical range for similar sites rather than with the catalogue as a whole.",
+        body: "A placement price describes one listing’s offered scope. Publishers with similar scores can serve different readers and have different writing, review, link and availability terms. The catalogue distribution does not establish what caused a price difference. Compare publications covering the same topic and language, then confirm the scope directly. Do not infer a ranking benefit or an editorial quality certification from a higher price.",
       },
       {
         title: "Is article writing included in the price?",
@@ -74,6 +82,51 @@ export const buyerGuides: BuyerGuide[] = [
         title: "How should I read the price tables?",
         body: "Each row shows how many active listings fall in a group, the median placement price, and the middle half of prices (25th to 75th percentile). The middle range is a better guide to a normal price than the minimum or maximum, which a few outliers pull far apart. Groups with fewer than 15 listings are left out. Metrics are supplied with the listings and not independently verified.",
       },
+      {
+        title: "Worked example: a placement price is not the total budget",
+        body: "For illustration only, suppose a placement is quoted at $45, writing at $20 and your separate editing allowance is $10. Your working total is $75 before any other applicable charges. These are hypothetical inputs, not Name Retailer prices, publisher quotes or a market average. Replace each amount with an actual agreed figure, and do not count an unavailable writing option as free. Compare this total, rather than the $45 headline, against your budget.",
+      },
+      {
+        title: "How do I compare affordable guest posting websites?",
+        body: "Set a placement ceiling, then keep only publications relevant to your audience. A directory of guest posting sites under $50 is a price filter, not a quality certification or an all-in package. Read recent articles, confirm language and audience location, and inspect available traffic evidence. A cheaper site that reaches the wrong readers may be unsuitable even if its supplied authority score is higher. Save several candidates and settle missing scope or price details before committing.",
+      },
+      {
+        title: "How does guest post cost compare with niche edit cost?",
+        body: "A new guest post and a link insertion are different scopes, so their prices are not interchangeable. A new article may require writing and editorial review; an insertion requires a genuinely relevant existing page and the publisher’s agreement to edit it. This catalogue does not establish that both formats are offered. Ask for separate current quotes and paid-link terms, then compare only the options actually available. Neither format guarantees rankings or link equity.",
+      },
+    ],
+    table: {
+      columns: [
+        "Illustrative budget item",
+        "Hypothetical amount",
+        "Replace with",
+      ],
+      rows: [
+        ["Placement", "$45", "Current publisher placement quote"],
+        ["Writing", "$20", "Available agreed writing charge, if needed"],
+        ["Editing allowance", "$10", "Your own editorial budget"],
+        [
+          "Illustrative total",
+          "$75",
+          "Actual confirmed costs plus any applicable charges",
+        ],
+      ],
+    },
+    related: [
+      ["Compare free and paid contributions", "/guides/free-vs-paid-guest-posting/"],
+      ["Compare guest post pricing by niche", "/guest-post-prices/"],
+      [
+        "Guest posting sites with placement prices up to $50",
+        "/guest-posting-sites-under-50/",
+      ],
+      [
+        "Use the existing guest-post budget worksheet",
+        "/blog/a-practical-guest-post-budget-worksheet/",
+      ],
+      [
+        "Compare guest posts and link insertions",
+        "/guides/guest-post-vs-link-insertion/",
+      ],
     ],
   },
   {
@@ -122,7 +175,8 @@ export const buyerGuides: BuyerGuide[] = [
   {
     slug: "da-vs-dr-and-traffic",
     title: "DA vs DR and traffic estimates",
-    updatedAt: "2026-10-09",
+    updatedAt: "2026-10-18",
+    sourcesCheckedAt: "2026-10-18",
     description:
       "DA vs DR explained: who publishes each score, what it measures, why they disagree, and how to read traffic estimates when comparing guest post sites.",
     answer:
@@ -151,7 +205,19 @@ export const buyerGuides: BuyerGuide[] = [
       },
       {
         title: "Which metric should I filter by first?",
-        body: "Filter by topic, country and language first, because they decide whether your audience is there at all. Then use one authority score consistently (DA or DR, not both) to narrow the list, and use traffic to rank the remaining sites. Read a few recent articles on each shortlisted site before deciding.",
+        body: "Start with topic and language, and use the listing country to narrow your research. Those fields do not prove that your audience visits the site. Compare DA with DA and DR with DR; neither is a Google ranking score. Then review the traffic source, date and topic mix before using it to rank candidates. Read recent articles and confirm actual audience geography rather than assuming a large number means useful readers.",
+      },
+      {
+        title: "Does a traffic figure mean organic search traffic?",
+        body: "Not necessarily. Organic search visits, total website visits and page views describe different things. An unlabeled supplied traffic figure does not identify the channel, reporting window or measurement method. Ask whether it is a third-party estimate or first-party analytics, whether it covers the root domain or a section, and which dates it covers. Ahrefs’ organic estimate uses search positions, search volumes and click-through-rate assumptions; it is not a direct count from a publisher’s analytics.",
+      },
+      {
+        title: "What evidence should I request from a publisher?",
+        body: "Ask for the metric provider, the observation date, the domain or section measured, the date range and the audience breakdown relevant to your campaign. Where a publisher supplies an analytics or Search Console export, confirm what it measures and whether sensitive data can be redacted. Compare like-for-like periods and channels. A screenshot alone is not independent verification, and a catalogue update date records the listing change rather than proving the metric was measured then.",
+      },
+      {
+        title: "Example: compare relevance before headline numbers",
+        body: "Imagine two hypothetical publishers: one has a larger supplied traffic estimate but mostly covers unrelated entertainment topics; another has a smaller estimate and recent software tutorials relevant to your product. The larger number alone cannot decide a SaaS placement. Check both sources and dates, relevant pages, audience location and editorial requirements before choosing. This example explains a decision process; it is not a comparison of actual publishers or a prediction of results.",
       },
     ],
     table: {
@@ -166,11 +232,21 @@ export const buyerGuides: BuyerGuide[] = [
         ],
       ],
     },
+    related: [
+      ["Evaluate guest post publishers", "/guides/vet-a-guest-post-site/"],
+      [
+        "Compare guest posting sites by supplied Domain Rating",
+        "/guest-post-by-dr/",
+      ],
+      ["Review listing and metric methodology", "/methodology/"],
+      ["Run the traffic-evidence workflow", "/guides/check-guest-post-website-traffic/"],
+    ],
   },
   {
     slug: "vet-a-guest-post-site",
-    title: "How to vet a guest post site",
-    updatedAt: "2026-10-09",
+    title: "How to evaluate guest post publishers",
+    updatedAt: "2026-10-18",
+    sourcesCheckedAt: "2026-10-18",
     description:
       "A practical checklist to vet a guest post site: recent content, topic fit, link and disclosure terms, metric sources and the warning signs of a link farm.",
     answer:
@@ -201,14 +277,43 @@ export const buyerGuides: BuyerGuide[] = [
         title: "What should I agree before paying?",
         body: "Agree the article scope or target page, the number and type of links, the sponsored label and link attribute, the expected publication date, and what happens if the post is removed or edited later. Keep that agreement in writing with the order.",
       },
+      {
+        title: "How do I assess topical relevance?",
+        body: "Read several recent articles in the publication section where your piece would appear. Note the reader, topic depth, author expertise and the kinds of sources used. Then write one sentence explaining why that reader would need your article. A broad category match is only a starting point: a consumer gadget blog and a technical software publication may both be labeled Technology while serving very different audiences. If the proposed angle feels out of place, revise it or choose another publisher.",
+      },
+      {
+        title: "A practical publisher review record",
+        body: "For each candidate, record the date you checked it, relevant article URLs, topic and language fit, metric source and date, the supplied placement price, writing scope and unanswered questions. Mark each item confirmed, unconfirmed or unsuitable; do not turn missing evidence into a passing score. If a crucial item remains unconfirmed, ask the publisher before proceeding. Keep this record with your brief so a colleague or client can understand why the site stayed on the shortlist.",
+      },
+      {
+        title: "When should I reject or pause a listing?",
+        body: "Pause if the publisher cannot explain the proposed article location, price inclusions or paid-link qualification. Reject a candidate when its content is irrelevant to the audience you need, its stated restrictions conflict with your brief, or it cannot meet your essential editorial requirements. A high DA or DR does not resolve these problems. Record the reason and compare another candidate rather than inventing verification or treating a metric threshold as approval.",
+      },
+    ],
+    related: [
+      [
+        "Follow the guest posting website selection workflow",
+        "/how-to-buy-links/",
+      ],
+      [
+        "Understand DA, DR and supplied traffic evidence",
+        "/guides/da-vs-dr-and-traffic/",
+      ],
+      [
+        "Review paid-link qualification",
+        "/guides/paid-guest-posts-google-link-policies/",
+      ],
+      ["Browse publishers by industry", "/guest-posting-sites/"],
+      ["Use the final publishing checklist", "/guides/guest-posting-checklist/"],
     ],
   },
   {
     slug: "paid-guest-posts-google-link-policies",
     title: "Paid guest posts and Google’s link policies",
-    updatedAt: "2026-10-09",
+    updatedAt: "2026-10-18",
+    sourcesCheckedAt: "2026-10-18",
     description:
-      "Are paid guest posts allowed by Google? What its link-spam policy says, when to use rel=sponsored, and how to buy placements without breaking it.",
+      "Compare ordinary, nofollow and sponsored guest post links, understand Google's paid-link requirements and check the published markup against agreed terms.",
     answer:
       "Paid guest posts need appropriate link qualification. Google recommends rel=" +
       '"sponsored"' +
@@ -239,7 +344,21 @@ export const buyerGuides: BuyerGuide[] = [
         title: "Then what is the value of a sponsored guest post?",
         body: "Its value is the audience: referral visits, brand exposure to the publication’s readers, and content that answers their questions. Choose publications your customers already read, measure referral traffic and conversions from each placement, and judge the next order on those results rather than on authority scores.",
       },
+      {
+        title: "How do I check the live link attributes?",
+        body: "Inspect the actual link element on the published page and compare its href and rel values with the agreement. A visible Sponsored label does not itself add a rel attribute to a link. Conversely, a sponsored attribute does not explain the commercial relationship to readers. If the markup or disclosure differs, ask the editor to correct the specific issue and retain the response. Do not infer attributes from a catalogue label alone.",
+      },
     ],
+    table: {
+      columns: ["Link treatment", "Meaning", "Paid placement use"],
+      rows: [
+        ["No qualifying rel (often called dofollow)", "Ordinary unqualified link; dofollow is not a required HTML attribute", "Does not identify the paid relationship"],
+        ["rel=nofollow", "Qualifies the link", "Accepted by Google for paid links"],
+        ["rel=sponsored", "Identifies advertising or a paid placement", "Google's recommended value for paid links"],
+        ["Reader-facing disclosure", "Explains the relationship in visible text", "Discuss separately from HTML attributes"],
+      ],
+    },
+    related: [["Compare free and paid guest posting", "/guides/free-vs-paid-guest-posting/"], ["Check before and after publication", "/guides/guest-posting-checklist/"], ["Measure reader outcomes", "/guides/measure-guest-posting-results/"]],
   },
   {
     slug: "guest-post-vs-sponsored-post",
@@ -307,5 +426,5 @@ export function costAnswer(stats: CatalogueStatistics) {
       currency: "USD",
       maximumFractionDigits: 3,
     }).format(value / 100);
-  return `Guest-post placements range from ${money(stats.minPriceCents)} to ${money(stats.maxPriceCents)}, with a median of ${money(stats.medianPriceCents)} across ${stats.total.toLocaleString("en-US")} active publications. Price rises with audience size and authority, but the link is loose, so compare similar sites. Writing may cost extra; compare audience fit and confirm editorial scope and sponsored-link disclosure with the publisher before planning a placement.`;
+  return `Guest-post placements range from ${money(stats.minPriceCents)} to ${money(stats.maxPriceCents)}, with a median of ${money(stats.medianPriceCents)} across ${stats.total.toLocaleString("en-US")} active listings. These are supplied placement prices, not completed transactions or campaign quotes. Writing may cost extra. Compare relevant publishers and confirm editorial scope, availability and paid-link disclosure before planning a placement.`;
 }

@@ -1,5 +1,6 @@
 import { blogArticleIndexable } from "./indexing-policy";
 import { publicArticle } from "./public-copy";
+import { blogContentUpdatedAt } from "./editorial";
 import { cache } from "react";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
@@ -24,6 +25,7 @@ export const getBlogArticle = cache(
     return record
       ? publicArticle({
           ...record,
+          updatedAt: blogContentUpdatedAt(record),
           data: { ...record.data, robotsIndex: blogArticleIndexable(record) },
         })
       : null;

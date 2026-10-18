@@ -3,6 +3,12 @@ import { finishedCopy, finishedHtml, unfinishedCopy } from "@/lib/site/public-co
 import { buyerQuestions } from "@/lib/site/faq";
 import { blogLibrary } from "@/lib/blog/library";
 
+it("allows search and answer readiness descriptions for functioning tools", () => {
+  expect("Check your page’s search readiness and answer readiness.").not.toMatch(unfinishedCopy);
+  for (const text of ["This preview is pending", "This rebuild is a draft", "Payments are not yet enabled"])
+    expect(text).toMatch(unfinishedCopy);
+});
+
 it("gives buyer questions a direct 40–60 word answer and supporting detail", () => {
   for (const question of buyerQuestions) {
     const words = question.answer.split(/\s+/).length;

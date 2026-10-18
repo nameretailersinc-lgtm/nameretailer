@@ -1,6 +1,6 @@
 /** Keeps historical CMS wording out of public presentation without changing records. */
 export const unfinishedCopy =
-  /\b(?:rebuild|preview|draft|readiness|pending)\b|not yet enabled|editorial review before publication|migration redirect map|supplied Sharjah address|10,000\+/i;
+  /\b(?:rebuild|preview|draft|pending)\b|not yet enabled|editorial review before publication|migration redirect map|supplied Sharjah address|10,000\+/i;
 
 export function finishedCopy(text: string): string {
   return text

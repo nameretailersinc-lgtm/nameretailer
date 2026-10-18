@@ -13,10 +13,10 @@ import { canonicalOrigin } from "@/lib/seo/metadata";
 import { notFound } from "next/navigation";
 const baseMetadata = {
   title: {
-    absolute: "Guest Post Marketplace: Compare Sites | Name Retailer",
+    absolute: "Guest Post Marketplace for SEO Agencies | Name Retailer",
   },
   description:
-    "Compare active publications by topic, country, DA, DR, traffic and USD price. Shortlist sites, prepare a placement plan and request details from Name Retailer.",
+    "Compare guest posting sites with prices, niche filters and supplied traffic metrics. Shortlist relevant publishers and plan placements for your business or clients.",
   alternates: { canonical: "https://nameretailer.com/" },
 };
 export default function Page({

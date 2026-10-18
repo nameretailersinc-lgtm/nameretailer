@@ -1,0 +1,211 @@
+{
+  "checkedAt": "2026-10-18T17:39:01.935Z",
+  "scope": "Read-only configured catalogue; active listings in committed imports. Supplied categories/countries are not independently verified audiences. Editorial and demand review remain separate.",
+  "rows": [
+    {
+      "slug": "guest-posting-sites-uk",
+      "filter": {
+        "country": "United Kingdom"
+      },
+      "exactFieldsPresent": true,
+      "meetsInventoryThreshold": true,
+      "stats": {
+        "total": 3203,
+        "minPriceCents": 3900,
+        "maxPriceCents": 3829921,
+        "medianPriceCents": 12929,
+        "topCountries": [
+          {
+            "name": "United Kingdom",
+            "count": 3203
+          }
+        ],
+        "topTopics": [
+          {
+            "name": "Business",
+            "count": 1365
+          },
+          {
+            "name": "General",
+            "count": 332
+          },
+          {
+            "name": "All Niches",
+            "count": 156
+          }
+        ],
+        "updatedAt": "2026-10-06T09:12:23.671Z"
+      },
+      "samples": [
+        {
+          "domain": "https://bbc.co.uk",
+          "category": "Food",
+          "country": "United Kingdom",
+          "priceCents": 718200
+        },
+        {
+          "domain": "https://telegraph.co.uk",
+          "category": "Business",
+          "country": "United Kingdom",
+          "priceCents": 239400
+        },
+        {
+          "domain": "https://mirror.co.uk",
+          "category": "Business",
+          "country": "United Kingdom",
+          "priceCents": 2872800
+        },
+        {
+          "domain": "https://express.co.uk",
+          "category": "Business",
+          "country": "United Kingdom",
+          "priceCents": 311220
+        },
+        {
+          "domain": "https://ed.ac.uk",
+          "category": "E-commerce",
+          "country": "United Kingdom",
+          "priceCents": 19950
+        }
+      ]
+    },
+    {
+      "slug": "finance-guest-posting-sites",
+      "filter": {
+        "categories": [
+          "Finance"
+        ]
+      },
+      "exactFieldsPresent": true,
+      "meetsInventoryThreshold": true,
+      "stats": {
+        "total": 691,
+        "minPriceCents": 3900,
+        "maxPriceCents": 4788000,
+        "medianPriceCents": 19950,
+        "topCountries": [
+          {
+            "name": "United States",
+            "count": 541
+          },
+          {
+            "name": "United Kingdom",
+            "count": 35
+          },
+          {
+            "name": "Italy",
+            "count": 21
+          }
+        ],
+        "topTopics": [
+          {
+            "name": "Finance",
+            "count": 691
+          }
+        ],
+        "updatedAt": "2026-10-06T09:12:23.671Z"
+      },
+      "samples": [
+        {
+          "domain": "https://msn.com",
+          "category": "Finance",
+          "country": "United States",
+          "priceCents": 13965
+        },
+        {
+          "domain": "https://investopedia.com",
+          "category": "Finance",
+          "country": "United States",
+          "priceCents": 167580
+        },
+        {
+          "domain": "https://fortune.com",
+          "category": "Finance",
+          "country": "United States",
+          "priceCents": 143640
+        },
+        {
+          "domain": "https://nerdwallet.com",
+          "category": "Finance",
+          "country": "United States",
+          "priceCents": 24239
+        },
+        {
+          "domain": "https://bitcoin.com",
+          "category": "Finance",
+          "country": "United States",
+          "priceCents": 766080
+        }
+      ]
+    },
+    {
+      "slug": "real-estate-guest-posting-sites",
+      "filter": {
+        "categories": [
+          "Real Estate"
+        ]
+      },
+      "exactFieldsPresent": true,
+      "meetsInventoryThreshold": true,
+      "stats": {
+        "total": 143,
+        "minPriceCents": 3900,
+        "maxPriceCents": 1436400,
+        "medianPriceCents": 14585,
+        "topCountries": [
+          {
+            "name": "United States",
+            "count": 102
+          },
+          {
+            "name": "United Kingdom",
+            "count": 10
+          },
+          {
+            "name": "Canada",
+            "count": 8
+          }
+        ],
+        "topTopics": [
+          {
+            "name": "Real Estate",
+            "count": 143
+          }
+        ],
+        "updatedAt": "2026-10-06T09:12:23.671Z"
+      },
+      "samples": [
+        {
+          "domain": "https://medium.com",
+          "category": "Real Estate",
+          "country": "United States",
+          "priceCents": 8604
+        },
+        {
+          "domain": "https://moneycrashers.com",
+          "category": "Real Estate",
+          "country": "United States",
+          "priceCents": 86184
+        },
+        {
+          "domain": "https://brownstoner.com",
+          "category": "Real Estate",
+          "country": "United States",
+          "priceCents": 1436400
+        },
+        {
+          "domain": "https://realtybiznews.com",
+          "category": "Real Estate",
+          "country": "United States",
+          "priceCents": 86184
+        },
+        {
+          "domain": "https://vcpost.com",
+          "category": "Real Estate",
+          "country": "United States",
+          "priceCents": 21546
+        }
+      ]
+    }
+  ]
+}

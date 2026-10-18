@@ -70,7 +70,14 @@ const sourceProblems = [
 assert.equal(sourceProblems.length, 0, sourceProblems.join("\n"));
 await withProductionServer(async (base) => {
   const problems: string[] = [];
-  const routes = await publicRoutes(base);
+  // Scope a failure rerun without repeating the full crawl. The default remains
+  // every public route; always report the actual number checked below.
+  const scoped = process.env.HYGIENE_PATHS?.split(",").filter(Boolean);
+  assert(
+    !scoped?.some((path) => !path.startsWith("/") || path.startsWith("//")),
+    "Use local absolute paths for HYGIENE_PATHS",
+  );
+  const routes = scoped?.length ? scoped : await publicRoutes(base);
   for (const path of routes) {
     const html = visibleHtml(await pageHtml(base, path));
     if (!/<html\b[^>]*\blang="[a-z][a-z-]*"/i.test(html))

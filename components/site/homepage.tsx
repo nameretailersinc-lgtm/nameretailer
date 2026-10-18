@@ -98,16 +98,17 @@ export function HomepageHero() {
     <div className={styles.hero}>
       <div className={styles.heroCopy}>
         <p className={styles.badge}>
-          <span aria-hidden="true" /> Premium guest post marketplace
+          <span aria-hidden="true" /> Compare publishers. Plan placements.
         </p>
         <h1 id="publication-discovery-title">
-          Get Featured on
-          <br />
-          <span>High-Quality Websites</span>
+          Guest post marketplace
+          <br /> <span>for SEO agencies</span>
         </h1>
         <p className={styles.lead}>
-          Find relevant websites, compare publication details, and plan your
-          next guest post — all in one place.
+          Compare relevant websites by niche, country, supplied traffic and USD
+          placement price. Build a shortlist for your clients or small business,
+          then confirm the publisher’s requirements before planning a guest
+          post.
         </p>
         <div className={styles.heroActions}>
           <a className="button button-primary" href="#inventory">

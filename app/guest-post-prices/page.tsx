@@ -6,6 +6,7 @@ import { priceBreakdown, type PriceRow } from "@/lib/commerce/price-breakdown";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
+import { priceGuideEditorial } from "@/lib/site/editorial";
 const usd = (cents: number) =>
   new Intl.NumberFormat("en-US", {
     style: "currency",
@@ -20,9 +21,9 @@ export async function generateMetadata({
   const data = await priceBreakdown().catch(() => null);
   return pageMetadata(
     {
-      title: "Guest Post Prices by Niche, DA and Country",
+      title: "Guest Post Pricing by Niche, DA and Country",
       description:
-        "Dated catalogue placement prices: medians, 25th and 75th percentiles by niche, DA and country, with traffic coverage and methodology.",
+        "Compare guest post pricing by niche, DA, DR and listing country using dated catalogue medians and price ranges. See what placement prices include and exclude.",
       ...facetMetadata("/guest-post-prices/", await searchParams),
       ...(!validAsOf(data?.asOf)
         ? { robots: { index: false, follow: true } }
@@ -36,7 +37,12 @@ function PriceTable({ title, rows }: { title: string; rows: PriceRow[] }) {
   return (
     <section className="reference-card">
       <h2>{title}</h2>
-      <div className="directory-table-wrap">
+      <div
+        className="directory-table-wrap"
+        tabIndex={0}
+        role="region"
+        aria-label={`${title} table`}
+      >
         <table className="directory-table">
           <caption>{title}: USD placement prices</caption>
           <thead>
@@ -75,12 +81,24 @@ export default async function Page() {
   return (
     <InformationShell
       path="/guest-post-prices/"
-      title="Guest post prices by niche and metric"
+      title="Guest post pricing by niche and metric"
       label="Catalogue price data"
       description={summary}
       active="guides"
       image="/02_content_metrics_panel.png"
     >
+      <p className="reference-article-meta">
+        Price comparison guidance updated{" "}
+        <time dateTime={priceGuideEditorial.updatedAt}>
+          {new Date(priceGuideEditorial.updatedAt).toLocaleDateString("en-US", {
+            year: "numeric",
+            month: "long",
+            day: "numeric",
+            timeZone: "UTC",
+          })}
+        </time>
+        . Catalogue observation dates are shown separately below.
+      </p>
       {data && (
         <>
           <DataDisclosure asOf={data.asOf} />
@@ -93,6 +111,57 @@ export default async function Page() {
           <PriceTable title="Prices by Domain Rating band" rows={data.byDr} />
         </>
       )}
+      <section className="reference-card">
+        <h2>How to compare guest post prices</h2>
+        <ol>
+          <li>
+            Start with the niche and audience you need. Compare publications
+            serving a similar topic and language.
+          </li>
+          <li>
+            Read the median alongside the 25th and 75th percentiles. Use that
+            range to compare the middle of the distribution; it does not show
+            the cheapest and most expensive placements.
+          </li>
+          <li>
+            Check each candidate’s current detail page. Confirm writing,
+            editorial revisions, link qualification and timing separately from
+            the placement amount.
+          </li>
+          <li>
+            Use supplied DA, DR and traffic as supporting comparison fields. A
+            higher price or score does not establish editorial quality, verified
+            readers or a ranking benefit.
+          </li>
+        </ol>
+        <p>
+          A low listing price can still be expensive for an irrelevant audience.
+          Read the{" "}
+          <Link href="/guides/vet-a-guest-post-site/">
+            publisher evaluation checklist
+          </Link>{" "}
+          before choosing solely by budget.
+        </p>
+      </section>
+      <section className="reference-card">
+        <h2>Placement price versus your total guest posting budget</h2>
+        <p>
+          This report measures the supplied placement price. It does not quote a
+          managed outreach service, campaign package or total project cost.
+          Writing options, when offered, are separate. Your own research,
+          editorial work and applicable agreed charges can also affect the
+          total. Missing charges must be confirmed, rather than treated as zero.
+        </p>
+        <p>
+          For a small-business budget, start with the{" "}
+          <Link href="/guest-posting-sites-under-50/">
+            up-to-$50 placement directory
+          </Link>{" "}
+          and review the exclusions in the{" "}
+          <Link href="/guides/guest-post-cost/">guest post cost guide</Link>. A
+          saved plan does not reserve a publication or its current price.
+        </p>
+      </section>
       <section className="reference-card">
         <h2>Methodology and refresh</h2>
         <p>
@@ -131,6 +200,9 @@ export default async function Page() {
       </section>
       <section className="reference-card">
         <h2>Compare and plan</h2>
+        <p>
+          Use the <Link href="/blog/a-practical-guest-post-budget-worksheet/">existing budget worksheet</Link> to record total costs, compare <Link href="/guides/free-vs-paid-guest-posting/">free and paid contributions</Link>, then define <Link href="/guides/measure-guest-posting-results/">how you will measure results</Link> before committing to a placement.
+        </p>
         <p>
           <Link href="/guest-posting-sites/">
             Explore publications by niche

@@ -351,6 +351,9 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(schema) }}
       />
       <section className="reference-card directory-listings">
+        {directory.editorialUpdatedAt && (
+          <p>Directory guidance updated <time dateTime={directory.editorialUpdatedAt}>{directory.editorialUpdatedAt}</time>. Listing observation dates are shown separately below.</p>
+        )}
         <h2>Publishers in this directory</h2>
         {result ? (
           <>
@@ -372,8 +375,8 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
               dash means the value was not supplied.
             </p>
             {result.data.length > 0 && (
-              <div className="directory-table-wrap">
-                <table className="directory-table">
+              <div className="directory-table-wrap" role="region" aria-label={`${directory.h1} listings`} tabIndex={0}>
+                <table className="directory-table" aria-label={`${directory.h1} comparison`}>
                   <thead>
                     <tr>
                       <th scope="col">Publication</th>
@@ -487,6 +490,16 @@ export async function DirectoryPage({ directory }: { directory: Directory }) {
           </p>
         </section>
       </div>
+      {directory.resources?.length ? (
+        <section className="reference-card" aria-labelledby="directory-resources">
+          <h2 id="directory-resources">Further guidance and sources</h2>
+          <ul>
+            {directory.resources.map(([label, href]) => (
+              <li key={href}><Link href={href}>{label}</Link></li>
+            ))}
+          </ul>
+        </section>
+      ) : null}
       <section
         className="reference-tool-faq reference-information-next"
         aria-labelledby="directory-faq"
@@ -537,12 +550,12 @@ export function LandingExplore() {
               Compare guest posting sites before you <span>commit</span>
             </h2>
             <p>
-              Name Retailer is a guest post marketplace for brands, agencies and
-              SEO teams. Every listing shows the publication’s topic, audience
-              country and language, supplied Domain Authority, Domain Rating and
-              traffic estimates, and a USD placement price, so you can judge
-              audience fit and value side by side instead of across scattered
-              spreadsheets.
+              Name Retailer helps SEO agencies and small businesses compare
+              guest posting sites with prices and niche filters. Review each
+              publication’s topic, listing country, language and available
+              supplied metrics, then shortlist up to four sites. Confirm
+              audience fit and editorial terms with the publisher; a listing or
+              authority score is not independent verification of quality.
             </p>
           </div>
           <div className={guideStyles.guideArt} aria-hidden="true">
@@ -621,10 +634,11 @@ export function LandingExplore() {
             <p>
               Begin with relevance. Read a publication’s recent articles and ask
               whether your topic would sit naturally beside them, then use
-              country and language to confirm the audience. Domain Authority is
-              Moz’s score and Domain Rating is Ahrefs’; they are different
-              measures, so compare each only within its own system and treat
-              them as one signal among several. You can{" "}
+              country and language to narrow the search. A country field does
+              not verify where readers live. Domain Authority is Moz’s score and
+              Domain Rating is Ahrefs’; they are different measures, so compare
+              each only within its own system and treat them as one signal among
+              several. You can{" "}
               <Link href="/guides/da-vs-dr-and-traffic/">
                 read how DA, DR and traffic estimates differ
               </Link>{" "}
@@ -650,6 +664,39 @@ export function LandingExplore() {
               plan. Ordering and payment are not available yet, and a saved plan
               does not reserve a price or a placement, so confirm scope,
               disclosure and delivery timing with the team before you commit.
+            </p>
+            <h3>A shortlist for an agency or small business</h3>
+            <p>
+              For a software client, start with the{" "}
+              <Link href="/saas-guest-posting-sites/">
+                SaaS publisher directory
+              </Link>
+              , compare recent coverage with the client’s product, and keep a
+              separate brief for each candidate. For a smaller campaign, use{" "}
+              <Link href="/guest-posting-sites-under-50/">
+                guest posting sites with placement prices up to $50
+              </Link>{" "}
+              as a budget filter, then allow separately for writing and review.
+              Affordable does not mean suitable: use the{" "}
+              <Link href="/guides/vet-a-guest-post-site/">
+                publisher evaluation checklist
+              </Link>{" "}
+              before saving a plan.
+            </p>
+            <h3>Compare prices and check organic traffic claims</h3>
+            <p>
+              The catalogue can help you find guest posting opportunities by
+              industry, but a traffic field alone does not establish organic
+              search visits. Ask for the source, measurement date, relevant
+              queries and audience geography. Compare{" "}
+              <Link href="/guest-post-prices/">
+                guest post pricing by niche
+              </Link>{" "}
+              and read{" "}
+              <Link href="/guides/guest-post-cost/">
+                what a guest post can cost
+              </Link>{" "}
+              before comparing total campaign costs.
             </p>
           </div>
         </details>

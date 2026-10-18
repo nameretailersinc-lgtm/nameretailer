@@ -1,4 +1,5 @@
 import type { CmsRecord } from "../cms/types";
+import { blogContentUpdatedAt } from "./editorial";
 import { bodyText, sanitizeBody } from "../cms/content";
 import { blogArticleIndexable } from "./indexing-policy";
 import { canonicalUrl, canonicalOrigin } from "../seo/metadata";
@@ -18,10 +19,11 @@ export function blogSitemapEntry(record: CmsRecord) {
     canonicalUrl(record) !== `${canonicalOrigin}/${record.slug}/`
   )
     return null;
+  const updatedAt = blogContentUpdatedAt(record);
   return {
     url: canonicalUrl(record),
-    ...(Number.isFinite(Date.parse(record.updatedAt))
-      ? { lastModified: new Date(record.updatedAt) }
+    ...(Number.isFinite(Date.parse(updatedAt))
+      ? { lastModified: new Date(updatedAt) }
       : {}),
   };
 }

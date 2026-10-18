@@ -36,7 +36,7 @@ const usd = (cents: number) =>
   new Intl.NumberFormat("en-US", {
     style: "currency",
     currency: "USD",
-    maximumFractionDigits: 0,
+    maximumFractionDigits: 2,
   }).format(cents / 100);
 
 /** Live catalogue distribution; rows come from priceBreakdown(), never typed in. */
@@ -53,7 +53,12 @@ function PriceTable({
   return (
     <section className="reference-card">
       <h2>{caption}</h2>
-      <div className="directory-table-wrap" tabIndex={0} role="region" aria-label={caption}>
+      <div
+        className="directory-table-wrap"
+        tabIndex={0}
+        role="region"
+        aria-label={caption}
+      >
         <table className="directory-table">
           <caption>
             {caption}: active listings, median and middle-half price range in
@@ -142,8 +147,41 @@ export default async function Page({ params }: Props) {
           <p>{section.body}</p>
         </section>
       ))}
+      {guide.steps && (
+        <section className="reference-card">
+          <h2>Put it into practice</h2>
+          <ol>
+            {guide.steps.map((step) => (
+              <li key={step}>{step}</li>
+            ))}
+          </ol>
+        </section>
+      )}
+      {guide.templates?.map((template) => (
+        <section className="reference-card" key={template.title}>
+          <h2>{template.title}</h2>
+          <p style={{ whiteSpace: "pre-wrap", overflowWrap: "anywhere" }}>
+            {template.text}
+          </p>
+        </section>
+      ))}
+      {guide.checklist && (
+        <section className="reference-card">
+          <h2>Decision checklist</h2>
+          <ul>
+            {guide.checklist.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+      )}
       {guide.table && (
-        <div className="directory-table-wrap" tabIndex={0} role="region" aria-label={`${guide.title} comparison`}>
+        <div
+          className="directory-table-wrap"
+          tabIndex={0}
+          role="region"
+          aria-label={`${guide.title} comparison`}
+        >
           <table className="directory-table">
             <caption>{guide.title} comparison</caption>
             <thead>
@@ -160,11 +198,11 @@ export default async function Page({ params }: Props) {
                 <tr key={row[0]}>
                   {row.map((cell, index) =>
                     index === 0 ? (
-                      <th scope="row" key={cell}>
+                      <th scope="row" key={index}>
                         {cell}
                       </th>
                     ) : (
-                      <td key={cell}>{cell}</td>
+                      <td key={index}>{cell}</td>
                     ),
                   )}
                 </tr>
@@ -172,6 +210,17 @@ export default async function Page({ params }: Props) {
             </tbody>
           </table>
         </div>
+      )}
+      {guide.faq && (
+        <section className="reference-card">
+          <h2>Common questions</h2>
+          {guide.faq.map(([question, answer]) => (
+            <div key={question}>
+              <h3>{question}</h3>
+              <p>{answer}</p>
+            </div>
+          ))}
+        </section>
       )}
       {stats && (
         <DirectorySummary label="Guest-post placement prices" stats={stats} />
@@ -235,6 +284,18 @@ export default async function Page({ params }: Props) {
           ))}
         </ul>
       </section>
+      {guide.related && (
+        <section className="reference-card">
+          <h2>Continue with this decision</h2>
+          <ul>
+            {guide.related.map(([label, path]) => (
+              <li key={path}>
+                <Link href={path}>{label}</Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
       <section className="reference-card">
         <h2>Which publications should I compare next?</h2>
         <p>

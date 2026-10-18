@@ -1,4 +1,6 @@
 import {directoryIntros} from "./directory-intros";
+import { directoryEditorial } from "./directory-editorial";
+import { specialistDirectories } from "./specialist-directories";
 // Niche publisher directories. Each page server-renders live inventory for its
 // filter, plus original guidance, so it stands on its own for search and
 // readers instead of being a thin filtered copy of the marketplace.
@@ -22,6 +24,8 @@ export type Directory = {
   checklist: string[];
   faq: Array<[question: string, answer: string]>;
   related: string[];
+  editorialUpdatedAt?: string;
+  resources?: Array<[label: string, path: string]>;
 };
 
 const category = (name: string): [string, string] => [
@@ -458,9 +462,19 @@ const directoryDefinitions: Directory[] = [
       "guest-posting-sites-under-50",
     ],
   },
+  ...specialistDirectories,
 ];
 
-export const directories = directoryDefinitions.map(directory=>({...directory,lead:directoryIntros[directory.slug] || directory.lead,faq:[...directory.faq,['Are these metrics independently verified?','No. Catalogue metrics and prices are owner-supplied. Ask for each metric’s provider and measurement date, and confirm current scope with the publisher. A listing update date does not verify its readership.'] as [string,string]]}));
+export const directories: Directory[] = directoryDefinitions.map((directory) => {
+  const editorial = directoryEditorial[directory.slug];
+  return {
+    ...directory,
+    lead: directoryIntros[directory.slug] || directory.lead,
+    sections: [...directory.sections, ...(editorial?.sections || [])],
+    ...(editorial ? { resources: editorial.resources, editorialUpdatedAt: "2026-10-18" } : {}),
+    faq: [...directory.faq, ["Are these metrics independently verified?", "No. Catalogue metrics and prices are owner-supplied. Ask for each metric’s provider and measurement date, and confirm current scope with the publisher. A listing update date does not verify its readership."] as [string, string]],
+  };
+});
 
 export const directoryBySlug = (slug: string) =>
   directories.find((directory) => directory.slug === slug);

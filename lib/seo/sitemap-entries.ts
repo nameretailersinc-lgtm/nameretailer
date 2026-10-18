@@ -15,6 +15,7 @@ import { rangeCopy } from "@/lib/site/range-copy";
 import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
 import { publicationPath } from "@/lib/commerce/publication-pages";
 import { blogSitemapEntry } from "@/lib/blog/seo";
+import { priceGuideEditorial } from "@/lib/site/editorial";
 
 const staticPaths = [
   "/",
@@ -50,7 +51,12 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   if (prices?.asOf)
     entries.push({
       url: canonicalOrigin + "/guest-post-prices/",
-      lastModified: prices.asOf,
+      lastModified: new Date(
+        Math.max(
+          Date.parse(prices.asOf),
+          Date.parse(priceGuideEditorial.updatedAt),
+        ),
+      ),
     });
   for (const guide of buyerGuides)
     if (guide.approved)
@@ -86,10 +92,19 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     const indexable = range
       ? rangeCopy(range, summary, catalogue).indexable
       : !!summary && directoryIndexable(summary.total);
+    const lastModified = [
+      summary?.updatedAt,
+      directories.find((directory) => directory.slug === segment.slug)
+        ?.editorialUpdatedAt,
+    ]
+      .filter(
+        (date): date is string => !!date && Number.isFinite(Date.parse(date)),
+      )
+      .sort((a, b) => Date.parse(b) - Date.parse(a))[0];
     if (summary && indexable)
       entries.push({
         url: `${canonicalOrigin}/${segment.slug}/`,
-        ...(summary.updatedAt ? { lastModified: summary.updatedAt } : {}),
+        ...(lastModified ? { lastModified } : {}),
       });
   });
   try {

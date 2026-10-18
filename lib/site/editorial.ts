@@ -4,4 +4,7 @@ export const buyingGuideEditorial: {
   author?: string;
   reviewer?: string;
   updatedAt: string;
-} = { updatedAt: "2026-10-09T16:36:44.443Z" };
+} = { updatedAt: "2026-10-18" };
+
+// Editorial guidance and catalogue observations have separate update dates.
+export const priceGuideEditorial = { updatedAt: "2026-10-18" };
