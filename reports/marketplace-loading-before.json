@@ -1,0 +1,138 @@
+{
+  "measuredAt": "2026-10-18T18:21:22.689Z",
+  "base": "http://127.0.0.1:3253",
+  "scope": "Read-only local production HTTP measurements with configured remote catalogue. Four sequential requests per endpoint; includes network and database effects. Not production load testing, field CWV or ranking evidence.",
+  "rows": [
+    {
+      "path": "/api/products/facets/",
+      "firstMs": 3051,
+      "repeatMedianMs": 504,
+      "samples": [
+        {
+          "elapsedMs": 3051,
+          "facetCounts": {
+            "countries": 94,
+            "languages": 24,
+            "categories": 62
+          }
+        },
+        {
+          "elapsedMs": 481,
+          "facetCounts": {
+            "countries": 94,
+            "languages": 24,
+            "categories": 62
+          }
+        },
+        {
+          "elapsedMs": 519,
+          "facetCounts": {
+            "countries": 94,
+            "languages": 24,
+            "categories": 62
+          }
+        },
+        {
+          "elapsedMs": 504,
+          "facetCounts": {
+            "countries": 94,
+            "languages": 24,
+            "categories": 62
+          }
+        }
+      ]
+    },
+    {
+      "path": "/api/products/?page=1&pageSize=20&sort=domain",
+      "firstMs": 406,
+      "repeatMedianMs": 403,
+      "samples": [
+        {
+          "elapsedMs": 406,
+          "total": 56005
+        },
+        {
+          "elapsedMs": 440,
+          "total": 56005
+        },
+        {
+          "elapsedMs": 396,
+          "total": 56005
+        },
+        {
+          "elapsedMs": 403,
+          "total": 56005
+        }
+      ]
+    },
+    {
+      "path": "/api/products/?category=Technology&pageSize=20",
+      "firstMs": 400,
+      "repeatMedianMs": 435,
+      "samples": [
+        {
+          "elapsedMs": 400,
+          "total": 1233
+        },
+        {
+          "elapsedMs": 391,
+          "total": 1233
+        },
+        {
+          "elapsedMs": 435,
+          "total": 1233
+        },
+        {
+          "elapsedMs": 439,
+          "total": 1233
+        }
+      ]
+    },
+    {
+      "path": "/api/products/?country=United%20Kingdom&pageSize=20",
+      "firstMs": 419,
+      "repeatMedianMs": 420,
+      "samples": [
+        {
+          "elapsedMs": 419,
+          "total": 3203
+        },
+        {
+          "elapsedMs": 420,
+          "total": 3203
+        },
+        {
+          "elapsedMs": 432,
+          "total": 3203
+        },
+        {
+          "elapsedMs": 411,
+          "total": 3203
+        }
+      ]
+    },
+    {
+      "path": "/api/products/?q=software&pageSize=20",
+      "firstMs": 501,
+      "repeatMedianMs": 490,
+      "samples": [
+        {
+          "elapsedMs": 501,
+          "total": 311
+        },
+        {
+          "elapsedMs": 490,
+          "total": 311
+        },
+        {
+          "elapsedMs": 446,
+          "total": 311
+        },
+        {
+          "elapsedMs": 552,
+          "total": 311
+        }
+      ]
+    }
+  ]
+}

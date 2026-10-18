@@ -71,3 +71,57 @@ test("the blank budget worksheet download is available", async ({
     "Unknown costs,Scope and evidence,Primary outcome,Reporting window",
   );
 });
+
+test("the library, article supplement and sitemap expose the new content", async ({
+  page,
+  request,
+}) => {
+  test.setTimeout(180000);
+  await page.goto("/guides/");
+  for (const guide of guestPostingGuides)
+    await expect(
+      page.locator(`main a[href='/guides/${guide.slug}/']`).first(),
+    ).toBeVisible();
+  await page.goto("/blog/a-practical-guest-post-budget-worksheet/");
+  await expect(
+    page.getByRole("heading", { name: "Fill in a complete placement budget" }),
+  ).toBeVisible();
+  await expect(
+    page.locator('a[download][href="/worksheets/guest-post-budget.csv"]'),
+  ).toBeVisible();
+  await expect(
+    page.locator('time[datetime="2026-10-18"]').first(),
+  ).toBeVisible();
+  for (const width of [375, 1280]) {
+    await page.setViewportSize({ width, height: 900 });
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+    ).toBe(true);
+  }
+  const sitemap = await request.get("/sitemaps/content-0.xml");
+  expect(sitemap.status()).toBe(200);
+  const xml = await sitemap.text();
+  for (const guide of guestPostingGuides)
+    expect(xml).toContain(
+      `<loc>https://nameretailer.com/guides/${guide.slug}/</loc>`,
+    );
+  expect(xml).not.toContain("guest-posting-best-practices-2027");
+  const entry = xml.match(
+    /<url><loc>https:\/\/nameretailer\.com\/blog\/a-practical-guest-post-budget-worksheet\/<\/loc><lastmod>([^<]+)<\/lastmod><\/url>/,
+  );
+  expect(entry).not.toBeNull();
+  expect(Date.parse(entry![1])).toBeGreaterThanOrEqual(
+    Date.parse("2026-10-18"),
+  );
+  await page.goto("/guides/guest-posting-checklist/?utm_source=qa");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    "content",
+    "noindex, follow",
+  );
+  await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+    "href",
+    "https://nameretailer.com/guides/guest-posting-checklist/",
+  );
+});

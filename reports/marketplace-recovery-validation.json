@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-18",
+  "scope": "Local marketplace filter validation and query-scoped error recovery; no deployment or database writes",
+  "files": [
+    "components/marketplace/marketplace.tsx",
+    "components/marketplace/filter-validation.ts",
+    "tests/e2e/marketplace-recovery.spec.ts"
+  ],
+  "before": {
+    "invalidPriceRange": "Reproduced: minimum 200 and maximum 50 changed the URL to an invalid query instead of identifying the conflicting field",
+    "backAfterSearchFailure": "Reproduced: main-content error remained visible on Back while the replacement request was held open"
+  },
+  "after": {
+    "productionBuild": { "result": "passed", "directory": ".next-seo", "generatedPages": 140, "secureStandalone": true },
+    "unitTests": { "result": "passed", "files": 57, "tests": 579 },
+    "typescript": "passed, including final browser test",
+    "focusedEslint": "passed",
+    "browser": {
+      "baseUrl": "http://127.0.0.1:3253",
+      "scenariosPassedAcrossFinalExecutions": 7,
+      "combinedRun": { "passed": 6, "failed": 1 },
+      "focusedRetryRaceRerun": { "passed": 1, "failed": 0 },
+      "testCorrection": "Compared publication-link text consistently instead of whole-cell innerText/textContent; added explicit obsolete-request cancellation assertion. No application changes after build.",
+      "coverage": [
+        "375px price conflict preserves URL/results and corrected range successfully loads real inventory",
+        "1280px price conflict and correction",
+        "Back restores cached results without an unrelated query error while the network request is held",
+        "Curated price floor participates in client validation",
+        "DA, DR and traffic conflicts produce native validity messages without API requests; main-content axe passes",
+        "Mobile shortlist supports four publications, disables a fifth, allows removal and clears",
+        "Failed query retries successfully and a newer search cancels the older request"
+      ]
+    }
+  },
+  "limitations": [
+    "Concurrent agent navigation/content changes were preserved and are outside this review",
+    "No field performance, payment/mail delivery, Search Console indexing or rankings verified",
+    "Direct API requests still rely on existing server range validation"
+  ]
+}

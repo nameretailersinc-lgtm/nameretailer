@@ -208,7 +208,7 @@ export function SiteNavigation({
 
   return (
     <>
-      <div className="reference-topbar site-topbar">
+      <div className="reference-topbar site-topbar" role="region" aria-label="Site information and support">
         <div className="site-topbar-trust">
           {trust}
           <ul className="site-trust-benefits" aria-label="Marketplace benefits">

@@ -1694,7 +1694,9 @@ html[data-site-theme="dark"]
 html[data-site-theme="dark"]
   .marketplace-publication-dialog
   .marketplace-publisher-link
-  > a {
+  > a,
+html[data-site-theme="dark"] .marketplace-publication-dialog .marketplace-dialog-note a,
+html[data-site-theme="dark"] .marketplace-publication-dialog .marketplace-dialog-overview > div > strong {
   color: #9ae1b3;
 }
 @media (prefers-reduced-motion: reduce) {

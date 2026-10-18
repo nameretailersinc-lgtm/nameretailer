@@ -1,0 +1,56 @@
+{
+  "date": "2026-10-18",
+  "scope": "Local implementation of the supplied 30-topic guest posting brief; no deployment, push or CMS mutation performed by this task.",
+  "coverage": {
+    "newGuides": 16,
+    "existingTopicPages": 12,
+    "ukDirectory": "Shared-worktree implementation retained; reported qualification count 3203 and live browser/sitemap checks passed.",
+    "deferredTopics": ["guest-posting-best-practices-2027"],
+    "download": "/worksheets/guest-post-budget.csv",
+    "topicMap": "docs/guest-posting-content-expansion-2026.md"
+  },
+  "checks": {
+    "productionBuild": { "result": "passed", "generatedPages": 140, "secureStandalone": true },
+    "typecheck": "passed, including final production build TypeScript check",
+    "focusedEslint": "passed",
+    "unitTests": { "result": "passed", "files": 57, "tests": 579, "failed": 0 },
+    "browserTests": {
+      "result": "passed",
+      "passed": 7,
+      "failed": 0,
+      "baseUrl": "http://127.0.0.1:3260",
+      "specs": ["tests/e2e/guest-posting-guides.spec.ts", "tests/e2e/seo-sprint3-directories.spec.ts"],
+      "widths": [375, 1280],
+      "assertions": [
+        "All sixteen new guides return HTTP 200, canonical HTML, index/follow and visible FAQ content without invented Article attribution",
+        "Representative templates, tables and checklists have one H1, no document overflow and no full-page axe violations at mobile and desktop sizes",
+        "Email template line breaks remain in the rendered text",
+        "Blank CSV download serves successfully",
+        "Guide library exposes all new guide links",
+        "Existing CMS budget article renders its supplement and download with a real update date",
+        "Content sitemap includes all new guides and the budget article update date, excludes the deferred 2027 topic",
+        "A new guide query variant stays noindex with its clean canonical",
+        "Three specialist directories show matching inventory, accessible main content, working filters, query noindex and sitemap inclusion"
+      ]
+    },
+    "hygiene": {
+      "result": "passed",
+      "pages": 18,
+      "scope": "Sixteen new guides, existing budget worksheet and UK directory",
+      "checks": ["document language", "heading order", "image alt", "image width", "unfinished copy", "source Image alt and sizes"]
+    },
+    "diffWhitespace": "passed"
+  },
+  "resolvedInitialFailures": [
+    "Full-page axe found shared top-bar content outside landmarks; added a named region and the rerun passed.",
+    "The sandbox blocked the TypeScript launcher's OS user lookup and the QA server's catalogue access; approved execution outside the sandbox allowed final checks to pass.",
+    "The first hygiene process was interrupted when its temporary server restarted; the complete final run passed."
+  ],
+  "limitations": [
+    "2027 trends are deferred until actual changes and current sources can be reviewed.",
+    "No numeric keyword demand, GSC overlap, Google indexing, ranking gain or AI citation placement was verified.",
+    "Catalogue country/category/metric fields do not independently verify readership, authorization or acceptance.",
+    "New guides do not invent an author, reviewer or original publication date; Article markup remains conditional on supplied attribution.",
+    "Other concurrent changes exist in the shared working tree; this report does not claim review of unrelated marketplace work."
+  ]
+}

@@ -54,7 +54,7 @@ for (const width of [375, 1280]) {
       );
       if (path === "/")
         await expect(page.locator("h1")).toHaveText(
-          "Guest post marketplace for SEO agencies",
+          "Find Guest Posting Sites & Direct Guest Post Placements",
         );
       expect(
         await page.evaluate(

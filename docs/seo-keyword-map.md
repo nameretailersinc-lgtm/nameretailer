@@ -1,5 +1,7 @@
 # NameRetailer keyword-to-URL map — October 18, 2026
 
+The later [30-topic content expansion](guest-posting-content-expansion-2026.md) records sixteen new guides, improvements to existing pages and the current UK-directory status. Use that topic map alongside this earlier sprint snapshot; the production CSV is unchanged.
+
 This map preserves existing URLs and gives each canonical one primary intent. The accompanying [per-URL CSV](seo-keyword-inventory-2026.csv) inventories every current sitemap URL and four gated proposals, including title, description, H1, observed H2/H3 structure, relevant sampled internal links, conversion goal, index verification and priority. It is generated reproducibly by `python scripts/seo/build-keyword-map.py` from the read-only production report. Observed headings include navigation/footer text; unassigned specialist pages explicitly require editorial review. Provisional keyword assignments are not search-volume or ranking observations.
 
 Sprint 2 implements the existing homepage, pricing report, selection workflow and three buyer-guide improvements locally. The CSV remains the Sprint 1 production snapshot; do not replace it with local content and call it deployed. See [Sprint 2 changes and verification](seo-sprint2-2026.md) and its local page inventory for the updated title, description, headings and links.
@@ -49,15 +51,15 @@ Guide structure: answer the principal question first, show a practical example, 
 
 | Priority | Proposed canonical | Keyword/intent | Required before implementation/indexing |
 |---|---|---|---|
-| P2 | `/guest-posting-sites-uk/` | guest posting sites in UK; UK guest posting websites with prices | Sufficient actual UK inventory, country semantics, unique UK guidance, working links and real prices |
-| P2 | `/finance-guest-posting-sites/` | finance guest posting sites; finance websites accepting guest posts | Sufficient relevant inventory and credible editorial selection guidance |
-| P2 | `/real-estate-guest-posting-sites/` | real estate guest posting sites; real estate blogs accepting guest posts | Sufficient actual inventory and useful industry/audience distinctions |
+| Implemented locally | `/guest-posting-sites-uk/` | guest posting sites in UK; UK guest posting websites with prices | 3,203 actual UK-field listings; unique audience-evidence guidance, live prices and filter links; inventory-gated indexing |
+| Implemented locally | `/finance-guest-posting-sites/` | finance guest posting sites; finance websites accepting guest posts | 691 Finance-category listings; focused subset of the broad Business directory with evidence and editorial-review guidance |
+| Implemented locally | `/real-estate-guest-posting-sites/` | real estate guest posting sites; real estate blogs accepting guest posts | 143 Real Estate-category listings; distinct property-reader/local-market guidance and live prices |
 | P2 | `/guest-post-budget-calculator/` | guest posting budget calculator | Working tested arithmetic for placement/writing inputs, limitations, accessible inputs and visible methodology |
 
-These four URLs have **not been created** and have no sitemap entries. Proposed CSV titles/headings are briefs, not observed metadata. Do not create a UK page merely for “guest posting services UK”; use directory language that matches the actual product. The same applies to “guest posting services USA”.
+The three directories are now implemented and verified in a local production build; their XML entries remain conditional on actual inventory. See [directory evidence and verification](seo-specialist-directories-2026.md). The budget calculator remains unimplemented. The historical production CSV still records all four as proposals; it is not a current local inventory or deployment record. The UK directory does not target a managed-service offering. No search volumes or verified audience claims are inferred from these counts.
 
 “Link building services”, “SEO link building services”, “white label link building”, “guest post outreach”, “backlink outreach”, “SaaS link building”, “local SEO link building”, “link building packages/prices/cost” and “link insertion services” do not justify commercial pages without real offered capabilities. Mention only in useful educational comparisons where the existing guide actually addresses them. No managed-service keyword pages are scheduled.
 
-Sprint 2 has improved the existing selection, pricing, evaluation and traffic-evidence content. Next priorities: inspect GSC overlap among those guides and the journal before merging or redirecting; improve the remaining paid-link explanations; expand the existing budget worksheet before adding an interactive calculator. Add new guides only for demonstrated gaps after this inventory and current query/page data are reconciled.
+Sprint 2 improved the existing selection, pricing, evaluation and traffic-evidence content. The later [30-topic expansion](guest-posting-content-expansion-2026.md) adds sixteen guides, paid-link comparisons and the existing budget worksheet supplement. Next priorities: inspect GSC overlap among guides and the journal before merging or redirecting; validate reader outcomes and remaining content gaps before further expansion. The downloadable budget record is a blank CSV; an interactive calculator remains unimplemented.
 
 Use the [audit's release and Search Console checklist](seo-audit-2026.md) to verify indexing. A self canonical and successful HTTP response establish technical eligibility only; they do not establish Google indexing, organic difficulty, search demand or improved rankings.

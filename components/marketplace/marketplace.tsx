@@ -60,6 +60,7 @@ import homepageStyles from "@/components/site/homepage.module.css";
 import { CountryName } from "@/components/site/country-name";
 import { BuyPlacement } from "@/components/cart/buy-placement";
 import { CatalogBrowser } from "./catalog-browser";
+import { clearFilterRangeErrors, validateFilterRanges } from "./filter-validation";
 import {
   ShortlistProvider,
   ShortlistListing,
@@ -278,16 +279,32 @@ function PublicationDialog({
   onClose: () => void;
 }) {
   const dialog = useRef<HTMLDialogElement>(null);
+  const backdropPointer = useRef(false);
   useEffect(() => {
     const element = dialog.current;
     const opener =
       document.activeElement instanceof HTMLElement
         ? document.activeElement
         : null;
+    const root = document.documentElement;
+    const previousRootOverflow = root.style.overflow;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousGutter = root.style.scrollbarGutter;
+    const previousPadding = document.body.style.paddingRight;
+    const scrollbarWidth = window.innerWidth - root.clientWidth;
+    const bodyPadding = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+    root.style.scrollbarGutter = "auto";
+    root.style.overflow = "hidden";
+    document.body.style.overflow = "hidden";
+    document.body.style.paddingRight = `${bodyPadding + scrollbarWidth}px`;
     element?.showModal();
     return () => {
       element?.close();
-      opener?.focus();
+      root.style.overflow = previousRootOverflow;
+      root.style.scrollbarGutter = previousGutter;
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.style.paddingRight = previousPadding;
+      opener?.focus({ preventScroll: true });
     };
   }, []);
   return (
@@ -296,8 +313,18 @@ function PublicationDialog({
       className="marketplace-publication-dialog"
       aria-labelledby="publication-dialog-heading"
       onCancel={onClose}
+      onPointerDown={(event) => {
+        const rect = event.currentTarget.getBoundingClientRect();
+        backdropPointer.current = event.target === event.currentTarget &&
+          (event.clientX < rect.left || event.clientX > rect.right ||
+           event.clientY < rect.top || event.clientY > rect.bottom);
+      }}
       onClick={(event) => {
-        if (event.target === event.currentTarget) onClose();
+        const rect = event.currentTarget.getBoundingClientRect();
+        const outside = event.clientX < rect.left || event.clientX > rect.right ||
+          event.clientY < rect.top || event.clientY > rect.bottom;
+        if (backdropPointer.current && event.target === event.currentTarget && outside) onClose();
+        backdropPointer.current = false;
       }}
     >
       <div className="marketplace-dialog-heading">
@@ -353,6 +380,11 @@ function PublicationDialog({
         <span>{product.language || "Language unavailable"}</span>
       </div>
       <PlacementDetails product={product} />
+      <p className="marketplace-dialog-note">
+        Listing metrics and terms are supplied. Confirm current availability,
+        writing costs and editorial requirements before planning. See our{" "}
+        <Link href="/methodology/">listing methodology</Link>.
+      </p>
     </dialog>
   );
 }
@@ -362,11 +394,13 @@ function HomepageShortlist({
   status,
   onClear,
   onRemove,
+  onViewDetails,
 }: {
   shortlist: PublicProduct[];
   status: string;
   onClear: () => void;
   onRemove: (product: PublicProduct) => void;
+  onViewDetails: (product: PublicProduct) => void;
 }) {
   return (
     <section
@@ -553,6 +587,14 @@ function HomepageShortlist({
                     </div>
                   ))}
                 </dl>
+                <Button
+                  variant="secondary"
+                  onClick={() => onViewDetails(product)}
+                  aria-label={`View details for ${productDomain(product.domain)}`}
+                >
+                  View details
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Button>
                 <Button
                   variant="secondary"
                   className={homepageStyles.dangerButton}
@@ -914,7 +956,7 @@ function MetricContext({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function ShortlistPanel({ homePage }: { homePage: boolean }) {
+function ShortlistPanel({ homePage, onViewDetails }: { homePage: boolean; onViewDetails: (product: PublicProduct) => void }) {
   const { items: shortlist, status, toggle, clear } = useShortlist();
   return homePage ? (
     <HomepageShortlist
@@ -922,6 +964,7 @@ function ShortlistPanel({ homePage }: { homePage: boolean }) {
       status={status}
       onRemove={toggle}
       onClear={clear}
+      onViewDetails={onViewDetails}
     />
   ) : (
     <section
@@ -977,6 +1020,14 @@ function ShortlistPanel({ homePage }: { homePage: boolean }) {
                     </div>
                   ))}
                 </dl>
+                <Button
+                  variant="secondary"
+                  onClick={() => onViewDetails(product)}
+                  aria-label={`View details for ${productDomain(product.domain)}`}
+                >
+                  View details
+                  <ArrowRight size={16} aria-hidden="true" />
+                </Button>
                 <Button
                   variant="secondary"
                   onClick={() => toggle(product)}
@@ -1088,7 +1139,8 @@ function MarketplaceContent({
     languages: [],
     categories: [],
   });
-  const [error, setError] = useState("");
+  const [loadError, setLoadError] = useState<{ query: string; message: string } | null>(null);
+  const error = loadError?.query === query ? loadError.message : "";
   const [facetError, setFacetError] = useState("");
   const [retry, setRetry] = useState(0);
   const [selectedProduct, setSelectedProduct] = useState<PublicProduct | null>(
@@ -1108,11 +1160,11 @@ function MarketplaceContent({
       .then((value) => {
         if (active) {
           setResult({ query, value });
-          setError("");
+          setLoadError(null);
         }
       })
       .catch((cause) => {
-        if (active) setError(errorMessage(cause));
+        if (active) setLoadError({ query, message: errorMessage(cause) });
       });
     return () => {
       active = false;
@@ -1147,7 +1199,7 @@ function MarketplaceContent({
       else next.delete(key);
     }
     if (resetPage) next.set("page", "1");
-    setError("");
+    setLoadError(null);
     window.history.pushState(
       null,
       "",
@@ -1155,7 +1207,7 @@ function MarketplaceContent({
     );
   }
   function reset() {
-    setError("");
+    setLoadError(null);
     window.history.pushState(null, "", basePath);
   }
   function pageHref(targetPage: number) {
@@ -1391,8 +1443,10 @@ function MarketplaceContent({
               </summary>
               <form
                 key={query}
+                onInput={(event) => clearFilterRangeErrors(event.currentTarget)}
                 onSubmit={(event) => {
                   event.preventDefault();
+                  if (!validateFilterRanges(event.currentTarget, range)) return;
                   const form = new FormData(event.currentTarget);
                   const changes: Record<string, string> = {};
                   for (const key of filters)
@@ -1686,7 +1740,7 @@ function MarketplaceContent({
                 <Button
                   variant="secondary"
                   onClick={() => {
-                    setError("");
+                    setLoadError(null);
                     setRetry((value) => value + 1);
                   }}
                 >
@@ -2036,7 +2090,7 @@ function MarketplaceContent({
           </section>
         </div>
         {!metricView && <MetricContext compact />}
-        <ShortlistPanel homePage={homePage} />
+        <ShortlistPanel homePage={homePage} onViewDetails={setSelectedProduct} />
         {metricView ? (
           <>
             <MarketplaceBuyerGuide />

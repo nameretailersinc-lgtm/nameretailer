@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowRight,
-  BookOpen,
   Bitcoin,
   BriefcaseBusiness,
   ChartNoAxesColumnIncreasing,
@@ -98,26 +97,34 @@ export function HomepageHero() {
     <div className={styles.hero}>
       <div className={styles.heroCopy}>
         <p className={styles.badge}>
-          <span aria-hidden="true" /> Compare publishers. Plan placements.
+          <span aria-hidden="true" /> DIRECT GUEST POST PLACEMENTS
         </p>
         <h1 id="publication-discovery-title">
-          Guest post marketplace
-          <br /> <span>for SEO agencies</span>
+          Find Guest Posting Sites &amp;{" "}
+          <span>Direct Guest Post Placements</span>
         </h1>
         <p className={styles.lead}>
-          Compare relevant websites by niche, country, supplied traffic and USD
-          placement price. Build a shortlist for your clients or small business,
-          then confirm the publisher’s requirements before planning a guest
-          post.
+          Explore guest posting opportunities across technology, business,
+          finance, travel and more. Compare publisher listings by niche, country,
+          Domain Authority (DA), Domain Rating (DR), estimated traffic and USD
+          placement price.
+        </p>
+        <p className={styles.lead}>
+          Discover relevant websites, compare opportunities and build your guest
+          post placement shortlist—all in one place.
         </p>
         <div className={styles.heroActions}>
-          <a className="button button-primary" href="#inventory">
-            Explore Marketplace <ArrowRight size={17} aria-hidden="true" />
-          </a>
-          <Link className="button button-secondary" href="/how-it-works/">
-            <BookOpen size={17} aria-hidden="true" /> How It Works
+          <Link className="button button-primary" href="/guest-posting-sites/">
+            Explore Guest Posting Sites <ArrowRight size={17} aria-hidden="true" />
+          </Link>
+          <Link className="button button-secondary" href="/guest-post-prices/">
+            <CircleDollarSign size={17} aria-hidden="true" /> Compare Guest Post Prices
           </Link>
         </div>
+        <p className={styles.heroNotice}>
+          Browse listings without an account. Publisher requirements and placement
+          availability must be confirmed before proceeding.
+        </p>
         <div className={styles.heroFacts}>
           {[
             { Icon: Globe2, title: "DA & DR", text: "Compare site metrics" },

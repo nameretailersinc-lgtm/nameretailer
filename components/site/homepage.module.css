@@ -91,6 +91,14 @@
   gap: 14px;
 }
 
+.heroNotice {
+  max-width: 490px;
+  margin: 12px 0 0;
+  color: var(--muted-foreground);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
 .page :global(.button-primary),
 .page :global(.marketplace-search-modes button[aria-pressed="true"]) {
   background: linear-gradient(110deg, #00873e, #007c47);

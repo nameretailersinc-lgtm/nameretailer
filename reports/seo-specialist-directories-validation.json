@@ -1,0 +1,39 @@
+{
+  "date": "2026-10-18",
+  "scope": "Three new directories and necessary registry/template integration. Local production validation only; no deployment, GSC indexing verification or catalogue writes.",
+  "paths": [
+    "/guest-posting-sites-uk/",
+    "/finance-guest-posting-sites/",
+    "/real-estate-guest-posting-sites/"
+  ],
+  "catalogueQualificationReport": "reports/seo-directory-qualification.json",
+  "checks": {
+    "productionBuild": { "result": "passed", "directory": ".next-seo", "generatedPages": 140, "secureStandalone": true },
+    "unitTests": { "result": "passed", "files": 57, "tests": 579, "newInventoryPolicyTests": 3 },
+    "focusedEslint": { "result": "passed" },
+    "contentHygiene": { "result": "passed", "pages": 3 },
+    "browser": {
+      "result": "passed",
+      "tests": 3,
+      "failed": 0,
+      "baseUrl": "http://127.0.0.1:3253",
+      "widths": [375, 1280],
+      "pageViewportStates": 6,
+      "assertions": [
+        "HTTP 200, one H1, unique bounded title and description",
+        "index/follow and clean self canonical",
+        "25 matching actual listing rows per directory with USD prices",
+        "No document overflow; axe checks on main content",
+        "JSON-LD validation",
+        "Working filtered marketplace links with noindex",
+        "Hub discovery and sitemap inclusion",
+        "Query variants noindex with clean canonical"
+      ]
+    }
+  },
+  "limitations": [
+    "Concurrent agent changes are present in the shared build; this report does not claim review of those changes.",
+    "Supplied country/category and metrics do not verify audiences, publisher authorization or current availability.",
+    "No numeric search-demand estimates, GSC overlap analysis, ranking gains or AI-answer placement verified."
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-18",
+  "scope": "Local production publication-dialog and shortlist-details improvements; no deployment, database writes or commerce mutation",
+  "files": [
+    "components/marketplace/marketplace.tsx",
+    "app/products.css",
+    "tests/e2e/marketplace-publication-dialog.spec.ts"
+  ],
+  "reproductions": [
+    "Interior padding clicks dismissed the dialog at 375px and 1280px",
+    "Document overflow stayed visible while the mobile dialog was open",
+    "Initial dark-dialog axe check found placement-price contrast below the required threshold"
+  ],
+  "checks": {
+    "productionBuild": { "result": "passed", "directory": ".next-seo", "generatedPages": 140, "typescript": "passed", "secureStandalone": true },
+    "unitTests": { "result": "passed", "files": 57, "tests": 579 },
+    "focusedEslint": "passed",
+    "browser": {
+      "result": "passed",
+      "baseUrl": "http://127.0.0.1:3253",
+      "passed": 14,
+      "failed": 0,
+      "newDialogCases": 7,
+      "priorRecoveryCases": 7,
+      "coverage": [
+        "Interior-padding clicks at 375px and 1280px",
+        "Native keyboard navigation, background control inertness and Escape focus restoration",
+        "Background scroll lock and exact inline-style restoration",
+        "Shortlist details preserve selections on homepage and metric marketplace",
+        "Existing placement destination and methodology source link",
+        "Interior-to-backdrop drag keeps dialog open; real backdrop click closes",
+        "Light and dark dialog axe checks and mobile overflow",
+        "All previous invalid-filter, Back recovery, retry/race and shortlist regressions"
+      ]
+    }
+  },
+  "limitations": [
+    "Read-only actual catalogue and local shortlist state; no payment, order, account or publisher fulfillment exercised",
+    "No field performance, deployment, Search Console indexing or ranking claims",
+    "Concurrent navigation/content work preserved and outside this review"
+  ]
+}
