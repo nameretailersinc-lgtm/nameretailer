@@ -28,7 +28,7 @@ export function summarizePrices(rows: SeoListing[]) {
 export const seoCatalogue = cache(async () => {
   const { products, imports } = await productStore();
   const committed = await imports.find({ status: "committed" }, { projection: { _id: 1 } }).toArray();
-  const rows = await products.find({ status: "active", currency: "USD", priceCents: { $type: "number" as any, $gte: 0, $lte: Number.MAX_SAFE_INTEGER }, $or: [{ importId: { $exists: false } }, { importId: { $in: committed.map(batch => batch._id) } }] }, { projection: { _id: 0, id: 1, domain: 1, category: 1, country: 1, currency: 1, priceCents: 1, metrics: 1, updatedAt: 1, turnaround: 1, needsReview: 1 } }).maxTimeMS(15000).toArray();
+  const rows = await products.find({ status: "active", currency: "USD", priceCents: { $type: "number" as unknown as BSONTypeAlias, $gte: 0, $lte: Number.MAX_SAFE_INTEGER }, $or: [{ importId: { $exists: false } }, { importId: { $in: committed.map(batch => batch._id) } }] }, { projection: { _id: 0, id: 1, domain: 1, category: 1, country: 1, currency: 1, priceCents: 1, metrics: 1, updatedAt: 1, turnaround: 1, needsReview: 1 } }).maxTimeMS(15000).toArray();
   const priced = rows.filter(row => Number.isSafeInteger(row.priceCents));
   return { rows: priced.map(row => ({ ...row, metrics: { ...row.metrics, traffic: cleanTraffic(row.metrics?.traffic) } })), asOf: latestListingDate(priced), hygiene: { hiddenTraffic: priced.filter(row => row.metrics?.traffic != null && cleanTraffic(row.metrics.traffic) === null).length, excludedDirectoryRows: priced.filter(row => !cleanListing(row)).length } };
 });
