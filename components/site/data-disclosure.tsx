@@ -12,7 +12,7 @@ export function DataDisclosure({ asOf }: { asOf?: string }) {
   return (
 
     <p className="catalogue-data-disclosure">
-      Catalogue data is owner-supplied as of{" "}
+      Data as of{" "}
       <time dateTime={asOf}>
         {new Date(asOf!).toLocaleDateString("en-US", {
           year: "numeric",
@@ -23,7 +23,7 @@ export function DataDisclosure({ asOf }: { asOf?: string }) {
         })}
 
       </time>
-      .
+      . Owner-supplied listing data; this is not a metric verification date.
     </p>
   );
 }

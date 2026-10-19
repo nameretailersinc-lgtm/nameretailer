@@ -90,6 +90,10 @@ export const marketplaceGroups = [
   },
 ];
 export const marketplaceRanges = [
+  range("dr-50-to-69", "DR 50–69", { minDr: "50", maxDr: "69" }),
+  range("dr-70-plus", "DR 70+", { minDr: "70", maxDr: "100" }),
+  range("price-100-to-300", "$100–under $300 USD", { minPrice: "100", maxPrice: "299.99" }),
+  range("price-300-plus", "$300+ USD", { minPrice: "300" }),
   ...marketplaceGroups.flatMap((group) => group.ranges).filter(r => r.slug !== "guest-posting-sites-under-50"),
   // Keep the original broad traffic view available at its published URL.
   range("500k-plus-traffic", "Traffic above 500,000", { minTraffic: "500001" }),

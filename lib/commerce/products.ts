@@ -8,6 +8,7 @@ import { applyProductRanges } from "./product-ranges";
 import type { Product, ProductImportAnalysis, ProductStatus } from "./types";
 import { priceMedian, type CatalogueStatistics } from "./catalogue-statistics";
 import type { DirectoryFilter } from "@/lib/site/directories";
+import { cleanDirectoryFilter, cleanTraffic } from "./listing-hygiene";
 
 interface ImportBatch {
   _id: string;
@@ -195,15 +196,11 @@ export async function listProducts(params: URLSearchParams, admin = false) {
       .toArray(),
     products.countDocuments(filter, { maxTimeMS: 15000 }),
   ]);
-  return { data, total, page: options.page, pageSize: options.pageSize };
+  return { data: admin ? data : data.map(row => ({ ...row, metrics: { ...row.metrics, traffic: cleanTraffic(row.metrics?.traffic) } })), total, page: options.page, pageSize: options.pageSize };
 }
 /** Server-rendered listings for a niche directory page, strongest DR first. */
 export async function directoryListings(
-  options: {
-    categories?: string[];
-    country?: string;
-    maxPriceCents?: number;
-  },
+  options: DirectoryFilter,
   limit = 25,
 ) {
   const { products } = await productStore();
@@ -212,7 +209,7 @@ export async function directoryListings(
   if (options.country) scope.country = options.country;
   if (options.maxPriceCents !== undefined)
     scope.priceCents = { $lte: options.maxPriceCents };
-  const filter = { $and: [scope, await visibleFilter()] };
+  const filter = { $and: [scope, await visibleFilter(), ...(options.cleanListings ? [cleanDirectoryFilter()] : [])] };
   // Mongo treats limit(0) as "no limit"; a zero limit here means count only.
   const [data, total, cheapest] = await Promise.all([
     limit < 1
@@ -229,6 +226,7 @@ export async function directoryListings(
               priceCents: 1,
               metrics: 1,
               linkType: 1,
+              turnaround: 1,
             },
           })
           .sort({ "metrics.dr": -1, id: 1 })
@@ -243,7 +241,7 @@ export async function directoryListings(
       .maxTimeMS(10000)
       .toArray(),
   ]);
-  return { data, total, lowestPriceCents: cheapest[0]?.priceCents ?? null };
+  return { data: data.map(row => ({ ...row, metrics: { ...row.metrics, traffic: cleanTraffic(row.metrics?.traffic) } })), total, lowestPriceCents: cheapest[0]?.priceCents ?? null };
 }
 export async function productFacets() {
   const { products } = await productStore();
@@ -285,7 +283,7 @@ export async function publicDirectorySummaries(directories: DirectoryFilter[]) {
       return [
         `directory${index}`,
         [
-          { $match: scope },
+          { $match: directory.cleanListings ? { $and: [scope, cleanDirectoryFilter()] } : scope },
           {
             $group: {
               _id: null,
@@ -339,7 +337,7 @@ export async function publicProductStatistics(
   if (directory.country) scope.country = directory.country;
   if (directory.maxPriceCents !== undefined)
     scope.priceCents = { $lte: directory.maxPriceCents };
-  const filter = { $and: [scope, await visibleFilter()] };
+  const filter = { $and: [scope, await visibleFilter(), ...(directory.cleanListings ? [cleanDirectoryFilter()] : [])] };
   const rows = await products
     .aggregate<{
       summary: Array<{

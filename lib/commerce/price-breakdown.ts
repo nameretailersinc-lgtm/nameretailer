@@ -1,161 +1,31 @@
-import { cachedAsync } from "../cache/ttl";
-import { productStore } from "./products";
-import { priceMedian } from "./catalogue-statistics";
+import { seoCatalogue, summarizePrices, type SeoListing } from "./seo-catalogue";
 
-export type PriceRow = {
-  label: string;
-  count: number;
-  medianCents: number;
-  lowCents: number;
-  highCents: number;
-};
-export type PriceBreakdown = {
-  asOf?:string;
-  total:number;
-  withTraffic:number;
-  medianCents:number|null;
-  byDa: PriceRow[];
-  byDr: PriceRow[];
-  byCountry: PriceRow[];
-  byTopic: PriceRow[];
-};
-
-type Snapshot={updatedAt?:string,total:number,withTraffic:number,prices:number[]};
-type Group = { _id: string | number | null; prices: number[] };
-
-/** 25th and 75th percentiles bound the typical price better than min/max. */
-function percentile(sorted: number[], p: number) {
-  return sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * p))];
+export type PriceRow = { label: string; count: number; medianCents: number; lowCents: number; highCents: number };
+export type PriceBreakdown = { asOf?: string; total: number; withTraffic: number; medianCents: number | null; minCents: number | null; maxCents: number | null; overall: PriceRow[]; byDa: PriceRow[]; byDr: PriceRow[]; byCountry: PriceRow[]; byTopic: PriceRow[]; hygiene: { hiddenTraffic: number; excludedDirectoryRows: number } };
+export function priceRow(label: string, rows: SeoListing[], minimum = 15): PriceRow[] {
+  const stats = summarizePrices(rows);
+  return stats.count < minimum || stats.medianCents === null || stats.lowCents === null || stats.highCents === null ? [] : [{ label, count: stats.count, medianCents: stats.medianCents, lowCents: stats.lowCents, highCents: stats.highCents }];
 }
-function rows(groups: Group[], label: (id: Group["_id"]) => string | null) {
-  return groups.flatMap((group) => {
-    const name = label(group._id);
-    if (!name || group.prices.length < 15) return [];
-    const sorted = [...group.prices].sort((a, b) => a - b);
-    return [
-      {
-        label: name,
-        count: sorted.length,
-        medianCents: priceMedian(sorted) ?? 0,
-        lowCents: percentile(sorted, 0.25),
-        highCents: percentile(sorted, 0.75),
-      },
-    ];
-  });
+export function groupedPrices(rows: SeoListing[], key: "country" | "category") {
+  const groups = new Map<string, SeoListing[]>();
+  for (const row of rows) {
+    const label = row[key]?.trim();
+    if (!label || (key === "category" && ["general", "all niches", "other"].includes(label.toLowerCase()))) continue;
+    const group = groups.get(label) || []; group.push(row); groups.set(label, group);
+  }
+  return [...groups.entries()].sort((a, b) => b[1].length - a[1].length || a[0].localeCompare(b[0])).flatMap(([label, group]) => priceRow(label, group)).slice(0, 10);
 }
-
-const band = (field: string, edges: number[]) => ({
-  $switch: {
-    branches: edges.map((edge, index) => ({
-      case: { $lt: [field, edges[index + 1] ?? Infinity] },
-      then: edge,
-    })),
-    default: edges[edges.length - 1],
-  },
-});
-
-/** Placement price distribution across the active, committed catalogue. */
-export function priceBreakdown(): Promise<PriceBreakdown> {
-  return cachedAsync(
-    "price-breakdown",
-    { ttlMs: 15 * 60_000, staleOnErrorMs: 24 * 60 * 60_000, timeoutMs: 12000 },
-    async () => {
-      const { products, imports } = await productStore();
-      const committed = await imports
-        .find({ status: "committed" }, { projection: { _id: 1 } })
-        .toArray();
-      const [result] = await products
-        .aggregate<{byDa:Group[],byDr:Group[],byCountry:Group[],byTopic:Group[],snapshot:Snapshot[]}>([
-          {
-            $match: {
-              status: "active",
-              currency:"USD",priceCents:{$type:"number",$gte:0},
-              $or: [
-                { importId: { $exists: false } },
-                { importId: { $in: committed.map((batch) => batch._id) } },
-              ],
-            },
-          },
-          {
-            $facet: {
-              snapshot:[{$group:{_id:null,total:{$sum:1},withTraffic:{$sum:{$cond:[{$and:[{$isNumber:"$metrics.traffic"},{$gte:["$metrics.traffic",0]}]},1,0]}},updatedAt:{$max:"$updatedAt"},prices:{$push:"$priceCents"}}}],
-              byDa: [
-                { $match: { "metrics.da": { $type: "number",$gte:1,$lte:100 } } },
-                {
-                  $group: {
-                    _id: band(
-                      "$metrics.da",
-                      [0, 10, 20, 30, 40, 50, 60, 70, 80, 90],
-                    ),
-                    prices: { $push: "$priceCents" },
-                  },
-                },
-                { $sort: { _id: 1 } },
-              ],
-              byDr: [
-                { $match: { "metrics.dr": { $type: "number",$gte:0,$lte:100 } } },
-                {
-                  $group: {
-                    _id: band("$metrics.dr", [0, 20, 50, 70]),
-                    prices: { $push: "$priceCents" },
-                  },
-                },
-                { $sort: { _id: 1 } },
-              ],
-              byCountry: [
-                { $match: { country: { $nin: ["", null] } } },
-                {
-                  $group: { _id: "$country", prices: { $push: "$priceCents" } },
-                },
-                { $addFields: { n: { $size: "$prices" } } },
-                { $sort: { n: -1, _id: 1 } },
-              ],
-              byTopic: [
-                {
-                  $match: {
-                    category: {
-                      $nin: ["", null, "General", "All Niches", "Other"],
-                    },
-                  },
-                },
-                {
-                  $group: {
-                    _id: "$category",
-                    prices: { $push: "$priceCents" },
-                  },
-                },
-                { $addFields: { n: { $size: "$prices" } } },
-                { $sort: { n: -1, _id: 1 } },
-              ],
-            },
-          },
-        ],{maxTimeMS:10000})
-        .toArray();
-      const daLabel = (id: Group["_id"]) =>
-        typeof id === "number"
-          ? `DA ${id || 1}–${id === 90 ? 100 : id + 9}`
-          : null;
-      const drLabels: Record<number, string> = {
-        0: "DR 0–19",
-        20: "DR 20–49",
-        50: "DR 50–69",
-        70: "DR 70+",
-      };
-      const snapshot=result?.snapshot?.[0];
-      return {
-        asOf:snapshot?.updatedAt && Number.isFinite(Date.parse(snapshot.updatedAt)) ? snapshot.updatedAt : undefined,
-        total:snapshot?.total || 0,withTraffic:snapshot?.withTraffic || 0,medianCents:priceMedian(snapshot?.prices || []),
-        byDa: rows(result?.byDa || [], daLabel),
-        byDr: rows(result?.byDr || [], (id) =>
-          typeof id === "number" ? drLabels[id] || null : null,
-        ),
-        byCountry: rows(result?.byCountry || [], (id) =>
-          typeof id === "string" ? id : null,
-        ),
-        byTopic: rows(result?.byTopic || [], (id) =>
-          typeof id === "string" ? id : null,
-        ),
-      };
-    },
-  );
+export const drPriceBands = [[0, 20, "DR 0–19"], [20, 50, "DR 20–49"], [50, 70, "DR 50–69"], [70, 90, "DR 70–89"], [90, 101, "DR 90+"]] as const;
+export async function priceBreakdown(): Promise<PriceBreakdown> {
+  const { rows, asOf, hygiene } = await seoCatalogue();
+  const stats = summarizePrices(rows);
+  return { asOf, total: rows.length, withTraffic: rows.filter(r => r.metrics?.traffic != null).length, medianCents: stats.medianCents, minCents: stats.minCents, maxCents: stats.maxCents, overall: priceRow("All supplied USD listings", rows),
+    byDa: Array.from({ length: 10 }, (_, n) => n * 10).flatMap(low => priceRow(`DA ${low}–${low === 90 ? 100 : low + 9}`, rows.filter(r => r.metrics?.da != null && r.metrics.da >= low && r.metrics.da < (low === 90 ? 101 : low + 10)))),
+    byDr: drPriceBands.flatMap(([low, high, label]) => priceRow(label, rows.filter(r => r.metrics?.dr != null && r.metrics.dr >= low && r.metrics.dr < high))),
+    byCountry: groupedPrices(rows, "country"), byTopic: groupedPrices(rows, "category"), hygiene };
+}
+export const priceReportReady = (data: PriceBreakdown | null | undefined) => !!data?.asOf && Number.isFinite(Date.parse(data.asOf)) && data.overall.length > 0 && data.byDr.length > 0 && data.byTopic.length > 0 && data.byCountry.length > 0;
+export function priceCsv(data: PriceBreakdown) {
+  const cell = (value: string | number) => `"${String(value).replace(/"/g, '""')}"`;
+  return [["data_as_of", "basis", "dimension", "group", "count", "median_usd", "p25_usd", "p75_usd"], ...([ ["overall", data.overall], ["DR", data.byDr], ["niche", data.byTopic], ["country", data.byCountry] ] as const).flatMap(([dimension, rows]) => rows.map(row => [data.asOf || "", "asking prices from supplied listings, not transaction prices", dimension, row.label, row.count, (row.medianCents / 100).toFixed(2), (row.lowCents / 100).toFixed(2), (row.highCents / 100).toFixed(2)]))].map(row => row.map(cell).join(",")).join("\r\n") + "\r\n";
 }

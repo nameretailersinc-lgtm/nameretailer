@@ -156,11 +156,18 @@ test.describe("reference placement form", () => {
     await form.getByLabel("Keyword or anchor text").fill("productivity tools");
     const article = form.getByLabel("Your article text");
     await article.fill("A clear article");
-    await article.evaluate((element: HTMLTextAreaElement) =>
-      element.setSelectionRange(8, 15),
-    );
+    await article.evaluate((element) => {
+      const text = element.querySelector("p")!.firstChild!;
+      const range = document.createRange();
+      range.setStart(text, 8);
+      range.setEnd(text, 15);
+      const selection = window.getSelection()!;
+      selection.removeAllRanges();
+      selection.addRange(range);
+    });
     await form.getByRole("button", { name: "Bold", exact: true }).click();
-    await expect(article).toHaveValue("A clear **article**");
+    await expect(article).toHaveText("A clear article");
+    await expect(article.locator("strong")).toHaveText("article");
     await expect(article).toBeFocused();
     await form.getByRole("radio", { name: /Link \+ article/ }).check();
     await expect(form.getByLabel("Content length")).toHaveValue("500");

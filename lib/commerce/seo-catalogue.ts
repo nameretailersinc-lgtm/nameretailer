@@ -1,0 +1,48 @@
+import { cache } from "react";
+import { productStore } from "./products";
+import { cleanListing, cleanTraffic } from "./listing-hygiene";
+import { priceMedian } from "./catalogue-statistics";
+import type { Product } from "./types";
+import type { DirectoryFilter } from "../site/directories";
+
+export type SeoListing = Pick<Product, "id" | "domain" | "category" | "country" | "currency" | "priceCents" | "metrics" | "updatedAt" | "turnaround" | "needsReview">;
+export const money = (cents: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(cents / 100);
+export const count = (value: number) => value.toLocaleString("en-US");
+export function listingDate(value: unknown): string | undefined {
+  if (!(typeof value === "string" || value instanceof Date)) return;
+  const time = new Date(value).getTime();
+  return Number.isFinite(time) ? new Date(time).toISOString() : undefined;
+}
+export function latestListingDate(rows: SeoListing[]) {
+  return rows.map(row => listingDate(row.updatedAt)).filter((date): date is string => !!date).sort().at(-1);
+}
+export function matchesDirectory(row: SeoListing, scope: DirectoryFilter = {}) {
+  return (!scope.categories?.length || scope.categories.includes(row.category)) && (!scope.country || row.country === scope.country) && (scope.maxPriceCents === undefined || row.priceCents <= scope.maxPriceCents) && (!scope.cleanListings || cleanListing(row));
+}
+export function summarizePrices(rows: SeoListing[]) {
+  const sorted = rows.map(row => row.priceCents).sort((a, b) => a - b);
+  return { count: sorted.length, medianCents: priceMedian(sorted), minCents: sorted[0] ?? null, maxCents: sorted.at(-1) ?? null, lowCents: sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * .25))] ?? null, highCents: sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * .75))] ?? null };
+}
+// Deduplicated within a request; no static snapshot supplies published numbers.
+export const seoCatalogue = cache(async () => {
+  const { products, imports } = await productStore();
+  const committed = await imports.find({ status: "committed" }, { projection: { _id: 1 } }).toArray();
+  const rows = await products.find({ status: "active", currency: "USD", priceCents: { $type: "number", $gte: 0, $lte: Number.MAX_SAFE_INTEGER }, $or: [{ importId: { $exists: false } }, { importId: { $in: committed.map(batch => batch._id) } }] }, { projection: { _id: 0, id: 1, domain: 1, category: 1, country: 1, currency: 1, priceCents: 1, metrics: 1, updatedAt: 1, turnaround: 1, needsReview: 1 } }).maxTimeMS(15000).toArray();
+  const priced = rows.filter(row => Number.isSafeInteger(row.priceCents));
+  return { rows: priced.map(row => ({ ...row, metrics: { ...row.metrics, traffic: cleanTraffic(row.metrics?.traffic) } })), asOf: latestListingDate(priced), hygiene: { hiddenTraffic: priced.filter(row => row.metrics?.traffic != null && cleanTraffic(row.metrics.traffic) === null).length, excludedDirectoryRows: priced.filter(row => !cleanListing(row)).length } };
+});
+export const browseBands = [
+  { label: "DR 20–49", href: "/dr-20-to-49/", test: (r: SeoListing) => r.metrics?.dr != null && r.metrics.dr >= 20 && r.metrics.dr < 50 },
+  { label: "DR 50–69", href: "/dr-50-to-69/", test: (r: SeoListing) => r.metrics?.dr != null && r.metrics.dr >= 50 && r.metrics.dr < 70 },
+  { label: "DR 70+", href: "/dr-70-plus/", test: (r: SeoListing) => r.metrics?.dr != null && r.metrics.dr >= 70 && r.metrics.dr <= 100 },
+  { label: "Under $100", href: "/guest-posting-sites-under-100/", test: (r: SeoListing) => r.priceCents < 10000 },
+  { label: "$100–$300", href: "/price-100-to-300/", test: (r: SeoListing) => r.priceCents >= 10000 && r.priceCents < 30000 },
+  { label: "$300+", href: "/price-300-plus/", test: (r: SeoListing) => r.priceCents >= 30000 },
+];
+export const techSubtopics = [
+  { label: "Cybersecurity", categories: ["Cybersecurity", "Cyber Security", "Security"], query: "Cybersecurity", description: "Check that security articles explain a threat model, defensive scope and tested environment. A category match does not establish security expertise; ask who reviews commands and claims." },
+  { label: "Web hosting", categories: ["Web hosting", "Web Hosting", "Hosting"], query: "Hosting", description: "Look for deployment guides and hosting comparisons that disclose test conditions. Confirm whether readers manage shared hosting, cloud infrastructure or client websites before proposing an angle." },
+  { label: "Gadgets and reviews", categories: ["Gadgets"], query: "Gadgets", description: "Read reviews for evidence of hands-on use, image rights and clear sponsorship labels. Supply the device version and testing limitations rather than repeating a manufacturer's specifications." },
+  { label: "AI and software", categories: ["AI", "Artificial Intelligence", "Software development", "Programming"], query: "Software development", description: "Explain the model or software version, inputs, evaluation method and failure cases. A tutorial should help a reader complete a task without requiring an unsupported product endorsement." },
+  { label: "Mobile", categories: ["Mobile"], query: "Mobile", description: "Separate mobile development from consumer phone coverage. Ask whether the publication needs application code, accessibility checks, device screenshots or a practical buying guide." },
+];
