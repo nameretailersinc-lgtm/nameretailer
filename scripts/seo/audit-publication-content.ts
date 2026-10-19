@@ -2,9 +2,9 @@ import "dotenv/config";
 import { createHash } from "node:crypto";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import type { Document } from "mongodb";
-import { activePublicationFilter } from "../../lib/commerce/publication-profiles";
+import { activePublicationFilter, profileSitemapEntries } from "../../lib/commerce/publication-profiles";
 import { productStore } from "../../lib/commerce/products";
-import { PROFILE_RULE, hasPublicationProfile, publicationHost, publicationPath } from "../../lib/commerce/publication-pages";
+import { hasPublicationProfile, publicationHost, publicationPath } from "../../lib/commerce/publication-pages";
 import { concise } from "../../lib/seo/page-metadata";
 
 // Read-only census plus deterministic stratified sample, using public visibility.
@@ -55,7 +55,7 @@ try {
     const current = metadata(row);
     return { id: row.id, path: publicationPath(row), domain: row.domain, category: row.category, country: row.country, language: row.language, priceCents: row.priceCents, priceBand: band(row.priceCents), completeness: completeness(row), metrics: row.metrics, metricsUpdatedAt: row.metricsUpdatedAt || null, linkType: row.linkType, turnaround: row.turnaround, requirements: row.requirements, updatedAt: row.updatedAt, currentEligible: hasPublicationProfile(row), currentTitle: current.title, currentDescription: current.description };
   });
-  const eligible = (await products.find({ $and: [active, { category: { $nin: [...PROFILE_RULE.excludedCategories] }, "metrics.traffic": { $gte: PROFILE_RULE.minTraffic }, "metrics.dr": { $gte: PROFILE_RULE.minDr }, "metrics.da": { $gte: PROFILE_RULE.minDa } }] }, { projection: { _id: 0, id: 1, domain: 1, category: 1, country: 1, language: 1, priceCents: 1, metrics: 1, requirements: 1, metricsUpdatedAt: 1 }, timeoutMS: 30000 }).maxTimeMS(20000).toArray()).filter(hasPublicationProfile);
+  const eligible = await profileSitemapEntries();
   const frequencyReport = Object.fromEntries(textFields.map((key) => [key, {
     present: [...frequencies[key].values()].reduce((a,b) => a+b, 0),
     missing: total - [...frequencies[key].values()].reduce((a,b) => a+b, 0),

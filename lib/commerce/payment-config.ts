@@ -20,7 +20,7 @@ export function requirePaymentProvider(provider: PaymentProvider) {
   if (!paymentMethods()[provider])
     throw new ProductError(
       503,
-      `${provider === "stripe" ? "Card" : "PayPal"} payments are not available yet. Please choose another method or try later.`,
+      `${provider === "stripe" ? "Card" : "PayPal"} payment could not be started. Please request a placement quote so the team can confirm payment arrangements.`,
     );
 }
 export function paypalBase() {

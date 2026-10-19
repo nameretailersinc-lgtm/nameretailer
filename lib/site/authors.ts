@@ -9,7 +9,12 @@ export type Author = {
 // Author identity and biography supplied by the owner on October 19, 2026.
 export const authors: Author[] = [
   { slug: "zuhoor-uddin", name: "Zuhoor Uddin" },
-  { slug: "fahad-shaikh", name: "Fahad Shaikh", bio: "Fahad Shaikh is the owner of THE Promoters FZC, NameRetailer.com and YourMainDomain.com.", jobTitle: "Owner" },
+  {
+    slug: "fahad-shaikh",
+    name: "Fahad Shaikh",
+    bio: "Fahad Shaikh is the owner of THE Promoters FZC, NameRetailer.com and YourMainDomain.com.",
+    jobTitle: "Owner",
+  },
 ];
 
 export const authorByName = (name?: string) =>

@@ -208,7 +208,19 @@ export default async function Page({ params }: Props) {
       {article && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd([article, ...(guide.faq?.length ? [{ "@context": "https://schema.org", ...faqPageNode(guide.faq) }] : [])]) }}
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd([
+              article,
+              ...(guide.faq?.length
+                ? [
+                    {
+                      "@context": "https://schema.org",
+                      ...faqPageNode(guide.faq),
+                    },
+                  ]
+                : []),
+            ]),
+          }}
         />
       )}
 
@@ -672,7 +684,7 @@ export default async function Page({ params }: Props) {
               className="button button-primary"
               href="/guest-posting-sites/"
             >
-              Compare by niche
+              Browse guest posting sites
             </Link>
             <Link
               className="button button-secondary"
@@ -686,4 +698,3 @@ export default async function Page({ params }: Props) {
     </InformationShell>
   );
 }
-

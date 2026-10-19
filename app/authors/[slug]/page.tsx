@@ -44,7 +44,6 @@ export default async function Page({ params }: Props) {
       active="guides"
       image="/01_guest_post_checklist.png"
     >
-      
       {written.length > 0 && (
         <section className="reference-card">
           <h2>Guides by {author.name}</h2>

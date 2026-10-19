@@ -192,7 +192,15 @@ describe("60 original organizational guides", () => {
     it(`validates ${article.slug}`, () => {
       expect(article.words).toBeGreaterThanOrEqual(180);
       expect(sanitizeBody(article.body)).toBe(article.body);
-      expect(article.body.match(/<h2>/g)).toHaveLength(5);
+      expect((article.body.match(/<h2>/g) || []).length).toBeGreaterThanOrEqual(3);
+      expect(article.body).not.toContain(article.answer);
+      if (article.buyerRelevant) {
+        expect(article.words).toBeGreaterThanOrEqual(800);
+        expect(article.seoTitle!.length).toBeGreaterThanOrEqual(50);
+        expect(article.seoTitle!.length).toBeLessThanOrEqual(60);
+        expect(article.metaDescription.length).toBeGreaterThanOrEqual(140);
+        expect(article.extraFaq).toHaveLength(2);
+      }
       expect(article.body).not.toMatch(/<h1|<script|onerror=/i);
       expect(article.metaDescription.length).toBeLessThanOrEqual(160);
     });

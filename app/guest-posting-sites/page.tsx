@@ -399,7 +399,7 @@ export default async function Page() {
         <div className="hub-heading">
           <p className="eyebrow">Buyer checklist</p>
           <h2 id="how-to-choose">How to choose a guest posting site</h2>
-          <p>Five checks to run before you add a placement to your plan.</p>
+          <p>Five checks to run before you add a placement to your shortlist.</p>
         </div>
         <ol className="hub-steps">
           {steps.map(([title, body]) => (

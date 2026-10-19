@@ -5,6 +5,12 @@ import { directoryIndexable } from "../../lib/commerce/catalogue-statistics";
 import { marketplaceRanges } from "../../lib/commerce/marketplace-ranges";
 import { directories } from "../../lib/site/directories";
 import {
+  activePublicationFilter,
+  profileSitemapEntries,
+} from "../../lib/commerce/publication-profiles";
+import { productStore } from "../../lib/commerce/products";
+import { publicationPath } from "../../lib/commerce/publication-pages";
+import {
   MIN_INDEXABLE_LISTINGS,
   MIN_INDEXABLE_WORDS,
   rangeCopy,
@@ -50,6 +56,36 @@ for (const directory of directories) {
       ok ? "meets listing threshold" : "below listing threshold",
     ].join(","),
   );
+}
+if (process.argv.includes("--publications")) {
+  const eligible = new Set(
+    (await profileSitemapEntries()).map(publicationPath),
+  );
+  const { products } = await productStore();
+  const rows = await products
+    .find(await activePublicationFilter(), {
+      projection: { _id: 0, id: 1, domain: 1 },
+    })
+    .toArray();
+  const seen = new Set<string>();
+  for (const row of rows) {
+    const path = publicationPath(row);
+    if (!path || seen.has(path)) continue;
+    seen.add(path);
+    const indexable = eligible.has(path);
+    lines.push(
+      [
+        path,
+        "publication",
+        1,
+        "",
+        indexable,
+        indexable
+          ? "meets shared publication completeness rule"
+          : "below publication completeness rule",
+      ].join(","),
+    );
+  }
 }
 await mkdir("reports", { recursive: true });
 await writeFile("reports/index-policy.csv", lines.join("\n") + "\n");

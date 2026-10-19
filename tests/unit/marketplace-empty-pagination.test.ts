@@ -82,7 +82,7 @@ it("keeps empty filter results on page one as a usable noindex search state", as
   );
 });
 
-it("retains self-canonical indexing for nonempty DR pagination", async () => {
+it("canonicalizes nonempty DR pagination to its noindex hub variant", async () => {
   mocks.page.mockResolvedValue({
     page: 2,
     data: [{ id: "existing-publisher" }],
@@ -91,8 +91,8 @@ it("retains self-canonical indexing for nonempty DR pagination", async () => {
   const metadata = await ratingMetadata({
     searchParams: Promise.resolve({ page: "2" }),
   });
-  expect(metadata.robots).toEqual({ index: true, follow: true });
+  expect(metadata.robots).toEqual({ index: false, follow: true });
   expect(metadata.alternates?.canonical).toBe(
-    "https://nameretailer.com/guest-post-by-dr/?page=2",
+    "https://nameretailer.com/guest-post-by-dr/",
   );
 });

@@ -272,7 +272,7 @@ export function MarketplaceBuyerGuide() {
       >
         <h3 id="marketplace-help-heading">A few useful details</h3>
         <details>
-          <summary>Does shortlisting reserve a publication or price?</summary>
+          <summary>How do I request a quote for my shortlist?</summary>
           <p>
             Select Request this placement or Request quote for shortlist to confirm availability and pricing with the team.
             </p>

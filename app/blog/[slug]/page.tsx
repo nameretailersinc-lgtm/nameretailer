@@ -229,7 +229,8 @@ export default async function Page({
           <section className="reference-card guide-sidebar-cta reference-mint-card">
             <h2>Apply to your campaign</h2>
             <p>
-              Compare guest posting sites with transparent prices, domain metrics and supplied topics.
+              Compare guest posting sites with transparent prices, domain
+              metrics and supplied topics.
             </p>
             <Link className="button button-primary" href="/">
               Browse publications <ArrowUpRight size={14} aria-hidden="true" />
@@ -251,7 +252,9 @@ export default async function Page({
             <HelpCircle size={20} aria-hidden="true" />
             <div>
               <h2>Frequently asked questions</h2>
-              <p>Practical answers to common technical and editorial questions.</p>
+              <p>
+                Practical answers to common technical and editorial questions.
+              </p>
             </div>
           </div>
           <div className="guide-faq-accordion">
@@ -269,7 +272,11 @@ export default async function Page({
                 <details className="guide-faq-item" key={item.question}>
                   <summary>
                     <span>{bodyText(item.question)}</span>
-                    <ChevronRight size={16} aria-hidden="true" className="guide-faq-chevron" />
+                    <ChevronRight
+                      size={16}
+                      aria-hidden="true"
+                      className="guide-faq-chevron"
+                    />
                   </summary>
                   <p>{bodyText(item.answer)}</p>
                 </details>
@@ -316,15 +323,14 @@ export default async function Page({
         <div>
           <h2>Ready to plan your publication campaign?</h2>
           <p>
-            Compare publications across DA, DR, traffic estimates and listed placement prices, or explore our free technical SEO tools.
+            Compare publications across DA, DR, traffic estimates and listed
+            placement prices, or explore our free technical SEO tools.
           </p>
         </div>
         <div className="guide-closing-actions">
-          <Link
-            className="button button-primary"
-            href="/guest-posting-sites/"
-          >
-            Browse guest posting sites <ArrowUpRight size={15} aria-hidden="true" />
+          <Link className="button button-primary" href="/guest-posting-sites/">
+            Browse guest posting sites{" "}
+            <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
           <Link className="button button-secondary" href="/seo-tools/">
             Free SEO tools

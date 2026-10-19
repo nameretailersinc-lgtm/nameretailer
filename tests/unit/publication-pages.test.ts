@@ -112,7 +112,7 @@ it("indexes range pages only with enough listings and unique copy", () => {
   ).toBe(false);
 });
 
-it("requires all audience fields for indexing and treats requirements text as optional", () => {
+it("requires price, DR, DA, topic and traffic or guidelines for indexing", () => {
   const complete = {
     ...strong,
     country: "United States",
@@ -121,7 +121,14 @@ it("requires all audience fields for indexing and treats requirements text as op
     requirements: "",
   };
   expect(hasPublicationProfile(complete)).toBe(true);
-  expect(hasPublicationProfile({ ...complete, country: "" })).toBe(false);
-  expect(hasPublicationProfile({ ...complete, language: "" })).toBe(false);
+  const noTraffic = { ...complete, metrics: { ...metrics, traffic: null } };
+  expect(hasPublicationProfile(noTraffic)).toBe(false);
+  expect(hasPublicationProfile({ ...noTraffic, requirements: "Submit an original article with source links." })).toBe(true);
+  expect(hasPublicationProfile({ ...noTraffic, requirements: "   " })).toBe(false);
+  expect(hasPublicationProfile({ ...complete, metrics: { ...metrics, dr: null } })).toBe(false);
+  expect(hasPublicationProfile({ ...complete, metrics: { ...metrics, da: null } })).toBe(false);
+  expect(hasPublicationProfile({ ...complete, metrics: { ...metrics, traffic: 0 } })).toBe(true);
+  expect(hasPublicationProfile({ ...complete, country: "" })).toBe(true);
+  expect(hasPublicationProfile({ ...complete, language: "" })).toBe(true);
   expect(hasPublicationProfile({ ...complete, priceCents: 0 })).toBe(false);
 });

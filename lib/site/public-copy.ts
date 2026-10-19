@@ -2,6 +2,13 @@
 export const unfinishedCopy =
   /\b(?:rebuild|preview|draft|pending)\b|not yet enabled|editorial review before publication|migration redirect map|supplied Sharjah address|10,000\+/i;
 
+/** Keep one answer-first introduction; retain all conditions when combining sentences. */
+export function directAnswer(text: string): string {
+  const sentences = text.trim().match(/[^.!?]+(?:[.!?]+(?=\s|$)|$)/g)?.map(sentence => sentence.trim()) || [];
+  if (sentences.length <= 3) return text;
+  return `${sentences.slice(0, 2).join(" ")} ${sentences.slice(2).map(sentence => sentence.replace(/[.!?]+$/, "")).join("; ")}.`;
+}
+
 export function finishedCopy(text: string): string {
   return text
     .replace(/This rebuild remains noindex during development; canonical metadata does not override that restriction or activate a migration./gi,'A noindex directive and canonical metadata serve separate purposes. Confirm both controls on the final URL.')

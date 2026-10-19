@@ -36,8 +36,12 @@ const publicFields = {
 } as const;
 
 const detailFields = {
-  ...publicFields, metricsUpdatedAt: 1, publicationContent: 1,
-  "source.Article_Price": 1, "source.Article_Price_2": 1, "source.Article_Price_3": 1,
+  ...publicFields,
+  metricsUpdatedAt: 1,
+  publicationContent: 1,
+  "source.Article_Price": 1,
+  "source.Article_Price_2": 1,
+  "source.Article_Price_3": 1,
 } as const;
 
 function publicProfile(product: Product): PublicProduct {
@@ -75,6 +79,26 @@ async function profileFilter(): Promise<Filter<Product>> {
     "metrics.dr": { $gte: PROFILE_RULE.minDr },
     "metrics.da": { $gte: PROFILE_RULE.minDa },
     priceCents: { $gte: PROFILE_RULE.minPriceCents },
+    ...(PROFILE_RULE.requireTrafficOrGuidelines
+      ? {
+          $and: [
+            {
+              $or: [
+                { "metrics.traffic": { $gte: PROFILE_RULE.minTraffic } },
+                { requirements: { $regex: /\S/ } },
+                {
+                  "publicationContent.state": "reviewed",
+                  "publicationContent.editorialGuidelines": { $regex: /\S/ },
+                },
+                {
+                  "publicationContent.state": "reviewed",
+                  "publicationContent.contentRequirements": { $regex: /\S/ },
+                },
+              ],
+            },
+          ],
+        }
+      : {}),
   };
 }
 
@@ -108,48 +132,115 @@ export const publicationProfile = cache(
       .sort({ domain: 1, id: 1 })
       .toArray();
     const product = candidates.find(
-        (product) =>
-          publicationHost(product.domain) !== null &&
-          publicationSlug(publicationHost(product.domain) || "") === slug,
-      );
+      (product) =>
+        publicationHost(product.domain) !== null &&
+        publicationSlug(publicationHost(product.domain) || "") === slug,
+    );
     return product ? publicProfile(product) : null;
   },
 );
 
 /** Same topic; prefer supplied language/country matches, then nearby prices. */
 export async function relatedProfiles(
-  product: Pick<PublicProduct, "id" | "category" | "priceCents" | "language" | "country">,
+  product: Pick<
+    PublicProduct,
+    "id" | "category" | "priceCents" | "language" | "country"
+  >,
   limit = 6,
 ): Promise<PublicProduct[]> {
   const { products } = await productStore();
   if (!product.category) return [];
-  const rows = await products.aggregate<Product>([
-    { $match: { $and: [await activePublicationFilter(), { category: product.category, id: { $ne: product.id }, priceCents: { $gt: 0 } }] } },
-    { $project: publicFields },
-    { $addFields: {
-      priceDistance: { $abs: { $subtract: ["$priceCents", product.priceCents] } },
-      languageMatch: { $cond: [{ $and: [{ $ne: [product.language, ""] }, { $eq: ["$language", product.language] }] }, 1, 0] },
-      countryMatch: { $cond: [{ $and: [{ $ne: [product.country, ""] }, { $eq: ["$country", product.country] }] }, 1, 0] },
-    } },
-    { $sort: { languageMatch: -1, countryMatch: -1, priceDistance: 1, domain: 1, id: 1 } },
-    { $limit: Math.max(1, Math.min(6, limit)) },
-  ], { maxTimeMS: 8000 }).toArray();
-  return rows.filter(row => !!publicationPath(row)).map(publicProduct);
+  const rows = await products
+    .aggregate<Product>(
+      [
+        {
+          $match: {
+            $and: [
+              await activePublicationFilter(),
+              {
+                category: product.category,
+                id: { $ne: product.id },
+                priceCents: { $gt: 0 },
+              },
+            ],
+          },
+        },
+        { $project: publicFields },
+        {
+          $addFields: {
+            priceDistance: {
+              $abs: { $subtract: ["$priceCents", product.priceCents] },
+            },
+            languageMatch: {
+              $cond: [
+                {
+                  $and: [
+                    { $ne: [product.language, ""] },
+                    { $eq: ["$language", product.language] },
+                  ],
+                },
+                1,
+                0,
+              ],
+            },
+            countryMatch: {
+              $cond: [
+                {
+                  $and: [
+                    { $ne: [product.country, ""] },
+                    { $eq: ["$country", product.country] },
+                  ],
+                },
+                1,
+                0,
+              ],
+            },
+          },
+        },
+        {
+          $sort: {
+            languageMatch: -1,
+            countryMatch: -1,
+            priceDistance: 1,
+            domain: 1,
+            id: 1,
+          },
+        },
+        { $limit: Math.max(1, Math.min(6, limit)) },
+      ],
+      { maxTimeMS: 8000 },
+    )
+    .toArray();
+  return rows.filter((row) => !!publicationPath(row)).map(publicProduct);
 }
 
 export function profileSitemapEntries(): Promise<PublicProduct[]> {
   return cachedAsync(
     "indexable-publication-profiles",
-    { ttlMs: 15 * 60_000, staleOnErrorMs: 0, timeoutMs: 12000 },
+    { ttlMs: 15 * 60_000, staleOnErrorMs: 0, timeoutMs: 60000 },
     async () => {
       const { products } = await productStore();
       const rows = await products
-        .find(await profileFilter(), { projection: detailFields })
+        .find(await profileFilter(), {
+          projection: {
+            _id: 0,
+            id: 1,
+            domain: 1,
+            updatedAt: 1,
+            category: 1,
+            priceCents: 1,
+            "metrics.dr": 1,
+            "metrics.da": 1,
+            "metrics.traffic": 1,
+            requirements: 1,
+            publicationContent: 1,
+          },
+        })
         .sort({ domain: 1, id: 1 })
-        .maxTimeMS(10000)
+        .maxTimeMS(30000)
         .toArray();
       const paths = new Set<string>();
-      return rows.map(publicProfile).filter((row) => {
+      return rows.map(publicProduct).filter((row) => {
         const path = publicationPath(row);
         if (!path || paths.has(path) || !hasPublicationProfile(row))
           return false;
@@ -160,12 +251,6 @@ export function profileSitemapEntries(): Promise<PublicProduct[]> {
   );
 }
 export async function publicationIndexable(product: PublicProduct) {
-  if (!hasPublicationProfile(product)) return false;
-  try {
-    return (await profileSitemapEntries()).some(
-      (p) => p.id === product.id && p.domain === product.domain,
-    );
-  } catch {
-    return false;
-  }
+  // The canonical page loader already resolves active/committed visibility.
+  return hasPublicationProfile(product);
 }

@@ -3,7 +3,7 @@ import { buyerExpansions } from "./buyer-expansions";
 import { marketplaceContent } from "./marketplace-content";
 import { technicalAeo } from "./technical-aeo";
 import { geoMeasurement } from "./geo-measurement";
-import { finishedCopy } from "@/lib/site/public-copy";
+import { directAnswer, finishedCopy } from "@/lib/site/public-copy";
 import { escapeMarkup } from "@/lib/tools/core";
 import { normalizeSlug } from "@/lib/cms/validation";
 import { bodyText, wordCount, sanitizeBody } from "@/lib/cms/content";
@@ -23,23 +23,33 @@ export const blogLibrary = blogDrafts.map((source) => {
   const article = {
     ...source,
     title: finishedCopy(source.title),
-    seoTitle: expansion?.title || (source.seoTitle ? finishedCopy(source.seoTitle) : undefined),
-    metaDescription: expansion?.description || (source.metaDescription ? finishedCopy(source.metaDescription) : undefined),
-    answer: finishedCopy(source.answer),
+    seoTitle:
+      expansion?.title ||
+      (source.seoTitle ? finishedCopy(source.seoTitle) : undefined),
+    metaDescription:
+      expansion?.description ||
+      (source.metaDescription
+        ? finishedCopy(source.metaDescription)
+        : undefined),
+    answer: directAnswer(finishedCopy(source.answer)),
     example: finishedCopy(source.example),
     steps: source.steps.map(finishedCopy) as [string, string, string],
     avoid: finishedCopy(source.avoid),
     question: finishedCopy(source.question),
     response: finishedCopy(source.response),
-    sections: ([...(source.sections || []), ...(expansion?.sections || [])] as NonNullable<ArticleDraft["sections"]>).map((sec) => ({
+    sections: (
+      (expansion?.sections || source.sections || []) as NonNullable<
+        ArticleDraft["sections"]
+      >
+    ).map((sec) => ({
       heading: finishedCopy(sec.heading),
       body: finishedCopy(sec.body),
       code: sec.code,
-      checklist: ("checklist" in sec ? sec.checklist : undefined)?.map(finishedCopy),
-      table: ("table" in sec ? sec.table : undefined)
+      checklist: sec.checklist?.map(finishedCopy),
+      table: sec.table
         ? {
-            columns: ("table" in sec ? sec.table! : { columns: [], rows: [] }).columns.map(finishedCopy),
-            rows: ("table" in sec ? sec.table! : { columns: [], rows: [] }).rows.map((row) => row.map(finishedCopy)),
+            columns: sec.table.columns.map(finishedCopy),
+            rows: sec.table.rows.map((row) => row.map(finishedCopy)),
           }
         : undefined,
     })),
@@ -54,22 +64,55 @@ export const blogLibrary = blogDrafts.map((source) => {
       ...(source.extraSources || []),
     ],
   };
+  if (expansion) {
+    article.sources = [
+      {
+        label: "Google: helpful, reliable content",
+        url: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      },
+    ];
+    if (/disclosure|placement-brief|packages/.test(slug))
+      article.sources.push({
+        label: "Google: qualifying paid links",
+        url: "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+      });
+    if (/traffic-estimate|domain-rating/.test(slug))
+      article.sources.push({
+        label: "Ahrefs: traffic estimate methodology",
+        url: "https://help.ahrefs.com/en/articles/1863206-what-is-organic-traffic-in-ahrefs-and-how-do-we-calculate-it",
+      });
+    if (/domain-rating/.test(slug))
+      article.sources.push({
+        label: "Ahrefs: Domain Rating",
+        url: "https://ahrefs.com/seo/glossary/domain-rating",
+      });
+    if (/referral-traffic/.test(slug))
+      article.sources.push({
+        label: "Google Analytics: campaign URL parameters",
+        url: "https://support.google.com/analytics/answer/10917952",
+      });
+  }
   const e = escapeMarkup;
   const extraSectionsHtml = (article.sections || [])
     .map((sec) => {
-      const codeHtml = sec.code
-        ? `<pre><code>${e(sec.code)}</code></pre>`
-        : "";
+      const codeHtml = sec.code ? `<pre><code>${e(sec.code)}</code></pre>` : "";
       const listHtml = sec.checklist?.length
         ? `<ul>${sec.checklist.map((item) => `<li>${e(item)}</li>`).join("")}</ul>`
         : "";
-      const tableHtml = ("table" in sec ? sec.table : undefined)
-        ? `<div class="directory-table-wrap" role="region" aria-label="${e(sec.heading)} comparison table"><table class="directory-table"><caption>${e(sec.heading)} comparison</caption><thead><tr>${("table" in sec ? sec.table! : { columns: [], rows: [] }).columns.map((col) => `<th scope="col">${e(col)}</th>`).join("")}</tr></thead><tbody>${("table" in sec ? sec.table! : { columns: [], rows: [] }).rows.map((row) => `<tr>${row.map((cell, idx) => (idx === 0 ? `<th scope="row">${e(cell)}</th>` : `<td>${e(cell)}</td>`)).join("")}</tr>`).join("")}</tbody></table></div>`
+      const tableHtml = sec.table
+        ? `<div class="directory-table-wrap" role="region" aria-label="${e(sec.heading)} comparison table"><table class="directory-table"><caption>${e(sec.heading)} comparison</caption><thead><tr>${sec.table.columns.map((col) => `<th scope="col">${e(col)}</th>`).join("")}</tr></thead><tbody>${sec.table.rows.map((row) => `<tr>${row.map((cell, idx) => (idx === 0 ? `<th scope="row">${e(cell)}</th>` : `<td>${e(cell)}</td>`)).join("")}</tr>`).join("")}</tbody></table></div>`
         : "";
-      return `<h3>${e(sec.heading)}</h3><p>${e(sec.body)}</p>${codeHtml}${listHtml}${tableHtml}`;
+      return `<h2>${e(sec.heading)}</h2><p>${e(sec.body)}</p>${codeHtml}${listHtml}${tableHtml}`;
     })
     .join("");
-  article.relatedLinks = expansion ? [["Compare guest posting sites by niche", "/guest-posting-sites/"], ["Review placement and writing costs", "/guest-post-prices/"], ["Evaluate publisher evidence", "/guides/vet-a-guest-post-site/"], ["Count words in your article brief", "/word-counter/"]] : article.relatedLinks;
+  article.relatedLinks = expansion
+    ? [
+        ["Compare guest posting sites by niche", "/guest-posting-sites/"],
+        ["Review placement and writing costs", "/guest-post-prices/"],
+        ["Evaluate publisher evidence", "/guides/vet-a-guest-post-site/"],
+        ["Count words in your article brief", "/word-counter/"],
+      ]
+    : article.relatedLinks;
   const relatedHtml = article.relatedLinks?.length
     ? `<h3>Related guides and tools</h3><ul>${article.relatedLinks.map(([label, href]) => `<li><a href="${e(href)}">${e(label)}</a></li>`).join("")}</ul>`
     : "";
@@ -93,7 +136,16 @@ export const blogLibrary = blogDrafts.map((source) => {
     slug,
     body,
     metaDescription: computedMeta,
-    words: wordCount(body) + wordCount(article.answer) + wordCount([article.question, article.response, ...(article.extraFaq || []).flat()].join(" ")),
+    words:
+      wordCount(body) +
+      wordCount(article.answer) +
+      wordCount(
+        [
+          article.question,
+          article.response,
+          ...(article.extraFaq || []).flat(),
+        ].join(" "),
+      ),
     buyerRelevant: !!expansion,
     primaryKeyword,
     keyword: primaryKeyword,

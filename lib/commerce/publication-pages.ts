@@ -11,7 +11,16 @@ export const PROFILE_RULE = {
 } as const;
 
 type ProfileCandidate = Pick<PublicProduct, "domain" | "category" | "metrics"> &
-  Partial<Pick<PublicProduct, "country" | "language" | "priceCents" | "requirements" | "publicationContent">>;
+  Partial<
+    Pick<
+      PublicProduct,
+      | "country"
+      | "language"
+      | "priceCents"
+      | "requirements"
+      | "publicationContent"
+    >
+  >;
 
 /** Root domains qualify for indexing; section listings also have detail pages. */
 export function publicationHost(
@@ -40,13 +49,24 @@ export function hasPublicationProfile(product: ProfileCandidate): boolean {
   const { traffic, dr, da } = product.metrics || {};
   const score = (value: number | null | undefined, minimum: number) =>
     typeof value === "number" && Number.isFinite(value) && value >= minimum;
-  const guidelines = [product.requirements, product.publicationContent?.editorialGuidelines,
-    product.publicationContent?.contentRequirements].some(value => !!value?.trim());
-  return publicationHost(product.domain) !== null &&
-    Number.isSafeInteger(product.priceCents) && (product.priceCents || 0) >= PROFILE_RULE.minPriceCents &&
-    !(PROFILE_RULE.excludedCategories as readonly string[]).includes(product.category?.trim() || "") &&
-    score(dr, PROFILE_RULE.minDr) && score(da, PROFILE_RULE.minDa) &&
-    (!PROFILE_RULE.requireTrafficOrGuidelines || score(traffic, PROFILE_RULE.minTraffic) || guidelines);
+  const guidelines = [
+    product.requirements,
+    product.publicationContent?.editorialGuidelines,
+    product.publicationContent?.contentRequirements,
+  ].some((value) => !!value?.trim());
+  return (
+    publicationHost(product.domain) !== null &&
+    Number.isSafeInteger(product.priceCents) &&
+    (product.priceCents || 0) >= PROFILE_RULE.minPriceCents &&
+    !(PROFILE_RULE.excludedCategories as readonly string[]).includes(
+      product.category?.trim() || "",
+    ) &&
+    score(dr, PROFILE_RULE.minDr) &&
+    score(da, PROFILE_RULE.minDa) &&
+    (!PROFILE_RULE.requireTrafficOrGuidelines ||
+      score(traffic, PROFILE_RULE.minTraffic) ||
+      guidelines)
+  );
 }
 
 /**

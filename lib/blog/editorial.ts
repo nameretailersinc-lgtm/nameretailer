@@ -10,7 +10,8 @@ export const budgetWorksheetEditorial = {
 export function blogContentUpdatedAt(
   record: Pick<CmsRecord, "slug" | "updatedAt">,
 ) {
-  if (!Object.hasOwn(buyerExpansions, record.slug.replace(/^blog\//, ""))) return record.updatedAt;
+  if (!Object.hasOwn(buyerExpansions, record.slug.replace(/^blog\//, "")))
+    return record.updatedAt;
   return Number.isFinite(Date.parse(record.updatedAt)) &&
     Date.parse(record.updatedAt) >
       Date.parse(budgetWorksheetEditorial.updatedAt)
@@ -19,7 +20,20 @@ export function blogContentUpdatedAt(
 }
 
 export const buyerArticleAuthor: CmsRecord = {
-  id: "owner-fahad-shaikh", collection: "authors", title: "Fahad Shaikh", slug: "fahad-shaikh", status: "active",
-  data: { entityType: "Person", name: "Fahad Shaikh", bio: "Fahad Shaikh is the owner of THE Promoters FZC, NameRetailer.com and YourMainDomain.com.", url: "https://nameretailer.com/authors/fahad-shaikh/", verified: true },
-  ownerId: "owner", version: 1, createdAt: "2026-10-19", updatedAt: "2026-10-19",
+  id: "owner-fahad-shaikh",
+  collection: "authors",
+  title: "Fahad Shaikh",
+  slug: "fahad-shaikh",
+  status: "active",
+  data: {
+    entityType: "Person",
+    name: "Fahad Shaikh",
+    bio: "Fahad Shaikh is the owner of THE Promoters FZC, NameRetailer.com and YourMainDomain.com.",
+    url: "https://nameretailer.com/authors/fahad-shaikh/",
+    verified: true,
+  },
+  ownerId: "owner",
+  version: 1,
+  createdAt: "2026-10-19",
+  updatedAt: "2026-10-19",
 };

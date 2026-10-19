@@ -169,7 +169,7 @@ const directoryDefinitions: Directory[] = [
     h1: "Guest posting sites under $50",
     metaTitle: "Guest Posting Sites Under $50",
     metaDescription:
-      "Compare affordable guest posting sites priced under $50 USD. Check topic fit, supplied DA, DR and traffic before you add budget placements to your plan.",
+      "Compare affordable guest posting sites priced under $50 USD. Check topic fit, supplied DA, DR and traffic before you add budget placements to your shortlist.",
     lead: "Publications with a placement price of $50 USD or less, so you can test new topics and audiences without committing a large budget.",
     filter: { maxPriceCents: 5000 },
     browse: [
@@ -224,7 +224,7 @@ const directoryDefinitions: Directory[] = [
     h1: "Guest posting sites in the USA",
     metaTitle: "Guest Posting Sites in the USA",
     metaDescription:
-      "Browse US guest posting sites with live DA, DR, traffic and USD prices. Compare American publishers by topic before adding placements to your plan.",
+      "Browse US guest posting sites with live DA, DR, traffic and USD prices. Compare American publishers by topic before adding placements to your shortlist.",
     lead: "Publications with United States in the supplied country field. Confirm audience geography with each publisher before choosing a placement.",
     filter: { country: "United States" },
     browse: [

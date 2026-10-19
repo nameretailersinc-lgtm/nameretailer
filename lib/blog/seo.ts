@@ -31,6 +31,7 @@ export function blogSitemapEntry(record: CmsRecord) {
 }
 
 export function blogRouteMetadata(record: CmsRecord, params: SearchParams) {
+  record = publicArticle(record);
   const facets = facetMetadata(`/${record.slug}/`, params);
   return {
     alternates: { canonical: canonicalUrl(record) },
@@ -38,7 +39,9 @@ export function blogRouteMetadata(record: CmsRecord, params: SearchParams) {
       index:
         blogArticleIndexable(record) &&
         (facets.robots as { index: boolean }).index,
-      follow: record.data.robotsFollow !== false,
+      follow: blogArticleIndexable(record)
+        ? record.data.robotsFollow !== false
+        : true,
     },
   };
 }

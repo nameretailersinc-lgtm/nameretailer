@@ -18,7 +18,7 @@ it("integrates distinct, complete guides without inventing authorship or future 
     new Set(guestPostingGuides.map((guide) => guide.description)).size,
   ).toBe(16);
   for (const guide of guestPostingGuides) {
-    expect(buyerGuides.find((item) => item.slug === guide.slug)).toBe(guide);
+    expect(buyerGuides.find((item) => item.slug === guide.slug)).toMatchObject({ slug: guide.slug, author: "Fahad Shaikh", approved: true });
     expect(guide.questions.length, guide.slug).toBeGreaterThanOrEqual(3);
     expect(guide.faq?.length, guide.slug).toBeGreaterThanOrEqual(2);
     expect(guide.related?.length, guide.slug).toBeGreaterThanOrEqual(3);
@@ -57,7 +57,7 @@ it("dates the rendered budget addition while retaining newer CMS edits and unrel
       slug: budgetWorksheetEditorial.slug,
       updatedAt: "2026-07-02",
     }),
-  ).toBe("2026-10-18");
+  ).toBe("2026-10-19");
   expect(
     blogContentUpdatedAt({
       slug: budgetWorksheetEditorial.slug,

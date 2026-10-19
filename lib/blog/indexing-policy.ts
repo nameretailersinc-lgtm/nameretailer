@@ -13,6 +13,10 @@ export const technicalArticleSlugs = new Set([
 ]);
 // Current request supersedes the older blanket approval. Only buyer articles qualify.
 import { buyerExpansions } from "./buyer-expansions";
-export const blogArticleIndexable = (record: { slug: string; data: { robotsIndex?: unknown } }) =>
-  record.data.robotsIndex !== false && record.slug.startsWith("blog/") &&
+export const blogArticleIndexable = (record: {
+  slug: string;
+  data: { robotsIndex?: unknown };
+}) =>
+  record.data.robotsIndex !== false &&
+  record.slug.startsWith("blog/") &&
   Object.hasOwn(buyerExpansions, record.slug.slice(5));

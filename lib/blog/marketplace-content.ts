@@ -1906,7 +1906,7 @@ export const marketplaceContent: ArticleDraft[] = [
       "Check media permissions and contextual alt descriptions. Provide final files with the intended placement and avoid external assets the publication cannot legitimately use.",
       "List commercial disclosures, link qualifications and outstanding approvals. Assign each unresolved item an owner rather than silently moving it into production."
     ],
-    "avoid": "Avoid signing off merely because the page renders without an error. Technical validation does not establish originality, permission or factual reliability. This journal's new guides are AI-assisted editorial material, not migrated posts or independently reviewed expert reporting.",
+    "avoid": "Avoid signing off merely because the page renders without an error. Technical validation does not establish originality, permission or factual reliability. Keep the accepted brief and source material with the final manuscript so the editor can resolve questions before publication.",
     "question": "Does a technically valid page mean the article is editorially approved?",
     "response": "No. Technical checks and owner/editorial approval are different gates, and both need an honest record.",
     "seoTitle": "Editorial Handoff Checklist Before Publishing Blog Articles",

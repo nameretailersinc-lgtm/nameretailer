@@ -89,7 +89,7 @@ export const informationPages = {
         body: "Placement prices are shown in USD. Where available, 500-, 750- and 1,000-word writing options are priced separately. A missing writing option is not a free service.",
       },
       {
-        title: "Plan with clear expectations",
+        title: "Request a placement with clear expectations",
         body: "Compare publications, build a shortlist and select Request this placement. Send your brief to receive a quote with scope, pricing and publisher acceptance confirmed by email.",
       },
     ],
@@ -129,7 +129,7 @@ export const informationPages = {
         body: "26 - G Hamriyah Freezone, Sharjah, United Arab Emirates.",
       },
       {
-        title: "Contact and ordering",
+        title: "Contact and placement inquiries",
         body: "Use Request a placement to send your name, email, website, target anchor, budget and message to our team. Your inquiry is stored securely for follow-up.",
       },
     ],
@@ -154,7 +154,7 @@ export const informationPages = {
     ],
   },
   "how-it-works": {
-    title: "From finding a site to preparing a plan.",
+    title: "From publisher research to a placement inquiry.",
     label: "How it works",
     active: "guides",
     image: "/01_guest_post_checklist.png",
@@ -171,7 +171,7 @@ export const informationPages = {
       },
       {
         title: "03 · Prepare and save",
-        body: "Click Add to shortlist to inspect the current placement and writing options. Sign in, add your destination URL and keyword, then provide an article brief or your own article text/file. The server recalculates prices and flags changed or unavailable products.",
+        body: "Select Request this placement and enter your name, email, website URL, target keyword or anchor, budget and message. You can submit an inquiry without an account.",
       },
       {
         title: "04 · Review before ordering",
@@ -390,7 +390,7 @@ export const informationPages = {
       {
         title: "Buyer questions",
         description:
-          "Understand prices, metric sources and ordering availability.",
+          "Understand prices, metric sources and placement inquiries.",
         href: "/faq/",
       },
     ],

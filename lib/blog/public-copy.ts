@@ -12,7 +12,11 @@ export function publicArticle(record: CmsRecord): CmsRecord {
   const data = { ...record.data };
   const lib = libraryBySlug.get(record.slug);
   if (lib) {
-    if (lib.buyerRelevant) { data.authorId = buyerArticleAuthor.id; data.reviewerId = undefined; data.canonical = `https://nameretailer.com/${record.slug}/`; }
+    if (lib.buyerRelevant) {
+      data.authorId = buyerArticleAuthor.id;
+      data.reviewerId = undefined;
+      data.canonical = `https://nameretailer.com/${record.slug}/`;
+    }
     if (lib.seoTitle) data.seoTitle = lib.seoTitle;
     if (lib.metaDescription) data.metaDescription = lib.metaDescription;
     if (lib.answer) data.excerpt = lib.answer;
@@ -47,5 +51,10 @@ export function publicArticle(record: CmsRecord): CmsRecord {
           : {}),
       };
     });
-  return { ...record, updatedAt: blogContentUpdatedAt(record), title: lib?.buyerRelevant ? lib.seoTitle! : finishedCopy(record.title), data };
+  return {
+    ...record,
+    updatedAt: blogContentUpdatedAt(record),
+    title: lib?.buyerRelevant ? lib.seoTitle! : finishedCopy(record.title),
+    data,
+  };
 }

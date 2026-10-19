@@ -23,7 +23,18 @@ export default function Page() {
       active="help"
       image="/01_guest_post_checklist.png"
     >
-      <section className="reference-card"><h2>Placement inquiries</h2><p>Select Request this placement or Request quote for shortlist and send your brief. We confirm scope, price, editorial acceptance and any payment arrangements by email before you agree to proceed.</p><p>Full service terms need owner approval. Ask for the terms that apply to your quote before proceeding.</p></section>
+      <section className="reference-card">
+        <h2>Placement inquiries</h2>
+        <p>
+          Select Request this placement or Request quote for shortlist and send
+          your brief. We confirm scope, price, editorial acceptance and any
+          payment arrangements by email before you agree to proceed.
+        </p>
+        <p>
+          Full service terms need owner approval. Ask for the terms that apply
+          to your quote before proceeding.
+        </p>
+      </section>
       <section className="reference-card">
         <h2>Policies that apply now</h2>
         <ul>

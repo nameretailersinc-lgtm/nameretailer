@@ -232,7 +232,7 @@ export function AccountPage({ productId }: { productId?: string }) {
                 <Link href={cartUrl}>
                   <ShoppingCart size={21} aria-hidden="true" />
                   <span>
-                    <strong>View your cart</strong>
+                    <strong>View your shortlist</strong>
                     <small>Manage selected placements</small>
                   </span>
                   <ArrowRight size={15} aria-hidden="true" />
@@ -323,7 +323,7 @@ export function AccountPage({ productId }: { productId?: string }) {
                 </span>
                 <div>
                   <strong>Private planning</strong>
-                  <p>Your cart and billing drafts belong to your account.</p>
+                  <p>Your shortlist and billing drafts belong to your account.</p>
                 </div>
               </div>
               <div>

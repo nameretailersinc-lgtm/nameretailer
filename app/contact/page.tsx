@@ -10,7 +10,18 @@ const baseMetadata: Metadata = {
   description: informationPages.contact.description,
 };
 export default function Page() {
-  return <InformationShell {...informationPages.contact} path="/contact/"><section className="reference-card"><h2>Tell us about your placement</h2><PlacementInquiry label="Request a placement" /></section></InformationShell>;
+  return (
+    <InformationShell {...informationPages.contact} path="/contact/">
+      <section className="reference-card">
+        <h2>Tell us about your placement</h2>
+        <p>
+          Email <a href="mailto:info@nameretailer.com">info@nameretailer.com</a>{" "}
+          or send your brief using the form.
+        </p>
+        <PlacementInquiry label="Request a placement" />
+      </section>
+    </InformationShell>
+  );
 }
 
 export async function generateMetadata({

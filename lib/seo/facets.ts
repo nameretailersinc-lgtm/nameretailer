@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { canonicalOrigin } from "./metadata";
 import type { SearchParams } from "../commerce/marketplace-query";
 
-/** Only clean, nonempty pagination with a fixed default size is indexable. */
+/** Query variants and pagination follow links and canonicalize to the clean hub. */
 export function facetMetadata(
   path: string,
   params: SearchParams,
@@ -19,8 +19,7 @@ export function facetMetadata(
     (keys.includes("page") && !/^[1-9]\d*$/.test(String(params.page)));
   return {
     alternates: {
-      canonical:
-        canonicalOrigin + path,
+      canonical: canonicalOrigin + path,
     },
     robots: { index: !facets && page === 1, follow: true },
   };

@@ -91,7 +91,7 @@ it("keeps ordinary and section listings out of the profile sitemap", async () =>
   expect(await profileSitemapEntries()).toEqual([]);
   expect(mocks.find.mock.calls[0][0]).toMatchObject({
     status: "active",
-    "metrics.traffic": { $gte: 500_000 },
-    "metrics.dr": { $gte: 60 },
+    "metrics.dr": { $gte: 0 },
+    priceCents: { $gte: 1 },
   });
 });

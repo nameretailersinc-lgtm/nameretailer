@@ -25,7 +25,7 @@ export const buyerQuestions = [
     answer:
       "A listing may include a publisher-supplied turnaround, which you should confirm for your proposed article and publication. Timing can depend on editorial acceptance, content preparation and the agreed placement scope. Name Retailer does not publish a universal delivery guarantee, so request a confirmed schedule instead of treating an estimate as a deadline.",
     detail:
-      "Include your preferred deadline in the placement brief and ask the team whether it can be met. Saving billing details or a plan does not start publication.",
+      "Include your preferred deadline in the placement brief and ask the team whether it can be met. Request a placement to confirm acceptance and timing for your brief.",
   },
   {
     question: "Where do DA, DR and traffic metrics come from?",
@@ -37,12 +37,12 @@ export const buyerQuestions = [
   {
     question: "What refund terms should I check?",
     answer:
-      "Read the published Refund Policy before agreeing to a placement. It describes refunds when the site owner rejects a request and states that approval makes the order final. Ask the team to confirm the applicable terms with your quote. The existing policy?s automatic refund and approval claims are flagged for owner review.",
+      "Read the published Refund Policy before agreeing to a placement. It describes refunds when the site owner rejects a request and states that approval makes the order final. Ask the team to confirm the applicable terms with your quote. The existing policy's automatic refund and approval claims are flagged for owner review.",
     detail:
       "The policy describes a one-business-day site-owner review and typical processing of three to five business days after refund approval, with bank processing time additional. Confirm removal or replacement terms directly; they are not stated as a general guarantee.",
   },
   {
-    question: "Can I order or pay through the website?",
+    question: "How do I request a placement?",
     answer:
       "Choose Request this placement on a publication, or Request quote for shortlist to inquire about several publications together. Submit your name, email, website URL, target anchor, budget and message. We will reply within 1 business day to confirm fit, scope and pricing.",
     detail:
@@ -51,8 +51,8 @@ export const buyerQuestions = [
   {
     question: "Do I need an account to browse?",
     answer:
-      "You can browse publications, compare supplied metrics and use the public guides without signing in. An account is needed to save your private shortlist and manage its brief and selections. A browser shortlist is a comparison aid; it does not create a paid order or establish that a publisher has accepted your article.",
+      "You can browse publications, compare supplied metrics and use the public guides without signing in. An account is needed to save your private shortlist and manage its brief and selections. Use Request quote for shortlist to send one inquiry for your selected publications.",
     detail:
-      "Sign in from the account menu to manage your shortlist. Account and billing pages are excluded from search indexing, and your shortlist remain private to your account.",
+      "Sign in from the account menu to manage your shortlist. Account and billing pages are excluded from search indexing, and your shortlist remains private to your account.",
   },
 ] as const;

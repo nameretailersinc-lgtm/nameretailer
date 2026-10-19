@@ -18,12 +18,23 @@ import {
 } from "lucide-react";
 import { InformationShell } from "@/components/site/information-page";
 import { BuyPlacement } from "@/components/cart/buy-placement";
-import { ShortlistProvider, ShortlistButton } from "@/components/marketplace/shortlist";
+import {
+  ShortlistProvider,
+  ShortlistButton,
+} from "@/components/marketplace/shortlist";
 import { PublicationShortlist } from "@/components/marketplace/publication-shortlist";
 import { validAsOf } from "@/components/site/data-disclosure";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
-import { publicationPath, validPublicationSlug, validPublicationListingId } from "@/lib/commerce/publication-pages";
-import { publicationProfile, publicationIndexable, relatedProfiles } from "@/lib/commerce/publication-profiles";
+import {
+  publicationPath,
+  validPublicationSlug,
+  validPublicationListingId,
+} from "@/lib/commerce/publication-pages";
+import {
+  publicationProfile,
+  publicationIndexable,
+  relatedProfiles,
+} from "@/lib/commerce/publication-profiles";
 import {
   publicationPresentation,
   publicationUsd as usd,
@@ -39,18 +50,29 @@ import { serializeJsonLd } from "@/lib/seo/json-ld";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import styles from "./publication-detail.module.css";
 
-type Props = { params: Promise<{ domain: string; listing?: string }>; searchParams: Promise<SearchParams> };
+type Props = {
+  params: Promise<{ domain: string; listing?: string }>;
+  searchParams: Promise<SearchParams>;
+};
 
 async function load(params: Props["params"]) {
   const raw = await params;
   const slug = raw.domain.toLowerCase().replaceAll(".", "-");
   const listing = raw.listing?.toLowerCase();
-  if (!validPublicationSlug(slug) || (listing !== undefined && !validPublicationListingId(listing))) notFound();
+  if (
+    !validPublicationSlug(slug) ||
+    (listing !== undefined && !validPublicationListingId(listing))
+  )
+    notFound();
   await connection();
   const product = await publicationProfile(slug, listing);
   if (!product) notFound();
   const path = publicationPath(product)!;
-  if (`/publication/${raw.domain}/${raw.listing ? `${raw.listing}/` : ""}` !== path) permanentRedirect(path);
+  if (
+    `/publication/${raw.domain}/${raw.listing ? `${raw.listing}/` : ""}` !==
+    path
+  )
+    permanentRedirect(path);
   return { product, view: publicationPresentation(product), path };
 }
 
@@ -63,13 +85,23 @@ export async function generateMetadata({ params, searchParams }: Props) {
       title: view.title,
       description: view.description,
       alternates: { canonical: canonicalOrigin + path },
-      robots: (await publicationIndexable(product)) ? facets.robots : { index: false, follow: true },
+      robots: (await publicationIndexable(product))
+        ? facets.robots
+        : { index: false, follow: true },
     },
     path,
   );
 }
 
-function Fact({ term, value, wide = false }: { term: string; value?: string | null; wide?: boolean }) {
+function Fact({
+  term,
+  value,
+  wide = false,
+}: {
+  term: string;
+  value?: string | null;
+  wide?: boolean;
+}) {
   if (!value?.trim()) return null;
   return (
     <div className={wide ? styles.wide : undefined}>
@@ -86,15 +118,27 @@ function Text({ children }: { children: string }) {
 export default async function Page({ params }: Props) {
   const { product, view, path } = await load(params);
   const [topic, related] = await Promise.all([
-    product.category ? catalogueSummary(new URLSearchParams({ category: product.category }).toString()).catch(() => null) : null,
+    product.category
+      ? catalogueSummary(
+          new URLSearchParams({ category: product.category }).toString(),
+        ).catch(() => null)
+      : null,
     relatedProfiles(product).catch(() => []),
   ]);
   const content = product.publicationContent;
   const m = product.metrics;
-  const comparison = topic && validAsOf(topic.updatedAt) ? publicationPriceComparison(product.priceCents, topic.medianPriceCents) : null;
-  const browse = (key: string, value: string) => `/?${new URLSearchParams({ [key]: value })}`;
+  const comparison =
+    topic && validAsOf(topic.updatedAt)
+      ? publicationPriceComparison(product.priceCents, topic.medianPriceCents)
+      : null;
+  const browse = (key: string, value: string) =>
+    `/?${new URLSearchParams({ [key]: value })}`;
   const matchingDirectories = directories
-    .filter((directory) => directory.filter.categories?.includes(product.category) || directory.filter.country === product.country)
+    .filter(
+      (directory) =>
+        directory.filter.categories?.includes(product.category) ||
+        directory.filter.country === product.country,
+    )
     .slice(0, 3);
   const writing = product.writingOptions || [];
   const url = canonicalOrigin + path;
@@ -124,12 +168,22 @@ export default async function Page({ params }: Props) {
     {
       term: "Traffic estimate",
       value: number(m.traffic),
-      hint: content?.metricsSource ? "Source details recorded below" : "Supplied traffic estimate",
+      hint: content?.metricsSource
+        ? "Source details recorded below"
+        : "Supplied traffic estimate",
       tone: styles.metricTraffic,
       Icon: Globe2,
     },
-  ].filter(card => card.value !== "");
-  const hasEditorial = [content?.editorialGuidelines, content?.contentRequirements, content?.restrictedTopics, content?.wordCountRequirements, content?.imageRequirements, content?.editorialProcess, content?.linkPolicy].some(Boolean);
+  ].filter((card) => card.value !== "");
+  const hasEditorial = [
+    content?.editorialGuidelines,
+    content?.contentRequirements,
+    content?.restrictedTopics,
+    content?.wordCountRequirements,
+    content?.imageRequirements,
+    content?.editorialProcess,
+    content?.linkPolicy,
+  ].some(Boolean);
 
   return (
     <InformationShell
@@ -154,9 +208,26 @@ export default async function Page({ params }: Props) {
               name: `Guest post placement on ${view.label}`,
               description: view.summary,
               isPartOf: { "@id": `${canonicalOrigin}/#website` },
-              ...(view.questions.length ? { mainEntity: { "@type": "FAQPage", mainEntity: view.questions.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) } } : {}),
-              about: { "@type": view.section ? "WebPage" : "WebSite", name: view.label, url: product.domain },
-              ...(validAsOf(product.updatedAt) ? { dateModified: product.updatedAt } : {}),
+              ...(view.questions.length
+                ? {
+                    mainEntity: {
+                      "@type": "FAQPage",
+                      mainEntity: view.questions.map(([question, answer]) => ({
+                        "@type": "Question",
+                        name: question,
+                        acceptedAnswer: { "@type": "Answer", text: answer },
+                      })),
+                    },
+                  }
+                : {}),
+              about: {
+                "@type": view.section ? "WebPage" : "WebSite",
+                name: view.label,
+                url: product.domain,
+              },
+              ...(validAsOf(product.updatedAt)
+                ? { dateModified: product.updatedAt }
+                : {}),
             }),
           }}
         />
@@ -165,13 +236,18 @@ export default async function Page({ params }: Props) {
         <nav aria-label="Publication page sections" className={styles.nav}>
           <a href="#publication-overview">Listing overview</a>
           <a href="#publication-pricing">Price and scope</a>
-          {content && <a href="#publisher-information">Publisher information</a>}
+          {content && (
+            <a href="#publisher-information">Publisher information</a>
+          )}
           {comparison && <a href="#publication-comparison">Price comparison</a>}
           <a href="#publication-questions">Questions</a>
         </nav>
 
         {/* Top 4 Metric Cards */}
-        <dl className={styles.metrics} aria-label={`${view.identity} key listing figures`}>
+        <dl
+          className={styles.metrics}
+          aria-label={`${view.identity} key listing figures`}
+        >
           {metricCards.map(({ term, value, hint, tone, Icon }) => (
             <div key={term} className={`${styles.metric} ${tone}`}>
               <div className={styles.metricHeader}>
@@ -188,7 +264,10 @@ export default async function Page({ params }: Props) {
 
         {/* Main 2-Column Content & Sticky Sidebar */}
         <div className={styles.layout}>
-          <aside className={`reference-card ${styles.sidebar}`} aria-labelledby="plan-sidebar-title">
+          <aside
+            className={`reference-card ${styles.sidebar}`}
+            aria-labelledby="plan-sidebar-title"
+          >
             <p className="reference-pill">Placement summary</p>
             <h2 id="plan-sidebar-title">{view.label}</h2>
             <div className={styles.sidebarPriceBox}>
@@ -206,13 +285,18 @@ export default async function Page({ params }: Props) {
               <a href="#publication-pricing">Review price and scope</a>
             </div>
             <p className={styles.stamp}>
-              Request this placement to confirm publisher acceptance, scope and current pricing by email.
+              Request this placement to confirm publisher acceptance, scope and
+              current pricing by email.
             </p>
           </aside>
 
           <div className={styles.body}>
             {/* Section 1: Listing Overview */}
-            <section className="reference-card" id="publication-overview" aria-labelledby="overview-title">
+            <section
+              className="reference-card"
+              id="publication-overview"
+              aria-labelledby="overview-title"
+            >
               <div className={styles.sectionHeader}>
                 <span className={styles.sectionIcon} aria-hidden="true">
                   <Layers3 size={20} />
@@ -221,7 +305,9 @@ export default async function Page({ params }: Props) {
               </div>
               {view.section && (
                 <p className={styles.notice}>
-                  This is a section-specific listing. Confirm the placement location and whether supplied metrics describe this section or the whole domain.
+                  This is a section-specific listing. Confirm the placement
+                  location and whether supplied metrics describe this section or
+                  the whole domain.
                 </p>
               )}
               <dl className={styles.facts}>
@@ -232,12 +318,24 @@ export default async function Page({ params }: Props) {
                 <Fact term="Stated turnaround" value={product.turnaround} />
                 <Fact term="Supplied link terms" value={product.linkType} />
                 <Fact term="Spam score" value={number(m.spamScore)} />
-                <Fact term="Metric measurement date" value={date(content?.metricsMeasuredAt || product.metricsUpdatedAt)} />
-                <Fact term="Listing record updated" value={date(product.updatedAt)} />
+                <Fact
+                  term="Metric measurement date"
+                  value={date(
+                    content?.metricsMeasuredAt || product.metricsUpdatedAt,
+                  )}
+                />
+                <Fact
+                  term="Listing record updated"
+                  value={date(product.updatedAt)}
+                />
               </dl>
               <div className={styles.pillLinks}>
-                <Link href="/methodology/">Listing sources and metric methodology</Link>
-                <Link href="/guides/da-vs-dr-and-traffic/">Understand DA, DR and traffic</Link>
+                <Link href="/methodology/">
+                  Listing sources and metric methodology
+                </Link>
+                <Link href="/guides/da-vs-dr-and-traffic/">
+                  Understand DA, DR and traffic
+                </Link>
               </div>
               <p className={styles.stamp}>
                 Listing reference: <span>{product.id}</span>
@@ -245,20 +343,36 @@ export default async function Page({ params }: Props) {
             </section>
 
             {/* Section 2: Placement Cost & Scope */}
-            <section className="reference-card" id="publication-pricing" aria-labelledby="pricing-title">
+            <section
+              className="reference-card"
+              id="publication-pricing"
+              aria-labelledby="pricing-title"
+            >
               <div className={styles.sectionHeader}>
-                <span className={`${styles.sectionIcon} ${styles.sectionIconBlue}`} aria-hidden="true">
+                <span
+                  className={`${styles.sectionIcon} ${styles.sectionIconBlue}`}
+                  aria-hidden="true"
+                >
                   <CircleDollarSign size={20} />
                 </span>
                 <h2 id="pricing-title">Placement cost for {view.identity}</h2>
               </div>
               <p>
-                The listed placement price is <strong>{usd(product.priceCents)}</strong>. Writing is a separate option where offered.
+                The listed placement price is{" "}
+                <strong>{usd(product.priceCents)}</strong>. Writing is a
+                separate option where offered.
               </p>
               {writing.length ? (
-                <div className="directory-table-wrap" role="region" tabIndex={0} aria-label="Available writing charges">
+                <div
+                  className="directory-table-wrap"
+                  role="region"
+                  tabIndex={0}
+                  aria-label="Available writing charges"
+                >
                   <table className={styles.table}>
-                    <caption>Available writing charges for this listing</caption>
+                    <caption>
+                      Available writing charges for this listing
+                    </caption>
                     <thead>
                       <tr>
                         <th scope="col">Writing option</th>
@@ -272,7 +386,9 @@ export default async function Page({ params }: Props) {
                           <th scope="row">{option.words} words</th>
                           <td>{usd(option.priceCents)}</td>
                           <td>
-                            <strong>{usd(product.priceCents + option.priceCents)}</strong>
+                            <strong>
+                              {usd(product.priceCents + option.priceCents)}
+                            </strong>
                           </td>
                         </tr>
                       ))}
@@ -282,18 +398,33 @@ export default async function Page({ params }: Props) {
               ) : null}
 
               <div className={styles.scopeGrid}>
-                {content?.priceIncludes && <div className={styles.scopeBox}>
-                  <h3>What is included?</h3><Text>{content.priceIncludes}</Text>
-                </div>}
-                {content?.priceExcludes && <div className={styles.scopeBox}>
-                  <h3>Exclusions and additional charges</h3><Text>{content.priceExcludes}</Text>
-                </div>}
+                {content?.priceIncludes && (
+                  <div className={styles.scopeBox}>
+                    <h3>What is included?</h3>
+                    <Text>{content.priceIncludes}</Text>
+                  </div>
+                )}
+                {content?.priceExcludes && (
+                  <div className={styles.scopeBox}>
+                    <h3>Exclusions and additional charges</h3>
+                    <Text>{content.priceExcludes}</Text>
+                  </div>
+                )}
               </div>
 
               <div className="publication-actions">
-                <a href={product.domain} target="_blank" rel="nofollow noopener noreferrer" className={styles.visitLink}>
-                  Visit {view.host} <ArrowUpRight size={15} aria-hidden="true" />
-                  <span className="screen-reader-only"> (opens in a new tab)</span>
+                <a
+                  href={product.domain}
+                  target="_blank"
+                  rel="nofollow noopener noreferrer"
+                  className={styles.visitLink}
+                >
+                  Visit {view.host}{" "}
+                  <ArrowUpRight size={15} aria-hidden="true" />
+                  <span className="screen-reader-only">
+                    {" "}
+                    (opens in a new tab)
+                  </span>
                 </a>
               </div>
               <p className={styles.stamp}>
@@ -303,9 +434,16 @@ export default async function Page({ params }: Props) {
 
             {/* Section 3: Publisher Information (if available) */}
             {content && (
-              <section className="reference-card" id="publisher-information" aria-labelledby="publisher-title">
+              <section
+                className="reference-card"
+                id="publisher-information"
+                aria-labelledby="publisher-title"
+              >
                 <div className={styles.sectionHeader}>
-                  <span className={`${styles.sectionIcon} ${styles.sectionIconPurple}`} aria-hidden="true">
+                  <span
+                    className={`${styles.sectionIcon} ${styles.sectionIconPurple}`}
+                    aria-hidden="true"
+                  >
                     <BookOpen size={20} />
                   </span>
                   <h2 id="publisher-title">
@@ -325,7 +463,10 @@ export default async function Page({ params }: Props) {
                     [
                       ["Secondary niches", content.secondaryNiches],
                       ["Content categories", content.contentCategories],
-                      ["Documented differentiators", content.uniqueDifferentiators],
+                      [
+                        "Documented differentiators",
+                        content.uniqueDifferentiators,
+                      ],
                       ["Editorial notes", content.editorialNotes],
                       ["Metric source and scope", content.metricsSource],
                     ] as const
@@ -340,26 +481,45 @@ export default async function Page({ params }: Props) {
                 </div>
                 <p className={styles.stamp}>
                   Profile evidence checked {date(content.checkedAt)}.{" "}
-                  <a href={content.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">
-                    Read the supporting source<span className="screen-reader-only"> (opens in a new tab)</span>
+                  <a
+                    href={content.sourceUrl}
+                    target="_blank"
+                    rel="nofollow noopener noreferrer"
+                  >
+                    Read the supporting source
+                    <span className="screen-reader-only">
+                      {" "}
+                      (opens in a new tab)
+                    </span>
                   </a>
-                  . Editorial review of this text does not verify every supplied metric or guarantee a placement.
+                  . Editorial review of this text does not verify every supplied
+                  metric or guarantee a placement.
                 </p>
               </section>
             )}
 
             {/* Section 4: Relevance & Suitability */}
-            <section className="reference-card" aria-labelledby="suitability-title">
+            <section
+              className="reference-card"
+              aria-labelledby="suitability-title"
+            >
               <div className={styles.sectionHeader}>
                 <span className={styles.sectionIcon} aria-hidden="true">
                   <Sparkles size={20} />
                 </span>
-                <h2 id="suitability-title">Is {view.identity} relevant to your brief?</h2>
+                <h2 id="suitability-title">
+                  Is {view.identity} relevant to your brief?
+                </h2>
               </div>
               <p>
-                {product.category ? `Use its supplied ${product.category} classification as an initial topic filter.` : ""}{" "}
-                {product.language ? `The listed language is ${product.language}; check that it fits your proposed article.` : ""}{" "}
-                Compare the {usd(product.priceCents)} placement cost with your confirmed budget.
+                {product.category
+                  ? `Use its supplied ${product.category} classification as an initial topic filter.`
+                  : ""}{" "}
+                {product.language
+                  ? `The listed language is ${product.language}; check that it fits your proposed article.`
+                  : ""}{" "}
+                Compare the {usd(product.priceCents)} placement cost with your
+                confirmed budget.
               </p>
               {content?.acceptedTopics && (
                 <div className={styles.subSectionItem}>
@@ -367,38 +527,52 @@ export default async function Page({ params }: Props) {
                   <Text>{content.acceptedTopics}</Text>
                 </div>
               )}
-
             </section>
 
             {/* Section 5: Editorial Requirements */}
-            {hasEditorial && <section className="reference-card" aria-labelledby="editorial-title">
-              <div className={styles.sectionHeader}>
-                <span className={`${styles.sectionIcon} ${styles.sectionIconBlue}`} aria-hidden="true">
-                  <FileCheck2 size={20} />
-                </span>
-                <h2 id="editorial-title">Editorial requirements for {view.identity}</h2>
-              </div>
-{content?.editorialGuidelines && <Text>{content.editorialGuidelines}</Text>}
-              <div className={styles.subSectionList}>
-                {(
-                  [
-                    ["Submission requirements", content?.contentRequirements],
-                    ["Restricted topics", content?.restrictedTopics],
-                    ["Article length", content?.wordCountRequirements],
-                    ["Image requirements", content?.imageRequirements],
-                    ["Review and publication process", content?.editorialProcess],
-                    ["Confirmed link policy", content?.linkPolicy],
-                  ] as const
-                )
-                  .filter(([, value]) => value)
-                  .map(([heading, value]) => (
-                    <div key={heading} className={styles.subSectionItem}>
-                      <h3>{heading}</h3>
-                      <Text>{value!}</Text>
-                    </div>
-                  ))}
-              </div>
-            </section>}
+            {hasEditorial && (
+              <section
+                className="reference-card"
+                aria-labelledby="editorial-title"
+              >
+                <div className={styles.sectionHeader}>
+                  <span
+                    className={`${styles.sectionIcon} ${styles.sectionIconBlue}`}
+                    aria-hidden="true"
+                  >
+                    <FileCheck2 size={20} />
+                  </span>
+                  <h2 id="editorial-title">
+                    Editorial requirements for {view.identity}
+                  </h2>
+                </div>
+                {content?.editorialGuidelines && (
+                  <Text>{content.editorialGuidelines}</Text>
+                )}
+                <div className={styles.subSectionList}>
+                  {(
+                    [
+                      ["Submission requirements", content?.contentRequirements],
+                      ["Restricted topics", content?.restrictedTopics],
+                      ["Article length", content?.wordCountRequirements],
+                      ["Image requirements", content?.imageRequirements],
+                      [
+                        "Review and publication process",
+                        content?.editorialProcess,
+                      ],
+                      ["Confirmed link policy", content?.linkPolicy],
+                    ] as const
+                  )
+                    .filter(([, value]) => value)
+                    .map(([heading, value]) => (
+                      <div key={heading} className={styles.subSectionItem}>
+                        <h3>{heading}</h3>
+                        <Text>{value!}</Text>
+                      </div>
+                    ))}
+                </div>
+              </section>
+            )}
 
             {product.requirements && (
               <section className="reference-card">
@@ -414,9 +588,16 @@ export default async function Page({ params }: Props) {
 
             {/* Section 6: Category Price Comparison */}
             {comparison && topic && (
-              <section className="reference-card" id="publication-comparison" aria-labelledby="comparison-title">
+              <section
+                className="reference-card"
+                id="publication-comparison"
+                aria-labelledby="comparison-title"
+              >
                 <div className={styles.sectionHeader}>
-                  <span className={`${styles.sectionIcon} ${styles.sectionIconPurple}`} aria-hidden="true">
+                  <span
+                    className={`${styles.sectionIcon} ${styles.sectionIconPurple}`}
+                    aria-hidden="true"
+                  >
                     <Scale size={20} />
                   </span>
                   <h2 id="comparison-title">
@@ -424,8 +605,11 @@ export default async function Page({ params }: Props) {
                   </h2>
                 </div>
                 <p>
-                  At {usd(product.priceCents)}, this placement is <strong>{comparison}</strong> of {usd(topic.medianPriceCents!)} across{" "}
-                  {number(topic.total)} active {product.category} listings. Listed prices in this topic span {usd(topic.minPriceCents!)} to{" "}
+                  At {usd(product.priceCents)}, this placement is{" "}
+                  <strong>{comparison}</strong> of{" "}
+                  {usd(topic.medianPriceCents!)} across {number(topic.total)}{" "}
+                  active {product.category} listings. Listed prices in this
+                  topic span {usd(topic.minPriceCents!)} to{" "}
                   {usd(topic.maxPriceCents!)}.
                 </p>
                 <div className={styles.comparisonStats}>
@@ -445,37 +629,61 @@ export default async function Page({ params }: Props) {
                   </div>
                 </div>
                 <p>
-                  The median covers all matching active, committed-import listings, not just the alternatives below. Writing and scope can differ. This comparison does not estimate article visitors, return or editorial quality.
+                  The median covers all matching active, committed-import
+                  listings, not just the alternatives below. Writing and scope
+                  can differ. This comparison does not estimate article
+                  visitors, return or editorial quality.
                 </p>
                 <div className={styles.pillLinks}>
-                  <Link href={browse("category", product.category)}>Compare the {product.category} catalogue</Link>
-                  <Link href="/guides/guest-post-cost/">Plan the complete guest-post budget</Link>
+                  <Link href={browse("category", product.category)}>
+                    Compare the {product.category} catalogue
+                  </Link>
+                  <Link href="/guides/guest-post-cost/">
+                    Plan the complete guest-post budget
+                  </Link>
                 </div>
               </section>
             )}
 
             {/* Section 7: Nearby Alternatives */}
             {related.length > 0 && (
-              <section className="reference-card" aria-labelledby="alternatives-title">
+              <section
+                className="reference-card"
+                aria-labelledby="alternatives-title"
+              >
                 <div className={styles.sectionHeader}>
                   <span className={styles.sectionIcon} aria-hidden="true">
                     <Compass size={20} />
                   </span>
-                  <h2 id="alternatives-title">Nearby placement prices in {product.category}</h2>
+                  <h2 id="alternatives-title">
+                    Nearby placement prices in {product.category}
+                  </h2>
                 </div>
                 <p>
-                  Up to six other listings in the same supplied topic. Matching language is preferred first, then supplied listing country, then the smallest price difference. Similar prices do not imply equivalent scope or quality.
+                  Up to six other listings in the same supplied topic. Matching
+                  language is preferred first, then supplied listing country,
+                  then the smallest price difference. Similar prices do not
+                  imply equivalent scope or quality.
                 </p>
                 <ul className={styles.alternatives}>
                   {related.map((item) => {
                     const itemHost = new URL(item.domain).hostname;
-                    const itemPath = new URL(item.domain).pathname !== "/" ? new URL(item.domain).pathname : "";
-                    const monogram = itemHost.replace(/^www\./, "").slice(0, 2).toUpperCase();
+                    const itemPath =
+                      new URL(item.domain).pathname !== "/"
+                        ? new URL(item.domain).pathname
+                        : "";
+                    const monogram = itemHost
+                      .replace(/^www\./, "")
+                      .slice(0, 2)
+                      .toUpperCase();
                     return (
                       <li key={item.id}>
                         <div>
                           <div className={styles.altHeader}>
-                            <span className={styles.altMonogram} aria-hidden="true">
+                            <span
+                              className={styles.altMonogram}
+                              aria-hidden="true"
+                            >
                               {monogram}
                             </span>
                             <h3>
@@ -492,9 +700,16 @@ export default async function Page({ params }: Props) {
                               : `${usd(Math.abs(item.priceCents - product.priceCents))} ${item.priceCents > product.priceCents ? "more" : "less"}`}
                           </p>
                           <p className={styles.altMeta}>
-                            {item.language || "Language unavailable"} · {item.country || "Country unavailable"}
+                            {[item.language, item.country]
+                              .filter(Boolean)
+                              .join(" · ")}
                             <br />
-                            {item.metrics.dr != null && <>Supplied DR: <strong>{number(item.metrics.dr)}</strong></>}
+                            {item.metrics.dr != null && (
+                              <>
+                                Supplied DR:{" "}
+                                <strong>{number(item.metrics.dr)}</strong>
+                              </>
+                            )}
                           </p>
                         </div>
                         <ShortlistButton product={item} />
@@ -509,9 +724,16 @@ export default async function Page({ params }: Props) {
             <PublicationShortlist />
 
             {/* Section 10: Questions / FAQ */}
-            <section className="reference-card" id="publication-questions" aria-labelledby="questions-title">
+            <section
+              className="reference-card"
+              id="publication-questions"
+              aria-labelledby="questions-title"
+            >
               <div className={styles.sectionHeader}>
-                <span className={`${styles.sectionIcon} ${styles.sectionIconPurple}`} aria-hidden="true">
+                <span
+                  className={`${styles.sectionIcon} ${styles.sectionIconPurple}`}
+                  aria-hidden="true"
+                >
                   <HelpCircle size={20} />
                 </span>
                 <h2 id="questions-title">Questions about {view.identity}</h2>

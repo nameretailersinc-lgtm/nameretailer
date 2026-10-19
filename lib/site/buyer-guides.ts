@@ -494,5 +494,5 @@ export function costAnswer(stats: CatalogueStatistics) {
       currency: "USD",
       maximumFractionDigits: 3,
     }).format(value / 100);
-  return `Guest-post placements range from ${money(stats.minPriceCents)} to ${money(stats.maxPriceCents)}, with a median of ${money(stats.medianPriceCents)} across ${stats.total.toLocaleString("en-US")} active listings. These are supplied placement prices, not completed transactions or campaign quotes. Writing may cost extra. Compare relevant publishers and confirm editorial scope, availability and paid-link disclosure before planning a placement.`;
+  return `Guest-post placements range from ${money(stats.minPriceCents)} to ${money(stats.maxPriceCents)}, with a median of ${money(stats.medianPriceCents)} across ${stats.total.toLocaleString("en-US")} active listings. These supplied prices cover placement; writing and other agreed services may cost extra. Request a quote to confirm scope, availability and paid-link terms for your brief.`;
 }

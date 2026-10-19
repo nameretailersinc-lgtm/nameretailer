@@ -55,7 +55,7 @@ export const sitemapFiles = async () => {
     );
   return cachedAsync(
     `sitemap-files:${revision?.version ?? 0}`,
-    { ttlMs: 15 * 60_000, staleOnErrorMs: 0, timeoutMs: 18000 },
+    { ttlMs: 15 * 60_000, staleOnErrorMs: 0, timeoutMs: 90000 },
     async () => {
       const groups: Record<string, MetadataRoute.Sitemap> = {
         static: [],

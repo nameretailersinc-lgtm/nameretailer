@@ -298,7 +298,7 @@ export function OrdersPage() {
             Your placement orders will appear here after you start checkout.
           </p>
           <Link href="/cart/" className="button button-primary">
-            View your cart
+            View your shortlist
           </Link>
         </section>
       ) : (

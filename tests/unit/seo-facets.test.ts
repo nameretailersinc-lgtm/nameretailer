@@ -17,10 +17,10 @@ describe("public URL indexing", () => {
         follow: true,
       });
   });
-  it("indexes only nonempty unique pagination and keeps page canonicals", () => {
+  it("keeps all pagination noindex and canonicalized to the hub", () => {
     expect(facetMetadata("/", { page: "2" }, true)).toEqual({
-      alternates: { canonical: "https://nameretailer.com/?page=2" },
-      robots: { index: true, follow: true },
+      alternates: { canonical: "https://nameretailer.com/" },
+      robots: { index: false, follow: true },
     });
     expect(facetMetadata("/", { page: "200" }).robots).toEqual({
       index: false,
