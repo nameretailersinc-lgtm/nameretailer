@@ -222,6 +222,9 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
             {" "}
             (opens publication in a new tab)
           </span>
+
+
+
         </a>
       </p>
       <dl>
