@@ -225,6 +225,7 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
           </span>
 
 
+
         </a>
       </p>
       <dl>
