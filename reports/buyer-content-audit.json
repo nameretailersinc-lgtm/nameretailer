@@ -90,67 +90,67 @@
     },
     {
       "path": "/blog/match-article-structure-to-the-reader-s-search-intent/",
-      "disposition": "noindex",
-      "words": 631,
+      "disposition": "rewritten",
+      "words": 875,
       "minimum": 800,
-      "titleLength": 59,
-      "descriptionLength": 153
+      "titleLength": 55,
+      "descriptionLength": 158
     },
     {
       "path": "/blog/write-a-direct-answer-without-losing-important-context/",
-      "disposition": "noindex",
-      "words": 620,
+      "disposition": "rewritten",
+      "words": 853,
       "minimum": 800,
-      "titleLength": 61,
-      "descriptionLength": 150
+      "titleLength": 50,
+      "descriptionLength": 157
     },
     {
       "path": "/blog/a-source-log-for-fact-checking-content-drafts/",
-      "disposition": "noindex",
-      "words": 585,
+      "disposition": "rewritten",
+      "words": 835,
       "minimum": 800,
-      "titleLength": 65,
-      "descriptionLength": 152
+      "titleLength": 51,
+      "descriptionLength": 165
     },
     {
       "path": "/blog/headlines-that-describe-the-article-instead-of-overselling-it/",
-      "disposition": "noindex",
-      "words": 625,
+      "disposition": "rewritten",
+      "words": 837,
       "minimum": 800,
-      "titleLength": 56,
-      "descriptionLength": 138
+      "titleLength": 51,
+      "descriptionLength": 159
     },
     {
       "path": "/blog/meta-descriptions-that-help-readers-choose-a-page/",
-      "disposition": "noindex",
-      "words": 616,
+      "disposition": "rewritten",
+      "words": 838,
       "minimum": 800,
       "titleLength": 56,
-      "descriptionLength": 154
+      "descriptionLength": 155
     },
     {
       "path": "/blog/how-to-write-helpful-faq-answers/",
-      "disposition": "noindex",
-      "words": 621,
+      "disposition": "rewritten",
+      "words": 839,
       "minimum": 800,
-      "titleLength": 59,
-      "descriptionLength": 144
+      "titleLength": 54,
+      "descriptionLength": 155
     },
     {
       "path": "/blog/image-alt-text-describe-purpose-not-every-pixel/",
-      "disposition": "noindex",
-      "words": 641,
+      "disposition": "rewritten",
+      "words": 827,
       "minimum": 800,
-      "titleLength": 55,
-      "descriptionLength": 144
+      "titleLength": 54,
+      "descriptionLength": 160
     },
     {
       "path": "/blog/a-content-refresh-decision-log/",
-      "disposition": "noindex",
-      "words": 466,
+      "disposition": "rewritten",
+      "words": 820,
       "minimum": 800,
-      "titleLength": 50,
-      "descriptionLength": 139
+      "titleLength": 52,
+      "descriptionLength": 164
     },
     {
       "path": "/blog/an-editorial-handoff-checklist-before-publication/",
@@ -402,35 +402,35 @@
     },
     {
       "path": "/blog/a-practical-seo-measurement-plan-before-publishing/",
-      "disposition": "noindex",
-      "words": 522,
+      "disposition": "rewritten",
+      "words": 849,
       "minimum": 800,
-      "titleLength": 58,
-      "descriptionLength": 140
+      "titleLength": 56,
+      "descriptionLength": 154
     },
     {
       "path": "/blog/search-console-and-analytics-answer-different-questions/",
-      "disposition": "noindex",
-      "words": 607,
+      "disposition": "rewritten",
+      "words": 831,
       "minimum": 800,
-      "titleLength": 60,
-      "descriptionLength": 155
+      "titleLength": 52,
+      "descriptionLength": 160
     },
     {
       "path": "/blog/calculate-percentage-growth-without-hiding-the-baseline/",
-      "disposition": "noindex",
-      "words": 583,
+      "disposition": "rewritten",
+      "words": 831,
       "minimum": 800,
-      "titleLength": 56,
-      "descriptionLength": 152
+      "titleLength": 52,
+      "descriptionLength": 166
     },
     {
       "path": "/blog/keep-missing-metrics-separate-from-zero/",
-      "disposition": "noindex",
-      "words": 632,
+      "disposition": "rewritten",
+      "words": 833,
       "minimum": 800,
-      "titleLength": 63,
-      "descriptionLength": 133
+      "titleLength": 55,
+      "descriptionLength": 162
     },
     {
       "path": "/blog/a-referral-traffic-worksheet-for-publication-campaigns/",
@@ -442,19 +442,19 @@
     },
     {
       "path": "/blog/a-content-experiment-log-that-records-confounders/",
-      "disposition": "noindex",
-      "words": 608,
+      "disposition": "rewritten",
+      "words": 829,
       "minimum": 800,
-      "titleLength": 54,
-      "descriptionLength": 143
+      "titleLength": 52,
+      "descriptionLength": 157
     },
     {
       "path": "/blog/report-keyword-ideas-without-invented-demand-metrics/",
-      "disposition": "noindex",
-      "words": 592,
+      "disposition": "rewritten",
+      "words": 817,
       "minimum": 800,
-      "titleLength": 57,
-      "descriptionLength": 140
+      "titleLength": 55,
+      "descriptionLength": 158
     },
     {
       "path": "/blog/a-backlink-report-quality-check-before-analysis/",
@@ -466,19 +466,19 @@
     },
     {
       "path": "/blog/choose-a-reporting-window-before-evaluating-content/",
-      "disposition": "noindex",
-      "words": 591,
+      "disposition": "rewritten",
+      "words": 819,
       "minimum": 800,
-      "titleLength": 58,
-      "descriptionLength": 147
+      "titleLength": 52,
+      "descriptionLength": 160
     },
     {
       "path": "/blog/turn-an-seo-report-into-a-useful-next-action-list/",
-      "disposition": "noindex",
-      "words": 580,
+      "disposition": "rewritten",
+      "words": 841,
       "minimum": 800,
-      "titleLength": 60,
-      "descriptionLength": 146
+      "titleLength": 55,
+      "descriptionLength": 161
     }
   ],
   "guides": [
@@ -683,7 +683,48 @@
       "descriptionLength": 158
     }
   ],
-  "violations": [],
+  "violations": [
+    {
+      "path": "/blog/a-source-log-for-fact-checking-content-drafts/",
+      "disposition": "rewritten",
+      "words": 835,
+      "minimum": 800,
+      "titleLength": 51,
+      "descriptionLength": 165
+    },
+    {
+      "path": "/blog/a-content-refresh-decision-log/",
+      "disposition": "rewritten",
+      "words": 820,
+      "minimum": 800,
+      "titleLength": 52,
+      "descriptionLength": 164
+    },
+    {
+      "path": "/blog/calculate-percentage-growth-without-hiding-the-baseline/",
+      "disposition": "rewritten",
+      "words": 831,
+      "minimum": 800,
+      "titleLength": 52,
+      "descriptionLength": 166
+    },
+    {
+      "path": "/blog/keep-missing-metrics-separate-from-zero/",
+      "disposition": "rewritten",
+      "words": 833,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 162
+    },
+    {
+      "path": "/blog/turn-an-seo-report-into-a-useful-next-action-list/",
+      "disposition": "rewritten",
+      "words": 841,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 161
+    }
+  ],
   "publications": {
     "activeListings": 56005,
     "detailPages": 56005,
@@ -697,7 +738,7 @@
     },
     {
       "path": "/blog/calculate-percentage-growth-without-hiding-the-baseline/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/a-backlink-report-quality-check-before-analysis/",
@@ -705,11 +746,11 @@
     },
     {
       "path": "/blog/image-alt-text-describe-purpose-not-every-pixel/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/a-content-refresh-decision-log/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/a-responsive-article-page-qa-checklist/",
@@ -725,7 +766,7 @@
     },
     {
       "path": "/blog/a-practical-seo-measurement-plan-before-publishing/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/a-canonical-url-checklist-for-a-rebuilt-website/",
@@ -741,11 +782,11 @@
     },
     {
       "path": "/blog/search-console-and-analytics-answer-different-questions/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/write-a-direct-answer-without-losing-important-context/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/a-fair-comparison-page-brief-for-a-brand-website/",
@@ -757,11 +798,11 @@
     },
     {
       "path": "/blog/choose-a-reporting-window-before-evaluating-content/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/meta-descriptions-that-help-readers-choose-a-page/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/noindex-and-robots-txt-are-different-controls/",
@@ -781,7 +822,7 @@
     },
     {
       "path": "/blog/a-source-log-for-fact-checking-content-drafts/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/what-aeo-means-in-a-practical-content-workflow/",
@@ -789,11 +830,11 @@
     },
     {
       "path": "/blog/turn-an-seo-report-into-a-useful-next-action-list/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/how-to-write-helpful-faq-answers/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/keep-important-answers-available-as-readable-text/",
@@ -833,7 +874,7 @@
     },
     {
       "path": "/blog/report-keyword-ideas-without-invented-demand-metrics/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/how-to-choose-a-guest-post-publication-for-your-audience/",
@@ -853,7 +894,7 @@
     },
     {
       "path": "/blog/match-article-structure-to-the-reader-s-search-intent/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/an-editorial-handoff-checklist-before-publication/",
@@ -881,7 +922,7 @@
     },
     {
       "path": "/blog/keep-missing-metrics-separate-from-zero/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/paid-link-disclosure-questions-to-ask-before-placement/",
@@ -913,7 +954,7 @@
     },
     {
       "path": "/blog/a-content-experiment-log-that-records-confounders/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/what-to-record-after-a-placement-is-published/",
@@ -921,7 +962,7 @@
     },
     {
       "path": "/blog/headlines-that-describe-the-article-instead-of-overselling-it/",
-      "indexable": false
+      "indexable": true
     },
     {
       "path": "/blog/a-structured-data-review-checklist-for-blog-articles/",

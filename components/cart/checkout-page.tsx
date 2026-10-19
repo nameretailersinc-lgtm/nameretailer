@@ -1,5 +1,4 @@
 "use client";
-import { PlacementInquiry } from "@/components/inquiries/placement-inquiry";
 import { useEffect, useState, type FormEvent } from "react";
 import Link from "next/link";
 import {
@@ -299,12 +298,12 @@ export function CheckoutPage() {
       ) : anonymous ? (
         <div className="customer-card">
           <h2>Sign in to continue</h2>
-          <p>Your shortlist and checkout draft are private to your account.</p>
+          <p>Your cart and checkout draft are private to your account.</p>
           <Link
             className="button button-primary"
             href="/my-account/?returnTo=cart"
           >
-            Sign in to review your shortlist
+            Sign in to review your cart
           </Link>
         </div>
       ) : (
@@ -315,7 +314,7 @@ export function CheckoutPage() {
                 href="/cart/"
                 className={`button button-secondary ${styles.compactButton}`}
               >
-                <ArrowLeft size={15} aria-hidden="true" /> Back to shortlist
+                <ArrowLeft size={15} aria-hidden="true" /> Back to cart
               </Link>
               <Link
                 href="/my-account/orders/"
@@ -348,7 +347,7 @@ export function CheckoutPage() {
             )}
             {view.draft && view.draft.cartVersion !== view.cart.version && (
               <p className="customer-notice">
-                Your shortlist changed after this billing draft was saved. Review the
+                Your cart changed after this billing draft was saved. Review the
                 latest details and save again.
               </p>
             )}
@@ -630,7 +629,7 @@ export function CheckoutPage() {
                   <span>Total (USD)</span>
                   <strong>
                     {view.cart.totalCents === null
-                      ? "Review shortlist"
+                      ? "Review cart"
                       : usd(view.cart.totalCents)}
                   </strong>
                 </p>
@@ -651,7 +650,10 @@ export function CheckoutPage() {
                   </span>
                 </label>
                 {!view.paymentAvailable && (
-                  <PlacementInquiry productIds={view.cart.items.map(item => item.productId)} label="Request quote for shortlist" />
+                  <p className="customer-notice">
+                    Online payments are currently unavailable. You can save your
+                    billing draft and return later.
+                  </p>
                 )}
                 <button
                   form="payment-checkout"

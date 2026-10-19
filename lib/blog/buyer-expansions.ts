@@ -1,3 +1,5 @@
+import { additionalBuyerContent } from "./additional-buyer-content";
+
 /** Buyer-specific additions; examples describe decisions, never reported customer results. */
 export type BuyerExpansion = {
   title: string;
@@ -6,6 +8,7 @@ export type BuyerExpansion = {
   faq: Array<[string, string]>;
 };
 export const buyerExpansions: Record<string, BuyerExpansion> = {
+  ...additionalBuyerContent,
   "how-to-choose-a-guest-post-publication-for-your-audience": {
     title: "Choose Guest Post Publications Your Audience Will Read",
     description:

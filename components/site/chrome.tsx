@@ -64,7 +64,7 @@ export function SiteFooter() {
         <div>
           <SiteBrand />
           <p>
-            Guest-post marketplace, shortlistning and useful writing tools.
+            Guest-post marketplace, shortlisting and useful writing tools.
           </p>
           <address>
             26 - G Hamriyah Freezone

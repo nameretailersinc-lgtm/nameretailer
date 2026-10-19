@@ -58,7 +58,7 @@ export function PlacementForm({
   signedIn,
   onSave,
   onPendingChange,
-  submitLabel = "Save placement to shortlist",
+  submitLabel = "Save placement to cart",
 }: {
   options: PlacementOptions;
   initial?: WritingWords;
@@ -295,8 +295,10 @@ export function PlacementForm({
             <div>
               <h3>Before you continue</h3>
               <p>
-                Save this brief in your shortlist, then request a quote to confirm the scope and pricing.
-                </p>
+                This saves a brief to your private cart. It does not reserve
+                inventory, place an order or charge a payment. Paid-link
+                disclosure must be agreed before publication.
+              </p>
             </div>
           </div>
           <div className="placement-sidebar-art" aria-hidden="true">
@@ -642,7 +644,7 @@ export function PlacementForm({
                         </select>
                         <p className="customer-hint">
                           Choose an unused article file to reuse or remove it.
-                          Removing a file also invalidates any shortlist reference to
+                          Removing a file also invalidates any cart reference to
                           it.
                         </p>
                       </div>

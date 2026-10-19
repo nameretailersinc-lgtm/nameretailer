@@ -79,7 +79,7 @@ it("omits headings and paragraphs for missing publisher fields and emits only vi
   expect(html).not.toMatch(
     /Unavailable|unconfirmed|not supplied|Information to confirm|Audience evidence|Editorial requirements for|What is included\?|Exclusions and additional charges|Domain Rating|Domain Authority|Traffic estimate/,
   );
-  expect(html).toContain("Request this placement");
+  expect(html).toContain("Add to plan");
   const match = html.match(
     /<script type="application\/ld\+json">(.*?)<\/script>/s,
   )!;

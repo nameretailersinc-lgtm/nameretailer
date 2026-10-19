@@ -45,7 +45,7 @@ export async function ArticleLibrary({
           ? "The Name Retailer guide library"
           : "The Name Retailer journal")
       }
-      description="Explore our SEO, AEO, GEO, content, marketplace and measurement articles. Find clear answers, worked examples and practical checklists—all in one library."
+      description="Explore guest posting, publisher research, editorial writing and campaign measurement. Use practical examples, checklists and templates for your next placement."
       active="guides"
       image="/01_guest_post_checklist.png"
     >

@@ -3,7 +3,7 @@ import { z } from "zod";
 import { CartPage } from "@/components/cart/cart-page";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = {
-  title: "Your shortlist",
+  title: "Your shopping cart",
   description:
     "Review your private placement briefs, article options and supplied USD prices. Save a plan and request placement details from Name Retailer.",
   robots: { index: false, follow: false },

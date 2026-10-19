@@ -299,7 +299,7 @@ export const informationPages = {
       },
       {
         title: "How it works",
-        description: "Understand browsing and private shortlistning.",
+        description: "Understand browsing and private shortlisting.",
         href: "/how-it-works/",
       },
       {

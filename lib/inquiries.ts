@@ -29,6 +29,7 @@ export const inquiryInput = z
       .url()
       .max(2048)
       .refine((value) => {
+        if (!URL.canParse(value)) return false;
         const url = new URL(value);
         return (
           ["https:", "http:"].includes(url.protocol) &&

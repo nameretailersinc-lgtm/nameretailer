@@ -110,6 +110,20 @@ it("stores every selected publication with server prices and normalized buyer de
     { $set: { notification: "not-configured" } },
   );
 });
+it.each(["not a URL", "https://", "http://[invalid", ""])(
+  "rejects malformed website URL %j with a validation response",
+  async (websiteUrl) => {
+    const response = await POST(request({ ...input, websiteUrl }));
+    expect(response.status).toBe(422);
+    expect(await response.json()).toMatchObject({
+      issues: expect.arrayContaining([
+        expect.objectContaining({ path: ["websiteUrl"] }),
+      ]),
+    });
+    expect(mocks.insert).not.toHaveBeenCalled();
+    expect(mocks.mail).not.toHaveBeenCalled();
+  },
+);
 it("keeps a saved inquiry successful if SMTP fails", async () => {
   mocks.mail.mockRejectedValue(new Error("mail failed"));
   expect((await POST(request(input))).status).toBe(200);
