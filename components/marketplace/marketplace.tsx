@@ -1,5 +1,6 @@
 "use client";
 
+
 import { ShortlistInquiry } from "@/components/inquiries/placement-inquiry";
 import { finishedCopy } from "@/lib/site/public-copy";
 import { trackEvent } from "@/lib/analytics/events";
@@ -53,7 +54,6 @@ import type {
 import { api, errorMessage } from "@/components/admin/api";
 import { Button, Field, Input, Select } from "@/components/admin/primitives";
 import {
-
 
   MarketplaceBenefits,
   MarketplaceBuyerGuide,
