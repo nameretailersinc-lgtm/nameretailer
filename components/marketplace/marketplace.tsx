@@ -1,5 +1,6 @@
 "use client";
 
+import { ShortlistInquiry } from "@/components/inquiries/placement-inquiry";
 import { finishedCopy } from "@/lib/site/public-copy";
 import { trackEvent } from "@/lib/analytics/events";
 import {
@@ -252,18 +253,7 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
           <dd>{productMetric(product.metrics.spamScore)}</dd>
         </div>
       </dl>
-      <p className="marketplace-placement-requirements">
-        <strong>Requirements:</strong>{" "}
-        {finishedCopy(product.requirements) ||
-          "Unavailable. Confirm placement requirements before ordering."}
-      </p>
-      <Link
-        className="marketplace-plan-placement"
-        href={`/cart/?product=${product.id}`}
-      >
-        Plan placement
-        <ArrowRight size={16} aria-hidden="true" />
-      </Link>
+      {product.requirements && <p className="marketplace-placement-requirements"><strong>Requirements:</strong> {finishedCopy(product.requirements)}</p>}
       <BuyPlacement productId={product.id} />
     </>
   );
@@ -434,7 +424,7 @@ function HomepageShortlist({
           </h2>
           <p>
             Compare up to four publications. This local shortlist lasts for this
-            visit and is not a cart or reservation.
+            visit. Request a quote when you are ready.
           </p>
         </div>
         {shortlist.length > 0 && (
@@ -620,6 +610,7 @@ function HomepageShortlist({
               </article>
             ))}
           </div>
+          <ShortlistInquiry />
           <div className={homepageStyles.shortlistSummary}>
             <span className={homepageStyles.shortlistSummaryIcon}>
               <Layers3 size={25} aria-hidden="true" />
@@ -989,9 +980,10 @@ function ShortlistPanel({ homePage, onViewDetails }: { homePage: boolean; onView
       <div className="marketplace-results-heading">
         <div>
           <h2 id="shortlist-heading">Your shortlist ({shortlist.length}/4)</h2>
+          <ShortlistInquiry />
           <p>
             Compare up to four publications. This local shortlist lasts for this
-            visit and is not a cart or reservation.
+            visit. Request a quote when you are ready.
           </p>
         </div>
         {shortlist.length > 0 && (

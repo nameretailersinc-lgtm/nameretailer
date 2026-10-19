@@ -72,10 +72,9 @@ async function profileFilter(): Promise<Filter<Product>> {
     ...(await activePublicationFilter()),
     category: { $nin: [...PROFILE_RULE.excludedCategories] },
     domain: { $not: /^https?:\/\/[^/]+\/./ },
-    "metrics.traffic": { $gte: PROFILE_RULE.minTraffic },
     "metrics.dr": { $gte: PROFILE_RULE.minDr },
     "metrics.da": { $gte: PROFILE_RULE.minDa },
-    "metrics.spamScore": { $lte: PROFILE_RULE.maxSpamScore },
+    priceCents: { $gte: PROFILE_RULE.minPriceCents },
   };
 }
 
@@ -145,12 +144,12 @@ export function profileSitemapEntries(): Promise<PublicProduct[]> {
     async () => {
       const { products } = await productStore();
       const rows = await products
-        .find(await profileFilter(), { projection: publicFields })
+        .find(await profileFilter(), { projection: detailFields })
         .sort({ domain: 1, id: 1 })
         .maxTimeMS(10000)
         .toArray();
       const paths = new Set<string>();
-      return rows.filter((row) => {
+      return rows.map(publicProfile).filter((row) => {
         const path = publicationPath(row);
         if (!path || paths.has(path) || !hasPublicationProfile(row))
           return false;

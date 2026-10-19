@@ -64,7 +64,7 @@ function guidance(range: MarketplaceRange): string[] {
           : low >= 50
             ? "This is the band many repeat campaigns use. It leaves room to compare several publications in the same topic and choose on audience fit rather than price alone."
             : "Lower-priced placements can work for niche topics and testing, but check recent articles for signs of a site that exists mainly to sell links, such as unrelated topics side by side or no named authors.",
-        "Confirm turnaround, the number of links included and how the post will be labelled before ordering. A saved plan does not reserve a price. If a price looks out of line, compare it with the median for the same topic and authority band in the guest post cost guide before deciding.",
+        "Confirm turnaround, the number of links included and how the post will be labelled before ordering. Request a quote to confirm the current price. If a price looks out of line, compare it with the median for the same topic and authority band in the guest post cost guide before deciding.",
       ];
     default:
       return [

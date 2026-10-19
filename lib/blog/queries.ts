@@ -1,6 +1,6 @@
 import { blogArticleIndexable } from "./indexing-policy";
 import { publicArticle } from "./public-copy";
-import { blogContentUpdatedAt } from "./editorial";
+import { blogContentUpdatedAt, buyerArticleAuthor } from "./editorial";
 import { cache } from "react";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
@@ -149,5 +149,5 @@ export async function articleContext(article: CmsRecord) {
       { projection: { _id: 0 } },
     ),
   ]);
-  return { author, related: related.map(publicArticle), categories, reviewer };
+  return { author: article.data.authorId === buyerArticleAuthor.id ? buyerArticleAuthor : author, related: related.filter(blogArticleIndexable).map(publicArticle), categories, reviewer };
 }

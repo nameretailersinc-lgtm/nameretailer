@@ -606,7 +606,7 @@ export function LandingExplore() {
             {
               Icon: ShoppingCart,
               title: "Browse first, plan when ready",
-              text: "Compare up to four publications and save a private plan. Ordering and payment are not available yet.",
+              text: "Compare up to four publications and select Request quote for shortlist to send one inquiry for your choices.",
             },
           ].map(({ Icon, title, text }, index) => (
             <article key={title}>

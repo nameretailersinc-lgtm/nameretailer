@@ -123,14 +123,12 @@ export default function Page() {
         <section className="reference-card">
           <h2>Which publications get a profile page?</h2>
           <p>
-            A publication gets its own profile page only when its supplied data
-            is complete and strong: estimated traffic of at least{" "}
-            {PROFILE_RULE.minTraffic.toLocaleString("en-US")} monthly visits, DR{" "}
-            {PROFILE_RULE.minDr} or higher, DA {PROFILE_RULE.minDa} or higher, a
-            spam score of {PROFILE_RULE.maxSpamScore} or lower, a specific
-            topic, and a root-domain URL. This is a data threshold, not an
-            editorial endorsement. Every other listing stays available in the
-            marketplace.
+            Publication detail pages show the real fields available for each listing.
+            Search indexing requires a positive placement price, DR of at least {PROFILE_RULE.minDr},
+            DA of at least {PROFILE_RULE.minDa}, a specific topic and either supplied traffic
+            of at least {PROFILE_RULE.minTraffic} or editorial guidelines. Only root-domain
+            listings meeting this completeness rule enter the sitemap. This is a data
+            threshold, not an editorial endorsement.
           </p>
         </section>
         <section className="reference-card">

@@ -1,12 +1,12 @@
 "use client";
 
+import { ShortlistInquiry } from "@/components/inquiries/placement-inquiry";
 import Link from "next/link";
 import {
   Scale,
   Trash2,
   X,
   Plus,
-  ArrowRight,
   ExternalLink,
   BookmarkPlus,
 } from "lucide-react";
@@ -190,9 +190,7 @@ export function PublicationShortlist() {
           <p className={styles.bottomNote}>
             Shortlisted values are selected snapshots for this visit.
           </p>
-          <Link href="/cart/" className={styles.planLink}>
-            Open your saved placement plan <ArrowRight size={14} aria-hidden="true" />
-          </Link>
+          <ShortlistInquiry />
         </div>
       )}
     </section>

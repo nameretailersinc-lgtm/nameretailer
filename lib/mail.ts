@@ -82,3 +82,26 @@ export async function sendResetMail(email: string, url: string) {
     transport.close();
   }
 }
+
+export async function sendInquiryMail(record: {
+  id: string; name: string; email: string; websiteUrl: string; anchor: string;
+  budget: string; message: string; placements: Array<{ domain: string; priceCents: number }>;
+}) {
+  if (!resetMailAvailable()) return false;
+  const message = {
+    to: "info@nameretailer.com",
+    from: process.env.SMTP_FROM || "Name Retailer <info@nameretailer.com>",
+    replyTo: record.email,
+    subject: `Placement inquiry ${record.id}`,
+    text: `Name: ${record.name}\nEmail: ${record.email}\nWebsite: ${record.websiteUrl}\nAnchor: ${record.anchor}\nBudget: ${record.budget}\n\n${record.message}\n\nSelected publications:\n${record.placements.map(item => `${item.domain} — USD ${(item.priceCents / 100).toFixed(2)}`).join("\n")}`,
+  };
+  if (localMail()) {
+    const folder = path.resolve(".local/mail");
+    await mkdir(folder, { recursive: true });
+    await writeFile(path.join(folder, `${Date.now()}-${randomUUID()}.json`), JSON.stringify(message), { mode: 0o600 });
+  } else {
+    const transport = createSmtpTransport();
+    try { await transport.sendMail(message); } finally { transport.close(); }
+  }
+  return true;
+}

@@ -274,9 +274,8 @@ export function MarketplaceBuyerGuide() {
         <details>
           <summary>Does shortlisting reserve a publication or price?</summary>
           <p>
-            No. Saving or shortlisting a publication does not reserve it or lock
-            its price.
-          </p>
+            Select Request this placement or Request quote for shortlist to confirm availability and pricing with the team.
+            </p>
         </details>
         <details>
           <summary>Where do the publication metrics come from?</summary>

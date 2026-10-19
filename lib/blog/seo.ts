@@ -1,3 +1,4 @@
+import { publicArticle } from "./public-copy";
 import type { CmsRecord } from "../cms/types";
 import { blogContentUpdatedAt } from "./editorial";
 import { bodyText, sanitizeBody } from "../cms/content";
@@ -8,6 +9,7 @@ import type { SearchParams } from "../commerce/marketplace-query";
 
 /** Keep the public article's owner-approved index policy and sitemap in sync. */
 export function blogSitemapEntry(record: CmsRecord) {
+  record = publicArticle(record);
   if (
     record.collection !== "content" ||
     record.status !== "published" ||

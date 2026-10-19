@@ -6,9 +6,10 @@ export type Author = {
   jobTitle?: string;
 };
 
-// TODO(owner): supply a short real biography and job title for each author. Do not invent them.
+// Author identity and biography supplied by the owner on October 19, 2026.
 export const authors: Author[] = [
   { slug: "zuhoor-uddin", name: "Zuhoor Uddin" },
+  { slug: "fahad-shaikh", name: "Fahad Shaikh", bio: "Fahad Shaikh is the owner of THE Promoters FZC, NameRetailer.com and YourMainDomain.com.", jobTitle: "Owner" },
 ];
 
 export const authorByName = (name?: string) =>

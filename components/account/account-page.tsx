@@ -373,7 +373,7 @@ export function AccountPage({ productId }: { productId?: string }) {
                   ? "Create your customer account"
                   : "Sign in to your account"
               }
-              description="Browse and compare without signing in. An account lets you save a planning cart; it does not place an order."
+              description="Browse, shortlist and request a placement without signing in. Your inquiry goes to the team for a quote."
             />
             <form
               className={styles.profileForm}

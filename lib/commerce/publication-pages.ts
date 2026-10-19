@@ -1,26 +1,17 @@
 import type { PublicProduct } from "./types";
 
-/**
- * Data-completeness rule for indexable publication profiles (owner-approved
- * 2026-10-09: a gated subset, not one page per listing). Meeting it means the
- * listing has strong, complete supplied metrics, not that Name Retailer has
- * editorially vetted the publication. Keep in sync with profileFilter().
- * Indexing also requires a complete audience and price. Publisher requirements
- * text is optional: profile pages carry computed per-listing comparisons
- * (rank, percentile, price per visit, peers; see publication-insights.ts).
- */
+/** Single publication completeness policy used by robots, reports and sitemap. */
 export const PROFILE_RULE = {
-  minTraffic: 500_000,
-  minDr: 60,
-  minDa: 50,
-  maxSpamScore: 10,
+  minPriceCents: 1,
+  minDr: 0,
+  minDa: 0,
+  minTraffic: 0,
   excludedCategories: ["", "General", "All Niches", "Other"],
+  requireTrafficOrGuidelines: true,
 } as const;
 
 type ProfileCandidate = Pick<PublicProduct, "domain" | "category" | "metrics"> &
-  Partial<
-    Pick<PublicProduct, "country" | "language" | "priceCents" | "requirements">
-  >;
+  Partial<Pick<PublicProduct, "country" | "language" | "priceCents" | "requirements" | "publicationContent">>;
 
 /** Root domains qualify for indexing; section listings also have detail pages. */
 export function publicationHost(
@@ -46,26 +37,16 @@ export function publicationHost(
 }
 
 export function hasPublicationProfile(product: ProfileCandidate): boolean {
-  const { traffic, dr, da, spamScore } = product.metrics || {};
-  return (
-    publicationHost(product.domain) !== null &&
-    !!product.country?.trim() &&
-    !!product.language?.trim() &&
-    typeof product.priceCents === "number" &&
-    Number.isSafeInteger(product.priceCents) &&
-    product.priceCents > 0 &&
-    !(PROFILE_RULE.excludedCategories as readonly string[]).includes(
-      product.category || "",
-    ) &&
-    typeof traffic === "number" &&
-    traffic >= PROFILE_RULE.minTraffic &&
-    typeof dr === "number" &&
-    dr >= PROFILE_RULE.minDr &&
-    typeof da === "number" &&
-    da >= PROFILE_RULE.minDa &&
-    typeof spamScore === "number" &&
-    spamScore <= PROFILE_RULE.maxSpamScore
-  );
+  const { traffic, dr, da } = product.metrics || {};
+  const score = (value: number | null | undefined, minimum: number) =>
+    typeof value === "number" && Number.isFinite(value) && value >= minimum;
+  const guidelines = [product.requirements, product.publicationContent?.editorialGuidelines,
+    product.publicationContent?.contentRequirements].some(value => !!value?.trim());
+  return publicationHost(product.domain) !== null &&
+    Number.isSafeInteger(product.priceCents) && (product.priceCents || 0) >= PROFILE_RULE.minPriceCents &&
+    !(PROFILE_RULE.excludedCategories as readonly string[]).includes(product.category?.trim() || "") &&
+    score(dr, PROFILE_RULE.minDr) && score(da, PROFILE_RULE.minDa) &&
+    (!PROFILE_RULE.requireTrafficOrGuidelines || score(traffic, PROFILE_RULE.minTraffic) || guidelines);
 }
 
 /**

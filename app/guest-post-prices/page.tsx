@@ -158,8 +158,7 @@ export default async function Page() {
             up-to-$50 placement directory
           </Link>{" "}
           and review the exclusions in the{" "}
-          <Link href="/guides/guest-post-cost/">guest post cost guide</Link>. A
-          saved plan does not reserve a publication or its current price.
+          <Link href="/guides/guest-post-cost/">guest post cost guide</Link>. Request a quote to confirm publication scope and current pricing.
         </p>
       </section>
       <section className="reference-card">

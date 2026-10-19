@@ -1,3 +1,4 @@
+import { BuyPlacement } from "@/components/cart/buy-placement";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import type { PublicProduct } from "@/lib/commerce/types";
@@ -86,6 +87,7 @@ export function PublicationTable({
                   }).format(product.priceCents / 100)}
                 </td>
                 <td>
+                  <BuyPlacement productId={product.id} />
                   {path ? (
                     <Link
                       className="directory-view-details"

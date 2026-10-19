@@ -53,7 +53,7 @@ export function DeskHeader({
             <li>
               <Link href="/cart/">
                 <span>2</span>
-                <strong>Brief & cart</strong>
+                <strong>Brief & shortlist</strong>
                 <small>Placement information</small>
               </Link>
             </li>

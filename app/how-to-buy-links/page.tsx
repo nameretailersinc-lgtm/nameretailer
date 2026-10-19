@@ -274,8 +274,7 @@ export default function Page() {
               <p>
                 Keep the brief and agreed terms with the order. If a listing
                 changes price or becomes unavailable, review the change before
-                payment. The current planning cart shows changes, but saving it
-                does not reserve a publication, create an order or take payment.
+                payment. Request a quote for your shortlist to confirm current pricing and publication terms.
               </p>
               <p>
                 Compare the{" "}

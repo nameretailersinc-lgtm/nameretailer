@@ -1,4 +1,5 @@
 "use client";
+import { PlacementInquiry } from "@/components/inquiries/placement-inquiry";
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,7 +12,6 @@ import {
   FilePlus2,
   FileText,
   Headphones,
-  LockKeyhole,
   Pencil,
   RotateCw,
   ShoppingCart,
@@ -115,7 +115,7 @@ export function CartPage({ productId }: { productId?: string }) {
         }),
       );
       setMessage(
-        "Placement saved to your planning cart. No order has been placed.",
+        "Placement saved to your shortlist.",
       );
       return true;
     } catch (cause) {
@@ -132,7 +132,7 @@ export function CartPage({ productId }: { productId?: string }) {
   }
   return (
     <CustomerShell
-      title={productId ? "Prepare Your Placement" : "Your shopping cart"}
+      title={productId ? "Prepare Your Placement" : "Your shortlist"}
       className={`${styles.root} ${productId ? styles.preparing : ""}`}
       header={
         productId ? (
@@ -162,8 +162,8 @@ export function CartPage({ productId }: { productId?: string }) {
           </header>
         ) : (
           <DeskHeader
-            title="Your shopping cart"
-            description="Review your selected placements and proceed to checkout."
+            title="Your shortlist"
+            description="Review selected publications and request a quote for your shortlist."
             icon={ShoppingCart}
           >
             <Link
@@ -178,7 +178,7 @@ export function CartPage({ productId }: { productId?: string }) {
     >
       <CustomerFeedback error={error} message={message} />
       {loading ? (
-        <p role="status">Loading your cart…</p>
+        <p role="status">Loading shortlist…</p>
       ) : (
         <>
           {!user && !options && (
@@ -192,7 +192,7 @@ export function CartPage({ productId }: { productId?: string }) {
               >
                 Sign in or create an account
               </Link>{" "}
-              to save your cart. You can inspect a publication’s options before
+              to save shortlist. You can inspect a publication’s options before
               signing in.
             </p>
           )}
@@ -228,7 +228,7 @@ export function CartPage({ productId }: { productId?: string }) {
                   icon={ShoppingCart}
                   title={`Saved placements (${cart.items.length})`}
                   id="saved-placements"
-                  description="Review your items, edit options, or remove them from your cart."
+                  description="Review your items, edit options, or remove them from shortlist."
                 />
                 <div className={styles.savedItems}>
                   {cart.items.map((item) => (
@@ -378,9 +378,9 @@ export function CartPage({ productId }: { productId?: string }) {
                   ))}
                 </div>
               </section>
-              <aside className={styles.cartAside} aria-label="Order summary">
+              <aside className={styles.cartAside} aria-label="Shortlist summary">
                 <section className={`customer-card ${styles.card}`}>
-                  <DeskHeading icon={CreditCard} title="Order summary" />
+                  <DeskHeading icon={CreditCard} title="Shortlist summary" />
                   <dl className={styles.summaryDetails}>
                     <div>
                       <dt>Placements</dt>
@@ -403,20 +403,7 @@ export function CartPage({ productId }: { productId?: string }) {
                         : usd(cart.totalCents)}
                     </strong>
                   </p>
-                  {cart.totalCents !== null &&
-                  cart.items.every((item) => !briefIssue(item, !!item.file)) ? (
-                    <Link
-                      href="/checkout/"
-                      className={`button button-primary ${styles.payButton}`}
-                    >
-                      <LockKeyhole size={18} aria-hidden="true" /> Proceed to
-                      checkout <ArrowRight size={18} aria-hidden="true" />
-                    </Link>
-                  ) : (
-                    <p className="customer-notice">
-                      Complete each brief and review changed prices to continue.
-                    </p>
-                  )}
+                  <PlacementInquiry productIds={cart.items.map(item => item.productId)} label="Request quote for shortlist" />
                   <p className={styles.hint}>
                     Coupons are not connected yet. No discount, fee or tax
                     calculation is implied by this preview total.
@@ -469,12 +456,12 @@ export function CartPage({ productId }: { productId?: string }) {
         <div>
           <strong>
             {cart?.totalCents != null
-              ? `Cart total: ${usd(cart.totalCents)}`
+              ? `Shortlist total: ${usd(cart.totalCents)}`
               : "Review your placement details"}
           </strong>
           <p>
             Save your brief and review current prices before continuing to
-            secure checkout.
+            placement inquiries.
           </p>
         </div>
         <button
@@ -485,7 +472,7 @@ export function CartPage({ productId }: { productId?: string }) {
             void refresh();
           }}
         >
-          <RotateCw size={16} aria-hidden="true" /> Refresh cart and prices
+          <RotateCw size={16} aria-hidden="true" /> Refresh shortlist and prices
         </button>
       </div>
     </CustomerShell>

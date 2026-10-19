@@ -9,7 +9,7 @@ export const domainGuides: BuyerGuide[] = [
       "Build a memorable business domain shortlist, test names with customers, compare extensions and check registration before you commit.",
     answer:
       "Choose a domain people can say, spell and recognize as your business. Build a shortlist, test it aloud without showing the spelling, compare suitable extensions, and verify registration and relevant name rights before paying. A domain name is your web address; a business name identifies your business and may follow separate local rules.",
-    approved: true,
+    approved: false,
     updatedAt: "2026-10-19",
     sourcesCheckedAt: "2026-10-19",
     questions: [
@@ -94,7 +94,7 @@ export const domainGuides: BuyerGuide[] = [
       "A beginner checklist for domain registration: verify availability, compare renewal terms, secure account ownership and connect website and email records.",
     answer:
       "Choose a suitable name, verify its current availability with a registrar, review the registration and renewal terms, and register it in an account you control. Then configure your website and email records. A domain registration is separate from hosting and from registering a business name.",
-    approved: true,
+    approved: false,
     updatedAt: "2026-10-19",
     sourcesCheckedAt: "2026-10-19",
     questions: [
@@ -154,7 +154,7 @@ export const domainGuides: BuyerGuide[] = [
       "Separate domain naming decisions from SEO claims, and plan a domain migration with URL mapping, permanent redirects, canonicals and monitoring.",
     answer:
       "A domain name can help users understand and remember a website, but it cannot guarantee Google rankings. When changing a domain, preserve useful content and map each old URL to its genuinely equivalent new URL. Update internal links, canonicals and sitemaps, then monitor crawling and search performance.",
-    approved: true,
+    approved: false,
     updatedAt: "2026-10-19",
     sourcesCheckedAt: "2026-10-19",
     questions: [

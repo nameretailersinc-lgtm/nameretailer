@@ -950,7 +950,7 @@ export const geoMeasurement: ArticleDraft[] = [
     "seoTitle": "How to Measure SEO Performance: Practical Measurement Plan",
     "metaDescription": "Learn how to measure SEO performance accurately by separating Search Console impressions, clicks, referral visits, and business conversions.",
     "answer": "Knowing how to measure SEO performance starts with defining the business question, metric, and data source before publishing content or launching a placement campaign. Separate search discovery (impressions and queries), site visits (clicks and engaged sessions), and completed business actions so your report never treats them as interchangeable. A reliable SEO measurement plan also documents baseline dates, attribution limits, and unavailable data.",
-    "example": "A fictional guide receives Search Console impressions, a smaller number of organic clicks, and several contact inquiries over a 90-day window. Those represent distinct stages. The team logs each stage from its primary source rather than calling every impression a visitor or attributing every inquiry to a single blog post without path evidence.",
+    "example": "An example guide receives Search Console impressions, a smaller number of organic clicks, and several contact inquiries over a 90-day window. Those represent distinct stages. The team logs each stage from its primary source rather than calling every impression a visitor or attributing every inquiry to a single blog post without path evidence.",
     "steps": [
       "Choose one primary question—such as whether qualified readers reach and use a technical guide—and name the exact metric, tool source, and reporting window that can answer it.",
       "Define how downstream actions (such as tool usage, shortlist exports, or inquiries) are recorded under your site's privacy and consent rules.",
@@ -1744,7 +1744,7 @@ export const geoMeasurement: ArticleDraft[] = [
     "cluster": "Measurement",
     "title": "Choose a reporting window before evaluating content",
     "answer": "Select a reporting window that fits the question, and disclose why that period is useful. Keep comparison periods consistent and note material differences. A narrow favorable window can make ordinary variation look like a durable improvement, especially when the underlying counts are small.",
-    "example": "A fictional guide receives a one-day spike after a newsletter mention. A weekly report shows the spike clearly; a monthly comparison provides different context. Both can be valid observations, but neither should silently become proof of sustained search growth. The report names the newsletter event and preserves the actual period.",
+    "example": "An example guide receives a one-day spike after a newsletter mention. A weekly report shows the spike clearly; a monthly comparison provides different context. Both can be valid observations, but neither should silently become proof of sustained search growth. The report names the newsletter event and preserves the actual period.",
     "steps": [
       "State the decision the report should inform and choose the window before reviewing the result. Keep the metric and timezone consistent across periods.",
       "Record campaigns, outages and major content or tracking changes inside each window. Explain whether the periods are genuinely comparable.",

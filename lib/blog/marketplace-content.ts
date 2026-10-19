@@ -112,7 +112,7 @@ export const marketplaceContent: ArticleDraft[] = [
       "Add a separate contingency line under your control. Do not describe it as a publisher charge or combine it with a promised delivery commitment.",
       "Save the dated quote and its scope. Reconfirm the final amount if the listing, requirements or draft changes before payment becomes available."
     ],
-    "avoid": "Avoid comparing a placement-only quote with a full writing package as if they were identical. The current Name Retailer planning cart is not checkout, does not reserve a price and does not accept payment. Use it to organize selections while commercial details are confirmed.",
+    "avoid": "Avoid comparing a placement-only quote with a full writing package as if they were identical. Use Request quote for shortlist to agree commercial details for your selected publications.",
     "question": "Does a missing writing price mean the writing is free?",
     "response": "No. An unavailable writing option needs clarification; it is not a zero-cost service.",
     "seoTitle": "Guest Post Budget Worksheet & Cost Planning Framework",
@@ -418,9 +418,9 @@ export const marketplaceContent: ArticleDraft[] = [
       "Document draft ownership, revision rounds and final approval. Ask whether a publication can change the link destination or wording during its edit.",
       "Confirm the complete quote, link attributes and actual delivery terms. Keep cancellation, replacement and removal questions open until the provider supplies approved terms."
     ],
-    "avoid": "Do not fill unanswered commercial fields with assumptions. A planning document is not a contract or a payment receipt. Name Retailer checkout is not enabled in this rebuild, so saved placements remain planning items rather than confirmed orders or delivery commitments.",
-    "question": "Is a saved cart the same as an approved brief?",
-    "response": "No. A cart stores selections; an approved brief records the agreed editorial and commercial scope.",
+    "avoid": "Do not fill unanswered commercial fields with assumptions. A planning document is not a contract or a payment receipt. Use the placement inquiry to confirm the price, scope and delivery commitments by email.",
+    "question": "Is a shortlist the same as an approved brief?",
+    "response": "No. A shortlist stores selections; an approved brief records the agreed editorial and commercial scope.",
     "seoTitle": "Guest Post Placement Brief Requirements & Confirmation Terms",
     "metaDescription": "Essential terms to confirm before submitting a guest post: link rel attributes, indexing guarantees, editorial turnaround, and live URL permanence.",
     "sections": [
@@ -928,7 +928,7 @@ export const marketplaceContent: ArticleDraft[] = [
       "Inspect the destination, anchor text and link attributes. Record the observed values rather than copying the original request into the delivery column.",
       "Log correction requests and the later inspection outcome. Add referral or inquiry measurements only when you have access to reliable measurement data."
     ],
-    "avoid": "Avoid reporting 'delivered' before a live article exists or assuming that an accessible article is indexed. Do not claim permanent availability without an actual commitment. The rebuild's planning cart does not provide order tracking or fulfillment, so this worksheet describes a future operational process.",
+    "avoid": "Avoid reporting 'delivered' before a live article exists or assuming that an accessible article is indexed. Do not claim permanent availability without an actual commitment. Keep the placement request and the agreed delivery record together so you can compare the result with your brief.",
     "question": "Does a published URL prove ranking improvement?",
     "response": "No. Publication is delivery evidence; rankings, referrals and conversions require separate observations and careful attribution.",
     "seoTitle": "What to Record After a Guest Post Is Published: Tracking Log",
@@ -1519,7 +1519,7 @@ export const marketplaceContent: ArticleDraft[] = [
     "cluster": "Content",
     "title": "Meta descriptions that help readers choose a page",
     "answer": "Use the description to summarize the page's useful answer and scope. It should help someone decide whether the article matches their question, not stack synonyms or promise an outcome the page cannot deliver. Write a distinct description for each article instead of reusing a generic brand slogan.",
-    "example": "A fictional guide explains publication traffic estimates. 'Learn what a monthly traffic estimate does and does not tell you before comparing guest-post sites' is a relevant summary. 'Best traffic SEO authority growth cheap links' is not. The first describes a decision the article supports without suggesting a measured campaign result.",
+    "example": "An example guide explains publication traffic estimates. 'Learn what a monthly traffic estimate does and does not tell you before comparing guest-post sites' is a relevant summary. 'Best traffic SEO authority growth cheap links' is not. The first describes a decision the article supports without suggesting a measured campaign result.",
     "steps": [
       "Identify the article's central answer and the intended reader. Draft one concise summary that links those two ideas in ordinary language.",
       "Remove unsupported superlatives, repetitive keywords and details the article does not cover. Verify that the description still matches the page after editorial changes.",

@@ -1354,3 +1354,8 @@ html[data-site-theme="dark"] .placement-dialog {
   flex-shrink: 0;
   color: var(--placement-green);
 }
+.inquiry-form { display: grid; gap: 1rem; }
+.inquiry-form label { display: grid; gap: .35rem; font-weight: 600; }
+.inquiry-form input, .inquiry-form textarea { width: 100%; box-sizing: border-box; padding: .7rem; border: 1px solid #a8b7b0; border-radius: .4rem; background: #fff; color: #142c23; font: inherit; }
+.inquiry-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.inquiry-dialog { max-width: 640px; width: calc(100% - 2rem); }

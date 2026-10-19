@@ -70,10 +70,11 @@ export async function generateMetadata({ params, searchParams }: Props) {
 }
 
 function Fact({ term, value, wide = false }: { term: string; value?: string | null; wide?: boolean }) {
+  if (!value?.trim()) return null;
   return (
     <div className={wide ? styles.wide : undefined}>
       <dt>{term}</dt>
-      <dd>{value || "Unavailable"}</dd>
+      <dd>{value}</dd>
     </div>
   );
 }
@@ -123,11 +124,12 @@ export default async function Page({ params }: Props) {
     {
       term: "Traffic estimate",
       value: number(m.traffic),
-      hint: content?.metricsSource ? "Source details recorded below" : "Provider and period not supplied",
+      hint: content?.metricsSource ? "Source details recorded below" : "Supplied traffic estimate",
       tone: styles.metricTraffic,
       Icon: Globe2,
     },
-  ];
+  ].filter(card => card.value !== "");
+  const hasEditorial = [content?.editorialGuidelines, content?.contentRequirements, content?.restrictedTopics, content?.wordCountRequirements, content?.imageRequirements, content?.editorialProcess, content?.linkPolicy].some(Boolean);
 
   return (
     <InformationShell
@@ -152,6 +154,7 @@ export default async function Page({ params }: Props) {
               name: `Guest post placement on ${view.label}`,
               description: view.summary,
               isPartOf: { "@id": `${canonicalOrigin}/#website` },
+              ...(view.questions.length ? { mainEntity: { "@type": "FAQPage", mainEntity: view.questions.map(([question, answer]) => ({ "@type": "Question", name: question, acceptedAnswer: { "@type": "Answer", text: answer } })) } } : {}),
               about: { "@type": view.section ? "WebPage" : "WebSite", name: view.label, url: product.domain },
               ...(validAsOf(product.updatedAt) ? { dateModified: product.updatedAt } : {}),
             }),
@@ -203,7 +206,7 @@ export default async function Page({ params }: Props) {
               <a href="#publication-pricing">Review price and scope</a>
             </div>
             <p className={styles.stamp}>
-              Confirm publisher acceptance, exact scope and current availability. Adding a placement to your plan does not reserve or purchase it.
+              Request this placement to confirm publisher acceptance, scope and current pricing by email.
             </p>
           </aside>
 
@@ -276,19 +279,15 @@ export default async function Page({ params }: Props) {
                     </tbody>
                   </table>
                 </div>
-              ) : (
-                <p>No writing price is supplied on this profile. An unavailable option is not free.</p>
-              )}
+              ) : null}
 
               <div className={styles.scopeGrid}>
-                <div className={styles.scopeBox}>
-                  <h3>What is included?</h3>
-                  <Text>{content?.priceIncludes || "Placement format, revision scope and detailed inclusions are unconfirmed."}</Text>
-                </div>
-                <div className={styles.scopeBox}>
-                  <h3>Exclusions and additional charges</h3>
-                  <Text>{content?.priceExcludes || "Not documented. Confirm any additional charges before proceeding."}</Text>
-                </div>
+                {content?.priceIncludes && <div className={styles.scopeBox}>
+                  <h3>What is included?</h3><Text>{content.priceIncludes}</Text>
+                </div>}
+                {content?.priceExcludes && <div className={styles.scopeBox}>
+                  <h3>Exclusions and additional charges</h3><Text>{content.priceExcludes}</Text>
+                </div>}
               </div>
 
               <div className="publication-actions">
@@ -298,7 +297,7 @@ export default async function Page({ params }: Props) {
                 </a>
               </div>
               <p className={styles.stamp}>
-                The placement planner checks current prices. A saved plan does not reserve a price, availability or editorial acceptance.
+                Send your brief to receive a quote for this publication.
               </p>
             </section>
 
@@ -358,8 +357,8 @@ export default async function Page({ params }: Props) {
                 <h2 id="suitability-title">Is {view.identity} relevant to your brief?</h2>
               </div>
               <p>
-                {product.category ? `Use its supplied ${product.category} classification as an initial topic filter.` : "No topic classification is supplied."}{" "}
-                {product.language ? `The listed language is ${product.language}; check that it fits your proposed article.` : "Confirm the publication language before drafting."}{" "}
+                {product.category ? `Use its supplied ${product.category} classification as an initial topic filter.` : ""}{" "}
+                {product.language ? `The listed language is ${product.language}; check that it fits your proposed article.` : ""}{" "}
                 Compare the {usd(product.priceCents)} placement cost with your confirmed budget.
               </p>
               {content?.acceptedTopics && (
@@ -368,27 +367,18 @@ export default async function Page({ params }: Props) {
                   <Text>{content.acceptedTopics}</Text>
                 </div>
               )}
-              {!content?.audienceDetails && (
-                <p>
-                  Audience evidence is unavailable.{" "}
-                  {product.country ? `${product.country} is the listing country; confirm actual readership separately.` : "Confirm audience geography separately."}
-                </p>
-              )}
+
             </section>
 
             {/* Section 5: Editorial Requirements */}
-            <section className="reference-card" aria-labelledby="editorial-title">
+            {hasEditorial && <section className="reference-card" aria-labelledby="editorial-title">
               <div className={styles.sectionHeader}>
                 <span className={`${styles.sectionIcon} ${styles.sectionIconBlue}`} aria-hidden="true">
                   <FileCheck2 size={20} />
                 </span>
                 <h2 id="editorial-title">Editorial requirements for {view.identity}</h2>
               </div>
-              {content?.editorialGuidelines ? (
-                <Text>{content.editorialGuidelines}</Text>
-              ) : (
-                <p>Guidelines are unavailable. Confirm accepted topics, article length, images and publication conditions.</p>
-              )}
+{content?.editorialGuidelines && <Text>{content.editorialGuidelines}</Text>}
               <div className={styles.subSectionList}>
                 {(
                   [
@@ -408,7 +398,7 @@ export default async function Page({ params }: Props) {
                     </div>
                   ))}
               </div>
-            </section>
+            </section>}
 
             {product.requirements && (
               <section className="reference-card">
@@ -504,7 +494,7 @@ export default async function Page({ params }: Props) {
                           <p className={styles.altMeta}>
                             {item.language || "Language unavailable"} · {item.country || "Country unavailable"}
                             <br />
-                            Supplied DR: <strong>{number(item.metrics.dr)}</strong>
+                            {item.metrics.dr != null && <>Supplied DR: <strong>{number(item.metrics.dr)}</strong></>}
                           </p>
                         </div>
                         <ShortlistButton product={item} />
@@ -517,26 +507,6 @@ export default async function Page({ params }: Props) {
 
             {/* Section 8: Publication Shortlist Comparison */}
             <PublicationShortlist />
-
-            {/* Section 9: Information to Confirm */}
-            <section className="reference-card" aria-labelledby="missing-title">
-              <div className={styles.sectionHeader}>
-                <span className={`${styles.sectionIcon} ${styles.sectionIconBlue}`} aria-hidden="true">
-                  <CheckCircle2 size={20} />
-                </span>
-                <h2 id="missing-title">Information to confirm for {view.identity}</h2>
-              </div>
-              <p>These details are not supplied or confirmed on this profile. Request the relevant evidence and agree terms for your actual brief.</p>
-              <ul className={styles.missingList}>
-                {view.missing.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-              <div className={styles.pillLinks}>
-                <Link href="/guides/vet-a-guest-post-site/">Use the publisher evaluation checklist</Link>
-                <Link href="/guides/paid-guest-posts-google-link-policies/">Review paid-link qualification</Link>
-              </div>
-            </section>
 
             {/* Section 10: Questions / FAQ */}
             <section className="reference-card" id="publication-questions" aria-labelledby="questions-title">

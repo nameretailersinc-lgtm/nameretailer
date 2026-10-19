@@ -628,7 +628,7 @@ export const guestPostingGuides: BuyerGuide[] = [
       },
       {
         title: "Set a complete spending limit",
-        body: "Include placement, writing, editing, images and staff coordination time. Keep unknown charges separate until confirmed. A low-cost placement with extensive revisions may exceed a small team's capacity. Name Retailer's saved plan organizes candidates and enquiries; it does not reserve availability or a final price. Use the budget worksheet for the full comparison.",
+        body: "Include placement, writing, editing, images and staff coordination time. Keep unknown charges separate until confirmed. A low-cost placement with extensive revisions may exceed a small team's capacity. Name Retailer's shortlist organizes candidates; request a quote to confirm availability and the final price. Use the budget worksheet for the full comparison.",
       },
       {
         title: "Make the next action easy to recognize",
@@ -1016,7 +1016,7 @@ export const guestPostingGuides: BuyerGuide[] = [
       },
       {
         title: "Gate 3: commercial and link terms",
-        body: "Record the current placement quote, separate production charges, agreed revisions and any applicable additional costs. Confirm what happens if the article is declined, removed or materially changed. Agree the visible commercial explanation and paid-link qualification. A saved plan is not confirmation of availability, price or editorial acceptance; preserve the actual written agreement.",
+        body: "Record the current placement quote, separate production charges, agreed revisions and any applicable additional costs. Confirm what happens if the article is declined, removed or materially changed. Agree the visible commercial explanation and paid-link qualification. Preserve the written quote confirming availability, price and editorial acceptance.",
       },
       {
         title: "Gate 4: destination and measurement",

@@ -1,6 +1,8 @@
 import "dotenv/config";
 import { readFile } from "node:fs/promises";
 import { createHash, randomUUID } from "node:crypto";
+import { buyerArticleAuthor } from "../../lib/blog/editorial";
+import { blogArticleIndexable } from "../../lib/blog/indexing-policy";
 import { getDb, recordTransaction } from "../../lib/db";
 import { logAudit } from "../../lib/audit";
 import {
@@ -50,18 +52,7 @@ try {
     createdAt: now,
     updatedAt: now,
   });
-  const makeAuthor = (slug: string, name: string) =>
-    make("authors", slug, name, "active", {
-      entityType: "Person",
-      name,
-      bio: `${name} writes practical guides on guest posting, SEO, AEO and GEO for Name Retailer, a guest-post publication marketplace.`,
-      url: "https://nameretailer.com/about/",
-      verified: true,
-    });
-  const authors = [
-    makeAuthor("zuhoor-uddin", "Zuhoor Uddin"),
-    makeAuthor("fahad-sheikh", "Fahad Sheikh"),
-  ];
+  const authors = [{ ...buyerArticleAuthor, id: stableId("authors:fahad-shaikh") }];
   const categories = blogClusters.map((cluster) =>
     make(
       "categories",
@@ -89,16 +80,16 @@ try {
         )
         .slice(0, 3)
         .map((item) => stableId("content:blog/" + item.slug)),
-      seoTitle: article.title,
+      seoTitle: article.seoTitle || article.title,
       metaDescription: article.metaDescription,
       canonical: `https://nameretailer.com/blog/${article.slug}/`,
-      robotsIndex: true,
+      robotsIndex: blogArticleIndexable({ slug: "blog/" + article.slug, data: {} }),
       robotsFollow: true,
       schemaType: "BlogPosting",
       publishedAt: now,
       lastReviewedAt: null,
-      faq: [{ question: article.question, answer: article.response }],
-      sources: article.source ? [article.source] : [],
+      faq: [{ question: article.question, answer: article.response }, ...(article.extraFaq || []).map(([question, answer]) => ({ question, answer }))],
+      sources: article.sources,
     }),
   );
   const proposed = [...authors, ...categories, ...articles];

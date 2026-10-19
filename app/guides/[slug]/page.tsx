@@ -1,3 +1,4 @@
+import { faqPageNode } from "@/lib/seo/structured-data";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import {
@@ -39,9 +40,10 @@ export async function generateMetadata({ params, searchParams }: Props) {
   const facets = facetMetadata(`/guides/${slug}/`, await searchParams);
   return pageMetadata(
     {
-      title: item.title,
+      title: item.seoTitle || item.title,
       description: item.description,
       ...facets,
+      openGraph: { type: "article", modifiedTime: item.updatedAt },
       ...(!item.approved ? { robots: { index: false, follow: true } } : {}),
     },
     `/guides/${slug}/`,
@@ -161,7 +163,7 @@ export default async function Page({ params }: Props) {
   ].join(" ");
   const wordTotal = totalText.split(/\s+/).filter(Boolean).length;
   const readingMinutes = Math.max(2, Math.ceil(wordTotal / 190));
-  const sourcesCheckedDate = guide.sourcesCheckedAt || "2026-10-09";
+  const sourcesCheckedDate = guide.sourcesCheckedAt;
 
   const tocItems: Array<{ id: string; label: string }> = [
     ...guide.questions.map((section, idx) => ({
@@ -194,18 +196,19 @@ export default async function Page({ params }: Props) {
     <InformationShell
       path={`/guides/${guide.slug}/`}
       parent={["Guides", "/guides/"]}
-      title={guide.title}
+      title={guide.seoTitle || guide.title}
       label={guide.title}
       pill={isDomainGuide ? "Domain Planning Guide" : "Editorial Buyer Guide"}
       description={answer}
       active="guides"
       image={image}
+      imageAlt="Illustrated checklist for preparing a guest post placement"
       className="guide-detail-page"
     >
       {article && (
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: serializeJsonLd(article) }}
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd([article, ...(guide.faq?.length ? [{ "@context": "https://schema.org", ...faqPageNode(guide.faq) }] : [])]) }}
         />
       )}
 
@@ -268,7 +271,7 @@ export default async function Page({ params }: Props) {
               </a>
             ) : null}
             <a href="#sources" className="guide-jump-chip">
-              Verified sources ({guide.sources.length})
+              Sources ({guide.sources.length})
             </a>
           </div>
 
@@ -651,7 +654,7 @@ export default async function Page({ params }: Props) {
       {!isDomainGuide && (
         <section className="reference-card guide-closing-cta">
           <div>
-            <p className="eyebrow">Ready to Shortlist Publications?</p>
+            <p className="eyebrow">Ready to choose a relevant publication?</p>
             <h2>Which publications should I compare next?</h2>
             <p>
               <Link href="/guest-posting-sites/">

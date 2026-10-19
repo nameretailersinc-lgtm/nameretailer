@@ -6,7 +6,7 @@ export const technicalAeo: ArticleDraft[] = [
     "seoTitle": "Technical SEO Audit Checklist: Canonical URLs & Redirects",
     "metaDescription": "Follow a practical technical SEO audit checklist for canonical URLs, redirects, sitemaps and duplicate URL consolidation during a website migration.",
     "answer": "Choose the intended public URL for each article and make its canonical metadata consistent with that destination. A canonical identifies the preferred equivalent version; it is not a shortcut for merging unrelated pages. Review URL choices before migration rather than relying on whatever route happens to render first.",
-    "example": "A fictional guide can be reached at both an old category path and a new blog path. The migration team first confirms that the content is genuinely equivalent, then records the preferred destination and checks its response. If the old page covered a different subject, pointing both canonicals at one guide would hide an unresolved content decision.",
+    "example": "An example guide can be reached at both an old category path and a new blog path. The migration team first confirms that the content is genuinely equivalent, then records the preferred destination and checks its response. If the old page covered a different subject, pointing both canonicals at one guide would hide an unresolved content decision.",
     "steps": [
       "List the old URL, new URL and equivalence reason in a mapping sheet. Mark ambiguous matches for editorial review instead of assigning the home page as a default.",
       "Inspect the destination's title, main heading and canonical value. Use a complete public URL without tracking parameters or a fragment.",
@@ -430,7 +430,7 @@ export const technicalAeo: ArticleDraft[] = [
     "cluster": "Technical SEO",
     "title": "A responsive article-page QA checklist",
     "answer": "Check an article at narrow mobile, tablet and desktop widths with the same content and interactions. Readability depends on line length, spacing, headings and working controls, not just a lack of horizontal scrolling. Test the sidebar and tables with real long titles rather than a short sample.",
-    "example": "A fictional guide uses a desktop table of publication criteria. On a small screen the table should remain understandable without pushing the entire page wider. The contents list can move above the article rather than shrinking the text. A 320-pixel test with the longest heading will expose issues a desktop screenshot cannot show.",
+    "example": "An example guide uses a desktop table of publication criteria. On a small screen the table should remain understandable without pushing the entire page wider. The contents list can move above the article rather than shrinking the text. A 320-pixel test with the longest heading will expose issues a desktop screenshot cannot show.",
     "steps": [
       "Test common narrow and wide viewport sizes and the exact layout breakpoints. Look for clipped buttons, overflowing URLs and headings that compete with the page title.",
       "Use keyboard navigation to reach the contents links, article actions and footer. Keep visible focus states and meaningful link labels on every layout.",
@@ -1486,7 +1486,7 @@ export const technicalAeo: ArticleDraft[] = [
     "cluster": "AEO",
     "title": "Plan useful follow-up answers without duplicating pages",
     "answer": "Add follow-up questions when they help the reader advance from the primary answer to a related decision. Keep them in the same article when they depend on the same explanation. Create a separate page only when the new task needs its own substantial answer and examples.",
-    "example": "A fictional guide to choosing an image format can answer whether transparency matters in a short section. A detailed tutorial on cropping coordinates has a different task and a working tool, so it deserves its own destination. Publishing separate pages for 'PNG or WebP?' and 'WebP versus PNG?' would likely repeat the same comparison.",
+    "example": "An example guide to choosing an image format can answer whether transparency matters in a short section. A detailed tutorial on cropping coordinates has a different task and a working tool, so it deserves its own destination. Publishing separate pages for 'PNG or WebP?' and 'WebP versus PNG?' would likely repeat the same comparison.",
     "steps": [
       "Write the primary question and the next decision a reader may face. Identify whether the follow-up adds a new workflow or simply clarifies the existing answer.",
       "Use a subsection for dependent clarifications and a related link for genuinely different tasks. Make the relationship visible in the link wording.",

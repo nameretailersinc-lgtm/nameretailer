@@ -110,9 +110,7 @@ export function buyerGuideArticleNode(guide: {
 }) {
   if (
     !guide.approved ||
-    !guide.author ||
-    !guide.publishedAt ||
-    !Number.isFinite(Date.parse(guide.publishedAt))
+    !guide.author
   )
     return null;
   const url = `${canonicalOrigin}/guides/${guide.slug}/`;
@@ -132,7 +130,7 @@ export function buyerGuideArticleNode(guide: {
           : "/about/"),
     },
     publisher: { "@id": `${canonicalOrigin}/#organization` },
-    datePublished: guide.publishedAt,
+    ...(guide.publishedAt && Number.isFinite(Date.parse(guide.publishedAt)) ? { datePublished: guide.publishedAt } : {}),
     dateModified: guide.updatedAt,
     image: canonicalOrigin + guide.image,
   };

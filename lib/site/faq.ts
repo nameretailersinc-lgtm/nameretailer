@@ -4,14 +4,14 @@ export const buyerQuestions = [
     answer:
       "Each catalogue listing shows its supplied placement price in US dollars. The amount depends on the publication and does not establish a guaranteed audience or search result. Compare prices alongside topic, country, language and editorial requirements, then contact Name Retailer to confirm the scope of a placement request.",
     detail:
-      "Use the marketplace price filters and the guest post cost guide to compare placement prices. A saved plan does not lock a price or reserve a publication.",
+      "Use the marketplace price filters and the guest post cost guide to compare placement prices. Request a quote to confirm the current price for your shortlist.",
   },
   {
     question: "What does the placement price include?",
     answer:
       "The displayed placement price covers the listed placement option; article writing is a separate selection where a writing price is supplied. Do not assume writing, revisions or extra links are included. Read the publication requirements and confirm the complete scope and quoted total with the team before requesting a placement.",
     detail:
-      "Available writing options have their own prices. A missing option means it is unavailable, rather than free. Your private plan separates placement and writing selections.",
+      "Available writing options have their own prices. A missing option means it is unavailable, rather than free. Your shortlist separates placement and writing selections.",
   },
   {
     question: "How should sponsored and paid links be marked?",
@@ -37,22 +37,22 @@ export const buyerQuestions = [
   {
     question: "What refund terms should I check?",
     answer:
-      "Read the published Refund Policy before agreeing to a placement. It describes refunds when the site owner rejects a request and states that approval makes the order final. Online ordering and payment are unavailable here; use the contact team to clarify how the published policy applies to a proposed service request.",
+      "Read the published Refund Policy before agreeing to a placement. It describes refunds when the site owner rejects a request and states that approval makes the order final. Ask the team to confirm the applicable terms with your quote. The existing policy?s automatic refund and approval claims are flagged for owner review.",
     detail:
       "The policy describes a one-business-day site-owner review and typical processing of three to five business days after refund approval, with bank processing time additional. Confirm removal or replacement terms directly; they are not stated as a general guarantee.",
   },
   {
     question: "Can I order or pay through the website?",
     answer:
-      "The website supports publication research, shortlisting and private placement plans. It does not accept online payment or submit a paid order. You can prepare your brief and billing information, then contact Name Retailer to discuss a placement request. Saving a plan does not reserve availability, authorize a charge or confirm delivery.",
+      "Choose Request this placement on a publication, or Request quote for shortlist to inquire about several publications together. Submit your name, email, website URL, target anchor, budget and message. We will reply within 1 business day to confirm fit, scope and pricing.",
     detail:
-      "Use Add to plan to prepare a selection, or email the publication URL and your questions to info@nameretailer.com. Billing information is preparation, not an invoice or payment receipt.",
+      "Use Request this placement to send your brief, or email info@nameretailer.com with publication questions.",
   },
   {
     question: "Do I need an account to browse?",
     answer:
-      "You can browse publications, compare supplied metrics and use the public guides without signing in. An account is needed to save your private placement plan and manage its brief and selections. A browser shortlist is a comparison aid; it does not create a paid order or establish that a publisher has accepted your article.",
+      "You can browse publications, compare supplied metrics and use the public guides without signing in. An account is needed to save your private shortlist and manage its brief and selections. A browser shortlist is a comparison aid; it does not create a paid order or establish that a publisher has accepted your article.",
     detail:
-      "Sign in from the account menu to manage your plan. Account and billing pages are excluded from search indexing, and your saved plans remain private to your account.",
+      "Sign in from the account menu to manage your shortlist. Account and billing pages are excluded from search indexing, and your shortlist remain private to your account.",
   },
 ] as const;

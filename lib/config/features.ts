@@ -3,6 +3,4 @@
  * are offered in checkout after the customer supplies a brief and billing.
  */
 export const CHECKOUT_ENABLED = false;
-export const placementActionLabel = CHECKOUT_ENABLED
-  ? "Buy now"
-  : "Add to plan";
+export const placementActionLabel = "Request this placement";

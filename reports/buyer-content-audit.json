@@ -1,0 +1,760 @@
+{
+  "articles": [
+    {
+      "path": "/blog/how-to-choose-a-guest-post-publication-for-your-audience/",
+      "disposition": "rewritten",
+      "words": 927,
+      "minimum": 800,
+      "titleLength": 54,
+      "descriptionLength": 154
+    },
+    {
+      "path": "/blog/a-practical-guest-post-budget-worksheet/",
+      "disposition": "rewritten",
+      "words": 832,
+      "minimum": 800,
+      "titleLength": 53,
+      "descriptionLength": 157
+    },
+    {
+      "path": "/blog/domain-rating-and-domain-authority-a-comparison-worksheet/",
+      "disposition": "rewritten",
+      "words": 893,
+      "minimum": 800,
+      "titleLength": 52,
+      "descriptionLength": 155
+    },
+    {
+      "path": "/blog/how-to-read-a-publication-traffic-estimate/",
+      "disposition": "rewritten",
+      "words": 902,
+      "minimum": 800,
+      "titleLength": 53,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/blog/what-to-confirm-in-a-guest-post-placement-brief/",
+      "disposition": "rewritten",
+      "words": 839,
+      "minimum": 800,
+      "titleLength": 53,
+      "descriptionLength": 152
+    },
+    {
+      "path": "/blog/paid-link-disclosure-questions-to-ask-before-placement/",
+      "disposition": "rewritten",
+      "words": 858,
+      "minimum": 800,
+      "titleLength": 52,
+      "descriptionLength": 154
+    },
+    {
+      "path": "/blog/how-to-compare-publication-language-and-geography/",
+      "disposition": "rewritten",
+      "words": 860,
+      "minimum": 800,
+      "titleLength": 53,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/blog/an-editorial-review-checklist-for-a-publication-shortlist/",
+      "disposition": "rewritten",
+      "words": 862,
+      "minimum": 800,
+      "titleLength": 52,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/blog/placement-only-versus-article-writing-packages/",
+      "disposition": "rewritten",
+      "words": 863,
+      "minimum": 800,
+      "titleLength": 54,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/blog/what-to-record-after-a-placement-is-published/",
+      "disposition": "rewritten",
+      "words": 886,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 153
+    },
+    {
+      "path": "/blog/how-to-write-a-guest-post-brief-an-editor-can-use/",
+      "disposition": "rewritten",
+      "words": 851,
+      "minimum": 800,
+      "titleLength": 54,
+      "descriptionLength": 154
+    },
+    {
+      "path": "/blog/match-article-structure-to-the-reader-s-search-intent/",
+      "disposition": "noindex",
+      "words": 631,
+      "minimum": 800,
+      "titleLength": 59,
+      "descriptionLength": 153
+    },
+    {
+      "path": "/blog/write-a-direct-answer-without-losing-important-context/",
+      "disposition": "noindex",
+      "words": 620,
+      "minimum": 800,
+      "titleLength": 61,
+      "descriptionLength": 150
+    },
+    {
+      "path": "/blog/a-source-log-for-fact-checking-content-drafts/",
+      "disposition": "noindex",
+      "words": 585,
+      "minimum": 800,
+      "titleLength": 65,
+      "descriptionLength": 152
+    },
+    {
+      "path": "/blog/headlines-that-describe-the-article-instead-of-overselling-it/",
+      "disposition": "noindex",
+      "words": 625,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 138
+    },
+    {
+      "path": "/blog/meta-descriptions-that-help-readers-choose-a-page/",
+      "disposition": "noindex",
+      "words": 616,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 154
+    },
+    {
+      "path": "/blog/how-to-write-helpful-faq-answers/",
+      "disposition": "noindex",
+      "words": 621,
+      "minimum": 800,
+      "titleLength": 59,
+      "descriptionLength": 144
+    },
+    {
+      "path": "/blog/image-alt-text-describe-purpose-not-every-pixel/",
+      "disposition": "noindex",
+      "words": 641,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 144
+    },
+    {
+      "path": "/blog/a-content-refresh-decision-log/",
+      "disposition": "noindex",
+      "words": 466,
+      "minimum": 800,
+      "titleLength": 50,
+      "descriptionLength": 139
+    },
+    {
+      "path": "/blog/an-editorial-handoff-checklist-before-publication/",
+      "disposition": "rewritten",
+      "words": 875,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 146
+    },
+    {
+      "path": "/blog/a-canonical-url-checklist-for-a-rebuilt-website/",
+      "disposition": "noindex",
+      "words": 455,
+      "minimum": 800,
+      "titleLength": 57,
+      "descriptionLength": 148
+    },
+    {
+      "path": "/blog/internal-links-that-make-an-article-library-easier-to-use/",
+      "disposition": "noindex",
+      "words": 537,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 148
+    },
+    {
+      "path": "/blog/noindex-and-robots-txt-are-different-controls/",
+      "disposition": "noindex",
+      "words": 436,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/blog/plan-a-sitemap-around-approved-public-pages/",
+      "disposition": "noindex",
+      "words": 686,
+      "minimum": 800,
+      "titleLength": 49,
+      "descriptionLength": 160
+    },
+    {
+      "path": "/blog/a-structured-data-review-checklist-for-blog-articles/",
+      "disposition": "noindex",
+      "words": 444,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 141
+    },
+    {
+      "path": "/blog/check-server-rendered-article-content-before-launch/",
+      "disposition": "noindex",
+      "words": 351,
+      "minimum": 800,
+      "titleLength": 60,
+      "descriptionLength": 144
+    },
+    {
+      "path": "/blog/a-responsive-article-page-qa-checklist/",
+      "disposition": "noindex",
+      "words": 618,
+      "minimum": 800,
+      "titleLength": 52,
+      "descriptionLength": 153
+    },
+    {
+      "path": "/blog/choose-image-dimensions-and-formats-deliberately/",
+      "disposition": "noindex",
+      "words": 653,
+      "minimum": 800,
+      "titleLength": 60,
+      "descriptionLength": 148
+    },
+    {
+      "path": "/blog/measure-page-experience-with-a-repeatable-test-setup/",
+      "disposition": "noindex",
+      "words": 573,
+      "minimum": 800,
+      "titleLength": 57,
+      "descriptionLength": 160
+    },
+    {
+      "path": "/blog/a-wordpress-to-next-js-content-migration-worksheet/",
+      "disposition": "noindex",
+      "words": 1278,
+      "minimum": 800,
+      "titleLength": 64,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/blog/what-aeo-means-in-a-practical-content-workflow/",
+      "disposition": "noindex",
+      "words": 698,
+      "minimum": 800,
+      "titleLength": 51,
+      "descriptionLength": 150
+    },
+    {
+      "path": "/blog/build-a-question-map-before-drafting-answer-led-content/",
+      "disposition": "noindex",
+      "words": 357,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 145
+    },
+    {
+      "path": "/blog/definitions-that-remain-useful-outside-their-paragraph/",
+      "disposition": "noindex",
+      "words": 649,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 153
+    },
+    {
+      "path": "/blog/comparison-tables-that-preserve-meaningful-differences/",
+      "disposition": "noindex",
+      "words": 539,
+      "minimum": 800,
+      "titleLength": 59,
+      "descriptionLength": 160
+    },
+    {
+      "path": "/blog/use-examples-to-make-an-answer-actionable/",
+      "disposition": "noindex",
+      "words": 595,
+      "minimum": 800,
+      "titleLength": 60,
+      "descriptionLength": 136
+    },
+    {
+      "path": "/blog/keep-important-answers-available-as-readable-text/",
+      "disposition": "noindex",
+      "words": 585,
+      "minimum": 800,
+      "titleLength": 49,
+      "descriptionLength": 147
+    },
+    {
+      "path": "/blog/how-to-audit-an-answer-for-unsupported-certainty/",
+      "disposition": "noindex",
+      "words": 579,
+      "minimum": 800,
+      "titleLength": 57,
+      "descriptionLength": 151
+    },
+    {
+      "path": "/blog/plan-useful-follow-up-answers-without-duplicating-pages/",
+      "disposition": "noindex",
+      "words": 634,
+      "minimum": 800,
+      "titleLength": 52,
+      "descriptionLength": 139
+    },
+    {
+      "path": "/blog/aeo-readiness-is-not-the-same-as-indexing-approval/",
+      "disposition": "noindex",
+      "words": 624,
+      "minimum": 800,
+      "titleLength": 57,
+      "descriptionLength": 147
+    },
+    {
+      "path": "/blog/an-answer-quality-review-sheet-for-editors/",
+      "disposition": "noindex",
+      "words": 393,
+      "minimum": 800,
+      "titleLength": 51,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/blog/what-geo-means-for-a-small-content-team/",
+      "disposition": "noindex",
+      "words": 670,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 148
+    },
+    {
+      "path": "/blog/build-an-evidence-inventory-before-writing-brand-claims/",
+      "disposition": "noindex",
+      "words": 582,
+      "minimum": 800,
+      "titleLength": 59,
+      "descriptionLength": 148
+    },
+    {
+      "path": "/blog/keep-organization-information-consistent-across-content/",
+      "disposition": "noindex",
+      "words": 510,
+      "minimum": 800,
+      "titleLength": 63,
+      "descriptionLength": 151
+    },
+    {
+      "path": "/blog/original-observations-versus-hypothetical-examples/",
+      "disposition": "noindex",
+      "words": 598,
+      "minimum": 800,
+      "titleLength": 58,
+      "descriptionLength": 154
+    },
+    {
+      "path": "/blog/a-citation-ready-claim-has-a-clear-source-boundary/",
+      "disposition": "noindex",
+      "words": 651,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 139
+    },
+    {
+      "path": "/blog/geo-content-planning-without-publishing-query-duplicates/",
+      "disposition": "noindex",
+      "words": 605,
+      "minimum": 800,
+      "titleLength": 62,
+      "descriptionLength": 155
+    },
+    {
+      "path": "/blog/a-fair-comparison-page-brief-for-a-brand-website/",
+      "disposition": "noindex",
+      "words": 581,
+      "minimum": 800,
+      "titleLength": 58,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/blog/ai-crawler-access-needs-a-documented-product-specific-policy/",
+      "disposition": "noindex",
+      "words": 543,
+      "minimum": 800,
+      "titleLength": 46,
+      "descriptionLength": 135
+    },
+    {
+      "path": "/blog/record-generative-search-appearances-as-observations/",
+      "disposition": "noindex",
+      "words": 607,
+      "minimum": 800,
+      "titleLength": 59,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/blog/a-geo-experiment-brief-with-a-useful-stopping-rule/",
+      "disposition": "noindex",
+      "words": 607,
+      "minimum": 800,
+      "titleLength": 54,
+      "descriptionLength": 138
+    },
+    {
+      "path": "/blog/a-practical-seo-measurement-plan-before-publishing/",
+      "disposition": "noindex",
+      "words": 522,
+      "minimum": 800,
+      "titleLength": 58,
+      "descriptionLength": 140
+    },
+    {
+      "path": "/blog/search-console-and-analytics-answer-different-questions/",
+      "disposition": "noindex",
+      "words": 607,
+      "minimum": 800,
+      "titleLength": 60,
+      "descriptionLength": 155
+    },
+    {
+      "path": "/blog/calculate-percentage-growth-without-hiding-the-baseline/",
+      "disposition": "noindex",
+      "words": 583,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 152
+    },
+    {
+      "path": "/blog/keep-missing-metrics-separate-from-zero/",
+      "disposition": "noindex",
+      "words": 632,
+      "minimum": 800,
+      "titleLength": 63,
+      "descriptionLength": 133
+    },
+    {
+      "path": "/blog/a-referral-traffic-worksheet-for-publication-campaigns/",
+      "disposition": "rewritten",
+      "words": 787,
+      "minimum": 800,
+      "titleLength": 51,
+      "descriptionLength": 149
+    },
+    {
+      "path": "/blog/a-content-experiment-log-that-records-confounders/",
+      "disposition": "noindex",
+      "words": 608,
+      "minimum": 800,
+      "titleLength": 54,
+      "descriptionLength": 143
+    },
+    {
+      "path": "/blog/report-keyword-ideas-without-invented-demand-metrics/",
+      "disposition": "noindex",
+      "words": 592,
+      "minimum": 800,
+      "titleLength": 57,
+      "descriptionLength": 140
+    },
+    {
+      "path": "/blog/a-backlink-report-quality-check-before-analysis/",
+      "disposition": "rewritten",
+      "words": 856,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/blog/choose-a-reporting-window-before-evaluating-content/",
+      "disposition": "noindex",
+      "words": 591,
+      "minimum": 800,
+      "titleLength": 58,
+      "descriptionLength": 147
+    },
+    {
+      "path": "/blog/turn-an-seo-report-into-a-useful-next-action-list/",
+      "disposition": "noindex",
+      "words": 580,
+      "minimum": 800,
+      "titleLength": 60,
+      "descriptionLength": 146
+    }
+  ],
+  "guides": [
+    {
+      "path": "/guides/choose-a-domain-name/",
+      "disposition": "noindex",
+      "words": 487,
+      "minimum": 800,
+      "titleLength": 42,
+      "descriptionLength": 132
+    },
+    {
+      "path": "/guides/buy-and-register-a-domain-name/",
+      "disposition": "noindex",
+      "words": 397,
+      "minimum": 800,
+      "titleLength": 37,
+      "descriptionLength": 153
+    },
+    {
+      "path": "/guides/domain-name-seo-and-migrations/",
+      "disposition": "noindex",
+      "words": 474,
+      "minimum": 800,
+      "titleLength": 40,
+      "descriptionLength": 143
+    },
+    {
+      "path": "/guides/guest-posting-for-beginners/",
+      "disposition": "expanded",
+      "words": 1147,
+      "minimum": 1200,
+      "titleLength": 55,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/guides/find-guest-posting-opportunities/",
+      "disposition": "expanded",
+      "words": 823,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 157
+    },
+    {
+      "path": "/guides/guest-post-outreach-templates/",
+      "disposition": "expanded",
+      "words": 1180,
+      "minimum": 1200,
+      "titleLength": 50,
+      "descriptionLength": 157
+    },
+    {
+      "path": "/guides/write-a-guest-post/",
+      "disposition": "expanded",
+      "words": 868,
+      "minimum": 800,
+      "titleLength": 57,
+      "descriptionLength": 157
+    },
+    {
+      "path": "/guides/guest-post-submission-guidelines/",
+      "disposition": "expanded",
+      "words": 840,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 155
+    },
+    {
+      "path": "/guides/guest-posting-strategy/",
+      "disposition": "expanded",
+      "words": 1121,
+      "minimum": 1200,
+      "titleLength": 56,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/guides/guest-posting-vs-content-marketing/",
+      "disposition": "expanded",
+      "words": 808,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 153
+    },
+    {
+      "path": "/guides/guest-posting-vs-digital-pr/",
+      "disposition": "expanded",
+      "words": 814,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 157
+    },
+    {
+      "path": "/guides/free-vs-paid-guest-posting/",
+      "disposition": "expanded",
+      "words": 857,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 148
+    },
+    {
+      "path": "/guides/guest-posting-for-small-businesses/",
+      "disposition": "expanded",
+      "words": 795,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 162
+    },
+    {
+      "path": "/guides/check-guest-post-website-traffic/",
+      "disposition": "expanded",
+      "words": 872,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 153
+    },
+    {
+      "path": "/guides/guest-posting-for-local-seo/",
+      "disposition": "expanded",
+      "words": 793,
+      "minimum": 800,
+      "titleLength": 54,
+      "descriptionLength": 155
+    },
+    {
+      "path": "/guides/guest-posting-for-ecommerce/",
+      "disposition": "expanded",
+      "words": 851,
+      "minimum": 800,
+      "titleLength": 53,
+      "descriptionLength": 160
+    },
+    {
+      "path": "/guides/measure-guest-posting-results/",
+      "disposition": "expanded",
+      "words": 888,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/guides/guest-posting-mistakes/",
+      "disposition": "expanded",
+      "words": 877,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 160
+    },
+    {
+      "path": "/guides/guest-posting-checklist/",
+      "disposition": "expanded",
+      "words": 835,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 162
+    },
+    {
+      "path": "/guides/guest-post-cost/",
+      "disposition": "expanded",
+      "words": 1279,
+      "minimum": 1200,
+      "titleLength": 54,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/guides/guest-post-vs-link-insertion/",
+      "disposition": "expanded",
+      "words": 835,
+      "minimum": 800,
+      "titleLength": 58,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/guides/da-vs-dr-and-traffic/",
+      "disposition": "expanded",
+      "words": 1052,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 158
+    },
+    {
+      "path": "/guides/vet-a-guest-post-site/",
+      "disposition": "expanded",
+      "words": 1263,
+      "minimum": 1200,
+      "titleLength": 56,
+      "descriptionLength": 155
+    },
+    {
+      "path": "/guides/paid-guest-posts-google-link-policies/",
+      "disposition": "expanded",
+      "words": 1164,
+      "minimum": 1200,
+      "titleLength": 54,
+      "descriptionLength": 163
+    },
+    {
+      "path": "/guides/guest-post-vs-sponsored-post/",
+      "disposition": "expanded",
+      "words": 887,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 161
+    }
+  ],
+  "violations": [
+    {
+      "path": "/blog/a-referral-traffic-worksheet-for-publication-campaigns/",
+      "disposition": "rewritten",
+      "words": 787,
+      "minimum": 800,
+      "titleLength": 51,
+      "descriptionLength": 149
+    },
+    {
+      "path": "/guides/guest-posting-for-beginners/",
+      "disposition": "expanded",
+      "words": 1147,
+      "minimum": 1200,
+      "titleLength": 55,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/guides/guest-post-outreach-templates/",
+      "disposition": "expanded",
+      "words": 1180,
+      "minimum": 1200,
+      "titleLength": 50,
+      "descriptionLength": 157
+    },
+    {
+      "path": "/guides/guest-posting-strategy/",
+      "disposition": "expanded",
+      "words": 1121,
+      "minimum": 1200,
+      "titleLength": 56,
+      "descriptionLength": 156
+    },
+    {
+      "path": "/guides/guest-posting-for-small-businesses/",
+      "disposition": "expanded",
+      "words": 795,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 162
+    },
+    {
+      "path": "/guides/guest-posting-for-local-seo/",
+      "disposition": "expanded",
+      "words": 793,
+      "minimum": 800,
+      "titleLength": 54,
+      "descriptionLength": 155
+    },
+    {
+      "path": "/guides/guest-posting-checklist/",
+      "disposition": "expanded",
+      "words": 835,
+      "minimum": 800,
+      "titleLength": 55,
+      "descriptionLength": 162
+    },
+    {
+      "path": "/guides/paid-guest-posts-google-link-policies/",
+      "disposition": "expanded",
+      "words": 1164,
+      "minimum": 1200,
+      "titleLength": 54,
+      "descriptionLength": 163
+    },
+    {
+      "path": "/guides/guest-post-vs-sponsored-post/",
+      "disposition": "expanded",
+      "words": 887,
+      "minimum": 800,
+      "titleLength": 56,
+      "descriptionLength": 161
+    }
+  ]
+}

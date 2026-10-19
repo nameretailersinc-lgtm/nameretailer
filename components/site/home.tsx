@@ -259,7 +259,7 @@ export function HomeLanding() {
                 ],
                 [
                   "Save a plan",
-                  "Save your cart. No order, reservation or payment is made.",
+                  "Request a quote for your shortlist to agree scope and current pricing.",
                 ],
               ].map(([title, text], index) => (
                 <li key={title}>

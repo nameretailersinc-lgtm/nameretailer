@@ -1,3 +1,4 @@
+import { expandBuyerGuide } from "./guide-expansions";
 import type { CatalogueStatistics } from "../commerce/catalogue-statistics";
 import { getArticleKeywordData } from "../seo/article-keyword-registry";
 import { domainGuides } from "./domain-guides";
@@ -5,6 +6,7 @@ import { guestPostingGuides } from "./guest-posting-guides";
 export type BuyerGuide = {
   slug: string;
   title: string;
+  seoTitle?: string;
   /** Meta description: what the reader gets, not the page template. */
   description: string;
   answer: string;
@@ -50,7 +52,7 @@ const traffic = [
 ] as [string, string];
 // Content approved by owner 2026-10-09; author and original publication date supplied by owner. No reviewer published.
 // Sections marked "expanded 2026-10-09" were added in the SEO audit pass and need the author's review.
-export const buyerGuides: BuyerGuide[] = [
+const guideDrafts: BuyerGuide[] = [
   ...domainGuides,
   ...guestPostingGuides,
   {
@@ -72,7 +74,7 @@ export const buyerGuides: BuyerGuide[] = [
       },
       {
         title: "What should I include in my budget?",
-        body: "Compare the placement price with available writing options, then ask the team about the agreed scope and delivery timing. A saved plan does not reserve inventory or a price.",
+        body: "Compare the placement price with available writing options, then ask the team about the agreed scope and delivery timing. Request a quote for your shortlist to confirm the current price.",
       },
       // expanded 2026-10-09
       {
@@ -464,6 +466,8 @@ export const buyerGuides: BuyerGuide[] = [
     ],
   },
 ];
+export const buyerGuides: BuyerGuide[] = guideDrafts.map(expandBuyerGuide);
+
 export function getGuideKeywords(guide: BuyerGuide) {
   const kw = getArticleKeywordData(guide.slug);
   return {
@@ -483,7 +487,7 @@ export function costAnswer(stats: CatalogueStatistics) {
     stats.maxPriceCents === null ||
     stats.medianPriceCents === null
   )
-    return "A guest post’s cost depends on the publication and agreed placement scope. The catalogue has no price distribution with a valid date available right now. Check each listing when inventory returns, and confirm writing costs, delivery timing and sponsored-link disclosure with the team before planning a placement.";
+    return "A guest post’s cost depends on the publication and agreed placement scope. Compare listed placement and writing charges, then request a quote confirming scope, timing and paid-link terms for your brief.";
   const money = (value: number) =>
     new Intl.NumberFormat("en-US", {
       style: "currency",

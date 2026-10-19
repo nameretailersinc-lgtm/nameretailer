@@ -90,7 +90,7 @@ export const informationPages = {
       },
       {
         title: "Plan with clear expectations",
-        body: "Compare publications, prepare your placement brief and save selections in your private cart. Billing review is available; online ordering and payment are unavailable. Saving a plan is not an order or reservation.",
+        body: "Compare publications, build a shortlist and select Request this placement. Send your brief to receive a quote with scope, pricing and publisher acceptance confirmed by email.",
       },
     ],
     links: [
@@ -102,7 +102,7 @@ export const informationPages = {
       {
         title: "Understand the process",
         description:
-          "Understand publication research, briefs and saved placement plans.",
+          "Understand publication research, briefs and saved shortlist.",
         href: "/how-it-works/",
       },
       {
@@ -130,7 +130,7 @@ export const informationPages = {
       },
       {
         title: "Contact and ordering",
-        body: "Email links open your email application. This page does not submit or store a contact form. Online ordering and payment are unavailable. Contact the team with publication questions.",
+        body: "Use Request a placement to send your name, email, website, target anchor, budget and message to our team. Your inquiry is stored securely for follow-up.",
       },
     ],
     links: [
@@ -148,7 +148,7 @@ export const informationPages = {
       },
       {
         title: "Common questions",
-        description: "Understand publication prices, metrics and saved plans.",
+        description: "Understand publication prices, metrics and shortlist.",
         href: "/faq/",
       },
     ],
@@ -171,11 +171,11 @@ export const informationPages = {
       },
       {
         title: "03 · Prepare and save",
-        body: "Click Add to plan to inspect the current placement and writing options. Sign in, add your destination URL and keyword, then provide an article brief or your own article text/file. The server recalculates prices and flags changed or unavailable products.",
+        body: "Click Add to shortlist to inspect the current placement and writing options. Sign in, add your destination URL and keyword, then provide an article brief or your own article text/file. The server recalculates prices and flags changed or unavailable products.",
       },
       {
         title: "04 · Review before ordering",
-        body: "Review the saved brief in your cart, then prepare billing details in checkout review. Ordering, payment and order tracking are not available yet. Saving a plan does not reserve a price or guarantee a placement. Agree content, disclosure and delivery terms before a future purchase.",
+        body: "Select Request this placement or Request quote for shortlist. Send your brief and we will reply within 1 business day to discuss content, disclosure, pricing and delivery terms.",
       },
     ],
     links: [
@@ -190,7 +190,7 @@ export const informationPages = {
         href: "/how-to-buy-links/",
       },
       {
-        title: "Review your planning cart",
+        title: "Review your shortlist",
         description: "Sign in to manage saved selections.",
         href: "/cart/",
       },
@@ -210,11 +210,11 @@ export const informationPages = {
       },
       {
         title: "Account access",
-        body: "Register with your email and a strong password, then sign in explicitly. Use the password-reset page if needed. Use your account to manage private placement plans. Password reset messages are sent through the configured email service.",
+        body: "Register with your email and a strong password, then sign in explicitly. Use the password-reset page if needed. Use your account to manage private shortlist. Password reset messages are sent through the configured email service.",
       },
       {
         title: "Changes to saved placements",
-        body: "Refresh your planning cart to review current prices. A changed or unavailable selection blocks the total until you review it. Your cart is private, but does not reserve inventory or take payment.",
+        body: "Review current publication prices in your shortlist, then request a quote for the selected publications. We confirm the final scope and pricing by email.",
       },
     ],
     links: [
@@ -299,7 +299,7 @@ export const informationPages = {
       },
       {
         title: "How it works",
-        description: "Understand browsing and private placement planning.",
+        description: "Understand browsing and private shortlistning.",
         href: "/how-it-works/",
       },
       {
@@ -355,7 +355,7 @@ export const informationPages = {
     sections: [
       {
         title: "Terms and refund policy",
-        body: "The refund policy is published: a refund is issued if the site owner rejects your request within 1 business day, and orders are final once the link is approved. Confirm the terms of any removal or replacement request with the team. Online ordering and payment are unavailable.",
+        body: "The refund policy is published: a refund is issued if the site owner rejects your request within 1 business day, and orders are final once the link is approved. Confirm the terms of any removal or replacement request with the team. Request a placement to confirm the scope and terms by email.",
       },
       {
         title: "Privacy and cookies",

@@ -1,3 +1,4 @@
+import { authors, authorPath } from "../site/authors";
 import { priceBreakdown } from "@/lib/commerce/price-breakdown";
 import { buyerGuides } from "@/lib/site/buyer-guides";
 import type { MetadataRoute } from "next";
@@ -45,6 +46,7 @@ const staticPaths = [
 export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [
     ...staticPaths,
+    ...authors.filter(author => author.bio).map(authorPath),
     ...tools.map((tool) => `/${tool.slug}/`),
   ].map((path) => ({ url: canonicalOrigin + path }));
   const prices = await priceBreakdown().catch(() => null);

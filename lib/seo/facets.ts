@@ -8,20 +8,20 @@ export function facetMetadata(
   params: SearchParams,
   hasUniquePage = false,
 ): Pick<Metadata, "alternates" | "robots"> {
+  void hasUniquePage;
   const keys = Object.keys(params);
   const page =
     typeof params.page === "string" && /^[1-9]\d*$/.test(params.page)
       ? Number(params.page)
       : 1;
-  const paginationOnly = keys.every((key) => key === "page") && page > 1;
   const facets =
     keys.some((key) => key !== "page") ||
     (keys.includes("page") && !/^[1-9]\d*$/.test(String(params.page)));
   return {
     alternates: {
       canonical:
-        canonicalOrigin + path + (paginationOnly ? `?page=${page}` : ""),
+        canonicalOrigin + path,
     },
-    robots: { index: !facets && (page === 1 || hasUniquePage), follow: true },
+    robots: { index: !facets && page === 1, follow: true },
   };
 }

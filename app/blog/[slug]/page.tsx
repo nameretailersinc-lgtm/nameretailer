@@ -11,15 +11,12 @@ import {
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
-  CheckCircle2,
   ChevronRight,
   Clock,
   Compass,
   FileText,
   HelpCircle,
   Layers,
-  ShieldCheck,
-  Sparkles,
 } from "lucide-react";
 import { articleArtwork, articleWithArtwork } from "@/lib/blog/artwork";
 import { notFound } from "next/navigation";
@@ -34,6 +31,7 @@ import {
 import { buildSeoMetadata } from "@/lib/seo/metadata";
 import {
   completeArticleSchema,
+  faqSchema,
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
 
@@ -95,7 +93,7 @@ export default async function Page({
     articleWithArtwork(article),
     context.author || undefined,
   );
-  const schemas = [schema].filter(Boolean);
+  const schemas = [schema, faqSchema(article)].filter(Boolean);
   const headings: Array<{ id: string; label: string }> = [];
   const html = sanitizeBody(String(article.data.body || "")).replace(
     /<h2>(.*?)<\/h2>/g,
@@ -166,10 +164,6 @@ export default async function Page({
           <Clock size={13} aria-hidden="true" />
           {readTimeMin} min read
         </span>
-        <span className="guide-meta-verified">
-          <ShieldCheck size={14} aria-hidden="true" />
-          Peer-Reviewed Guide
-        </span>
       </div>
 
       <EditorialByline
@@ -185,36 +179,6 @@ export default async function Page({
         }
         updatedAt={article.updatedAt}
       />
-
-      <section
-        className="reference-card guide-direct-answer"
-        aria-label="Direct answer and executive summary"
-      >
-        <div className="guide-answer-header">
-          <span className="guide-card-icon-mint" aria-hidden="true">
-            <Sparkles size={18} />
-          </span>
-          <span className="guide-badge-pill">Executive Summary</span>
-        </div>
-        <h2>Direct Answer &amp; Core Takeaway</h2>
-        <p className="guide-answer-lead">
-          {String(article.data.excerpt || "")}
-        </p>
-        <div className="guide-quick-takeaways">
-          <span className="guide-takeaway-chip">
-            <CheckCircle2 size={13} aria-hidden="true" />
-            Audited URL &amp; Redirect Hierarchy
-          </span>
-          <span className="guide-takeaway-chip">
-            <CheckCircle2 size={13} aria-hidden="true" />
-            Content Equivalence Verification
-          </span>
-          <span className="guide-takeaway-chip">
-            <CheckCircle2 size={13} aria-hidden="true" />
-            Core Web Vitals &amp; Schema Parity
-          </span>
-        </div>
-      </section>
 
       <div className="reference-guide-layout journal-layout guide-detail-layout">
         <article
@@ -256,8 +220,8 @@ export default async function Page({
                 <dd>{headings.length}</dd>
               </div>
               <div>
-                <dt>Citations</dt>
-                <dd>{sources.length || 1}</dd>
+                <dt>Sources</dt>
+                <dd>{sources.length}</dd>
               </div>
             </dl>
           </section>
@@ -265,7 +229,7 @@ export default async function Page({
           <section className="reference-card guide-sidebar-cta reference-mint-card">
             <h2>Apply to your campaign</h2>
             <p>
-              Compare guest posting sites with transparent prices, domain metrics and verified topical focus.
+              Compare guest posting sites with transparent prices, domain metrics and supplied topics.
             </p>
             <Link className="button button-primary" href="/">
               Browse publications <ArrowUpRight size={14} aria-hidden="true" />
@@ -321,10 +285,6 @@ export default async function Page({
               <p className="eyebrow">Documentation &amp; Standards</p>
               <h2>Sources and further reading</h2>
             </div>
-            <span className="guide-sources-stamp">
-              <ShieldCheck size={14} aria-hidden="true" />
-              Verified documentation
-            </span>
           </div>
           <ul className="guide-sources-list">
             {sources.map((source) => (
@@ -356,7 +316,7 @@ export default async function Page({
         <div>
           <h2>Ready to plan your publication campaign?</h2>
           <p>
-            Compare publications across DA, DR, traffic estimates and verified placement prices, or explore our free technical SEO tools.
+            Compare publications across DA, DR, traffic estimates and listed placement prices, or explore our free technical SEO tools.
           </p>
         </div>
         <div className="guide-closing-actions">
@@ -364,7 +324,7 @@ export default async function Page({
             className="button button-primary"
             href="/guest-posting-sites/"
           >
-            Explore guest posting sites <ArrowUpRight size={15} aria-hidden="true" />
+            Browse guest posting sites <ArrowUpRight size={15} aria-hidden="true" />
           </Link>
           <Link className="button button-secondary" href="/seo-tools/">
             Free SEO tools

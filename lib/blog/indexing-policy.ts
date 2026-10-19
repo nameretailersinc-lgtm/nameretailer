@@ -11,9 +11,8 @@ export const technicalArticleSlugs = new Set([
   "blog/measure-page-experience-with-a-repeatable-test-setup",
   "blog/a-wordpress-to-next-js-content-migration-worksheet",
 ]);
-// Owner explicitly approved every published blog article for indexing on 2026-10-10.
-// Draft/private records remain inaccessible through the published-only article query.
-export const blogArticleIndexable = (record: {
-  slug: string;
-  data: { robotsIndex?: unknown };
-}) => record.slug.startsWith("blog/");
+// Current request supersedes the older blanket approval. Only buyer articles qualify.
+import { buyerExpansions } from "./buyer-expansions";
+export const blogArticleIndexable = (record: { slug: string; data: { robotsIndex?: unknown } }) =>
+  record.data.robotsIndex !== false && record.slug.startsWith("blog/") &&
+  Object.hasOwn(buyerExpansions, record.slug.slice(5));

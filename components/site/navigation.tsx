@@ -364,8 +364,8 @@ export function SiteNavigation({
           <Link
             className="site-round-button site-cart-link"
             href="/cart/"
-            aria-label="Open planning cart"
-            title="Your planning cart"
+            aria-label="Open shortlist"
+            title="Your shortlist"
             aria-current={active === "cart" ? "page" : undefined}
             onClick={() => setMenu(null)}
           >
@@ -518,11 +518,11 @@ export function SiteNavigation({
             </Link>
             <Link
               href="/cart/"
-              aria-label="Your planning cart"
+              aria-label="Your shortlist"
               onClick={() => setMenu(null)}
             >
               <ShoppingBag size={18} aria-hidden="true" />
-              Your planning cart
+              Your shortlist
               <ChevronRight size={15} aria-hidden="true" />
             </Link>
           </div>

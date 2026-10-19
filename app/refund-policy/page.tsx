@@ -30,6 +30,7 @@ export default function Page() {
       image="/01_guest_post_checklist.png"
     >
       <div className="reference-information-sections">
+        <section className="reference-card"><h2>How this policy relates to an inquiry</h2><p>Submitting a placement inquiry is free. We discuss scope, price and any payment arrangements by email before you agree to proceed.</p><p><strong>Policy claims awaiting owner confirmation:</strong> The existing policy below describes automatic refunds following publisher rejection, delivery being final on approval, and processing within 3?5 business days. Confirm the applicable refund terms with your quote before making a payment.</p></section>
         <section className="reference-card">
           <p>
             <strong>Effective date:</strong>{" "}

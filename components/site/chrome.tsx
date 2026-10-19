@@ -64,7 +64,7 @@ export function SiteFooter() {
         <div>
           <SiteBrand />
           <p>
-            Guest-post marketplace, placement planning and useful writing tools.
+            Guest-post marketplace, shortlistning and useful writing tools.
           </p>
           <address>
             26 - G Hamriyah Freezone
@@ -78,7 +78,7 @@ export function SiteFooter() {
           <Link href="/guest-post-marketplace/">Marketplace views</Link>
           <Link href="/guest-post-by-dr/">Domain rating</Link>
           <Link href="/?sort=priceAsc">Compare prices</Link>
-          <Link href="/cart/">Your planning cart</Link>
+          <Link href="/cart/">Your shortlist</Link>
         </div>
         <div>
           <h2>Guest posting sites</h2>
