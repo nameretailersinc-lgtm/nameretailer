@@ -1,4 +1,4 @@
-import type { Filter } from "mongodb";
+import type { BSONTypeAlias, Filter } from "mongodb";
 import type { Product } from "./types";
 
 // Require evidence of an actual placement offer before promoting these identities.
@@ -10,7 +10,7 @@ export function cleanTraffic(value: number | null | undefined): number | null {
   return typeof value === "number" && Number.isFinite(value) && value >= 0 && value < TRAFFIC_SENTINEL ? value : null;
 }
 export function cleanDirectoryFilter(): Filter<Product> {
-  return { domain: { $not: REVIEW_DOMAIN_PATTERN }, needsReview: { $ne: true }, currency: "USD", priceCents: { $type: "number" as any, $gte: 0, $lte: Number.MAX_SAFE_INTEGER } };
+  return { domain: { $not: REVIEW_DOMAIN_PATTERN }, needsReview: { $ne: true }, currency: "USD", priceCents: { $type: "number" as unknown as BSONTypeAlias, $gte: 0, $lte: Number.MAX_SAFE_INTEGER } };
 }
 export function cleanListing(row: Pick<Product, "domain" | "priceCents" | "currency" | "needsReview">) {
   return !REVIEW_DOMAIN_PATTERN.test(row.domain) && row.needsReview !== true && row.currency === "USD" && Number.isSafeInteger(row.priceCents) && row.priceCents >= 0;
