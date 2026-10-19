@@ -5,6 +5,7 @@ import { finishedCopy } from "@/lib/site/public-copy";
 import { escapeMarkup } from "@/lib/tools/core";
 import { normalizeSlug } from "@/lib/cms/validation";
 import { bodyText, wordCount, sanitizeBody } from "@/lib/cms/content";
+import { getArticleKeywordData } from "@/lib/seo/article-keyword-registry";
 export const blogDrafts = [
   ...marketplaceContent,
   ...technicalAeo,
@@ -62,7 +63,7 @@ export const blogLibrary = blogDrafts.map((source) => {
         ? `<ul>${sec.checklist.map((item) => `<li>${e(item)}</li>`).join("")}</ul>`
         : "";
       const tableHtml = sec.table
-        ? `<table><thead><tr>${sec.table.columns.map((col) => `<th scope="col">${e(col)}</th>`).join("")}</tr></thead><tbody>${sec.table.rows.map((row) => `<tr>${row.map((cell, idx) => (idx === 0 ? `<th scope="row">${e(cell)}</th>` : `<td>${e(cell)}</td>`)).join("")}</tr>`).join("")}</tbody></table>`
+        ? `<div class="directory-table-wrap" role="region" aria-label="${e(sec.heading)} comparison table"><table class="directory-table"><caption>${e(sec.heading)} comparison</caption><thead><tr>${sec.table.columns.map((col) => `<th scope="col">${e(col)}</th>`).join("")}</tr></thead><tbody>${sec.table.rows.map((row) => `<tr>${row.map((cell, idx) => (idx === 0 ? `<th scope="row">${e(cell)}</th>` : `<td>${e(cell)}</td>`)).join("")}</tr>`).join("")}</tbody></table></div>`
         : "";
       return `<h3>${e(sec.heading)}</h3><p>${e(sec.body)}</p>${codeHtml}${listHtml}${tableHtml}`;
     })
@@ -78,12 +79,23 @@ export const blogLibrary = blogDrafts.map((source) => {
     bodyText(article.answer)
       .slice(0, 154)
       .replace(/\s+\S*$/, "") + "…";
+  const kw = getArticleKeywordData(slug);
+  const primaryKeyword = article.primaryKeyword || kw?.primaryKeyword || "";
+  const secondaryKeywords =
+    article.secondaryKeywords ||
+    (kw?.secondaryKeywords ? kw.secondaryKeywords.join("; ") : "");
+  const searchIntent =
+    article.searchIntent || kw?.searchIntent || "Informational";
   return {
     ...article,
     slug,
     body,
     metaDescription: computedMeta,
     words: wordCount(body),
+    primaryKeyword,
+    keyword: primaryKeyword,
+    secondaryKeywords,
+    searchIntent,
   };
 });
 export function validateLibrary() {

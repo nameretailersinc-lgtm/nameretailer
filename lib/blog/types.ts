@@ -2,6 +2,9 @@ export type ArticleDraft = {
   title: string;
   seoTitle?: string;
   metaDescription?: string;
+  primaryKeyword?: string;
+  secondaryKeywords?: string;
+  searchIntent?: string;
   cluster:
     | "Marketplace"
     | "Content"

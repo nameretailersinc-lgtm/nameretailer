@@ -1,4 +1,5 @@
 import type { CatalogueStatistics } from "../commerce/catalogue-statistics";
+import { getArticleKeywordData } from "../seo/article-keyword-registry";
 import { domainGuides } from "./domain-guides";
 import { guestPostingGuides } from "./guest-posting-guides";
 export type BuyerGuide = {
@@ -22,6 +23,10 @@ export type BuyerGuide = {
   sourcesCheckedAt?: string;
   /** Date this guide's content last changed (ISO); drives dateModified and the sitemap. */
   updatedAt: string;
+  primaryKeyword?: string;
+  keyword?: string;
+  secondaryKeywords?: string;
+  searchIntent?: string;
 };
 const google = [
   "Google: qualifying paid links",
@@ -459,6 +464,17 @@ export const buyerGuides: BuyerGuide[] = [
     ],
   },
 ];
+export function getGuideKeywords(guide: BuyerGuide) {
+  const kw = getArticleKeywordData(guide.slug);
+  return {
+    primaryKeyword: guide.primaryKeyword || kw?.primaryKeyword || "",
+    keyword: guide.keyword || guide.primaryKeyword || kw?.primaryKeyword || "",
+    secondaryKeywords:
+      guide.secondaryKeywords ||
+      (kw?.secondaryKeywords ? kw.secondaryKeywords.join("; ") : ""),
+    searchIntent: guide.searchIntent || kw?.searchIntent || "Informational",
+  };
+}
 export function costAnswer(stats: CatalogueStatistics) {
   if (
     !stats.updatedAt ||
