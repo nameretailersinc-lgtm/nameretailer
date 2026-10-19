@@ -31,6 +31,7 @@ The five attributed guides are the cost, guest-post-versus-link-insertion, DA/DR
 Authored content spans **247–628 words**, counting the stored answer, sections, steps, checklists, templates, FAQs and tables. Rendered main content spans **329–1,005 words** because it also includes navigation, sources, shared help and, for the cost guide, live tables. These are diagnostic counts, not minimum-quality thresholds. The shortest authored guide is `/guides/guest-post-vs-sponsored-post/`; inspect whether it resolves the intended decision rather than padding it to an arbitrary length.
 
 
+
 ## Similarity and repeated structure
 
 There are **zero exact duplicate metadata titles, descriptions, nonempty direct answers or authored section bodies** across the 25 guides. This corpus has distinct descriptions and authored explanations. Shared topics and reusable components still deserve editorial review.
