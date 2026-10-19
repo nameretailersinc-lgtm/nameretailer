@@ -11,6 +11,7 @@ vi.mock("@/lib/commerce/catalogue-summary", () => ({
 }));
 vi.mock("@/lib/commerce/price-breakdown", () => ({
   priceBreakdown: async () => null,
+  priceReportReady: () => false,
 }));
 vi.mock("@/lib/site/buyer-guides", () => ({ buyerGuides: [] }));
 vi.mock("@/lib/commerce/publication-profiles", () => ({
