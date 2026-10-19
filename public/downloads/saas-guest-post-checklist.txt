@@ -1,0 +1,22 @@
+SaaS guest post planning and measurement checklist
+
+[ ] Name the developer, founder or buyer audience and the decision they face.
+[ ] Review recent articles in the proposed publication section.
+[ ] Request dated audience evidence; do not treat DR as readership.
+[ ] Pitch a useful problem, method and evidence you can supply.
+[ ] Confirm placement, writing, editing and revision costs in the quote.
+[ ] Confirm sponsorship label, paid-link qualification and publication schedule.
+[ ] Agree a destination that continues the reader's task.
+[ ] Confirm tracking parameters are acceptable to the publisher.
+
+Suggested campaign URL structure (replace placeholders; omit personal data):
+utm_source=[publisher_slug]&utm_medium=sponsored_content&utm_campaign=[campaign_slug]&utm_content=[article_slug]
+
+[ ] Test referral attribution and the sign-up, trial and demo-request events.
+[ ] Record the final URL, publication date and approved article version.
+[ ] Choose a measurement window appropriate to the sales cycle.
+[ ] Record actual referral visits and actions; mark missing attribution unknown.
+[ ] Note overlapping campaigns and destination changes before interpreting results.
+[ ] Keep observed results separate from supplied domain metrics and SEO claims.
+
+This worksheet contains no publisher commitments or assumed campaign outcomes.

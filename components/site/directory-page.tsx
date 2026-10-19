@@ -1,4 +1,5 @@
 import { BuyerGuideLinks } from "./buyer-guide-links";
+import { hasSeoDirectoryContent, SeoDirectoryPage } from "./directory-insights";
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -312,7 +313,8 @@ export function DirectoryLinks({
   );
 }
 
-export async function DirectoryPage({ directory }: { directory: Directory }) {
+export async function DirectoryPage({ directory, subtopic }: { directory: Directory; subtopic?: string }) {
+  if (hasSeoDirectoryContent(directory)) return <SeoDirectoryPage directory={directory} subtopic={subtopic} />;
   const [result, stats] = await Promise.all([
     listings(directory),
     catalogueSummary("", directory.slug).catch(() => null),

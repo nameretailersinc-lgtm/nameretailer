@@ -1,5 +1,7 @@
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
+import { seoDirectoryData, seoDirectoryMetadata } from "@/lib/commerce/seo-catalogue";
+import { hasSeoDirectoryContent } from "@/components/site/directory-insights";
 import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
 import { facetMetadata } from "@/lib/seo/facets";
 import { rangeCopy } from "@/lib/site/range-copy";
@@ -87,15 +89,15 @@ export async function generateMetadata({
   const directory = directoryBySlug(slug);
   if (directory) {
     await connection();
-    const stats = await catalogueSummary("", directory.slug).catch(() => null);
+    const content = hasSeoDirectoryContent(directory) ? await seoDirectoryData(directory).catch(() => null) : null;
+    const stats = hasSeoDirectoryContent(directory) ? (content ? { total: content.summary.count } : null) : await catalogueSummary("", directory.slug).catch(() => null);
     return pageMetadata(
       {
         ...facetMetadata(`/${directory.slug}/`, await searchParams),
-        ...(!stats || !directoryIndexable(stats.total)
+        ...(!stats || stats.total < (directory.minIndexableListings ?? 15)
           ? { robots: { index: false, follow: true } }
           : {}),
-        title: directory.metaTitle,
-        description: directory.metaDescription,
+        ...(hasSeoDirectoryContent(directory) ? seoDirectoryMetadata(directory, content) : { title: directory.metaTitle, description: directory.metaDescription }),
       },
       `/${directory.slug}/`,
     );
@@ -135,7 +137,8 @@ export default async function Page({
   const directory = directoryBySlug(slug);
   if (directory) {
     await connection();
-    return <DirectoryPage directory={directory} />;
+    const search = await searchParams;
+    return <DirectoryPage directory={directory} subtopic={typeof search.subtopic === "string" ? search.subtopic : undefined} />;
   }
   const tool = toolBySlug(slug);
   if (!tool) notFound();

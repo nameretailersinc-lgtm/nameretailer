@@ -1,6 +1,7 @@
 import {directoryIntros} from "./directory-intros";
 import { directoryEditorial } from "./directory-editorial";
 import { specialistDirectories } from "./specialist-directories";
+import { technologySections, saasSections, usaSections } from "./seo-content";
 // Niche publisher directories. Each page server-renders live inventory for its
 // filter, plus original guidance, so it stands on its own for search and
 // readers instead of being a thin filtered copy of the marketplace.
@@ -8,6 +9,7 @@ export type DirectoryFilter = {
   categories?: string[];
   country?: string;
   maxPriceCents?: number;
+  cleanListings?: boolean;
 };
 
 export type Directory = {
@@ -26,6 +28,7 @@ export type Directory = {
   related: string[];
   editorialUpdatedAt?: string;
   resources?: Array<[label: string, path: string]>;
+  minIndexableListings?: number;
 };
 
 const category = (name: string): [string, string] => [
@@ -465,10 +468,25 @@ const directoryDefinitions: Directory[] = [
   ...specialistDirectories,
 ];
 
-export const directories: Directory[] = directoryDefinitions.map((directory) => {
+const usaChildren: Directory[] = [
+  { slug: "guest-posting-sites-usa-under-100", label: "US publishers under $100", h1: "Guest posting sites in the USA under $100", metaTitle: "USA Guest Posting Sites Under $100: Compare Publishers", metaDescription: "Compare US guest posting listings under $100 by topic, DR and traffic. Check audience location, editorial requirements and separate writing costs before a quote.", lead: "Compare guest posting sites assigned to the United States with a supplied placement price below $100 USD. Use this budget view to narrow the overview, then check recent articles and ask for dated US audience evidence. A low asking price does not establish publisher authorization, acceptance or writing inclusions.", filter: { country: "United States", maxPriceCents: 9999 }, sections: [{ title: "Use a placement ceiling without losing editorial fit", body: "Start with a useful article angle and remove publishers whose recent coverage does not fit it. Keep enough budget for writing, images and revisions; those costs may sit outside the placement amount. Ask for a current sample sponsored article, the exact publication section and a clear disclosure policy before requesting a quote. A budget filter does not establish value or audience geography." }] },
+  { slug: "business-guest-posting-sites-usa", label: "US business publishers", h1: "Business guest posting sites in the USA", metaTitle: "USA Business Guest Posting Sites: Compare Topic & Price", metaDescription: "Find US business guest posting listings with supplied prices, DR and traffic. Check owner and buyer audiences, article scope and disclosure before requesting a quote.", lead: "Find Business category listings assigned to the United States, with supplied metrics and USD placement prices. Match an article to owners, operators or business buyers by reading the proposed section. The listing country and category do not independently verify a US decision-maker audience, editorial expertise or an available publishing agreement.", filter: { country: "United States", categories: ["Business"] }, sections: [{ title: "Write for the business decision the reader faces", body: "Pitch an operations checklist, a supplier evaluation method or a practical customer-service process. Explain what evidence you can provide and distinguish general guidance from regulated financial or legal advice. Ask whether the section serves local owners, national businesses or professional advisers. Check author attribution and commercial-reference rules, and obtain appropriate specialist review when the subject requires it." }] },
+  { slug: "tech-guest-posting-sites-usa", label: "US technology publishers", h1: "Technology guest posting sites in the USA", metaTitle: "USA Technology Guest Posting Sites: Compare Publishers", metaDescription: "Compare US technology guest posting listings by supplied DR, traffic and USD price. Confirm technical audience, evidence requirements and sponsored article scope.", lead: "Compare Technology, Computers, Gadgets, Internet and Mobile listings assigned to the United States. Decide whether you need developers, IT buyers or consumer readers before shortlisting. A country field does not verify a US audience; request dated evidence for the publication section and agree technical review, screenshots and paid-link qualification.", filter: { country: "United States", categories: ["Technology", "Computers", "Gadgets", "Internet", "Mobile", "Hardware development"] }, sections: [{ title: "Check both technical depth and US reader relevance", body: "A consumer device review and an infrastructure tutorial can share a technology label while serving different readers. Send an outline that names the intended user, environment and evidence. Ask whether product availability, units or regional standards need US context, and source those details. Supply reproducible steps or real observations rather than invented benchmarks, and remove sensitive information from screenshots." }] },
+].map(child => ({ ...child, minIndexableListings: 25, browse: [["Compare this US segment in the marketplace", `/?country=United%20States${child.filter.maxPriceCents ? "&maxPrice=99.99" : child.filter.categories ? `&category=${encodeURIComponent(child.filter.categories[0])}` : ""}`]], checklist: ["Confirm the proposed publication section and current availability", "Request dated US audience evidence", "Agree writing, pricing, disclosure and link qualification"], faq: [["Does the US country field verify the audience?", "No. Ask for dated audience evidence for the actual section; a supplied country field does not establish reader location."], ["Are these prices in USD?", "Yes. These are supplied USD placement asking prices. Writing and other campaign costs need separate confirmation."]], related: ["guest-posting-sites-usa"] }));
+
+export const directories: Directory[] = [...directoryDefinitions, ...usaChildren].map((directory) => {
   const editorial = directoryEditorial[directory.slug];
+  const revised = ({ "technology-guest-posting-sites": technologySections, "saas-guest-posting-sites": saasSections, "guest-posting-sites-usa": usaSections } as Record<string, typeof technologySections>)[directory.slug];
+  if (revised) return {
+    ...directory, filter: { ...directory.filter, ...(directory.slug === "technology-guest-posting-sites" ? { categories: [...(directory.filter.categories || []), "Cybersecurity", "Cyber Security", "Security", "Web hosting", "Web Hosting", "Hosting", "AI", "Artificial Intelligence", "Software development", "Programming"] } : {}), cleanListings: true },
+    h1: directory.slug === "saas-guest-posting-sites" ? "SaaS guest posting sites" : directory.slug === "guest-posting-sites-usa" ? "Guest posting sites in the USA" : directory.h1,
+    lead: directoryIntros[directory.slug] || directory.lead,
+    metaTitle: directory.slug === "guest-posting-sites-usa" ? "Guest Posting Sites in the USA: Topics, Metrics & Prices" : directory.metaTitle,
+    sections: [], resources: [], related: [],
+  };
   return {
     ...directory,
+    filter: { ...directory.filter, cleanListings: true },
     lead: directoryIntros[directory.slug] || directory.lead,
     sections: [...directory.sections, ...(editorial?.sections || [])],
     ...(editorial ? { resources: editorial.resources, editorialUpdatedAt: "2026-10-18" } : {}),

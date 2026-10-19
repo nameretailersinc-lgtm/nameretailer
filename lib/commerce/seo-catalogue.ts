@@ -3,7 +3,7 @@ import { productStore } from "./products";
 import { cleanListing, cleanTraffic } from "./listing-hygiene";
 import { priceMedian } from "./catalogue-statistics";
 import type { Product } from "./types";
-import type { DirectoryFilter } from "../site/directories";
+import type { Directory, DirectoryFilter } from "../site/directories";
 
 export type SeoListing = Pick<Product, "id" | "domain" | "category" | "country" | "currency" | "priceCents" | "metrics" | "updatedAt" | "turnaround" | "needsReview">;
 export const money = (cents: number) => new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 }).format(cents / 100);
@@ -46,3 +46,17 @@ export const techSubtopics = [
   { label: "AI and software", categories: ["AI", "Artificial Intelligence", "Software development", "Programming"], query: "Software development", description: "Explain the model or software version, inputs, evaluation method and failure cases. A tutorial should help a reader complete a task without requiring an unsupported product endorsement." },
   { label: "Mobile", categories: ["Mobile"], query: "Mobile", description: "Separate mobile development from consumer phone coverage. Ask whether the publication needs application code, accessibility checks, device screenshots or a practical buying guide." },
 ];
+
+export const seoDirectoryData = cache(async (directory: Directory) => {
+  const catalogue = await seoCatalogue();
+  const rows = catalogue.rows.filter(row => matchesDirectory(row, directory.filter));
+  return { rows, summary: summarizePrices(rows), asOf: latestListingDate(rows), hygiene: catalogue.hygiene };
+});
+export function seoDirectoryMetadata(directory: Directory, data: Awaited<ReturnType<typeof seoDirectoryData>> | null) {
+  const n = data ? count(data.summary.count) : null;
+  const median = data?.summary.medianCents;
+  if (directory.slug === "technology-guest-posting-sites") return { title: n ? `Technology Guest Posting Sites: ${n} Tech Publishers` : "Technology Guest Posting Sites: Compare Publisher Prices", description: median != null ? `Compare ${n} technology guest posting listings by DR, DA and traffic. Median ${money(median)}. Supplied asking prices; confirm scope and availability.` : "Compare technology guest posting sites by DR, DA, traffic and price. Review technical audiences, writing scope and sponsorship before requesting a quote." };
+  if (directory.slug === "saas-guest-posting-sites") return { title: n ? `SaaS Guest Posting Sites: ${n} Software Publishers & Prices` : "SaaS Guest Posting Sites: Software Publishers & Prices", description: median != null ? `Compare ${n} SaaS and software guest posting listings by DR, traffic and price. Median asking price ${money(median)}; confirm audience, writing and scope.` : "Find SaaS guest posting opportunities across software, development and startup sites. Compare supplied DR, traffic, audience categories and placement prices." };
+  if (directory.slug === "guest-posting-sites-usa") return { title: "Guest Posting Sites in the USA: Topics, Metrics & Prices", description: median != null ? `Compare US guest posting sites by topic, DR, traffic and USD price. Median asking price ${money(median)}. Listing country does not verify US readership.` : "Compare US guest posting sites by topic, DR, traffic and USD placement price. The supplied listing country does not independently verify a US reader audience." };
+  return { title: directory.metaTitle, description: directory.metaDescription };
+}

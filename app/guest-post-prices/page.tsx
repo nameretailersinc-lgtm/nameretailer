@@ -1,222 +1,60 @@
 import Link from "next/link";
 import { connection } from "next/server";
 import { InformationShell } from "@/components/site/information-page";
-import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
-import { priceBreakdown, type PriceRow } from "@/lib/commerce/price-breakdown";
+import { DataDisclosure } from "@/components/site/data-disclosure";
+import { ContentSections, PageFaq, PriceTable } from "@/components/site/seo-content";
+import { priceBreakdown, priceReportReady } from "@/lib/commerce/price-breakdown";
+import { seoCatalogue, money, count } from "@/lib/commerce/seo-catalogue";
+import { cleanListing } from "@/lib/commerce/listing-hygiene";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
+import { canonicalOrigin } from "@/lib/seo/metadata";
+import { serializeJsonLd } from "@/lib/seo/json-ld";
+import { askingPriceLabel, priceSections } from "@/lib/site/seo-content";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
-import { priceGuideEditorial } from "@/lib/site/editorial";
-const usd = (cents: number) =>
-  new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 2,
-  }).format(cents / 100);
-export async function generateMetadata({
-  searchParams,
-}: {
-  searchParams: Promise<SearchParams>;
-}) {
+
+export async function generateMetadata({ searchParams }: { searchParams: Promise<SearchParams> }) {
   const data = await priceBreakdown().catch(() => null);
-  return pageMetadata(
-    {
-      title: "Guest Post Pricing by Niche, DA and Country",
-      description:
-        "Compare guest post pricing by niche, DA, DR and listing country using dated catalogue medians and price ranges. See what placement prices include and exclude.",
-      ...facetMetadata("/guest-post-prices/", await searchParams),
-      ...(!validAsOf(data?.asOf)
-        ? { robots: { index: false, follow: true } }
-        : {}),
-    },
-    "/guest-post-prices/",
-  );
-}
-function PriceTable({ title, rows }: { title: string; rows: PriceRow[] }) {
-  if (!rows.length) return null;
-  return (
-    <section className="reference-card">
-      <h2>{title}</h2>
-      <div
-        className="directory-table-wrap"
-        tabIndex={0}
-        role="region"
-        aria-label={`${title} table`}
-      >
-        <table className="directory-table">
-          <caption>{title}: USD placement prices</caption>
-          <thead>
-            <tr>
-              <th scope="col">Group</th>
-              <th scope="col">Listings</th>
-              <th scope="col">Median</th>
-              <th scope="col">25th percentile</th>
-              <th scope="col">75th percentile</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.label}>
-                <th scope="row">{row.label}</th>
-                <td>{row.count.toLocaleString("en-US")}</td>
-                <td>{usd(row.medianCents)}</td>
-                <td>{usd(row.lowCents)}</td>
-                <td>{usd(row.highCents)}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
-    </section>
-  );
+  const year = data?.asOf ? new Date(data.asOf).getUTCFullYear() : null;
+  return pageMetadata({
+    title: year ? `Guest Post Prices ${year}: Median Cost by DR, Niche & Country` : "Guest Post Prices: Compare Costs by DR, Niche & Country",
+    description: data?.medianCents != null ? `Guest post price data from ${count(data.total)} supplied listings. Median ${money(data.medianCents)}; compare DR, niche and country. Asking prices, not transactions.` : "Compare guest post placement asking prices by DR band, niche and country. Review medians, quartiles, campaign budgeting and downloadable catalogue summary tables.",
+    ...facetMetadata("/guest-post-prices/", await searchParams),
+    ...(!priceReportReady(data) ? { robots: { index: false, follow: true } } : {}),
+  }, "/guest-post-prices/");
 }
 export default async function Page() {
   await connection();
-  const result = await priceBreakdown().catch(() => null);
-  const data = validAsOf(result?.asOf) ? result : null;
-  const summary =
-    data && data.medianCents !== null
-      ? `Across ${data.total.toLocaleString("en-US")} active USD-priced listings, the median placement price is ${usd(data.medianCents)}. Traffic estimates are supplied for ${data.withTraffic.toLocaleString("en-US")} listings (${data.total ? ((100 * data.withTraffic) / data.total).toFixed(1) : "0"}%). Writing and other campaign costs are separate.`
-      : "Compare publication placement prices by niche, authority band and listing country. A dated distribution is unavailable at present; individual listings remain available in the marketplace.";
-  return (
-    <InformationShell
-      path="/guest-post-prices/"
-      title="Guest post pricing by niche and metric"
-      label="Catalogue price data"
-      description={summary}
-      active="guides"
-      image="/02_content_metrics_panel.png"
-    >
-      <p className="reference-article-meta">
-        Price comparison guidance updated{" "}
-        <time dateTime={priceGuideEditorial.updatedAt}>
-          {new Date(priceGuideEditorial.updatedAt).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-            timeZone: "UTC",
-          })}
-        </time>
-        . Catalogue observation dates are shown separately below.
-      </p>
-      {data && (
-        <>
-          <DataDisclosure asOf={data.asOf} />
-          <PriceTable title="Prices by niche" rows={data.byTopic} />
-          <PriceTable
-            title="Prices by Domain Authority band"
-            rows={data.byDa}
-          />
-          <PriceTable title="Prices by listing country" rows={data.byCountry} />
-          <PriceTable title="Prices by Domain Rating band" rows={data.byDr} />
-        </>
-      )}
-      <section className="reference-card">
-        <h2>How to compare guest post prices</h2>
-        <ol>
-          <li>
-            Start with the niche and audience you need. Compare publications
-            serving a similar topic and language.
-          </li>
-          <li>
-            Read the median alongside the 25th and 75th percentiles. Use that
-            range to compare the middle of the distribution; it does not show
-            the cheapest and most expensive placements.
-          </li>
-          <li>
-            Check each candidate’s current detail page. Confirm writing,
-            editorial revisions, link qualification and timing separately from
-            the placement amount.
-          </li>
-          <li>
-            Use supplied DA, DR and traffic as supporting comparison fields. A
-            higher price or score does not establish editorial quality, verified
-            readers or a ranking benefit.
-          </li>
-        </ol>
-        <p>
-          A low listing price can still be expensive for an irrelevant audience.
-          Read the{" "}
-          <Link href="/guides/vet-a-guest-post-site/">
-            publisher evaluation checklist
-          </Link>{" "}
-          before choosing solely by budget.
-        </p>
-      </section>
-      <section className="reference-card">
-        <h2>Placement price versus your total guest posting budget</h2>
-        <p>
-          This report measures the supplied placement price. It does not quote a
-          managed outreach service, campaign package or total project cost.
-          Writing options, when offered, are separate. Your own research,
-          editorial work and applicable agreed charges can also affect the
-          total. Missing charges must be confirmed, rather than treated as zero.
-        </p>
-        <p>
-          For a small-business budget, start with the{" "}
-          <Link href="/guest-posting-sites-under-50/">
-            up-to-$50 placement directory
-          </Link>{" "}
-          and review the exclusions in the{" "}
-          <Link href="/guides/guest-post-cost/">guest post cost guide</Link>. Request a quote to confirm publication scope and current pricing.
-        </p>
-      </section>
-      <section className="reference-card">
-        <h2>Methodology and refresh</h2>
-        <p>
-          The report selects active listings from committed imports, plus active
-          records without an import, with a numeric nonnegative USD placement
-          price. Each record is counted once. Country and topic groups omit
-          missing values; topic groups also omit generic categories. DA uses
-          bands 1–9, 10–19 through 90–100; DR uses 0–19, 20–49, 50–69 and
-          70–100. Records without a valid score are excluded from that score’s
-          grouping.
-        </p>
-        <p>
-          The median is the middle sorted price, or the mean of the two middle
-          prices. Each percentile selects the zero-based sorted index
-          floor(record count × percentile), capped at the final index. Groups
-          with fewer than 15 records are omitted. Traffic coverage counts
-          supplied numeric nonnegative traffic values, including zero; this does
-          not verify measured visits.
-        </p>
-        <p>
-          The report refreshes on requests after a 15-minute cache period. If
-          the database fails, the last successful snapshot may remain for up to
-          24 hours. The as-of date is the latest actual listing update in that
-          snapshot, rather than the time you opened the page.
-        </p>
-        <h2>How to interpret the figures</h2>
-        <p>
-          These are listing prices, not completed transaction prices or
-          quotations. A country field does not establish reader location. Topic,
-          authority and traffic may have different providers or observation
-          dates. Multiple listings can refer to one publisher, and group
-          distributions do not establish why prices differ. Confirm price,
-          writing scope, timing and sponsored-link qualification before planning
-          a placement.
-        </p>
-      </section>
-      <section className="reference-card">
-        <h2>Compare and plan</h2>
-        <p>
-          Use the <Link href="/blog/a-practical-guest-post-budget-worksheet/">existing budget worksheet</Link> to record total costs, compare <Link href="/guides/free-vs-paid-guest-posting/">free and paid contributions</Link>, then define <Link href="/guides/measure-guest-posting-results/">how you will measure results</Link> before committing to a placement.
-        </p>
-        <p>
-          <Link href="/guest-posting-sites/">
-            Explore publications by niche
-          </Link>
-          ,{" "}
-          <Link href="/guides/guest-post-cost/">
-            understand guest post costs
-          </Link>
-          , or{" "}
-          <Link href="/guides/da-vs-dr-and-traffic/">
-            compare DA, DR and traffic
-          </Link>
-          .
-        </p>
-      </section>
-    </InformationShell>
-  );
+  const data = await priceBreakdown().catch(() => null);
+  const catalogue = data ? await seoCatalogue().catch(() => null) : null;
+  const example = (catalogue?.rows || []).filter(cleanListing).sort((a, b) => a.priceCents - b.priceCents || a.id.localeCompare(b.id)).slice(0, 3);
+  const summary = data?.medianCents != null && data.minCents != null && data.maxCents != null
+    ? `In our catalogue, the median guest post placement asking price is ${money(data.medianCents)} across ${count(data.total)} listings, ranging from ${money(data.minCents)} to ${money(data.maxCents)}. These are ${askingPriceLabel}; compare the live DR, niche and country groups below before requesting a quote.`
+    : "Guest post costs depend on the publication and agreed article scope. Live catalogue prices could not load; confirm individual placement and writing costs in a current quote.";
+  const faqs = [
+    ["How much does a guest post cost?", data?.medianCents != null ? `The catalogue median placement asking price is ${money(data.medianCents)} across ${count(data.total)} supplied listings. These are asking prices from supplied listings, not transaction prices; writing and other campaign costs need separate confirmation.` : "Live catalogue pricing could not load. Request a quote for the publication and writing scope you need rather than relying on an assumed average."],
+    ["Is a $50 guest post worth it?", "Value depends on relevant readers, editorial standards and the complete scope. Review sample articles, audience evidence, sponsorship labels and separate writing costs before judging a placement by its price."],
+    ["Why do guest post prices differ so much?", "Supplied scores, audience, topic, country, article format and production requirements can differ. The tables describe asking-price distributions; they do not prove which factor caused a particular fee."],
+    ["Do prices include writing?", "This report measures the supplied placement price. Article writing is separate where available; confirm research, editing, revisions and any other charges in your quote."],
+    ["Guest post vs link insertion cost?", "The catalogue does not provide a separately classified link-insertion comparison dataset, so no price difference is claimed. Ask for a quote specifying whether the deliverable is a new article or a change to an existing one."],
+  ] as const;
+  return <InformationShell path="/guest-post-prices/" title="Guest post prices by DR, niche and country" label="Guest post price data" description={summary} active="guides" image="/02_content_metrics_panel.png">
+    {data && <>
+      <DataDisclosure asOf={data.asOf} />
+      {!data.asOf && <p>The latest listing update date is unavailable. The report remains noindex until its date and all required distributions are available.</p>}
+      <PriceTable title="Overall guest post placement prices" rows={data.overall} />
+      <PriceTable title="Guest post prices by DR band" rows={data.byDr} />
+      <PriceTable title="Guest post prices by top niches" rows={data.byTopic} />
+      <PriceTable title="Guest post prices by top listing countries" rows={data.byCountry} />
+      {priceReportReady(data) && <>
+        <p><a href="/guest-post-prices/summary.csv" download>Download the dated price summary tables as CSV</a>. The download uses the same catalogue selection and calculations as these tables.</p>
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd({ "@context": "https://schema.org", "@type": "Dataset", "@id": `${canonicalOrigin}/guest-post-prices/#dataset`, name: "Name Retailer guest post placement asking prices", description: `USD ${askingPriceLabel}. Active committed catalogue records grouped by DR, niche and listing country; groups below the minimum size are omitted.`, url: `${canonicalOrigin}/guest-post-prices/`, dateModified: data.asOf, creator: { "@type": "Organization", name: "Name Retailer", url: canonicalOrigin }, variableMeasured: ["Listing count", "Median placement asking price in USD", "25th percentile placement asking price in USD", "75th percentile placement asking price in USD"], distribution: { "@type": "DataDownload", encodingFormat: "text/csv", contentUrl: `${canonicalOrigin}/guest-post-prices/summary.csv` } }) }} />
+      </>}
+    </>}
+    <ContentSections sections={priceSections.slice(0, 3)} />
+    {example.length > 0 && <section className="reference-card"><h2>Worked example using supplied placement prices</h2><p>This arithmetic uses the lowest-priced clean active listings returned by the catalogue, with ties ordered by listing ID. It illustrates a subtotal, not a recommended shortlist or an accepted offer.</p><ul>{example.map(row => <li key={row.id}>{row.domain.replace(/^https?:\/\//, "")}: {money(row.priceCents)}</li>)}</ul><p>Placement subtotal: {example.map(row => money(row.priceCents)).join(" + ")} = <strong>{money(example.reduce((sum, row) => sum + row.priceCents, 0))}</strong>.</p><p>Total campaign cost = that placement subtotal + quoted writing + agreed revision charges + licensed assets or specialist checks + your hours × your chosen hourly rate. Those additional inputs are unknown here, so this page does not invent an all-inclusive total. Replace them with actual quotes and your own time estimate before approving a budget.</p></section>}
+    <ContentSections sections={priceSections.slice(3)} />
+    <section className="reference-card"><h2>Methodology, dates and limitations</h2><p>All reported amounts are {askingPriceLabel}. The report reads active USD-priced listings from committed imports and active listings without an import. Prices must be nonnegative safe integers in cents. Each record is counted once; separate records can refer to the same publisher. Topic and country groups omit missing labels, and generic niche categories are excluded.</p><p>The minimum group size is 15 listings. The niche and country tables show up to 10 qualifying groups ordered by count, with alphabetical ties. Valid DR scores are grouped as 0–19, 20–49, 50–69, 70–89 and 90–100. Missing and out-of-range DR values are not included in a DR group. The median is the middle sorted value or the mean of the middle pair. Each percentile uses the zero-based index floor(count × percentile), capped at the final index.</p><p>Data as of is the latest valid listing update in the selected records, not today's date and not a traffic measurement date. Tables are computed from the database for each request. A later CSV request may reflect newer listing changes. These data do not measure accepted quotes, completed transactions or campaign outcomes, and no causal price model is claimed.</p>{data && <p>Data hygiene in this priced catalogue: {count(data.hygiene.hiddenTraffic)} supplied traffic values were hidden as invalid, and {count(data.hygiene.excludedDirectoryRows)} records are excluded from clean directory selections. The price study retains otherwise valid supplied asking prices, including review-domain records; it does not represent them as verified placement offers.</p>}<p>Choose a relevant topic in the <Link href="/guest-posting-sites/">publisher directory</Link>, then <Link href="/guides/da-vs-dr-and-traffic/">interpret DA, DR and traffic separately</Link> before requesting a quote.</p></section>
+    <PageFaq items={faqs} />
+  </InformationShell>;
 }

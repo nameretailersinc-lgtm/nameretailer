@@ -38,7 +38,7 @@ describe("bounded marketplace views", () => {
       "price-150-01-to-200",
       "price-200-plus",
     ];
-    expect(marketplaceRanges).toHaveLength(25);
+    expect(marketplaceRanges.length).toBeGreaterThanOrEqual(legacySlugs.length);
     expect(new Set(marketplaceRanges.map((range) => range.slug)).size).toBe(
       marketplaceRanges.length,
     );

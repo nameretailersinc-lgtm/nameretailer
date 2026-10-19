@@ -19,12 +19,12 @@ export type InformationPage = {
 };
 export const informationPages = {
   "guest-post-marketplace": {
-    title: "Guest post sites by DA, DR, traffic and price",
+    title: "Guest post marketplace: find sites by DR, DA, traffic and price",
     label: "Marketplace directory",
     active: "marketplace",
     image: "/15_laptop_dashboard_illustration.png",
     description:
-      "Go straight to the slice of the catalogue you need: Domain Authority bands, Domain Rating bands, traffic tiers and price brackets, each a live list of active publications.",
+      "A guest post marketplace lets you compare supplied publication listings by DR, DA, traffic and placement price, then request a quote. Start with audience fit and confirm current editorial terms before committing.",
     sections: [
       {
         title: "Audience before scores",
@@ -32,7 +32,7 @@ export const informationPages = {
       },
       {
         title: "One catalog, useful views",
-        body: "The original site's DA, DR, traffic and price menu groups now link to bounded catalog views at their legacy range URLs. Those pages keep their range when you sort, paginate or reset additional filters. Metrics remain supplied estimates; missing values are not treated as zero. Other legacy migration and redirects remain separate work.",
+        body: "Use bounded catalogue views to compare supplied DR, DA, traffic and placement prices. Metrics remain supplied estimates; missing values are not treated as zero. Confirm the audience, article requirements and current scope before requesting a placement.",
       },
     ],
     links: [
@@ -154,7 +154,7 @@ export const informationPages = {
     ],
   },
   "how-it-works": {
-    title: "From publisher research to a placement inquiry.",
+    title: "How buying a guest post placement works",
     label: "How it works",
     active: "guides",
     image: "/01_guest_post_checklist.png",

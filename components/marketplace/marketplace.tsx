@@ -322,7 +322,9 @@ function PublicationDialog({
       ref={dialog}
       className="marketplace-publication-dialog"
       aria-labelledby="publication-dialog-heading"
-      onCancel={onClose}
+      onCancel={(event) => {
+        if (event.target === event.currentTarget) onClose();
+      }}
       onPointerDown={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
         backdropPointer.current =

@@ -1,5 +1,5 @@
 import { authors, authorPath } from "../site/authors";
-import { priceBreakdown } from "@/lib/commerce/price-breakdown";
+import { priceBreakdown, priceReportReady } from "@/lib/commerce/price-breakdown";
 import { buyerGuides } from "@/lib/site/buyer-guides";
 import type { MetadataRoute } from "next";
 import { getDb } from "@/lib/db";
@@ -50,7 +50,7 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     ...tools.map((tool) => `/${tool.slug}/`),
   ].map((path) => ({ url: canonicalOrigin + path }));
   const prices = await priceBreakdown().catch(() => null);
-  if (prices?.asOf)
+  if (priceReportReady(prices) && prices?.asOf)
     entries.push({
       url: canonicalOrigin + "/guest-post-prices/",
       lastModified: new Date(
@@ -93,7 +93,7 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
       : marketplaceRangeBySlug(segment.slug);
     const indexable = range
       ? rangeCopy(range, summary, catalogue).indexable
-      : !!summary && directoryIndexable(summary.total);
+      : !!summary && summary.total >= (directories.find(directory => directory.slug === segment.slug)?.minIndexableListings ?? 15);
     const lastModified = [
       summary?.updatedAt,
       directories.find((directory) => directory.slug === segment.slug)
