@@ -44,9 +44,9 @@ export const buyerQuestions = [
   {
     question: "How do I request a placement?",
     answer:
-      "Choose Request this placement on a publication, or Request quote for shortlist to inquire about several publications together. Submit your name, email, website URL, target anchor, budget and message. We will reply within 1 business day to confirm fit, scope and pricing.",
+      "Choose Add to plan on a publication to open its placement brief and review writing options. Sign in to save the brief in your cart and review billing in checkout. You can also use Request quote for shortlist to ask about several publications together.",
     detail:
-      "Use Request this placement to send your brief, or email info@nameretailer.com with publication questions.",
+      "Use Add to plan to prepare a placement brief, or email info@nameretailer.com with publication questions.",
   },
   {
     question: "Do I need an account to browse?",

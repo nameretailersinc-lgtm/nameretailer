@@ -285,8 +285,8 @@ export default async function Page({ params }: Props) {
               <a href="#publication-pricing">Review price and scope</a>
             </div>
             <p className={styles.stamp}>
-              Request this placement to confirm publisher acceptance, scope and
-              current pricing by email.
+              Select Add to plan to review current options and prepare your
+              placement brief.
             </p>
           </aside>
 

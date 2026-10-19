@@ -274,7 +274,7 @@ export function MarketplaceBuyerGuide() {
         <details>
           <summary>How do I request a quote for my shortlist?</summary>
           <p>
-            Select Request this placement or Request quote for shortlist to confirm availability and pricing with the team.
+            Select Add to plan to prepare a placement brief, or Request quote for shortlist to discuss your selected publications with the team.
             </p>
         </details>
         <details>

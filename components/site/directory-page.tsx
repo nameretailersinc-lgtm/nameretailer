@@ -678,7 +678,7 @@ export function LandingExplore() {
               domain authority, and compare up to four publications without
               creating an account. Signing in allows you to save candidate
               publications to your account workspace while reviewing editorial
-              fit with stakeholders. Select Request this placement or Request quote for shortlist to send your brief. We confirm current pricing, editorial scope, attribution and timing by email.
+              fit with stakeholders. Select Add to plan to prepare a placement brief, or Request quote for shortlist to discuss your candidates. Confirm current pricing, editorial scope, attribution and timing with the team.
             </p>
             <h3>Evaluating guest posting sites for an agency or business</h3>
             <p>

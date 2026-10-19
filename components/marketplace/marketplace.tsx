@@ -1,6 +1,5 @@
 "use client";
 
-
 import { ShortlistInquiry } from "@/components/inquiries/placement-inquiry";
 import { finishedCopy } from "@/lib/site/public-copy";
 import { trackEvent } from "@/lib/analytics/events";
@@ -54,7 +53,6 @@ import type {
 import { api, errorMessage } from "@/components/admin/api";
 import { Button, Field, Input, Select } from "@/components/admin/primitives";
 import {
-
   MarketplaceBenefits,
   MarketplaceBuyerGuide,
   MarketplaceHero,
@@ -64,7 +62,10 @@ import homepageStyles from "@/components/site/homepage.module.css";
 import { CountryName } from "@/components/site/country-name";
 import { BuyPlacement } from "@/components/cart/buy-placement";
 import { CatalogBrowser } from "./catalog-browser";
-import { clearFilterRangeErrors, validateFilterRanges } from "./filter-validation";
+import {
+  clearFilterRangeErrors,
+  validateFilterRanges,
+} from "./filter-validation";
 import {
   ShortlistProvider,
   ShortlistListing,
@@ -254,7 +255,11 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
           <dd>{productMetric(product.metrics.spamScore)}</dd>
         </div>
       </dl>
-      {product.requirements && <p className="marketplace-placement-requirements"><strong>Requirements:</strong> {finishedCopy(product.requirements)}</p>}
+      {product.requirements && (
+        <p className="marketplace-placement-requirements">
+          <strong>Requirements:</strong> {finishedCopy(product.requirements)}
+        </p>
+      )}
       <BuyPlacement productId={product.id} />
     </>
   );
@@ -296,7 +301,8 @@ function PublicationDialog({
     const previousGutter = root.style.scrollbarGutter;
     const previousPadding = document.body.style.paddingRight;
     const scrollbarWidth = window.innerWidth - root.clientWidth;
-    const bodyPadding = parseFloat(getComputedStyle(document.body).paddingRight) || 0;
+    const bodyPadding =
+      parseFloat(getComputedStyle(document.body).paddingRight) || 0;
     root.style.scrollbarGutter = "auto";
     root.style.overflow = "hidden";
     document.body.style.overflow = "hidden";
@@ -319,15 +325,26 @@ function PublicationDialog({
       onCancel={onClose}
       onPointerDown={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
-        backdropPointer.current = event.target === event.currentTarget &&
-          (event.clientX < rect.left || event.clientX > rect.right ||
-           event.clientY < rect.top || event.clientY > rect.bottom);
+        backdropPointer.current =
+          event.target === event.currentTarget &&
+          (event.clientX < rect.left ||
+            event.clientX > rect.right ||
+            event.clientY < rect.top ||
+            event.clientY > rect.bottom);
       }}
       onClick={(event) => {
         const rect = event.currentTarget.getBoundingClientRect();
-        const outside = event.clientX < rect.left || event.clientX > rect.right ||
-          event.clientY < rect.top || event.clientY > rect.bottom;
-        if (backdropPointer.current && event.target === event.currentTarget && outside) onClose();
+        const outside =
+          event.clientX < rect.left ||
+          event.clientX > rect.right ||
+          event.clientY < rect.top ||
+          event.clientY > rect.bottom;
+        if (
+          backdropPointer.current &&
+          event.target === event.currentTarget &&
+          outside
+        )
+          onClose();
         backdropPointer.current = false;
       }}
     >
@@ -961,7 +978,13 @@ function MetricContext({ compact = false }: { compact?: boolean }) {
   );
 }
 
-function ShortlistPanel({ homePage, onViewDetails }: { homePage: boolean; onViewDetails: (product: PublicProduct) => void }) {
+function ShortlistPanel({
+  homePage,
+  onViewDetails,
+}: {
+  homePage: boolean;
+  onViewDetails: (product: PublicProduct) => void;
+}) {
   const { items: shortlist, status, toggle, clear } = useShortlist();
   return homePage ? (
     <HomepageShortlist
@@ -1148,11 +1171,7 @@ const MarketplaceInventoryList = memo(function MarketplaceInventoryList({
           </thead>
           <tbody>
             {data.map((product, index) => (
-              <ShortlistListing
-                key={product.id}
-                as="tr"
-                productId={product.id}
-              >
+              <ShortlistListing key={product.id} as="tr" productId={product.id}>
                 <td>
                   <span className="marketplace-row-number">
                     {(page - 1) * pageSize + index + 1}
@@ -1182,10 +1201,7 @@ const MarketplaceInventoryList = memo(function MarketplaceInventoryList({
                   <TableMetric value={product.metrics.dr} tone="dr" />
                 </td>
                 <td>
-                  <TableMetric
-                    value={product.metrics.traffic}
-                    tone="traffic"
-                  />
+                  <TableMetric value={product.metrics.traffic} tone="traffic" />
                 </td>
                 <td>
                   <span className="marketplace-publication-country">
@@ -1280,9 +1296,7 @@ const MarketplaceInventoryList = memo(function MarketplaceInventoryList({
                   </dd>
                 </div>
                 <div>
-                  <dt>
-                    {metricView ? "Estimated traffic" : "Est. traffic"}
-                  </dt>
+                  <dt>{metricView ? "Estimated traffic" : "Est. traffic"}</dt>
                   <dd>
                     <TableMetric
                       value={product.metrics.traffic}
@@ -1318,9 +1332,7 @@ const MarketplaceInventoryList = memo(function MarketplaceInventoryList({
                     <span>
                       <CountryName country={product.country} />
                     </span>
-                    <span>
-                      {product.language || "Language unavailable"}
-                    </span>
+                    <span>{product.language || "Language unavailable"}</span>
                   </div>
                   <div className="marketplace-listing-actions">
                     <BuyPlacement productId={product.id} />
@@ -1410,7 +1422,10 @@ function MarketplaceContent({
     languages: [],
     categories: [],
   });
-  const [loadError, setLoadError] = useState<{ query: string; message: string } | null>(null);
+  const [loadError, setLoadError] = useState<{
+    query: string;
+    message: string;
+  } | null>(null);
   const error = loadError?.query === query ? loadError.message : "";
   const [facetError, setFacetError] = useState("");
   const [retry, setRetry] = useState(0);
@@ -2124,7 +2139,10 @@ function MarketplaceContent({
           </section>
         </div>
         {!metricView && <MetricContext compact />}
-        <ShortlistPanel homePage={homePage} onViewDetails={setSelectedProduct} />
+        <ShortlistPanel
+          homePage={homePage}
+          onViewDetails={setSelectedProduct}
+        />
         {metricView ? (
           <>
             <MarketplaceBuyerGuide />

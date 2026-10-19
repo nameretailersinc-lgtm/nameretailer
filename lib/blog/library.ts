@@ -91,14 +91,30 @@ export const blogLibrary = blogDrafts.map((source) => {
         label: "Google Analytics: campaign URL parameters",
         url: "https://support.google.com/analytics/answer/10917952",
       });
-    if (/search-console|measurement-plan|reporting-window|experiment-log|next-action-list/.test(slug))
-      article.sources.push({ label: "Google: using Search Console", url: "https://developers.google.com/search/docs/monitor-debug/search-console-start" });
+    if (
+      /search-console|measurement-plan|reporting-window|experiment-log|next-action-list/.test(
+        slug,
+      )
+    )
+      article.sources.push({
+        label: "Google: using Search Console",
+        url: "https://developers.google.com/search/docs/monitor-debug/search-console-start",
+      });
     if (/headlines/.test(slug))
-      article.sources.push({ label: "Google: title links", url: "https://developers.google.com/search/docs/appearance/title-link" });
+      article.sources.push({
+        label: "Google: title links",
+        url: "https://developers.google.com/search/docs/appearance/title-link",
+      });
     if (/meta-descriptions/.test(slug))
-      article.sources.push({ label: "Google: snippets and descriptions", url: "https://developers.google.com/search/docs/appearance/snippet" });
+      article.sources.push({
+        label: "Google: snippets and descriptions",
+        url: "https://developers.google.com/search/docs/appearance/snippet",
+      });
     if (/image-alt/.test(slug))
-      article.sources.push({ label: "Google: image descriptions and context", url: "https://developers.google.com/search/docs/appearance/google-images" });
+      article.sources.push({
+        label: "Google: image descriptions and context",
+        url: "https://developers.google.com/search/docs/appearance/google-images",
+      });
   }
   const e = escapeMarkup;
   const extraSectionsHtml = (article.sections || [])

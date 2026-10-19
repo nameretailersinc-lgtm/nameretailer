@@ -90,7 +90,7 @@ export const informationPages = {
       },
       {
         title: "Request a placement with clear expectations",
-        body: "Compare publications, build a shortlist and select Request this placement. Send your brief to receive a quote with scope, pricing and publisher acceptance confirmed by email.",
+        body: "Compare publications, build a shortlist and select Add to plan to prepare your placement brief. Review the current placement and writing options before saving the selection.",
       },
     ],
     links: [
@@ -171,11 +171,11 @@ export const informationPages = {
       },
       {
         title: "03 · Prepare and save",
-        body: "Select Request this placement and enter your name, email, website URL, target keyword or anchor, budget and message. You can submit an inquiry without an account.",
+        body: "Select Add to plan to review current placement and writing options. Sign in to save your destination URL, anchor and article brief or supplied manuscript in your cart.",
       },
       {
         title: "04 · Review before ordering",
-        body: "Select Request this placement or Request quote for shortlist. Send your brief and we will reply within 1 business day to discuss content, disclosure, pricing and delivery terms.",
+        body: "Review your saved brief and prices in the cart, then continue to billing review in checkout. Use Request quote for shortlist when you want the team to discuss several candidates together.",
       },
     ],
     links: [

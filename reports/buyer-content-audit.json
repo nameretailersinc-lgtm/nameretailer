@@ -110,7 +110,7 @@
       "words": 835,
       "minimum": 800,
       "titleLength": 51,
-      "descriptionLength": 165
+      "descriptionLength": 152
     },
     {
       "path": "/blog/headlines-that-describe-the-article-instead-of-overselling-it/",
@@ -150,7 +150,7 @@
       "words": 820,
       "minimum": 800,
       "titleLength": 52,
-      "descriptionLength": 164
+      "descriptionLength": 151
     },
     {
       "path": "/blog/an-editorial-handoff-checklist-before-publication/",
@@ -422,7 +422,7 @@
       "words": 831,
       "minimum": 800,
       "titleLength": 52,
-      "descriptionLength": 166
+      "descriptionLength": 156
     },
     {
       "path": "/blog/keep-missing-metrics-separate-from-zero/",
@@ -430,7 +430,7 @@
       "words": 833,
       "minimum": 800,
       "titleLength": 55,
-      "descriptionLength": 162
+      "descriptionLength": 160
     },
     {
       "path": "/blog/a-referral-traffic-worksheet-for-publication-campaigns/",
@@ -478,7 +478,7 @@
       "words": 841,
       "minimum": 800,
       "titleLength": 55,
-      "descriptionLength": 161
+      "descriptionLength": 156
     }
   ],
   "guides": [
@@ -683,48 +683,7 @@
       "descriptionLength": 158
     }
   ],
-  "violations": [
-    {
-      "path": "/blog/a-source-log-for-fact-checking-content-drafts/",
-      "disposition": "rewritten",
-      "words": 835,
-      "minimum": 800,
-      "titleLength": 51,
-      "descriptionLength": 165
-    },
-    {
-      "path": "/blog/a-content-refresh-decision-log/",
-      "disposition": "rewritten",
-      "words": 820,
-      "minimum": 800,
-      "titleLength": 52,
-      "descriptionLength": 164
-    },
-    {
-      "path": "/blog/calculate-percentage-growth-without-hiding-the-baseline/",
-      "disposition": "rewritten",
-      "words": 831,
-      "minimum": 800,
-      "titleLength": 52,
-      "descriptionLength": 166
-    },
-    {
-      "path": "/blog/keep-missing-metrics-separate-from-zero/",
-      "disposition": "rewritten",
-      "words": 833,
-      "minimum": 800,
-      "titleLength": 55,
-      "descriptionLength": 162
-    },
-    {
-      "path": "/blog/turn-an-seo-report-into-a-useful-next-action-list/",
-      "disposition": "rewritten",
-      "words": 841,
-      "minimum": 800,
-      "titleLength": 55,
-      "descriptionLength": 161
-    }
-  ],
+  "violations": [],
   "publications": {
     "activeListings": 56005,
     "detailPages": 56005,
