@@ -10,8 +10,8 @@ export const domainGuides: BuyerGuide[] = [
     answer:
       "Choose a domain people can say, spell and recognize as your business. Build a shortlist, test it aloud without showing the spelling, compare suitable extensions, and verify registration and relevant name rights before paying. A domain name is your web address; a business name identifies your business and may follow separate local rules.",
     approved: true,
-    updatedAt: "2026-10-15",
-    sourcesCheckedAt: "2026-10-15",
+    updatedAt: "2026-10-19",
+    sourcesCheckedAt: "2026-10-19",
     questions: [
       {
         title: "Start with the audience and the next three years",
@@ -59,6 +59,23 @@ export const domainGuides: BuyerGuide[] = [
         ],
       ],
     },
+    checklist: [
+      "Spoken and written clarity tested with real listeners",
+      "Room to expand beyond the first product or city",
+      "Extension fits audience expectations and renewal budget",
+      "Registrar availability, business registries and trademark records checked separately",
+    ],
+    related: [
+      ["Check domain character length", "/domain-length-checker/"],
+      [
+        "Register and connect your domain",
+        "/guides/buy-and-register-a-domain-name/",
+      ],
+      [
+        "Understand domains, SEO and migrations",
+        "/guides/domain-name-seo-and-migrations/",
+      ],
+    ],
     sources: [
       [
         "Shopify: choosing a domain name",
@@ -78,8 +95,8 @@ export const domainGuides: BuyerGuide[] = [
     answer:
       "Choose a suitable name, verify its current availability with a registrar, review the registration and renewal terms, and register it in an account you control. Then configure your website and email records. A domain registration is separate from hosting and from registering a business name.",
     approved: true,
-    updatedAt: "2026-10-15",
-    sourcesCheckedAt: "2026-10-15",
+    updatedAt: "2026-10-19",
+    sourcesCheckedAt: "2026-10-19",
     questions: [
       {
         title: "Check availability at the point of purchase",
@@ -102,6 +119,23 @@ export const domainGuides: BuyerGuide[] = [
         body: "Set a renewal reminder and keep the payment method and contact address current. Before transferring to another registrar, check eligibility and locks with both providers, obtain the required authorization information securely and preserve your DNS configuration. Transfer restrictions vary with the domain and its recent history; use ICANN’s transfer guidance and the registrar’s current terms instead of assuming all names can move immediately.",
       },
     ],
+    checklist: [
+      "Exact spelling and multi-year renewal costs confirmed at the registrar",
+      "Registrant account owned directly by the business with two-factor authentication",
+      "Existing DNS and mail records backed up before changing nameservers",
+      "Renewal date, payment method and transfer lock rules documented",
+    ],
+    related: [
+      [
+        "Choose a business domain shortlist",
+        "/guides/choose-a-domain-name/",
+      ],
+      [
+        "Plan domain SEO and URL migrations",
+        "/guides/domain-name-seo-and-migrations/",
+      ],
+      ["Explore the domain planning hub", "/domain-names/"],
+    ],
     sources: [
       [
         "ICANN: domain registration process",
@@ -121,8 +155,8 @@ export const domainGuides: BuyerGuide[] = [
     answer:
       "A domain name can help users understand and remember a website, but it cannot guarantee Google rankings. When changing a domain, preserve useful content and map each old URL to its genuinely equivalent new URL. Update internal links, canonicals and sitemaps, then monitor crawling and search performance.",
     approved: true,
-    updatedAt: "2026-10-15",
-    sourcesCheckedAt: "2026-10-15",
+    updatedAt: "2026-10-19",
+    sourcesCheckedAt: "2026-10-19",
     questions: [
       {
         title: "Do keywords in a domain guarantee rankings?",
@@ -148,6 +182,26 @@ export const domainGuides: BuyerGuide[] = [
         title: "Check a previously used domain before purchase",
         body: "Review archived website snapshots, available registration events and independent backlink evidence. Registration creation dates do not establish when a website first published content, and re-registration may reset recorded history. RDAP provides registration data, not a complete ownership or website timeline. A clean archive snapshot cannot rule out every past issue. Treat automated value estimates as assumptions rather than an offer or guarantee.",
       },
+    ],
+    checklist: [
+      "Complete old-to-new URL mapping sheet with one-hop permanent redirects",
+      "Internal links, canonical tags, sitemaps and structured data updated to new URLs",
+      "Noindex rules removed on approved public destination pages",
+      "Search Console verified on both old and new properties for post-move monitoring",
+    ],
+    related: [
+      [
+        "Canonical URL checklist for a site move",
+        "/blog/a-canonical-url-checklist-for-a-rebuilt-website/",
+      ],
+      [
+        "Choose a domain name for a business",
+        "/guides/choose-a-domain-name/",
+      ],
+      [
+        "Buy and register a domain name",
+        "/guides/buy-and-register-a-domain-name/",
+      ],
     ],
     sources: [
       [

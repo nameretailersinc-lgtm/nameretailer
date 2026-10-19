@@ -577,13 +577,15 @@ export function LandingExplore() {
             </span>
             <div className={guideStyles.guideFlags}>
               {["us", "gb", "ca"].map((code) => (
-                <Image
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
                   key={code}
                   src={`/flags/${code}.svg`}
                   width={24}
                   height={18}
+                  loading="lazy"
+                  decoding="async"
                   alt=""
-                  unoptimized
                 />
               ))}
             </div>
@@ -627,76 +629,146 @@ export function LandingExplore() {
               <Link href="/guest-posting-sites/">
                 guest posting sites directory
               </Link>{" "}
-              by metric or budget, or use the filters above to build your own
-              shortlist.
+              by metric or budget, or use the filters above to evaluate guest
+              posting sites across industries, countries and editorial topics.
             </p>
             <h3>How to choose a publication</h3>
             <p>
-              Begin with relevance. Read a publication’s recent articles and ask
-              whether your topic would sit naturally beside them, then use
-              country and language to narrow the search. A country field does
-              not verify where readers live. Domain Authority is Moz’s score and
-              Domain Rating is Ahrefs’; they are different measures, so compare
-              each only within its own system and treat them as one signal among
-              several. You can{" "}
+              Begin with editorial relevance and audience fit. Read a
+              publication’s recent articles and ask whether your guest post
+              topic would sit naturally beside existing editorial coverage, then
+              use country and language filters to narrow the guest post
+              marketplace catalogue. A country field reflects the catalogue
+              listing rather than independently verified reader geography.
+              Domain Authority (DA) is Moz’s link-based score and Domain Rating
+              (DR) is Ahrefs’ backlink authority metric; they measure different
+              link graphs on logarithmic scales, so compare each metric only
+              within its own system and treat authority scores as initial
+              screening signals rather than proof of editorial quality. You can{" "}
               <Link href="/guides/da-vs-dr-and-traffic/">
                 read how DA, DR and traffic estimates differ
               </Link>{" "}
-              before you set filters. Shortlist several candidates rather than
-              one, because requirements and availability differ between
-              publishers, and compare their scope, topics and terms side by side
-              before deciding.
+              before setting marketplace filters. Review multiple guest posting
+              sites side by side because editorial guidelines, turnaround windows
+              and link policies vary across publishers.
             </p>
-            <h3>What the price includes</h3>
+            <h3>What the guest post price includes</h3>
             <p>
-              Each listing shows a USD placement price. Writing is priced
-              separately where it is offered, so a placement price is not a full
-              campaign quote. A missing value is shown as unavailable, never as
-              zero. Sponsored content should be disclosed, and Google recommends
-              marking paid links with rel=&quot;sponsored&quot;; see the{" "}
-              <Link href="/how-to-buy-links/">buying checklist</Link> for the
-              questions to settle first.
+              Each publication listing in the guest post marketplace displays a
+              USD publisher fee. Article research, writing and editorial
+              revisions are priced separately where offered, so a listed guest
+              post price is one component of your total content and outreach
+              budget. When a metric or publisher detail is missing from the
+              catalogue, it appears explicitly as unavailable rather than zero.
+              Paid guest posts and sponsored articles require transparent
+              disclosure, and Google Search Essentials recommends qualifying
+              paid or compensated links with <code>rel=&quot;sponsored&quot;</code>{" "}
+              or <code>rel=&quot;nofollow&quot;</code>; consult the{" "}
+              <Link href="/how-to-buy-links/">buying checklist</Link> and{" "}
+              <Link href="/guides/nofollow-vs-sponsored-vs-dofollow/">
+                link attribute guide
+              </Link>{" "}
+              for qualification standards to settle with publishers before
+              publication.
             </p>
-            <h3>Browse first, plan when ready</h3>
+            <h3>Browse guest posting sites first, commit when ready</h3>
             <p>
-              You can browse and compare without an account, and shortlist up to
-              four publications. Signing in lets you save a private placement
-              plan. Ordering and payment are not available yet, and a saved plan
-              does not reserve a price or a placement, so confirm scope,
-              disclosure and delivery timing with the team before you commit.
+              SEO agencies, in-house marketing teams and founders can search the
+              guest post marketplace, filter guest posting websites by topic or
+              domain authority, and compare up to four publications without
+              creating an account. Signing in allows you to save candidate
+              publications to your account workspace while reviewing editorial
+              fit with stakeholders. Direct checkout and automated payment are
+              not active, and saving a publication does not lock in publisher
+              rates or editorial acceptance, so always verify current article
+              specifications, byline attribution and publication timelines
+              before finalizing your outreach.
             </p>
-            <h3>A shortlist for an agency or small business</h3>
+            <h3>Evaluating guest posting sites for an agency or business</h3>
             <p>
-              For a software client, start with the{" "}
+              For a B2B software or technology campaign, begin with the{" "}
               <Link href="/saas-guest-posting-sites/">
                 SaaS publisher directory
-              </Link>
-              , compare recent coverage with the client’s product, and keep a
-              separate brief for each candidate. For a smaller campaign, use{" "}
-              <Link href="/guest-posting-sites-under-50/">
-                guest posting sites with placement prices up to $50
               </Link>{" "}
-              as a budget filter, then allow separately for writing and review.
-              Affordable does not mean suitable: use the{" "}
+              or{" "}
+              <Link href="/tech-guest-posting-sites/">
+                technology guest posting sites
+              </Link>
+              , inspect recent editorial articles on each domain, and prepare an
+              original article pitch tailored to the publication’s readers. For
+              smaller content marketing budgets, filter{" "}
+              <Link href="/guest-posting-sites-under-50/">
+                guest posting sites under $50
+              </Link>{" "}
+              or{" "}
+              <Link href="/guest-posting-sites-under-100/">
+                guest posting sites under $100
+              </Link>{" "}
+              as an initial price ceiling, while budgeting separately for
+              subject-matter writing and fact-checking. Lower guest post prices
+              still require strict quality control: apply the{" "}
               <Link href="/guides/vet-a-guest-post-site/">
                 publisher evaluation checklist
               </Link>{" "}
-              before saving a plan.
+              to inspect outbound link neighborhoods, indexation health and
+              topical consistency across recent posts.
             </p>
-            <h3>Compare prices and check organic traffic claims</h3>
+            <h3>Compare guest post prices and verify organic search traffic</h3>
             <p>
-              The catalogue can help you find guest posting opportunities by
-              industry, but a traffic field alone does not establish organic
-              search visits. Ask for the source, measurement date, relevant
-              queries and audience geography. Compare{" "}
+              A searchable guest post marketplace helps teams discover relevant
+              publications by industry, from{" "}
+              <Link href="/finance-guest-posting-sites/">
+                finance guest posting sites
+              </Link>{" "}
+              and{" "}
+              <Link href="/health-guest-posting-sites/">
+                health publications
+              </Link>{" "}
+              to{" "}
+              <Link href="/business-guest-posting-sites/">
+                business media domains
+              </Link>
+              , but a third-party traffic number alone does not prove active
+              organic readership. Check whether organic search traffic is spread
+              across relevant industry queries rather than concentrated on a
+              single unrelated page, and verify that recent articles appear in
+              Google search results. Compare{" "}
               <Link href="/guest-post-prices/">
                 guest post pricing by niche
               </Link>{" "}
               and read{" "}
               <Link href="/guides/guest-post-cost/">
-                what a guest post can cost
+                what a guest post costs
               </Link>{" "}
-              before comparing total campaign costs.
+              alongside{" "}
+              <Link href="/guides/guest-posting-for-seo/">
+                how guest posting supports SEO
+              </Link>{" "}
+              to benchmark publisher fees, editorial standards and realistic
+              organic search outcomes.
+            </p>
+            <h3>Editorial standards, internal linking and long-term visibility</h3>
+            <p>
+              Sustainable guest blogging depends on publishing genuinely useful
+              articles on websites where your target audience already reads.
+              Whether you are comparing paid guest posting sites with clearly
+              disclosed sponsorship or pitching earned editorial contributions
+              using our{" "}
+              <Link href="/guides/outreach-email-templates/">
+                guest post outreach email templates
+              </Link>
+              , prioritize topical authority, natural anchor text and strong
+              on-site destination pages. Pair external publication coverage with
+              a clear{" "}
+              <Link href="/guides/internal-linking-for-seo/">
+                internal linking strategy for SEO
+              </Link>{" "}
+              and a structured{" "}
+              <Link href="/guides/technical-seo-checklist/">
+                technical SEO checklist
+              </Link>{" "}
+              so referral visitors and search crawlers reach well-structured,
+              indexable pages on your domain.
             </p>
           </div>
         </details>

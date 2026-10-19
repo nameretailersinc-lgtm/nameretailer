@@ -205,20 +205,82 @@ export const marketplaceContent: ArticleDraft[] = [
   {
     cluster: "Content",
     title: "Match article structure to the reader's search intent",
+    seoTitle: "How to Write SEO Friendly Blog Posts: Structure & Checklist",
+    metaDescription:
+      "Learn how to write SEO friendly blog posts by matching article structure to search intent, with a practical blog post SEO checklist and heading examples.",
     answer:
-      "Structure the article around the task implied by the question. A reader comparing options needs criteria and trade-offs; someone learning a process needs ordered instructions and prerequisites. Start with that distinction rather than placing the same introductory essay on every subject.",
+      "Learning how to write SEO friendly blog posts starts with matching the article's structure to the task behind the reader's query. A reader comparing options needs evaluation criteria and trade-offs; someone learning a workflow needs ordered steps, prerequisites, and a concrete example. Open with a direct answer, organize sections under descriptive H2 and H3 headings, and apply a repeatable blog post SEO checklist rather than pasting a generic introduction onto every topic.",
     example:
-      "Two fictional questions involve image compression. 'What is WebP?' calls for a definition and format comparison. 'How do I reduce this image's file size?' calls for source preparation, quality settings and output inspection. Linking the second article to a working compression tool gives the reader a direct next step instead of another abstract explanation.",
+      "Two fictional queries involve image optimization. 'What is WebP?' calls for a concise definition and format comparison table. 'How do I compress an image before uploading?' calls for source dimension checks, quality settings, and output inspection steps linked to a working compression tool. Matching the format to the reader's intent makes both posts immediately useful.",
     steps: [
-      "Write down the question and identify the expected output: definition, comparison, checklist, troubleshooting decision or finished file. Choose headings that serve that output.",
-      "Put necessary prerequisites before the steps. Include an example that demonstrates the decision rather than merely restating the section title.",
-      "End with a relevant next action and the limits of the guidance. Remove tangents that do not help the reader complete the stated task.",
+      "Write down the primary reader question and choose the output format that solves it: definition, comparison matrix, ordered walkthrough, or troubleshooting checklist.",
+      "Place the direct answer and prerequisites near the top, then use descriptive H2 and H3 headings so readers and crawlers can scan the workflow.",
+      "Review the finished manuscript against a blog post SEO checklist: verify title and meta description clarity, internal links, image alt attributes, and primary source citations.",
+    ],
+    sections: [
+      {
+        heading: "How to write SEO friendly blog posts for different search intents",
+        body: "Before drafting, align the query type with the structural elements that help the reader finish their task:",
+        table: {
+          columns: ["Query Intent Pattern", "Recommended Article Structure", "Helpful Next Step to Link"],
+          rows: [
+            [
+              "Process / How-to ('how to write SEO friendly blog posts')",
+              "Direct answer, prerequisites, numbered steps, worked example, and verification checklist",
+              "Related workflow guide or interactive checker tool",
+            ],
+            [
+              "Comparison ('guest post vs link insertion')",
+              "Direct distinction, side-by-side criteria table, edge cases, and decision rules",
+              "Directory or marketplace filter matching the chosen option",
+            ],
+            [
+              "Cost / Budgeting ('guest post price')",
+              "Scope breakdown, price range table, included deliverables, and hidden-cost warnings",
+              "Live price distribution guide or budget worksheet",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Practical blog post SEO checklist before publishing",
+        body: "Use this blog post SEO checklist to verify on-page structure and editorial quality before release:",
+        checklist: [
+          "Use one descriptive H1 heading that matches the page's topic and reader task.",
+          "Write a unique SEO title (under 60 characters) and meta description (under 155 characters) that summarize the actual answer.",
+          "Open with a concise direct answer in the first paragraph before expanding into background context.",
+          "Maintain logical H2 and H3 heading hierarchy without skipping heading levels.",
+          "Include an original worked example, comparison table, or code snippet that demonstrates the concept.",
+          "Add 2 to 5 contextual internal links using specific anchor text that names the destination topic.",
+          "Cite primary documentation for factual or policy claims and verify that all links resolve cleanly.",
+        ],
+      },
     ],
     avoid:
-      "Avoid forcing every article into an identical number of headings or adding unrelated questions just to mention more keywords. A professional page can be short when the task is narrow, but it must still contain the information required to act confidently.",
-    question: "Should all articles use a step-by-step format?",
+      "Avoid forcing every blog post into an arbitrary word count or repeating exact-match keywords unnaturally across headings. Search engines reward helpful, well-structured answers that satisfy the reader's task.",
+    question: "Should all SEO blog posts use a step-by-step format?",
     response:
-      "No. Use steps for processes, criteria for comparisons and concise explanations for definitions; match the format to the question.",
+      "No. Use ordered steps for processes, comparison tables for trade-offs, and concise definitions for concept queries; match the structure to the reader's task.",
+    extraFaq: [
+      [
+        "How long should an SEO friendly blog post be?",
+        "Length should follow the complexity of the reader's question. A focused technical check may need 500 words and a code snippet, while a full buyer guide may need tables, templates, and a multi-step checklist.",
+      ],
+      [
+        "Where should the primary keyword appear in a blog post?",
+        "Include the primary topic naturally in the SEO title, H1 heading, opening answer, and relevant subheadings where it clarifies the subject—never by forcing repetitive phrasing.",
+      ],
+    ],
+    source: {
+      label: "Google: creating helpful, reliable, people-first content",
+      url: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+    },
+    relatedLinks: [
+      ["Headlines that describe the article instead of overselling it", "/blog/headlines-that-describe-the-article-instead-of-overselling-it/"],
+      ["Meta descriptions that help readers choose a page", "/blog/meta-descriptions-that-help-readers-choose-a-page/"],
+      ["Internal links that make an article library easier to use", "/blog/internal-links-that-make-an-article-library-easier-to-use/"],
+      ["How to Write Guest Post Content That Passes Editorial Review", "/guides/guest-post-content-standards/"],
+    ],
   },
   {
     cluster: "Content",
@@ -343,20 +405,75 @@ export const marketplaceContent: ArticleDraft[] = [
   {
     cluster: "Content",
     title: "A content-refresh decision log",
+    seoTitle: "SEO Content Audit Checklist & Refresh Decision Log",
+    metaDescription:
+      "Run a practical SEO content audit checklist and refresh decision log to update outdated guides, consolidate duplicates, and verify sources.",
     answer:
-      "Refresh an article when its answer, evidence or practical instructions need a substantive change. Keep a short log of what changed and why. Updating a date alone does not tell the reader that the guidance was actually reviewed or improved.",
+      "An SEO content audit checklist helps editors decide whether an existing article should be kept as-is, refreshed with updated evidence, or consolidated with an overlapping page. Refresh an article when its answer, product instructions, or primary sources need a substantive correction—and record what changed and why in a decision log rather than merely bumping the publication date.",
     example:
-      "A fictional tool guide still says only a word counter is available after image tools have launched. The refresh should update the capability description, screenshots and relevant links. If the guidance remains accurate but a reviewer checked it again, distinguish that review from a new publication or a major rewrite.",
+      "A fictional tool guide still states that only a word counter is available after image and technical SEO tools have launched. During a quarterly SEO content audit checklist review, the editor flags the outdated scope, updates the workflow steps, repairs internal links, and logs the substantive revision date.",
     steps: [
-      "Start with a concrete reason: changed product behavior, broken source, missing answer, confusing instruction or new approved evidence. Record the issue before editing.",
-      "Review the affected sections and their internal links. Update examples when they no longer match the current interface or available data.",
-      "Summarize the substantive changes and record an actual review date. Keep original publication history separate so returning readers understand what is new.",
+      "Start each audit row with a concrete trigger: changed product behavior, broken external source, overlapping query intent, or missing workflow steps.",
+      "Inspect the article's headings, examples, internal links, and metadata against current documentation and reader tasks.",
+      "Record the substantive changes made and the actual review date while keeping original publication history distinct.",
+    ],
+    sections: [
+      {
+        heading: "SEO content audit checklist: evaluating existing articles",
+        body: "Use this decision matrix during a content audit to assign one clear action to every URL in your archive:",
+        table: {
+          columns: ["Audit Finding", "Recommended Action", "What to Record in the Log"],
+          rows: [
+            [
+              "Accurate answer, valid sources, distinct topic",
+              "Keep as-is; update sources-checked date only if re-verified",
+              "Date verified and primary topic ownership",
+            ],
+            [
+              "Outdated steps, missing examples, or weak internal links",
+              "Refresh in place without changing the canonical URL slug",
+              "Specific sections expanded, sources updated, and revision date",
+            ],
+            [
+              "Two URLs targeting the exact same question and intent",
+              "Consolidate unique value into the stronger canonical URL",
+              "Merged sections, updated internal links, and retirement note",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Step-by-step SEO content audit checklist",
+        body: "Check these items before marking a refreshed article complete:",
+        checklist: [
+          "Confirm the URL serves a distinct search intent that does not cannibalize another guide.",
+          "Verify that the opening paragraph answers the primary question directly and accurately.",
+          "Check all outbound reference links and replace outdated or broken documentation URLs.",
+          "Add contextual internal links to newer guides, directories, or interactive tools.",
+          "Ensure the SEO title, meta description, and Article structured data match the updated body.",
+        ],
+      },
     ],
     avoid:
-      "Avoid adding unsupported results or switching dates to create an appearance of freshness. Do not revise unrelated paragraphs merely to claim a larger update. A good refresh makes a specific reader task easier or more accurate, and the change log should explain that improvement.",
+      "Avoid changing published dates to manufacture freshness when no meaningful edit occurred. A trustworthy SEO content audit checklist improves accuracy and usefulness for readers.",
     question: "Should every article get a new date each month?",
     response:
       "No. Record real publication, modification and review events; schedule a review based on the topic's change rate and importance.",
+    extraFaq: [
+      [
+        "How often should you run an SEO content audit checklist?",
+        "Review core commercial and technical guides quarterly or whenever product features, pricing structures, or official search documentation change.",
+      ],
+    ],
+    source: {
+      label: "Google: creating helpful, reliable, people-first content",
+      url: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+    },
+    relatedLinks: [
+      ["Match article structure to the reader's search intent", "/blog/match-article-structure-to-the-reader-s-search-intent/"],
+      ["Internal links that make an article library easier to use", "/blog/internal-links-that-make-an-article-library-easier-to-use/"],
+      ["A practical SEO measurement plan before publishing", "/blog/a-practical-seo-measurement-plan-before-publishing/"],
+    ],
   },
   {
     cluster: "Content",

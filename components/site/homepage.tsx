@@ -158,10 +158,9 @@ export function HomepageHero() {
           src="/01_hero_analytics_illustration.png"
           width={700}
           height={475}
-          sizes="(max-width: 640px) 92vw, (max-width: 1000px) 48vw, 620px"
+          sizes="(max-width: 640px) 360px, (max-width: 1000px) 46vw, 560px"
           alt=""
-          loading="eager"
-          fetchPriority="high"
+          preload
         />
         <span className={styles.rocket}>
           <Rocket size={44} strokeWidth={1.5} />

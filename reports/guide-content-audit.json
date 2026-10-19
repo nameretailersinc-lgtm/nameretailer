@@ -1,5 +1,5 @@
 {
-  "auditedAt": "2026-10-19T04:36:43.672Z",
+  "auditedAt": "2026-10-19T09:48:41.444Z",
   "scope": "Read-only census of every code-managed /guides/[slug]/ detail page. No content, routes, database, approval or indexing changes. Source presence is not claim-by-claim source verification.",
   "total": 25,
   "approved": 25,
@@ -26,8 +26,8 @@
       "missing": 0
     },
     "sourcesCheckedAt": {
-      "present": 24,
-      "missing": 1
+      "present": 25,
+      "missing": 0
     }
   },
   "articleSchemaEligible": 5,
@@ -103,6 +103,20 @@
     "exactDuplicateSectionBodies": [],
     "repeatedHeadings": [
       {
+        "value": "decision checklist",
+        "paths": [
+          "/guides/choose-a-domain-name/",
+          "/guides/buy-and-register-a-domain-name/",
+          "/guides/domain-name-seo-and-migrations/",
+          "/guides/guest-posting-for-beginners/",
+          "/guides/guest-post-outreach-templates/",
+          "/guides/guest-post-submission-guidelines/",
+          "/guides/guest-posting-for-local-seo/",
+          "/guides/guest-posting-checklist/",
+          "/guides/guest-post-vs-sponsored-post/"
+        ]
+      },
+      {
         "value": "continue planning your domain",
         "paths": [
           "/guides/choose-a-domain-name/",
@@ -112,6 +126,36 @@
       },
       {
         "value": "sources",
+        "paths": [
+          "/guides/choose-a-domain-name/",
+          "/guides/buy-and-register-a-domain-name/",
+          "/guides/domain-name-seo-and-migrations/",
+          "/guides/guest-posting-for-beginners/",
+          "/guides/find-guest-posting-opportunities/",
+          "/guides/guest-post-outreach-templates/",
+          "/guides/write-a-guest-post/",
+          "/guides/guest-post-submission-guidelines/",
+          "/guides/guest-posting-strategy/",
+          "/guides/guest-posting-vs-content-marketing/",
+          "/guides/guest-posting-vs-digital-pr/",
+          "/guides/free-vs-paid-guest-posting/",
+          "/guides/guest-posting-for-small-businesses/",
+          "/guides/check-guest-post-website-traffic/",
+          "/guides/guest-posting-for-local-seo/",
+          "/guides/guest-posting-for-ecommerce/",
+          "/guides/measure-guest-posting-results/",
+          "/guides/guest-posting-mistakes/",
+          "/guides/guest-posting-checklist/",
+          "/guides/guest-post-cost/",
+          "/guides/guest-post-vs-link-insertion/",
+          "/guides/da-vs-dr-and-traffic/",
+          "/guides/vet-a-guest-post-site/",
+          "/guides/paid-guest-posts-google-link-policies/",
+          "/guides/guest-post-vs-sponsored-post/"
+        ]
+      },
+      {
+        "value": "continue with this decision",
         "paths": [
           "/guides/choose-a-domain-name/",
           "/guides/buy-and-register-a-domain-name/",
@@ -178,17 +222,8 @@
           "/guides/write-a-guest-post/",
           "/guides/guest-posting-strategy/",
           "/guides/guest-posting-for-small-businesses/",
-          "/guides/guest-posting-for-ecommerce/"
-        ]
-      },
-      {
-        "value": "decision checklist",
-        "paths": [
-          "/guides/guest-posting-for-beginners/",
-          "/guides/guest-post-outreach-templates/",
-          "/guides/guest-post-submission-guidelines/",
-          "/guides/guest-posting-for-local-seo/",
-          "/guides/guest-posting-checklist/"
+          "/guides/guest-posting-for-ecommerce/",
+          "/guides/guest-post-vs-sponsored-post/"
         ]
       },
       {
@@ -209,32 +244,8 @@
           "/guides/guest-posting-for-ecommerce/",
           "/guides/measure-guest-posting-results/",
           "/guides/guest-posting-mistakes/",
-          "/guides/guest-posting-checklist/"
-        ]
-      },
-      {
-        "value": "continue with this decision",
-        "paths": [
-          "/guides/guest-posting-for-beginners/",
-          "/guides/find-guest-posting-opportunities/",
-          "/guides/guest-post-outreach-templates/",
-          "/guides/write-a-guest-post/",
-          "/guides/guest-post-submission-guidelines/",
-          "/guides/guest-posting-strategy/",
-          "/guides/guest-posting-vs-content-marketing/",
-          "/guides/guest-posting-vs-digital-pr/",
-          "/guides/free-vs-paid-guest-posting/",
-          "/guides/guest-posting-for-small-businesses/",
-          "/guides/check-guest-post-website-traffic/",
-          "/guides/guest-posting-for-local-seo/",
-          "/guides/guest-posting-for-ecommerce/",
-          "/guides/measure-guest-posting-results/",
-          "/guides/guest-posting-mistakes/",
           "/guides/guest-posting-checklist/",
-          "/guides/guest-post-cost/",
-          "/guides/da-vs-dr-and-traffic/",
-          "/guides/vet-a-guest-post-site/",
-          "/guides/paid-guest-posts-google-link-policies/"
+          "/guides/guest-post-vs-sponsored-post/"
         ]
       }
     ],
@@ -247,7 +258,7 @@
       {
         "a": "/guides/guest-posting-for-beginners/",
         "b": "/guides/guest-post-vs-sponsored-post/",
-        "fiveWordShingleJaccard": 0.003
+        "fiveWordShingleJaccard": 0.0032
       },
       {
         "a": "/guides/guest-posting-for-small-businesses/",
@@ -305,14 +316,14 @@
         "fiveWordShingleJaccard": 0.001
       },
       {
+        "a": "/guides/paid-guest-posts-google-link-policies/",
+        "b": "/guides/guest-post-vs-sponsored-post/",
+        "fiveWordShingleJaccard": 0.001
+      },
+      {
         "a": "/guides/measure-guest-posting-results/",
         "b": "/guides/da-vs-dr-and-traffic/",
         "fiveWordShingleJaccard": 0.0009
-      },
-      {
-        "a": "/guides/choose-a-domain-name/",
-        "b": "/guides/buy-and-register-a-domain-name/",
-        "fiveWordShingleJaccard": 0
       }
     ]
   },
@@ -332,14 +343,14 @@
       "author": null,
       "reviewer": null,
       "publishedAt": null,
-      "updatedAt": "2026-10-15",
-      "sourcesCheckedAt": "2026-10-15",
-      "renderedSourcesCheckedAt": "2026-10-15",
+      "updatedAt": "2026-10-19",
+      "sourcesCheckedAt": "2026-10-19",
+      "renderedSourcesCheckedAt": "2026-10-19",
       "articleSchemaEligible": false,
-      "authoredWords": 458,
+      "authoredWords": 491,
       "questionSections": 5,
       "steps": 0,
-      "checklistItems": 0,
+      "checklistItems": 4,
       "templates": 0,
       "faqQuestions": 0,
       "tableRows": 4,
@@ -349,11 +360,26 @@
         "Compare startup and ecommerce needs",
         "Choose an extension for the audience",
         "Verify the shortlist before buying",
+        "Decision checklist",
         "Continue planning your domain",
         "Sources",
+        "Continue with this decision",
         "Which publications should I compare next?"
       ],
-      "related": [],
+      "related": [
+        [
+          "Check domain character length",
+          "/domain-length-checker/"
+        ],
+        [
+          "Register and connect your domain",
+          "/guides/buy-and-register-a-domain-name/"
+        ],
+        [
+          "Understand domains, SEO and migrations",
+          "/guides/domain-name-seo-and-migrations/"
+        ]
+      ],
       "sources": [
         [
           "Shopify: choosing a domain name",
@@ -368,7 +394,6 @@
         "Missing supplied author",
         "No named reviewer; not automatically a defect",
         "Missing supplied original publication date",
-        "No topic-specific related links",
         "Shared closing CTA promotes guest-post inventory on a domain-planning guide"
       ]
     },
@@ -387,14 +412,14 @@
       "author": null,
       "reviewer": null,
       "publishedAt": null,
-      "updatedAt": "2026-10-15",
-      "sourcesCheckedAt": "2026-10-15",
-      "renderedSourcesCheckedAt": "2026-10-15",
+      "updatedAt": "2026-10-19",
+      "sourcesCheckedAt": "2026-10-19",
+      "renderedSourcesCheckedAt": "2026-10-19",
       "articleSchemaEligible": false,
-      "authoredWords": 360,
+      "authoredWords": 401,
       "questionSections": 5,
       "steps": 0,
-      "checklistItems": 0,
+      "checklistItems": 4,
       "templates": 0,
       "faqQuestions": 0,
       "tableRows": 0,
@@ -404,11 +429,26 @@
         "Keep registration under your control",
         "Connect hosting and email deliberately",
         "Plan renewals and future transfers",
+        "Decision checklist",
         "Continue planning your domain",
         "Sources",
+        "Continue with this decision",
         "Which publications should I compare next?"
       ],
-      "related": [],
+      "related": [
+        [
+          "Choose a business domain shortlist",
+          "/guides/choose-a-domain-name/"
+        ],
+        [
+          "Plan domain SEO and URL migrations",
+          "/guides/domain-name-seo-and-migrations/"
+        ],
+        [
+          "Explore the domain planning hub",
+          "/domain-names/"
+        ]
+      ],
       "sources": [
         [
           "ICANN: domain registration process",
@@ -423,7 +463,6 @@
         "Missing supplied author",
         "No named reviewer; not automatically a defect",
         "Missing supplied original publication date",
-        "No topic-specific related links",
         "Shared closing CTA promotes guest-post inventory on a domain-planning guide"
       ]
     },
@@ -442,14 +481,14 @@
       "author": null,
       "reviewer": null,
       "publishedAt": null,
-      "updatedAt": "2026-10-15",
-      "sourcesCheckedAt": "2026-10-15",
-      "renderedSourcesCheckedAt": "2026-10-15",
+      "updatedAt": "2026-10-19",
+      "sourcesCheckedAt": "2026-10-19",
+      "renderedSourcesCheckedAt": "2026-10-19",
       "articleSchemaEligible": false,
-      "authoredWords": 443,
+      "authoredWords": 488,
       "questionSections": 6,
       "steps": 0,
-      "checklistItems": 0,
+      "checklistItems": 4,
       "templates": 0,
       "faqQuestions": 0,
       "tableRows": 0,
@@ -460,11 +499,26 @@
         "Update all URL signals together",
         "Measure the migration rather than promise recovery",
         "Check a previously used domain before purchase",
+        "Decision checklist",
         "Continue planning your domain",
         "Sources",
+        "Continue with this decision",
         "Which publications should I compare next?"
       ],
-      "related": [],
+      "related": [
+        [
+          "Canonical URL checklist for a site move",
+          "/blog/a-canonical-url-checklist-for-a-rebuilt-website/"
+        ],
+        [
+          "Choose a domain name for a business",
+          "/guides/choose-a-domain-name/"
+        ],
+        [
+          "Buy and register a domain name",
+          "/guides/buy-and-register-a-domain-name/"
+        ]
+      ],
       "sources": [
         [
           "Google: ranking systems and exact-match domains",
@@ -487,7 +541,6 @@
         "Missing supplied author",
         "No named reviewer; not automatically a defect",
         "Missing supplied original publication date",
-        "No topic-specific related links",
         "Shared closing CTA promotes guest-post inventory on a domain-planning guide"
       ]
     },
@@ -1729,9 +1782,9 @@
       "author": "Zuhoor Uddin",
       "reviewer": null,
       "publishedAt": "2026-07-02",
-      "updatedAt": "2026-10-09",
-      "sourcesCheckedAt": null,
-      "renderedSourcesCheckedAt": "2026-10-09",
+      "updatedAt": "2026-10-19",
+      "sourcesCheckedAt": "2026-10-19",
+      "renderedSourcesCheckedAt": "2026-10-19",
       "articleSchemaEligible": true,
       "authoredWords": 320,
       "questionSections": 5,
@@ -1747,9 +1800,23 @@
         "When is a new guest post the better choice?",
         "Do both formats need sponsored disclosure?",
         "Sources",
+        "Continue with this decision",
         "Which publications should I compare next?"
       ],
-      "related": [],
+      "related": [
+        [
+          "Compare guest post costs and budgets",
+          "/guides/guest-post-cost/"
+        ],
+        [
+          "Understand paid-link qualification",
+          "/guides/paid-guest-posts-google-link-policies/"
+        ],
+        [
+          "Evaluate a guest post publisher",
+          "/guides/vet-a-guest-post-site/"
+        ]
+      ],
       "sources": [
         [
           "Google: qualifying paid links",
@@ -1761,9 +1828,7 @@
         ]
       ],
       "flags": [
-        "No named reviewer; not automatically a defect",
-        "Template supplies fallback source-check date without a per-guide record",
-        "No topic-specific related links"
+        "No named reviewer; not automatically a defect"
       ]
     },
     {
@@ -2000,26 +2065,50 @@
       "author": null,
       "reviewer": null,
       "publishedAt": null,
-      "updatedAt": "2026-10-10",
-      "sourcesCheckedAt": "2026-10-10",
-      "renderedSourcesCheckedAt": "2026-10-10",
+      "updatedAt": "2026-10-19",
+      "sourcesCheckedAt": "2026-10-19",
+      "renderedSourcesCheckedAt": "2026-10-19",
       "articleSchemaEligible": false,
-      "authoredWords": 247,
-      "questionSections": 4,
-      "steps": 0,
-      "checklistItems": 0,
+      "authoredWords": 514,
+      "questionSections": 5,
+      "steps": 4,
+      "checklistItems": 5,
       "templates": 0,
-      "faqQuestions": 0,
+      "faqQuestions": 2,
       "tableRows": 3,
       "headings": [
         "Can a guest post also be sponsored?",
         "Does sponsorship determine the writing scope?",
         "What should readers be told?",
+        "Example: comparing an editorial pitch and a sponsored quote",
         "Does either format guarantee rankings?",
+        "Put it into practice",
+        "Decision checklist",
+        "Common questions",
+        "Is a paid guest post the same as a sponsored post?",
+        "Do unpaid guest posts need rel=\"sponsored\"?",
         "Sources",
+        "Continue with this decision",
         "Which publications should I compare next?"
       ],
-      "related": [],
+      "related": [
+        [
+          "Compare free and paid guest posting",
+          "/guides/free-vs-paid-guest-posting/"
+        ],
+        [
+          "Read Google's paid-link policy guide",
+          "/guides/paid-guest-posts-google-link-policies/"
+        ],
+        [
+          "Compare guest post costs",
+          "/guides/guest-post-cost/"
+        ],
+        [
+          "Browse the guest post marketplace",
+          "/"
+        ]
+      ],
       "sources": [
         [
           "Google: qualifying paid links",
@@ -2033,8 +2122,7 @@
       "flags": [
         "Missing supplied author",
         "No named reviewer; not automatically a defect",
-        "Missing supplied original publication date",
-        "No topic-specific related links"
+        "Missing supplied original publication date"
       ]
     }
   ]

@@ -5,6 +5,7 @@ import { SiteFooter, SiteHeader } from "@/components/site/chrome";
 export const metadata: Metadata = {
   title: "Page Not Found | Name Retailer",
   robots: { index: false, follow: true },
+  alternates: { canonical: null },
 };
 
 // Rendered with a real 404 status for unknown URLs; never redirects to the homepage.

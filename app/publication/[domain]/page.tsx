@@ -199,7 +199,7 @@ export default async function Page({ params }: Props) {
             </dl>
             <div className="publication-actions">
               <BuyPlacement productId={product.id} />
-              <ShortlistButton product={product} />
+              <ShortlistButton product={product} showLabel />
               <a href="#publication-pricing">Review price and scope</a>
             </div>
             <p className={styles.stamp}>

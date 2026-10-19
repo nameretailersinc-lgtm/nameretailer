@@ -137,6 +137,17 @@ function isCompactViewport() {
 function serverCompactViewport() {
   return true;
 }
+function subscribeToCardsViewport(onChange: () => void) {
+  const viewport = window.matchMedia("(max-width: 1100px)");
+  viewport.addEventListener("change", onChange);
+  return () => viewport.removeEventListener("change", onChange);
+}
+function isCardsViewport() {
+  return window.matchMedia("(max-width: 1100px)").matches;
+}
+function serverCardsViewport() {
+  return false;
+}
 export function productPrice(cents: number) {
   return usd.format(cents / 100);
 }
@@ -1073,6 +1084,271 @@ function ShortlistBar({ metricView }: { metricView: boolean }) {
   );
 }
 
+const MarketplaceInventoryList = memo(function MarketplaceInventoryList({
+  data,
+  page,
+  pageSize,
+  homePage,
+  metricView,
+  onSelectProduct,
+}: {
+  data: PublicProduct[];
+  page: number;
+  pageSize: number;
+  homePage: boolean;
+  metricView: boolean;
+  onSelectProduct: (product: PublicProduct) => void;
+}) {
+  const showCards = useSyncExternalStore(
+    subscribeToCardsViewport,
+    isCardsViewport,
+    serverCardsViewport,
+  );
+  return (
+    <>
+      <div
+        className="marketplace-table-region"
+        tabIndex={0}
+        role="region"
+        aria-label="Publication comparison table — scroll horizontally if needed"
+      >
+        <table className="marketplace-table">
+          <caption className="screen-reader-only">
+            Publications with USD placement price and metrics. A dash means the
+            metric is unavailable.
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" className="marketplace-rank-column">
+                #
+              </th>
+              <th scope="col">Publication</th>
+              <th
+                scope="col"
+                className={homePage ? homepageStyles.metricDa : undefined}
+              >
+                DA
+              </th>
+              <th
+                scope="col"
+                className={homePage ? homepageStyles.metricDr : undefined}
+              >
+                DR
+              </th>
+              <th scope="col">
+                <span
+                  className={
+                    homePage ? homepageStyles.trafficHeading : undefined
+                  }
+                >
+                  Est. traffic
+                  {homePage && <Info size={12} aria-hidden="true" />}
+                </span>
+              </th>
+              <th scope="col">Country / language</th>
+              <th scope="col">Price (USD)</th>
+              <th scope="col">Actions</th>
+              <th scope="col">Compare</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.map((product, index) => (
+              <ShortlistListing
+                key={product.id}
+                as="tr"
+                productId={product.id}
+              >
+                <td>
+                  <span className="marketplace-row-number">
+                    {(page - 1) * pageSize + index + 1}
+                  </span>
+                </td>
+                <th scope="row">
+                  <div className="marketplace-publication-identity">
+                    <span
+                      className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
+                      aria-hidden="true"
+                    >
+                      {productDomain(product.domain)
+                        .replace(/^www\./, "")
+                        .slice(0, 2)
+                        .toUpperCase()}
+                    </span>
+                    <div>
+                      <PublicationName product={product} />
+                      <p>{product.category || "Topic unavailable"}</p>
+                    </div>
+                  </div>
+                </th>
+                <td>
+                  <TableMetric value={product.metrics.da} tone="da" />
+                </td>
+                <td>
+                  <TableMetric value={product.metrics.dr} tone="dr" />
+                </td>
+                <td>
+                  <TableMetric
+                    value={product.metrics.traffic}
+                    tone="traffic"
+                  />
+                </td>
+                <td>
+                  <span className="marketplace-publication-country">
+                    <CountryName country={product.country} />
+                  </span>
+                  <span className="marketplace-publication-language">
+                    {product.language || "Unavailable"}
+                  </span>
+                </td>
+                <td className="marketplace-price">
+                  {productPrice(product.priceCents)}
+                </td>
+                <td>
+                  <div
+                    className={`marketplace-row-actions ${homepageStyles.rowActions}`}
+                  >
+                    <BuyPlacement productId={product.id} />
+                    <Button
+                      variant="secondary"
+                      className="marketplace-view-details"
+                      onClick={() => onSelectProduct(product)}
+                    >
+                      View Details
+                      <ArrowRight size={14} aria-hidden="true" />
+                    </Button>
+                  </div>
+                </td>
+                <td>
+                  <ShortlistButton product={product} />
+                </td>
+              </ShortlistListing>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {showCards && (
+        <div className="marketplace-cards">
+          {data.map((product, index) => (
+            <ShortlistListing
+              key={product.id}
+              as="article"
+              productId={product.id}
+              className={`publication-card${metricView ? "" : " marketplace-listing-card"}`}
+            >
+              <div className="publication-card-heading">
+                {!metricView && (
+                  <span
+                    className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
+                    aria-hidden="true"
+                  >
+                    {productDomain(product.domain)
+                      .replace(/^www\./, "")
+                      .slice(0, 2)
+                      .toUpperCase()}
+                  </span>
+                )}
+                <div>
+                  <h3>
+                    <PublicationName product={product} />
+                  </h3>
+                  {!metricView && (
+                    <p className="marketplace-listing-topic">
+                      {product.category || "Topic unavailable"}
+                    </p>
+                  )}
+                </div>
+                <strong className="marketplace-price">
+                  {productPrice(product.priceCents)}
+                  {!metricView && <small>per placement</small>}
+                </strong>
+              </div>
+              {metricView && (
+                <p className="muted">
+                  {product.category || "Topic unavailable"}
+                </p>
+              )}
+              <dl
+                className={
+                  metricView ? undefined : "marketplace-listing-metrics"
+                }
+              >
+                <div>
+                  <dt>DA</dt>
+                  <dd>
+                    <TableMetric value={product.metrics.da} tone="da" />
+                  </dd>
+                </div>
+                <div>
+                  <dt>DR</dt>
+                  <dd>
+                    <TableMetric value={product.metrics.dr} tone="dr" />
+                  </dd>
+                </div>
+                <div>
+                  <dt>
+                    {metricView ? "Estimated traffic" : "Est. traffic"}
+                  </dt>
+                  <dd>
+                    <TableMetric
+                      value={product.metrics.traffic}
+                      tone="traffic"
+                    />
+                  </dd>
+                </div>
+                {metricView && (
+                  <>
+                    <div>
+                      <dt>Country</dt>
+                      <dd>
+                        <CountryName country={product.country} />
+                      </dd>
+                    </div>
+                    <div>
+                      <dt>Language</dt>
+                      <dd>{product.language || "Unavailable"}</dd>
+                    </div>
+                  </>
+                )}
+              </dl>
+              {metricView ? (
+                <>
+                  <Detail product={product} />
+                  <BuyPlacement productId={product.id} />
+                  <ShortlistButton product={product} showLabel />
+                </>
+              ) : (
+                <>
+                  <div className="marketplace-listing-audience">
+                    <Globe2 size={14} aria-hidden="true" />
+                    <span>
+                      <CountryName country={product.country} />
+                    </span>
+                    <span>
+                      {product.language || "Language unavailable"}
+                    </span>
+                  </div>
+                  <div className="marketplace-listing-actions">
+                    <BuyPlacement productId={product.id} />
+                    <Button
+                      variant="secondary"
+                      className="marketplace-view-details"
+                      onClick={() => onSelectProduct(product)}
+                    >
+                      View Details
+                      <ArrowRight size={14} aria-hidden="true" />
+                    </Button>
+                    <ShortlistButton product={product} showLabel />
+                  </div>
+                </>
+              )}
+            </ShortlistListing>
+          ))}
+        </div>
+      )}
+    </>
+  );
+});
+
 export function Marketplace(props: Parameters<typeof MarketplaceContent>[0]) {
   return (
     <ShortlistProvider>
@@ -1753,251 +2029,14 @@ function MarketplaceContent({
                 <div className="marketplace-skeleton" aria-hidden="true" />
               </div>
             ) : value?.data.length ? (
-              <>
-                <div
-                  className="marketplace-table-region"
-                  tabIndex={0}
-                  role="region"
-                  aria-label="Publication comparison table — scroll horizontally if needed"
-                >
-                  <table className="marketplace-table">
-                    <caption className="screen-reader-only">
-                      Publications with USD placement price and metrics. A dash
-                      means the metric is unavailable.
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col" className="marketplace-rank-column">
-                          #
-                        </th>
-                        <th scope="col">Publication</th>
-                        <th
-                          scope="col"
-                          className={
-                            homePage ? homepageStyles.metricDa : undefined
-                          }
-                        >
-                          DA
-                        </th>
-                        <th
-                          scope="col"
-                          className={
-                            homePage ? homepageStyles.metricDr : undefined
-                          }
-                        >
-                          DR
-                        </th>
-                        <th scope="col">
-                          <span
-                            className={
-                              homePage
-                                ? homepageStyles.trafficHeading
-                                : undefined
-                            }
-                          >
-                            Est. traffic
-                            {homePage && <Info size={12} aria-hidden="true" />}
-                          </span>
-                        </th>
-                        <th scope="col">Country / language</th>
-                        <th scope="col">Price (USD)</th>
-                        <th scope="col">Actions</th>
-                        <th scope="col">Compare</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {value.data.map((product, index) => (
-                        <ShortlistListing
-                          key={product.id}
-                          as="tr"
-                          productId={product.id}
-                        >
-                          <td>
-                            <span className="marketplace-row-number">
-                              {(value.page - 1) * value.pageSize + index + 1}
-                            </span>
-                          </td>
-                          <th scope="row">
-                            <div className="marketplace-publication-identity">
-                              <span
-                                className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
-                                aria-hidden="true"
-                              >
-                                {productDomain(product.domain)
-                                  .replace(/^www\./, "")
-                                  .slice(0, 2)
-                                  .toUpperCase()}
-                              </span>
-                              <div>
-                                <PublicationName product={product} />
-                                <p>{product.category || "Topic unavailable"}</p>
-                              </div>
-                            </div>
-                          </th>
-                          <td>
-                            <TableMetric value={product.metrics.da} tone="da" />
-                          </td>
-                          <td>
-                            <TableMetric value={product.metrics.dr} tone="dr" />
-                          </td>
-                          <td>
-                            <TableMetric
-                              value={product.metrics.traffic}
-                              tone="traffic"
-                            />
-                          </td>
-                          <td>
-                            <span className="marketplace-publication-country">
-                              <CountryName country={product.country} />
-                            </span>
-                            <span className="marketplace-publication-language">
-                              {product.language || "Unavailable"}
-                            </span>
-                          </td>
-                          <td className="marketplace-price">
-                            {productPrice(product.priceCents)}
-                          </td>
-                          <td>
-                            <div
-                              className={`marketplace-row-actions ${homepageStyles.rowActions}`}
-                            >
-                              <BuyPlacement productId={product.id} />
-                              <Button
-                                variant="secondary"
-                                className="marketplace-view-details"
-                                onClick={() => setSelectedProduct(product)}
-                              >
-                                View Details
-                                <ArrowRight size={14} aria-hidden="true" />
-                              </Button>
-                            </div>
-                          </td>
-                          <td>
-                            <ShortlistButton product={product} />
-                          </td>
-                        </ShortlistListing>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-                <div className="marketplace-cards">
-                  {value.data.map((product, index) => (
-                    <ShortlistListing
-                      key={product.id}
-                      as="article"
-                      productId={product.id}
-                      className={`publication-card${metricView ? "" : " marketplace-listing-card"}`}
-                    >
-                      <div className="publication-card-heading">
-                        {!metricView && (
-                          <span
-                            className={`marketplace-publication-mark marketplace-publication-mark-${index % 4}`}
-                            aria-hidden="true"
-                          >
-                            {productDomain(product.domain)
-                              .replace(/^www\./, "")
-                              .slice(0, 2)
-                              .toUpperCase()}
-                          </span>
-                        )}
-                        <div>
-                          <h3>
-                            <PublicationName product={product} />
-                          </h3>
-                          {!metricView && (
-                            <p className="marketplace-listing-topic">
-                              {product.category || "Topic unavailable"}
-                            </p>
-                          )}
-                        </div>
-                        <strong className="marketplace-price">
-                          {productPrice(product.priceCents)}
-                          {!metricView && <small>per placement</small>}
-                        </strong>
-                      </div>
-                      {metricView && (
-                        <p className="muted">
-                          {product.category || "Topic unavailable"}
-                        </p>
-                      )}
-                      <dl
-                        className={
-                          metricView ? undefined : "marketplace-listing-metrics"
-                        }
-                      >
-                        <div>
-                          <dt>DA</dt>
-                          <dd>
-                            <TableMetric value={product.metrics.da} tone="da" />
-                          </dd>
-                        </div>
-                        <div>
-                          <dt>DR</dt>
-                          <dd>
-                            <TableMetric value={product.metrics.dr} tone="dr" />
-                          </dd>
-                        </div>
-                        <div>
-                          <dt>
-                            {metricView ? "Estimated traffic" : "Est. traffic"}
-                          </dt>
-                          <dd>
-                            <TableMetric
-                              value={product.metrics.traffic}
-                              tone="traffic"
-                            />
-                          </dd>
-                        </div>
-                        {metricView && (
-                          <>
-                            <div>
-                              <dt>Country</dt>
-                              <dd>
-                                <CountryName country={product.country} />
-                              </dd>
-                            </div>
-                            <div>
-                              <dt>Language</dt>
-                              <dd>{product.language || "Unavailable"}</dd>
-                            </div>
-                          </>
-                        )}
-                      </dl>
-                      {metricView ? (
-                        <>
-                          <Detail product={product} />
-                          <BuyPlacement productId={product.id} />
-                          <ShortlistButton product={product} />
-                        </>
-                      ) : (
-                        <>
-                          <div className="marketplace-listing-audience">
-                            <Globe2 size={14} aria-hidden="true" />
-                            <span>
-                              <CountryName country={product.country} />
-                            </span>
-                            <span>
-                              {product.language || "Language unavailable"}
-                            </span>
-                          </div>
-                          <div className="marketplace-listing-actions">
-                            <BuyPlacement productId={product.id} />
-                            <Button
-                              variant="secondary"
-                              className="marketplace-view-details"
-                              onClick={() => setSelectedProduct(product)}
-                            >
-                              View Details
-                              <ArrowRight size={14} aria-hidden="true" />
-                            </Button>
-                            <ShortlistButton product={product} />
-                          </div>
-                        </>
-                      )}
-                    </ShortlistListing>
-                  ))}
-                </div>
-              </>
+              <MarketplaceInventoryList
+                data={value.data}
+                page={value.page}
+                pageSize={value.pageSize}
+                homePage={homePage}
+                metricView={metricView}
+                onSelectProduct={setSelectedProduct}
+              />
             ) : (
               <div className="marketplace-empty">
                 <h3>No publications match these filters</h3>

@@ -132,7 +132,8 @@ export const buyerGuides: BuyerGuide[] = [
   {
     slug: "guest-post-vs-link-insertion",
     title: "Guest post vs link insertion",
-    updatedAt: "2026-10-09",
+    updatedAt: "2026-10-19",
+    sourcesCheckedAt: "2026-10-19",
     description:
       "Guest post or link insertion? How the two formats differ in content, indexing, disclosure and price, and what to confirm with a publisher before choosing.",
     answer:
@@ -171,6 +172,14 @@ export const buyerGuides: BuyerGuide[] = [
         ["Link insertion", "Existing article", "Page context and availability"],
       ],
     },
+    related: [
+      ["Compare guest post costs and budgets", "/guides/guest-post-cost/"],
+      [
+        "Understand paid-link qualification",
+        "/guides/paid-guest-posts-google-link-policies/",
+      ],
+      ["Evaluate a guest post publisher", "/guides/vet-a-guest-post-site/"],
+    ],
   },
   {
     slug: "da-vs-dr-and-traffic",
@@ -368,8 +377,8 @@ export const buyerGuides: BuyerGuide[] = [
     answer:
       "A guest post describes an article contributed by an outside writer; a sponsored post describes a paid commercial relationship. An article can be both. If payment or another benefit is involved, agree visible disclosure and qualify paid links with sponsored or nofollow. Confirm editorial scope separately from the format’s label.",
     approved: true,
-    updatedAt: "2026-10-10",
-    sourcesCheckedAt: "2026-10-10",
+    updatedAt: "2026-10-19",
+    sourcesCheckedAt: "2026-10-19",
     sources: [google, spam],
     questions: [
       {
@@ -385,9 +394,36 @@ export const buyerGuides: BuyerGuide[] = [
         body: "Agree a clear sponsored-content label with the publisher when the article involves a commercial relationship. Visible disclosure helps readers understand the relationship; a link attribute communicates a different signal to search engines.",
       },
       {
+        title: "Example: comparing an editorial pitch and a sponsored quote",
+        body: "Suppose a fictional logistics software team pitches a practical freight-documentation checklist to an industry trade journal. If the editor accepts it purely on editorial merit with no payment or commercial exchange, it is an unpaid guest contribution. If another publication charges a placement fee to publish the tutorial, the article is both a contributed guest post and a sponsored placement. In the second case, the team records the fee, agrees visible sponsorship labelling and confirms rel=\"sponsored\" or nofollow before submitting the manuscript.",
+      },
+      {
         title: "Does either format guarantee rankings?",
         body: "No. Assess readership, relevance and editorial standards, and measure referral visits or enquiries after publication. A format label, authority score or paid placement does not guarantee search performance.",
       },
+    ],
+    steps: [
+      "Identify whether money, products or another commercial benefit is part of the arrangement.",
+      "Confirm who writes, edits and approves the article regardless of whether the publisher calls it a guest post or a sponsored post.",
+      "Agree visible reader disclosure and HTML link qualification (rel=\"sponsored\" or nofollow) for any paid placement.",
+      "Inspect the live published article and record referral visits or enquiries over a defined period.",
+    ],
+    checklist: [
+      "Authorship and writing responsibilities are documented",
+      "Commercial exchange is identified honestly",
+      "Visible reader disclosure is agreed with the editor",
+      "Paid outbound links use rel=\"sponsored\" or rel=\"nofollow\"",
+      "Placement and writing fees are compared separately",
+    ],
+    faq: [
+      [
+        "Is a paid guest post the same as a sponsored post?",
+        "When a guest post involves payment or another commercial benefit for placement, it is a sponsored placement. Both visible reader disclosure and paid-link qualification apply.",
+      ],
+      [
+        "Do unpaid guest posts need rel=\"sponsored\"?",
+        "Google recommends rel=\"sponsored\" for links that are advertisements or paid placements. For unpaid contributions, editors still control which links are editorially justified and how outbound links are formatted.",
+      ],
     ],
     table: {
       columns: ["Question", "Guest post", "Sponsored post"],
@@ -409,6 +445,18 @@ export const buyerGuides: BuyerGuide[] = [
         ],
       ],
     },
+    related: [
+      [
+        "Compare free and paid guest posting",
+        "/guides/free-vs-paid-guest-posting/",
+      ],
+      [
+        "Read Google's paid-link policy guide",
+        "/guides/paid-guest-posts-google-link-policies/",
+      ],
+      ["Compare guest post costs", "/guides/guest-post-cost/"],
+      ["Browse the guest post marketplace", "/"],
+    ],
   },
 ];
 export function costAnswer(stats: CatalogueStatistics) {

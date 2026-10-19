@@ -122,6 +122,7 @@ export function SiteNavigation({
 }) {
   const [menu, setMenu] = useState<Menu>(null);
   const [query, setQuery] = useState("");
+  const [searchOpen, setSearchOpen] = useState(false);
   const dark = useSyncExternalStore(subscribeTheme, currentTheme, () => false);
   const [unread, setUnread] = useState(true);
   const header = useRef<HTMLElement>(null);
@@ -132,6 +133,7 @@ export function SiteNavigation({
   const openSearch = useCallback(() => {
     setMenu(null);
     setQuery("");
+    setSearchOpen(true);
     if (!dialog.current?.open) dialog.current?.showModal();
     searchInput.current?.focus();
   }, []);
@@ -549,7 +551,10 @@ export function SiteNavigation({
         ref={dialog}
         className="site-search-dialog"
         aria-labelledby="site-search-title"
-        onClose={() => searchTrigger.current?.focus()}
+        onClose={() => {
+          setSearchOpen(false);
+          searchTrigger.current?.focus();
+        }}
         onClick={(event) => {
           if (event.target === event.currentTarget) {
             const rect = event.currentTarget.getBoundingClientRect();
@@ -590,28 +595,29 @@ export function SiteNavigation({
             : "Popular tools and guides"}
         </p>
         <div className="site-search-results">
-          {results.slice(0, 15).map((item) => (
-            <Link
-              key={item.href + item.title}
-              href={item.href}
-              onClick={() => dialog.current?.close()}
-            >
-              <span className="site-search-result-icon">
-                {item.kind === "Tool" ? (
-                  <Wrench size={19} aria-hidden="true" />
-                ) : (
-                  <BookOpen size={19} aria-hidden="true" />
-                )}
-              </span>
-              <span>
-                <strong>{item.title}</strong>
-                <small>{item.description}</small>
-              </span>
-              <span className="site-search-kind">{item.kind}</span>
-              <ChevronRight size={16} aria-hidden="true" />
-            </Link>
-          ))}
-          {!results.length && (
+          {searchOpen &&
+            results.slice(0, 15).map((item) => (
+              <Link
+                key={item.href + item.title}
+                href={item.href}
+                onClick={() => dialog.current?.close()}
+              >
+                <span className="site-search-result-icon">
+                  {item.kind === "Tool" ? (
+                    <Wrench size={19} aria-hidden="true" />
+                  ) : (
+                    <BookOpen size={19} aria-hidden="true" />
+                  )}
+                </span>
+                <span>
+                  <strong>{item.title}</strong>
+                  <small>{item.description}</small>
+                </span>
+                <span className="site-search-kind">{item.kind}</span>
+                <ChevronRight size={16} aria-hidden="true" />
+              </Link>
+            ))}
+          {searchOpen && !results.length && (
             <p className="site-search-empty">
               No matches yet. Try “image”, “schema” or “writing”.
             </p>

@@ -4,6 +4,7 @@ const config: NextConfig = {
   distDir: process.env.NEXT_BUILD_DIR || ".next",
   output: "standalone",
   trailingSlash: true,
+  skipTrailingSlashRedirect: true,
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
@@ -11,7 +12,12 @@ const config: NextConfig = {
     imageSizes: [32, 48, 64, 80, 96, 128, 256, 384],
   },
   async redirects() {
-    return publicRedirects();
+    return publicRedirects().flatMap((row) => {
+      const trimmed = row.source.replace(/\/+$/, "");
+      return trimmed && trimmed !== row.source
+        ? [row, { ...row, source: trimmed }]
+        : [row];
+    });
   },
   outputFileTracingExcludes: {
     "/*": [

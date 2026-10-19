@@ -193,11 +193,16 @@
   height: auto;
   max-height: 315px;
   object-fit: contain;
-  mask-image: radial-gradient(
-    ellipse 65% 67% at 50% 50%,
-    #000 54%,
-    transparent 79%
-  );
+}
+
+@media (min-width: 801px) {
+  .heroImage {
+    mask-image: radial-gradient(
+      ellipse 65% 67% at 50% 50%,
+      #000 54%,
+      transparent 79%
+    );
+  }
 }
 
 .orbit {

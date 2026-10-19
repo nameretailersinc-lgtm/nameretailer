@@ -8,7 +8,12 @@ import {
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   if (pathname === "/" || pathname.startsWith("/page/")) {
-    if (pathname === "/" || /^\/page\/\d+\/?$/.test(pathname)) {
+    const pageMatch = pathname.match(/^\/page\/(\d+)\/?$/);
+    const pageNumber = pageMatch ? Number(pageMatch[1]) : 1;
+    if (
+      pathname === "/" ||
+      (pageMatch && pageNumber >= 1 && pageNumber <= 10000)
+    ) {
       const target = marketplaceHref(
         pathname,
         marketplaceLocationQuery(

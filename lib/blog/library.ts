@@ -19,25 +19,70 @@ export const blogLibrary = blogDrafts.map((source) => {
   const article = {
     ...source,
     title: finishedCopy(source.title),
+    seoTitle: source.seoTitle ? finishedCopy(source.seoTitle) : undefined,
+    metaDescription: source.metaDescription
+      ? finishedCopy(source.metaDescription)
+      : undefined,
     answer: finishedCopy(source.answer),
     example: finishedCopy(source.example),
-    steps: source.steps.map(finishedCopy),
+    steps: source.steps.map(finishedCopy) as [string, string, string],
     avoid: finishedCopy(source.avoid),
     question: finishedCopy(source.question),
     response: finishedCopy(source.response),
+    sections: source.sections?.map((sec) => ({
+      heading: finishedCopy(sec.heading),
+      body: finishedCopy(sec.body),
+      code: sec.code,
+      checklist: sec.checklist?.map(finishedCopy),
+      table: sec.table
+        ? {
+            columns: sec.table.columns.map(finishedCopy),
+            rows: sec.table.rows.map((row) => row.map(finishedCopy)),
+          }
+        : undefined,
+    })),
+    relatedLinks: source.relatedLinks?.map(
+      ([label, href]) => [finishedCopy(label), href] as [string, string],
+    ),
+    extraFaq: source.extraFaq?.map(
+      ([q, a]) => [finishedCopy(q), finishedCopy(a)] as [string, string],
+    ),
+    sources: [
+      ...(source.source ? [source.source] : []),
+      ...(source.extraSources || []),
+    ],
   };
   const e = escapeMarkup;
+  const extraSectionsHtml = (article.sections || [])
+    .map((sec) => {
+      const codeHtml = sec.code
+        ? `<pre><code>${e(sec.code)}</code></pre>`
+        : "";
+      const listHtml = sec.checklist?.length
+        ? `<ul>${sec.checklist.map((item) => `<li>${e(item)}</li>`).join("")}</ul>`
+        : "";
+      const tableHtml = sec.table
+        ? `<table><thead><tr>${sec.table.columns.map((col) => `<th scope="col">${e(col)}</th>`).join("")}</tr></thead><tbody>${sec.table.rows.map((row) => `<tr>${row.map((cell, idx) => (idx === 0 ? `<th scope="row">${e(cell)}</th>` : `<td>${e(cell)}</td>`)).join("")}</tr>`).join("")}</tbody></table>`
+        : "";
+      return `<h3>${e(sec.heading)}</h3><p>${e(sec.body)}</p>${codeHtml}${listHtml}${tableHtml}`;
+    })
+    .join("");
+  const relatedHtml = article.relatedLinks?.length
+    ? `<h3>Related guides and tools</h3><ul>${article.relatedLinks.map(([label, href]) => `<li><a href="${e(href)}">${e(label)}</a></li>`).join("")}</ul>`
+    : "";
   const body = sanitizeBody(
-    `<h2>The short answer</h2><p>${e(article.answer)}</p><h2>A worked example</h2><p>${e(article.example)}</p><h2>A practical checklist</h2><ol>${article.steps.map((step) => `<li>${e(step)}</li>`).join("")}</ol><h2>What to avoid</h2><p>${e(article.avoid)}</p><h2>A useful follow-up</h2><h3>${e(article.question)}</h3><p>${e(article.response)}</p>`,
+    `<h2>The short answer</h2><p>${e(article.answer)}</p><h2>A worked example</h2><p>${e(article.example)}</p><h2>A practical checklist</h2><ol>${article.steps.map((step) => `<li>${e(step)}</li>`).join("")}</ol>${extraSectionsHtml}<h2>What to avoid</h2><p>${e(article.avoid)}</p><h2>A useful follow-up</h2><h3>${e(article.question)}</h3><p>${e(article.response)}</p>${relatedHtml}`,
   );
+  const computedMeta =
+    article.metaDescription ||
+    bodyText(article.answer)
+      .slice(0, 154)
+      .replace(/\s+\S*$/, "") + "…";
   return {
     ...article,
     slug,
     body,
-    metaDescription:
-      bodyText(article.answer)
-        .slice(0, 157)
-        .replace(/\s+\S*$/, "") + "…",
+    metaDescription: computedMeta,
     words: wordCount(body),
   };
 });

@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { countryRegions } from "@/lib/commerce/country-regions";
 import styles from "./country-name.module.css";
 
@@ -55,14 +54,16 @@ export function CountryName({
   return (
     <span className={styles.country}>
       {code && (
-        <Image
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
           className={styles.flag}
           src={`/flags/${code}.svg`}
           width={24}
           height={18}
           alt=""
           aria-hidden="true"
-          unoptimized
+          loading="lazy"
+          decoding="async"
         />
       )}
       <span>{name}</span>

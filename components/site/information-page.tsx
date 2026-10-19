@@ -38,6 +38,7 @@ export function InformationShell({
   path,
   title,
   label,
+  pill,
   description,
   active,
   image,
@@ -50,6 +51,7 @@ export function InformationShell({
   path: string;
   title: string;
   label: string;
+  pill?: string;
   description: string;
   active: SiteSection;
   image: string;
@@ -91,7 +93,7 @@ export function InformationShell({
         </nav>
         <section className="reference-page-hero">
           <div>
-            <p className="reference-pill">{label}</p>
+            <p className="reference-pill">{pill || label}</p>
             <h1>
               {title.includes(" by ") ? (
                 <>

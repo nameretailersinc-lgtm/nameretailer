@@ -3,24 +3,91 @@ export const geoMeasurement: ArticleDraft[] = [
   {
     cluster: "GEO",
     title: "What GEO means for a small content team",
+    seoTitle: "Generative Engine Optimization (GEO) & GEO vs SEO Guide",
+    metaDescription:
+      "Generative engine optimization (GEO) guide for content teams: GEO vs SEO comparison, original evidence standards, and realistic AI search workflows.",
     answer:
-      "Generative engine optimization describes work aimed at visibility in generative search and answer experiences. For a small team, start with useful original explanations, clear source boundaries and technically accessible pages. Treat GEO as a planning objective rather than a universal platform standard or a guaranteed citation service.",
+      "Generative engine optimization (GEO) describes editorial and technical work aimed at making content clear, verifiable, and discoverable in generative search and AI answer experiences. When comparing GEO vs SEO, foundational SEO makes pages crawlable and indexable, while a generative engine optimization guide focuses on original explanations, explicit source boundaries, and consistent entity facts. GEO is a planning discipline—not a universal platform standard or a guaranteed citation service.",
     example:
-      "A fictional business has useful product workflows but a vague blog full of slogans. The team can explain a real configuration decision with an example and evidence, then link it from the relevant product page. Calling the slogan page 'GEO ready' would not supply the missing answer or establish that any engine had discovered it.",
+      "A fictional business has useful product workflows but a vague blog full of slogans. Following a practical generative engine optimization guide, the team replaces slogan copy with a concrete configuration walkthrough, cites primary documentation, and links the article from the relevant product page. Calling a thin slogan page 'GEO ready' does not supply the missing answer or establish that any generative system has discovered it.",
     steps: [
-      "Choose a reader problem that the team can explain accurately. Identify what original operational detail or approved evidence can make the answer useful.",
-      "Prepare the page with clear headings, sources and honest attribution. Separate drafting assistance from subject-matter review and do not invent first-hand experience.",
-      "Define an observation plan for the platforms that matter. Record actual appearances and referrals separately from the work performed to prepare the content.",
+      "Choose a specific reader problem that the team can explain accurately. Identify what original operational detail, workflow table, or approved evidence makes the answer genuinely useful.",
+      "Prepare the page with clear headings, primary sources, and honest attribution. Separate drafting assistance from subject-matter review and never invent first-hand experience.",
+      "Define an observation plan for the search and assistant platforms that matter to your audience. Record actual appearances and referrals separately from the editorial work performed to prepare the content.",
+    ],
+    sections: [
+      {
+        heading: "GEO vs SEO: how generative engine optimization compares to traditional SEO",
+        body: "Search teams comparing GEO vs SEO should start with Google's guidance on succeeding in AI search: foundational SEO practices remain the prerequisite for eligibility in AI features such as AI Overviews and AI Mode. Generative engine optimization adds editorial rigor around how claims, comparisons, and entity details are stated so multi-step queries can be answered accurately.",
+        table: {
+          columns: ["Area", "Foundational SEO", "Generative Engine Optimization (GEO)"],
+          rows: [
+            [
+              "Discovery prerequisite",
+              "HTTP 200 status, crawlable HTML, self-referencing canonical, and indexable robots rules",
+              "Relies on the same crawl and index eligibility before search-grounded systems can cite a page",
+            ],
+            [
+              "Content depth",
+              "Matches query intent with structured headings and relevant internal links",
+              "Emphasizes original workflows, explicit scope conditions, and clear comparison tables",
+            ],
+            [
+              "Fact & entity clarity",
+              "Consistent page titles, meta descriptions, and valid Article JSON-LD",
+              "Consistent organization facts and explicit boundaries between sourced data and opinion",
+            ],
+            [
+              "Measurement",
+              "Search Console impressions, clicks, queries, and on-site analytics",
+              "Scoped prompt observation logs alongside referral traffic and Search Console data",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Generative engine optimization checklist for small teams",
+        body: "Instead of publishing duplicate pages for every AI prompt variation, apply this checklist to your core guides:",
+        checklist: [
+          "Open with a direct, qualified answer that defines the topic and its practical boundaries.",
+          "Include an original table, checklist, or worked example that helps the reader make a concrete decision.",
+          "Attribute every external fact to its primary source with a descriptive link and observation context.",
+          "Keep organization identity, product scope, and authorship consistent across visible copy and structured data.",
+          "Log generative search appearances with exact prompts and dates rather than claiming permanent rankings.",
+        ],
+      },
     ],
     avoid:
-      "Avoid treating one engine's requirements as a rule for all assistants. Google's current guide describes AEO and GEO as labels for AI-search visibility work while emphasizing foundational SEO. That perspective is not a promise that a specific content format will be selected elsewhere.",
+      "Avoid treating one assistant's output as a permanent rule for all platforms. Google's current documentation describes GEO and AEO as labels for AI-search visibility work while emphasizing foundational SEO. Neither special markup nor a content formula guarantees that a page will be cited.",
     question: "Do I need a separate GEO version of every article?",
     response:
-      "Not by default. Improve the useful primary article and avoid creating duplicates without a distinct reader need.",
+      "Not by default. Improve the primary article so it answers the question thoroughly, and avoid creating near-duplicate URLs without a distinct reader need.",
+    extraFaq: [
+      [
+        "What is the difference between GEO vs SEO and AEO?",
+        "SEO establishes technical crawlability, indexability, and topical relevance. AEO focuses on structuring direct answers to explicit questions, while GEO broadens that focus to multi-step generative responses, source boundaries, and brand consistency.",
+      ],
+      [
+        "Does generative engine optimization guarantee AI citations?",
+        "No. Generative responses vary by platform, prompt, and retrieval context; no editorial template or file guarantees citation.",
+      ],
+    ],
     source: {
       label: "Google: generative AI optimization guide",
       url: "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
     },
+    extraSources: [
+      {
+        label: "Google: AI features and your website",
+        url: "https://developers.google.com/search/docs/appearance/ai-features",
+      },
+    ],
+    relatedLinks: [
+      ["What AEO means in a practical content workflow", "/blog/what-aeo-means-in-a-practical-content-workflow/"],
+      ["A citation-ready claim has a clear source boundary", "/blog/a-citation-ready-claim-has-a-clear-source-boundary/"],
+      ["AI crawler access needs a documented product-specific policy", "/blog/ai-crawler-access-needs-a-documented-product-specific-policy/"],
+      ["Record generative-search appearances as observations", "/blog/record-generative-search-appearances-as-observations/"],
+    ],
   },
   {
     cluster: "GEO",
@@ -79,20 +146,80 @@ export const geoMeasurement: ArticleDraft[] = [
   {
     cluster: "GEO",
     title: "A citation-ready claim has a clear source boundary",
+    seoTitle: "How to Optimize Content for AI Search & Source Citations",
+    metaDescription:
+      "Learn how to optimize content for AI search with clear source boundaries, verifiable claims, and an honest AI search optimization strategy.",
     answer:
-      "Write factual claims so the reader can distinguish the supported statement from your interpretation. Link to the exact document that supplies the fact, then label any recommendation as your own guidance. Citation-friendly writing is a clarity practice, not a promise that an AI system will cite the page.",
+      "Learning how to optimize content for AI search starts with writing factual claims so readers and retrieval systems can distinguish a sourced fact from your editorial interpretation. Link directly to the primary document that supports a statement, state the conditions or date, and label your workflow recommendations as your own guidance. Clear source boundaries improve trust and readability, though no AI search optimization strategy guarantees that an AI system will cite your page.",
     example:
-      "A fictional article links to official image-format documentation but recommends comparing the actual encoded bytes in a local workflow. The format support claim belongs to the documentation; the comparison worksheet is the article's own practical suggestion. Combining them into 'the documentation proves our conversion always saves 60%' would cross the evidence boundary.",
+      "A fictional article links to official image-format documentation and recommends comparing encoded byte sizes in a local workflow. The format support statement belongs to the documentation; the byte-comparison worksheet is the article's own recommendation. Combining them into 'official documentation proves our method always saves 60%' crosses the source boundary and weakens credibility.",
     steps: [
-      "Identify the smallest factual statement the source directly supports. Avoid attaching the source to a paragraph full of additional unsupported conclusions.",
-      "State the relevant conditions and observation date when information changes. Keep source names descriptive so readers know what they will open.",
-      "Separate your suggested process from the sourced fact. Explain why the process is useful without implying the source endorsed your particular service.",
+      "Identify the exact factual statement a primary source supports. Avoid attaching a documentation link to a paragraph filled with unverified marketing conclusions.",
+      "State the relevant scope conditions and observation date when technical policies or metrics change over time. Keep source link labels descriptive so readers know what document they will open.",
+      "Separate your recommended workflow from the sourced fact. Explain why your process helps the reader without implying the cited organization endorsed your business.",
+    ],
+    sections: [
+      {
+        heading: "AI search optimization strategy: how to get cited by AI search engines honestly",
+        body: "Teams researching how to get cited by AI search engines often look for a mechanical trick. In practice, search-grounded AI features rely on indexable pages that provide clear, specific, and well-supported answers. Use these editorial controls to make your content easier to verify and reference:",
+        table: {
+          columns: ["Editorial Practice", "Weak Claim Pattern", "Citation-Ready Claim Pattern"],
+          rows: [
+            [
+              "State scope & source",
+              "'Studies show guest posts double organic traffic in 30 days.'",
+              "'Google requires paid placements to use rel=\"sponsored\" or rel=\"nofollow\" so search engines do not count bought links as editorial votes.'",
+            ],
+            [
+              "Separate fact from worksheet",
+              "'Ahrefs DR proves this publication will send 500 leads.'",
+              "'Domain Rating is a third-party link metric; review actual section articles and referral logs before estimating reader visits.'",
+            ],
+            [
+              "Keep answers in HTML text",
+              "Placing key comparison criteria only inside a flattened PNG graphic",
+              "Presenting criteria in semantic HTML tables and paragraphs with clear headings",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Checklist: how to optimize content for AI search without overclaiming",
+        body: "Apply this review sequence to priority guides and comparison pages:",
+        checklist: [
+          "Ensure the page returns HTTP 200, allows indexing, and renders core content in server HTML.",
+          "Place a concise, self-contained answer directly under the main heading so the conclusion is clear.",
+          "Verify that every external link points to the primary source for that specific statement.",
+          "Replace vague qualifiers ('many experts say') with named documentation or clearly labeled illustrative examples.",
+          "Connect related guides with descriptive internal links so readers and crawlers can follow the topic cluster.",
+        ],
+      },
     ],
     avoid:
-      "Avoid using a reputable domain as decoration for unrelated marketing claims. Do not copy long passages or replace original reasoning with a string of citations. A professional explanation combines accurate evidence with useful context and an honest description of uncertainty.",
+      "Avoid using a reputable domain as decoration for unrelated marketing claims, and never claim that schema markup, llms.txt, or phrasing patterns guarantee AI citations. A professional AI search optimization strategy combines technical indexability, accurate primary sources, and transparent uncertainty.",
     question: "Does citing an official document endorse my business?",
     response:
-      "No. It supports a specific fact when relevant; it does not imply a partnership, certification or endorsement.",
+      "No. It supports a specific factual statement when relevant; it does not imply a partnership, certification, or guaranteed AI citation.",
+    extraFaq: [
+      [
+        "How do you get cited by AI search engines like Google AI Overviews?",
+        "Ensure your page is indexed and eligible for search snippets, answer a specific question clearly in readable HTML text, and back factual statements with verifiable sources. Even when all technical criteria are met, citation is never guaranteed.",
+      ],
+      [
+        "Should I rewrite human guides into robotic fragments for AI search?",
+        "No. Write for human readers first with clear definitions, structured headings, and honest scope boundaries.",
+      ],
+    ],
+    source: {
+      label: "Google: succeeding in AI search",
+      url: "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+    },
+    relatedLinks: [
+      ["What GEO means for a small content team", "/blog/what-geo-means-for-a-small-content-team/"],
+      ["What AEO means in a practical content workflow", "/blog/what-aeo-means-in-a-practical-content-workflow/"],
+      ["How to audit an answer for unsupported certainty", "/blog/how-to-audit-an-answer-for-unsupported-certainty/"],
+      ["A source log for fact-checking content drafts", "/blog/a-source-log-for-fact-checking-content-drafts/"],
+    ],
   },
   {
     cluster: "GEO",
@@ -137,24 +264,74 @@ export const geoMeasurement: ArticleDraft[] = [
   {
     cluster: "GEO",
     title: "AI crawler access needs a documented product-specific policy",
+    seoTitle: "AI Crawler Policy & llms.txt for SEO Explained",
+    metaDescription:
+      "How to document an AI crawler policy: robots.txt controls, snippet rules, and what llms.txt for SEO does and does not do for AI search.",
     answer:
-      "Decide crawler access from the product and purpose you actually intend to support. Search discovery, assistant retrieval and model-training controls are not necessarily the same. Review each relevant provider's current documentation rather than applying a universal 'AI access' rule inferred from a tool name.",
+      "Decide AI crawler access from the specific search and assistant products you intend to support. Search indexing, snippet controls, assistant retrieval, and model-training crawlers are governed by different mechanisms across providers. When evaluating llms.txt for SEO, remember that Google's AI features documentation does not require an llms.txt file or special AI schema, and adding llms.txt never guarantees AI citations or rankings.",
     example:
-      "A fictional business wants its public help articles discoverable but keeps accounts and unpublished drafts private. The team inventories actual endpoints and controls before changing crawler rules. It does not assume that a robots directive provides access control or that adding an AI text file authorizes private content to be retrieved.",
+      "A fictional business wants its public guides discoverable in search and AI answers while keeping customer accounts and admin routes private. The engineering team enforces authentication on private routes, verifies robots.txt and meta robots rules on public pages, and documents which user-agents are allowed. It does not treat robots.txt as an access-control wall or assume that publishing an llms.txt file replaces standard crawlability and indexing.",
     steps: [
-      "List the public content and the discovery products that matter to the business. Keep private account and admin data outside the public-content plan.",
-      "Read the applicable provider documentation and identify the stated role of each crawler or control. Record the documentation date for changing policies.",
-      "Test the deployed rules and authentication boundaries. Document the intended behavior separately from actual discovery observations.",
+      "List your public content routes and the specific search or AI products that matter to your business. Protect private account and admin endpoints with real authentication rather than crawler hints.",
+      "Read each provider's current crawler and snippet documentation to separate search indexing bots from training or assistant user-agents. Record the documentation date alongside your policy.",
+      "Test deployed robots.txt rules, HTTP headers, and meta robots tags after release. Document intended access rules separately from observed search or assistant appearances.",
+    ],
+    sections: [
+      {
+        heading: "Understanding llms.txt for SEO vs established crawler controls",
+        body: "Many teams ask whether they need llms.txt for SEO to appear in AI Overviews or assistant answers. An llms.txt file is a proposed convention for listing a site's key documentation or markdown summaries in a machine-readable index, similar to a curated table of contents. However, major search engines rely on established crawling, indexing, and snippet controls:",
+        table: {
+          columns: ["Mechanism", "What It Actually Controls", "Common Misconception"],
+          rows: [
+            [
+              "robots.txt",
+              "Directs compliant crawlers which URL paths they may or may not fetch",
+              "Does not enforce security or prevent a linked URL from being indexed without content",
+            ],
+            [
+              "Meta robots & X-Robots-Tag",
+              "Controls page indexing (noindex) and snippet/preview limits (nosnippet, max-snippet)",
+              "Removing noindex makes a page eligible for search and AI features, but never guarantees rankings",
+            ],
+            [
+              "llms.txt proposal",
+              "Provides an optional plain-text list of priority URLs and summaries for tools that choose to read it",
+              "Not required by Google Search or AI Overviews, and never guarantees AI citations or inclusion",
+            ],
+          ],
+        },
+      },
     ],
     avoid:
-      "Avoid describing robots.txt as a security barrier or claiming that a special file guarantees AI inclusion. Google's AI features documentation does not require a new AI text file or special schema for those features. Other products need their own current review.",
+      "Avoid describing robots.txt as a security barrier or claiming that llms.txt for SEO guarantees AI citations. Google's AI features documentation explicitly states that no new AI text files or special schema are required for AI Overviews or AI Mode. Evaluate each platform's documented controls on their own merits.",
     question: "Can I use one generic AI rule for every platform?",
     response:
       "Do not assume so. Determine the product, purpose and current documented control for each platform you intend to support.",
+    extraFaq: [
+      [
+        "Is llms.txt required for Google AI Overviews or SEO?",
+        "No. Google's documentation for AI features uses standard Search indexing and snippet controls; it does not require an llms.txt file.",
+      ],
+      [
+        "Does adding llms.txt guarantee that AI assistants will cite my site?",
+        "No. Even if a tool reads an llms.txt summary, citation and retrieval depend on the platform's own model, query context, and verification checks.",
+      ],
+    ],
     source: {
       label: "Google: controls for AI features",
       url: "https://developers.google.com/search/docs/appearance/ai-features",
     },
+    extraSources: [
+      {
+        label: "Google: robots.txt introduction and guide",
+        url: "https://developers.google.com/search/docs/crawling-indexing/robots/intro",
+      },
+    ],
+    relatedLinks: [
+      ["Noindex and robots.txt are different controls", "/blog/noindex-and-robots-txt-are-different-controls/"],
+      ["What GEO means for a small content team", "/blog/what-geo-means-for-a-small-content-team/"],
+      ["Robots.txt Generator Tool", "/tools/robots-txt-generator/"],
+    ],
   },
   {
     cluster: "GEO",
@@ -195,20 +372,80 @@ export const geoMeasurement: ArticleDraft[] = [
   {
     cluster: "Measurement",
     title: "A practical SEO measurement plan before publishing",
+    seoTitle: "How to Measure SEO Performance: Practical Measurement Plan",
+    metaDescription:
+      "Learn how to measure SEO performance accurately by separating Search Console impressions, clicks, referral visits, and business conversions.",
     answer:
-      "Define the business question, metric and observation source before publishing a campaign report. Separate discovery, visits and completed actions so the report does not imply that they are interchangeable. A measurement plan should also specify unavailable data and the limits of attribution.",
+      "Knowing how to measure SEO performance starts with defining the business question, metric, and data source before publishing content or launching a placement campaign. Separate search discovery (impressions and queries), site visits (clicks and engaged sessions), and completed business actions so your report never treats them as interchangeable. A reliable SEO measurement plan also documents baseline dates, attribution limits, and unavailable data.",
     example:
-      "A fictional article receives search impressions, a smaller number of clicks and a few contact requests. Those are different events. The team should not call every impression a customer or attribute every inquiry to the article without a reliable path. A simple plan establishes how each stage will be counted before results arrive.",
+      "A fictional guide receives Search Console impressions, a smaller number of organic clicks, and several contact inquiries over a 90-day window. Those represent distinct stages. The team logs each stage from its primary source rather than calling every impression a visitor or attributing every inquiry to a single blog post without path evidence.",
     steps: [
-      "Choose one primary question, such as whether qualified readers reach a relevant guide. Name the metric, source and reporting period that can answer it.",
-      "Define how downstream actions will be recorded, with appropriate privacy and consent decisions. Avoid collecting information unrelated to the business question.",
-      "Record baseline conditions and major concurrent changes. In the report, keep observations separate from explanations that remain hypotheses.",
+      "Choose one primary question—such as whether qualified readers reach and use a technical guide—and name the exact metric, tool source, and reporting window that can answer it.",
+      "Define how downstream actions (such as tool usage, shortlist exports, or inquiries) are recorded under your site's privacy and consent rules.",
+      "Record baseline counts and concurrent site or campaign changes before evaluating results. Keep measured observations separate from causal hypotheses.",
+    ],
+    sections: [
+      {
+        heading: "How to measure SEO performance across Search Console and analytics",
+        body: "Use this framework to align each SEO question with the metric that actually measures it:",
+        table: {
+          columns: ["Stage", "Primary Metric & Source", "What It Tells You (and Its Limit)"],
+          rows: [
+            [
+              "Indexing & eligibility",
+              "Google Search Console Page Indexing report",
+              "Confirms whether URLs are indexed or excluded; does not measure reader engagement",
+            ],
+            [
+              "Search discovery",
+              "Search Console impressions & query positions",
+              "Shows how often pages appear in search results; impressions are not site visits",
+            ],
+            [
+              "Organic & referral traffic",
+              "Search Console clicks & web analytics landing sessions",
+              "Measures visits reaching the page; requires consistent date windows and timezone alignment",
+            ],
+            [
+              "Reader & business actions",
+              "Qualified inquiries, tool completions, or assisted conversions",
+              "Reflects downstream value; must account for multi-touch attribution limits",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "SEO performance measurement checklist",
+        body: "Run through these checks before sharing an SEO or content performance report:",
+        checklist: [
+          "Record the exact start date, end date, and baseline comparison period before pulling numbers.",
+          "Report absolute counts alongside percentage changes so small baselines do not look like massive swings.",
+          "Log concurrent site edits, technical fixes, or promotional campaigns that overlapped the window.",
+          "Keep missing or untracked metrics labeled as unavailable rather than filling cells with zero.",
+        ],
+      },
     ],
     avoid:
-      "Avoid designing the measurement after seeing which number looks best. Do not present traffic growth as revenue growth or a planning cart as a completed order. This rebuild does not collect payments, so its saved selections cannot be reported as purchase conversions.",
+      "Avoid choosing the success metric after seeing which chart looks most flattering. Do not present impression growth as revenue growth or a planning shortlist as a completed checkout order.",
     question: "Is a traffic increase enough to demonstrate business growth?",
     response:
-      "No. Define and measure the relevant business action separately, and describe the attribution limits.",
+      "No. Define and measure the relevant business action separately, and describe the attribution limits clearly.",
+    extraFaq: [
+      [
+        "How long should you wait to measure SEO performance after updating a page?",
+        "Check technical indexing and rendering immediately, then compare search impressions, clicks, and engagement over consistent 28-day and 90-day windows while noting seasonal or campaign confounders.",
+      ],
+    ],
+    source: {
+      label: "Google: Search Console performance report",
+      url: "https://support.google.com/webmasters/answer/7576553",
+    },
+    relatedLinks: [
+      ["How to Measure Guest Posting Results Honestly", "/guides/measure-guest-posting-results/"],
+      ["Search Console and analytics answer different questions", "/blog/search-console-and-analytics-answer-different-questions/"],
+      ["Calculate percentage growth without hiding the baseline", "/blog/calculate-percentage-growth-without-hiding-the-baseline/"],
+      ["Turn an SEO report into a useful next-action list", "/blog/turn-an-seo-report-into-a-useful-next-action-list/"],
+    ],
   },
   {
     cluster: "Measurement",

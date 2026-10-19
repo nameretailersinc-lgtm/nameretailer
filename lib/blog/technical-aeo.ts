@@ -3,6 +3,9 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "Technical SEO",
     title: "A canonical URL checklist for a rebuilt website",
+    seoTitle: "Technical SEO Audit Checklist: Canonical URLs & Redirects",
+    metaDescription:
+      "Follow a practical technical SEO audit checklist for canonical URLs, redirects, sitemaps and duplicate URL consolidation during a website migration.",
     answer:
       "Choose the intended public URL for each article and make its canonical metadata consistent with that destination. A canonical identifies the preferred equivalent version; it is not a shortcut for merging unrelated pages. Review URL choices before migration rather than relying on whatever route happens to render first.",
     example:
@@ -12,11 +15,38 @@ export const technicalAeo: ArticleDraft[] = [
       "Inspect the destination's title, main heading and canonical value. Use a complete public URL without tracking parameters or a fragment.",
       "Test the final deployment separately from the preview. Keep redirect activation, sitemap updates and indexing approval as coordinated release steps.",
     ],
+    sections: [
+      {
+        heading: "Technical SEO audit template for canonical consistency",
+        body: "During a technical SEO audit, verify that every signal points to the same canonical URL. When internal links point to a non-trailing-slash URL, the sitemap lists an HTTP URL, and the link rel=\"canonical\" tag points to a parameter variant, search engines receive conflicting signals and may choose a different canonical than the one you declared.",
+        code: `<link rel="canonical" href="https://nameretailer.com/guides/guest-post-cost/" />`,
+        table: {
+          columns: ["Signal to inspect", "Pass condition", "Common audit failure"],
+          rows: [
+            ["HTML link rel=canonical", "Absolute HTTPS URL matching preferred route", "Relative path or query parameters included"],
+            ["Internal anchor href", "Links directly to the canonical URL", "Points to a 301 redirect or non-canonical variant"],
+            ["XML sitemap <loc>", "Lists only 200 OK self-canonical indexable URLs", "Includes redirected, noindex or alternate URLs"],
+            ["HTTP response status", "Returns 200 OK without redirect chains", "Canonical target returns 301, 404 or 500"],
+          ],
+        },
+      },
+    ],
     avoid:
       "Avoid canonicalizing all paginated pages or filtered views to an unrelated article. A hint does not guarantee that a search engine will select that URL. This rebuild remains noindex during development; canonical metadata does not override that restriction or activate a migration.",
     question: "Does a canonical tag replace a redirect?",
     response:
       "No. They serve different purposes. Decide equivalence and migration behavior explicitly before enabling either strategy.",
+    extraFaq: [
+      [
+        "Why did Google choose a different canonical than my declared tag?",
+        "Google evaluates multiple signals including redirects, internal links, sitemaps, HTTPS preference and page content similarity. If a declared canonical points to a page with different content or conflicting signals, Google may select another URL.",
+      ],
+    ],
+    relatedLinks: [
+      ["Domain names, SEO and website migrations", "/guides/domain-name-seo-and-migrations/"],
+      ["Internal links and SEO architecture", "/blog/internal-links-that-make-an-article-library-easier-to-use/"],
+      ["Noindex vs robots.txt controls", "/blog/noindex-and-robots-txt-are-different-controls/"],
+    ],
     source: {
       label: "Google: canonical URLs",
       url: "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls",
@@ -25,20 +55,56 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "Technical SEO",
     title: "Internal links that make an article library easier to use",
+    seoTitle: "Internal Links SEO Strategy: Architecture & Anchor Text",
+    metaDescription:
+      "Build an internal linking strategy for SEO and readers: crawlable HTML links, descriptive anchor text, hub-and-spoke topic clusters and link audits.",
     answer:
-      "Link to the next explanation a reader is likely to need, using text that describes the destination. A related-reading list should connect different useful tasks rather than repeat the same question on several pages. Build navigation from the reader's decision path, not an arbitrary link quota.",
+      "Internal links for SEO and usability connect related pages with crawlable HTML anchor tags and descriptive anchor text. Link to the next explanation, directory or tool a reader genuinely needs, rather than repeating identical keyword-stuffed anchors or relying on an arbitrary link quota.",
     example:
-      "A fictional article about placement budgeting links to a writing-package comparison because the two tasks are related but not identical. It does not need links to every image converter. The library can also link back to a marketplace hub, allowing the reader to apply the worksheet after understanding its assumptions.",
+      "An article about guest-post placement budgeting links to a writing-package comparison and the live guest-post price breakdown because those tasks are sequential steps in the buyer's workflow. It does not need links to every image converter. Connecting informational guides back to relevant marketplace directories lets readers apply what they learned immediately.",
     steps: [
       "For each article, identify one prerequisite and one useful next task. Check whether those topics already have a stable published page before adding a new one.",
       "Use descriptive anchor text and a real href. Review the destination without relying on a visual card or click handler alone to explain where it goes.",
       "Periodically check links after slug changes and archive decisions. Replace or remove stale destinations rather than leaving a related-reading section full of errors.",
+    ],
+    sections: [
+      {
+        heading: "How internal linking and SEO work together",
+        body: "Search engine crawlers follow standard HTML <a href=\"...\"> elements to discover pages on your site and understand how topics relate. An effective internal linking strategy for SEO organizes pages into clear hierarchies: hub directories link down to specific niche pages and guides, while guides link laterally to related workflows and back up to the primary hub.",
+        code: `<!-- Good: crawlable anchor with specific, natural anchor text -->\n<p>Compare median placement rates in our <a href="/guest-post-prices/">guest post pricing breakdown by niche</a> before setting your campaign cap.</p>\n\n<!-- Avoid: non-crawlable span or vague anchor text -->\n<span onclick="navigate('/guest-post-prices/')">Click here</span>`,
+      },
+      {
+        heading: "Internal link audit checklist for existing content",
+        body: "Run a periodic internal link check whenever you add guides, update directory filters or retire old URLs. Focus on eliminating dead ends and redirect hops.",
+        checklist: [
+          "Every indexable guide and blog post is reachable from at least one hub or category page (no orphan pages)",
+          "Internal links use canonical trailing-slash paths that return HTTP 200 directly without 301 redirect chains",
+          "Anchor text names the specific topic or action at the destination rather than generic labels like 'read more'",
+          "Private account, cart, checkout and admin routes are excluded from public editorial link lists",
+        ],
+      },
     ],
     avoid:
       "Avoid adding unrelated links merely to inflate the count or using the same vague 'click here' label for multiple destinations. A link should help someone understand what happens next. Keep private admin, account and utility URLs out of editorial discovery paths.",
     question: "How many related links should an article have?",
     response:
       "Enough to support a real next step without overwhelming the reader. Choose relevance rather than a fixed numerical target.",
+    extraFaq: [
+      [
+        "Should internal links use rel=\"nofollow\"?",
+        "Ordinary internal links to public pages you want crawled and indexed should not use nofollow. Reserve crawl or indexing restrictions for private, login or parameter routes using appropriate directives.",
+      ],
+      [
+        "Do JavaScript onclick handlers count as crawlable internal links?",
+        "Google recommends using standard <a href> elements with resolvable URLs so crawlers and assistive technologies can follow links reliably.",
+      ],
+    ],
+    relatedLinks: [
+      ["Canonical URL checklist for a rebuilt website", "/blog/a-canonical-url-checklist-for-a-rebuilt-website/"],
+      ["Plan a sitemap around approved public pages", "/blog/plan-a-sitemap-around-approved-public-pages/"],
+      ["Browse guest posting sites by niche", "/guest-posting-sites/"],
+      ["Guest post cost and pricing guide", "/guides/guest-post-cost/"],
+    ],
     source: {
       label: "Google: crawlable links and anchor text",
       url: "https://developers.google.com/search/docs/crawling-indexing/links-crawlable",
@@ -47,8 +113,11 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "Technical SEO",
     title: "Noindex and robots.txt are different controls",
+    seoTitle: "Noindex vs Robots.txt: Technical SEO Indexing Checklist",
+    metaDescription:
+      "Understand the difference between meta robots noindex and robots.txt disallow rules. Troubleshoot excluded pages and crawling vs indexing in Search Console.",
     answer:
-      "Use the correct control for the actual goal: managing crawler access is different from excluding a page from search indexing. Google's documentation distinguishes robots.txt from a noindex directive. A development preview should have an explicit indexing policy, not an accidental combination of unrelated rules.",
+      "Use the correct control for the actual goal: managing crawler access with robots.txt is different from excluding a page from search results with a noindex directive. If robots.txt blocks a URL, crawlers cannot read a noindex tag on that page. Inspect both controls whenever auditing page availability.",
     example:
       "A fictional staging article contains noindex metadata and has not been approved for launch. Removing a robots.txt block alone would not make that article indexable. Conversely, blocking a public URL's crawl is not a reliable substitute for an exclusion directive. The release checklist needs to inspect both controls and document the intended result.",
     steps: [
@@ -56,11 +125,36 @@ export const technicalAeo: ArticleDraft[] = [
       "Inspect the response headers, rendered metadata and crawler rules for the exact URL. Do not assume a parent layout or deployment setting is the only source of directives.",
       "After approved production changes, verify the live response and allow time for recrawling. Keep a record of the actual directive observed, not just the intended setting.",
     ],
+    sections: [
+      {
+        heading: "Comparing robots.txt Disallow and meta robots noindex",
+        body: "When Google Search Console reports 'Excluded by noindex tag', the crawler fetched the page and saw a noindex directive in the HTML meta tag or X-Robots-Tag HTTP header. When a page is blocked by robots.txt, Google does not crawl the page body at all, though the URL can still appear in search results if other pages link to it.",
+        table: {
+          columns: ["Control", "Where it lives", "Primary effect"],
+          rows: [
+            ["robots.txt Disallow", "Root /robots.txt file", "Asks crawlers not to fetch matching URL paths"],
+            ["Meta robots noindex", "HTML <head> or X-Robots-Tag header", "Tells crawlers that fetched the page not to index it"],
+            ["Self-referencing canonical", "HTML <head> link element", "Indicates the preferred URL among duplicate variants"],
+          ],
+        },
+      },
+    ],
     avoid:
       "Avoid removing preview protections to demonstrate that a page is SEO-ready. This rebuild keeps public previews noindex until the migration and editorial release are approved. A useful article structure is preparation for discovery, not evidence that discovery has already happened.",
     question: "Does allowing a crawl guarantee indexing?",
     response:
       "No. Crawling permission and indexing eligibility are only parts of the process; indexing and serving are not guaranteed.",
+    extraFaq: [
+      [
+        "Why does Search Console still report noindex after I updated my code?",
+        "Confirm that the live production deployment serves the updated HTML without cached noindex headers, then use the URL Inspection tool's live test and request recrawling.",
+      ],
+    ],
+    relatedLinks: [
+      ["Plan a sitemap around approved public pages", "/blog/plan-a-sitemap-around-approved-public-pages/"],
+      ["Check server-rendered article content before launch", "/blog/check-server-rendered-article-content-before-launch/"],
+      ["AEO readiness vs indexing approval", "/blog/aeo-readiness-is-not-the-same-as-indexing-approval/"],
+    ],
     source: {
       label: "Google: noindex behavior",
       url: "https://developers.google.com/search/docs/crawling-indexing/block-indexing",
@@ -69,6 +163,9 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "Technical SEO",
     title: "Plan a sitemap around approved public pages",
+    seoTitle: "XML Sitemap Technical SEO Checklist for Public Pages",
+    metaDescription:
+      "Build an XML sitemap from approved, indexable canonical URLs with accurate lastmod timestamps. Keep noindex, private and filter URLs out of your sitemap.",
     answer:
       "Build a sitemap from the public URLs you actually want discovered, with accurate modification information. Keep drafts, private account pages and utility endpoints out of the list. A sitemap is a discovery aid, not proof that an article has been crawled, indexed or ranked.",
     example:
@@ -83,6 +180,11 @@ export const technicalAeo: ArticleDraft[] = [
     question: "Is a page directory the same as an XML sitemap?",
     response:
       "No. A page directory serves visitors; an XML sitemap supplies discovery information to crawlers.",
+    relatedLinks: [
+      ["Noindex vs robots.txt controls", "/blog/noindex-and-robots-txt-are-different-controls/"],
+      ["Canonical URL checklist", "/blog/a-canonical-url-checklist-for-a-rebuilt-website/"],
+      ["HTML site map directory", "/site-map/"],
+    ],
     source: {
       label: "Google: sitemap overview",
       url: "https://developers.google.com/search/docs/crawling-indexing/sitemaps/overview",
@@ -91,8 +193,11 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "Technical SEO",
     title: "A structured-data review checklist for blog articles",
+    seoTitle: "Article Schema Markup Example & JSON-LD Review Checklist",
+    metaDescription:
+      "Review an Article and BlogPosting schema markup example in JSON-LD. Match headline, author, dates and canonical URLs to visible page content.",
     answer:
-      "Make structured data describe the article readers can actually see. Use the real title, actual publication history and legitimate author entity. Validate syntax and inspect the rendered page together; passing a JSON parser does not establish that the markup is accurate or eligible for a search feature.",
+      "Make structured data describe the article readers can actually see. Use the real title, actual publication history and legitimate author entity in your Article or BlogPosting JSON-LD markup. Validate syntax and inspect the rendered page together; passing a JSON parser does not establish accuracy or guarantee rich results.",
     example:
       "A fictional brand publishes an organizational guide, not a named expert's report. Its Article markup should not invent a person, credentials or a review score. If the visible page discloses AI assistance and a pending owner review, the structured data must not imply a separate expert approval that never occurred.",
     steps: [
@@ -100,11 +205,39 @@ export const technicalAeo: ArticleDraft[] = [
       "Check JSON-LD syntax and basic fields locally. Then use the applicable official testing tool when preparing a public release; different validators check different things.",
       "Remove properties unsupported by the page or evidence. Confirm the canonical URL and ensure any linked author information identifies the actual author entity.",
     ],
+    sections: [
+      {
+        heading: "Article schema markup example (JSON-LD)",
+        body: "Below is a clean BlogPosting JSON-LD example where every field corresponds to visible page elements: the H1 headline, the published and modified timestamps in <time> elements, the canonical URL, and a verified author entity.",
+        code: `{\n  "@context": "https://schema.org",\n  "@type": "BlogPosting",\n  "@id": "https://nameretailer.com/blog/example-guide/#article",\n  "headline": "How to Compare Guest-Post Placement Quotes",\n  "mainEntityOfPage": "https://nameretailer.com/blog/example-guide/",\n  "datePublished": "2026-10-08T19:44:29.958Z",\n  "dateModified": "2026-10-19T00:00:00.000Z",\n  "author": {\n    "@type": "Person",\n    "name": "Zuhoor Uddin",\n    "url": "https://nameretailer.com/authors/zuhoor-uddin/"\n  },\n  "publisher": {\n    "@id": "https://nameretailer.com/#organization"\n  },\n  "image": "https://nameretailer.com/og/article.png"\n}`,
+      },
+      {
+        heading: "Schema markup validation checklist",
+        body: "Use this checklist alongside our local JSON-LD structure checker before deploying template changes.",
+        checklist: [
+          "headline matches the visible H1 title on the page",
+          "datePublished and dateModified match visible <time dateTime=\"...\"> elements",
+          "author uses Person or Organization accurately without invented credentials",
+          "No self-serving AggregateRating or Review nodes are injected into informational articles",
+        ],
+      },
+    ],
     avoid:
       "Avoid using structured data as hidden advertising or adding fabricated aggregate ratings. This rebuild's local schema checker is intentionally a structural aid, not a full vocabulary or rich-results certification. Search engines can decline special presentation even for valid markup.",
     question: "Can an organization be an article author?",
     response:
       "Yes. Use the legitimate organizational identity and an identifying URL when that matches the visible byline.",
+    extraFaq: [
+      [
+        "Does adding Article or FAQ schema guarantee rich results or AI citations?",
+        "No. Structured data helps search engines understand page fields, but Google restricts FAQ rich results primarily to authoritative government and health sites and does not guarantee special display or AI citations from schema markup.",
+      ],
+    ],
+    relatedLinks: [
+      ["Validate JSON-LD with the schema markup validator", "/schema-markup-validator/"],
+      ["Generate JSON-LD with the schema generator", "/schema-generator/"],
+      ["Check server-rendered article content before launch", "/blog/check-server-rendered-article-content-before-launch/"],
+    ],
     source: {
       label: "Google: article structured data",
       url: "https://developers.google.com/search/docs/appearance/structured-data/article",
@@ -113,8 +246,11 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "Technical SEO",
     title: "Check server-rendered article content before launch",
+    seoTitle: "Technical SEO Checklist: Server-Rendered HTML & Crawlability",
+    metaDescription:
+      "Run a technical SEO checklist on server-rendered HTML, headings, canonicals, internal links and error states before launching or updating pages.",
     answer:
-      "Inspect the HTML returned for an article as well as the hydrated browser page. The title, main answer and navigation should be available in a stable, understandable form. A route that looks correct only after a client-side request needs a separate discovery and failure-state review.",
+      "A practical technical SEO checklist starts with inspecting the raw server-rendered HTML returned for each URL alongside the hydrated browser page. Verify that the H1 heading, primary answer, internal links, canonical tag and status codes are present in the initial response without relying on fragile client-side fetches.",
     example:
       "A fictional journal shows cards after JavaScript loads, but an article endpoint returns an empty main element when its database request fails. The team tests both the successful server response and the unavailable state. It avoids replacing missing content with a generic success page that would obscure the failure.",
     steps: [
@@ -122,11 +258,30 @@ export const technicalAeo: ArticleDraft[] = [
       "Test missing and unpublished slugs. They should not expose drafts or silently render an unrelated article under the requested URL.",
       "Check metadata, canonical information and structured data against the same content record. Confirm behavior after an editor updates or archives the record.",
     ],
+    sections: [
+      {
+        heading: " Core technical SEO checklist for content and marketplace routes",
+        body: "Before releasing template or content updates, verify the following technical SEO fundamentals across representative hub, directory, guide and blog URLs:",
+        checklist: [
+          "HTTP status codes: valid routes return 200 OK; missing slugs return a real 404 (not a soft-404 redirect)",
+          "Server-rendered body: primary copy, H1/H2 headings and crawlable <a href> links exist in raw HTML",
+          "Indexability directives: approved pages serve index,follow; parameter filters and private routes serve noindex",
+          "Canonical alignment: every indexable route declares a single self-referencing HTTPS canonical URL",
+          "Structured data parity: JSON-LD headline, dates, breadcrumbs and FAQs match visible HTML content",
+        ],
+      },
+    ],
     avoid:
       "Avoid assuming server rendering alone makes a page discoverable or performant. Crawler access, indexing directives and content quality still need review. Keep implementation claims specific: say that tested content appears in returned HTML rather than claiming guaranteed search visibility.",
     question: "Does server rendering guarantee indexing?",
     response:
       "No. It can make content available in the response, but discovery, access and indexing decisions remain separate.",
+    relatedLinks: [
+      ["Canonical URL audit checklist", "/blog/a-canonical-url-checklist-for-a-rebuilt-website/"],
+      ["Internal links SEO strategy", "/blog/internal-links-that-make-an-article-library-easier-to-use/"],
+      ["Article schema markup checklist", "/blog/a-structured-data-review-checklist-for-blog-articles/"],
+      ["Measure page experience", "/blog/measure-page-experience-with-a-repeatable-test-setup/"],
+    ],
     source: {
       label: "Google: JavaScript SEO basics",
       url: "https://developers.google.com/search/docs/crawling-indexing/javascript/javascript-seo-basics",
@@ -197,60 +352,305 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "Technical SEO",
     title: "A WordPress-to-Next.js content migration worksheet",
+    seoTitle: "WordPress to Next.js Content Migration Worksheet & SEO Checklist",
+    metaDescription:
+      "Comprehensive WordPress to Next.js content migration worksheet: URL mapping, 301 redirects, content equivalence, media, metadata, and post-launch SEO audit.",
     answer:
-      "Separate migration decisions into content equivalence, URL mapping, metadata, media and release behavior. A new interface is not a complete migration if valuable old pages and destinations remain unaccounted for. Review the old inventory before switching hosts or enabling redirects.",
+      "A successful WordPress to Next.js content migration requires separating decisions into content equivalence, URL redirect mapping, metadata parity, media optimization, and post-cutover verification. Rushing into code without auditing the legacy WordPress database often leaves high-traffic URLs unmapped, breaks internal link equity, and triggers crawl errors. Use a structured worksheet to review legacy routes, assign 1:1 destinations, configure server-level 301 redirects, and ensure Core Web Vitals excellence before updating DNS.",
     example:
-      "A fictional WordPress archive contains a how-to article, an outdated promotion and a tool page. The how-to may need an equivalent new article; the promotion needs an editorial retirement decision; the tool needs functional testing. Redirecting all three to a general blog index would conceal these different requirements and disappoint returning readers.",
+      "Consider a production WordPress site with 450 blog posts, 25 static landing pages, 60 category archives, and hundreds of media attachment pages. An equivalence audit reveals that 380 posts migrate directly to Next.js App Router dynamic routes (`/blog/[slug]/`), 40 outdated announcements should be retired with HTTP 410 Gone, and 30 thin articles should be consolidated into 5 comprehensive pillar guides via 301 redirects. Blindly redirecting all legacy URLs to the homepage would destroy historical keyword rankings and frustrate users.",
     steps: [
-      "Inventory old URLs with their purpose, traffic evidence when available and editorial status. Assign a proposed action and responsible reviewer to each important route.",
-      "Check equivalence between old and new content. Preserve useful assets, attribution and relevant metadata while fixing unsupported or outdated claims.",
-      "Test response behavior and the approved mapping before cutover. Keep rollback, indexing controls and post-launch monitoring in the release plan rather than treating them as design tasks.",
+      "Export and inventory all legacy WordPress URLs using Google Search Console, server access logs, and XML sitemaps to catalog every indexed route, page type, and organic traffic benchmark.",
+      "Establish strict 1:1 URL mappings and equivalence criteria, preserving URL slugs wherever feasible or configuring permanent 301 redirects in next.config.ts for modified paths.",
+      "Test redirect status codes, canonical metadata, JSON-LD schema parity, and responsive image performance in a staging environment before DNS cutover and post-launch Search Console validation.",
+    ],
+    sections: [
+      {
+        heading: "1. Content inventory and equivalence audit",
+        body: "Begin by exporting a comprehensive list of all published WordPress posts, pages, custom post types, categories, and tags. Do not rely solely on the WordPress admin dashboard—cross-reference your export with Google Search Console coverage reports and server log files to catch legacy URLs that still receive search impressions or external backlinks. Categorize every legacy asset into one of four distinct migration actions: Migrate 1:1 (maintain exact topical scope), Consolidate (merge thin content into comprehensive guides with 301 redirects), Update (refresh facts, code, and date stamps), or Retire (remove obsolete promotions with an explicit HTTP 410 Gone header).",
+      },
+      {
+        heading: "2. URL architecture, trailing slashes and 301 redirect rules",
+        body: "WordPress historically enforces trailing slashes on permalinks by default (e.g., `/blog/sample-post/`). In Next.js, decide on a consistent URL convention early. If preserving legacy WordPress rankings, configure trailingSlash: true in next.config.ts to prevent unnecessary 301 redirect hops from legacy bookmarks and external backlinks. When route paths must change, implement permanent 301 redirects rather than temporary 302 redirects. Never map discarded or low-value pages to the homepage—Google treats mass homepage redirects as soft 404s, eroding domain trust.",
+        code: `// next.config.ts - Production redirect configuration
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  trailingSlash: true,
+  skipTrailingSlashRedirect: true,
+  async redirects() {
+    return [
+      // 1:1 legacy URL migration
+      {
+        source: "/2024/05/12/legacy-slug/",
+        destination: "/blog/legacy-slug/",
+        permanent: true,
+      },
+      // Consolidated topic category to new pillar guide
+      {
+        source: "/category/wordpress-tips/",
+        destination: "/guides/wordpress-to-nextjs-migration/",
+        permanent: true,
+      },
+    ];
+  },
+};
+
+export default nextConfig;`,
+      },
+      {
+        heading: "3. WordPress to Next.js migration decision matrix",
+        body: "Use this operational worksheet to classify legacy WordPress assets and determine the correct Next.js technical response before initiating development:",
+        table: {
+          columns: [
+            "Legacy WordPress Asset",
+            "Equivalence Condition",
+            "Next.js Target Route",
+            "HTTP Response Code",
+          ],
+          rows: [
+            [
+              "High-traffic blog post",
+              "1:1 topical equivalence; updated code and facts",
+              "/blog/[slug]/ (Static or Dynamic SSR)",
+              "200 OK (Self-referencing canonical)",
+            ],
+            [
+              "Thin or fragmented posts",
+              "Consolidated into single comprehensive guide",
+              "/guides/[new-pillar-slug]/",
+              "301 Moved Permanently",
+            ],
+            [
+              "WordPress tag archives",
+              "High cannibalization; zero distinct organic value",
+              "Noindex during migration; remove from sitemap",
+              "410 Gone or 301 to parent category",
+            ],
+            [
+              "Obsolete event/promo",
+              "No equivalent content; expired commercial offer",
+              "Remove route completely from Next.js app",
+              "410 Gone (signals permanent removal)",
+            ],
+            [
+              "Attachment/media URLs",
+              "WordPress attachment pages (image.php)",
+              "Redirect to media file or parent article",
+              "301 Moved Permanently to article",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "4. Media, asset migration and image optimization",
+        body: "WordPress stores media in date-stamped directory trees under wp-content/uploads/. When migrating media to Next.js, store shared branding in the public/ folder or serve article imagery from an optimized asset store. Replace legacy raw <img> tags with Next.js next/image components to ensure automatic WebP/AVIF modern format conversion, responsive srcset generation, and explicit width/height dimensions that prevent Cumulative Layout Shift (CLS). For above-the-fold hero illustrations, supply priority or preload hints while keeping below-the-fold images lazy-loaded.",
+      },
+      {
+        heading: "5. Metadata, canonical parity and JSON-LD structured data",
+        body: "WordPress SEO plugins (such as Yoast or Rank Math) store metadata in custom post meta tables. In Next.js App Router, implement the generateMetadata API to dynamically emit page-level <title>, <meta name=\"description\">, OpenGraph tags, and canonical link elements. Verify that every page declares a clean, self-referencing canonical URL matching the exact preferred protocol, host, and trailing slash format. Additionally, embed server-rendered JSON-LD schema (Article or BlogPosting, and BreadcrumbList) directly into the HTML to maintain structured data continuity for Google Search and AI answer engines.",
+      },
+      {
+        heading: "6. Pre-launch and post-cutover technical SEO checklist",
+        body: "Execute these critical operational checks before pointing production DNS to the new Next.js deployment:",
+        checklist: [
+          "Validate that all 301 redirects respond with HTTP 301 and point directly to the final destination without intermediary redirect chains.",
+          "Verify that robots.txt permits search crawler access to public content while disallowing internal administrative routes.",
+          "Generate dynamic XML sitemaps (/sitemap.xml) listing only approved, indexable HTTP 200 URLs with accurate lastmod dates.",
+          "Check that server-rendered HTML contains full article text and headings before client hydration runs.",
+          "Submit the updated XML sitemap in Google Search Console immediately following DNS propagation.",
+          "Monitor Google Search Console Coverage and Crawl Stats reports daily for 404 errors, redirect loops, or soft 404 anomalies.",
+        ],
+      },
     ],
     avoid:
-      "Avoid claiming the old archive has been migrated when new original articles were merely added. This journal expansion is new content; it does not recreate the full legacy archive or automatically activate redirects. Owner approval is still required for the actual production migration.",
+      "Avoid wildcard-redirecting all legacy WordPress URLs to the homepage, which triggers soft 404 penalties. Do not deploy Next.js pages without self-referencing canonical URLs or forget to configure trailing slash consistency in next.config.ts. Avoid leaving legacy attachment pages or empty tag archives unhandled, and never launch without verifying that server-rendered HTML contains complete article copy before JavaScript execution.",
     question: "Do 60 new posts replace a legacy migration audit?",
     response:
-      "No. New content and legacy URL preservation are separate workstreams, and each needs its own evidence and release decision.",
+      "No. Publishing new articles expands your content library but does not resolve broken links, lost keyword rankings, or orphaned backlinks from legacy WordPress URLs. A comprehensive URL redirect audit and content equivalence review must be completed independently of new publishing initiatives.",
+    extraFaq: [
+      [
+        "How should trailing slashes be handled when migrating from WordPress to Next.js?",
+        "WordPress permalinks historically append a trailing slash by default. If your legacy URLs used trailing slashes, configure trailingSlash: true alongside skipTrailingSlashRedirect: true in next.config.ts. This ensures search engines and users reach the exact intended URL directly without experiencing an extra 308 or 301 redirect hop.",
+      ],
+      [
+        "Should every legacy WordPress tag and category archive be 301 redirected?",
+        "Only redirect category or tag archives if they possess established organic traffic, high-value backlinks, or direct equivalents in the Next.js site hierarchy. Low-value or auto-generated tag pages that dilute crawl budget should either be consolidated into a relevant topic hub or allowed to return HTTP 410 Gone.",
+      ],
+      [
+        "How can teams prevent Largest Contentful Paint (LCP) regressions during a Next.js migration?",
+        "Use the Next.js Image component with explicit sizes and priority on the primary above-the-fold image. Avoid wrapping LCP hero images in heavy client-side animations or complex CSS mask filters on mobile, and ensure critical CSS is inlined with the server-rendered document.",
+      ],
+      [
+        "How long should 301 redirects from WordPress remain active in Next.js?",
+        "Google recommends maintaining 301 redirects permanently, or for at least one full year after a site move, to ensure all search crawlers, external backlinks, and user bookmarks transfer equity smoothly to the new Next.js destinations.",
+      ],
+    ],
     source: {
       label: "Google: site moves with URL changes",
       url: "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
     },
+    extraSources: [
+      {
+        label: "Next.js: Routing, Redirects and Metadata API",
+        url: "https://nextjs.org/docs/app/building-your-application/routing/redirecting",
+      },
+      {
+        label: "Google Search Central: 301 Redirects and Canonicalization",
+        url: "https://developers.google.com/search/docs/crawling-indexing/canonicalization",
+      },
+    ],
+    relatedLinks: [
+      [
+        "Technical SEO checklist for content and marketplace sites",
+        "/blog/technical-seo-checklist-for-content-and-marketplace-sites/",
+      ],
+      [
+        "Internal linking and SEO: a practical site structure guide",
+        "/blog/internal-linking-and-seo-a-practical-site-structure-guide/",
+      ],
+      [
+        "Canonical URLs and duplicate content for growing sites",
+        "/blog/canonical-urls-and-duplicate-content-for-growing-sites/",
+      ],
+      [
+        "JSON-LD schema markup for articles and FAQs",
+        "/blog/json-ld-schema-markup-for-articles-and-faqs/",
+      ],
+      [
+        "Domain names, SEO and website migrations",
+        "/guides/domain-name-seo-and-migrations/",
+      ],
+      ["Free Technical SEO Tools & Schema Generator", "/seo-tools/"],
+    ],
   },
   {
     cluster: "AEO",
     title: "What AEO means in a practical content workflow",
+    seoTitle: "Answer Engine Optimization (AEO) & AEO vs SEO Guide",
+    metaDescription:
+      "Practical answer engine optimization (AEO) workflow: how AEO vs SEO works, an answer engine optimization checklist, and honest AI citation boundaries.",
     answer:
-      "Answer engine optimization is a label for work aimed at making useful answers easier to understand and discover in answer-oriented experiences. In this journal, the practical workflow is reader-focused: identify a real question, answer it accurately and make the supporting evidence clear. The label does not guarantee inclusion anywhere.",
+      "Answer engine optimization (AEO) is a practical workflow for structuring clear, evidence-backed answers so readers and answer-oriented search experiences can understand a topic without ambiguity. When comparing AEO vs SEO, traditional SEO ensures a page can be crawled, indexed, and ranked, while AEO focuses on question mapping, direct definitions, and source attribution inside that page. Neither AEO nor schema markup guarantees selection or citation in any AI answer.",
     example:
-      "A fictional customer asks how to compare writing tiers. A useful answer distinguishes word count from research and revision scope, then offers a worksheet. Renaming the same generic sales pitch an 'AEO article' would not solve that task. The content should help a person even if no answer engine ever cites it.",
+      "A fictional customer asks how to compare guest-post writing tiers. A useful answer engine optimization workflow states the direct difference between placement-only and writing-inclusive quotes in the opening paragraph, then provides a scope comparison table. Renaming a generic sales pitch an 'AEO article' would not solve the reader's task. The content must help a human buyer even if no answer engine summarizes it.",
     steps: [
-      "Collect a specific reader question and the context that changes its answer. Keep operational questions separate from unanswerable outcome promises.",
-      "Draft a direct answer with necessary qualifications, followed by an original example. Cite external factual claims where a current authoritative source is needed.",
-      "Review whether the page helps the reader act. Make the next step clear and keep actual discovery observations separate from the content preparation work.",
+      "Collect a specific reader question and the operational context that changes its answer. Keep practical workflow questions separate from unanswerable ranking or revenue promises.",
+      "Draft a concise direct answer with necessary qualifications right below the main heading, followed by an original worked example and primary source links where factual claims require verification.",
+      "Review whether the page helps the reader complete the next step. Keep actual search or assistant discovery observations separate from the editorial preparation work.",
+    ],
+    sections: [
+      {
+        heading: "AEO vs SEO: how answer engine optimization relates to traditional search",
+        body: "Teams evaluating AEO vs SEO often ask whether they need separate pages or separate technical rules for AI search features. Google's documentation for AI features explains that foundational SEO controls—crawlability, indexability, canonical URLs, and helpful on-page text—remain the baseline for appearing as a supporting link in AI Overviews and AI Mode. AEO refines how the explanation itself is structured once the page is technically eligible.",
+        table: {
+          columns: ["Dimension", "Traditional SEO Focus", "Answer Engine Optimization (AEO) Focus"],
+          rows: [
+            [
+              "Primary objective",
+              "Make pages crawlable, indexable, and relevant for search queries",
+              "Structure direct, self-contained answers with explicit conditions and boundaries",
+            ],
+            [
+              "On-page architecture",
+              "Logical H1/H2/H3 hierarchy, internal links, and descriptive metadata",
+              "Direct opening answer, question-aligned subsections, and clear comparison tables",
+            ],
+            [
+              "Evidence & citations",
+              "Trusted outbound links and accurate structured data matching visible text",
+              "Explicit separation between sourced facts, illustrative examples, and opinions",
+            ],
+            [
+              "What it cannot guarantee",
+              "Fixed #1 rankings or permanent traffic volume",
+              "Guaranteed inclusion or citation in AI Overviews, assistants, or chat responses",
+            ],
+          ],
+        },
+      },
+      {
+        heading: "Answer engine optimization checklist for editors",
+        body: "Use this answer engine optimization checklist before publishing or refreshing an informational guide:",
+        checklist: [
+          "State the direct answer in the first 40 to 80 words, keeping essential qualifications attached to the conclusion.",
+          "Ensure the opening definition still makes sense if quoted outside the surrounding article.",
+          "Include a concrete worked example labeled clearly as observed data or an illustrative scenario.",
+          "Use HTML comparison tables or ordered steps where readers must weigh trade-offs or follow a sequence.",
+          "Confirm the page is indexable (no stray noindex directive) and that Article or FAQ structured data matches visible page text.",
+          "Add contextual internal links to related workflows and tools so readers have an actionable next step.",
+        ],
+      },
     ],
     avoid:
-      "Avoid describing AEO as a separate certification, a hidden markup recipe or guaranteed placement in an AI answer. Different products have different retrieval and display behavior. Focus on controllable editorial quality and report measured appearances only when you actually observed them.",
+      "Avoid describing AEO as a separate certification, a hidden schema recipe, or a guaranteed placement method for AI answers. Different search engines and assistants use different retrieval and display systems. Focus on controllable editorial clarity and report measured appearances only when you have actually observed them.",
     question: "Is AEO a guarantee that an assistant will cite my page?",
     response:
-      "No. It describes an optimization objective, not a promised citation or a universal platform requirement.",
+      "No. Answer engine optimization describes an editorial and structural workflow, not a promised citation or a universal platform rule.",
+    extraFaq: [
+      [
+        "What is the main difference in AEO vs SEO?",
+        "SEO covers the technical and content foundations that help search engines crawl, index, and rank a page. AEO focuses specifically on structuring direct, well-qualified answers to explicit questions within that page.",
+      ],
+      [
+        "Does FAQ or Article schema guarantee AI search citations?",
+        "No. Structured data helps search engines parse page metadata, but Google's AI features documentation does not require special AI schema and does not guarantee selection from markup alone.",
+      ],
+    ],
+    source: {
+      label: "Google: AI features and your website",
+      url: "https://developers.google.com/search/docs/appearance/ai-features",
+    },
+    extraSources: [
+      {
+        label: "Google: succeeding in AI search",
+        url: "https://developers.google.com/search/docs/fundamentals/ai-optimization-guide",
+      },
+    ],
+    relatedLinks: [
+      ["What GEO means for a small content team", "/blog/what-geo-means-for-a-small-content-team/"],
+      ["Build a question map before drafting answer-led content", "/blog/build-a-question-map-before-drafting-answer-led-content/"],
+      ["An answer-quality review sheet for editors", "/blog/an-answer-quality-review-sheet-for-editors/"],
+      ["A structured-data review checklist for blog articles", "/blog/a-structured-data-review-checklist-for-blog-articles/"],
+    ],
   },
   {
     cluster: "AEO",
     title: "Build a question map before drafting answer-led content",
+    seoTitle: "How to Build an AEO Question Map for Answer-Led Content",
+    metaDescription:
+      "Group reader questions by decision and search intent before writing answer-led content so your library avoids duplicate URLs and thin variations.",
     answer:
       "Group related questions by the decisions they support, then assign one useful page to each distinct task. A question map should expose gaps and duplication, not become a mandate to publish every wording variation. Start with a manageable set grounded in the reader's workflow.",
     example:
-      "A fictional marketplace support team sees questions about writing costs, placement costs and whether a cart is an order. Those are distinct topics. 'How much is writing?' and 'What does article writing cost?' may belong on the same page. The map helps the editor avoid producing two nearly identical explanations.",
+      "A fictional marketplace support team sees questions about writing costs, placement costs and whether a cart is an order. Those are distinct topics. 'How much is writing?' and 'What does article writing cost?' belong on the same page. The map helps the editor avoid producing two nearly identical explanations.",
     steps: [
       "Capture question wording and the context in which it arose. Mark whether it came from a real request, an editorial hypothesis or a research exercise.",
       "Cluster questions by task and shared answer. Give each cluster a primary page and identify useful subquestions that fit inside it.",
       "Review the map against the existing library. Improve a relevant page before adding a new one whose only difference is a synonym in the title.",
+    ],
+    sections: [
+      {
+        heading: "Mapping primary questions vs follow-up subsections",
+        body: "When building an answer engine optimization question map, decide early whether a query represents a standalone workflow or a supporting detail inside an existing guide.",
+        checklist: [
+          "Assign one canonical URL to all phrasing variations that share the same core answer and checklist.",
+          "Turn dependent follow-up questions into H2 or H3 subsections or concise FAQ entries on the primary page.",
+          "Create a separate URL only when the reader needs a distinct workflow, tool, or comparison framework.",
+          "Link between related question clusters using descriptive anchor text that states the destination topic.",
+        ],
+      },
     ],
     avoid:
       "Avoid representing brainstormed questions as measured search demand or observed customer volume. A local keyword tool can suggest directions, but it does not supply live query data. Record that distinction so editorial planning is not mistaken for market evidence.",
     question: "Should every question get its own URL?",
     response:
       "No. Combine questions that share an answer and create separate pages only when the reader task and useful content are genuinely different.",
+    relatedLinks: [
+      ["What AEO means in a practical content workflow", "/blog/what-aeo-means-in-a-practical-content-workflow/"],
+      ["Plan useful follow-up answers without duplicating pages", "/blog/plan-useful-follow-up-answers-without-duplicating-pages/"],
+      ["Keyword Research Tool", "/tools/keyword-research/"],
+    ],
   },
   {
     cluster: "AEO",
@@ -387,6 +787,9 @@ export const technicalAeo: ArticleDraft[] = [
   {
     cluster: "AEO",
     title: "An answer-quality review sheet for editors",
+    seoTitle: "Answer Engine Optimization Checklist & Review Sheet",
+    metaDescription:
+      "Use this editorial answer-quality review sheet and answer engine optimization checklist to verify direct answers, sources, and conditions before publishing.",
     answer:
       "Review an answer by asking whether it is correct, understandable, sufficiently complete and useful for the stated reader. Use concrete notes rather than a mysterious aggregate quality score. A review sheet should identify the revision needed and the evidence that would close each issue.",
     example:
@@ -396,10 +799,46 @@ export const technicalAeo: ArticleDraft[] = [
       "Check the example, steps and sources for consistency. Mark invented scenarios, missing evidence and claims that need a current primary reference.",
       "Test the page as a reader: can you complete the task, and do you know what remains unknown? Assign specific revisions and a real review owner.",
     ],
+    sections: [
+      {
+        heading: "Editorial review criteria for answer-led articles",
+        body: "Before marking an article complete, verify each layer of the answer engine optimization checklist with concrete editorial notes:",
+        table: {
+          columns: ["Review Gate", "What to Inspect", "Common Defect to Fix"],
+          rows: [
+            [
+              "Direct answer clarity",
+              "First paragraph below H1 answers the primary question with scope conditions",
+              "Delayed throat-clearing introduction or unqualified 'guaranteed' promise",
+            ],
+            [
+              "Evidence boundary",
+              "Primary source URL supports the exact factual sentence where it is cited",
+              "Attaching a documentation link to an invented percentage or forecast",
+            ],
+            [
+              "Worked example",
+              "Scenario walks through a realistic reader decision and labels assumptions",
+              "Presenting a hypothetical worksheet as a verified client case study",
+            ],
+            [
+              "Actionable next step",
+              "Checklist and internal links connect to relevant tools or deeper guides",
+              "Orphaned conclusion with no clear path to complete the workflow",
+            ],
+          ],
+        },
+      },
+    ],
     avoid:
       "Avoid calling a content audit an expert certification unless an actual qualified reviewer performed that role. AI-assisted drafts can support editorial work, but a functioning template and automated checks do not establish lived experience or independent subject-matter review.",
     question: "Can automated checks replace the editor's judgment?",
     response:
       "No. They can catch structure and missing fields; usefulness, accuracy, permission and context require editorial review.",
+    relatedLinks: [
+      ["What AEO means in a practical content workflow", "/blog/what-aeo-means-in-a-practical-content-workflow/"],
+      ["How to audit an answer for unsupported certainty", "/blog/how-to-audit-an-answer-for-unsupported-certainty/"],
+      ["An editorial handoff checklist before publication", "/blog/an-editorial-handoff-checklist-before-publication/"],
+    ],
   },
 ];

@@ -66,7 +66,13 @@ export function ShortlistListing({
     </Element>
   );
 }
-export function ShortlistButton({ product }: { product: PublicProduct }) {
+export function ShortlistButton({
+  product,
+  showLabel = false,
+}: {
+  product: PublicProduct;
+  showLabel?: boolean;
+}) {
   const store = useStore();
   const selection = useSyncExternalStore(
     store.subscribe,
@@ -96,7 +102,7 @@ export function ShortlistButton({ product }: { product: PublicProduct }) {
         aria-hidden="true"
         fill={selected ? "currentColor" : "none"}
       />
-      <span className="marketplace-bookmark-label">{label}</span>
+      {showLabel && <span className="marketplace-bookmark-label">{label}</span>}
     </Button>
   );
 }

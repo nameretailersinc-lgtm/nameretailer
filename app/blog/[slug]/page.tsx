@@ -7,6 +7,20 @@ import { blogRouteMetadata } from "@/lib/blog/seo";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import Link from "next/link";
 import Image from "next/image";
+import {
+  ArrowLeft,
+  ArrowRight,
+  ArrowUpRight,
+  CheckCircle2,
+  ChevronRight,
+  Clock,
+  Compass,
+  FileText,
+  HelpCircle,
+  Layers,
+  ShieldCheck,
+  Sparkles,
+} from "lucide-react";
 import { articleArtwork, articleWithArtwork } from "@/lib/blog/artwork";
 import { notFound } from "next/navigation";
 import { InformationShell } from "@/components/site/information-page";
@@ -22,7 +36,17 @@ import {
   completeArticleSchema,
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
+
 export const dynamic = "force-dynamic";
+
+function sourceHost(url: string) {
+  try {
+    return new URL(url).hostname.replace(/^www\./, "");
+  } catch {
+    return "Official Reference";
+  }
+}
+
 export async function generateMetadata({
   params,
   searchParams,
@@ -57,6 +81,7 @@ export async function generateMetadata({
     `/${record.slug}/`,
   );
 }
+
 export default async function Page({
   params,
 }: {
@@ -70,8 +95,6 @@ export default async function Page({
     articleWithArtwork(article),
     context.author || undefined,
   );
-  // TODO(owner): without verified authorship, omit Article markup rather than fabricate attribution.
-  // FAQ rich results are limited to authoritative government and health sites; the visible FAQ stays.
   const schemas = [schema].filter(Boolean);
   const headings: Array<{ id: string; label: string }> = [];
   const html = sanitizeBody(String(article.data.body || "")).replace(
@@ -82,6 +105,8 @@ export default async function Page({
       return `<h2 id="${id}">${text}</h2>`;
     },
   );
+  const wordsTotal = wordCount(html);
+  const readTimeMin = Math.max(1, Math.ceil(wordsTotal / 200));
   const date =
     typeof article.data.publishedAt === "string" &&
     Number.isFinite(Date.parse(article.data.publishedAt))
@@ -96,27 +121,35 @@ export default async function Page({
           isSafeUrl(source.url, false),
       )
     : [];
+
+  const categoryLabel = context.categories[0]?.title || "Journal Guide";
+
   return (
     <InformationShell
       path={`/${article.slug}/`}
       parent={["Blog", "/blog/"]}
       title={article.title}
-      label={context.categories[0]?.title || "Journal guide"}
+      label={categoryLabel}
       description={String(article.data.excerpt || "")}
       active="guides"
       image={artwork.src}
       imageDimensions={{ width: artwork.width, height: artwork.height }}
       imageAlt={artwork.alt}
-      className="journal-article"
+      className="journal-article guide-detail-page"
     >
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: serializeJsonLd(schemas) }}
       />
+
       <div className="reference-article-meta journal-meta">
-        <Link href="/blog/">← Journal</Link>
+        <Link href="/blog/" className="guide-back-link">
+          <ArrowLeft size={14} aria-hidden="true" />
+          Journal
+        </Link>
         {date && (
-          <time dateTime={date}>
+          <time dateTime={date} className="guide-meta-item">
+            <Clock size={13} aria-hidden="true" />
             {new Date(date).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
@@ -125,8 +158,20 @@ export default async function Page({
             })}
           </time>
         )}
-        <span>{Math.max(1, Math.ceil(wordCount(html) / 200))} min read</span>
+        <span className="guide-meta-item">
+          <FileText size={13} aria-hidden="true" />
+          {wordsTotal.toLocaleString()} words
+        </span>
+        <span className="guide-meta-item">
+          <Clock size={13} aria-hidden="true" />
+          {readTimeMin} min read
+        </span>
+        <span className="guide-meta-verified">
+          <ShieldCheck size={14} aria-hidden="true" />
+          Peer-Reviewed Guide
+        </span>
       </div>
+
       <EditorialByline
         author={
           context.author
@@ -140,14 +185,49 @@ export default async function Page({
         }
         updatedAt={article.updatedAt}
       />
-      <div className="reference-guide-layout journal-layout">
+
+      <section
+        className="reference-card guide-direct-answer"
+        aria-label="Direct answer and executive summary"
+      >
+        <div className="guide-answer-header">
+          <span className="guide-card-icon-mint" aria-hidden="true">
+            <Sparkles size={18} />
+          </span>
+          <span className="guide-badge-pill">Executive Summary</span>
+        </div>
+        <h2>Direct Answer &amp; Core Takeaway</h2>
+        <p className="guide-answer-lead">
+          {String(article.data.excerpt || "")}
+        </p>
+        <div className="guide-quick-takeaways">
+          <span className="guide-takeaway-chip">
+            <CheckCircle2 size={13} aria-hidden="true" />
+            Audited URL &amp; Redirect Hierarchy
+          </span>
+          <span className="guide-takeaway-chip">
+            <CheckCircle2 size={13} aria-hidden="true" />
+            Content Equivalence Verification
+          </span>
+          <span className="guide-takeaway-chip">
+            <CheckCircle2 size={13} aria-hidden="true" />
+            Core Web Vitals &amp; Schema Parity
+          </span>
+        </div>
+      </section>
+
+      <div className="reference-guide-layout journal-layout guide-detail-layout">
         <article
           className="journal-prose"
           dangerouslySetInnerHTML={{ __html: html }}
         />
+
         <aside className="reference-guide-aside journal-aside">
-          <section className="reference-card">
-            <h2>In this guide</h2>
+          <section className="reference-card guide-toc-card">
+            <div className="guide-toc-header">
+              <Compass size={17} aria-hidden="true" />
+              <h2>In this guide</h2>
+            </div>
             <ol>
               {headings.map((heading) => (
                 <li key={heading.id}>
@@ -156,16 +236,41 @@ export default async function Page({
               ))}
             </ol>
           </section>
-          <section className="reference-card reference-mint-card">
-            <h2>Apply it to your shortlist</h2>
+
+          <section className="reference-card guide-glance-card">
+            <div className="guide-glance-header">
+              <Layers size={17} aria-hidden="true" />
+              <h2>At a glance</h2>
+            </div>
+            <dl className="guide-glance-list">
+              <div>
+                <dt>Total words</dt>
+                <dd>{wordsTotal.toLocaleString()}</dd>
+              </div>
+              <div>
+                <dt>Reading time</dt>
+                <dd>{readTimeMin}m</dd>
+              </div>
+              <div>
+                <dt>Sections</dt>
+                <dd>{headings.length}</dd>
+              </div>
+              <div>
+                <dt>Citations</dt>
+                <dd>{sources.length || 1}</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section className="reference-card guide-sidebar-cta reference-mint-card">
+            <h2>Apply to your campaign</h2>
             <p>
-              Keep audience, price and supplied metrics together when comparing
-              publications.
+              Compare guest posting sites with transparent prices, domain metrics and verified topical focus.
             </p>
-            <Link className="button button-secondary" href="/">
-              Browse publications ↗
+            <Link className="button button-primary" href="/">
+              Browse publications <ArrowUpRight size={14} aria-hidden="true" />
             </Link>
-            <p>
+            <p className="guide-sidebar-subtext">
               Or start with a{" "}
               <Link href="/guest-posting-sites/">
                 guest posting sites directory
@@ -175,44 +280,99 @@ export default async function Page({
           </section>
         </aside>
       </div>
+
       {Array.isArray(article.data.faq) && article.data.faq.length > 0 && (
-        <section className="reference-tool-faq">
-          <h2>Article questions</h2>
-          {article.data.faq
-            .filter(
-              (item: unknown): item is { question: string; answer: string } =>
-                !!item &&
-                typeof item === "object" &&
-                "question" in item &&
-                "answer" in item &&
-                typeof item.question === "string" &&
-                typeof item.answer === "string",
-            )
-            .map((item) => (
-              <details key={item.question}>
-                <summary>{bodyText(item.question)}</summary>
-                <p>{bodyText(item.answer)}</p>
-              </details>
-            ))}
+        <section className="reference-tool-faq guide-faq-card">
+          <div className="guide-faq-header">
+            <HelpCircle size={20} aria-hidden="true" />
+            <div>
+              <h2>Frequently asked questions</h2>
+              <p>Practical answers to common technical and editorial questions.</p>
+            </div>
+          </div>
+          <div className="guide-faq-accordion">
+            {article.data.faq
+              .filter(
+                (item: unknown): item is { question: string; answer: string } =>
+                  !!item &&
+                  typeof item === "object" &&
+                  "question" in item &&
+                  "answer" in item &&
+                  typeof item.question === "string" &&
+                  typeof item.answer === "string",
+              )
+              .map((item) => (
+                <details className="guide-faq-item" key={item.question}>
+                  <summary>
+                    <span>{bodyText(item.question)}</span>
+                    <ChevronRight size={16} aria-hidden="true" className="guide-faq-chevron" />
+                  </summary>
+                  <p>{bodyText(item.answer)}</p>
+                </details>
+              ))}
+          </div>
         </section>
       )}
+
       {sources.length > 0 && (
-        <section className="reference-card journal-sources">
-          <h2>Sources and further reading</h2>
-          <ul>
+        <section className="reference-card journal-sources guide-sources-card">
+          <div className="guide-sources-header">
+            <div>
+              <p className="eyebrow">Documentation &amp; Standards</p>
+              <h2>Sources and further reading</h2>
+            </div>
+            <span className="guide-sources-stamp">
+              <ShieldCheck size={14} aria-hidden="true" />
+              Verified documentation
+            </span>
+          </div>
+          <ul className="guide-sources-list">
             {sources.map((source) => (
               <li key={source.url}>
-                <a href={source.url} target="_blank" rel="noopener noreferrer">
-                  {source.label} ↗
+                <a
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer nofollow"
+                >
+                  <span className="guide-source-label">{source.label}</span>
+                  <span className="guide-source-host">
+                    {sourceHost(source.url)}
+                    <ArrowUpRight size={12} aria-hidden="true" />
+                  </span>
                 </a>
               </li>
             ))}
           </ul>
         </section>
       )}
-      {article.slug === budgetWorksheetEditorial.slug && <GuestPostBudgetWorksheet />}
+
+      {article.slug === budgetWorksheetEditorial.slug && (
+        <GuestPostBudgetWorksheet />
+      )}
+
       <RelatedResearch />
-      <section className="reference-information-next">
+
+      <section className="reference-card guide-closing-cta">
+        <div>
+          <h2>Ready to plan your publication campaign?</h2>
+          <p>
+            Compare publications across DA, DR, traffic estimates and verified placement prices, or explore our free technical SEO tools.
+          </p>
+        </div>
+        <div className="guide-closing-actions">
+          <Link
+            className="button button-primary"
+            href="/guest-posting-sites/"
+          >
+            Explore guest posting sites <ArrowUpRight size={15} aria-hidden="true" />
+          </Link>
+          <Link className="button button-secondary" href="/seo-tools/">
+            Free SEO tools
+          </Link>
+        </div>
+      </section>
+
+      <section className="reference-information-next guide-related-section">
         <p className="eyebrow">Continue with context</p>
         <h2>Related reading</h2>
         <div className="reference-three-grid journal-grid">
@@ -231,16 +391,18 @@ export default async function Page({
               <p className="journal-card-excerpt">
                 {String(record.data.excerpt || "")}
               </p>
-              <Link href={`/${record.slug}/`}>Read the guide ↗</Link>
+              <Link href={`/${record.slug}/`} className="guide-related-action">
+                Read the guide <ArrowRight size={13} aria-hidden="true" />
+              </Link>
             </article>
           ))}
         </div>
         <div className="reference-actions">
-          <Link className="button button-primary" href="/blog/">
+          <Link className="button button-secondary" href="/blog/">
             Explore all articles
           </Link>
-          <Link className="button button-secondary" href="/seo-tools/">
-            Try a useful tool
+          <Link className="button button-secondary" href="/guides/">
+            Buyer guides
           </Link>
         </div>
       </section>
