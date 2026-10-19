@@ -1,0 +1,150 @@
+{
+  "checkedAt": "2026-10-19T04:49:38.609977+00:00",
+  "scope": "Read-only local build API shapes. Raw supplier values and credentials are never persisted.",
+  "endpoints": [
+    {
+      "path": "/api/products/?q=001success.net&pageSize=1",
+      "status": 200,
+      "topLevelKeys": [
+        "data",
+        "page",
+        "pageSize",
+        "total"
+      ],
+      "productKeys": [
+        "category",
+        "country",
+        "createdAt",
+        "currency",
+        "domain",
+        "id",
+        "language",
+        "linkType",
+        "metrics",
+        "priceCents",
+        "requirements",
+        "status",
+        "turnaround",
+        "updatedAt",
+        "version"
+      ],
+      "privateFieldsExposed": [],
+      "sourceColumnNames": [],
+      "cacheControl": "private, no-store"
+    },
+    {
+      "path": "/api/mobile/products/?q=001success.net&pageSize=1",
+      "status": 200,
+      "topLevelKeys": [
+        "data",
+        "page",
+        "pageSize",
+        "total"
+      ],
+      "productKeys": [
+        "category",
+        "country",
+        "createdAt",
+        "currency",
+        "domain",
+        "id",
+        "language",
+        "linkType",
+        "metrics",
+        "priceCents",
+        "requirements",
+        "status",
+        "turnaround",
+        "updatedAt",
+        "version"
+      ],
+      "privateFieldsExposed": [],
+      "sourceColumnNames": [],
+      "cacheControl": "private, no-store"
+    },
+    {
+      "path": "/api/mobile/products/bdc43825-d1ac-4d26-8c12-ec1bf1b95c47/",
+      "status": 200,
+      "topLevelKeys": [
+        "options",
+        "product"
+      ],
+      "productKeys": [
+        "category",
+        "country",
+        "createdAt",
+        "currency",
+        "domain",
+        "externalId",
+        "id",
+        "importId",
+        "language",
+        "linkType",
+        "metrics",
+        "priceCents",
+        "requirements",
+        "source",
+        "status",
+        "turnaround",
+        "updatedAt",
+        "version"
+      ],
+      "privateFieldsExposed": [
+        "source",
+        "externalId",
+        "importId"
+      ],
+      "sourceColumnNames": [
+        "Article_Price",
+        "Article_Price_2",
+        "Article_Price_3",
+        "Category",
+        "Country",
+        "Description",
+        "Keywords",
+        "Linktype",
+        "Price",
+        "SpamScore",
+        "Special_Requirements",
+        "TAT",
+        "Title",
+        "backlinks",
+        "da",
+        "date_added",
+        "domain",
+        "dr",
+        "id",
+        "language",
+        "link_type",
+        "referring_domains",
+        "tf",
+        "traffic",
+        "ur"
+      ],
+      "cacheControl": "private, no-store"
+    },
+    {
+      "path": "/api/products/bdc43825-d1ac-4d26-8c12-ec1bf1b95c47/options/",
+      "status": 200,
+      "topLevelKeys": [
+        "currency",
+        "domain",
+        "linkType",
+        "placementCents",
+        "productId",
+        "productVersion",
+        "requirements",
+        "turnaround",
+        "writingOptions"
+      ],
+      "productKeys": [],
+      "privateFieldsExposed": [],
+      "sourceColumnNames": [],
+      "cacheControl": "private, no-store"
+    },
+    {
+      "path": "/api/admin/products/",
+      "status": 401
+    }
+  ]
+}

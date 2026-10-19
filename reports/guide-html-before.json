@@ -1,0 +1,2193 @@
+{
+  "checkedAt": "2026-10-19T04:38:57.697689+00:00",
+  "scope": "Read-only existing local production-build HTML; no deployed indexing or ranking evidence. Source comparison flags metadata drift from the audited repository.",
+  "manifestAuditedAt": "2026-10-19T04:36:43.672Z",
+  "summary": {
+    "requested": 25,
+    "http200WithOneH1": 25,
+    "httpStatusCounts": {
+      "200": 25
+    },
+    "canonicalMismatches": [],
+    "sourceTitleMismatches": [],
+    "sourceDescriptionMismatches": [],
+    "robotsCounts": {
+      "index, follow": 25
+    },
+    "schemaTypePageCounts": {
+      "Organization": 25,
+      "BreadcrumbList": 25,
+      "Article": 5
+    },
+    "schemaParseErrors": 0,
+    "wordCounts": {
+      "min": 329,
+      "median": 544,
+      "p90": 619,
+      "max": 1005
+    },
+    "similarity": {
+      "methodology": "Exact values, supplied-slot normalization and pairwise five-word-shingle set Jaccard of main HTML text. Header/footer/scripts excluded; main breadcrumbs, shared help and related lists retained. Lexical repetition is not search quality or semantic intent. Compare the separate authored-only guide source analysis.",
+      "pairCount": 300,
+      "mainTextFiveWordJaccard": {
+        "min": 0.016191210485736313,
+        "median": 0.024582967515364356,
+        "p90": 0.03294367693942614,
+        "max": 0.06236559139784946
+      },
+      "exactDuplicateTitles": [],
+      "exactDuplicateDescriptions": [],
+      "slotNormalizedDescriptions": [],
+      "slotNormalizedLeads": [],
+      "repeatedHeadings": [
+        {
+          "text": "Sources",
+          "pages": 25,
+          "examplePaths": [
+            "/guides/buy-and-register-a-domain-name/",
+            "/guides/check-guest-post-website-traffic/",
+            "/guides/choose-a-domain-name/"
+          ]
+        },
+        {
+          "text": "Which publications should I compare next?",
+          "pages": 25,
+          "examplePaths": [
+            "/guides/buy-and-register-a-domain-name/",
+            "/guides/check-guest-post-website-traffic/",
+            "/guides/choose-a-domain-name/"
+          ]
+        },
+        {
+          "text": "Continue with this decision",
+          "pages": 20,
+          "examplePaths": [
+            "/guides/check-guest-post-website-traffic/",
+            "/guides/da-vs-dr-and-traffic/",
+            "/guides/find-guest-posting-opportunities/"
+          ]
+        },
+        {
+          "text": "Common questions",
+          "pages": 16,
+          "examplePaths": [
+            "/guides/check-guest-post-website-traffic/",
+            "/guides/find-guest-posting-opportunities/",
+            "/guides/free-vs-paid-guest-posting/"
+          ]
+        },
+        {
+          "text": "Put it into practice",
+          "pages": 6,
+          "examplePaths": [
+            "/guides/find-guest-posting-opportunities/",
+            "/guides/guest-posting-for-beginners/",
+            "/guides/guest-posting-for-ecommerce/"
+          ]
+        },
+        {
+          "text": "Decision checklist",
+          "pages": 5,
+          "examplePaths": [
+            "/guides/guest-post-outreach-templates/",
+            "/guides/guest-post-submission-guidelines/",
+            "/guides/guest-posting-checklist/"
+          ]
+        },
+        {
+          "text": "Continue planning your domain",
+          "pages": 3,
+          "examplePaths": [
+            "/guides/buy-and-register-a-domain-name/",
+            "/guides/choose-a-domain-name/",
+            "/guides/domain-name-seo-and-migrations/"
+          ]
+        },
+        {
+          "text": "Metric definitions",
+          "pages": 2,
+          "examplePaths": [
+            "/guides/da-vs-dr-and-traffic/",
+            "/guides/vet-a-guest-post-site/"
+          ]
+        }
+      ],
+      "mostRepeatedParagraphs": [
+        {
+          "text": "Compare guest posting sites by niche , browse placement prices up to $50 , or review the full active catalogue .",
+          "pages": 25,
+          "examplePaths": [
+            "/guides/buy-and-register-a-domain-name/",
+            "/guides/check-guest-post-website-traffic/",
+            "/guides/choose-a-domain-name/"
+          ]
+        }
+      ]
+    }
+  },
+  "rows": [
+    {
+      "path": "/guides/choose-a-domain-name/",
+      "status": 200,
+      "title": "How to choose a domain name for a business",
+      "description": "Build a memorable business domain shortlist, test names with customers, compare extensions and check registration before you commit.",
+      "canonical": "https://nameretailer.com/guides/choose-a-domain-name/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to choose a domain name for a business"
+        ],
+        [
+          "h2",
+          "Start with the audience and the next three years"
+        ],
+        [
+          "h2",
+          "Build and score a small shortlist"
+        ],
+        [
+          "h2",
+          "Compare startup and ecommerce needs"
+        ],
+        [
+          "h2",
+          "Choose an extension for the audience"
+        ],
+        [
+          "h2",
+          "Verify the shortlist before buying"
+        ],
+        [
+          "h2",
+          "Continue planning your domain"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Choose a domain people can say, spell and recognize as your business. Build a shortlist, test it aloud without showing the spelling, compare suitable extensions, and verify registration and relevant name rights before paying. A domain name is your web address; a business name identifies your business and may follow separate local rules.",
+      "mainWords": 566,
+      "mainHash": "ade9e2d8b61f8c4b9d8b4f553cbdbdd43d58c2bc78e1d4de17820e9958b44d7f",
+      "descriptionSlotNormalized": "build a memorable business domain shortlist, test names with customers, compare extensions and check registration before you commit.",
+      "leadSlotNormalized": "choose a domain people can say, spell and recognize as your business. build a shortlist, test it aloud without showing the spelling, compare suitable extensions, and verify registration and relevant name rights before paying. a domain name is your web address; a business name identifies your business and may follow separate local rules.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/domain-length-checker/",
+        "/domain-names/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/buy-and-register-a-domain-name/",
+        "/guides/domain-name-seo-and-migrations/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/buy-and-register-a-domain-name/",
+      "status": 200,
+      "title": "How to buy and register a domain name",
+      "description": "A beginner checklist for domain registration: verify availability, compare renewal terms, secure account ownership and connect website and email records.",
+      "canonical": "https://nameretailer.com/guides/buy-and-register-a-domain-name/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to buy and register a domain name"
+        ],
+        [
+          "h2",
+          "Check availability at the point of purchase"
+        ],
+        [
+          "h2",
+          "Compare the total cost rather than the introductory offer"
+        ],
+        [
+          "h2",
+          "Keep registration under your control"
+        ],
+        [
+          "h2",
+          "Connect hosting and email deliberately"
+        ],
+        [
+          "h2",
+          "Plan renewals and future transfers"
+        ],
+        [
+          "h2",
+          "Continue planning your domain"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Choose a suitable name, verify its current availability with a registrar, review the registration and renewal terms, and register it in an account you control. Then configure your website and email records. A domain registration is separate from hosting and from registering a business name.",
+      "mainWords": 455,
+      "mainHash": "b9c0460b44f919dfadfe71b94e09f5558724a1ca6ac8be3521b8fc0798b8916b",
+      "descriptionSlotNormalized": "a beginner checklist for domain registration: verify availability, compare renewal terms, secure account ownership and connect website and email records.",
+      "leadSlotNormalized": "choose a suitable name, verify its current availability with a registrar, review the registration and renewal terms, and register it in an account you control. then configure your website and email records. a domain registration is separate from hosting and from registering a business name.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/domain-length-checker/",
+        "/domain-names/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/choose-a-domain-name/",
+        "/guides/domain-name-seo-and-migrations/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/domain-name-seo-and-migrations/",
+      "status": 200,
+      "title": "Domain names, SEO and website migrations",
+      "description": "Separate domain naming decisions from SEO claims, and plan a domain migration with URL mapping, permanent redirects, canonicals and monitoring.",
+      "canonical": "https://nameretailer.com/guides/domain-name-seo-and-migrations/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Domain names, SEO and website migrations"
+        ],
+        [
+          "h2",
+          "Do keywords in a domain guarantee rankings?"
+        ],
+        [
+          "h2",
+          "Compare extensions without an automatic SEO winner"
+        ],
+        [
+          "h2",
+          "Create a URL migration worksheet"
+        ],
+        [
+          "h2",
+          "Update all URL signals together"
+        ],
+        [
+          "h2",
+          "Measure the migration rather than promise recovery"
+        ],
+        [
+          "h2",
+          "Check a previously used domain before purchase"
+        ],
+        [
+          "h2",
+          "Continue planning your domain"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "A domain name can help users understand and remember a website, but it cannot guarantee Google rankings. When changing a domain, preserve useful content and map each old URL to its genuinely equivalent new URL. Update internal links, canonicals and sitemaps, then monitor crawling and search performance.",
+      "mainWords": 547,
+      "mainHash": "bc53c4bc536dbafd88b49f89061208d3a57f967d1521dd903d1c71cce59e8a6c",
+      "descriptionSlotNormalized": "separate domain naming decisions from seo claims, and plan a domain migration with url mapping, permanent redirects, canonicals and monitoring.",
+      "leadSlotNormalized": "a domain name can help users understand and remember a website, but it cannot guarantee google rankings. when changing a domain, preserve useful content and map each old url to its genuinely equivalent new url. update internal links, canonicals and sitemaps, then monitor crawling and search performance.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/domain-length-checker/",
+        "/domain-names/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/buy-and-register-a-domain-name/",
+        "/guides/choose-a-domain-name/"
+      ],
+      "externalLinkCount": 4
+    },
+    {
+      "path": "/guides/guest-posting-for-beginners/",
+      "status": 200,
+      "title": "Guest posting for beginners",
+      "description": "Learn how guest posting works, choose a suitable publisher and prepare your first article with a simple workflow, example and publishing checklist.",
+      "canonical": "https://nameretailer.com/guides/guest-posting-for-beginners/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest posting for beginners"
+        ],
+        [
+          "h2",
+          "What happens in a guest post placement?"
+        ],
+        [
+          "h2",
+          "Choose one reader problem for your first article"
+        ],
+        [
+          "h2",
+          "Separate an editorial contribution from a paid link"
+        ],
+        [
+          "h2",
+          "What should your first placement record contain?"
+        ],
+        [
+          "h2",
+          "Put it into practice"
+        ],
+        [
+          "h2",
+          "Decision checklist"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Do I need a paid placement to start?"
+        ],
+        [
+          "h3",
+          "Will a guest post guarantee higher rankings?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Guest posting means contributing an article to another publication for its readers. Start with a useful subject, choose a relevant publisher, agree the editorial and commercial terms, then write and review the article. Paid placements need appropriate link qualification. Measure actual reader responses rather than assuming publication will improve your rankings.",
+      "mainWords": 514,
+      "mainHash": "5574933c682857c67a72857f5e7f76cee6f4cedd4e45ec026a5bc34f3aae2e49",
+      "descriptionSlotNormalized": "learn how guest posting works, choose a suitable publisher and prepare your first article with a simple workflow, example and publishing checklist.",
+      "leadSlotNormalized": "guest posting means contributing an article to another publication for its readers. start with a useful subject, choose a relevant publisher, agree the editorial and commercial terms, then write and review the article. paid placements need appropriate link qualification. measure actual reader responses rather than assuming publication will improve your rankings.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/find-guest-posting-opportunities/",
+        "/guides/guest-post-cost/",
+        "/guides/guest-post-outreach-templates/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/find-guest-posting-opportunities/",
+      "status": 200,
+      "title": "How to find guest posting opportunities",
+      "description": "Build a guest posting prospect list using audience research, editorial searches and niche directories, then check that each publisher accepts proposals.",
+      "canonical": "https://nameretailer.com/guides/find-guest-posting-opportunities/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to find guest posting opportunities"
+        ],
+        [
+          "h2",
+          "Start with an audience map"
+        ],
+        [
+          "h2",
+          "Use searches to discover editorial policies"
+        ],
+        [
+          "h2",
+          "Use directories without mistaking listings for acceptance"
+        ],
+        [
+          "h2",
+          "Deduplicate before contacting editors"
+        ],
+        [
+          "h2",
+          "Put it into practice"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Does a write-for-us page mean my article will be accepted?"
+        ],
+        [
+          "h3",
+          "Should I contact every directory listing?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Find guest posting opportunities by identifying publications your intended readers already use, searching for relevant contributor guidance and exploring niche directories. Record why each prospect fits and verify that submissions are currently accepted. Discovery creates a candidate list; editorial review, audience checks and confirmed terms determine which opportunities deserve further work.",
+      "mainWords": 512,
+      "mainHash": "58e7c24bb7859cf8e94902be27253467b6da8fbc99d7eb3b06f31b06fc6553ab",
+      "descriptionSlotNormalized": "build a guest posting prospect list using audience research, editorial searches and niche directories, then check that each publisher accepts proposals.",
+      "leadSlotNormalized": "find guest posting opportunities by identifying publications your intended readers already use, searching for relevant contributor guidance and exploring niche directories. record why each prospect fits and verify that submissions are currently accepted. discovery creates a candidate list; editorial review, audience checks and confirmed terms determine which opportunities deserve further work.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/vet-a-guest-post-site/",
+        "/how-to-buy-links/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-post-outreach-templates/",
+      "status": 200,
+      "title": "Guest post outreach email templates",
+      "description": "Adapt three guest post outreach email templates for an editorial pitch, a sponsored-placement enquiry and a polite follow-up, with a personalization\u2026",
+      "canonical": "https://nameretailer.com/guides/guest-post-outreach-templates/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest post outreach email templates"
+        ],
+        [
+          "h2",
+          "Personalize the reason for contacting this editor"
+        ],
+        [
+          "h2",
+          "Give the editor something concrete to evaluate"
+        ],
+        [
+          "h2",
+          "Follow up with restraint"
+        ],
+        [
+          "h2",
+          "Template: an editorial contribution"
+        ],
+        [
+          "h2",
+          "Template: a sponsored-placement enquiry"
+        ],
+        [
+          "h2",
+          "Template: a brief follow-up"
+        ],
+        [
+          "h2",
+          "Decision checklist"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Should I request a dofollow link in the opening email?"
+        ],
+        [
+          "h3",
+          "Can I reuse the same email?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "A guest post outreach email should identify the relevant editor, explain a specific article idea and show why that publication's readers would benefit. Include credible experience or evidence you can supply and ask for the next editorial step. Use templates as a starting point, with different wording for editorial contributions and sponsored enquiries.",
+      "mainWords": 578,
+      "mainHash": "9e9f12b7f2f80909118445d14db8846f07a7af35fcc9a2fb70e29afc611bb9d6",
+      "descriptionSlotNormalized": "adapt three guest post outreach email templates for an editorial pitch, a sponsored-placement enquiry and a polite follow-up, with a personalization\u2026",
+      "leadSlotNormalized": "a guest post outreach email should identify the relevant editor, explain a specific article idea and show why that publication's readers would benefit. include credible experience or evidence you can supply and ask for the next editorial step. use templates as a starting point, with different wording for editorial contributions and sponsored enquiries.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/find-guest-posting-opportunities/",
+        "/guides/guest-post-submission-guidelines/",
+        "/guides/write-a-guest-post/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/write-a-guest-post/",
+      "status": 200,
+      "title": "How to write a guest post that fits the publisher",
+      "description": "Turn an accepted guest post idea into a useful article with an outline, original examples, source checks and a practical editorial handoff.",
+      "canonical": "https://nameretailer.com/guides/write-a-guest-post/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to write a guest post that fits the publisher"
+        ],
+        [
+          "h2",
+          "Agree the brief before writing"
+        ],
+        [
+          "h2",
+          "Build an outline that produces a usable result"
+        ],
+        [
+          "h2",
+          "Add evidence the editor can inspect"
+        ],
+        [
+          "h2",
+          "Edit links and promotional language"
+        ],
+        [
+          "h2",
+          "Make the editorial handoff easy"
+        ],
+        [
+          "h2",
+          "Put it into practice"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Is there an ideal guest post word count?"
+        ],
+        [
+          "h3",
+          "Can I submit the same article elsewhere?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Write a guest post by agreeing the audience and angle with the editor, building an outline around one reader problem and supporting each important claim with evidence. Use original examples, follow the publisher's format and review the manuscript before submission. Acceptance remains the editor's decision, even when you follow every instruction.",
+      "mainWords": 558,
+      "mainHash": "9900151784eb432decbeff4e00e26d36795fd918e20e60511b6cc2d559557088",
+      "descriptionSlotNormalized": "turn an accepted guest post idea into a useful article with an outline, original examples, source checks and a practical editorial handoff.",
+      "leadSlotNormalized": "write a guest post by agreeing the audience and angle with the editor, building an outline around one reader problem and supporting each important claim with evidence. use original examples, follow the publisher's format and review the manuscript before submission. acceptance remains the editor's decision, even when you follow every instruction.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-post-submission-guidelines/",
+        "/guides/guest-posting-checklist/",
+        "/guides/guest-posting-mistakes/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-post-submission-guidelines/",
+      "status": 200,
+      "title": "Guest post submission guidelines explained",
+      "description": "Check guest post submission rules for audience fit, evidence, images, author details, revisions and paid-link disclosure before sending an article.",
+      "canonical": "https://nameretailer.com/guides/guest-post-submission-guidelines/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest post submission guidelines explained"
+        ],
+        [
+          "h2",
+          "Which rules should you copy into the brief?"
+        ],
+        [
+          "h2",
+          "What counts as useful evidence?"
+        ],
+        [
+          "h2",
+          "Clarify links, rights and revision responsibilities"
+        ],
+        [
+          "h2",
+          "Example: resolving conflicting instructions"
+        ],
+        [
+          "h2",
+          "Decision checklist"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Does meeting the guidelines guarantee acceptance?"
+        ],
+        [
+          "h3",
+          "What if a publisher has no published guidelines?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Guest post submission guidelines describe what a publisher will consider and how to send it. Check the accepted topics, audience, originality requirements, format, evidence, links and approval process before writing. If instructions are missing or conflict with a commercial quote, ask the editor for clarification and record the agreed requirements together.",
+      "mainWords": 443,
+      "mainHash": "82876664cb4ad50407e925c329bd10dbc0b7a4ac0488cc104b18b05e987ba2c2",
+      "descriptionSlotNormalized": "check guest post submission rules for audience fit, evidence, images, author details, revisions and paid-link disclosure before sending an article.",
+      "leadSlotNormalized": "guest post submission guidelines describe what a publisher will consider and how to send it. check the accepted topics, audience, originality requirements, format, evidence, links and approval process before writing. if instructions are missing or conflict with a commercial quote, ask the editor for clarification and record the agreed requirements together.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-posting-checklist/",
+        "/guides/paid-guest-posts-google-link-policies/",
+        "/guides/write-a-guest-post/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-posting-strategy/",
+      "status": 200,
+      "title": "How to create a guest posting strategy",
+      "description": "Build a guest posting strategy around an audience, useful content, publisher selection, a complete budget and measurable reader or business outcomes.",
+      "canonical": "https://nameretailer.com/guides/guest-posting-strategy/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to create a guest posting strategy"
+        ],
+        [
+          "h2",
+          "Choose one primary outcome"
+        ],
+        [
+          "h2",
+          "Match a topic and destination to the reader's stage"
+        ],
+        [
+          "h2",
+          "Plan capacity as well as spend"
+        ],
+        [
+          "h2",
+          "Define a test and a stop decision"
+        ],
+        [
+          "h2",
+          "Put it into practice"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "How many guest posts should a strategy include?"
+        ],
+        [
+          "h3",
+          "Should I optimize for authority scores?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "A guest posting strategy connects an audience and business goal with useful articles, relevant publishers, a realistic budget and a measurement plan. Decide what success means before choosing placements. Start with a manageable test, document editorial and paid-link requirements, and use observed outcomes to decide whether to continue, change approach or stop.",
+      "mainWords": 523,
+      "mainHash": "a04b7962e6e7d0520ab72a266240701dfbf23a7049a9b0b7a104f2a033574b7a",
+      "descriptionSlotNormalized": "build a guest posting strategy around an audience, useful content, publisher selection, a complete budget and measurable reader or business outcomes.",
+      "leadSlotNormalized": "a guest posting strategy connects an audience and business goal with useful articles, relevant publishers, a realistic budget and a measurement plan. decide what success means before choosing placements. start with a manageable test, document editorial and paid-link requirements, and use observed outcomes to decide whether to continue, change approach or stop.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/blog/a-practical-guest-post-budget-worksheet/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/measure-guest-posting-results/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/guest-posting-vs-content-marketing/",
+      "status": 200,
+      "title": "Guest posting vs content marketing",
+      "description": "Compare guest posting with a wider content marketing program by editorial control, distribution, resource needs and measurement, with an example plan.",
+      "canonical": "https://nameretailer.com/guides/guest-posting-vs-content-marketing/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest posting vs content marketing"
+        ],
+        [
+          "h2",
+          "Compare a tactic with the wider program"
+        ],
+        [
+          "h2",
+          "Who controls the article after publication?"
+        ],
+        [
+          "h2",
+          "Example: a connected content plan"
+        ],
+        [
+          "h2",
+          "Decide where the next hour should go"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Can guest posting replace an owned content strategy?"
+        ],
+        [
+          "h3",
+          "Is guest posting always paid?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Guest posting is one way to distribute useful content through another publisher; content marketing is a broader program that can include your own guides, email, video and contributions elsewhere. Choose based on the reader's task, editorial control and distribution needs. A guest article works best when it connects to useful material you can maintain.",
+      "mainWords": 487,
+      "mainHash": "7a9dfc06846f0fd10cb133335f104929e4bee23346668c25f01108184c895a13",
+      "descriptionSlotNormalized": "compare guest posting with a wider content marketing program by editorial control, distribution, resource needs and measurement, with an example plan.",
+      "leadSlotNormalized": "guest posting is one way to distribute useful content through another publisher; content marketing is a broader program that can include your own guides, email, video and contributions elsewhere. choose based on the reader's task, editorial control and distribution needs. a guest article works best when it connects to useful material you can maintain.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-posting-strategy/",
+        "/guides/guest-posting-vs-digital-pr/",
+        "/guides/measure-guest-posting-results/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-posting-vs-digital-pr/",
+      "status": 200,
+      "title": "Guest posting vs digital PR",
+      "description": "Compare a contributed guest article with digital PR outreach by story, editorial control, costs and measurement before choosing an approach.",
+      "canonical": "https://nameretailer.com/guides/guest-posting-vs-digital-pr/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest posting vs digital PR"
+        ],
+        [
+          "h2",
+          "What are you offering the editor?"
+        ],
+        [
+          "h2",
+          "Editorial control differs by agreement"
+        ],
+        [
+          "h2",
+          "Example: choose the strongest asset"
+        ],
+        [
+          "h2",
+          "Budget for the evidence and coordination"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Is a paid article earned media?"
+        ],
+        [
+          "h3",
+          "Which approach earns better links?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Guest posting usually proposes a contributed article for a publication, while digital PR seeks coverage of a story, research or expert perspective that journalists choose how to report. Neither guarantees acceptance or links. Compare the strength of your evidence, editorial control, production effort and business objective before deciding which approach fits the opportunity.",
+      "mainWords": 487,
+      "mainHash": "35ba5a9ebb978fab8fa4f97efb33dd02767eae957ff9036b4fa8f1d0af415a80",
+      "descriptionSlotNormalized": "compare a contributed guest article with digital pr outreach by story, editorial control, costs and measurement before choosing an approach.",
+      "leadSlotNormalized": "guest posting usually proposes a contributed article for a publication, while digital pr seeks coverage of a story, research or expert perspective that journalists choose how to report. neither guarantees acceptance or links. compare the strength of your evidence, editorial control, production effort and business objective before deciding which approach fits the opportunity.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-post-vs-sponsored-post/",
+        "/guides/guest-posting-strategy/",
+        "/guides/guest-posting-vs-content-marketing/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/free-vs-paid-guest-posting/",
+      "status": 200,
+      "title": "Free vs paid guest posting",
+      "description": "Compare unpaid guest contributions with paid placements, including editorial effort, full costs, approval terms and sponsored-link requirements.",
+      "canonical": "https://nameretailer.com/guides/free-vs-paid-guest-posting/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Free vs paid guest posting"
+        ],
+        [
+          "h2",
+          "What does free actually cover?"
+        ],
+        [
+          "h2",
+          "What changes when a placement is paid?"
+        ],
+        [
+          "h2",
+          "Example: compare total effort"
+        ],
+        [
+          "h2",
+          "Do not exchange hidden benefits for ranking credit"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Are free guest posts always better?"
+        ],
+        [
+          "h3",
+          "Does paying remove the writing work?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Free guest posting usually means there is no placement fee; research, writing and editing still cost time or money. Paid guest posting adds a commercial placement arrangement with its own scope and disclosure requirements. Compare audience fit, editorial standards and the complete cost of each option rather than treating either price model as a quality guarantee.",
+      "mainWords": 474,
+      "mainHash": "cb4e996b0c152a1e59b0b119224423c4e1dd2a1a8b9cb45cd8304f3c67ef77dc",
+      "descriptionSlotNormalized": "compare unpaid guest contributions with paid placements, including editorial effort, full costs, approval terms and sponsored-link requirements.",
+      "leadSlotNormalized": "free guest posting usually means there is no placement fee; research, writing and editing still cost time or money. paid guest posting adds a commercial placement arrangement with its own scope and disclosure requirements. compare audience fit, editorial standards and the complete cost of each option rather than treating either price model as a quality guarantee.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/blog/a-practical-guest-post-budget-worksheet/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-post-cost/",
+        "/guides/paid-guest-posts-google-link-policies/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/guest-posting-for-small-businesses/",
+      "status": 200,
+      "title": "Guest posting for small businesses",
+      "description": "Plan a manageable guest posting test for a small business: choose a useful topic, relevant readers, a complete budget and a clear enquiry goal.",
+      "canonical": "https://nameretailer.com/guides/guest-posting-for-small-businesses/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest posting for small businesses"
+        ],
+        [
+          "h2",
+          "Use a question customers already ask"
+        ],
+        [
+          "h2",
+          "Choose readers you can actually serve"
+        ],
+        [
+          "h2",
+          "Set a complete spending limit"
+        ],
+        [
+          "h2",
+          "Make the next action easy to recognize"
+        ],
+        [
+          "h2",
+          "Put it into practice"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "What budget should a small business use?"
+        ],
+        [
+          "h3",
+          "Should a local business choose only locally named publications?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Small businesses can approach guest posting as a focused audience experiment: solve a customer problem in a relevant publication, link a useful next step and measure actual enquiries. Keep production and placement costs within a confirmed budget. A narrow audience fit and manageable editorial workload matter more than buying the largest available authority score.",
+      "mainWords": 482,
+      "mainHash": "82eab9d11c512455e5333480cf48f63e60f6d27de91a39340ddeba1779aaae76",
+      "descriptionSlotNormalized": "plan a manageable guest posting test for a small business: choose a useful topic, relevant readers, a complete budget and a clear enquiry goal.",
+      "leadSlotNormalized": "small businesses can approach guest posting as a focused audience experiment: solve a customer problem in a relevant publication, link a useful next step and measure actual enquiries. keep production and placement costs within a confirmed budget. a narrow audience fit and manageable editorial workload matter more than buying the largest available authority score.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-posting-for-local-seo/",
+        "/guides/measure-guest-posting-results/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/check-guest-post-website-traffic/",
+      "status": 200,
+      "title": "How to check traffic before guest posting",
+      "description": "Verify guest post publisher traffic with a provider, period, channel and page scope, then record audience evidence and unresolved questions before\u2026",
+      "canonical": "https://nameretailer.com/guides/check-guest-post-website-traffic/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to check traffic before guest posting"
+        ],
+        [
+          "h2",
+          "Step 1: identify what the number measures"
+        ],
+        [
+          "h2",
+          "Step 2: inspect the audience and relevant pages"
+        ],
+        [
+          "h2",
+          "Step 3: compare a trend with the same method"
+        ],
+        [
+          "h2",
+          "Example: when two traffic figures cannot be compared"
+        ],
+        [
+          "h2",
+          "Step 4: write a decision with its limits"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Does Ahrefs show measured visits?"
+        ],
+        [
+          "h3",
+          "Can I predict my article views from domain traffic?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Check website traffic before guest posting by recording the metric's provider, measurement period, channel and domain or page scope, then examining whether the relevant readers and articles match your needs. Compare like-for-like evidence and ask about unexplained changes. A supplied traffic number or third-party estimate cannot guarantee views, referrals or sales for your article.",
+      "mainWords": 584,
+      "mainHash": "4ffade8a65be449fdae9bed24f1cdf9827412ee0abc3560f19ef6c595fe2b397",
+      "descriptionSlotNormalized": "verify guest post publisher traffic with a provider, period, channel and page scope, then record audience evidence and unresolved questions before\u2026",
+      "leadSlotNormalized": "check website traffic before guest posting by recording the metric's provider, measurement period, channel and domain or page scope, then examining whether the relevant readers and articles match your needs. compare like-for-like evidence and ask about unexplained changes. a supplied traffic number or third-party estimate cannot guarantee views, referrals or sales for your article.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/da-vs-dr-and-traffic/",
+        "/guides/measure-guest-posting-results/",
+        "/guides/vet-a-guest-post-site/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-posting-for-local-seo/",
+      "status": 200,
+      "title": "Guest posting for local SEO",
+      "description": "Evaluate local guest posting opportunities by service area, reader geography and useful local content, with practical checks and measurement limits.",
+      "canonical": "https://nameretailer.com/guides/guest-posting-for-local-seo/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest posting for local SEO"
+        ],
+        [
+          "h2",
+          "Define a real service area"
+        ],
+        [
+          "h2",
+          "Contribute detail that belongs to the location"
+        ],
+        [
+          "h2",
+          "Keep expectations about local rankings grounded"
+        ],
+        [
+          "h2",
+          "Measure useful local responses"
+        ],
+        [
+          "h2",
+          "Decision checklist"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Will a local guest post improve my map ranking?"
+        ],
+        [
+          "h3",
+          "Is a country directory enough for a city campaign?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Guest posting for local SEO should start with useful coverage for readers in a business's service area. Check local audience evidence, choose a relevant topic and offer a practical destination. Treat referrals and local enquiries as measurable outcomes. A local placement does not guarantee map visibility, and paid links still require appropriate qualification.",
+      "mainWords": 484,
+      "mainHash": "56fe2d8ac5ef67fb43ae9d8c7eb25a14368e43880d02b424d44fcf1e01990e58",
+      "descriptionSlotNormalized": "evaluate local guest posting opportunities by service area, reader geography and useful local content, with practical checks and measurement limits.",
+      "leadSlotNormalized": "guest posting for local seo should start with useful coverage for readers in a business's service area. check local audience evidence, choose a relevant topic and offer a practical destination. treat referrals and local enquiries as measurable outcomes. a local placement does not guarantee map visibility, and paid links still require appropriate qualification.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/business-guest-posting-sites/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/check-guest-post-website-traffic/",
+        "/guides/guest-posting-for-small-businesses/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/guest-posting-for-ecommerce/",
+      "status": 200,
+      "title": "Guest posting for e-commerce websites",
+      "description": "Plan e-commerce guest articles around shopper questions, suitable publishers, useful landing pages and measured sales or enquiries without ranking\u2026",
+      "canonical": "https://nameretailer.com/guides/guest-posting-for-ecommerce/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest posting for e-commerce websites"
+        ],
+        [
+          "h2",
+          "Choose a shopper problem before a product link"
+        ],
+        [
+          "h2",
+          "Match the publication to the buying context"
+        ],
+        [
+          "h2",
+          "Use a destination that continues the task"
+        ],
+        [
+          "h2",
+          "Example: calculate a commercial result carefully"
+        ],
+        [
+          "h2",
+          "Keep referrals, assisted activity and organic changes separate"
+        ],
+        [
+          "h2",
+          "Put it into practice"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Should every guest article link a product page?"
+        ],
+        [
+          "h3",
+          "Are referral sales guaranteed?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "E-commerce guest posting works as an audience and content test: answer a real shopper question on a relevant publication and offer a useful next step in your store. Check publisher fit, destination quality and complete costs before proceeding. Track observed referral actions and commercial outcomes, while keeping paid-link qualification and attribution limits explicit.",
+      "mainWords": 554,
+      "mainHash": "a203300df9c5d005abe8ece01f09f6d36796b9c0a94e0ec326470d438952c3ee",
+      "descriptionSlotNormalized": "plan e-commerce guest articles around shopper questions, suitable publishers, useful landing pages and measured sales or enquiries without ranking\u2026",
+      "leadSlotNormalized": "e-commerce guest posting works as an audience and content test: answer a real shopper question on a relevant publication and offer a useful next step in your store. check publisher fit, destination quality and complete costs before proceeding. track observed referral actions and commercial outcomes, while keeping paid-link qualification and attribution limits explicit.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/business-guest-posting-sites/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/measure-guest-posting-results/",
+        "/travel-lifestyle-guest-posting-sites/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/measure-guest-posting-results/",
+      "status": 200,
+      "title": "How to measure guest posting results and ROI",
+      "description": "Measure guest posting results with a defined goal, consistent campaign labels, complete costs and a worked ROI example that explains attribution limits.",
+      "canonical": "https://nameretailer.com/guides/measure-guest-posting-results/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to measure guest posting results and ROI"
+        ],
+        [
+          "h2",
+          "Record the goal and baseline before publication"
+        ],
+        [
+          "h2",
+          "Use consistent campaign labels where permitted"
+        ],
+        [
+          "h2",
+          "Distinguish delivery from performance"
+        ],
+        [
+          "h2",
+          "Worked ROI example"
+        ],
+        [
+          "h2",
+          "Explain what the data cannot establish"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "What if the campaign cost is zero?"
+        ],
+        [
+          "h3",
+          "Can I use revenue as profit in ROI?"
+        ],
+        [
+          "h3",
+          "How long should I measure?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Measure guest posting results by defining the desired reader action, recording the live article and campaign identifiers, and comparing observed outcomes with complete placement and production costs. Keep publication checks, referral activity and business results separate. Calculate ROI only with a documented value and attribution method; a link count or ranking change alone does not establish return.",
+      "mainWords": 619,
+      "mainHash": "7177bc2914934b476a0363fefc9462918e1179f87e07c8f4be8bcceca7a51a78",
+      "descriptionSlotNormalized": "measure guest posting results with a defined goal, consistent campaign labels, complete costs and a worked roi example that explains attribution limits.",
+      "leadSlotNormalized": "measure guest posting results by defining the desired reader action, recording the live article and campaign identifiers, and comparing observed outcomes with complete placement and production costs. keep publication checks, referral activity and business results separate. calculate roi only with a documented value and attribution method; a link count or ranking change alone does not establish return.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/blog/a-practical-guest-post-budget-worksheet/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-posting-checklist/",
+        "/guides/guest-posting-strategy/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-posting-mistakes/",
+      "status": 200,
+      "title": "Common guest posting mistakes and how to avoid them",
+      "description": "Avoid guest posting mistakes in audience selection, pitches, costs, editorial evidence, paid-link handling and reporting, with practical corrective\u2026",
+      "canonical": "https://nameretailer.com/guides/guest-posting-mistakes/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Common guest posting mistakes and how to avoid them"
+        ],
+        [
+          "h2",
+          "Mistake: choosing a score instead of an audience"
+        ],
+        [
+          "h2",
+          "Mistake: writing before the editor agrees the angle"
+        ],
+        [
+          "h2",
+          "Mistake: treating a placement fee as the whole budget"
+        ],
+        [
+          "h2",
+          "Mistake: promising search credit from a paid link"
+        ],
+        [
+          "h2",
+          "Mistake: declaring success before checking the article"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Should I abandon a placement after one weak result?"
+        ],
+        [
+          "h3",
+          "Can a published mistake be fixed?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Common guest posting mistakes include choosing publishers by scores alone, sending generic pitches, ignoring full costs and publishing weak or poorly sourced articles. Other problems arise when paid links are unqualified or results are reported without an attribution method. Prevent these errors with a clear brief, evidence checks, written terms and a measured review after publication.",
+      "mainWords": 600,
+      "mainHash": "569f9f206aed2272071f0688550e3e80fc311826cc366136c2bc11c40ee9c638",
+      "descriptionSlotNormalized": "avoid guest posting mistakes in audience selection, pitches, costs, editorial evidence, paid-link handling and reporting, with practical corrective\u2026",
+      "leadSlotNormalized": "common guest posting mistakes include choosing publishers by scores alone, sending generic pitches, ignoring full costs and publishing weak or poorly sourced articles. other problems arise when paid links are unqualified or results are reported without an attribution method. prevent these errors with a clear brief, evidence checks, written terms and a measured review after publication.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-posting-checklist/",
+        "/guides/measure-guest-posting-results/",
+        "/guides/vet-a-guest-post-site/"
+      ],
+      "externalLinkCount": 4
+    },
+    {
+      "path": "/guides/guest-posting-checklist/",
+      "status": 200,
+      "title": "Guest posting checklist before publishing",
+      "description": "Check guest post audience fit, article evidence, costs, image rights, disclosure, links and tracking before publication, then verify the live page.",
+      "canonical": "https://nameretailer.com/guides/guest-posting-checklist/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest posting checklist before publishing"
+        ],
+        [
+          "h2",
+          "Gate 1: publisher and brief"
+        ],
+        [
+          "h2",
+          "Gate 2: accuracy and rights"
+        ],
+        [
+          "h2",
+          "Gate 3: commercial and link terms"
+        ],
+        [
+          "h2",
+          "Gate 4: destination and measurement"
+        ],
+        [
+          "h2",
+          "Gate 5: verify the live article"
+        ],
+        [
+          "h2",
+          "Decision checklist"
+        ],
+        [
+          "h2",
+          "Common questions"
+        ],
+        [
+          "h3",
+          "Should I proceed if a checklist item is unknown?"
+        ],
+        [
+          "h3",
+          "Does a self-canonical mean the article will be indexed?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Before publishing a guest post, confirm audience fit, an approved article, accurate sources, image permissions, complete costs and the publisher's agreed disclosure and link attributes. Check the destination and measurement setup as well. After publication, compare the live page with the agreement and record unresolved issues rather than treating publication alone as success.",
+      "mainWords": 544,
+      "mainHash": "3b736137b095c0cd04ecdcadfaf6b16f666f2fcdb1282476d58a505b4e3059db",
+      "descriptionSlotNormalized": "check guest post audience fit, article evidence, costs, image rights, disclosure, links and tracking before publication, then verify the live page.",
+      "leadSlotNormalized": "before publishing a guest post, confirm audience fit, an approved article, accurate sources, image permissions, complete costs and the publisher's agreed disclosure and link attributes. check the destination and measurement setup as well. after publication, compare the live page with the agreement and record unresolved issues rather than treating publication alone as success.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/guest-post-submission-guidelines/",
+        "/guides/guest-posting-mistakes/",
+        "/guides/measure-guest-posting-results/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/guest-post-cost/",
+      "status": 200,
+      "title": "How much does a guest post cost?",
+      "description": "Understand guest post costs, placement versus writing charges and a worked budget example. Compare dated catalogue price ranges and publisher scope.",
+      "canonical": "https://nameretailer.com/guides/guest-post-cost/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How much does a guest post cost?"
+        ],
+        [
+          "h2",
+          "What do the catalogue prices show?"
+        ],
+        [
+          "h2",
+          "What should I include in my budget?"
+        ],
+        [
+          "h2",
+          "Why do guest post prices vary so much?"
+        ],
+        [
+          "h2",
+          "Is article writing included in the price?"
+        ],
+        [
+          "h2",
+          "How should I read the price tables?"
+        ],
+        [
+          "h2",
+          "Worked example: a placement price is not the total budget"
+        ],
+        [
+          "h2",
+          "How do I compare affordable guest posting websites?"
+        ],
+        [
+          "h2",
+          "How does guest post cost compare with niche edit cost?"
+        ],
+        [
+          "h2",
+          "Guest-post placement prices: catalogue snapshot"
+        ],
+        [
+          "h2",
+          "Guest posting and domain guides"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Guest-post placements range from $10.97 to $95,760.00, with a median of $136.69 across 56,005 active listings. These are supplied placement prices, not completed transactions or campaign quotes. Writing may cost extra. Compare relevant publishers and confirm editorial scope, availability and paid-link disclosure before planning a placement.",
+      "mainWords": 1005,
+      "mainHash": "321bdb9b43780b4d92db813583842fd861d6e6c982e9b109cf87449da01b631f",
+      "descriptionSlotNormalized": "understand guest post costs, placement versus writing charges and a worked budget example. compare dated catalogue price ranges and publisher scope.",
+      "leadSlotNormalized": "guest-post placements range from {number} to {number} with a median of {number} across {number} active listings. these are supplied placement prices, not completed transactions or campaign quotes. writing may cost extra. compare relevant publishers and confirm editorial scope, availability and paid-link disclosure before planning a placement.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/authors/zuhoor-uddin/",
+        "/blog/a-practical-guest-post-budget-worksheet/",
+        "/guest-post-prices/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/buy-and-register-a-domain-name/",
+        "/guides/check-guest-post-website-traffic/",
+        "/guides/choose-a-domain-name/",
+        "/guides/da-vs-dr-and-traffic/",
+        "/guides/domain-name-seo-and-migrations/",
+        "/guides/find-guest-posting-opportunities/",
+        "/guides/free-vs-paid-guest-posting/",
+        "/guides/guest-post-cost/",
+        "/guides/guest-post-outreach-templates/",
+        "/guides/guest-post-submission-guidelines/",
+        "/guides/guest-post-vs-link-insertion/",
+        "/guides/guest-post-vs-sponsored-post/",
+        "/guides/guest-posting-checklist/",
+        "/guides/guest-posting-for-beginners/",
+        "/guides/guest-posting-for-ecommerce/",
+        "/guides/guest-posting-for-local-seo/",
+        "/guides/guest-posting-for-small-businesses/",
+        "/guides/guest-posting-mistakes/",
+        "/guides/guest-posting-strategy/",
+        "/guides/guest-posting-vs-content-marketing/",
+        "/guides/guest-posting-vs-digital-pr/",
+        "/guides/measure-guest-posting-results/",
+        "/guides/paid-guest-posts-google-link-policies/",
+        "/guides/vet-a-guest-post-site/",
+        "/guides/write-a-guest-post/",
+        "/methodology/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-post-vs-link-insertion/",
+      "status": 200,
+      "title": "Guest post vs link insertion",
+      "description": "Guest post or link insertion? How the two formats differ in content, indexing, disclosure and price, and what to confirm with a publisher before choosing.",
+      "canonical": "https://nameretailer.com/guides/guest-post-vs-link-insertion/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Guest post vs link insertion"
+        ],
+        [
+          "h2",
+          "How do the formats differ?"
+        ],
+        [
+          "h2",
+          "What should I confirm before choosing?"
+        ],
+        [
+          "h2",
+          "When does a link insertion make more sense?"
+        ],
+        [
+          "h2",
+          "When is a new guest post the better choice?"
+        ],
+        [
+          "h2",
+          "Do both formats need sponsored disclosure?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "A guest post adds a new article to a publication; a link insertion adds a link to an existing article. Compare the surrounding content, editorial scope and disclosure before choosing a format. Confirm which format the publisher offers and what the quoted price covers, rather than assuming either option is included.",
+      "mainWords": 393,
+      "mainHash": "6f00e5f43a9c660c14814e28a52f4ade234340786853592d9d33bf9b4177d251",
+      "descriptionSlotNormalized": "guest post or link insertion? how the two formats differ in content, indexing, disclosure and price, and what to confirm with a publisher before choosing.",
+      "leadSlotNormalized": "a guest post adds a new article to a publication; a link insertion adds a link to an existing article. compare the surrounding content, editorial scope and disclosure before choosing a format. confirm which format the publisher offers and what the quoted price covers, rather than assuming either option is included.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/authors/zuhoor-uddin/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/da-vs-dr-and-traffic/",
+      "status": 200,
+      "title": "DA vs DR and traffic estimates",
+      "description": "DA vs DR explained: who publishes each score, what it measures, why they disagree, and how to read traffic estimates when comparing guest post sites.",
+      "canonical": "https://nameretailer.com/guides/da-vs-dr-and-traffic/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "DA vs DR and traffic estimates"
+        ],
+        [
+          "h2",
+          "Are DA and DR interchangeable?"
+        ],
+        [
+          "h2",
+          "How should I read catalogue traffic?"
+        ],
+        [
+          "h2",
+          "Why can a site have a high DA but a low DR?"
+        ],
+        [
+          "h2",
+          "Can authority scores be inflated?"
+        ],
+        [
+          "h2",
+          "Which metric should I filter by first?"
+        ],
+        [
+          "h2",
+          "Does a traffic figure mean organic search traffic?"
+        ],
+        [
+          "h2",
+          "What evidence should I request from a publisher?"
+        ],
+        [
+          "h2",
+          "Example: compare relevance before headline numbers"
+        ],
+        [
+          "h2",
+          "Metric definitions"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "DA and DR are different third-party scores: Moz supplies Domain Authority and Ahrefs supplies Domain Rating. Traffic estimates are another signal and should be read with their provider, method and observation date. Use these measures to compare publications alongside audience relevance and editorial quality, while keeping missing values separate from zero.",
+      "mainWords": 791,
+      "mainHash": "cc34c21fd764ffb72e6c78441731c1184cb41cdaaa84492d0f40570173097efb",
+      "descriptionSlotNormalized": "da vs dr explained: who publishes each score, what it measures, why they disagree, and how to read traffic estimates when comparing guest post sites.",
+      "leadSlotNormalized": "da and dr are different third-party scores: moz supplies domain authority and ahrefs supplies domain rating. traffic estimates are another signal and should be read with their provider, method and observation date. use these measures to compare publications alongside audience relevance and editorial quality, while keeping missing values separate from zero.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/authors/zuhoor-uddin/",
+        "/guest-post-by-dr/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/check-guest-post-website-traffic/",
+        "/guides/vet-a-guest-post-site/",
+        "/methodology/"
+      ],
+      "externalLinkCount": 3
+    },
+    {
+      "path": "/guides/vet-a-guest-post-site/",
+      "status": 200,
+      "title": "How to evaluate guest post publishers",
+      "description": "A practical checklist to vet a guest post site: recent content, topic fit, link and disclosure terms, metric sources and the warning signs of a link farm.",
+      "canonical": "https://nameretailer.com/guides/vet-a-guest-post-site/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "How to evaluate guest post publishers"
+        ],
+        [
+          "h2",
+          "What should I inspect on the publication?"
+        ],
+        [
+          "h2",
+          "Which catalogue fields can help my shortlist?"
+        ],
+        [
+          "h2",
+          "What are the warning signs of a link farm?"
+        ],
+        [
+          "h2",
+          "How can I check the traffic is real?"
+        ],
+        [
+          "h2",
+          "What should I agree before paying?"
+        ],
+        [
+          "h2",
+          "How do I assess topical relevance?"
+        ],
+        [
+          "h2",
+          "A practical publisher review record"
+        ],
+        [
+          "h2",
+          "When should I reject or pause a listing?"
+        ],
+        [
+          "h2",
+          "Metric definitions"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Vet a guest-post site by checking its recent articles, topic relevance, editorial contacts and proposed placement scope. Compare supplied prices and metrics only after the publication makes sense for your audience. Ask for metric sources and dates, agree paid-link disclosure, and record questions about delivery and replacement terms before committing to an order.",
+      "mainWords": 719,
+      "mainHash": "736a92a874eb559d7a13e3da4488ef833031503030840e4e2d5bccacc9b841ce",
+      "descriptionSlotNormalized": "a practical checklist to vet a guest post site: recent content, topic fit, link and disclosure terms, metric sources and the warning signs of a link farm.",
+      "leadSlotNormalized": "vet a guest-post site by checking its recent articles, topic relevance, editorial contacts and proposed placement scope. compare supplied prices and metrics only after the publication makes sense for your audience. ask for metric sources and dates, agree paid-link disclosure, and record questions about delivery and replacement terms before committing to an order.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/authors/zuhoor-uddin/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/da-vs-dr-and-traffic/",
+        "/guides/guest-posting-checklist/",
+        "/guides/paid-guest-posts-google-link-policies/",
+        "/how-to-buy-links/"
+      ],
+      "externalLinkCount": 4
+    },
+    {
+      "path": "/guides/paid-guest-posts-google-link-policies/",
+      "status": 200,
+      "title": "Paid guest posts and Google\u2019s link policies",
+      "description": "Compare ordinary, nofollow and sponsored guest post links, understand Google's paid-link requirements and check the published markup against agreed terms.",
+      "canonical": "https://nameretailer.com/guides/paid-guest-posts-google-link-policies/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "Paid guest posts and Google\u2019s link policies"
+        ],
+        [
+          "h2",
+          "How should a paid link be marked?"
+        ],
+        [
+          "h2",
+          "What should I ask the publisher?"
+        ],
+        [
+          "h2",
+          "Is buying a guest post against Google\u2019s rules?"
+        ],
+        [
+          "h2",
+          "What happens if a paid link is not qualified?"
+        ],
+        [
+          "h2",
+          "Then what is the value of a sponsored guest post?"
+        ],
+        [
+          "h2",
+          "How do I check the live link attributes?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Continue with this decision"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "Paid guest posts need appropriate link qualification. Google recommends rel=\"sponsored\" for advertising and paid placements and also accepts nofollow. Its spam policies address links created primarily to manipulate rankings. Confirm the publisher\u2019s disclosure and link markup before placement, and do not treat payment or a metric score as a promise of search performance.",
+      "mainWords": 570,
+      "mainHash": "0dbe321635ffb761203304a28d77d28a1ddbd1243c42e4ee5a68cca2af2ccc54",
+      "descriptionSlotNormalized": "compare ordinary, nofollow and sponsored guest post links, understand google's paid-link requirements and check the published markup against agreed terms.",
+      "leadSlotNormalized": "paid guest posts need appropriate link qualification. google recommends rel=\"sponsored\" for advertising and paid placements and also accepts nofollow. its spam policies address links created primarily to manipulate rankings. confirm the publisher\u2019s disclosure and link markup before placement, and do not treat payment or a metric score as a promise of search performance.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList",
+        "Article"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/authors/zuhoor-uddin/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/",
+        "/guides/free-vs-paid-guest-posting/",
+        "/guides/guest-posting-checklist/",
+        "/guides/measure-guest-posting-results/"
+      ],
+      "externalLinkCount": 2
+    },
+    {
+      "path": "/guides/guest-post-vs-sponsored-post/",
+      "status": 200,
+      "title": "What is a guest post vs a sponsored post?",
+      "description": "Understand contributor authorship, paid sponsorship, disclosure and link qualification, and the questions to ask before planning a publication placement.",
+      "canonical": "https://nameretailer.com/guides/guest-post-vs-sponsored-post/",
+      "robots": "index, follow",
+      "expectedMetricEligible": null,
+      "headings": [
+        [
+          "h1",
+          "What is a guest post vs a sponsored post?"
+        ],
+        [
+          "h2",
+          "Can a guest post also be sponsored?"
+        ],
+        [
+          "h2",
+          "Does sponsorship determine the writing scope?"
+        ],
+        [
+          "h2",
+          "What should readers be told?"
+        ],
+        [
+          "h2",
+          "Does either format guarantee rankings?"
+        ],
+        [
+          "h2",
+          "Sources"
+        ],
+        [
+          "h2",
+          "Which publications should I compare next?"
+        ]
+      ],
+      "h1Count": 1,
+      "lead": "A guest post describes an article contributed by an outside writer; a sponsored post describes a paid commercial relationship. An article can be both. If payment or another benefit is involved, agree visible disclosure and qualify paid links with sponsored or nofollow. Confirm editorial scope separately from the format\u2019s label.",
+      "mainWords": 329,
+      "mainHash": "f10bfc34b7c40920bb9c17d341ff54b04f6f8fc0ac739165c860c74e64dc723e",
+      "descriptionSlotNormalized": "understand contributor authorship, paid sponsorship, disclosure and link qualification, and the questions to ask before planning a publication placement.",
+      "leadSlotNormalized": "a guest post describes an article contributed by an outside writer; a sponsored post describes a paid commercial relationship. an article can be both. if payment or another benefit is involved, agree visible disclosure and qualify paid links with sponsored or nofollow. confirm editorial scope separately from the format\u2019s label.",
+      "canonicalMatchesExpected": true,
+      "titleMatchesSource": true,
+      "descriptionMatchesSource": true,
+      "schemaTypes": [
+        "Organization",
+        "BreadcrumbList"
+      ],
+      "schemaParseErrors": 0,
+      "internalLinks": [
+        "/",
+        "/guest-posting-sites-under-50/",
+        "/guest-posting-sites/",
+        "/guides/"
+      ],
+      "externalLinkCount": 2
+    }
+  ],
+  "errors": 0
+}

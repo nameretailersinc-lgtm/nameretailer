@@ -24,6 +24,8 @@ export interface ProductInput {
   requirements: string;
 }
 export interface Product extends ProductInput {
+  /** Optional source-backed editorial enrichment; ordinary product APIs omit it. */
+  publicationContent?: import("./publication-content").PublicationContent;
   id: string;
   version: number;
   createdAt: string;
@@ -35,7 +37,10 @@ export interface Product extends ProductInput {
   /** Set by the data-quality review; listings are only excluded after owner confirmation. */
   needsReview?: boolean;
 }
-export type PublicProduct = Omit<Product, "source" | "externalId" | "importId">;
+export type PublicProduct = Omit<Product, "source" | "externalId" | "importId" | "publicationContent"> & {
+  publicationContent?: import("./publication-content").PublicPublicationContent;
+  writingOptions?: import("./cart-types").PlacementOptions["writingOptions"];
+};
 export interface ProductPage {
   data: PublicProduct[];
   total: number;

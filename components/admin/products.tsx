@@ -11,6 +11,7 @@ import type {
 } from "@/lib/commerce/types";
 import { api, mutation, errorMessage } from "./api";
 import { ProductActivation } from "./product-activation";
+import { PublicationProfileEditor } from "./publication-profile-editor";
 import {
   PageHeading,
   Panel,
@@ -137,6 +138,7 @@ export function Products() {
   const [success, setSuccess] = useState("");
   const [busy, setBusy] = useState(false);
   const [editing, setEditing] = useState<Product | null | undefined>();
+  const [profileId, setProfileId] = useState<string>();
   const [draft, setDraft] = useState<ProductInput>(blank);
   const [priceText, setPriceText] = useState("");
   const [dirty, setDirty] = useState(false);
@@ -282,7 +284,7 @@ export function Products() {
         title="Publications & inventory"
         description="Real marketplace products, separate from editorial CMS content. Imported products remain drafts until reviewed."
         actions={
-          <Button disabled={!!importBusy} onClick={() => edit(null)}>
+          <Button disabled={!!importBusy || !!profileId} onClick={() => edit(null)}>
             Add publication
           </Button>
         }
@@ -509,7 +511,7 @@ export function Products() {
               {input(
                 "domain",
                 "Publication URL",
-                "HTTPS publisher URL; meaningful paths are retained. No indexable individual product pages are created.",
+                "HTTPS publisher URL; meaningful paths are retained. Detail pages use the existing search-index eligibility policy.",
               )}
               <Field label="Placement price (USD)">
                 <Input
@@ -635,6 +637,7 @@ export function Products() {
           </form>
         </Panel>
       )}
+      {profileId && <PublicationProfileEditor key={profileId} id={profileId} onClose={() => setProfileId(undefined)} onSaved={() => setReload(old => old + 1)} />}
       <form
         className="toolbar"
         key={query}
@@ -790,11 +793,15 @@ export function Products() {
                   <td>
                     <Button
                       variant="secondary"
-                      disabled={busy || !!importBusy}
+                      disabled={busy || !!importBusy || !!profileId}
                       onClick={() => edit(product)}
                     >
                       Edit publication
                     </Button>
+                    <Button variant="secondary" disabled={busy || !!importBusy || !!profileId} onClick={() => {
+                      if (dirty && !window.confirm("Discard unsaved publication changes before editing its profile?")) return;
+                      setEditing(undefined); setDirty(false); setProfileId(product.id);
+                    }}>Edit profile content</Button>
                   </td>
                 </tr>
               ))}

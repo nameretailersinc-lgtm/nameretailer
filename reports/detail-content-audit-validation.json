@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-19T04:50:10.161388+00:00",
+  "scope": "Phase 1 audit artifacts only; no application or indexing changes. Existing local production build, not deployed site verification.",
+  "population": 56005,
+  "sampledPublications": 212,
+  "guides": 25,
+  "renderedPages": 237,
+  "checks": [
+    "All census distributions and completeness totals reconcile",
+    "Sample contains at least 100 distinct records and covers every observed category/country",
+    "All 237 HTML pages have HTTP 200, one H1, expected canonical and metadata matching the refreshed manifest",
+    "All sample robots match the existing policy",
+    "JSON-LD syntax parsed on all pages",
+    "XML contains 569 publication URLs and all 25 approved guide details without duplicates or sample policy mismatches",
+    "Query controls are noindex with clean canonicals; unknown detail paths are HTTP 404",
+    "Public API shape discrepancy reproduced on one mobile detail endpoint",
+    "TypeScript, focused ESLint, Python compilation and git diff whitespace checks passed"
+  ],
+  "observedFailures": [
+    {
+      "attempt": "Initial local XML request",
+      "checkedAt": "2026-10-19T04:41:11.391160+00:00",
+      "error": "HTTPError",
+      "httpStatus": null,
+      "note": "The first artifact did not capture the numeric HTTP status. A later retry succeeded; cold-cache reliability is not established."
+    },
+    {
+      "attempt": "Full-record census downloads",
+      "note": "Stalled/timed-out downloads were replaced by database aggregates and a replay of the 212-record sample. Final census completed successfully."
+    }
+  ],
+  "limits": [
+    "No browser layout or accessibility certification",
+    "No deployed crawl or GSC/analytics evidence",
+    "No claim-by-claim review of all linked guide sources",
+    "No independent publisher facts or licensing verification",
+    "No ranking or AI citation guarantee"
+  ]
+}

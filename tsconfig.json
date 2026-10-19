@@ -41,7 +41,9 @@
     ".next-home-preview/types/**/*.ts",
     ".next-home-preview/dev/types/**/*.ts",
     ".next-admin-design/types/**/*.ts",
-    ".next-admin-design/dev/types/**/*.ts"
+    ".next-admin-design/dev/types/**/*.ts",
+    ".next-publication/types/**/*.ts",
+    ".next-publication/dev/types/**/*.ts"
   ],
   "exclude": [
     "node_modules",

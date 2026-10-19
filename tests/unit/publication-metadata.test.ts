@@ -1,17 +1,18 @@
 import { beforeEach, expect, it, vi } from "vitest";
 import type { PublicProduct } from "@/lib/commerce/types";
 
-const mocks = vi.hoisted(() => ({ profile: vi.fn() }));
+const mocks = vi.hoisted(() => ({ profile: vi.fn(), indexable: vi.fn() }));
 vi.mock("@/lib/commerce/publication-profiles", () => ({
   publicationProfile: mocks.profile,
   relatedProfiles: vi.fn(),
-  publicationIndexable: async () => false,
+  publicationIndexable: mocks.indexable,
 }));
 vi.mock("next/server", () => ({ connection: async () => {} }));
 vi.mock("next/navigation", () => ({
   notFound: () => {
     throw new Error("NOT_FOUND");
   },
+  permanentRedirect: (path: string) => { throw new Error(`REDIRECT:${path}`); },
 }));
 vi.mock("@/components/site/information-page", () => ({
   InformationShell: vi.fn(),
@@ -55,6 +56,7 @@ const props = {
 beforeEach(() => {
   vi.clearAllMocks();
   mocks.profile.mockResolvedValue(listing);
+  mocks.indexable.mockResolvedValue(false);
 });
 
 it("gives ordinary listings a canonical internal page with noindex, follow", async () => {
@@ -68,6 +70,7 @@ it("gives ordinary listings a canonical internal page with noindex, follow", asy
 });
 
 it("retains index eligibility for complete profiles and noindex for facets", async () => {
+  mocks.indexable.mockResolvedValue(true);
   mocks.profile.mockResolvedValue({
     ...listing,
     metrics: {
@@ -79,7 +82,7 @@ it("retains index eligibility for complete profiles and noindex for facets", asy
     },
   });
   expect((await generateMetadata(props)).robots).toEqual({
-    index: false,
+    index: true,
     follow: true,
   });
   expect(
@@ -110,4 +113,15 @@ it("uses a section listing's distinct URL and keeps it noindex", async () => {
 it("returns not found for a listing that is no longer available", async () => {
   mocks.profile.mockResolvedValue(null);
   await expect(generateMetadata(props)).rejects.toThrow("NOT_FOUND");
+});
+
+it("normalizes case and dotted host aliases with a permanent redirect to the existing URL", async () => {
+  for (const domain of ["EXAMPLE-COM", "example.com"])
+    await expect(generateMetadata({ ...props, params: Promise.resolve({ domain }) })).rejects.toThrow("REDIRECT:/publication/example-com/");
+});
+
+it("keeps pagination parameters on a detail page canonicalized to its single clean URL", async () => {
+  const metadata = await generateMetadata({ ...props, searchParams: Promise.resolve({ page: "2" }) });
+  expect(metadata.alternates?.canonical).toBe("https://nameretailer.com/publication/example-com/");
+  expect(metadata.robots).toEqual({ index: false, follow: true });
 });

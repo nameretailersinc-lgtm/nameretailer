@@ -1,0 +1,58 @@
+{
+  "checkedAt": "2026-10-19T04:49:39.356277+00:00",
+  "scope": "Read-only local build XML and query/404 controls; no production indexing assertion.",
+  "sitemaps": [
+    {
+      "path": "/sitemaps/static-0.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urls": 49
+    },
+    {
+      "path": "/sitemaps/hubs-0.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urls": 37
+    },
+    {
+      "path": "/sitemaps/content-0.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urls": 93
+    },
+    {
+      "path": "/sitemaps/publications-0.xml",
+      "status": 200,
+      "contentType": "application/xml; charset=utf-8",
+      "urls": 569
+    }
+  ],
+  "controls": [
+    {
+      "path": "/guides/guest-posting-for-beginners/?q=audit",
+      "status": 200,
+      "robots": "noindex, follow",
+      "canonical": "https://nameretailer.com/guides/guest-posting-for-beginners/"
+    },
+    {
+      "path": "/publication/001success-net/?q=audit",
+      "status": 200,
+      "robots": "noindex, follow",
+      "canonical": "https://nameretailer.com/publication/001success-net/"
+    },
+    {
+      "path": "/guides/nonexistent-phase1-audit/",
+      "status": 404
+    },
+    {
+      "path": "/publication/not-a-real-phase1-audit/",
+      "status": 404
+    }
+  ],
+  "indexStatus": 200,
+  "publicationUrls": 569,
+  "guideUrls": 25,
+  "duplicateUrls": 0,
+  "guideUrlsMissingFromXml": [],
+  "sampleProfileSitemapMismatches": []
+}

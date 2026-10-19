@@ -1,413 +1,607 @@
-import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
-import { finishedCopy } from "@/lib/site/public-copy";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { connection } from "next/server";
-import { ArrowUpRight } from "lucide-react";
+import {
+  ArrowUpRight,
+  Award,
+  BookOpen,
+  ChartNoAxesColumnIncreasing,
+  CheckCircle2,
+  CircleDollarSign,
+  Compass,
+  FileCheck2,
+  Globe2,
+  HelpCircle,
+  Layers3,
+  Scale,
+  Sparkles,
+} from "lucide-react";
 import { InformationShell } from "@/components/site/information-page";
 import { BuyPlacement } from "@/components/cart/buy-placement";
+import { ShortlistProvider, ShortlistButton } from "@/components/marketplace/shortlist";
+import { PublicationShortlist } from "@/components/marketplace/publication-shortlist";
+import { validAsOf } from "@/components/site/data-disclosure";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
+import { publicationPath, validPublicationSlug, validPublicationListingId } from "@/lib/commerce/publication-pages";
+import { publicationProfile, publicationIndexable, relatedProfiles } from "@/lib/commerce/publication-profiles";
 import {
-  publicationPath,
-  publicationHost,
-  validPublicationSlug,
-  validPublicationListingId,
-} from "@/lib/commerce/publication-pages";
-import {
-  publicationProfile,
-  publicationIndexable,
-  relatedProfiles,
-} from "@/lib/commerce/publication-profiles";
-import { publicationInsights } from "@/lib/commerce/publication-insights";
-import type { PublicProduct } from "@/lib/commerce/types";
+  publicationPresentation,
+  publicationUsd as usd,
+  publicationNumber as number,
+  publicationDate as date,
+  publicationPriceComparison,
+} from "@/lib/commerce/publication-presentation";
+import { directories } from "@/lib/site/directories";
 import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import { serializeJsonLd } from "@/lib/seo/json-ld";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
+import styles from "./publication-detail.module.css";
 
-type Props = {
-  params: Promise<{ domain: string; listing?: string }>;
-  searchParams: Promise<SearchParams>;
-};
-
-const usd = (cents: number) =>
-  new Intl.NumberFormat("en-US", {
-    style: "currency",
-    currency: "USD",
-    maximumFractionDigits: 2,
-  }).format(cents / 100);
-const number = (value: number) => value.toLocaleString("en-US");
-const date = (value: string) =>
-  new Date(value).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    timeZone: "UTC",
-  });
+type Props = { params: Promise<{ domain: string; listing?: string }>; searchParams: Promise<SearchParams> };
 
 async function load(params: Props["params"]) {
-  const { domain: slug, listing } = await params;
-  if (!validPublicationSlug(slug)) notFound();
-  if (listing !== undefined && !validPublicationListingId(listing)) notFound();
+  const raw = await params;
+  const slug = raw.domain.toLowerCase().replaceAll(".", "-");
+  const listing = raw.listing?.toLowerCase();
+  if (!validPublicationSlug(slug) || (listing !== undefined && !validPublicationListingId(listing))) notFound();
   await connection();
   const product = await publicationProfile(slug, listing);
   if (!product) notFound();
-  return {
-    host: publicationHost(product.domain, false)!,
-    path: publicationPath(product)!,
-    product,
-  };
-}
-
-/** Compares this listing's price with a median, in words a buyer can reuse. */
-function priceComparison(priceCents: number, medianCents: number | null) {
-  if (medianCents === null || medianCents <= 0) return null;
-  const ratio = priceCents / medianCents;
-  if (ratio > 0.95 && ratio < 1.05) return "about the same as";
-  if (ratio >= 2)
-    return `about ${ratio < 10 ? ratio.toFixed(1) : Math.round(ratio)} times`;
-  return ratio > 1
-    ? `${Math.round((ratio - 1) * 100)}% above`
-    : `${Math.round((1 - ratio) * 100)}% below`;
+  const path = publicationPath(product)!;
+  if (`/publication/${raw.domain}/${raw.listing ? `${raw.listing}/` : ""}` !== path) permanentRedirect(path);
+  return { product, view: publicationPresentation(product), path };
 }
 
 export async function generateMetadata({ params, searchParams }: Props) {
-  const { host, path, product } = await load(params);
-  const { dr, traffic } = product.metrics;
-  const facts = [
-    `${usd(product.priceCents)} placement`,
-    dr !== null ? `supplied DR ${dr}` : null,
-    traffic !== null ? `about ${number(traffic)} monthly visits` : null,
-  ]
-    .filter(Boolean)
-    .join(", ");
+  const { product, view, path } = await load(params);
+  // Detail pages have no paginated version. Every query variant canonicalizes here.
   const facets = facetMetadata(path, await searchParams);
   return pageMetadata(
     {
-      title: `${host} Guest Post: Price, DR and Traffic`,
-      description: `Guest post on ${host}: ${facts}. Compare listing details before you order.`,
-      ...facets,
-      robots: (await publicationIndexable(product))
-        ? facets.robots
-        : { index: false, follow: true },
+      title: view.title,
+      description: view.description,
+      alternates: { canonical: canonicalOrigin + path },
+      robots: (await publicationIndexable(product)) ? facets.robots : { index: false, follow: true },
     },
     path,
   );
 }
 
-function Fact({ term, value }: { term: string; value?: string | null }) {
-  if (!value) return null;
+function Fact({ term, value, wide = false }: { term: string; value?: string | null; wide?: boolean }) {
   return (
-    <div>
+    <div className={wide ? styles.wide : undefined}>
       <dt>{term}</dt>
-      <dd>{value}</dd>
+      <dd>{value || "Unavailable"}</dd>
     </div>
   );
 }
 
+function Text({ children }: { children: string }) {
+  return <p className={styles.text}>{children}</p>;
+}
+
 export default async function Page({ params }: Props) {
-  const { host, path, product } = await load(params);
-  const [topic, catalogue, related, insights] = await Promise.all([
-    catalogueSummary(
-      new URLSearchParams({ category: product.category }).toString(),
-    ).catch(() => null),
-    catalogueSummary("").catch(() => null),
-    relatedProfiles(product).catch((): PublicProduct[] => []),
-    publicationInsights(product).catch(() => null),
+  const { product, view, path } = await load(params);
+  const [topic, related] = await Promise.all([
+    product.category ? catalogueSummary(new URLSearchParams({ category: product.category }).toString()).catch(() => null) : null,
+    relatedProfiles(product).catch(() => []),
   ]);
+  const content = product.publicationContent;
   const m = product.metrics;
-  const topicComparison =
-    topic && validAsOf(topic.updatedAt)
-      ? priceComparison(product.priceCents, topic.medianPriceCents)
-      : null;
-  const catalogueComparison =
-    catalogue && validAsOf(catalogue.updatedAt)
-      ? priceComparison(product.priceCents, catalogue.medianPriceCents)
-      : null;
+  const comparison = topic && validAsOf(topic.updatedAt) ? publicationPriceComparison(product.priceCents, topic.medianPriceCents) : null;
+  const browse = (key: string, value: string) => `/?${new URLSearchParams({ [key]: value })}`;
+  const matchingDirectories = directories
+    .filter((directory) => directory.filter.categories?.includes(product.category) || directory.filter.country === product.country)
+    .slice(0, 3);
+  const writing = product.writingOptions || [];
   const url = canonicalOrigin + path;
-  const suppliedMetrics = [
-    m.dr !== null ? `a Domain Rating of ${m.dr}` : null,
-    m.da !== null ? `a Domain Authority of ${m.da}` : null,
-    m.traffic !== null
-      ? `roughly ${number(m.traffic)} estimated monthly visits`
-      : null,
-  ].filter(Boolean);
-  const lead = `${host} is listed${product.category ? ` in the ${product.category} topic` : ""}${product.country ? ` for ${product.country}` : ""}${product.language ? `, publishing in ${product.language}` : ""}. A placement costs ${usd(product.priceCents)}.${suppliedMetrics.length ? ` The publisher supplied ${suppliedMetrics.join(", ")}.` : ""}`;
-  const per100k = insights ? insights.centsPer100kVisits : null;
-  const turnaroundNote =
-    product.turnaround && insights?.topicMedianTurnaroundDays != null
-      ? `${product.turnaround} against a ${product.category} median of about ${Math.round(insights.topicMedianTurnaroundDays)} days`
-      : product.turnaround || null;
-  const faq: Array<[string, string]> = [
-    [
-      `How much does a guest post on ${host} cost?`,
-      `A placement on ${host} is listed at ${usd(product.priceCents)}.${topicComparison && topic?.medianPriceCents ? ` That is ${topicComparison} the ${usd(topic.medianPriceCents)} median for ${product.category} listings.` : ""} Check what the price covers before ordering.`,
-    ],
-    [
-      `What are the Domain Rating and traffic of ${host}?`,
-      `The listing supplies ${suppliedMetrics.length ? suppliedMetrics.join(", ") : "no metrics"}. These figures come with the listing and are not independently verified by Name Retailer.`,
-    ],
-    [
-      `Which topic and audience does ${host} cover?`,
-      `${host} is listed in ${product.category}, for ${product.country}, publishing in ${product.language}.`,
-    ],
-    ...(turnaroundNote
-      ? ([
-          [
-            `How long does a placement on ${host} take?`,
-            `The listing states a turnaround of ${turnaroundNote}.`,
-          ],
-        ] as Array<[string, string]>)
-      : []),
+
+  const metricCards = [
+    {
+      term: "Placement price",
+      value: usd(product.priceCents),
+      hint: "USD · writing priced separately",
+      tone: styles.metricPrice,
+      Icon: CircleDollarSign,
+    },
+    {
+      term: "Domain Rating",
+      value: number(m.dr),
+      hint: "Supplied Ahrefs score",
+      tone: styles.metricDr,
+      Icon: Award,
+    },
+    {
+      term: "Domain Authority",
+      value: number(m.da),
+      hint: "Supplied Moz score",
+      tone: styles.metricDa,
+      Icon: ChartNoAxesColumnIncreasing,
+    },
+    {
+      term: "Traffic estimate",
+      value: number(m.traffic),
+      hint: content?.metricsSource ? "Source details recorded below" : "Provider and period not supplied",
+      tone: styles.metricTraffic,
+      Icon: Globe2,
+    },
   ];
+
   return (
     <InformationShell
       path={path}
       parent={["Guest posting sites", "/guest-posting-sites/"]}
-      title={`Guest post on ${host}`}
-      label={host}
-      description={lead}
+      title={`Guest post placement on ${view.label}`}
+      label={view.identity}
+      description={view.summary}
       active="marketplace"
       image="/03_listing_browser_panel.png"
+      className={styles.profile}
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            "@context": "https://schema.org",
-            "@type": "WebPage",
-            "@id": `${url}#page`,
-            url,
-            name: `Guest post on ${host}`,
-            description: lead,
-            isPartOf: { "@id": `${canonicalOrigin}/#website` },
-            about: { "@type": "WebSite", name: host, url: product.domain },
-            dateModified: product.updatedAt,
-          }),
-        }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: serializeJsonLd({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            "@id": `${url}#faq`,
-            mainEntity: faq.map(([name, text]) => ({
-              "@type": "Question",
-              name,
-              acceptedAnswer: { "@type": "Answer", text },
-            })),
-          }),
-        }}
-      />
-      <section className="reference-card" aria-labelledby="listing-facts">
-        <h2 id="listing-facts">Listing details</h2>
-        <dl className="publication-facts">
-          <Fact term="Topic" value={product.category} />
-          <Fact term="Country" value={product.country} />
-          <Fact term="Language" value={product.language} />
-          <Fact term="Placement price" value={usd(product.priceCents)} />
-          <Fact term="Links included" value={product.linkType} />
-          <Fact term="Turnaround" value={product.turnaround} />
-          <Fact
-            term="Domain Rating (Ahrefs)"
-            value={m.dr === null ? null : String(m.dr)}
-          />
-          <Fact
-            term="Domain Authority (Moz)"
-            value={m.da === null ? null : String(m.da)}
-          />
-          <Fact
-            term="Estimated monthly traffic"
-            value={m.traffic === null ? null : number(m.traffic)}
-          />
-          <Fact
-            term="Spam score"
-            value={m.spamScore === null ? null : String(m.spamScore)}
-          />
-          <Fact
-            term="Referring domains"
-            value={
-              m.referringDomains === null ? null : number(m.referringDomains)
-            }
-          />
-          <Fact term="Listing record updated" value={date(product.updatedAt)} />
+      <ShortlistProvider>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: serializeJsonLd({
+              "@context": "https://schema.org",
+              "@type": "WebPage",
+              "@id": `${url}#page`,
+              url,
+              name: `Guest post placement on ${view.label}`,
+              description: view.summary,
+              isPartOf: { "@id": `${canonicalOrigin}/#website` },
+              about: { "@type": view.section ? "WebPage" : "WebSite", name: view.label, url: product.domain },
+              ...(validAsOf(product.updatedAt) ? { dateModified: product.updatedAt } : {}),
+            }),
+          }}
+        />
+
+        {/* Quick Section Navigation Bar */}
+        <nav aria-label="Publication page sections" className={styles.nav}>
+          <a href="#publication-overview">Listing overview</a>
+          <a href="#publication-pricing">Price and scope</a>
+          {content && <a href="#publisher-information">Publisher information</a>}
+          {comparison && <a href="#publication-comparison">Price comparison</a>}
+          <a href="#publication-questions">Questions</a>
+        </nav>
+
+        {/* Top 4 Metric Cards */}
+        <dl className={styles.metrics} aria-label={`${view.identity} key listing figures`}>
+          {metricCards.map(({ term, value, hint, tone, Icon }) => (
+            <div key={term} className={`${styles.metric} ${tone}`}>
+              <div className={styles.metricHeader}>
+                <dt>{term}</dt>
+                <span className={styles.metricIcon} aria-hidden="true">
+                  <Icon size={18} />
+                </span>
+              </div>
+              <dd>{value}</dd>
+              <small>{hint}</small>
+            </div>
+          ))}
         </dl>
-        {product.requirements && (
-          <p>
-            <strong>Publisher requirements:</strong>{" "}
-            {finishedCopy(product.requirements)}
-          </p>
-        )}
-        <p>
-          All metrics are supplied with the listing and are not independently
-          verified by Name Retailer. The record date shows when the listing
-          changed, not when a provider measured the metric.{" "}
-          <Link href="/methodology/">How listings and metrics are sourced</Link>
-          .
-        </p>
-        <div className="publication-actions">
-          <BuyPlacement productId={product.id} />
-          <a
-            href={product.domain}
-            target="_blank"
-            rel="nofollow noopener noreferrer"
-          >
-            Visit {host} <ArrowUpRight size={14} aria-hidden="true" />
-            <span className="screen-reader-only"> (opens in a new tab)</span>
-          </a>
-        </div>
-      </section>
-      {insights && insights.topicTotal > 1 && (
-        <section className="reference-card" aria-labelledby="how-it-ranks">
-          <h2 id="how-it-ranks">How {host} compares in {product.category}</h2>
-          <p>
-            Among {number(insights.topicTotal)} active {product.category}{" "}
-            listings, {host} ranks <strong>#{number(insights.topicTrafficRank)}</strong>{" "}
-            for estimated traffic and sits above{" "}
-            <strong>{insights.topicDrPercentile}%</strong> of them on Domain
-            Rating. Across all {number(insights.catalogueTotal)} active
-            listings its traffic rank is #{number(insights.catalogueTrafficRank)}.
-          </p>
-          <p>
-            Its placement costs {usd(product.priceCents)}, which is cheaper
-            than {insights.topicCheaperThanPercent}% of {product.category}{" "}
-            listings
-            {per100k !== null && (
-              <>
-                {" "}
-                and works out to about{" "}
-                <strong>{usd(Math.round(per100k))}</strong> per 100,000
-                estimated monthly visits
-                {insights.topicMedianCentsPer100kVisits !== null && (
-                  <>
-                    {" "}
-                    (topic median:{" "}
-                    {usd(Math.round(insights.topicMedianCentsPer100kVisits))})
-                  </>
-                )}
-              </>
-            )}
-            .{turnaroundNote && <> Stated turnaround: {turnaroundNote}.</>}
-          </p>
-          {insights.peers.length > 0 && (
-            <>
-              <h3>Similar publications (DR within 5 points)</h3>
-              <ul className="directory-link-list">
-                {insights.peers.map((peer) => {
-                  const href = publicationPath(peer);
-                  const peerHost = publicationHost(peer.domain, false);
-                  if (!href || !peerHost) return null;
-                  return (
-                    <li key={peer.id}>
-                      <Link href={href}>{peerHost}</Link> · DR{" "}
-                      {peer.metrics.dr} · {usd(peer.priceCents)}
-                    </li>
-                  );
-                })}
-              </ul>
-            </>
-          )}
-          <p>
-            Rankings use the supplied metrics and the active catalogue at the
-            time of the request; they are comparisons, not quality ratings.
-          </p>
-        </section>
-      )}
-      <section className="reference-card" aria-labelledby="publication-faq">
-        <h2 id="publication-faq">Questions about {host}</h2>
-        {faq.map(([question, answer]) => (
-          <div key={question}>
-            <h3>{question}</h3>
-            <p>{answer}</p>
-          </div>
-        ))}
-      </section>
-      {(topicComparison || catalogueComparison) && (
-        <section className="reference-card" aria-labelledby="price-context">
-          <h2 id="price-context">How does this price compare?</h2>
-          {topicComparison && <DataDisclosure asOf={topic?.updatedAt} />}
-          {catalogueComparison && (
-            <DataDisclosure asOf={catalogue?.updatedAt} />
-          )}
-          {topic && topicComparison && topic.medianPriceCents !== null && (
-            <p>
-              This placement is <strong>{topicComparison}</strong> the median{" "}
-              {product.category} listing ({usd(topic.medianPriceCents)} across{" "}
-              {number(topic.total)} active {product.category} publications).
+
+        {/* Main 2-Column Content & Sticky Sidebar */}
+        <div className={styles.layout}>
+          <aside className={`reference-card ${styles.sidebar}`} aria-labelledby="plan-sidebar-title">
+            <p className="reference-pill">Placement summary</p>
+            <h2 id="plan-sidebar-title">{view.label}</h2>
+            <div className={styles.sidebarPriceBox}>
+              <strong>{usd(product.priceCents)}</strong>
+              <p>USD placement · writing separate</p>
+            </div>
+            <dl className={styles.sidebarFacts}>
+              <Fact term="Listed topic" value={product.category} />
+              <Fact term="Language" value={product.language} />
+              <Fact term="Stated turnaround" value={product.turnaround} />
+            </dl>
+            <div className="publication-actions">
+              <BuyPlacement productId={product.id} />
+              <ShortlistButton product={product} />
+              <a href="#publication-pricing">Review price and scope</a>
+            </div>
+            <p className={styles.stamp}>
+              Confirm publisher acceptance, exact scope and current availability. Adding a placement to your plan does not reserve or purchase it.
             </p>
-          )}
-          {catalogue &&
-            catalogueComparison &&
-            catalogue.medianPriceCents !== null && (
-              <p>
-                Across the whole catalogue it is{" "}
-                <strong>{catalogueComparison}</strong> the median placement
-                price of {usd(catalogue.medianPriceCents)}.
+          </aside>
+
+          <div className={styles.body}>
+            {/* Section 1: Listing Overview */}
+            <section className="reference-card" id="publication-overview" aria-labelledby="overview-title">
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon} aria-hidden="true">
+                  <Layers3 size={20} />
+                </span>
+                <h2 id="overview-title">{view.identity}: listing overview</h2>
+              </div>
+              {view.section && (
+                <p className={styles.notice}>
+                  This is a section-specific listing. Confirm the placement location and whether supplied metrics describe this section or the whole domain.
+                </p>
+              )}
+              <dl className={styles.facts}>
+                <Fact term="Exact listed URL" value={product.domain} wide />
+                <Fact term="Catalogue topic" value={product.category} />
+                <Fact term="Supplied listing country" value={product.country} />
+                <Fact term="Supplied language" value={product.language} />
+                <Fact term="Stated turnaround" value={product.turnaround} />
+                <Fact term="Supplied link terms" value={product.linkType} />
+                <Fact term="Spam score" value={number(m.spamScore)} />
+                <Fact term="Metric measurement date" value={date(content?.metricsMeasuredAt || product.metricsUpdatedAt)} />
+                <Fact term="Listing record updated" value={date(product.updatedAt)} />
+              </dl>
+              <div className={styles.pillLinks}>
+                <Link href="/methodology/">Listing sources and metric methodology</Link>
+                <Link href="/guides/da-vs-dr-and-traffic/">Understand DA, DR and traffic</Link>
+              </div>
+              <p className={styles.stamp}>
+                Listing reference: <span>{product.id}</span>
               </p>
+            </section>
+
+            {/* Section 2: Placement Cost & Scope */}
+            <section className="reference-card" id="publication-pricing" aria-labelledby="pricing-title">
+              <div className={styles.sectionHeader}>
+                <span className={`${styles.sectionIcon} ${styles.sectionIconBlue}`} aria-hidden="true">
+                  <CircleDollarSign size={20} />
+                </span>
+                <h2 id="pricing-title">Placement cost for {view.identity}</h2>
+              </div>
+              <p>
+                The listed placement price is <strong>{usd(product.priceCents)}</strong>. Writing is a separate option where offered.
+              </p>
+              {writing.length ? (
+                <div className="directory-table-wrap" role="region" tabIndex={0} aria-label="Available writing charges">
+                  <table className={styles.table}>
+                    <caption>Available writing charges for this listing</caption>
+                    <thead>
+                      <tr>
+                        <th scope="col">Writing option</th>
+                        <th scope="col">Additional USD</th>
+                        <th scope="col">Placement + writing</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {writing.map((option) => (
+                        <tr key={option.words}>
+                          <th scope="row">{option.words} words</th>
+                          <td>{usd(option.priceCents)}</td>
+                          <td>
+                            <strong>{usd(product.priceCents + option.priceCents)}</strong>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              ) : (
+                <p>No writing price is supplied on this profile. An unavailable option is not free.</p>
+              )}
+
+              <div className={styles.scopeGrid}>
+                <div className={styles.scopeBox}>
+                  <h3>What is included?</h3>
+                  <Text>{content?.priceIncludes || "Placement format, revision scope and detailed inclusions are unconfirmed."}</Text>
+                </div>
+                <div className={styles.scopeBox}>
+                  <h3>Exclusions and additional charges</h3>
+                  <Text>{content?.priceExcludes || "Not documented. Confirm any additional charges before proceeding."}</Text>
+                </div>
+              </div>
+
+              <div className="publication-actions">
+                <a href={product.domain} target="_blank" rel="nofollow noopener noreferrer" className={styles.visitLink}>
+                  Visit {view.host} <ArrowUpRight size={15} aria-hidden="true" />
+                  <span className="screen-reader-only"> (opens in a new tab)</span>
+                </a>
+              </div>
+              <p className={styles.stamp}>
+                The placement planner checks current prices. A saved plan does not reserve a price, availability or editorial acceptance.
+              </p>
+            </section>
+
+            {/* Section 3: Publisher Information (if available) */}
+            {content && (
+              <section className="reference-card" id="publisher-information" aria-labelledby="publisher-title">
+                <div className={styles.sectionHeader}>
+                  <span className={`${styles.sectionIcon} ${styles.sectionIconPurple}`} aria-hidden="true">
+                    <BookOpen size={20} />
+                  </span>
+                  <h2 id="publisher-title">
+                    About {view.name}
+                    {view.section ? ` — ${view.section}` : ""}
+                  </h2>
+                </div>
+                <Text>{content.description}</Text>
+                <div className={styles.subSectionList}>
+                  {content.audienceDetails && (
+                    <div className={styles.subSectionItem}>
+                      <h3>Documented audience information</h3>
+                      <Text>{content.audienceDetails}</Text>
+                    </div>
+                  )}
+                  {(
+                    [
+                      ["Secondary niches", content.secondaryNiches],
+                      ["Content categories", content.contentCategories],
+                      ["Documented differentiators", content.uniqueDifferentiators],
+                      ["Editorial notes", content.editorialNotes],
+                      ["Metric source and scope", content.metricsSource],
+                    ] as const
+                  )
+                    .filter(([, value]) => value)
+                    .map(([heading, value]) => (
+                      <div key={heading} className={styles.subSectionItem}>
+                        <h3>{heading}</h3>
+                        <Text>{value}</Text>
+                      </div>
+                    ))}
+                </div>
+                <p className={styles.stamp}>
+                  Profile evidence checked {date(content.checkedAt)}.{" "}
+                  <a href={content.sourceUrl} target="_blank" rel="nofollow noopener noreferrer">
+                    Read the supporting source<span className="screen-reader-only"> (opens in a new tab)</span>
+                  </a>
+                  . Editorial review of this text does not verify every supplied metric or guarantee a placement.
+                </p>
+              </section>
             )}
-          <p>
-            Price alone does not show value. Read the guide to{" "}
-            <Link href="/guides/guest-post-cost/">guest post costs</Link> for
-            what a placement price includes.
-          </p>
-        </section>
-      )}
-      <section className="reference-card" aria-labelledby="before-ordering">
-        <h2 id="before-ordering">What to check before ordering</h2>
-        <ul>
-          <li>
-            Read recent {host} articles and confirm your topic fits the{" "}
-            {product.category} coverage.
-          </li>
-          <li>
-            Ask whether the placement is a new article or a link insertion and
-            what the price covers.
-          </li>
-          <li>
-            Agree how sponsored content is labelled and whether links use
-            rel=&quot;sponsored&quot;.
-          </li>
-          <li>Ask which provider measured the traffic estimate, and when.</li>
-        </ul>
-        <p>
-          The full checklist is in{" "}
-          <Link href="/guides/vet-a-guest-post-site/">
-            how to vet a guest post site
-          </Link>
-          .
-        </p>
-      </section>
-      {related.length > 0 && (
-        <section
-          className="reference-card"
-          aria-labelledby="related-publications"
-        >
-          <h2 id="related-publications">
-            Other {product.category} publications to compare
-          </h2>
-          <ul className="directory-link-list">
-            {related.map((item) => {
-              const href = publicationPath(item);
-              if (!href) return null;
-              return (
-                <li key={item.id}>
-                  <Link href={href}>{publicationHost(item.domain)}</Link> · DR{" "}
-                  {item.metrics.dr} · {usd(item.priceCents)}
-                </li>
-              );
-            })}
-          </ul>
-          <p>
-            <Link href="/guest-posting-sites/">
-              Browse all guest posting sites by niche
-            </Link>
-            .
-          </p>
-        </section>
-      )}
+
+            {/* Section 4: Relevance & Suitability */}
+            <section className="reference-card" aria-labelledby="suitability-title">
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon} aria-hidden="true">
+                  <Sparkles size={20} />
+                </span>
+                <h2 id="suitability-title">Is {view.identity} relevant to your brief?</h2>
+              </div>
+              <p>
+                {product.category ? `Use its supplied ${product.category} classification as an initial topic filter.` : "No topic classification is supplied."}{" "}
+                {product.language ? `The listed language is ${product.language}; check that it fits your proposed article.` : "Confirm the publication language before drafting."}{" "}
+                Compare the {usd(product.priceCents)} placement cost with your confirmed budget.
+              </p>
+              {content?.acceptedTopics && (
+                <div className={styles.subSectionItem}>
+                  <h3>Confirmed accepted topics</h3>
+                  <Text>{content.acceptedTopics}</Text>
+                </div>
+              )}
+              {!content?.audienceDetails && (
+                <p>
+                  Audience evidence is unavailable.{" "}
+                  {product.country ? `${product.country} is the listing country; confirm actual readership separately.` : "Confirm audience geography separately."}
+                </p>
+              )}
+            </section>
+
+            {/* Section 5: Editorial Requirements */}
+            <section className="reference-card" aria-labelledby="editorial-title">
+              <div className={styles.sectionHeader}>
+                <span className={`${styles.sectionIcon} ${styles.sectionIconBlue}`} aria-hidden="true">
+                  <FileCheck2 size={20} />
+                </span>
+                <h2 id="editorial-title">Editorial requirements for {view.identity}</h2>
+              </div>
+              {content?.editorialGuidelines ? (
+                <Text>{content.editorialGuidelines}</Text>
+              ) : (
+                <p>Guidelines are unavailable. Confirm accepted topics, article length, images and publication conditions.</p>
+              )}
+              <div className={styles.subSectionList}>
+                {(
+                  [
+                    ["Submission requirements", content?.contentRequirements],
+                    ["Restricted topics", content?.restrictedTopics],
+                    ["Article length", content?.wordCountRequirements],
+                    ["Image requirements", content?.imageRequirements],
+                    ["Review and publication process", content?.editorialProcess],
+                    ["Confirmed link policy", content?.linkPolicy],
+                  ] as const
+                )
+                  .filter(([, value]) => value)
+                  .map(([heading, value]) => (
+                    <div key={heading} className={styles.subSectionItem}>
+                      <h3>{heading}</h3>
+                      <Text>{value!}</Text>
+                    </div>
+                  ))}
+              </div>
+            </section>
+
+            {product.requirements && (
+              <section className="reference-card">
+                <div className={styles.sectionHeader}>
+                  <span className={styles.sectionIcon} aria-hidden="true">
+                    <CheckCircle2 size={20} />
+                  </span>
+                  <h2>Supplied placement requirements for {view.identity}</h2>
+                </div>
+                <Text>{product.requirements}</Text>
+              </section>
+            )}
+
+            {/* Section 6: Category Price Comparison */}
+            {comparison && topic && (
+              <section className="reference-card" id="publication-comparison" aria-labelledby="comparison-title">
+                <div className={styles.sectionHeader}>
+                  <span className={`${styles.sectionIcon} ${styles.sectionIconPurple}`} aria-hidden="true">
+                    <Scale size={20} />
+                  </span>
+                  <h2 id="comparison-title">
+                    How {view.identity} is priced within {product.category}
+                  </h2>
+                </div>
+                <p>
+                  At {usd(product.priceCents)}, this placement is <strong>{comparison}</strong> of {usd(topic.medianPriceCents!)} across{" "}
+                  {number(topic.total)} active {product.category} listings. Listed prices in this topic span {usd(topic.minPriceCents!)} to{" "}
+                  {usd(topic.maxPriceCents!)}.
+                </p>
+                <div className={styles.comparisonStats}>
+                  <div className={styles.comparisonStat}>
+                    <span>Category Median</span>
+                    <strong>{usd(topic.medianPriceCents!)}</strong>
+                  </div>
+                  <div className={styles.comparisonStat}>
+                    <span>Category Price Range</span>
+                    <strong>
+                      {usd(topic.minPriceCents!)} – {usd(topic.maxPriceCents!)}
+                    </strong>
+                  </div>
+                  <div className={styles.comparisonStat}>
+                    <span>Active Listings</span>
+                    <strong>{number(topic.total)}</strong>
+                  </div>
+                </div>
+                <p>
+                  The median covers all matching active, committed-import listings, not just the alternatives below. Writing and scope can differ. This comparison does not estimate article visitors, return or editorial quality.
+                </p>
+                <div className={styles.pillLinks}>
+                  <Link href={browse("category", product.category)}>Compare the {product.category} catalogue</Link>
+                  <Link href="/guides/guest-post-cost/">Plan the complete guest-post budget</Link>
+                </div>
+              </section>
+            )}
+
+            {/* Section 7: Nearby Alternatives */}
+            {related.length > 0 && (
+              <section className="reference-card" aria-labelledby="alternatives-title">
+                <div className={styles.sectionHeader}>
+                  <span className={styles.sectionIcon} aria-hidden="true">
+                    <Compass size={20} />
+                  </span>
+                  <h2 id="alternatives-title">Nearby placement prices in {product.category}</h2>
+                </div>
+                <p>
+                  Up to six other listings in the same supplied topic. Matching language is preferred first, then supplied listing country, then the smallest price difference. Similar prices do not imply equivalent scope or quality.
+                </p>
+                <ul className={styles.alternatives}>
+                  {related.map((item) => {
+                    const itemHost = new URL(item.domain).hostname;
+                    const itemPath = new URL(item.domain).pathname !== "/" ? new URL(item.domain).pathname : "";
+                    const monogram = itemHost.replace(/^www\./, "").slice(0, 2).toUpperCase();
+                    return (
+                      <li key={item.id}>
+                        <div>
+                          <div className={styles.altHeader}>
+                            <span className={styles.altMonogram} aria-hidden="true">
+                              {monogram}
+                            </span>
+                            <h3>
+                              <Link href={publicationPath(item)!}>
+                                {itemHost}
+                                {itemPath}
+                              </Link>
+                            </h3>
+                          </div>
+                          <p className={styles.altPriceRow}>
+                            <strong>{usd(item.priceCents)}</strong> ·{" "}
+                            {item.priceCents === product.priceCents
+                              ? "Same price"
+                              : `${usd(Math.abs(item.priceCents - product.priceCents))} ${item.priceCents > product.priceCents ? "more" : "less"}`}
+                          </p>
+                          <p className={styles.altMeta}>
+                            {item.language || "Language unavailable"} · {item.country || "Country unavailable"}
+                            <br />
+                            Supplied DR: <strong>{number(item.metrics.dr)}</strong>
+                          </p>
+                        </div>
+                        <ShortlistButton product={item} />
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            )}
+
+            {/* Section 8: Publication Shortlist Comparison */}
+            <PublicationShortlist />
+
+            {/* Section 9: Information to Confirm */}
+            <section className="reference-card" aria-labelledby="missing-title">
+              <div className={styles.sectionHeader}>
+                <span className={`${styles.sectionIcon} ${styles.sectionIconBlue}`} aria-hidden="true">
+                  <CheckCircle2 size={20} />
+                </span>
+                <h2 id="missing-title">Information to confirm for {view.identity}</h2>
+              </div>
+              <p>These details are not supplied or confirmed on this profile. Request the relevant evidence and agree terms for your actual brief.</p>
+              <ul className={styles.missingList}>
+                {view.missing.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+              <div className={styles.pillLinks}>
+                <Link href="/guides/vet-a-guest-post-site/">Use the publisher evaluation checklist</Link>
+                <Link href="/guides/paid-guest-posts-google-link-policies/">Review paid-link qualification</Link>
+              </div>
+            </section>
+
+            {/* Section 10: Questions / FAQ */}
+            <section className="reference-card" id="publication-questions" aria-labelledby="questions-title">
+              <div className={styles.sectionHeader}>
+                <span className={`${styles.sectionIcon} ${styles.sectionIconPurple}`} aria-hidden="true">
+                  <HelpCircle size={20} />
+                </span>
+                <h2 id="questions-title">Questions about {view.identity}</h2>
+              </div>
+              <div className={styles.questions}>
+                {view.questions.map(([question, answer]) => (
+                  <details key={question}>
+                    <summary>{question}</summary>
+                    <p>{answer}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+
+            {/* Section 11: Continue Comparing Relevant Listings */}
+            <section className="reference-card" aria-labelledby="browse-title">
+              <div className={styles.sectionHeader}>
+                <span className={styles.sectionIcon} aria-hidden="true">
+                  <Compass size={20} />
+                </span>
+                <h2 id="browse-title">Continue comparing relevant listings</h2>
+              </div>
+              <ul className={styles.browseList}>
+                {product.category && (
+                  <li>
+                    <Link href={browse("category", product.category)}>
+                      <span>All {product.category} listings</span>
+                      <ArrowUpRight size={15} aria-hidden="true" />
+                    </Link>
+                  </li>
+                )}
+                {product.country && (
+                  <li>
+                    <Link href={browse("country", product.country)}>
+                      <span>Listings supplied under {product.country}</span>
+                      <ArrowUpRight size={15} aria-hidden="true" />
+                    </Link>
+                  </li>
+                )}
+                {product.language && (
+                  <li>
+                    <Link href={browse("language", product.language)}>
+                      <span>{product.language} listings</span>
+                      <ArrowUpRight size={15} aria-hidden="true" />
+                    </Link>
+                  </li>
+                )}
+                {matchingDirectories.map((directory) => (
+                  <li key={directory.slug}>
+                    <Link href={`/${directory.slug}/`}>
+                      <span>{directory.label}</span>
+                      <ArrowUpRight size={15} aria-hidden="true" />
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        </div>
+      </ShortlistProvider>
     </InformationShell>
   );
 }

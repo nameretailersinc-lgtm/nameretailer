@@ -499,6 +499,14 @@ export async function updateProduct(id: string, raw: unknown, actorId: string) {
       version: old.version + 1,
       updatedAt: new Date().toISOString(),
     };
+    // Reviewed prose can describe prices, terms or metrics as well as the host.
+    // Any changed source fact needs another editorial check before republishing.
+    if (old.publicationContent?.state === "reviewed" &&
+      (Object.keys(input) as Array<keyof typeof input>).some(key => key !== "externalId" && key !== "status" && JSON.stringify(old[key]) !== JSON.stringify(input[key]))) {
+      const { reviewedBy: _reviewer, reviewedAt: _reviewedAt, ...draftContent } = old.publicationContent;
+      void _reviewer; void _reviewedAt;
+      next.publicationContent = { ...draftContent, state: "draft" };
+    }
     const result = await products.replaceOne(
       { id, version: old.version },
       next,

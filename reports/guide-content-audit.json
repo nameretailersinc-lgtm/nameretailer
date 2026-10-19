@@ -1,0 +1,2041 @@
+{
+  "auditedAt": "2026-10-19T04:36:43.672Z",
+  "scope": "Read-only census of every code-managed /guides/[slug]/ detail page. No content, routes, database, approval or indexing changes. Source presence is not claim-by-claim source verification.",
+  "total": 25,
+  "approved": 25,
+  "groupCounts": {
+    "domain": 3,
+    "guest-posting-expansion": 16,
+    "original-buyer-guide": 6
+  },
+  "completeness": {
+    "author": {
+      "present": 5,
+      "missing": 20
+    },
+    "reviewer": {
+      "present": 0,
+      "missing": 25
+    },
+    "publishedAt": {
+      "present": 5,
+      "missing": 20
+    },
+    "updatedAt": {
+      "present": 25,
+      "missing": 0
+    },
+    "sourcesCheckedAt": {
+      "present": 24,
+      "missing": 1
+    }
+  },
+  "articleSchemaEligible": 5,
+  "distinctSourceUrls": 15,
+  "sourceFrequency": [
+    {
+      "url": "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
+      "pages": 19
+    },
+    {
+      "url": "https://developers.google.com/search/docs/essentials/spam-policies#link-spam",
+      "pages": 12
+    },
+    {
+      "url": "https://developers.google.com/search/docs/fundamentals/creating-helpful-content",
+      "pages": 12
+    },
+    {
+      "url": "https://support.google.com/analytics/answer/10917952",
+      "pages": 7
+    },
+    {
+      "url": "https://www.icann.org/resources/pages/domain-name-registration-process-2023-11-02-en",
+      "pages": 2
+    },
+    {
+      "url": "https://help.ahrefs.com/en/articles/1863206-what-is-organic-traffic-in-ahrefs-and-how-do-we-calculate-it",
+      "pages": 2
+    },
+    {
+      "url": "https://ahrefs.com/seo/glossary/domain-rating",
+      "pages": 2
+    },
+    {
+      "url": "https://www.shopify.com/blog/choose-domain-name",
+      "pages": 1
+    },
+    {
+      "url": "https://www.icann.org/resources/pages/name-holder-faqs-2017-10-10-en",
+      "pages": 1
+    },
+    {
+      "url": "https://developers.google.com/search/docs/appearance/ranking-systems-guide",
+      "pages": 1
+    },
+    {
+      "url": "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes",
+      "pages": 1
+    },
+    {
+      "url": "https://developers.google.com/search/help/site-position-in-search-faq",
+      "pages": 1
+    },
+    {
+      "url": "https://www.icann.org/rdap",
+      "pages": 1
+    },
+    {
+      "url": "https://support.google.com/business/answer/7091",
+      "pages": 1
+    },
+    {
+      "url": "https://moz-static.s3.amazonaws.com/products/landing-pages/announcements/Authority_Scoring_Guide.pdf",
+      "pages": 1
+    }
+  ],
+  "similarity": {
+    "methodology": "Case/whitespace-normalized exact comparison; pairwise Jaccard of sets of consecutive five-word tokens from authored answer, sections, steps, checklists, templates, FAQs and tables. Excludes common site chrome, source lists, related links and CTA. Empty stored cost answer is runtime-generated, checked separately in HTML. This is lexical overlap, not proof of intent cannibalization, expertise or SEO quality.",
+    "pairCount": 300,
+    "exactDuplicateTitles": [],
+    "exactDuplicateDescriptions": [],
+    "exactDuplicateAnswers": [],
+    "exactDuplicateSectionBodies": [],
+    "repeatedHeadings": [
+      {
+        "value": "continue planning your domain",
+        "paths": [
+          "/guides/choose-a-domain-name/",
+          "/guides/buy-and-register-a-domain-name/",
+          "/guides/domain-name-seo-and-migrations/"
+        ]
+      },
+      {
+        "value": "sources",
+        "paths": [
+          "/guides/choose-a-domain-name/",
+          "/guides/buy-and-register-a-domain-name/",
+          "/guides/domain-name-seo-and-migrations/",
+          "/guides/guest-posting-for-beginners/",
+          "/guides/find-guest-posting-opportunities/",
+          "/guides/guest-post-outreach-templates/",
+          "/guides/write-a-guest-post/",
+          "/guides/guest-post-submission-guidelines/",
+          "/guides/guest-posting-strategy/",
+          "/guides/guest-posting-vs-content-marketing/",
+          "/guides/guest-posting-vs-digital-pr/",
+          "/guides/free-vs-paid-guest-posting/",
+          "/guides/guest-posting-for-small-businesses/",
+          "/guides/check-guest-post-website-traffic/",
+          "/guides/guest-posting-for-local-seo/",
+          "/guides/guest-posting-for-ecommerce/",
+          "/guides/measure-guest-posting-results/",
+          "/guides/guest-posting-mistakes/",
+          "/guides/guest-posting-checklist/",
+          "/guides/guest-post-cost/",
+          "/guides/guest-post-vs-link-insertion/",
+          "/guides/da-vs-dr-and-traffic/",
+          "/guides/vet-a-guest-post-site/",
+          "/guides/paid-guest-posts-google-link-policies/",
+          "/guides/guest-post-vs-sponsored-post/"
+        ]
+      },
+      {
+        "value": "which publications should i compare next?",
+        "paths": [
+          "/guides/choose-a-domain-name/",
+          "/guides/buy-and-register-a-domain-name/",
+          "/guides/domain-name-seo-and-migrations/",
+          "/guides/guest-posting-for-beginners/",
+          "/guides/find-guest-posting-opportunities/",
+          "/guides/guest-post-outreach-templates/",
+          "/guides/write-a-guest-post/",
+          "/guides/guest-post-submission-guidelines/",
+          "/guides/guest-posting-strategy/",
+          "/guides/guest-posting-vs-content-marketing/",
+          "/guides/guest-posting-vs-digital-pr/",
+          "/guides/free-vs-paid-guest-posting/",
+          "/guides/guest-posting-for-small-businesses/",
+          "/guides/check-guest-post-website-traffic/",
+          "/guides/guest-posting-for-local-seo/",
+          "/guides/guest-posting-for-ecommerce/",
+          "/guides/measure-guest-posting-results/",
+          "/guides/guest-posting-mistakes/",
+          "/guides/guest-posting-checklist/",
+          "/guides/guest-post-cost/",
+          "/guides/guest-post-vs-link-insertion/",
+          "/guides/da-vs-dr-and-traffic/",
+          "/guides/vet-a-guest-post-site/",
+          "/guides/paid-guest-posts-google-link-policies/",
+          "/guides/guest-post-vs-sponsored-post/"
+        ]
+      },
+      {
+        "value": "put it into practice",
+        "paths": [
+          "/guides/guest-posting-for-beginners/",
+          "/guides/find-guest-posting-opportunities/",
+          "/guides/write-a-guest-post/",
+          "/guides/guest-posting-strategy/",
+          "/guides/guest-posting-for-small-businesses/",
+          "/guides/guest-posting-for-ecommerce/"
+        ]
+      },
+      {
+        "value": "decision checklist",
+        "paths": [
+          "/guides/guest-posting-for-beginners/",
+          "/guides/guest-post-outreach-templates/",
+          "/guides/guest-post-submission-guidelines/",
+          "/guides/guest-posting-for-local-seo/",
+          "/guides/guest-posting-checklist/"
+        ]
+      },
+      {
+        "value": "common questions",
+        "paths": [
+          "/guides/guest-posting-for-beginners/",
+          "/guides/find-guest-posting-opportunities/",
+          "/guides/guest-post-outreach-templates/",
+          "/guides/write-a-guest-post/",
+          "/guides/guest-post-submission-guidelines/",
+          "/guides/guest-posting-strategy/",
+          "/guides/guest-posting-vs-content-marketing/",
+          "/guides/guest-posting-vs-digital-pr/",
+          "/guides/free-vs-paid-guest-posting/",
+          "/guides/guest-posting-for-small-businesses/",
+          "/guides/check-guest-post-website-traffic/",
+          "/guides/guest-posting-for-local-seo/",
+          "/guides/guest-posting-for-ecommerce/",
+          "/guides/measure-guest-posting-results/",
+          "/guides/guest-posting-mistakes/",
+          "/guides/guest-posting-checklist/"
+        ]
+      },
+      {
+        "value": "continue with this decision",
+        "paths": [
+          "/guides/guest-posting-for-beginners/",
+          "/guides/find-guest-posting-opportunities/",
+          "/guides/guest-post-outreach-templates/",
+          "/guides/write-a-guest-post/",
+          "/guides/guest-post-submission-guidelines/",
+          "/guides/guest-posting-strategy/",
+          "/guides/guest-posting-vs-content-marketing/",
+          "/guides/guest-posting-vs-digital-pr/",
+          "/guides/free-vs-paid-guest-posting/",
+          "/guides/guest-posting-for-small-businesses/",
+          "/guides/check-guest-post-website-traffic/",
+          "/guides/guest-posting-for-local-seo/",
+          "/guides/guest-posting-for-ecommerce/",
+          "/guides/measure-guest-posting-results/",
+          "/guides/guest-posting-mistakes/",
+          "/guides/guest-posting-checklist/",
+          "/guides/guest-post-cost/",
+          "/guides/da-vs-dr-and-traffic/",
+          "/guides/vet-a-guest-post-site/",
+          "/guides/paid-guest-posts-google-link-policies/"
+        ]
+      }
+    ],
+    "highestOverlapPairs": [
+      {
+        "a": "/guides/guest-post-cost/",
+        "b": "/guides/guest-post-vs-link-insertion/",
+        "fiveWordShingleJaccard": 0.0045
+      },
+      {
+        "a": "/guides/guest-posting-for-beginners/",
+        "b": "/guides/guest-post-vs-sponsored-post/",
+        "fiveWordShingleJaccard": 0.003
+      },
+      {
+        "a": "/guides/guest-posting-for-small-businesses/",
+        "b": "/guides/measure-guest-posting-results/",
+        "fiveWordShingleJaccard": 0.0022
+      },
+      {
+        "a": "/guides/guest-post-outreach-templates/",
+        "b": "/guides/paid-guest-posts-google-link-policies/",
+        "fiveWordShingleJaccard": 0.0021
+      },
+      {
+        "a": "/guides/guest-posting-for-ecommerce/",
+        "b": "/guides/measure-guest-posting-results/",
+        "fiveWordShingleJaccard": 0.002
+      },
+      {
+        "a": "/guides/guest-posting-vs-digital-pr/",
+        "b": "/guides/guest-posting-for-small-businesses/",
+        "fiveWordShingleJaccard": 0.0013
+      },
+      {
+        "a": "/guides/guest-posting-for-local-seo/",
+        "b": "/guides/guest-posting-checklist/",
+        "fiveWordShingleJaccard": 0.0012
+      },
+      {
+        "a": "/guides/write-a-guest-post/",
+        "b": "/guides/guest-posting-for-ecommerce/",
+        "fiveWordShingleJaccard": 0.0011
+      },
+      {
+        "a": "/guides/write-a-guest-post/",
+        "b": "/guides/guest-posting-checklist/",
+        "fiveWordShingleJaccard": 0.0011
+      },
+      {
+        "a": "/guides/guest-post-submission-guidelines/",
+        "b": "/guides/vet-a-guest-post-site/",
+        "fiveWordShingleJaccard": 0.0011
+      },
+      {
+        "a": "/guides/guest-posting-strategy/",
+        "b": "/guides/check-guest-post-website-traffic/",
+        "fiveWordShingleJaccard": 0.0011
+      },
+      {
+        "a": "/guides/guest-posting-checklist/",
+        "b": "/guides/paid-guest-posts-google-link-policies/",
+        "fiveWordShingleJaccard": 0.0011
+      },
+      {
+        "a": "/guides/find-guest-posting-opportunities/",
+        "b": "/guides/vet-a-guest-post-site/",
+        "fiveWordShingleJaccard": 0.001
+      },
+      {
+        "a": "/guides/measure-guest-posting-results/",
+        "b": "/guides/da-vs-dr-and-traffic/",
+        "fiveWordShingleJaccard": 0.0009
+      },
+      {
+        "a": "/guides/choose-a-domain-name/",
+        "b": "/guides/buy-and-register-a-domain-name/",
+        "fiveWordShingleJaccard": 0
+      }
+    ]
+  },
+  "sample": [
+    {
+      "path": "/guides/choose-a-domain-name/",
+      "slug": "choose-a-domain-name",
+      "group": "domain",
+      "title": "How to choose a domain name for a business",
+      "metadataTitle": "How to choose a domain name for a business",
+      "metadataDescription": "Build a memorable business domain shortlist, test names with customers, compare extensions and check registration before you commit.",
+      "storedAnswer": "Choose a domain people can say, spell and recognize as your business. Build a shortlist, test it aloud without showing the spelling, compare suitable extensions, and verify registration and relevant name rights before paying. A domain name is your web address; a business name identifies your business and may follow separate local rules.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-15",
+      "sourcesCheckedAt": "2026-10-15",
+      "renderedSourcesCheckedAt": "2026-10-15",
+      "articleSchemaEligible": false,
+      "authoredWords": 458,
+      "questionSections": 5,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 4,
+      "headings": [
+        "Start with the audience and the next three years",
+        "Build and score a small shortlist",
+        "Compare startup and ecommerce needs",
+        "Choose an extension for the audience",
+        "Verify the shortlist before buying",
+        "Continue planning your domain",
+        "Sources",
+        "Which publications should I compare next?"
+      ],
+      "related": [],
+      "sources": [
+        [
+          "Shopify: choosing a domain name",
+          "https://www.shopify.com/blog/choose-domain-name"
+        ],
+        [
+          "ICANN: domain registration process",
+          "https://www.icann.org/resources/pages/domain-name-registration-process-2023-11-02-en"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date",
+        "No topic-specific related links",
+        "Shared closing CTA promotes guest-post inventory on a domain-planning guide"
+      ]
+    },
+    {
+      "path": "/guides/buy-and-register-a-domain-name/",
+      "slug": "buy-and-register-a-domain-name",
+      "group": "domain",
+      "title": "How to buy and register a domain name",
+      "metadataTitle": "How to buy and register a domain name",
+      "metadataDescription": "A beginner checklist for domain registration: verify availability, compare renewal terms, secure account ownership and connect website and email records.",
+      "storedAnswer": "Choose a suitable name, verify its current availability with a registrar, review the registration and renewal terms, and register it in an account you control. Then configure your website and email records. A domain registration is separate from hosting and from registering a business name.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-15",
+      "sourcesCheckedAt": "2026-10-15",
+      "renderedSourcesCheckedAt": "2026-10-15",
+      "articleSchemaEligible": false,
+      "authoredWords": 360,
+      "questionSections": 5,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 0,
+      "headings": [
+        "Check availability at the point of purchase",
+        "Compare the total cost rather than the introductory offer",
+        "Keep registration under your control",
+        "Connect hosting and email deliberately",
+        "Plan renewals and future transfers",
+        "Continue planning your domain",
+        "Sources",
+        "Which publications should I compare next?"
+      ],
+      "related": [],
+      "sources": [
+        [
+          "ICANN: domain registration process",
+          "https://www.icann.org/resources/pages/domain-name-registration-process-2023-11-02-en"
+        ],
+        [
+          "ICANN: transferring your domain",
+          "https://www.icann.org/resources/pages/name-holder-faqs-2017-10-10-en"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date",
+        "No topic-specific related links",
+        "Shared closing CTA promotes guest-post inventory on a domain-planning guide"
+      ]
+    },
+    {
+      "path": "/guides/domain-name-seo-and-migrations/",
+      "slug": "domain-name-seo-and-migrations",
+      "group": "domain",
+      "title": "Domain names, SEO and website migrations",
+      "metadataTitle": "Domain names, SEO and website migrations",
+      "metadataDescription": "Separate domain naming decisions from SEO claims, and plan a domain migration with URL mapping, permanent redirects, canonicals and monitoring.",
+      "storedAnswer": "A domain name can help users understand and remember a website, but it cannot guarantee Google rankings. When changing a domain, preserve useful content and map each old URL to its genuinely equivalent new URL. Update internal links, canonicals and sitemaps, then monitor crawling and search performance.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-15",
+      "sourcesCheckedAt": "2026-10-15",
+      "renderedSourcesCheckedAt": "2026-10-15",
+      "articleSchemaEligible": false,
+      "authoredWords": 443,
+      "questionSections": 6,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 0,
+      "headings": [
+        "Do keywords in a domain guarantee rankings?",
+        "Compare extensions without an automatic SEO winner",
+        "Create a URL migration worksheet",
+        "Update all URL signals together",
+        "Measure the migration rather than promise recovery",
+        "Check a previously used domain before purchase",
+        "Continue planning your domain",
+        "Sources",
+        "Which publications should I compare next?"
+      ],
+      "related": [],
+      "sources": [
+        [
+          "Google: ranking systems and exact-match domains",
+          "https://developers.google.com/search/docs/appearance/ranking-systems-guide"
+        ],
+        [
+          "Google: site moves with URL changes",
+          "https://developers.google.com/search/docs/crawling-indexing/site-move-with-url-changes"
+        ],
+        [
+          "Google: top-level domains in Search",
+          "https://developers.google.com/search/help/site-position-in-search-faq"
+        ],
+        [
+          "ICANN: RDAP",
+          "https://www.icann.org/rdap"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date",
+        "No topic-specific related links",
+        "Shared closing CTA promotes guest-post inventory on a domain-planning guide"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-for-beginners/",
+      "slug": "guest-posting-for-beginners",
+      "group": "guest-posting-expansion",
+      "title": "Guest posting for beginners",
+      "metadataTitle": "Guest posting for beginners",
+      "metadataDescription": "Learn how guest posting works, choose a suitable publisher and prepare your first article with a simple workflow, example and publishing checklist.",
+      "storedAnswer": "Guest posting means contributing an article to another publication for its readers. Start with a useful subject, choose a relevant publisher, agree the editorial and commercial terms, then write and review the article. Paid placements need appropriate link qualification. Measure actual reader responses rather than assuming publication will improve your rankings.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 431,
+      "questionSections": 4,
+      "steps": 5,
+      "checklistItems": 4,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "What happens in a guest post placement?",
+        "Choose one reader problem for your first article",
+        "Separate an editorial contribution from a paid link",
+        "What should your first placement record contain?",
+        "Put it into practice",
+        "Decision checklist",
+        "Common questions",
+        "Do I need a paid placement to start?",
+        "Will a guest post guarantee higher rankings?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Find potential publishers",
+          "/guides/find-guest-posting-opportunities/"
+        ],
+        [
+          "Prepare an outreach email",
+          "/guides/guest-post-outreach-templates/"
+        ],
+        [
+          "Understand placement costs",
+          "/guides/guest-post-cost/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ],
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/find-guest-posting-opportunities/",
+      "slug": "find-guest-posting-opportunities",
+      "group": "guest-posting-expansion",
+      "title": "How to find guest posting opportunities",
+      "metadataTitle": "How to find guest posting opportunities",
+      "metadataDescription": "Build a guest posting prospect list using audience research, editorial searches and niche directories, then check that each publisher accepts proposals.",
+      "storedAnswer": "Find guest posting opportunities by identifying publications your intended readers already use, searching for relevant contributor guidance and exploring niche directories. Record why each prospect fits and verify that submissions are currently accepted. Discovery creates a candidate list; editorial review, audience checks and confirmed terms determine which opportunities deserve further work.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 421,
+      "questionSections": 4,
+      "steps": 4,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 3,
+      "headings": [
+        "Start with an audience map",
+        "Use searches to discover editorial policies",
+        "Use directories without mistaking listings for acceptance",
+        "Deduplicate before contacting editors",
+        "Put it into practice",
+        "Common questions",
+        "Does a write-for-us page mean my article will be accepted?",
+        "Should I contact every directory listing?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Browse niche publisher directories",
+          "/guest-posting-sites/"
+        ],
+        [
+          "Choose your shortlist",
+          "/how-to-buy-links/"
+        ],
+        [
+          "Evaluate each shortlisted site",
+          "/guides/vet-a-guest-post-site/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-post-outreach-templates/",
+      "slug": "guest-post-outreach-templates",
+      "group": "guest-posting-expansion",
+      "title": "Guest post outreach email templates",
+      "metadataTitle": "Guest post outreach email templates",
+      "metadataDescription": "Adapt three guest post outreach email templates for an editorial pitch, a sponsored-placement enquiry and a polite follow-up, with a personalization…",
+      "storedAnswer": "A guest post outreach email should identify the relevant editor, explain a specific article idea and show why that publication's readers would benefit. Include credible experience or evidence you can supply and ask for the next editorial step. Use templates as a starting point, with different wording for editorial contributions and sponsored enquiries.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 499,
+      "questionSections": 3,
+      "steps": 0,
+      "checklistItems": 5,
+      "templates": 3,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "Personalize the reason for contacting this editor",
+        "Give the editor something concrete to evaluate",
+        "Follow up with restraint",
+        "Template: an editorial contribution",
+        "Template: a sponsored-placement enquiry",
+        "Template: a brief follow-up",
+        "Decision checklist",
+        "Common questions",
+        "Should I request a dofollow link in the opening email?",
+        "Can I reuse the same email?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Find suitable editors and publications",
+          "/guides/find-guest-posting-opportunities/"
+        ],
+        [
+          "Prepare the article",
+          "/guides/write-a-guest-post/"
+        ],
+        [
+          "Understand submission guidelines",
+          "/guides/guest-post-submission-guidelines/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/write-a-guest-post/",
+      "slug": "write-a-guest-post",
+      "group": "guest-posting-expansion",
+      "title": "How to write a guest post that fits the publisher",
+      "metadataTitle": "How to write a guest post that fits the publisher",
+      "metadataDescription": "Turn an accepted guest post idea into a useful article with an outline, original examples, source checks and a practical editorial handoff.",
+      "storedAnswer": "Write a guest post by agreeing the audience and angle with the editor, building an outline around one reader problem and supporting each important claim with evidence. Use original examples, follow the publisher's format and review the manuscript before submission. Acceptance remains the editor's decision, even when you follow every instruction.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 463,
+      "questionSections": 5,
+      "steps": 5,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "Agree the brief before writing",
+        "Build an outline that produces a usable result",
+        "Add evidence the editor can inspect",
+        "Edit links and promotional language",
+        "Make the editorial handoff easy",
+        "Put it into practice",
+        "Common questions",
+        "Is there an ideal guest post word count?",
+        "Can I submit the same article elsewhere?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Review publisher expectations",
+          "/guides/guest-post-submission-guidelines/"
+        ],
+        [
+          "Run the publishing checklist",
+          "/guides/guest-posting-checklist/"
+        ],
+        [
+          "Avoid common mistakes",
+          "/guides/guest-posting-mistakes/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-post-submission-guidelines/",
+      "slug": "guest-post-submission-guidelines",
+      "group": "guest-posting-expansion",
+      "title": "Guest post submission guidelines explained",
+      "metadataTitle": "Guest post submission guidelines explained",
+      "metadataDescription": "Check guest post submission rules for audience fit, evidence, images, author details, revisions and paid-link disclosure before sending an article.",
+      "storedAnswer": "Guest post submission guidelines describe what a publisher will consider and how to send it. Check the accepted topics, audience, originality requirements, format, evidence, links and approval process before writing. If instructions are missing or conflict with a commercial quote, ask the editor for clarification and record the agreed requirements together.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 365,
+      "questionSections": 4,
+      "steps": 0,
+      "checklistItems": 5,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "Which rules should you copy into the brief?",
+        "What counts as useful evidence?",
+        "Clarify links, rights and revision responsibilities",
+        "Example: resolving conflicting instructions",
+        "Decision checklist",
+        "Common questions",
+        "Does meeting the guidelines guarantee acceptance?",
+        "What if a publisher has no published guidelines?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Write a useful article",
+          "/guides/write-a-guest-post/"
+        ],
+        [
+          "Qualify paid links",
+          "/guides/paid-guest-posts-google-link-policies/"
+        ],
+        [
+          "Check before publication",
+          "/guides/guest-posting-checklist/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-strategy/",
+      "slug": "guest-posting-strategy",
+      "group": "guest-posting-expansion",
+      "title": "How to create a guest posting strategy",
+      "metadataTitle": "How to create a guest posting strategy",
+      "metadataDescription": "Build a guest posting strategy around an audience, useful content, publisher selection, a complete budget and measurable reader or business outcomes.",
+      "storedAnswer": "A guest posting strategy connects an audience and business goal with useful articles, relevant publishers, a realistic budget and a measurement plan. Decide what success means before choosing placements. Start with a manageable test, document editorial and paid-link requirements, and use observed outcomes to decide whether to continue, change approach or stop.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 424,
+      "questionSections": 4,
+      "steps": 5,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 4,
+      "headings": [
+        "Choose one primary outcome",
+        "Match a topic and destination to the reader's stage",
+        "Plan capacity as well as spend",
+        "Define a test and a stop decision",
+        "Put it into practice",
+        "Common questions",
+        "How many guest posts should a strategy include?",
+        "Should I optimize for authority scores?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Build the placement budget",
+          "/blog/a-practical-guest-post-budget-worksheet/"
+        ],
+        [
+          "Measure observed results",
+          "/guides/measure-guest-posting-results/"
+        ],
+        [
+          "Compare publisher opportunities",
+          "/guest-posting-sites/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ],
+        [
+          "Google Analytics: campaign URL parameters",
+          "https://support.google.com/analytics/answer/10917952"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-vs-content-marketing/",
+      "slug": "guest-posting-vs-content-marketing",
+      "group": "guest-posting-expansion",
+      "title": "Guest posting vs content marketing",
+      "metadataTitle": "Guest posting vs content marketing",
+      "metadataDescription": "Compare guest posting with a wider content marketing program by editorial control, distribution, resource needs and measurement, with an example plan.",
+      "storedAnswer": "Guest posting is one way to distribute useful content through another publisher; content marketing is a broader program that can include your own guides, email, video and contributions elsewhere. Choose based on the reader's task, editorial control and distribution needs. A guest article works best when it connects to useful material you can maintain.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 404,
+      "questionSections": 4,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 4,
+      "headings": [
+        "Compare a tactic with the wider program",
+        "Who controls the article after publication?",
+        "Example: a connected content plan",
+        "Decide where the next hour should go",
+        "Common questions",
+        "Can guest posting replace an owned content strategy?",
+        "Is guest posting always paid?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Create a guest posting strategy",
+          "/guides/guest-posting-strategy/"
+        ],
+        [
+          "Compare digital PR",
+          "/guides/guest-posting-vs-digital-pr/"
+        ],
+        [
+          "Measure reader actions",
+          "/guides/measure-guest-posting-results/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-vs-digital-pr/",
+      "slug": "guest-posting-vs-digital-pr",
+      "group": "guest-posting-expansion",
+      "title": "Guest posting vs digital PR",
+      "metadataTitle": "Guest posting vs digital PR",
+      "metadataDescription": "Compare a contributed guest article with digital PR outreach by story, editorial control, costs and measurement before choosing an approach.",
+      "storedAnswer": "Guest posting usually proposes a contributed article for a publication, while digital PR seeks coverage of a story, research or expert perspective that journalists choose how to report. Neither guarantees acceptance or links. Compare the strength of your evidence, editorial control, production effort and business objective before deciding which approach fits the opportunity.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 403,
+      "questionSections": 4,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 4,
+      "headings": [
+        "What are you offering the editor?",
+        "Editorial control differs by agreement",
+        "Example: choose the strongest asset",
+        "Budget for the evidence and coordination",
+        "Common questions",
+        "Is a paid article earned media?",
+        "Which approach earns better links?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Compare content marketing",
+          "/guides/guest-posting-vs-content-marketing/"
+        ],
+        [
+          "Plan the strategy",
+          "/guides/guest-posting-strategy/"
+        ],
+        [
+          "Understand sponsorship",
+          "/guides/guest-post-vs-sponsored-post/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/free-vs-paid-guest-posting/",
+      "slug": "free-vs-paid-guest-posting",
+      "group": "guest-posting-expansion",
+      "title": "Free vs paid guest posting",
+      "metadataTitle": "Free vs paid guest posting",
+      "metadataDescription": "Compare unpaid guest contributions with paid placements, including editorial effort, full costs, approval terms and sponsored-link requirements.",
+      "storedAnswer": "Free guest posting usually means there is no placement fee; research, writing and editing still cost time or money. Paid guest posting adds a commercial placement arrangement with its own scope and disclosure requirements. Compare audience fit, editorial standards and the complete cost of each option rather than treating either price model as a quality guarantee.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 386,
+      "questionSections": 4,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 4,
+      "headings": [
+        "What does free actually cover?",
+        "What changes when a placement is paid?",
+        "Example: compare total effort",
+        "Do not exchange hidden benefits for ranking credit",
+        "Common questions",
+        "Are free guest posts always better?",
+        "Does paying remove the writing work?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Compare guest post costs",
+          "/guides/guest-post-cost/"
+        ],
+        [
+          "Use the budget worksheet",
+          "/blog/a-practical-guest-post-budget-worksheet/"
+        ],
+        [
+          "Read paid-link guidance",
+          "/guides/paid-guest-posts-google-link-policies/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ],
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-for-small-businesses/",
+      "slug": "guest-posting-for-small-businesses",
+      "group": "guest-posting-expansion",
+      "title": "Guest posting for small businesses",
+      "metadataTitle": "Guest posting for small businesses",
+      "metadataDescription": "Plan a manageable guest posting test for a small business: choose a useful topic, relevant readers, a complete budget and a clear enquiry goal.",
+      "storedAnswer": "Small businesses can approach guest posting as a focused audience experiment: solve a customer problem in a relevant publication, link a useful next step and measure actual enquiries. Keep production and placement costs within a confirmed budget. A narrow audience fit and manageable editorial workload matter more than buying the largest available authority score.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 397,
+      "questionSections": 4,
+      "steps": 5,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "Use a question customers already ask",
+        "Choose readers you can actually serve",
+        "Set a complete spending limit",
+        "Make the next action easy to recognize",
+        "Put it into practice",
+        "Common questions",
+        "What budget should a small business use?",
+        "Should a local business choose only locally named publications?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Plan local relevance",
+          "/guides/guest-posting-for-local-seo/"
+        ],
+        [
+          "Review lower-price listings",
+          "/guest-posting-sites-under-50/"
+        ],
+        [
+          "Measure the test",
+          "/guides/measure-guest-posting-results/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google Analytics: campaign URL parameters",
+          "https://support.google.com/analytics/answer/10917952"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/check-guest-post-website-traffic/",
+      "slug": "check-guest-post-website-traffic",
+      "group": "guest-posting-expansion",
+      "title": "How to check traffic before guest posting",
+      "metadataTitle": "How to check traffic before guest posting",
+      "metadataDescription": "Verify guest post publisher traffic with a provider, period, channel and page scope, then record audience evidence and unresolved questions before…",
+      "storedAnswer": "Check website traffic before guest posting by recording the metric's provider, measurement period, channel and domain or page scope, then examining whether the relevant readers and articles match your needs. Compare like-for-like evidence and ask about unexplained changes. A supplied traffic number or third-party estimate cannot guarantee views, referrals or sales for your article.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 487,
+      "questionSections": 5,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 4,
+      "headings": [
+        "Step 1: identify what the number measures",
+        "Step 2: inspect the audience and relevant pages",
+        "Step 3: compare a trend with the same method",
+        "Example: when two traffic figures cannot be compared",
+        "Step 4: write a decision with its limits",
+        "Common questions",
+        "Does Ahrefs show measured visits?",
+        "Can I predict my article views from domain traffic?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Understand DA, DR and traffic definitions",
+          "/guides/da-vs-dr-and-traffic/"
+        ],
+        [
+          "Complete the publisher review",
+          "/guides/vet-a-guest-post-site/"
+        ],
+        [
+          "Measure results after publication",
+          "/guides/measure-guest-posting-results/"
+        ]
+      ],
+      "sources": [
+        [
+          "Ahrefs: how organic traffic estimates work",
+          "https://help.ahrefs.com/en/articles/1863206-what-is-organic-traffic-in-ahrefs-and-how-do-we-calculate-it"
+        ],
+        [
+          "Google Analytics: campaign URL parameters",
+          "https://support.google.com/analytics/answer/10917952"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-for-local-seo/",
+      "slug": "guest-posting-for-local-seo",
+      "group": "guest-posting-expansion",
+      "title": "Guest posting for local SEO",
+      "metadataTitle": "Guest posting for local SEO",
+      "metadataDescription": "Evaluate local guest posting opportunities by service area, reader geography and useful local content, with practical checks and measurement limits.",
+      "storedAnswer": "Guest posting for local SEO should start with useful coverage for readers in a business's service area. Check local audience evidence, choose a relevant topic and offer a practical destination. Treat referrals and local enquiries as measurable outcomes. A local placement does not guarantee map visibility, and paid links still require appropriate qualification.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 399,
+      "questionSections": 4,
+      "steps": 0,
+      "checklistItems": 5,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "Define a real service area",
+        "Contribute detail that belongs to the location",
+        "Keep expectations about local rankings grounded",
+        "Measure useful local responses",
+        "Decision checklist",
+        "Common questions",
+        "Will a local guest post improve my map ranking?",
+        "Is a country directory enough for a city campaign?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Plan a small-business test",
+          "/guides/guest-posting-for-small-businesses/"
+        ],
+        [
+          "Check audience evidence",
+          "/guides/check-guest-post-website-traffic/"
+        ],
+        [
+          "Browse business publications",
+          "/business-guest-posting-sites/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google Business Profile: local ranking guidance",
+          "https://support.google.com/business/answer/7091"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-for-ecommerce/",
+      "slug": "guest-posting-for-ecommerce",
+      "group": "guest-posting-expansion",
+      "title": "Guest posting for e-commerce websites",
+      "metadataTitle": "Guest posting for e-commerce websites",
+      "metadataDescription": "Plan e-commerce guest articles around shopper questions, suitable publishers, useful landing pages and measured sales or enquiries without ranking…",
+      "storedAnswer": "E-commerce guest posting works as an audience and content test: answer a real shopper question on a relevant publication and offer a useful next step in your store. Check publisher fit, destination quality and complete costs before proceeding. Track observed referral actions and commercial outcomes, while keeping paid-link qualification and attribution limits explicit.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 464,
+      "questionSections": 5,
+      "steps": 5,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "Choose a shopper problem before a product link",
+        "Match the publication to the buying context",
+        "Use a destination that continues the task",
+        "Example: calculate a commercial result carefully",
+        "Keep referrals, assisted activity and organic changes separate",
+        "Put it into practice",
+        "Common questions",
+        "Should every guest article link a product page?",
+        "Are referral sales guaranteed?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Measure guest posting results",
+          "/guides/measure-guest-posting-results/"
+        ],
+        [
+          "Explore travel and lifestyle publications",
+          "/travel-lifestyle-guest-posting-sites/"
+        ],
+        [
+          "Compare business publishers",
+          "/business-guest-posting-sites/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google Analytics: campaign URL parameters",
+          "https://support.google.com/analytics/answer/10917952"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/measure-guest-posting-results/",
+      "slug": "measure-guest-posting-results",
+      "group": "guest-posting-expansion",
+      "title": "How to measure guest posting results and ROI",
+      "metadataTitle": "How to measure guest posting results and ROI",
+      "metadataDescription": "Measure guest posting results with a defined goal, consistent campaign labels, complete costs and a worked ROI example that explains attribution limits.",
+      "storedAnswer": "Measure guest posting results by defining the desired reader action, recording the live article and campaign identifiers, and comparing observed outcomes with complete placement and production costs. Keep publication checks, referral activity and business results separate. Calculate ROI only with a documented value and attribution method; a link count or ranking change alone does not establish return.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 526,
+      "questionSections": 5,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 3,
+      "tableRows": 4,
+      "headings": [
+        "Record the goal and baseline before publication",
+        "Use consistent campaign labels where permitted",
+        "Distinguish delivery from performance",
+        "Worked ROI example",
+        "Explain what the data cannot establish",
+        "Common questions",
+        "What if the campaign cost is zero?",
+        "Can I use revenue as profit in ROI?",
+        "How long should I measure?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Plan campaign goals",
+          "/guides/guest-posting-strategy/"
+        ],
+        [
+          "Build a complete budget",
+          "/blog/a-practical-guest-post-budget-worksheet/"
+        ],
+        [
+          "Check the published article",
+          "/guides/guest-posting-checklist/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google Analytics: campaign URL parameters",
+          "https://support.google.com/analytics/answer/10917952"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-mistakes/",
+      "slug": "guest-posting-mistakes",
+      "group": "guest-posting-expansion",
+      "title": "Common guest posting mistakes and how to avoid them",
+      "metadataTitle": "Common guest posting mistakes and how to avoid them",
+      "metadataDescription": "Avoid guest posting mistakes in audience selection, pitches, costs, editorial evidence, paid-link handling and reporting, with practical corrective…",
+      "storedAnswer": "Common guest posting mistakes include choosing publishers by scores alone, sending generic pitches, ignoring full costs and publishing weak or poorly sourced articles. Other problems arise when paid links are unqualified or results are reported without an attribution method. Prevent these errors with a clear brief, evidence checks, written terms and a measured review after publication.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 492,
+      "questionSections": 5,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 5,
+      "headings": [
+        "Mistake: choosing a score instead of an audience",
+        "Mistake: writing before the editor agrees the angle",
+        "Mistake: treating a placement fee as the whole budget",
+        "Mistake: promising search credit from a paid link",
+        "Mistake: declaring success before checking the article",
+        "Common questions",
+        "Should I abandon a placement after one weak result?",
+        "Can a published mistake be fixed?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Use the pre-publication checklist",
+          "/guides/guest-posting-checklist/"
+        ],
+        [
+          "Evaluate a publisher",
+          "/guides/vet-a-guest-post-site/"
+        ],
+        [
+          "Measure outcomes honestly",
+          "/guides/measure-guest-posting-results/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ],
+        [
+          "Google Analytics: campaign URL parameters",
+          "https://support.google.com/analytics/answer/10917952"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-posting-checklist/",
+      "slug": "guest-posting-checklist",
+      "group": "guest-posting-expansion",
+      "title": "Guest posting checklist before publishing",
+      "metadataTitle": "Guest posting checklist before publishing",
+      "metadataDescription": "Check guest post audience fit, article evidence, costs, image rights, disclosure, links and tracking before publication, then verify the live page.",
+      "storedAnswer": "Before publishing a guest post, confirm audience fit, an approved article, accurate sources, image permissions, complete costs and the publisher's agreed disclosure and link attributes. Check the destination and measurement setup as well. After publication, compare the live page with the agreement and record unresolved issues rather than treating publication alone as success.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": false,
+      "authoredWords": 461,
+      "questionSections": 5,
+      "steps": 0,
+      "checklistItems": 8,
+      "templates": 0,
+      "faqQuestions": 2,
+      "tableRows": 0,
+      "headings": [
+        "Gate 1: publisher and brief",
+        "Gate 2: accuracy and rights",
+        "Gate 3: commercial and link terms",
+        "Gate 4: destination and measurement",
+        "Gate 5: verify the live article",
+        "Decision checklist",
+        "Common questions",
+        "Should I proceed if a checklist item is unknown?",
+        "Does a self-canonical mean the article will be indexed?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Review submission rules",
+          "/guides/guest-post-submission-guidelines/"
+        ],
+        [
+          "Avoid common mistakes",
+          "/guides/guest-posting-mistakes/"
+        ],
+        [
+          "Measure results after publication",
+          "/guides/measure-guest-posting-results/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: helpful, reliable content",
+          "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google Analytics: campaign URL parameters",
+          "https://support.google.com/analytics/answer/10917952"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date"
+      ]
+    },
+    {
+      "path": "/guides/guest-post-cost/",
+      "slug": "guest-post-cost",
+      "group": "original-buyer-guide",
+      "title": "How much does a guest post cost?",
+      "metadataTitle": "How much does a guest post cost?",
+      "metadataDescription": "Understand guest post costs, placement versus writing charges and a worked budget example. Compare dated catalogue price ranges and publisher scope.",
+      "storedAnswer": "",
+      "liveAnswer": true,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": "Zuhoor Uddin",
+      "reviewer": null,
+      "publishedAt": "2026-07-02",
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": true,
+      "authoredWords": 577,
+      "questionSections": 8,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 4,
+      "headings": [
+        "What do the catalogue prices show?",
+        "What should I include in my budget?",
+        "Why do guest post prices vary so much?",
+        "Is article writing included in the price?",
+        "How should I read the price tables?",
+        "Worked example: a placement price is not the total budget",
+        "How do I compare affordable guest posting websites?",
+        "How does guest post cost compare with niche edit cost?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Compare free and paid contributions",
+          "/guides/free-vs-paid-guest-posting/"
+        ],
+        [
+          "Compare guest post pricing by niche",
+          "/guest-post-prices/"
+        ],
+        [
+          "Guest posting sites with placement prices up to $50",
+          "/guest-posting-sites-under-50/"
+        ],
+        [
+          "Use the existing guest-post budget worksheet",
+          "/blog/a-practical-guest-post-budget-worksheet/"
+        ],
+        [
+          "Compare guest posts and link insertions",
+          "/guides/guest-post-vs-link-insertion/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ]
+      ],
+      "flags": [
+        "No named reviewer; not automatically a defect"
+      ]
+    },
+    {
+      "path": "/guides/guest-post-vs-link-insertion/",
+      "slug": "guest-post-vs-link-insertion",
+      "group": "original-buyer-guide",
+      "title": "Guest post vs link insertion",
+      "metadataTitle": "Guest post vs link insertion",
+      "metadataDescription": "Guest post or link insertion? How the two formats differ in content, indexing, disclosure and price, and what to confirm with a publisher before choosing.",
+      "storedAnswer": "A guest post adds a new article to a publication; a link insertion adds a link to an existing article. Compare the surrounding content, editorial scope and disclosure before choosing a format. Confirm which format the publisher offers and what the quoted price covers, rather than assuming either option is included.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": "Zuhoor Uddin",
+      "reviewer": null,
+      "publishedAt": "2026-07-02",
+      "updatedAt": "2026-10-09",
+      "sourcesCheckedAt": null,
+      "renderedSourcesCheckedAt": "2026-10-09",
+      "articleSchemaEligible": true,
+      "authoredWords": 320,
+      "questionSections": 5,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 2,
+      "headings": [
+        "How do the formats differ?",
+        "What should I confirm before choosing?",
+        "When does a link insertion make more sense?",
+        "When is a new guest post the better choice?",
+        "Do both formats need sponsored disclosure?",
+        "Sources",
+        "Which publications should I compare next?"
+      ],
+      "related": [],
+      "sources": [
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ]
+      ],
+      "flags": [
+        "No named reviewer; not automatically a defect",
+        "Template supplies fallback source-check date without a per-guide record",
+        "No topic-specific related links"
+      ]
+    },
+    {
+      "path": "/guides/da-vs-dr-and-traffic/",
+      "slug": "da-vs-dr-and-traffic",
+      "group": "original-buyer-guide",
+      "title": "DA vs DR and traffic estimates",
+      "metadataTitle": "DA vs DR and traffic estimates",
+      "metadataDescription": "DA vs DR explained: who publishes each score, what it measures, why they disagree, and how to read traffic estimates when comparing guest post sites.",
+      "storedAnswer": "DA and DR are different third-party scores: Moz supplies Domain Authority and Ahrefs supplies Domain Rating. Traffic estimates are another signal and should be read with their provider, method and observation date. Use these measures to compare publications alongside audience relevance and editorial quality, while keeping missing values separate from zero.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": "Zuhoor Uddin",
+      "reviewer": null,
+      "publishedAt": "2026-07-02",
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": true,
+      "authoredWords": 628,
+      "questionSections": 8,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 3,
+      "headings": [
+        "Are DA and DR interchangeable?",
+        "How should I read catalogue traffic?",
+        "Why can a site have a high DA but a low DR?",
+        "Can authority scores be inflated?",
+        "Which metric should I filter by first?",
+        "Does a traffic figure mean organic search traffic?",
+        "What evidence should I request from a publisher?",
+        "Example: compare relevance before headline numbers",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Evaluate guest post publishers",
+          "/guides/vet-a-guest-post-site/"
+        ],
+        [
+          "Compare guest posting sites by supplied Domain Rating",
+          "/guest-post-by-dr/"
+        ],
+        [
+          "Review listing and metric methodology",
+          "/methodology/"
+        ],
+        [
+          "Run the traffic-evidence workflow",
+          "/guides/check-guest-post-website-traffic/"
+        ]
+      ],
+      "sources": [
+        [
+          "Moz: authority scoring guide",
+          "https://moz-static.s3.amazonaws.com/products/landing-pages/announcements/Authority_Scoring_Guide.pdf"
+        ],
+        [
+          "Ahrefs: Domain Rating",
+          "https://ahrefs.com/seo/glossary/domain-rating"
+        ],
+        [
+          "Ahrefs: organic traffic estimation",
+          "https://help.ahrefs.com/en/articles/1863206-what-is-organic-traffic-in-ahrefs-and-how-do-we-calculate-it"
+        ]
+      ],
+      "flags": [
+        "No named reviewer; not automatically a defect"
+      ]
+    },
+    {
+      "path": "/guides/vet-a-guest-post-site/",
+      "slug": "vet-a-guest-post-site",
+      "group": "original-buyer-guide",
+      "title": "How to evaluate guest post publishers",
+      "metadataTitle": "How to evaluate guest post publishers",
+      "metadataDescription": "A practical checklist to vet a guest post site: recent content, topic fit, link and disclosure terms, metric sources and the warning signs of a link farm.",
+      "storedAnswer": "Vet a guest-post site by checking its recent articles, topic relevance, editorial contacts and proposed placement scope. Compare supplied prices and metrics only after the publication makes sense for your audience. Ask for metric sources and dates, agree paid-link disclosure, and record questions about delivery and replacement terms before committing to an order.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": "Zuhoor Uddin",
+      "reviewer": null,
+      "publishedAt": "2026-07-02",
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": true,
+      "authoredWords": 558,
+      "questionSections": 8,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 0,
+      "headings": [
+        "What should I inspect on the publication?",
+        "Which catalogue fields can help my shortlist?",
+        "What are the warning signs of a link farm?",
+        "How can I check the traffic is real?",
+        "What should I agree before paying?",
+        "How do I assess topical relevance?",
+        "A practical publisher review record",
+        "When should I reject or pause a listing?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Follow the guest posting website selection workflow",
+          "/how-to-buy-links/"
+        ],
+        [
+          "Understand DA, DR and supplied traffic evidence",
+          "/guides/da-vs-dr-and-traffic/"
+        ],
+        [
+          "Review paid-link qualification",
+          "/guides/paid-guest-posts-google-link-policies/"
+        ],
+        [
+          "Browse publishers by industry",
+          "/guest-posting-sites/"
+        ],
+        [
+          "Use the final publishing checklist",
+          "/guides/guest-posting-checklist/"
+        ]
+      ],
+      "sources": [
+        [
+          "Ahrefs: Domain Rating",
+          "https://ahrefs.com/seo/glossary/domain-rating"
+        ],
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ]
+      ],
+      "flags": [
+        "No named reviewer; not automatically a defect"
+      ]
+    },
+    {
+      "path": "/guides/paid-guest-posts-google-link-policies/",
+      "slug": "paid-guest-posts-google-link-policies",
+      "group": "original-buyer-guide",
+      "title": "Paid guest posts and Google’s link policies",
+      "metadataTitle": "Paid guest posts and Google’s link policies",
+      "metadataDescription": "Compare ordinary, nofollow and sponsored guest post links, understand Google's paid-link requirements and check the published markup against agreed terms.",
+      "storedAnswer": "Paid guest posts need appropriate link qualification. Google recommends rel=\"sponsored\" for advertising and paid placements and also accepts nofollow. Its spam policies address links created primarily to manipulate rankings. Confirm the publisher’s disclosure and link markup before placement, and do not treat payment or a metric score as a promise of search performance.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": "Zuhoor Uddin",
+      "reviewer": null,
+      "publishedAt": "2026-07-02",
+      "updatedAt": "2026-10-18",
+      "sourcesCheckedAt": "2026-10-18",
+      "renderedSourcesCheckedAt": "2026-10-18",
+      "articleSchemaEligible": true,
+      "authoredWords": 467,
+      "questionSections": 6,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 4,
+      "headings": [
+        "How should a paid link be marked?",
+        "What should I ask the publisher?",
+        "Is buying a guest post against Google’s rules?",
+        "What happens if a paid link is not qualified?",
+        "Then what is the value of a sponsored guest post?",
+        "How do I check the live link attributes?",
+        "Sources",
+        "Continue with this decision",
+        "Which publications should I compare next?"
+      ],
+      "related": [
+        [
+          "Compare free and paid guest posting",
+          "/guides/free-vs-paid-guest-posting/"
+        ],
+        [
+          "Check before and after publication",
+          "/guides/guest-posting-checklist/"
+        ],
+        [
+          "Measure reader outcomes",
+          "/guides/measure-guest-posting-results/"
+        ]
+      ],
+      "sources": [
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ]
+      ],
+      "flags": [
+        "No named reviewer; not automatically a defect"
+      ]
+    },
+    {
+      "path": "/guides/guest-post-vs-sponsored-post/",
+      "slug": "guest-post-vs-sponsored-post",
+      "group": "original-buyer-guide",
+      "title": "What is a guest post vs a sponsored post?",
+      "metadataTitle": "What is a guest post vs a sponsored post?",
+      "metadataDescription": "Understand contributor authorship, paid sponsorship, disclosure and link qualification, and the questions to ask before planning a publication placement.",
+      "storedAnswer": "A guest post describes an article contributed by an outside writer; a sponsored post describes a paid commercial relationship. An article can be both. If payment or another benefit is involved, agree visible disclosure and qualify paid links with sponsored or nofollow. Confirm editorial scope separately from the format’s label.",
+      "liveAnswer": false,
+      "approved": true,
+      "cleanUrlIndexable": true,
+      "sitemapEligibleInSource": true,
+      "author": null,
+      "reviewer": null,
+      "publishedAt": null,
+      "updatedAt": "2026-10-10",
+      "sourcesCheckedAt": "2026-10-10",
+      "renderedSourcesCheckedAt": "2026-10-10",
+      "articleSchemaEligible": false,
+      "authoredWords": 247,
+      "questionSections": 4,
+      "steps": 0,
+      "checklistItems": 0,
+      "templates": 0,
+      "faqQuestions": 0,
+      "tableRows": 3,
+      "headings": [
+        "Can a guest post also be sponsored?",
+        "Does sponsorship determine the writing scope?",
+        "What should readers be told?",
+        "Does either format guarantee rankings?",
+        "Sources",
+        "Which publications should I compare next?"
+      ],
+      "related": [],
+      "sources": [
+        [
+          "Google: qualifying paid links",
+          "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links"
+        ],
+        [
+          "Google: link-spam policies",
+          "https://developers.google.com/search/docs/essentials/spam-policies#link-spam"
+        ]
+      ],
+      "flags": [
+        "Missing supplied author",
+        "No named reviewer; not automatically a defect",
+        "Missing supplied original publication date",
+        "No topic-specific related links"
+      ]
+    }
+  ]
+}

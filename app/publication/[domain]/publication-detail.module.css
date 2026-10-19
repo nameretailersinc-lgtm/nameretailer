@@ -1,0 +1,829 @@
+.profile h1,
+.profile h2,
+.profile h3,
+.profile dd,
+.profile a {
+  overflow-wrap: anywhere;
+}
+
+/* Quick Jump Navigation Bar */
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  margin: 16px 0 24px;
+  border: 1px solid var(--border, #dfebf5);
+  border-radius: 14px;
+  background: var(--public-surface, #fff);
+  box-shadow: 0 4px 16px rgba(16, 36, 81, 0.04);
+}
+
+.nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 650;
+  color: var(--foreground, #102451);
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.nav a:hover {
+  background: var(--public-soft, #edf9f5);
+  color: var(--primary, #00764b);
+}
+
+/* Top 4 Key Metric Cards */
+.metrics {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin: 0 0 28px;
+}
+
+.metric {
+  position: relative;
+  padding: 20px;
+  border: 1px solid var(--border, #dfebf5);
+  border-radius: 16px;
+  background: var(--public-surface, #fff);
+  box-shadow: 0 5px 18px rgba(16, 36, 81, 0.04);
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.metricHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.metric dt {
+  font-size: 12.5px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground, #566b85);
+}
+
+.metricIcon {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.metric dd {
+  font-size: clamp(24px, 2.5vw, 32px);
+  font-weight: 800;
+  margin: 10px 0 4px;
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  font-variant-numeric: tabular-nums;
+}
+
+.metric small {
+  color: var(--muted-foreground, #566b85);
+  font-size: 12px;
+  margin-top: auto;
+}
+
+.metricPrice .metricIcon {
+  background: #defaf0;
+  color: #007c45;
+}
+.metricPrice dd {
+  color: #007c45;
+}
+
+.metricDr .metricIcon {
+  background: #f1e8ff;
+  color: #7c3bc6;
+}
+.metricDr dd {
+  color: #7c3bc6;
+}
+
+.metricDa .metricIcon {
+  background: #eaf4ff;
+  color: #235bd3;
+}
+.metricDa dd {
+  color: #235bd3;
+}
+
+.metricTraffic .metricIcon {
+  background: #e0f8f7;
+  color: #087c82;
+}
+.metricTraffic dd {
+  color: #087c82;
+}
+
+/* Main 2-Column Layout */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-areas: "body sidebar";
+  gap: 26px;
+  align-items: start;
+}
+
+.body {
+  grid-area: body;
+  min-width: 0;
+  display: grid;
+  gap: 24px;
+}
+
+.body > :global(.reference-card) {
+  padding: 28px;
+  border-radius: 16px;
+  border: 1px solid var(--border, #dfebf5);
+  background: var(--public-surface, #fff);
+  box-shadow: 0 5px 20px rgba(16, 36, 81, 0.035);
+}
+
+/* Sticky Sidebar */
+.sidebar {
+  grid-area: sidebar;
+  min-width: 0;
+  position: sticky;
+  top: 24px;
+  padding: 24px;
+  border-radius: 18px;
+  border: 1px solid #c5e3d9;
+  background: linear-gradient(155deg, var(--public-surface, #fff) 40%, var(--public-soft, #edf9f5) 100%);
+  box-shadow: 0 8px 26px rgba(16, 36, 81, 0.06);
+}
+
+.sidebar h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--foreground, #102451);
+}
+
+.sidebarPriceBox {
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: var(--public-surface, #fff);
+  border: 1px solid #d0eee2;
+  margin-bottom: 16px;
+}
+
+.sidebarPriceBox strong {
+  display: block;
+  font-size: 32px;
+  font-weight: 800;
+  color: #007c45;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin: 0 0 4px;
+}
+
+.sidebarPriceBox p {
+  margin: 0;
+  font-size: 12.5px;
+  color: var(--muted-foreground, #566b85);
+  font-weight: 500;
+}
+
+.sidebarFacts {
+  display: grid;
+  gap: 10px;
+  margin: 16px 0 20px;
+}
+
+.sidebarFacts > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border, #dfebf5);
+}
+
+.sidebarFacts > div:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sidebarFacts dt {
+  font-size: 12.5px;
+  color: var(--muted-foreground, #566b85);
+}
+
+.sidebarFacts dd {
+  margin: 0;
+  font-size: 13.5px;
+  font-weight: 700;
+  color: var(--foreground, #102451);
+  text-align: right;
+}
+
+.sidebar :global(.publication-actions) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.sidebar :global(.publication-actions) > a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 8px 14px;
+  border-radius: 9px;
+  border: 1px solid var(--border, #dfebf5);
+  background: var(--public-surface, #fff);
+  color: var(--foreground, #102451);
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.sidebar :global(.publication-actions) > a:hover {
+  background: var(--public-soft, #edf9f5);
+  color: var(--primary, #00764b);
+}
+
+/* Restore visible Shortlist button label on detail page */
+.profile :global(.marketplace-bookmark) {
+  width: auto !important;
+  min-height: 42px !important;
+  padding: 9px 16px !important;
+  border-radius: 9px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  font-size: 13px !important;
+  font-weight: 650 !important;
+}
+
+.profile :global(.marketplace-bookmark-label) {
+  display: inline !important;
+}
+
+/* Section Headers */
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.sectionIcon {
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #dff8ed;
+  color: #00764b;
+  flex-shrink: 0;
+}
+
+.sectionIconBlue {
+  background: #e4f0ff;
+  color: #1766dc;
+}
+
+.sectionIconPurple {
+  background: #f1e8ff;
+  color: #8640cf;
+}
+
+.sectionHeader h2 {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* Facts Grid inside Overview */
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 18px 0;
+}
+
+.facts > div {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #dfebf5);
+  background: #f8fbfe;
+}
+
+.facts dt {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground, #566b85);
+}
+
+.facts dd {
+  margin: 4px 0 0;
+  font-size: 14.5px;
+  font-weight: 700;
+  color: var(--foreground, #102451);
+}
+
+.wide {
+  grid-column: 1 / -1;
+  background: linear-gradient(120deg, #f3fbf8, #f8fbfe) !important;
+  border-color: #c5e3d9 !important;
+}
+
+/* Pill Links Row */
+.pillLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.pillLinks a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: 1px solid #c5e3d9;
+  background: var(--public-soft, #edf9f5);
+  color: #006d50;
+  font-size: 12.5px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: all 0.15s ease;
+}
+
+.pillLinks a:hover {
+  background: #dff8ed;
+  border-color: #008457;
+}
+
+.stamp {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border, #dfebf5);
+  font-size: 12.5px;
+  color: var(--muted-foreground, #566b85);
+}
+
+.notice {
+  padding: 14px 18px;
+  border-left: 4px solid #008457;
+  border-radius: 8px;
+  background: var(--public-soft, #edf9f5);
+  color: var(--foreground, #102451);
+  font-size: 13.5px;
+  margin-bottom: 18px;
+}
+
+/* Writing Table & Scope Cards */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border, #dfebf5);
+  vertical-align: middle;
+}
+
+.table thead th {
+  background: #eaf4f6;
+  color: #17345f;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.table tbody tr:last-child th,
+.table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.scopeGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 18px 0;
+}
+
+.scopeBox {
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #dfebf5);
+  background: #f8fbfe;
+}
+
+.scopeBox h3 {
+  font-size: 14.5px;
+  margin: 0 0 6px;
+  color: var(--foreground, #102451);
+}
+
+.scopeBox p {
+  margin: 0;
+  font-size: 13.5px;
+  color: var(--muted-foreground, #566b85);
+}
+
+.visitLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 16px;
+  border-radius: 10px;
+  border: 1px solid #c5e3d9;
+  background: var(--public-soft, #edf9f5);
+  color: #006d50;
+  font-size: 13px;
+  font-weight: 650;
+  text-decoration: none;
+}
+
+.visitLink:hover {
+  background: #dff8ed;
+}
+
+.text {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: var(--muted-foreground, #566b85);
+  line-height: 1.65;
+}
+
+.subSectionList {
+  display: grid;
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.subSectionItem {
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #dfebf5);
+  background: #f8fbfe;
+}
+
+.subSectionItem h3 {
+  font-size: 14.5px;
+  margin: 0 0 6px;
+}
+
+.subSectionItem p {
+  margin: 0;
+  font-size: 13.5px;
+}
+
+/* Category Price Comparison Stats */
+.comparisonStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.comparisonStat {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #dfebf5);
+  background: #f8fbfe;
+}
+
+.comparisonStat span {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted-foreground, #566b85);
+}
+
+.comparisonStat strong {
+  display: block;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--foreground, #102451);
+  margin-top: 4px;
+}
+
+/* Nearby Alternatives Cards */
+.alternatives {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  padding: 0;
+  margin: 18px 0 0;
+}
+
+.alternatives li {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid var(--border, #dfebf5);
+  padding: 18px;
+  border-radius: 14px;
+  background: #f8fbfe;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.alternatives li:hover {
+  border-color: #8bcab5;
+  box-shadow: 0 6px 18px rgba(16, 36, 81, 0.05);
+}
+
+.altHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.altMonogram {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 9px;
+  background: #dff8ed;
+  color: #006d50;
+  font-size: 12px;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.alternatives h3 {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+.alternatives h3 a {
+  color: var(--foreground, #102451);
+  text-decoration: none;
+}
+
+.alternatives h3 a:hover {
+  color: var(--primary, #00764b);
+  text-decoration: underline;
+}
+
+.altPriceRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: var(--muted-foreground, #566b85);
+}
+
+.altPriceRow strong {
+  font-size: 18px;
+  font-weight: 800;
+  color: #007c45;
+}
+
+.altMeta {
+  font-size: 12.5px;
+  color: var(--muted-foreground, #566b85);
+  margin: 0 0 14px;
+  line-height: 1.5;
+}
+
+/* Missing Checklist */
+.missingList {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.missingList li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border, #dfebf5);
+  background: #f8fbfe;
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.missingList li::before {
+  content: "•";
+  color: #008457;
+  font-weight: 800;
+  font-size: 18px;
+  line-height: 1;
+}
+
+/* Questions / FAQ Accordions */
+.questions {
+  display: grid;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.questions details {
+  padding: 16px 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #dfebf5);
+  background: #f8fbfe;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.questions details[open] {
+  background: var(--public-surface, #fff);
+  border-color: #8bcab5;
+  box-shadow: 0 4px 14px rgba(16, 36, 81, 0.04);
+}
+
+.questions summary {
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--foreground, #102451);
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.questions details p {
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--border, #dfebf5);
+  font-size: 14px;
+  color: var(--muted-foreground, #566b85);
+}
+
+/* Browse Directory Cards */
+.browseList {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.browseList li a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border, #dfebf5);
+  background: linear-gradient(120deg, var(--public-surface, #fff), var(--public-soft, #edf9f5));
+  color: var(--foreground, #102451);
+  font-size: 14px;
+  font-weight: 650;
+  text-decoration: none;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.browseList li a:hover {
+  border-color: #008457;
+  color: #006d50;
+  transform: translateY(-1px);
+}
+
+/* Dark Theme Support */
+:global(html[data-site-theme="dark"]) .sidebar {
+  background: linear-gradient(155deg, #173845, #173c33);
+  border-color: #365465;
+}
+
+:global(html[data-site-theme="dark"]) .sidebarPriceBox,
+:global(html[data-site-theme="dark"]) .facts > div,
+:global(html[data-site-theme="dark"]) .scopeBox,
+:global(html[data-site-theme="dark"]) .subSectionItem,
+:global(html[data-site-theme="dark"]) .comparisonStat,
+:global(html[data-site-theme="dark"]) .alternatives li,
+:global(html[data-site-theme="dark"]) .missingList li,
+:global(html[data-site-theme="dark"]) .questions details {
+  background: #132e39;
+  border-color: #365465;
+}
+
+:global(html[data-site-theme="dark"]) .wide {
+  background: linear-gradient(120deg, #173c33, #132e39) !important;
+  border-color: #365465 !important;
+}
+
+:global(html[data-site-theme="dark"]) .sectionIcon,
+:global(html[data-site-theme="dark"]) .altMonogram,
+:global(html[data-site-theme="dark"]) .pillLinks a,
+:global(html[data-site-theme="dark"]) .visitLink {
+  background: #1c4136;
+  color: #9ce6c6;
+  border-color: #365465;
+}
+
+:global(html[data-site-theme="dark"]) .metricPrice .metricIcon {
+  background: #1c4136;
+  color: #8adeac;
+}
+:global(html[data-site-theme="dark"]) .metricPrice dd,
+:global(html[data-site-theme="dark"]) .sidebarPriceBox strong,
+:global(html[data-site-theme="dark"]) .altPriceRow strong {
+  color: #8adeac;
+}
+
+:global(html[data-site-theme="dark"]) .metricDr .metricIcon {
+  background: #2b224b;
+  color: #d4b4ff;
+}
+:global(html[data-site-theme="dark"]) .metricDr dd {
+  color: #d4b4ff;
+}
+
+:global(html[data-site-theme="dark"]) .metricDa .metricIcon {
+  background: #1b355a;
+  color: #9bc1ff;
+}
+:global(html[data-site-theme="dark"]) .metricDa dd {
+  color: #9bc1ff;
+}
+
+:global(html[data-site-theme="dark"]) .metricTraffic .metricIcon {
+  background: #163d42;
+  color: #86e0da;
+}
+:global(html[data-site-theme="dark"]) .metricTraffic dd {
+  color: #86e0da;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1040px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr) 290px;
+  }
+}
+
+@media (max-width: 840px) {
+  .metrics {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-areas:
+      "sidebar"
+      "body";
+  }
+  .sidebar {
+    position: static;
+  }
+  .scopeGrid,
+  .comparisonStats,
+  .missingList,
+  .browseList {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .alternatives,
+  .facts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .body > :global(.reference-card) {
+    padding: 20px 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .metric {
+    padding: 16px 14px;
+  }
+  .metric dd {
+    font-size: 22px;
+  }
+}

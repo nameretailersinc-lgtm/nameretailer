@@ -4,6 +4,7 @@ import { ProductError } from "@/lib/commerce/errors";
 import { productHandle } from "@/lib/commerce/http";
 import { availableProduct } from "@/lib/commerce/products";
 import { placementOptions } from "@/lib/commerce/pricing";
+import { publicProduct } from "@/lib/commerce/public-product";
 
 export const GET = (
   _request: Request,
@@ -23,7 +24,7 @@ export const GET = (
     }
 
     return json({
-      product,
+      product: publicProduct(product),
       options,
     });
   });

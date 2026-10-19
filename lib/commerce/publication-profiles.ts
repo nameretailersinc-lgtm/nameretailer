@@ -13,6 +13,8 @@ import {
   validPublicationListingId,
 } from "./publication-pages";
 import type { Product, PublicProduct } from "./types";
+import { publicProduct } from "./public-product";
+import { placementOptions } from "./pricing";
 
 const publicFields = {
   _id: 0,
@@ -32,6 +34,22 @@ const publicFields = {
   createdAt: 1,
   updatedAt: 1,
 } as const;
+
+const detailFields = {
+  ...publicFields, metricsUpdatedAt: 1, publicationContent: 1,
+  "source.Article_Price": 1, "source.Article_Price_2": 1, "source.Article_Price_3": 1,
+} as const;
+
+function publicProfile(product: Product): PublicProduct {
+  const safe = publicProduct(product);
+  // Only normalized writing prices leave the server; raw source copy stays private.
+  try {
+    const options = placementOptions(product).writingOptions;
+    return { ...safe, ...(options.length ? { writingOptions: options } : {}) };
+  } catch {
+    return safe;
+  }
+}
 
 /** Detail pages use the same active/committed visibility as the marketplace. */
 export async function activePublicationFilter(): Promise<Filter<Product>> {
@@ -71,11 +89,11 @@ export const publicationProfile = cache(
     if (listingId !== undefined) {
       const product = await products.findOne(
         { ...(await activePublicationFilter()), id: listingId },
-        { projection: publicFields },
+        { projection: detailFields },
       );
       return product &&
         publicationPath(product) === `/publication/${slug}/${listingId}/`
-        ? product
+        ? publicProfile(product)
         : null;
     }
     const candidates = await products
@@ -86,40 +104,38 @@ export const publicationProfile = cache(
             { domain: { $regex: slugDomainPattern(slug) } },
           ],
         },
-        { projection: publicFields },
+        { projection: detailFields },
       )
       .sort({ domain: 1, id: 1 })
       .toArray();
-    return (
-      candidates.find(
+    const product = candidates.find(
         (product) =>
           publicationHost(product.domain) !== null &&
           publicationSlug(publicationHost(product.domain) || "") === slug,
-      ) || null
-    );
+      );
+    return product ? publicProfile(product) : null;
   },
 );
 
-/** Other profiled publications in the same topic, highest traffic first. */
+/** Same topic; prefer supplied language/country matches, then nearby prices. */
 export async function relatedProfiles(
-  product: Pick<PublicProduct, "id" | "category">,
+  product: Pick<PublicProduct, "id" | "category" | "priceCents" | "language" | "country">,
   limit = 6,
 ): Promise<PublicProduct[]> {
   const { products } = await productStore();
-  const rows = await products
-    .find(
-      {
-        $and: [
-          await profileFilter(),
-          { category: product.category, id: { $ne: product.id } },
-        ],
-      },
-      { projection: publicFields },
-    )
-    .sort({ "metrics.traffic": -1, id: 1 })
-    .limit(limit)
-    .toArray();
-  return rows.filter(hasPublicationProfile);
+  if (!product.category) return [];
+  const rows = await products.aggregate<Product>([
+    { $match: { $and: [await activePublicationFilter(), { category: product.category, id: { $ne: product.id }, priceCents: { $gt: 0 } }] } },
+    { $project: publicFields },
+    { $addFields: {
+      priceDistance: { $abs: { $subtract: ["$priceCents", product.priceCents] } },
+      languageMatch: { $cond: [{ $and: [{ $ne: [product.language, ""] }, { $eq: ["$language", product.language] }] }, 1, 0] },
+      countryMatch: { $cond: [{ $and: [{ $ne: [product.country, ""] }, { $eq: ["$country", product.country] }] }, 1, 0] },
+    } },
+    { $sort: { languageMatch: -1, countryMatch: -1, priceDistance: 1, domain: 1, id: 1 } },
+    { $limit: Math.max(1, Math.min(6, limit)) },
+  ], { maxTimeMS: 8000 }).toArray();
+  return rows.filter(row => !!publicationPath(row)).map(publicProduct);
 }
 
 export function profileSitemapEntries(): Promise<PublicProduct[]> {
