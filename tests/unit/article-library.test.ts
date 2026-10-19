@@ -79,6 +79,10 @@ it("counts published records, clamps stale pages and reads only the selected pag
       title: { $regex: "\\[literal\\]", $options: "i" },
     }),
   );
+  const eligibleSlugs = mocks.count.mock.calls[0][0].slug.$in;
+  expect(eligibleSlugs).toHaveLength(14);
+  expect(eligibleSlugs).toContain("blog/a-practical-guest-post-budget-worksheet");
+  expect(eligibleSlugs).not.toContain("blog/a-responsive-article-page-qa-checklist");
   expect(mocks.find.mock.calls[1][1]).toEqual({
     projection: { _id: 0, "data.body": 0 },
   });

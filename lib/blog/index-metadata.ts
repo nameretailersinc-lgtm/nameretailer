@@ -28,6 +28,7 @@ export async function indexMetadata(
       description:
         description + (options.page > 1 ? ` Page ${options.page}.` : ""),
       ...facetMetadata(path, params, unique),
+      ...(!unique ? { robots: { index: false, follow: true } } : {}),
     },
     path,
   );

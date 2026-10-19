@@ -88,7 +88,10 @@ if (process.argv.includes("--database")) {
     noindex: paths.size - indexable.length,
   };
 }
-if (process.argv.includes("--database") || process.argv.includes("--database-posts")) {
+if (
+  process.argv.includes("--database") ||
+  process.argv.includes("--database-posts")
+) {
   const { getDb } = await import("../../lib/db");
   const { blogArticleIndexable } =
     await import("../../lib/blog/indexing-policy");

@@ -26,8 +26,12 @@ vi.mock("@/lib/security/rate-limit", () => ({
   clientAddress: () => "unit-client",
 }));
 vi.mock("@/lib/auth", () => ({ currentUser: vi.fn() }));
+vi.mock("@/lib/mobile-auth", () => ({
+  optionalMobileIdentity: async () => null,
+}));
 import { inquiryInput, saveInquiry, INQUIRY_SUCCESS } from "@/lib/inquiries";
 import { POST } from "@/app/api/inquiries/route";
+import { POST as mobilePost } from "@/app/api/mobile/inquiries/route";
 
 const first = "11111111-1111-4111-8111-111111111111";
 const second = "22222222-2222-4222-8222-222222222222";
@@ -136,4 +140,32 @@ it("silently discards honeypot submissions", async () => {
   ).toBe(200);
   expect(mocks.insert).not.toHaveBeenCalled();
   expect(mocks.mail).not.toHaveBeenCalled();
+});
+
+it("preserves the mobile inquiry format while sharing spam limits and notifications", async () => {
+  const response = await mobilePost(
+    request({
+      name: input.name,
+      email: input.email,
+      domain: "https://example.com",
+      message: input.message,
+      phone: "",
+    }),
+  );
+  expect(response.status).toBe(200);
+  expect(await response.json()).toEqual({
+    success: true,
+    message: INQUIRY_SUCCESS,
+  });
+  expect(mocks.insert.mock.calls[0][0]).toMatchObject({
+    domain: "https://example.com",
+    source: "mobile-app",
+  });
+  expect(mocks.insert.mock.calls[0][0]).not.toHaveProperty("companyWebsite");
+  expect(mocks.rate).toHaveBeenCalledWith(
+    "inquiry:email:buyer@example.com",
+    5,
+    3600,
+  );
+  expect(mocks.mail).toHaveBeenCalledOnce();
 });

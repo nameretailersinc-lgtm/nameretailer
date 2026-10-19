@@ -9,8 +9,8 @@ export async function generateMetadata({
 }) {
   return indexMetadata(
     "/blog/",
-    "SEO, AEO and GEO Blog | Name Retailer",
-    "Practical articles on publication planning, content, SEO, AEO, GEO and measurement.",
+    "Guest Posting Guides and Publisher Research | Name Retailer",
+    "Practical guest posting articles on publisher selection, placement budgets, editorial briefs and referral measurement. Use checklists and templates for your campaign.",
     await searchParams,
   );
 }

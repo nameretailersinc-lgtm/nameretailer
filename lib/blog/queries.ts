@@ -1,4 +1,5 @@
 import { blogArticleIndexable } from "./indexing-policy";
+import { buyerExpansions } from "./buyer-expansions";
 import { publicArticle } from "./public-copy";
 import { blogContentUpdatedAt, buyerArticleAuthor } from "./editorial";
 import { cache } from "react";
@@ -45,7 +46,8 @@ export async function blogIndex(
     collection: "content" as const,
     status: "published",
     "data.type": "post",
-    slug: { $regex: "^blog/" },
+    slug: { $in: Object.keys(buyerExpansions).map((slug) => `blog/${slug}`) },
+    "data.robotsIndex": { $ne: false },
   };
   const categories = await records
     .find(
@@ -88,7 +90,9 @@ export async function blogIndex(
     page: currentPage,
     pageSize,
     pages,
-    categories,
+    categories: categories.filter((category) =>
+      ["Marketplace", "Content", "Measurement"].includes(category.title),
+    ),
   };
 }
 export async function articleContext(article: CmsRecord) {
@@ -149,5 +153,13 @@ export async function articleContext(article: CmsRecord) {
       { projection: { _id: 0 } },
     ),
   ]);
-  return { author: article.data.authorId === buyerArticleAuthor.id ? buyerArticleAuthor : author, related: related.filter(blogArticleIndexable).map(publicArticle), categories, reviewer };
+  return {
+    author:
+      article.data.authorId === buyerArticleAuthor.id
+        ? buyerArticleAuthor
+        : author,
+    related: related.filter(blogArticleIndexable).map(publicArticle),
+    categories,
+    reviewer,
+  };
 }

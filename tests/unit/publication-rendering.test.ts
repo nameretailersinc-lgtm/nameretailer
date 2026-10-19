@@ -2,7 +2,19 @@ import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 import { afterEach, beforeEach, expect, it, vi } from "vitest";
 import type { PublicProduct } from "@/lib/commerce/types";
-const mocks = vi.hoisted(() => ({ profile: vi.fn() }));
+const mocks = vi.hoisted(() => ({
+  profile: vi.fn(),
+  shortlisted: [] as PublicProduct[],
+}));
+vi.mock("@/components/marketplace/shortlist", async (original) => ({
+  ...(await original<typeof import("@/components/marketplace/shortlist")>()),
+  useShortlist: () => ({
+    items: mocks.shortlisted,
+    clear: vi.fn(),
+    toggle: vi.fn(),
+    status: "",
+  }),
+}));
 vi.mock("@/lib/commerce/publication-profiles", () => ({
   publicationProfile: mocks.profile,
   publicationIndexable: async () => false,
@@ -44,8 +56,18 @@ const product: PublicProduct = {
   updatedAt: "2026-10-01",
 };
 beforeEach(() => {
+  mocks.shortlisted = [];
   vi.stubGlobal("React", React);
   mocks.profile.mockResolvedValue(product);
+});
+
+it("also omits empty fields in the embedded publication comparison", async () => {
+  mocks.shortlisted = [product];
+  const html = renderToStaticMarkup(await Page(props));
+  expect(html).toContain("Request quote for shortlist");
+  expect(html).not.toMatch(
+    /Unavailable|Language unavailable|Country unavailable/,
+  );
 });
 afterEach(() => vi.unstubAllGlobals());
 const props = {

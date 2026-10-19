@@ -25,7 +25,10 @@ const numFormat = new Intl.NumberFormat("en-US");
 function cleanHost(domain: string): string {
   try {
     const url = new URL(domain);
-    return url.hostname.replace(/^www\./, "") + (url.pathname !== "/" ? url.pathname : "");
+    return (
+      url.hostname.replace(/^www\./, "") +
+      (url.pathname !== "/" ? url.pathname : "")
+    );
   } catch {
     return domain.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
   }
@@ -38,7 +41,10 @@ export function PublicationShortlist() {
   const emptySlotsCount = Math.max(0, maxSlots - count);
 
   return (
-    <section className={`reference-card ${styles.card}`} aria-labelledby="profile-shortlist-title">
+    <section
+      className={`reference-card ${styles.card}`}
+      aria-labelledby="profile-shortlist-title"
+    >
       <div className={styles.header}>
         <div>
           <div className={styles.titleRow}>
@@ -47,11 +53,15 @@ export function PublicationShortlist() {
             </span>
             <h2 id="profile-shortlist-title" className={styles.title}>
               Your publication comparison{" "}
-              <span className={styles.countBadge}>({count}/{maxSlots})</span>
+              <span className={styles.countBadge}>
+                ({count}/{maxSlots})
+              </span>
             </h2>
           </div>
           <p className={styles.subtitle}>
-            Shortlist this listing and relevant alternatives to compare up to four publications side-by-side on pricing, authority metrics, and turnaround.
+            Shortlist this listing and relevant alternatives to compare up to
+            four publications side-by-side on pricing, authority metrics, and
+            turnaround.
           </p>
         </div>
 
@@ -69,7 +79,10 @@ export function PublicationShortlist() {
       </div>
 
       <p className="screen-reader-only" role="status" aria-live="polite">
-        {status || (count ? `${count} publications shortlisted.` : "No publications shortlisted yet.")}
+        {status ||
+          (count
+            ? `${count} publications shortlisted.`
+            : "No publications shortlisted yet.")}
       </p>
 
       {/* 4-Column Comparison Grid */}
@@ -77,10 +90,18 @@ export function PublicationShortlist() {
         {items.map((item, index) => {
           const host = cleanHost(item.domain);
           const href = publicationPath(item);
-          const monogram = host.replace(/^www\./, "").slice(0, 2).toUpperCase();
-          const da = typeof item.metrics?.da === "number" ? item.metrics.da : null;
-          const dr = typeof item.metrics?.dr === "number" ? item.metrics.dr : null;
-          const traffic = typeof item.metrics?.traffic === "number" ? numFormat.format(item.metrics.traffic) : null;
+          const monogram = host
+            .replace(/^www\./, "")
+            .slice(0, 2)
+            .toUpperCase();
+          const da =
+            typeof item.metrics?.da === "number" ? item.metrics.da : null;
+          const dr =
+            typeof item.metrics?.dr === "number" ? item.metrics.dr : null;
+          const traffic =
+            typeof item.metrics?.traffic === "number"
+              ? numFormat.format(item.metrics.traffic)
+              : null;
 
           return (
             <article key={item.id} className={styles.itemCard}>
@@ -116,30 +137,44 @@ export function PublicationShortlist() {
               </div>
 
               <div className={styles.itemMetrics}>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricLabel}>DR</span>
-                  <span className={`${styles.metricValue} ${styles.metricDr}`}>
-                    {dr ?? "Unavailable"}
-                  </span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricLabel}>DA</span>
-                  <span className={`${styles.metricValue} ${styles.metricDa}`}>
-                    {da ?? "Unavailable"}
-                  </span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricLabel}>Traffic</span>
-                  <span className={`${styles.metricValue} ${styles.metricTraffic}`}>
-                    {traffic ?? "Unavailable"}
-                  </span>
-                </div>
-                <div className={styles.metricBox}>
-                  <span className={styles.metricLabel}>Turnaround</span>
-                  <span className={styles.metricValue}>
-                    {item.turnaround || "Unavailable"}
-                  </span>
-                </div>
+                {dr !== null && (
+                  <div className={styles.metricBox}>
+                    <span className={styles.metricLabel}>DR</span>
+                    <span
+                      className={`${styles.metricValue} ${styles.metricDr}`}
+                    >
+                      {dr}
+                    </span>
+                  </div>
+                )}
+                {da !== null && (
+                  <div className={styles.metricBox}>
+                    <span className={styles.metricLabel}>DA</span>
+                    <span
+                      className={`${styles.metricValue} ${styles.metricDa}`}
+                    >
+                      {da}
+                    </span>
+                  </div>
+                )}
+                {traffic !== null && (
+                  <div className={styles.metricBox}>
+                    <span className={styles.metricLabel}>Traffic</span>
+                    <span
+                      className={`${styles.metricValue} ${styles.metricTraffic}`}
+                    >
+                      {traffic}
+                    </span>
+                  </div>
+                )}
+                {item.turnaround && (
+                  <div className={styles.metricBox}>
+                    <span className={styles.metricLabel}>Turnaround</span>
+                    <span className={styles.metricValue}>
+                      {item.turnaround}
+                    </span>
+                  </div>
+                )}
               </div>
 
               <div className={styles.itemFooter}>
@@ -148,9 +183,7 @@ export function PublicationShortlist() {
                     View details <ExternalLink size={12} aria-hidden="true" />
                   </Link>
                 ) : (
-                  <span className={styles.viewLink}>
-                    {item.category || "General"}
-                  </span>
+                  <span className={styles.viewLink}>{item.category}</span>
                 )}
               </div>
             </article>
@@ -167,7 +200,9 @@ export function PublicationShortlist() {
                 <Plus size={18} />
               </div>
               <span className={styles.emptySlotLabel}>
-                {count === 0 && slotNum === 1 ? "No publications shortlisted yet" : "Empty comparison slot"}
+                {count === 0 && slotNum === 1
+                  ? "No publications shortlisted yet"
+                  : "Empty comparison slot"}
               </span>
               <span className={styles.emptySlotHint}>
                 Click &ldquo;Shortlist&rdquo; to add
@@ -180,9 +215,16 @@ export function PublicationShortlist() {
       {/* Helpful Guidance Banner / Footer */}
       {count === 0 ? (
         <div className={styles.tipBox}>
-          <BookmarkPlus size={19} className={styles.tipIcon} aria-hidden="true" />
+          <BookmarkPlus
+            size={19}
+            className={styles.tipIcon}
+            aria-hidden="true"
+          />
           <div>
-            <strong>How to compare:</strong> Select the <strong>Shortlist</strong> button in the placement summary sidebar or on any nearby alternative to compare up to 4 publications during your visit.
+            <strong>How to compare:</strong> Select the{" "}
+            <strong>Shortlist</strong> button in the placement summary sidebar
+            or on any nearby alternative to compare up to 4 publications during
+            your visit.
           </div>
         </div>
       ) : (

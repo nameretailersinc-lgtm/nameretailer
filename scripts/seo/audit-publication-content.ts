@@ -94,7 +94,7 @@ try {
     // Hashes prove repetition, not licensing, accuracy or publisher-specific substance.
     mostRepeatedFingerprints: row.mostRepeated.filter(item => item.value).slice(0, 3).map(({ value, count }) => ({ sha256: createHash("sha256").update(value).digest("hex"), characters: value.length, count })),
   }]));
-  const uniqueRequirement = (row: typeof rows[number]) => (row.requirements || "").trim().length >= 40 && (frequencies.requirements.get(row.requirements.trim()) || 0) <= 3;
+  const uniqueRequirement = (row: { requirements: string }) => (row.requirements || "").trim().length >= 40 && (frequencies.requirements.get(row.requirements.trim()) || 0) <= 3;
   const report = {
     auditedAt: new Date().toISOString(),
     scope: "Read-only active/committed catalogue census and deterministic stratified sample. Existing indexing rule unchanged at audit time. Supplied fields are not verified publisher/audience evidence.",
