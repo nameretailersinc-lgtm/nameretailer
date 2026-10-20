@@ -1433,6 +1433,12 @@ function MarketplaceContent({
   const [selectedProduct, setSelectedProduct] = useState<PublicProduct | null>(
     null,
   );
+
+
+
+  
+
+
   const filtersPanel = useRef<HTMLDetailsElement>(null);
   const firstQuery = useRef(true);
   useEffect(() => {
