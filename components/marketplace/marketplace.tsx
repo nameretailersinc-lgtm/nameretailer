@@ -1468,6 +1468,7 @@ function MarketplaceContent({
             setFacetError("");
           });
         }
+        
       })
       .catch((cause) => {
         if (active) setFacetError(errorMessage(cause));
