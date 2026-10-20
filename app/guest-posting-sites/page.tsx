@@ -2,7 +2,7 @@ import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
 import "./hub.css";
 import Link from "next/link";
 import { Suspense } from "react";
-import { connection } from "next/server";
+export const revalidate = 3600;
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -249,7 +249,6 @@ const facetsCache = {
 };
 
 async function loadHub() {
-  await connection();
   const niches = directorySummaries().catch(() => null);
   const prices = hubPriceSummary().catch(() => null);
   const [stats, facets, top, priceData] = await Promise.all([

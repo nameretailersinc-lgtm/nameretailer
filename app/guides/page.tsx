@@ -1,7 +1,7 @@
 import { ArticleLibrary } from "@/components/site/article-library";
 import type { ArticleSearchParams } from "@/lib/blog/index-options";
 import { indexMetadata } from "@/lib/blog/index-metadata";
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 export async function generateMetadata({
   searchParams,
 }: {

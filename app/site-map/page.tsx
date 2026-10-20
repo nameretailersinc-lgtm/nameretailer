@@ -3,7 +3,7 @@ import { facetMetadata } from "@/lib/seo/facets";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 import type { Metadata } from "next";
 import Link from "next/link";
-import { connection } from "next/server";
+export const revalidate = 3600;
 import { InformationShell } from "@/components/site/information-page";
 import { directories } from "@/lib/site/directories";
 import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
@@ -99,7 +99,6 @@ const groups: LinkGroup[] = [
   ],
 ];
 export default async function Page() {
-  await connection();
   // Link the same eligible profiles advertised by XML, including those beyond
   // the first catalogue pages. Never expose inactive or uncommitted inventory.
   const profiles = await publicationSitemapLinks().catch(() => []);

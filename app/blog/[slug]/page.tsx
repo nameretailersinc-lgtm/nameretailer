@@ -35,7 +35,7 @@ import {
   serializeJsonLd,
 } from "@/lib/seo/structured-data";
 
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 function sourceHost(url: string) {
   try {

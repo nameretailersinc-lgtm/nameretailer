@@ -19,7 +19,12 @@ export const publicHubListings = cache(() =>
 export const publicDirectoryListings = cache((directory: Directory) =>
   cachedAsync(
     `directory:${directory.slug}`,
-    { ttlMs: 60_000, staleOnErrorMs: 60 * 60_000, timeoutMs: 12_000 },
+    {
+      ttlMs: 15 * 60_000,
+      staleOnErrorMs: 60 * 60_000,
+      timeoutMs: 12_000,
+      staleWhileRevalidate: true,
+    },
     () => directoryListings(directory.filter),
   ),
 );

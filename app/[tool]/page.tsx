@@ -37,6 +37,7 @@ import {
   serializeJsonLd,
   webApplicationNode,
 } from "@/lib/seo/structured-data";
+export const revalidate = 3600;
 export function generateStaticParams() {
   return [
     ...marketplaceRanges.map((range) => ({ tool: range.slug })),
@@ -87,12 +88,12 @@ export async function generateMetadata({
   }
   const directory = directoryBySlug(slug);
   if (directory) {
-    await connection();
+    const search = await searchParams;
     const content = hasSeoDirectoryContent(directory) ? await seoDirectoryData(directory).catch(() => null) : null;
     const stats = hasSeoDirectoryContent(directory) ? (content ? { total: content.summary.count } : null) : await catalogueSummary("", directory.slug).catch(() => null);
     return pageMetadata(
       {
-        ...facetMetadata(`/${directory.slug}/`, await searchParams),
+        ...facetMetadata(`/${directory.slug}/`, search),
         ...(!stats || stats.total < (directory.minIndexableListings ?? 15)
           ? { robots: { index: false, follow: true } }
           : {}),
@@ -135,7 +136,6 @@ export default async function Page({
   }
   const directory = directoryBySlug(slug);
   if (directory) {
-    await connection();
     const search = await searchParams;
     return <DirectoryPage directory={directory} subtopic={typeof search.subtopic === "string" ? search.subtopic : undefined} />;
   }

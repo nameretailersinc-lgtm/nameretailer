@@ -5,6 +5,8 @@ import { facetMetadata } from "@/lib/seo/facets";
 import { workflowSections, workflowFaq } from "@/lib/site/seo-content";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
 
+export const revalidate = 3600;
+
 export async function generateMetadata({ searchParams }: { searchParams: Promise<SearchParams> }) {
   return pageMetadata({ title: "How It Works: Buy a Guest Post Placement Step by Step", description: "See how to find a guest posting site, request a placement, send your brief and get published. Timelines, revisions and sponsored content disclosure explained.", ...facetMetadata("/how-it-works/", await searchParams) }, "/how-it-works/");
 }

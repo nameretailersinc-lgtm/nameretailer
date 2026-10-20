@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { connection } from "next/server";
+export const revalidate = 3600;
 import { InformationShell } from "@/components/site/information-page";
 import { ContentSections, PageFaq } from "@/components/site/seo-content";
 import { DataDisclosure } from "@/components/site/data-disclosure";
@@ -14,7 +14,6 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   return pageMetadata({ title: "Guest Post Marketplace: Compare Sites by DR, DA & Price", description: "Browse guest post sites by Domain Rating, Domain Authority, traffic and price. Compare listings and request a placement quote. Metrics are supplied estimates.", ...facetMetadata("/guest-post-marketplace/", await searchParams) }, "/guest-post-marketplace/");
 }
 export default async function Page() {
-  await connection();
   const data = await seoCatalogue().catch(() => null);
   return <InformationShell path="/guest-post-marketplace/" title={informationPages["guest-post-marketplace"].title} description={informationPages["guest-post-marketplace"].description} label="Browse by metric and budget" active="marketplace" image="/15_laptop_dashboard_illustration.png">
     <DataDisclosure asOf={data?.asOf} />

@@ -28,7 +28,7 @@ import { pageMetadata } from "@/lib/seo/page-metadata";
 import { facetMetadata } from "@/lib/seo/facets";
 import { buyerGuideArticleNode, serializeJsonLd } from "@/lib/seo/json-ld";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
-export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 type Props = {
   params: Promise<{ slug: string }>;
   searchParams: Promise<SearchParams>;

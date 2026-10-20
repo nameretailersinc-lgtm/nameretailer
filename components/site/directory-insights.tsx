@@ -24,7 +24,7 @@ export const hasSeoDirectoryContent = (directory: Directory) =>
     "technology-guest-posting-sites",
     "saas-guest-posting-sites",
     "guest-posting-sites-usa",
-  ].includes(directory.slug) || directory.minIndexableListings === 25;
+  ].includes(directory.slug);
 export function directoryFaq(
   slug: string,
   median: number | null,

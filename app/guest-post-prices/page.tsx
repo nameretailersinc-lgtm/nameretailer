@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { connection } from "next/server";
+export const revalidate = 3600;
 import { InformationShell } from "@/components/site/information-page";
 import { DataDisclosure } from "@/components/site/data-disclosure";
 import { ContentSections, PageFaq, PriceTable } from "@/components/site/seo-content";
@@ -24,7 +24,6 @@ export async function generateMetadata({ searchParams }: { searchParams: Promise
   }, "/guest-post-prices/");
 }
 export default async function Page() {
-  await connection();
   const data = await priceBreakdown().catch(() => null);
   const catalogue = data ? await seoCatalogue().catch(() => null) : null;
   const example = (catalogue?.rows || []).filter(cleanListing).sort((a, b) => a.priceCents - b.priceCents || a.id.localeCompare(b.id)).slice(0, 3);
