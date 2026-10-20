@@ -28,7 +28,7 @@ it("uses real dated statistics and omits missing aggregates", () => {
 it("emits Article markup with supplied authorship without inventing a historical publication date", () => {
   for (const guide of buyerGuides.filter(guide => guide.approved)) {
     const node = buyerGuideArticleNode({ ...guide, image: "/og/guide.png" });
-    expect(node).toMatchObject({ "@type": "Article", author: { name: "Fahad Shaikh", url: "https://nameretailer.com/authors/fahad-shaikh/" }, dateModified: "2026-10-19" });
+    expect(node).toMatchObject({ "@type": "Article", author: { name: "Fahad Shaikh", url: "https://nameretailer.com/authors/fahad-shaikh/" }, dateModified: guide.updatedAt });
     if (!guide.publishedAt) expect(node).not.toHaveProperty("datePublished");
   }
 });
