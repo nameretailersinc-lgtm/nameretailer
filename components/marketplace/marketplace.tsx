@@ -1435,9 +1435,7 @@ function MarketplaceContent({
   );
 
 
-
   
-
 
   const filtersPanel = useRef<HTMLDetailsElement>(null);
   const firstQuery = useRef(true);
