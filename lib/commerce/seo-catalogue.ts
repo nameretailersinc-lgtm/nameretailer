@@ -1,7 +1,8 @@
 import { cache } from "react";
+import { cachedAsync } from "../cache/ttl";
 import type { BSONTypeAlias } from "mongodb";
 import { productStore } from "./products";
-import { cleanListing, cleanTraffic } from "./listing-hygiene";
+import { cleanDirectoryFilter, cleanListing, cleanTraffic } from "./listing-hygiene";
 import { priceMedian } from "./catalogue-statistics";
 import type { Product } from "./types";
 import type { Directory, DirectoryFilter } from "../site/directories";
@@ -20,18 +21,22 @@ export function latestListingDate(rows: SeoListing[]) {
 export function matchesDirectory(row: SeoListing, scope: DirectoryFilter = {}) {
   return (!scope.categories?.length || scope.categories.includes(row.category)) && (!scope.country || row.country === scope.country) && (scope.maxPriceCents === undefined || row.priceCents <= scope.maxPriceCents) && (!scope.cleanListings || cleanListing(row));
 }
-export function summarizePrices(rows: SeoListing[]) {
+export function summarizePrices(rows: Array<Pick<SeoListing, "priceCents">>) {
   const sorted = rows.map(row => row.priceCents).sort((a, b) => a - b);
   return { count: sorted.length, medianCents: priceMedian(sorted), minCents: sorted[0] ?? null, maxCents: sorted.at(-1) ?? null, lowCents: sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * .25))] ?? null, highCents: sorted[Math.min(sorted.length - 1, Math.floor(sorted.length * .75))] ?? null };
 }
-// Deduplicated within a request; no static snapshot supplies published numbers.
-export const seoCatalogue = cache(async () => {
+// Share short-lived live reads and bound the entire load, including connection/SRV lookup.
+export const seoCatalogue = cache(() => cachedAsync("seo-catalogue", {
+  ttlMs: 60_000,
+  staleOnErrorMs: 60 * 60_000,
+  timeoutMs: 12_000,
+}, async () => {
   const { products, imports } = await productStore();
-  const committed = await imports.find({ status: "committed" }, { projection: { _id: 1 } }).toArray();
-  const rows = await products.find({ status: "active", currency: "USD", priceCents: { $type: "number" as unknown as BSONTypeAlias, $gte: 0, $lte: Number.MAX_SAFE_INTEGER }, $or: [{ importId: { $exists: false } }, { importId: { $in: committed.map(batch => batch._id) } }] }, { projection: { _id: 0, id: 1, domain: 1, category: 1, country: 1, currency: 1, priceCents: 1, metrics: 1, updatedAt: 1, turnaround: 1, needsReview: 1 } }).maxTimeMS(15000).toArray();
+  const committed = await imports.find({ status: "committed" }, { projection: { _id: 1 } }).maxTimeMS(10000).toArray();
+  const rows = await products.find({ status: "active", currency: "USD", priceCents: { $type: "number" as unknown as BSONTypeAlias, $gte: 0, $lte: Number.MAX_SAFE_INTEGER }, $or: [{ importId: { $exists: false } }, { importId: { $in: committed.map(batch => batch._id) } }] }, { batchSize: 5000, projection: { _id: 0, id: 1, domain: 1, category: 1, country: 1, currency: 1, priceCents: 1, metrics: 1, updatedAt: 1, turnaround: 1, needsReview: 1 } }).maxTimeMS(10000).toArray();
   const priced = rows.filter(row => Number.isSafeInteger(row.priceCents));
   return { rows: priced.map(row => ({ ...row, metrics: { ...row.metrics, traffic: cleanTraffic(row.metrics?.traffic) } })), asOf: latestListingDate(priced), hygiene: { hiddenTraffic: priced.filter(row => row.metrics?.traffic != null && cleanTraffic(row.metrics.traffic) === null).length, excludedDirectoryRows: priced.filter(row => !cleanListing(row)).length } };
-});
+}));
 export const browseBands = [
   { label: "DR 20–49", href: "/dr-20-to-49/", test: (r: SeoListing) => r.metrics?.dr != null && r.metrics.dr >= 20 && r.metrics.dr < 50 },
   { label: "DR 50–69", href: "/dr-50-to-69/", test: (r: SeoListing) => r.metrics?.dr != null && r.metrics.dr >= 50 && r.metrics.dr < 70 },
@@ -48,10 +53,54 @@ export const techSubtopics = [
   { label: "Mobile", categories: ["Mobile"], query: "Mobile", description: "Separate mobile development from consumer phone coverage. Ask whether the publication needs application code, accessibility checks, device screenshots or a practical buying guide." },
 ];
 
+// The US directory is most of the catalogue. Return its price inputs and the 25
+// visible listings, rather than transferring tens of thousands of full records.
+async function usaDirectoryData(directory: Directory) {
+  const { products, imports } = await productStore();
+  const committed = await imports.find({ status: "committed" }, { projection: { _id: 1 } }).maxTimeMS(10000).toArray();
+  const [result] = await products.aggregate<{
+    listings: SeoListing[];
+    prices: Array<{ values: number[]; updatedAt?: string }>;
+  }>([
+    { $match: { $and: [
+      { status: "active", country: directory.filter.country },
+      cleanDirectoryFilter(),
+      { $or: [{ importId: { $exists: false } }, { importId: { $in: committed.map(batch => batch._id) } }] },
+    ] } },
+    { $match: { $expr: { $eq: ["$priceCents", { $trunc: "$priceCents" }] } } },
+    { $facet: {
+      listings: [
+        { $sort: { "metrics.dr": -1, id: 1 } },
+        { $limit: 25 },
+        { $project: { _id: 0, id: 1, domain: 1, category: 1, country: 1, currency: 1, priceCents: 1, metrics: 1, updatedAt: 1, turnaround: 1, needsReview: 1 } },
+      ],
+      prices: [{ $group: { _id: null, values: { $push: "$priceCents" }, updatedAt: { $max: "$updatedAt" } } }],
+    } },
+  ], { maxTimeMS: 10000 }).toArray();
+  const prices = (result?.prices[0]?.values || []).map(priceCents => ({ priceCents }));
+  const priceBands = ([[0, 5000, "Under $50"], [5000, 10000, "$50–under $100"], [10000, 25000, "$100–under $250"], [25000, 50000, "$250–under $500"], [50000, Infinity, "$500+"]] as const).flatMap(([low, high, label]) => {
+    const summary = summarizePrices(prices.filter(row => row.priceCents >= low && row.priceCents < high));
+    return summary.count && summary.medianCents !== null && summary.lowCents !== null && summary.highCents !== null
+      ? [{ label, count: summary.count, medianCents: summary.medianCents, lowCents: summary.lowCents, highCents: summary.highCents }]
+      : [];
+  });
+  return {
+    rows: (result?.listings || []).map(row => ({ ...row, metrics: { ...row.metrics, traffic: cleanTraffic(row.metrics?.traffic) } })),
+    summary: summarizePrices(prices),
+    asOf: listingDate(result?.prices[0]?.updatedAt),
+    priceBands,
+  };
+}
+
 export const seoDirectoryData = cache(async (directory: Directory) => {
+  if (directory.slug === "guest-posting-sites-usa") return cachedAsync(`seo-directory:${directory.slug}`, {
+    ttlMs: 60_000,
+    staleOnErrorMs: 60 * 60_000,
+    timeoutMs: 12_000,
+  }, () => usaDirectoryData(directory));
   const catalogue = await seoCatalogue();
   const rows = catalogue.rows.filter(row => matchesDirectory(row, directory.filter));
-  return { rows, summary: summarizePrices(rows), asOf: latestListingDate(rows), hygiene: catalogue.hygiene };
+  return { rows, summary: summarizePrices(rows), asOf: latestListingDate(rows), priceBands: undefined, hygiene: catalogue.hygiene };
 });
 export function seoDirectoryMetadata(directory: Directory, data: Awaited<ReturnType<typeof seoDirectoryData>> | null) {
   const n = data ? count(data.summary.count) : null;

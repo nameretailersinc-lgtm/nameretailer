@@ -1,6 +1,7 @@
 import { DataDisclosure, validAsOf } from "@/components/site/data-disclosure";
 import "./hub.css";
 import Link from "next/link";
+import { Suspense } from "react";
 import { connection } from "next/server";
 import {
   ArrowRight,
@@ -16,12 +17,14 @@ import {
 import { InformationShell } from "@/components/site/information-page";
 import { PublicationTable } from "@/components/site/publication-table";
 import { directories } from "@/lib/site/directories";
-import { directoryListings, productFacets } from "@/lib/commerce/products";
+import { productFacets } from "@/lib/commerce/products";
+import { publicHubListings } from "@/lib/commerce/public-directory";
+import { CatalogueRetry } from "@/components/site/catalogue-retry";
 import {
   catalogueSummary,
   directorySummaries,
+  hubPriceSummary,
 } from "@/lib/commerce/catalogue-summary";
-import { priceBreakdown } from "@/lib/commerce/price-breakdown";
 import { cachedAsync } from "@/lib/cache/ttl";
 import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
 import type { SearchParams } from "@/lib/commerce/marketplace-query";
@@ -137,22 +140,127 @@ function faqFor(stats: Stats | null) {
   ] as const;
 }
 
-const facetsCache = { ttlMs: 15 * 60_000, staleOnErrorMs: 24 * 60 * 60_000 };
+async function HubNicheFacts({
+  niches,
+  index,
+}: {
+  niches: Promise<Awaited<ReturnType<typeof directorySummaries>> | null>;
+  index: number;
+}) {
+  const niche = (await niches)?.[index];
+  if (!niche || !validAsOf(niche.updatedAt) || niche.total < 1) return null;
+  return (
+    <ul className="hub-niche-facts">
+      <li>
+        <strong>{count(niche.total)}</strong> sites
+      </li>
+      {niche.minPriceCents !== null && (
+        <li>
+          from <strong>{usd(niche.minPriceCents)}</strong>
+        </li>
+      )}
+      {niche.medianPriceCents !== null && (
+        <li>
+          median <strong>{usd(niche.medianPriceCents)}</strong>
+        </li>
+      )}
+    </ul>
+  );
+}
+
+async function HubPrices({
+  datedStats,
+  prices,
+}: {
+  datedStats: Stats | null;
+  prices: Promise<Awaited<ReturnType<typeof hubPriceSummary>> | null>;
+}) {
+  const breakdown = await prices;
+  if (!breakdown || !validAsOf(breakdown.asOf) || !breakdown.byTopic.length) {
+    return (
+      <section className="hub-section" aria-labelledby="prices">
+        <h2 id="prices">What does a guest post cost by niche?</h2>
+        <p role="status">
+          Current price statistics are temporarily unavailable. Please try
+          again.
+        </p>
+        <CatalogueRetry />
+      </section>
+    );
+  }
+  return (
+    <section className="hub-section" aria-labelledby="prices">
+      <div className="hub-heading">
+        <p className="eyebrow">Live price data</p>
+        <h2 id="prices">What does a guest post cost by niche?</h2>
+        <DataDisclosure asOf={breakdown.asOf} />
+        {datedStats?.medianPriceCents != null && (
+          <p>
+            The median placement price across {count(datedStats.total)} active
+            listings is <strong>{usd(datedStats.medianPriceCents)}</strong>.
+            Medians by topic are below; writing is charged separately where
+            offered.
+          </p>
+        )}
+      </div>
+      <div className="directory-table-wrap">
+        <table className="directory-table">
+          <caption>
+            Placement price by topic: active listings, median and middle half of
+            prices in USD
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col">Topic</th>
+              <th scope="col">Listings</th>
+              <th scope="col">Median price</th>
+              <th scope="col">Typical range</th>
+            </tr>
+          </thead>
+          <tbody>
+            {breakdown.byTopic.map((row) => (
+              <tr key={row.label}>
+                <th scope="row">{row.label}</th>
+                <td>{count(row.count)}</td>
+                <td>{usd(row.medianCents)}</td>
+                <td>
+                  {usd(row.lowCents)}–{usd(row.highCents)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="hub-note">
+        Typical range is the 25th to 75th percentile. Prices by DA, DR and
+        country are in the{" "}
+        <Link href="/guides/guest-post-cost/">guest post cost guide</Link>.
+      </p>
+    </section>
+  );
+}
+
+const facetsCache = {
+  ttlMs: 15 * 60_000,
+  staleOnErrorMs: 24 * 60 * 60_000,
+  timeoutMs: 12_000,
+  staleWhileRevalidate: true,
+};
 
 async function loadHub() {
   await connection();
-  const [stats, facets, top, niches, breakdown] = await Promise.all([
+  const niches = directorySummaries().catch(() => null);
+  const prices = hubPriceSummary().catch(() => null);
+  const [stats, facets, top] = await Promise.all([
     catalogueSummary("").catch(() => null),
     cachedAsync("facets", facetsCache, productFacets).catch(() => null),
-    directoryListings({}, 12).catch(() => null),
-    directorySummaries().catch(() => directories.map(() => null)),
-    priceBreakdown().catch(() => null),
+    publicHubListings().catch(() => null),
   ]);
-  return { stats, facets, top, niches, breakdown };
+  return { stats, facets, top, niches, prices };
 }
 
 export default async function Page() {
-  const { stats, facets, top, niches, breakdown } = await loadHub();
+  const { stats, facets, top, niches, prices } = await loadHub();
   const datedStats = validAsOf(stats?.updatedAt) ? stats : null;
   const faq = faqFor(datedStats);
   const url = `${canonicalOrigin}/guest-posting-sites/`;
@@ -240,9 +348,7 @@ export default async function Page() {
         <a href="#niches">Niches</a>
         <a href="#top-publications">Top publications</a>
         <a href="#by-metrics">DA, DR, traffic &amp; price</a>
-        {breakdown?.byTopic.length ? (
-          <a href="#prices">Prices by niche</a>
-        ) : null}
+        <a href="#prices">Prices by niche</a>
         <a href="#how-to-choose">How to choose</a>
         <a href="#faq">FAQ</a>
       </nav>
@@ -259,7 +365,6 @@ export default async function Page() {
         <div className="hub-niches">
           {directories.map((directory, index) => {
             const Icon = nicheIcons[directory.slug] || Flag;
-            const niche = niches[index];
             return (
               <article className="hub-niche" key={directory.slug}>
                 <span className="hub-niche-icon" aria-hidden="true">
@@ -269,28 +374,25 @@ export default async function Page() {
                   <Link href={`/${directory.slug}/`}>{directory.h1}</Link>
                 </h3>
                 <p>{directory.lead}</p>
-                {validAsOf(niche?.updatedAt) && niche && niche.total > 0 && (
-                  <ul className="hub-niche-facts">
-                    <li>
-                      <strong>{count(niche.total)}</strong> sites
-                    </li>
-                    {niche.minPriceCents !== null && (
-                      <li>
-                        from <strong>{usd(niche.minPriceCents)}</strong>
-                      </li>
-                    )}
-                    {niche.medianPriceCents !== null && (
-                      <li>
-                        median <strong>{usd(niche.medianPriceCents)}</strong>
-                      </li>
-                    )}
-                  </ul>
-                )}
+                <Suspense fallback={null}>
+                  <HubNicheFacts niches={niches} index={index} />
+                </Suspense>
               </article>
             );
           })}
         </div>
       </section>
+
+      {!top && (
+        <section className="hub-section" role="status">
+          <h2>Publication listings are temporarily unavailable</h2>
+          <p>
+            Please try again. You can still explore the topics and buying guides
+            below.
+          </p>
+          <CatalogueRetry />
+        </section>
+      )}
 
       {top && top.data.length > 0 && (
         <section className="hub-section" aria-labelledby="top-publications">
@@ -340,66 +442,28 @@ export default async function Page() {
         </div>
       </section>
 
-      {validAsOf(breakdown?.asOf) &&
-        breakdown &&
-        breakdown.byTopic.length > 0 && (
-          <section className="hub-section" aria-labelledby="prices">
-            <div className="hub-heading">
-              <p className="eyebrow">Live price data</p>
-              <h2 id="prices">What does a guest post cost by niche?</h2>
-              <DataDisclosure asOf={breakdown.asOf} />
-              {datedStats?.medianPriceCents != null && (
-                <p>
-                  The median placement price across {count(datedStats.total)}{" "}
-                  active listings is{" "}
-                  <strong>{usd(datedStats.medianPriceCents)}</strong>. Medians
-                  by topic are below; writing is charged separately where
-                  offered.
-                </p>
-              )}
-            </div>
-            <div className="directory-table-wrap">
-              <table className="directory-table">
-                <caption>
-                  Placement price by topic: active listings, median and middle
-                  half of prices in USD
-                </caption>
-                <thead>
-                  <tr>
-                    <th scope="col">Topic</th>
-                    <th scope="col">Listings</th>
-                    <th scope="col">Median price</th>
-                    <th scope="col">Typical range</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {breakdown.byTopic.map((row) => (
-                    <tr key={row.label}>
-                      <th scope="row">{row.label}</th>
-                      <td>{count(row.count)}</td>
-                      <td>{usd(row.medianCents)}</td>
-                      <td>
-                        {usd(row.lowCents)}–{usd(row.highCents)}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-            <p className="hub-note">
-              Typical range is the 25th to 75th percentile. Prices by DA, DR and
-              country are in the{" "}
-              <Link href="/guides/guest-post-cost/">guest post cost guide</Link>
-              .
-            </p>
+      <Suspense
+        fallback={
+          <section
+            className="hub-section"
+            aria-labelledby="prices"
+            aria-busy="true"
+          >
+            <h2 id="prices">What does a guest post cost by niche?</h2>
+            <p role="status">Loading price data...</p>
           </section>
-        )}
+        }
+      >
+        <HubPrices datedStats={datedStats} prices={prices} />
+      </Suspense>
 
       <section className="hub-section" aria-labelledby="how-to-choose">
         <div className="hub-heading">
           <p className="eyebrow">Buyer checklist</p>
           <h2 id="how-to-choose">How to choose a guest posting site</h2>
-          <p>Five checks to run before you add a placement to your shortlist.</p>
+          <p>
+            Five checks to run before you add a placement to your shortlist.
+          </p>
         </div>
         <ol className="hub-steps">
           {steps.map(([title, body]) => (

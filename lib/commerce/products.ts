@@ -9,6 +9,7 @@ import type { Product, ProductImportAnalysis, ProductStatus } from "./types";
 import { priceMedian, type CatalogueStatistics } from "./catalogue-statistics";
 import type { DirectoryFilter } from "@/lib/site/directories";
 import { cleanDirectoryFilter, cleanTraffic } from "./listing-hygiene";
+import type { PriceRow } from "./price-breakdown";
 
 interface ImportBatch {
   _id: string;
@@ -262,7 +263,16 @@ export async function productFacets() {
   };
 }
 
-/** Directory card figures in one catalogue scan, without extra audience aggregates. */
+// Input prices must be sorted before grouping. Compute the exact median on MongoDB
+// so directory cards do not transfer every matching price back to the app.
+const sortedPriceMedian = (count: string) => ({
+  $avg: [
+    { $arrayElemAt: ["$prices", { $floor: { $divide: [{ $subtract: [count, 1] }, 2] } }] },
+    { $arrayElemAt: ["$prices", { $floor: { $divide: [count, 2] } }] },
+  ],
+});
+
+/** Directory card figures in one catalogue scan, returning only scalar summaries. */
 export async function publicDirectorySummaries(directories: DirectoryFilter[]) {
   type Summary = {
     total: number;
@@ -293,6 +303,7 @@ export async function publicDirectorySummaries(directories: DirectoryFilter[]) {
               updatedAt: { $max: "$updatedAt" },
             },
           },
+          { $project: { _id: 0, total: 1, minPriceCents: 1, updatedAt: 1, medianPriceCents: sortedPriceMedian("$total") } },
         ],
       ];
     }),
@@ -301,11 +312,12 @@ export async function publicDirectorySummaries(directories: DirectoryFilter[]) {
     .aggregate<
       Record<
         string,
-        Array<Omit<Summary, "medianPriceCents"> & { prices: number[] }>
+        Summary[]
       >
     >(
       [
         { $match: { $and: [{ status: "active" }, await visibleFilter()] } },
+        { $sort: { priceCents: 1 } },
         { $facet: facets },
       ],
       { maxTimeMS: 15000 },
@@ -317,12 +329,50 @@ export async function publicDirectorySummaries(directories: DirectoryFilter[]) {
     return {
       total: summary?.total ?? 0,
       minPriceCents: summary?.minPriceCents ?? null,
-      medianPriceCents: priceMedian(summary?.prices || []),
+      medianPriceCents: summary?.medianPriceCents ?? null,
       ...(updatedAt && Number.isFinite(Date.parse(updatedAt))
         ? { updatedAt }
         : {}),
     };
   });
+}
+
+/** The hub needs ten topic price summaries, not the full public catalogue. */
+export async function publicTopicPrices(): Promise<{ asOf?: string; byTopic: PriceRow[] }> {
+  const { products } = await productStore();
+  const [result] = await products.aggregate<{
+    dates: Array<{ updatedAt: Date | null }>;
+    topics: PriceRow[];
+  }>([
+    { $match: { $and: [
+      { status: "active", currency: "USD", priceCents: { $type: "number", $gte: 0, $lte: Number.MAX_SAFE_INTEGER } },
+      await visibleFilter(),
+    ] } },
+    { $match: { $expr: { $eq: ["$priceCents", { $trunc: "$priceCents" }] } } },
+    { $sort: { priceCents: 1 } },
+    { $facet: {
+      dates: [{ $group: { _id: null, updatedAt: { $max: { $convert: { input: "$updatedAt", to: "date", onError: null, onNull: null } } } } }],
+      topics: [
+        { $set: { label: { $trim: { input: { $ifNull: ["$category", ""] } } } } },
+        { $match: { label: { $ne: "" }, $expr: { $not: [{ $in: [{ $toLower: "$label" }, ["general", "all niches", "other"]] }] } } },
+        { $group: { _id: "$label", count: { $sum: 1 }, prices: { $push: "$priceCents" } } },
+        { $match: { count: { $gte: 15 } } },
+        { $sort: { count: -1, _id: 1 } },
+        { $limit: 10 },
+        { $project: {
+          _id: 0, label: "$_id", count: 1,
+          medianCents: sortedPriceMedian("$count"),
+          lowCents: { $arrayElemAt: ["$prices", { $floor: { $multiply: ["$count", 0.25] } }] },
+          highCents: { $arrayElemAt: ["$prices", { $floor: { $multiply: ["$count", 0.75] } }] },
+        } },
+      ],
+    } },
+  ], { maxTimeMS: 10000, collation: { locale: "en" } }).toArray();
+  const updatedAt = result?.dates[0]?.updatedAt;
+  return {
+    ...(updatedAt ? { asOf: updatedAt.toISOString() } : {}),
+    byTopic: result?.topics || [],
+  };
 }
 
 /** Statistics over all visible matching products, never just the first page. */

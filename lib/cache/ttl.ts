@@ -15,6 +15,8 @@ export type TtlOptions = {
   ttlMs: number;
   /** After ttl, a failed refresh may still return the previous value for this long. */
   staleOnErrorMs?: number;
+  /** Return an eligible stale value immediately while one shared refresh runs. */
+  staleWhileRevalidate?: boolean;
   /** Abort waiting on the loader after this long (the loader itself may need maxTimeMS). */
   timeoutMs?: number;
 };
@@ -46,8 +48,13 @@ export async function cachedAsync<T>(
   const now = Date.now();
   const hit = store.entries.get(key);
   if (hit && now - hit.storedAt < options.ttlMs) return hit.value as T;
+  const serveWhileRefreshing =
+    options.staleWhileRevalidate &&
+    hit &&
+    now - hit.storedAt < (options.staleOnErrorMs ?? 0);
   const pending = store.inflight.get(key);
-  if (pending) return pending as Promise<T>;
+  if (pending)
+    return serveWhileRefreshing ? (hit.value as T) : (pending as Promise<T>);
   const loading = withTimeout(load(), options.timeoutMs ?? 20000, key)
     .then((value) => {
       // A publishing mutation may have invalidated this load while it ran.
@@ -69,6 +76,10 @@ export async function cachedAsync<T>(
       if (store.inflight.get(key) === loading) store.inflight.delete(key);
     });
   store.inflight.set(key, loading);
+  if (serveWhileRefreshing) {
+    void loading.catch(() => {});
+    return hit.value as T;
+  }
   return loading;
 }
 

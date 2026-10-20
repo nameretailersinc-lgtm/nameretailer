@@ -217,15 +217,11 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
           target="_blank"
           rel="noopener noreferrer nofollow"
         >
-
           {product.domain}
           <span className="screen-reader-only">
             {" "}
             (opens publication in a new tab)
           </span>
-
-
-
         </a>
       </p>
       <dl>
