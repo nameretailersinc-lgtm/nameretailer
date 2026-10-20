@@ -4,6 +4,7 @@ import { sitemapUrlset } from "./sitemap";
 import { withProductionServer } from "./server";
 import { directories } from "../../lib/site/directories";
 import { marketplaceRanges } from "../../lib/commerce/marketplace-ranges";
+import { publicationAuditScope } from "./scope";
 
 // Requests every URL in the sitemap and reports non-200 responses and slow pages.
 // Set SEO_BASE_URL to test a running server. Exits non-zero on any failure.
@@ -16,7 +17,7 @@ await withProductionServer(async (base) => {
     return url.pathname + url.search;
   });
   // Check every registered hub, including noindex hubs omitted from the sitemap.
-  const paths = [
+  const paths = publicationAuditScope([
     ...new Set([
       "/",
       "/guest-posting-sites/",
@@ -26,7 +27,7 @@ await withProductionServer(async (base) => {
       ...marketplaceRanges.map((item) => `/${item.slug}/`),
       ...sitemapPaths,
     ]),
-  ];
+  ]);
   const failures: string[] = [];
   const slow: string[] = [];
   let next = 0;

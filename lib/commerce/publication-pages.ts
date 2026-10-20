@@ -45,15 +45,19 @@ export function publicationHost(
   }
 }
 
-export function hasPublicationProfile(product: ProfileCandidate): boolean {
+export function hasPublicationProfile(
+  product: ProfileCandidate,
+  hasRequirements = !!product.requirements?.trim(),
+): boolean {
   const { traffic, dr, da } = product.metrics || {};
   const score = (value: number | null | undefined, minimum: number) =>
     typeof value === "number" && Number.isFinite(value) && value >= minimum;
-  const guidelines = [
-    product.requirements,
-    product.publicationContent?.editorialGuidelines,
-    product.publicationContent?.contentRequirements,
-  ].some((value) => !!value?.trim());
+  const guidelines =
+    hasRequirements ||
+    [
+      product.publicationContent?.editorialGuidelines,
+      product.publicationContent?.contentRequirements,
+    ].some((value) => !!value?.trim());
   return (
     publicationHost(product.domain) !== null &&
     Number.isSafeInteger(product.priceCents) &&

@@ -22,7 +22,7 @@ await withProductionServer(async (base) => {
     ["/?q=business", "/", false],
     ["/?pageSize=50", "/", false],
     ["/?page=1", "/", true],
-    ["/page/2/", "/page/2/", true],
+    ["/page/2/", "/", false],
     ["/page/2/?sort=priceAsc", "/", false],
     ["/page/2/?pageSize=50", "/", false],
     ["/blog/?q=SEO", "/blog/", false],
@@ -44,17 +44,17 @@ await withProductionServer(async (base) => {
     );
   }
   const html = await pageHtml(base, "/blog/");
-  const id = html.match(/<option value="([^"]+)"[^>]*>AEO<\/option>/)?.[1];
-  assert(id, "AEO category missing");
+  const id = html.match(/<option value="([^"]+)"[^>]*>Marketplace<\/option>/)?.[1];
+  assert(id, "Marketplace category missing");
   const old = await fetch(`${base}/blog/?category=${id}`, {
     redirect: "manual",
   });
   assert.equal(old.status, 301);
   assert.equal(
     new URL(old.headers.get("location")!, base).pathname,
-    "/blog/category/aeo/",
+    "/blog/category/marketplace/",
   );
-  assert((await fetch(`${base}/blog/category/aeo/`)).ok);
+  assert((await fetch(`${base}/blog/category/marketplace/`)).ok);
   const robots = await pageHtml(base, "/robots.txt");
   assert(robots.includes("Disallow: /custom-login/"));
   assert(!robots.includes("Disallow: /_next"));

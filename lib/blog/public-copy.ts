@@ -2,6 +2,7 @@ import type { CmsRecord } from "@/lib/cms/types";
 import { finishedCopy, finishedHtml } from "@/lib/site/public-copy";
 import { blogContentUpdatedAt, buyerArticleAuthor } from "./editorial";
 import { blogLibrary } from "./library";
+import { reviewedTechnicalArticleSlugs } from "./indexing-policy";
 
 const libraryBySlug = new Map(
   blogLibrary.map((article) => [`blog/${article.slug}`, article]),
@@ -12,6 +13,8 @@ export function publicArticle(record: CmsRecord): CmsRecord {
   const data = { ...record.data };
   const lib = libraryBySlug.get(record.slug);
   if (lib) {
+    if (reviewedTechnicalArticleSlugs.has(record.slug))
+      data.canonical = `https://nameretailer.com/${record.slug}/`;
     if (lib.buyerRelevant) {
       data.authorId = buyerArticleAuthor.id;
       data.reviewerId = undefined;

@@ -16,7 +16,7 @@ it("excludes drafts, off-topic content and explicit noindex records from the sit
   expect(blogSitemapEntry(record)).not.toBeNull();
   expect(blogSitemapEntry({ ...record, status: "draft" })).toBeNull();
   expect(blogSitemapEntry({ ...record, data: { ...record.data, robotsIndex: false } })).toBeNull();
-  expect(blogSitemapEntry({ ...record, slug: "blog/a-responsive-article-page-qa-checklist" })).toBeNull();
+  expect(blogSitemapEntry({ ...record, slug: "blog/a-responsive-article-page-qa-checklist" })).toEqual({ url: "https://nameretailer.com/blog/a-responsive-article-page-qa-checklist/", lastModified: new Date("2026-10-20") });
   expect(blogSitemapEntry({ ...record, slug: "blog/nested/path" })).toBeNull();
   expect(blogSitemapEntry({ ...record, slug: "blog/unknown-article" })).toBeNull();
 });

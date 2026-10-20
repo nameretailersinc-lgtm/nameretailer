@@ -9,7 +9,8 @@ import { directories } from "@/lib/site/directories";
 import { marketplaceGroups } from "@/lib/commerce/marketplace-ranges";
 import { buyerGuides } from "@/lib/site/buyer-guides";
 import { tools } from "@/lib/tools/catalog";
-import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
+import { publicationSitemapLinks } from "@/lib/commerce/publication-profiles";
+import { blogIndex } from "@/lib/blog/queries";
 import {
   publicationHost,
   publicationPath,
@@ -101,7 +102,8 @@ export default async function Page() {
   await connection();
   // Link the same eligible profiles advertised by XML, including those beyond
   // the first catalogue pages. Never expose inactive or uncommitted inventory.
-  const profiles = await profileSitemapEntries().catch(() => []);
+  const profiles = await publicationSitemapLinks().catch(() => []);
+  const journal = await blogIndex("", "", 1, 60).catch(() => null);
   return (
     <InformationShell
       path="/site-map/"
@@ -117,7 +119,18 @@ export default async function Page() {
             <h2>{title}</h2>
             <p>{description}</p>
             <ul>
-              {links.map(([name, href]) => (
+              {[
+                ...links,
+                ...(title === "Journal"
+                  ? (journal?.data || []).map(
+                      (article) =>
+                        [article.title, `/${article.slug}/`] as [
+                          string,
+                          string,
+                        ],
+                    )
+                  : []),
+              ].map(([name, href]) => (
                 <li key={href}>
                   <Link href={href}>{name}</Link>
                 </li>
@@ -168,8 +181,8 @@ export async function generateMetadata({
       ...baseMetadata,
       alternates: facets.alternates,
       robots: {
-        ...(facets.robots as object),
         ...(baseMetadata.robots as object),
+        ...(facets.robots as object),
       },
     },
     "/site-map/",

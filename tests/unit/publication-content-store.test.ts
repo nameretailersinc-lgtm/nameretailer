@@ -24,6 +24,7 @@ it("records the actual administrator, increments the same product version and au
   expect(mocks.findOne.mock.calls[0][0].$and[1].$or).toContainEqual({ importId: { $in: ["committed"] } });
   expect(mocks.audit).toHaveBeenCalledWith("admin", "publication.content.reviewed", "products", "listing", expect.any(String), expect.objectContaining({ testSession: true }));
   expect(mocks.invalidate).toHaveBeenCalledWith("indexable-publication-profiles");
+  expect(mocks.invalidate).toHaveBeenCalledWith("indexable-publication-links");
 });
 
 it("rejects inactive administrators, missing records and stale versions without a write", async () => {

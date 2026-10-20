@@ -2,7 +2,6 @@ import { pageMetadata } from "@/lib/seo/page-metadata";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
 import { seoDirectoryData, seoDirectoryMetadata } from "@/lib/commerce/seo-catalogue";
 import { hasSeoDirectoryContent } from "@/components/site/directory-insights";
-import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
 import { facetMetadata } from "@/lib/seo/facets";
 import { rangeCopy } from "@/lib/site/range-copy";
 import { publicProductPage } from "@/lib/commerce/public-page";

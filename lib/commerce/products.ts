@@ -6,7 +6,7 @@ import { validateProduct } from "./validation";
 import { ProductError } from "./errors";
 import { applyProductRanges } from "./product-ranges";
 import type { Product, ProductImportAnalysis, ProductStatus } from "./types";
-import { priceMedian, type CatalogueStatistics } from "./catalogue-statistics";
+import { type CatalogueStatistics } from "./catalogue-statistics";
 import type { DirectoryFilter } from "@/lib/site/directories";
 import { cleanDirectoryFilter, cleanTraffic } from "./listing-hygiene";
 import type { PriceRow } from "./price-breakdown";
@@ -396,12 +396,13 @@ export async function publicProductStatistics(
         max: number;
         updatedAt?: string;
       }>;
-      prices: Array<{ values: number[] }>;
+      prices: Array<{ medianPriceCents: number | null }>;
       countries: Array<{ _id: string; count: number }>;
       topics: Array<{ _id: string; count: number }>;
     }>(
       [
         { $match: filter },
+        { $sort: { priceCents: 1 } },
         {
           $facet: {
             summary: [
@@ -416,7 +417,8 @@ export async function publicProductStatistics(
               },
             ],
             prices: [
-              { $group: { _id: null, values: { $push: "$priceCents" } } },
+              { $group: { _id: null, total: { $sum: 1 }, prices: { $push: "$priceCents" } } },
+              { $project: { _id: 0, medianPriceCents: sortedPriceMedian("$total") } },
             ],
             countries: [
               { $match: { country: { $nin: ["", null] } } },
@@ -443,7 +445,7 @@ export async function publicProductStatistics(
     total: summary?.total ?? 0,
     minPriceCents: summary?.min ?? null,
     maxPriceCents: summary?.max ?? null,
-    medianPriceCents: priceMedian(result?.prices[0]?.values || []),
+    medianPriceCents: result?.prices[0]?.medianPriceCents ?? null,
     topCountries: (result?.countries || []).map((row) => ({
       name: row._id,
       count: row.count,

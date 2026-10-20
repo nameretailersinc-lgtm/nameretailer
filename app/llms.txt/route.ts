@@ -1,4 +1,4 @@
-import { technicalArticleSlugs } from "@/lib/blog/indexing-policy";
+import { blogArticleIndexable } from "@/lib/blog/indexing-policy";
 import { getDb } from "@/lib/db";
 import type { CmsRecord } from "@/lib/cms/types";
 import { bodyText } from "@/lib/cms/content";
@@ -29,7 +29,7 @@ const pages: Array<[string, string, string]> = [
   [
     "/how-it-works/",
     "How it works",
-    "How to plan and order guest-post placements.",
+    "How to compare publications and save private placement plans; online ordering and payment are disabled.",
   ],
   [
     "/how-to-buy-links/",
@@ -57,7 +57,7 @@ export async function GET() {
   const lines = [
     "# Name Retailer",
     "",
-    "> Guest-post marketplace where buyers compare publications by topic, audience, placement price and supplied metrics (DA, DR, traffic), and order placements and content services.",
+    "> Guest-post marketplace where buyers compare publications by topic, audience, supplied placement asking price and metrics (DA, DR, traffic). Online ordering and payment are disabled. Saving a private plan does not reserve a placement or verify publisher availability.",
     "",
     "## Marketplace and services",
     ...pages.map(([path, title, note]) => link(path, title, note)),
@@ -94,7 +94,7 @@ export async function GET() {
           "data.robotsIndex": { $ne: false },
           slug: { $regex: "^blog/" },
         },
-        { projection: { _id: 0, slug: 1, title: 1, "data.excerpt": 1 } },
+        { projection: { _id: 0, slug: 1, title: 1, "data.excerpt": 1, "data.robotsIndex": 1 } },
       )
       .sort({ title: 1 })
       .toArray();
@@ -104,7 +104,7 @@ export async function GET() {
         "## Guides (SEO, AEO, GEO, content and measurement)",
         link("/guides/", "Guide library"),
         ...posts
-          .filter((post) => !technicalArticleSlugs.has(post.slug))
+          .filter(blogArticleIndexable)
           .map((post) =>
             link(
               `/${post.slug.replace(/^\/+|\/+$/g, "")}/`,

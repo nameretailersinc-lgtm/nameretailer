@@ -1,5 +1,8 @@
 import { authors, authorPath } from "../site/authors";
-import { priceBreakdown, priceReportReady } from "@/lib/commerce/price-breakdown";
+import {
+  priceBreakdown,
+  priceReportReady,
+} from "@/lib/commerce/price-breakdown";
 import { buyerGuides } from "@/lib/site/buyer-guides";
 import type { MetadataRoute } from "next";
 import { getDb } from "@/lib/db";
@@ -10,13 +13,16 @@ import { directories } from "@/lib/site/directories";
 import { canonicalOrigin } from "@/lib/seo/metadata";
 import { blogCategories, categorySlug } from "@/lib/blog/categories";
 import { catalogueSummary } from "@/lib/commerce/catalogue-summary";
-import { directoryIndexable } from "@/lib/commerce/catalogue-statistics";
+import { seoDirectoryData } from "@/lib/commerce/seo-catalogue";
 import { marketplaceRangeBySlug } from "@/lib/commerce/marketplace-ranges";
 import { rangeCopy } from "@/lib/site/range-copy";
-import { profileSitemapEntries } from "@/lib/commerce/publication-profiles";
+import { publicationSitemapLinks } from "@/lib/commerce/publication-profiles";
 import { publicationPath } from "@/lib/commerce/publication-pages";
 import { blogSitemapEntry } from "@/lib/blog/seo";
-import { priceGuideEditorial } from "@/lib/site/editorial";
+import {
+  priceGuideEditorial,
+  guestPostingHubUpdatedAt,
+} from "@/lib/site/editorial";
 
 const staticPaths = [
   "/",
@@ -43,13 +49,34 @@ const staticPaths = [
   "/site-map/",
 ];
 
+async function boundedReads<T, R>(items: T[], read: (item: T) => Promise<R>) {
+  const results: R[] = new Array(items.length);
+  let next = 0;
+  // Mongo's pool has ten connections. Starting every expensive summary at once
+  // spends the read deadline waiting in that pool and can omit valid ranges.
+  await Promise.all(
+    Array.from({ length: Math.min(4, items.length) }, async () => {
+      while (next < items.length) {
+        const index = next++;
+        results[index] = await read(items[index]);
+      }
+    }),
+  );
+  return results;
+}
+
 export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
   const entries: MetadataRoute.Sitemap = [
     ...staticPaths,
-    ...authors.filter(author => author.bio).map(authorPath),
+    ...authors.filter((author) => author.bio).map(authorPath),
     ...tools.map((tool) => `/${tool.slug}/`),
-  ].map((path) => ({ url: canonicalOrigin + path }));
-  const prices = await priceBreakdown().catch(() => null);
+  ].map((path) => ({
+    url: canonicalOrigin + path,
+    ...(path === "/guest-posting-sites/"
+      ? { lastModified: guestPostingHubUpdatedAt }
+      : {}),
+  }));
+  const prices = await priceBreakdown();
   if (priceReportReady(prices) && prices?.asOf)
     entries.push({
       url: canonicalOrigin + "/guest-post-prices/",
@@ -79,12 +106,36 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
     })),
   ];
   const [stats, catalogue] = await Promise.all([
-    Promise.all(
-      segments.map((segment) =>
-        catalogueSummary(segment.query, segment.directory).catch(() => null),
-      ),
-    ),
-    catalogueSummary("").catch(() => null),
+    boundedReads(segments, async (segment) => {
+      const directory = directories.find(
+        (item) => item.slug === segment.directory,
+      );
+      // Use the exact same data and completeness threshold as the page metadata.
+      if (
+        directory &&
+        ([
+          "technology-guest-posting-sites",
+          "saas-guest-posting-sites",
+          "guest-posting-sites-usa",
+        ].includes(directory.slug) ||
+          directory.minIndexableListings === 25)
+      ) {
+        const data = await seoDirectoryData(directory);
+        return data
+          ? {
+              total: data.summary.count,
+              updatedAt: data.asOf,
+              minPriceCents: data.summary.minCents,
+              maxPriceCents: data.summary.maxCents,
+              medianPriceCents: data.summary.medianCents,
+              topCountries: [],
+              topTopics: [],
+            }
+          : null;
+      }
+      return catalogueSummary(segment.query, segment.directory);
+    }),
+    catalogueSummary(""),
   ]);
   segments.forEach((segment, index) => {
     const summary = stats[index];
@@ -93,7 +144,10 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
       : marketplaceRangeBySlug(segment.slug);
     const indexable = range
       ? rangeCopy(range, summary, catalogue).indexable
-      : !!summary && summary.total >= (directories.find(directory => directory.slug === segment.slug)?.minIndexableListings ?? 15);
+      : !!summary &&
+        summary.total >=
+          (directories.find((directory) => directory.slug === segment.slug)
+            ?.minIndexableListings ?? 15);
     const lastModified = [
       summary?.updatedAt,
       directories.find((directory) => directory.slug === segment.slug)
@@ -110,7 +164,7 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
       });
   });
   try {
-    for (const profile of await profileSitemapEntries()) {
+    for (const profile of await publicationSitemapLinks()) {
       const path = publicationPath(profile);
       if (path)
         entries.push({
@@ -119,7 +173,8 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
         });
     }
   } catch {
-    // Database unavailable: profiles are omitted until it returns.
+    // An incomplete snapshot must not be cached as a successful sitemap.
+    throw new Error("Publication sitemap data temporarily unavailable");
   }
   try {
     const posts = await (
@@ -155,7 +210,7 @@ export async function allSitemapEntries(): Promise<MetadataRoute.Sitemap> {
           url: `${canonicalOrigin}/blog/category/${categorySlug(category)}/`,
         });
   } catch {
-    // Database unavailable: still serve the static public routes.
+    throw new Error("Article sitemap data temporarily unavailable");
   }
   return entries;
 }

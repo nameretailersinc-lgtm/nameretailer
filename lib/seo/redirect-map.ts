@@ -199,25 +199,7 @@ const previousRedirects: Array<{
       "Closest maintained editorial hub; no community/review corpus supplied",
   },
   {
-    source: "/hello-world/",
-    destination: "/blog/",
-    reason:
-      "Closest maintained editorial hub; no community/review corpus supplied",
-  },
-  {
     source: "/test-blog-post/",
-    destination: "/blog/",
-    reason:
-      "Closest maintained editorial hub; no community/review corpus supplied",
-  },
-  {
-    source: "/2824-2/",
-    destination: "/blog/",
-    reason:
-      "Closest maintained editorial hub; no community/review corpus supplied",
-  },
-  {
-    source: "/category/uncategorized/",
     destination: "/blog/",
     reason:
       "Closest maintained editorial hub; no community/review corpus supplied",

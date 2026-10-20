@@ -29,5 +29,6 @@ export async function savePublicationContent(id: string, raw: unknown, actorId: 
     return { domain: product.domain, publicationContent: content, version: version + 1, brief: publicationEditorialBrief(publicProduct({ ...product, publicationContent: content, version: version + 1, updatedAt: now })) };
   });
   invalidateTtlCache("indexable-publication-profiles");
+  invalidateTtlCache("indexable-publication-links");
   return saved;
 }

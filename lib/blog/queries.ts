@@ -1,5 +1,4 @@
-import { blogArticleIndexable } from "./indexing-policy";
-import { buyerExpansions } from "./buyer-expansions";
+import { blogArticleIndexable, indexableBlogSlugs } from "./indexing-policy";
 import { publicArticle } from "./public-copy";
 import { blogContentUpdatedAt, buyerArticleAuthor } from "./editorial";
 import { cache } from "react";
@@ -46,7 +45,7 @@ export async function blogIndex(
     collection: "content" as const,
     status: "published",
     "data.type": "post",
-    slug: { $in: Object.keys(buyerExpansions).map((slug) => `blog/${slug}`) },
+    slug: { $in: indexableBlogSlugs },
     "data.robotsIndex": { $ne: false },
   };
   const categories = await records
@@ -91,7 +90,7 @@ export async function blogIndex(
     pageSize,
     pages,
     categories: categories.filter((category) =>
-      ["Marketplace", "Content", "Measurement"].includes(category.title),
+      ["Marketplace", "Content", "Measurement", "Technical SEO"].includes(category.title),
     ),
   };
 }

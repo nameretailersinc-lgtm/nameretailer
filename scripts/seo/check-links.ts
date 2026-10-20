@@ -1,5 +1,6 @@
 import { sitemapUrlset } from "./sitemap";
 import { withProductionServer } from "./server";
+import { publicationAuditScope } from "./scope";
 
 // Crawls every sitemap URL, then every internal link found on those pages, and fails
 // on any link that redirects or returns a non-200 status. Set SEO_BASE_URL to test a
@@ -44,7 +45,7 @@ await withProductionServer(async (base) => {
   };
 
   const sources = new Map<string, string>();
-  const pageList = [...pages];
+  const pageList = publicationAuditScope([...pages]);
   const pageResults = await mapLimit(pageList, async (path) => {
     const response = await fetch(base + path, {
       signal: AbortSignal.timeout(60000),
@@ -67,7 +68,7 @@ await withProductionServer(async (base) => {
     }
   }
 
-  const targets = [...sources.keys()];
+  const targets = publicationAuditScope([...sources.keys()]);
   const linkResults = await mapLimit(targets, status);
   targets.forEach((target, index) => {
     const { code, location } = linkResults[index];

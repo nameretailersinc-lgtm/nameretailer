@@ -684,7 +684,7 @@ export function expandBuyerGuide(guide: BuyerGuide): BuyerGuide {
     author: "Fahad Shaikh",
     reviewer: undefined,
     approved: true,
-    updatedAt: "2026-10-19",
+    updatedAt: Date.parse(guide.updatedAt) > Date.parse("2026-10-19") ? guide.updatedAt : "2026-10-19",
     sourcesCheckedAt: "2026-10-19",
     questions: [
       ...guide.questions,

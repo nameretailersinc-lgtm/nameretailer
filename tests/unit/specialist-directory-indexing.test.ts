@@ -4,10 +4,19 @@ const state = vi.hoisted(() => ({
   total: 15,
   available: true,
   updatedAt: "2026-10-06",
+  fail: false,
 }));
 vi.mock("@/lib/commerce/catalogue-summary", () => ({
-  catalogueSummary: async () =>
-    state.available ? { total: state.total, updatedAt: state.updatedAt } : null,
+  catalogueSummary: async () => {
+    if (state.fail) throw new Error("Read timed out");
+    return state.available ? { total: state.total, updatedAt: state.updatedAt } : null;
+  },
+}));
+vi.mock("@/lib/commerce/seo-catalogue", () => ({
+  seoDirectoryData: async () => {
+    if (state.fail) throw new Error("Read timed out");
+    return state.available ? { summary: { count: state.total, minCents: null, maxCents: null, medianCents: null }, asOf: state.updatedAt } : null;
+  },
 }));
 vi.mock("@/lib/commerce/price-breakdown", () => ({
   priceBreakdown: async () => null,
@@ -15,7 +24,7 @@ vi.mock("@/lib/commerce/price-breakdown", () => ({
 }));
 vi.mock("@/lib/site/buyer-guides", () => ({ buyerGuides: [] }));
 vi.mock("@/lib/commerce/publication-profiles", () => ({
-  profileSitemapEntries: async () => [],
+  publicationSitemapLinks: async () => [],
 }));
 vi.mock("@/lib/blog/categories", () => ({
   blogCategories: async () => [],
@@ -40,6 +49,12 @@ beforeEach(() => {
   state.total = 15;
   state.available = true;
   state.updatedAt = "2026-10-06";
+  state.fail = false;
+});
+
+it("rejects a failed data read rather than caching an incomplete successful sitemap", async () => {
+  state.fail = true;
+  await expect(allSitemapEntries()).rejects.toThrow("Read timed out");
 });
 
 it("omits new directories below the live inventory threshold or without statistics", async () => {

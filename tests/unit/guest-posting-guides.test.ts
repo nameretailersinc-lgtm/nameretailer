@@ -42,6 +42,7 @@ it("keeps new guide links within implemented resources", () => {
     "/guest-post-prices/",
     "https://developers.google.com/search/docs/crawling-indexing/qualify-outbound-links",
     "/blog/a-practical-guest-post-budget-worksheet/",
+    "/blog/a-responsive-article-page-qa-checklist/",
   ]);
   for (const guide of guestPostingGuides)
     for (const [, path] of guide.related || [])

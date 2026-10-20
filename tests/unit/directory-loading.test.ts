@@ -128,3 +128,68 @@ it("calculates USA counts and price bands from all matches while returning only 
   expect(data.priceBands?.map((band) => band.count)).toEqual([1, 1, 3, 5, 20]);
   expect(data.asOf).toBe("2026-10-01T00:00:00.000Z");
 });
+
+it("queries each niche in Mongo instead of downloading the whole catalogue", async () => {
+  const row = {
+    id: "tech",
+    domain: "https://example.com",
+    category: "Technology",
+    currency: "USD",
+    priceCents: 9000,
+    metrics: { dr: 55, traffic: 2147483647 },
+    updatedAt: "2026-10-06",
+  };
+  const aggregate = vi.fn((...args: unknown[]) => {
+    void args;
+    return {
+      toArray: async () => [
+        {
+          listings: [row],
+          prices: [{ values: [9000], updatedAt: row.updatedAt }],
+          drValues: [{ _id: 55, values: [9000] }],
+          topicRows0: [row],
+          topicCount0: [{ total: 100 }],
+        },
+      ],
+    };
+  });
+  productStore.mockResolvedValue({
+    imports: {
+      find: () => ({
+        maxTimeMS: () => ({ toArray: async () => [{ _id: "committed" }] }),
+      }),
+    },
+    products: { aggregate },
+  });
+  const directory = directoryBySlug("technology-guest-posting-sites")!;
+  const data = await seoDirectoryData(directory);
+  const pipeline = aggregate.mock.calls[0][0] as unknown as Array<
+    Record<string, unknown>
+  >;
+  expect(pipeline[0]).toEqual({
+    $match: {
+      $and: expect.arrayContaining([
+        expect.objectContaining({
+          status: "active",
+          category: { $in: directory.filter.categories },
+        }),
+        {
+          $or: [
+            { importId: { $exists: false } },
+            { importId: { $in: ["committed"] } },
+          ],
+        },
+      ]),
+    },
+  });
+  expect(pipeline[2]).toMatchObject({
+    $facet: {
+      listings: expect.arrayContaining([{ $limit: 25 }]),
+      topicRows0: expect.arrayContaining([{ $limit: 25 }]),
+    },
+  });
+  expect(data.rows[0].metrics.traffic).toBeNull();
+  expect(data.summary).toMatchObject({ count: 1, medianCents: 9000 });
+  expect(data.asOf).toBe("2026-10-06T00:00:00.000Z");
+  expect(data.subtopics[0].count).toBe(100);
+});

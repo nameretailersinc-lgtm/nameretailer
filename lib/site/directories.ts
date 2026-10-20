@@ -479,6 +479,7 @@ export const directories: Directory[] = [...directoryDefinitions, ...usaChildren
   const revised = ({ "technology-guest-posting-sites": technologySections, "saas-guest-posting-sites": saasSections, "guest-posting-sites-usa": usaSections } as Record<string, typeof technologySections>)[directory.slug];
   if (revised) return {
     ...directory, filter: { ...directory.filter, ...(directory.slug === "technology-guest-posting-sites" ? { categories: [...(directory.filter.categories || []), "Cybersecurity", "Cyber Security", "Security", "Web hosting", "Web Hosting", "Hosting", "AI", "Artificial Intelligence", "Software development", "Programming"] } : {}), cleanListings: true },
+    editorialUpdatedAt: ["technology-guest-posting-sites", "saas-guest-posting-sites"].includes(directory.slug) ? "2026-10-20" : directory.editorialUpdatedAt,
     h1: directory.slug === "saas-guest-posting-sites" ? "SaaS guest posting sites" : directory.slug === "guest-posting-sites-usa" ? "Guest posting sites in the USA" : directory.h1,
     lead: directoryIntros[directory.slug] || directory.lead,
     metaTitle: directory.slug === "guest-posting-sites-usa" ? "Guest Posting Sites in the USA: Topics, Metrics & Prices" : directory.metaTitle,

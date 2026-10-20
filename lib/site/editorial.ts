@@ -8,3 +8,4 @@ export const buyingGuideEditorial: {
 
 // Editorial guidance and catalogue observations have separate update dates.
 export const priceGuideEditorial = { updatedAt: "2026-10-18" };
+export const guestPostingHubUpdatedAt = "2026-10-20";

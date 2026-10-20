@@ -25,7 +25,7 @@ type Commission = Omit<
 const guide = (content: Commission): BuyerGuide => ({
   ...content,
   approved: true,
-  updatedAt: "2026-10-18",
+  updatedAt: content.slug === "guest-posting-checklist" ? "2026-10-20" : "2026-10-18",
   sourcesCheckedAt: "2026-10-18",
 });
 
@@ -1049,6 +1049,7 @@ export const guestPostingGuides: BuyerGuide[] = [
     ],
     related: [
       ["Review submission rules", "/guides/guest-post-submission-guidelines/"],
+      ["Test article tables, links and mobile reading order", "/blog/a-responsive-article-page-qa-checklist/"],
       ["Avoid common mistakes", "/guides/guest-posting-mistakes/"],
       [
         "Measure results after publication",

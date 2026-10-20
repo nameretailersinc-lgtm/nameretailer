@@ -7,6 +7,7 @@ import { marketplaceRanges } from "../../lib/commerce/marketplace-ranges";
 import { legacyRedirects } from "../../lib/seo/redirect-map";
 import { buyerGuides } from "../../lib/site/buyer-guides";
 import { pageHtml } from "./server";
+import { publicationAuditScope } from "./scope";
 export async function publicRoutes(base: string) {
   const paths = new Set([
     "/",
@@ -45,5 +46,5 @@ export async function publicRoutes(base: string) {
   ))
     paths.add(match[1]);
   for (const row of legacyRedirects) paths.delete(row.source);
-  return [...paths].sort();
+  return publicationAuditScope([...paths].sort());
 }

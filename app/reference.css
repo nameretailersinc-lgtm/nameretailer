@@ -441,6 +441,7 @@
   min-width: 0;
 }
 .reference-card p {
+  overflow-wrap: anywhere;
   color: #526370;
   font-size: 14px;
   line-height: 1.65;

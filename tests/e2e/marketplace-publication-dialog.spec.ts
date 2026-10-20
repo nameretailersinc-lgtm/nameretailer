@@ -104,9 +104,10 @@ for (const path of ["/", "/guest-post-by-dr/"]) {
     await trigger.click();
     const dialog = page.getByRole("dialog");
     await expect(dialog.getByRole("heading", { level: 2 })).toHaveText(name);
+    // The current planning flow opens the in-page form from Add to plan.
     await expect(
-      dialog.getByRole("link", { name: "Plan placement", exact: true }),
-    ).toHaveAttribute("href", /\/cart\/\?product=/);
+      dialog.getByRole("button", { name: "Add to plan", exact: true }),
+    ).toBeVisible();
     await expect(
       dialog.getByRole("link", { name: "listing methodology", exact: true }),
     ).toHaveAttribute("href", "/methodology/");

@@ -1088,6 +1088,8 @@ html[data-site-theme="dark"] .reference-site .hub-toc {
   padding: 6px 12px;
 }
 .guide-sources-list {
+  min-width: 0;
+  grid-template-columns: minmax(0, 1fr);
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1096,6 +1098,7 @@ html[data-site-theme="dark"] .reference-site .hub-toc {
 }
 .guide-sources-list li a {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
   gap: 14px;

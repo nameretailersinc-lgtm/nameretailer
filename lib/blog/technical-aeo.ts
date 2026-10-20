@@ -436,19 +436,19 @@ export const technicalAeo: ArticleDraft[] = [
       "Use keyboard navigation to reach the contents links, article actions and footer. Keep visible focus states and meaningful link labels on every layout.",
       "Check a long article and a short one with images unavailable. Verify that reading order remains sensible when the desktop sidebar stacks into the mobile flow."
     ],
-    "avoid": "Avoid calling a design pixel-perfect after inspecting only one screenshot. Supplied references guide the typography, color and hierarchy, but real content lengths and responsive behavior require their own checks. Preserve accessible labels even when a compact visual design is used.",
+    "avoid": "Do not approve an article template from one screenshot. Repeat the checks with a long heading, an unbroken URL, a wide comparison table and images unavailable. Record the URL, viewport, browser, failed control and reproduction steps so another editor can verify the correction.",
     "question": "Should mobile text be much smaller to fit the design?",
     "response": "No. Reflow the layout and simplify spacing before shrinking essential reading text to fit a desktop arrangement.",
     "seoTitle": "Mobile SEO QA Checklist for Responsive Article Pages",
     "metaDescription": "Audit responsive article layouts: test narrow viewports (320px), typography line length, touch target sizing, table overflow, and keyboard accessibility.",
     "sections": [
       {
-        "heading": "1. Beyond desktop testing: narrow viewport constraints",
-        "body": "Google utilizes mobile-first indexing for all websites, meaning search algorithms crawl and evaluate the mobile smartphone version of your pages to determine rankings. A responsive layout must preserve the complete editorial content, schema markup, and internal links present on desktop, while ensuring reading line lengths, tables, and interactive controls remain fully usable at 320px width."
+        "heading": "Keep article content available on small screens",
+        "body": "Google uses mobile page content for indexing and ranking. In a responsive article, keep the main text, useful links and supported structured data equivalent across layouts. Content may sit in an accessible accordion or tab; collapsing it is different from omitting it or fetching it only after a click. Check the initial HTML as well as the rendered page, and test reading order when the contents sidebar moves above the article. A 320 CSS-pixel viewport is a useful reflow test, not an indexing threshold."
       },
       {
-        "heading": "2. Responsive breakpoint testing matrix",
-        "body": "Test article detail pages systematically across these standard viewport breakpoints:",
+        "heading": "Test widths around the actual layout breakpoints",
+        "body": "Use the following widths as starting points, then test one pixel on either side of each breakpoint used by your template. Record CSS viewport widths rather than assuming a device name always maps to one width:",
         "table": {
           "columns": [
             "Viewport Width",
@@ -459,15 +459,15 @@ export const technicalAeo: ArticleDraft[] = [
           "rows": [
             [
               "320px – 375px",
-              "Compact Mobile (iPhone SE)",
+              "Narrow phone viewport",
               "Horizontal page blowing from wide tables or long URLs",
               "Zero horizontal scroll on body element; tables scroll in container"
             ],
             [
               "390px – 430px",
-              "Standard Mobile (iPhone 14/15, Pixel)",
+              "Wider phone viewport",
               "Touch target overlap on contents links and buttons",
-              "Minimum 48x48px interactive touch targets with 8px margins"
+              "Targets are easy to activate without hitting adjacent links; test spacing and keyboard focus"
             ],
             [
               "768px – 1024px",
@@ -485,27 +485,32 @@ export const technicalAeo: ArticleDraft[] = [
         }
       },
       {
-        "heading": "3. Mobile SEO and responsiveness QA checklist",
+        "heading": "Check keyboard access, zoom and table overflow",
         "body": "Execute these layout tests before approving front-end template changes:",
         "checklist": [
           "Verify that the <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"> tag is present in the <head>.",
           "Check that all data tables are wrapped in an overflow container with tabIndex=0 and an accessible aria-label.",
-          "Ensure font sizes for body reading text remain at 16px or larger to prevent mobile browser auto-zooming.",
-          "Test keyboard navigation to ensure focus outlines are visible when tabbing through table of contents links."
+          "Zoom text to 200% and check headings, labels and actions remain readable without clipping. Body text size alone does not determine input auto-zoom behavior.",
+          "Tab through the contents links and table region, activate a section link, and verify visible focus, logical order and a working return path.",
+          "At 320 CSS pixels, compare document.documentElement.scrollWidth with innerWidth. The page should reflow; a wide data table may scroll inside its labelled container."
         ]
       }
     ],
     "extraFaq": [
       [
         "Can I hide complex tables on mobile to simplify layout?",
-        "No. Under mobile-first indexing, hiding content on mobile viewports removes it from search engine indexing consideration. Wrap tables in responsive horizontal scroll containers instead."
+        "Keep useful table data available. An accessible accordion or tab can save space when its content is already present; removing rows from mobile HTML or loading them only after interaction can prevent Google from seeing them. A labelled horizontal scroll container often preserves comparisons more clearly."
       ],
       [
         "What is the ideal line length for mobile article typography?",
-        "Aim for 45 to 75 characters per line on mobile screens. Lines that are too short break reading rhythm, while lines that are too long cause readers to lose their place."
+        "There is no universal mobile character count. Use a comfortable font and spacing, let narrow screens wrap naturally, and constrain long desktop lines. Test actual article text and text zoom instead of forcing a desktop line-length target onto a phone."
       ]
     ],
     "relatedLinks": [
+      [
+        "Apply the guest posting publication checklist",
+        "/guides/guest-posting-checklist/"
+      ],
       [
         "Choose image dimensions and formats deliberately",
         "/blog/choose-image-dimensions-and-formats-deliberately/"
@@ -859,20 +864,20 @@ export const technicalAeo: ArticleDraft[] = [
     ],
     "relatedLinks": [
       [
-        "Technical SEO checklist for content and marketplace sites",
-        "/blog/technical-seo-checklist-for-content-and-marketplace-sites/"
+        "Check server-rendered article content before launch",
+        "/blog/check-server-rendered-article-content-before-launch/"
       ],
       [
-        "Internal linking and SEO: a practical site structure guide",
-        "/blog/internal-linking-and-seo-a-practical-site-structure-guide/"
+        "Internal links that make an article library easier to use",
+        "/blog/internal-links-that-make-an-article-library-easier-to-use/"
       ],
       [
-        "Canonical URLs and duplicate content for growing sites",
-        "/blog/canonical-urls-and-duplicate-content-for-growing-sites/"
+        "A canonical URL checklist for a rebuilt website",
+        "/blog/a-canonical-url-checklist-for-a-rebuilt-website/"
       ],
       [
-        "JSON-LD schema markup for articles and FAQs",
-        "/blog/json-ld-schema-markup-for-articles-and-faqs/"
+        "A structured data review checklist for blog articles",
+        "/blog/a-structured-data-review-checklist-for-blog-articles/"
       ],
       [
         "Domain names, SEO and website migrations",
@@ -1022,8 +1027,8 @@ export const technicalAeo: ArticleDraft[] = [
         "/blog/plan-useful-follow-up-answers-without-duplicating-pages/"
       ],
       [
-        "Keyword Research Tool",
-        "/tools/keyword-research/"
+        "Keyword suggestion tool and its limitations",
+        "/keyword-suggestion-tool/"
       ]
     ]
   },

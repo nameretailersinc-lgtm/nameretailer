@@ -729,8 +729,8 @@ export const geoMeasurement: ArticleDraft[] = [
         "/blog/what-geo-means-for-a-small-content-team/"
       ],
       [
-        "Robots.txt Generator Tool",
-        "/tools/robots-txt-generator/"
+        "Inspect page-level indexing directives",
+        "/aeo-geo-seo-checker/"
       ]
     ]
   },

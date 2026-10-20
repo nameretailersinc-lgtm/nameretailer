@@ -15,6 +15,7 @@ import {
 import type { Product, PublicProduct } from "./types";
 import { publicProduct } from "./public-product";
 import { placementOptions } from "./pricing";
+import { publicPublicationContent } from "./publication-content";
 
 const publicFields = {
   _id: 0,
@@ -247,6 +248,86 @@ export function profileSitemapEntries(): Promise<PublicProduct[]> {
         paths.add(path);
         return true;
       });
+    },
+  );
+}
+
+/** Discovery only: don't transfer long editorial requirements to build URL lists. */
+export function publicationSitemapLinks(): Promise<
+  Array<{ id: string; domain: string; updatedAt: string }>
+> {
+  return cachedAsync(
+    "indexable-publication-links",
+    { ttlMs: 15 * 60_000, staleOnErrorMs: 0, timeoutMs: 60000 },
+    async () => {
+      const { products } = await productStore();
+      const rows = await products
+        .aggregate<
+          Pick<
+            Product,
+            | "id"
+            | "domain"
+            | "category"
+            | "priceCents"
+            | "metrics"
+            | "updatedAt"
+            | "publicationContent"
+          > & { hasRequirements: boolean }
+        >(
+          [
+            { $match: await profileFilter() },
+            { $sort: { domain: 1, id: 1 } },
+            {
+              $project: {
+                _id: 0,
+                id: 1,
+                domain: 1,
+                updatedAt: 1,
+                category: 1,
+                priceCents: 1,
+                "metrics.dr": 1,
+                "metrics.da": 1,
+                "metrics.traffic": 1,
+                hasRequirements: {
+                  $regexMatch: {
+                    input: { $ifNull: ["$requirements", ""] },
+                    regex: /\S/,
+                  },
+                },
+                publicationContent: {
+                  $cond: [
+                    { $eq: ["$publicationContent.state", "reviewed"] },
+                    "$publicationContent",
+                    "$$REMOVE",
+                  ],
+                },
+              },
+            },
+          ],
+          { maxTimeMS: 30000, batchSize: 5000 },
+        )
+        .toArray();
+      const paths = new Set<string>();
+      return rows
+        .filter((row) => {
+          const candidate = {
+            ...row,
+            publicationContent: publicPublicationContent(
+              row.publicationContent,
+              row.domain,
+            ),
+          };
+          const path = publicationPath(candidate);
+          if (
+            !path ||
+            paths.has(path) ||
+            !hasPublicationProfile(candidate, row.hasRequirements)
+          )
+            return false;
+          paths.add(path);
+          return true;
+        })
+        .map(({ id, domain, updatedAt }) => ({ id, domain, updatedAt }));
     },
   );
 }

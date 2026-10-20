@@ -17,6 +17,7 @@ import {
 import { InformationShell } from "@/components/site/information-page";
 import { PublicationTable } from "@/components/site/publication-table";
 import { directories } from "@/lib/site/directories";
+import { guestPostingHubUpdatedAt } from "@/lib/site/editorial";
 import { productFacets } from "@/lib/commerce/products";
 import { publicHubListings } from "@/lib/commerce/public-directory";
 import { CatalogueRetry } from "@/components/site/catalogue-retry";
@@ -109,7 +110,7 @@ function faqFor(stats: Stats | null) {
     ],
     [
       "What are guest posting sites?",
-      "Guest posting sites are publications that accept articles from outside contributors, usually in exchange for a link or a fee. Name Retailer lists publishers that offer paid placements, with their topic, country, supplied metrics and USD price, so you can compare them side by side.",
+      "Guest posting sites are publications that accept articles from outside contributors. Name Retailer lists supplied placement offers with their topic, country, metrics and USD asking price so you can compare them side by side. A listing does not confirm publisher authorization or current availability.",
     ],
     [
       "How much does a guest post cost?",
@@ -119,7 +120,7 @@ function faqFor(stats: Stats | null) {
     ],
     [
       "How do I choose the right guest posting site?",
-      "Start with the audience: choose sites your customers already read. Then check editorial quality, compare one authority score and traffic consistently, and confirm placement terms and sponsored disclosure before ordering.",
+      "Start with the audience: choose sites your customers already read. Then check editorial quality, compare one authority score and traffic consistently, and confirm placement terms and sponsored disclosure. Online ordering and payment are currently disabled; saving a plan does not reserve a placement.",
     ],
     [
       "Are paid guest posts allowed by Google?",
@@ -168,14 +169,14 @@ async function HubNicheFacts({
   );
 }
 
-async function HubPrices({
+function HubPrices({
   datedStats,
   prices,
 }: {
   datedStats: Stats | null;
-  prices: Promise<Awaited<ReturnType<typeof hubPriceSummary>> | null>;
+  prices: Awaited<ReturnType<typeof hubPriceSummary>> | null;
 }) {
-  const breakdown = await prices;
+  const breakdown = prices;
   if (!breakdown || !validAsOf(breakdown.asOf) || !breakdown.byTopic.length) {
     return (
       <section className="hub-section" aria-labelledby="prices">
@@ -251,12 +252,13 @@ async function loadHub() {
   await connection();
   const niches = directorySummaries().catch(() => null);
   const prices = hubPriceSummary().catch(() => null);
-  const [stats, facets, top] = await Promise.all([
+  const [stats, facets, top, priceData] = await Promise.all([
     catalogueSummary("").catch(() => null),
     cachedAsync("facets", facetsCache, productFacets).catch(() => null),
     publicHubListings().catch(() => null),
+    prices,
   ]);
-  return { stats, facets, top, niches, prices };
+  return { stats, facets, top, niches, prices: priceData };
 }
 
 export default async function Page() {
@@ -277,7 +279,11 @@ export default async function Page() {
       description: lead,
       isPartOf: { "@id": `${canonicalOrigin}/#website` },
       publisher: { "@id": `${canonicalOrigin}/#organization` },
-      ...(stats?.updatedAt ? { dateModified: stats.updatedAt } : {}),
+      dateModified:
+        stats?.updatedAt &&
+        Date.parse(stats.updatedAt) > Date.parse(guestPostingHubUpdatedAt)
+          ? stats.updatedAt
+          : guestPostingHubUpdatedAt,
       ...(list ? { mainEntity: list } : {}),
     },
     faqPageNode(faq),
@@ -339,7 +345,10 @@ export default async function Page() {
                 timeZone: "UTC",
               })}
             </time>
-            . Metrics are supplied with each listing and verified.
+            . Metrics are supplied with each listing and are not independently
+            verified. Confirm publisher authorization, current availability and
+            scope before proceeding. Saving a plan does not reserve a placement;
+            online ordering and payment are currently disabled.
           </p>
         )}
       </section>
@@ -442,20 +451,7 @@ export default async function Page() {
         </div>
       </section>
 
-      <Suspense
-        fallback={
-          <section
-            className="hub-section"
-            aria-labelledby="prices"
-            aria-busy="true"
-          >
-            <h2 id="prices">What does a guest post cost by niche?</h2>
-            <p role="status">Loading price data...</p>
-          </section>
-        }
-      >
-        <HubPrices datedStats={datedStats} prices={prices} />
-      </Suspense>
+      <HubPrices datedStats={datedStats} prices={prices} />
 
       <section className="hub-section" aria-labelledby="how-to-choose">
         <div className="hub-heading">

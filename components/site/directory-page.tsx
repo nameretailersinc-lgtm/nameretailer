@@ -689,7 +689,7 @@ export function LandingExplore() {
                 SaaS publisher directory
               </Link>{" "}
               or{" "}
-              <Link href="/tech-guest-posting-sites/">
+              <Link href="/technology-guest-posting-sites/">
                 technology guest posting sites
               </Link>
               , inspect recent editorial articles on each domain, and prepare an
@@ -739,8 +739,8 @@ export function LandingExplore() {
                 what a guest post costs
               </Link>{" "}
               alongside{" "}
-              <Link href="/guides/guest-posting-for-seo/">
-                how guest posting supports SEO
+              <Link href="/guides/guest-posting-strategy/">
+                how to plan a guest posting strategy
               </Link>{" "}
               to benchmark publisher fees, editorial standards and realistic
               organic search outcomes.
@@ -752,18 +752,18 @@ export function LandingExplore() {
               Whether you are comparing paid guest posting sites with clearly
               disclosed sponsorship or pitching earned editorial contributions
               using our{" "}
-              <Link href="/guides/outreach-email-templates/">
-                guest post outreach email templates
+              <Link href="/guides/guest-post-outreach-templates/">
+                guest post outreach guidance
               </Link>
               , prioritize topical authority, natural anchor text and strong
               on-site destination pages. Pair external publication coverage with
               a clear{" "}
-              <Link href="/guides/internal-linking-for-seo/">
-                internal linking strategy for SEO
+              <Link href="/blog/internal-links-that-make-an-article-library-easier-to-use/">
+                internal linking structure for an article library
               </Link>{" "}
               and a structured{" "}
-              <Link href="/guides/technical-seo-checklist/">
-                technical SEO checklist
+              <Link href="/blog/check-server-rendered-article-content-before-launch/">
+                server-rendered article checklist
               </Link>{" "}
               so referral visitors and search crawlers reach well-structured,
               indexable pages on your domain.

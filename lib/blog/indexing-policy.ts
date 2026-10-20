@@ -1,4 +1,5 @@
-// Preserve technical articles; review GSC/backlinks before changing this restriction.
+// Unreviewed technical articles keep their existing restriction. The recovery
+// request explicitly includes the existing responsive QA article for review.
 export const technicalArticleSlugs = new Set([
   "blog/a-canonical-url-checklist-for-a-rebuilt-website",
   "blog/internal-links-that-make-an-article-library-easier-to-use",
@@ -11,12 +12,18 @@ export const technicalArticleSlugs = new Set([
   "blog/measure-page-experience-with-a-repeatable-test-setup",
   "blog/a-wordpress-to-next-js-content-migration-worksheet",
 ]);
-// Current request supersedes the older blanket approval. Only buyer articles qualify.
 import { buyerExpansions } from "./buyer-expansions";
+export const reviewedTechnicalArticleSlugs = new Set([
+  "blog/a-responsive-article-page-qa-checklist",
+]);
+export const indexableBlogSlugs = [
+  ...Object.keys(buyerExpansions).map((slug) => `blog/${slug}`),
+  ...reviewedTechnicalArticleSlugs,
+];
 export const blogArticleIndexable = (record: {
   slug: string;
   data: { robotsIndex?: unknown };
 }) =>
   record.data.robotsIndex !== false &&
   record.slug.startsWith("blog/") &&
-  Object.hasOwn(buyerExpansions, record.slug.slice(5));
+  indexableBlogSlugs.includes(record.slug);
