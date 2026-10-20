@@ -210,8 +210,6 @@ const PublicationName = memo(function PublicationName({
 function PlacementDetails({ product }: { product: PublicProduct }) {
   return (
     <>
-    
-
       <p className="marketplace-publisher-link">
         <strong>Publisher URL:</strong>{" "}
         <a
@@ -2187,3 +2185,5 @@ function MarketplaceContent({
     </div>
   );
 }
+
+
