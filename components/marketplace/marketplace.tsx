@@ -218,7 +218,6 @@ function PlacementDetails({ product }: { product: PublicProduct }) {
           rel="noopener noreferrer nofollow"
         >
 
-
           {product.domain}
           <span className="screen-reader-only">
             {" "}
