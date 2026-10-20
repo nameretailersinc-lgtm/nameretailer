@@ -47,6 +47,10 @@ const usd = (cents: number) =>
   }).format(cents / 100);
 const count = (value: number) => value.toLocaleString("en-US");
 
+
+
+
+
 const nicheIcons: Record<string, LucideIcon> = {
   "technology-guest-posting-sites": Cpu,
   "saas-guest-posting-sites": Code2,
