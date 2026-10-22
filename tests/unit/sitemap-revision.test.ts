@@ -1,5 +1,5 @@
 import { beforeEach, expect, it, vi } from "vitest";
-const state = vi.hoisted(() => ({ version: 1, reads: 0, fail: false }));
+const state = vi.hoisted(() => ({ version: 1, reads: 0, fail: false, invalid: false }));
 vi.mock("@/lib/db", () => ({
   getDb: async () => ({
     collection: () => ({ findOne: async () => ({ version: state.version }) }),
@@ -9,7 +9,9 @@ vi.mock("@/lib/seo/sitemap-entries", () => ({
   allSitemapEntries: async () => {
     state.reads++;
     if (state.fail) throw new Error('db down');
+    if (state.invalid) return [{ url: "http://example.com/x/" }];
     return [
+      { url: "https://nameretailer.com/" },
       { url: `https://nameretailer.com/blog/revision-${state.version}/` },
     ];
   },
@@ -42,4 +44,22 @@ it("serves the last complete snapshot when a refresh fails, and fails when none 
   clearTtlCache();
   await expect(sitemapFiles()).rejects.toThrow();
   state.fail = false;
+});
+
+it("shares one build between concurrent refreshes", async () => {
+  await Promise.all([sitemapFiles(), sitemapFiles(), sitemapFiles()]);
+  expect(state.reads).toBe(1);
+});
+
+it("never stores or serves a non-canonical snapshot over the last good one", async () => {
+  const { clearLastGoodSitemap } = await import("@/lib/seo/sitemap-files");
+  clearLastGoodSitemap();
+  const good = await sitemapFiles();
+  state.version = 2;
+  state.invalid = true;
+  expect(await sitemapFiles()).toEqual(good);
+  clearLastGoodSitemap();
+  clearTtlCache();
+  await expect(sitemapFiles()).rejects.toThrow(/non-canonical/);
+  state.invalid = false;
 });

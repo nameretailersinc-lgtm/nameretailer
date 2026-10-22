@@ -678,6 +678,15 @@ export default async function Page({ params }: Props) {
               </Link>
               , or <Link href="/">review the full active catalogue</Link>.
             </p>
+            {isCost && (
+              <p>
+                Compare by budget:{" "}
+                <Link href="/guest-posting-sites-under-100/">up to $100</Link>,{" "}
+                <Link href="/price-100-to-300/">$100 to $300</Link> or{" "}
+                <Link href="/price-300-plus/">over $300</Link>. Prices are
+                supplied asking prices, not total campaign budgets.
+              </p>
+            )}
           </div>
           <div className="guide-closing-actions">
             <Link

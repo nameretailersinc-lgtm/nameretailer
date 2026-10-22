@@ -1,37 +1,29 @@
-import { InformationShell } from "@/components/site/information-page";
 import styles from "./loading.module.css";
 
+// Only the placeholder: the streamed HTML keeps this markup beside the real page,
+// so it must not repeat the page shell, the H1 or the footer.
 export default function Loading() {
   return (
-    <InformationShell
-      path="/guest-posting-sites/"
-      title="Guest posting sites by niche, country and budget"
-      label="Guest posting sites"
-      description="Find publications for your audience. Compare topics, countries, metrics and placement prices to plan your next guest post."
-      active="marketplace"
-      image="/15_laptop_dashboard_illustration.png"
+    <section
+      className={styles.loading}
+      aria-busy="true"
+      aria-label="Publication directory"
     >
-      <section
-        className={styles.loading}
-        aria-busy="true"
-        aria-label="Publication directory"
-      >
-        <p className={styles.status} role="status">
-          Loading publications…
-        </p>
-        <div className={styles.cards} aria-hidden="true">
-          {Array.from({ length: 8 }, (_, index) => (
-            <div className={styles.card} key={index}>
-              <span className={styles.icon} />
-              <div>
-                <span />
-                <span />
-                <span />
-              </div>
+      <p className={styles.status} role="status">
+        Loading publications…
+      </p>
+      <div className={styles.cards} aria-hidden="true">
+        {Array.from({ length: 8 }, (_, index) => (
+          <div className={styles.card} key={index}>
+            <span className={styles.icon} />
+            <div>
+              <span />
+              <span />
+              <span />
             </div>
-          ))}
-        </div>
-      </section>
-    </InformationShell>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

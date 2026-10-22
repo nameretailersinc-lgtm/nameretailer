@@ -46,12 +46,22 @@ type SitemapSet = Record<string, MetadataRoute.Sitemap>;
 // because allSitemapEntries throws on any failed read.
 let lastGood: { files: SitemapSet; at: number } | undefined;
 const lastGoodMaxAgeMs = 24 * 60 * 60_000;
+/** Reject a snapshot that is empty, lacks the static group or holds non-canonical URLs. */
+export function assertValidSitemapSet(files: SitemapSet) {
+  if (!files["static-0.xml"]?.length)
+    throw new Error("Sitemap snapshot is missing the static group");
+  for (const entries of Object.values(files))
+    for (const { url } of entries)
+      if (!url.startsWith(`${canonicalOrigin}/`))
+        throw new Error(`Sitemap snapshot has a non-canonical URL: ${url}`);
+  return files;
+}
 export const clearLastGoodSitemap = () => {
   lastGood = undefined;
 };
 export const sitemapFiles = async (): Promise<SitemapSet> => {
   try {
-    const files = await buildSitemapFiles();
+    const files = assertValidSitemapSet(await buildSitemapFiles());
     lastGood = { files, at: Date.now() };
     return files;
   } catch (error) {
