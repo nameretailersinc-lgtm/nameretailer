@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buyerGuides } from "@/lib/site/buyer-guides";
 export function BuyerGuideLinks() {
   return (
     <section className="reference-card">
@@ -17,6 +18,24 @@ export function BuyerGuideLinks() {
         ].map(([label, href]) => (
             <li key={href}>
               <Link href={href}>{label}</Link>
+            </li>
+          ))}
+      </ul>
+    </section>
+  );
+}
+
+/** Plain crawlable list of every approved guide, the same set the sitemap publishes. */
+export function AllBuyerGuides() {
+  return (
+    <section className="reference-card" aria-labelledby="all-buyer-guides">
+      <h2 id="all-buyer-guides">All guest posting guides</h2>
+      <ul>
+        {buyerGuides
+          .filter((guide) => guide.approved)
+          .map((guide) => (
+            <li key={guide.slug}>
+              <Link href={`/guides/${guide.slug}/`}>{guide.title}</Link>
             </li>
           ))}
       </ul>

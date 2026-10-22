@@ -41,7 +41,30 @@ export function splitSitemap(
   if (rows.length) chunks.push(rows);
   return chunks;
 }
-export const sitemapFiles = async () => {
+type SitemapSet = Record<string, MetadataRoute.Sitemap>;
+// Last complete snapshot, kept across revisions. Partial builds never reach it
+// because allSitemapEntries throws on any failed read.
+let lastGood: { files: SitemapSet; at: number } | undefined;
+const lastGoodMaxAgeMs = 24 * 60 * 60_000;
+export const clearLastGoodSitemap = () => {
+  lastGood = undefined;
+};
+export const sitemapFiles = async (): Promise<SitemapSet> => {
+  try {
+    const files = await buildSitemapFiles();
+    lastGood = { files, at: Date.now() };
+    return files;
+  } catch (error) {
+    // A transient database or timeout failure should not give Googlebot a 503
+    // ("Couldn't fetch" / processing error) when a complete snapshot exists.
+    if (lastGood && Date.now() - lastGood.at < lastGoodMaxAgeMs) {
+      console.warn("Serving last good sitemap snapshot:", error);
+      return lastGood.files;
+    }
+    throw error;
+  }
+};
+const buildSitemapFiles = async () => {
   // The existing transaction constraint increments atomically with every CMS write.
   // Read it outside process-local caching so other application instances see publishes
   // and archives without waiting for their fifteen-minute sitemap TTL.
